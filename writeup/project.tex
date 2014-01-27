@@ -1,0 +1,34 @@
+\documentclass[openany]{book}
+\usepackage{appendix}
+\usepackage{todonotes}
+
+\renewcommand{\chaptername}{}
+
+\title{COMP208 - Group Software Project\\Group X}
+\author{D. Breslin, L. Thomas, et. al.}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\chapter{Project Proposal}
+\input{text/proposal.tex}
+
+\begin{appendices}
+\appendixpage % Page empty but for page# and "Appendicies" precedes appendicies
+\noappendicestocpagenum % Remove the page# from the TOC for that ^ page
+\addappheadtotoc % "Appendicies" precedes the listing of appendicies in the TOC
+
+\chapter{Deadlines}
+\input{text/deadlines.tex}
+\chapter{Licence}
+\input{text/licence.tex}
+
+\end{appendices}
+
+\listoftodos
+\todototoc
+\todo[noline]{Full author list}
+\todo[noline]{Replace "Group X" with actual group name/code}
+
+\end{document}
