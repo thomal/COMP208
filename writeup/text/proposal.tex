@@ -8,7 +8,8 @@ We feel that obscuring the content of messages isn't enough, because suspician
 may, and often does, fall upon people not for what they say, but to whom they
 are speaking\todo{citation needed}. Our system will therefore not merely hide
 the content of messages, but the recipient of messages too. Hiding the fact that
-somebody sent a message is out of scope.
+an IP address sent a message is out of scope, but hiding which user/keypair did
+so is.
 
 The system will provide the following functionality:
 \begin{itemize}
@@ -32,7 +33,7 @@ information unless the persons private key is compromised.}
 \end{itemize}
 
 A third party logging all traffic between all clients and a server will have
-access to the following information:
+access to the following information: \todo{Talk about TLS, end-to-end crypto}
 \begin{itemize}
 \item Who connects to the server, whether they upload or downloand information
 \footnote{size correlation attacks could be used here if the message content is
@@ -67,7 +68,8 @@ a name. An unencrypted (but signed) message is then posted to the server
 associating that keypair with that name. In this way, by knowing the public key
 of someone, you may discover their name in the service, but not vice versa.\\
 \textbf{Connecting for the first time} Every encrypted message stored on the
-server is downloaded \footnote{clients use bittorrent to lighten server load?}
+server is downloaded\todo{this is ridiculous and unneeded, see later todo item
+for the reasons why.}\footnote{clients use bittorrent to lighten server load?}
 and messages matching your public key are decrypted. Decrypted messages are used
 to build a database of information known to you. Undecryptable messages are
 discarded. (if someone retroactivly grants you permission to view something
@@ -129,6 +131,12 @@ What would need to be done:
     \item Task 4
     \end{itemize}
 \end{itemize}
+
+\todo{Talk about how much data one would need to sync, how this can be mitigated
+. For example, the only messages of interest to you when you register are 
+unencrypted messages. Due to this allow requesting all unencrypted messages from
+the server and discourage users from posting messages to people not yet on the
+network.}
 
 \section{Proposed Tools}
 Git, with a central (private) repository hosted on github will be used for
