@@ -4,6 +4,7 @@ class NetworkConnection {
     public NetworkConnection (String serverurl) {
         System.out.println("WARNING: Duumy network connection constructor");
         url = serverurl;
+        messages = new Vector<String>();
         
         //dummy
         messages.add("MSG 1");
