@@ -75,7 +75,7 @@ permission to view something they publish it as a new message with an old
 timestamp). At this time the local database contains only signed messages
 claiming usernames. The public keys are not provided, these are of use only when
 you learn the public key behind a name. The rationale for not providing public
-keys is provided in the section regarding adding a friend). Messages posted
+keys is provided in the section regarding adding a friend. Messages posted
 after your name was claimed will require downloading too, as once you claim a
 name people may send you messages.\\
 
@@ -88,7 +88,7 @@ discarded.\\
 the server every 1-5 seconds (configurable by the user).\\
 
 \textbf{Adding a friend} is performed by having a friend email (or otherwise
-transfere) you their public key. This is input to the system, and it finds their
+transfere) you their public key. This is input to the client, and it finds their
 name (via public posting that occured when registering). You may now interact
 with that person. They may not interact with you until they recieve your public
 key.\footnote{This is the one part that will be difficult for normal users,
@@ -99,7 +99,7 @@ operators}\\
 \textbf{Talking with a friend or posting on your wall} is achieved by writing
 a message, signing it with your private key, and encrypting one copy of it with
 each of the recipiants public keys before posting it to the server. The client
-prevents one from posing a message to someones public key, if they have not
+prevents one from posting a message to someones public key, if they have not
 claimed a nickname.\\
 
 \textbf{Posting to a friends wall} may be requested by sending a specially
@@ -135,22 +135,53 @@ amount of data which would need downloading by each client when it is started.
 The following assumptions are used:
 \begin{itemize}
 \item A users avarage message posted to their wall is ~200 characters
-\item A users avarage number of messages posted to their wall per day is 24
-\item A users avarage number of friends is 200 (each and every friend represents
+\item A users avarage number of messages posted to their wall per day is 10
+\item A users avarage number of friends is 100 (each and every friend represents
 one key exchange)
 \item A users avarage private message (to single user) is 50 characters
 \item A users avarage number of private (to single user) messages per day is 300
 \end{itemize}
-With these generous estimates, each user would generate (200*24*200)+(50*300*1)
+With these generous estimates, each user would generate (200*10*100)+(50*300*1)
 bytes of raw data per day. Assuming a 10\% protocol overhead we would see
-1,072,500 bytes of data per day per user.\\
+236,500 bytes of data per day per user.\\
 
-The storage space required for a server is therfore \todo{server storage}\\
+The storage space required for a server is therfore 86MB per year per user. On a
+server with 50,000 users that has been running for 3 years, there would be just
+1.3TB of data.\\
 
-Assuming each user opens there client just once every other day \todo{blah blah}
-. To mitigate this we may run as a daemon on linux, or a background process in
-windows, that starts when the user logs in \todo{analyse this method w/r/t how
-ofter the computer is turned on}.
+Every time a client connects, it must download all messages posted since it last
+connected to the server. To mitigate this we may run as a daemon on linux, or a
+background process in windows, that starts when the user logs in. If we can
+expect a computer to be turned on for just 4 hours a day then 20 hours of data
+must be downloaded. ((236,500*no\_of\_users)/24)*hours\_off\_per\_day bytes must be
+downloaded when the users computer is turned on.
+
+The following table shows the delays between the computer turning on, and every
+message having been downloaded (assuming a download speed of 500KB/second, and a
+netowrk of 1000 users).
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{lc}
+    Hours off per day & Minutes to sync       \\ \hline
+    0                 &  0 \\
+    4                 &  1.3\\
+    10                &  3.2\\
+    12                &  3.9\\
+    16                &  5.2\\
+    20                &  6.5\\
+    \end{tabular}
+    \caption{Hours a computer is turned off per day vs minutes to sync}
+\end{table}
+
+To mitigate this, posts will be downloaded in reverse order, so that more recent
+posts are downloaded first. We feel that waiting 2-5 mins is an acceptable delay
+for the degree of privacy provided. Once the user is synced after turning their
+computer on, no further delays will be incurred until the computer is shut down.
+
+Due to the inherantly limited network size (\textless1500 users of one server is
+practical) we recomend a number of smaller servers, each serving either a
+geographic location, or a specific interest group.
 
 \section{Task Partitioning}
 \begin{itemize}
@@ -168,7 +199,7 @@ ofter the computer is turned on}.
 
 \section{Proposed Tools}
 Git, with a central (private) repository hosted on github will be used for
-version control. The language used will be fortran on punchcards\todo{choose
+version control. The language used has yet to be decided..\todo{choose
 programming language}.\todo{Talk more about tools, specifically about
 communication between group members}
 
