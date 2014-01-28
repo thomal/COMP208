@@ -1,0 +1,19 @@
+import java.security.PublicKey;
+
+class Friend {
+    public Friend (String _name, PublicKey _key) {
+        name = _name;
+        key = _key;
+    }
+    
+    public String getName () {
+        return name;
+    }
+    
+    public PublicKey getKey () {
+        return key;
+    }
+    
+    private String name;
+    private PublicKey key;
+}

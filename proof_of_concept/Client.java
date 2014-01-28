@@ -1,17 +1,21 @@
 class Client {
     public static void main (String[] argv) {
         NetworkConnection connection = new NetworkConnection("127.0.0.1");
-        Database          database   = new Database("./db");
-        GUI               ui         = new GUI(database);
+        Database          db         = new Database("./db");
+        GUI               gui        = new GUI(db, connection);
+        
+        if (!Crypto.keysExist())
+            Crypto.keyGen();
         
         while (running) {
             if (connection.hasMessage())
-                database.handle(connection.getMessage());
-            ui.update();
+                Parser.handle(Crypto.decrypt(connection.getMessage()), db);
+            running = gui.update();
         }
         
+        gui.close();
         connection.close();
-        database.close();
+        db.close();
     }
     
     private static boolean running = true;

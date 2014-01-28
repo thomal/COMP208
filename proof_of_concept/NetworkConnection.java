@@ -1,18 +1,14 @@
 import java.util.Vector;
+import java.security.*;
 
 class NetworkConnection {
     public NetworkConnection (String serverurl) {
         System.out.println("WARNING: Duumy network connection constructor");
         url = serverurl;
         messages = new Vector<String>();
-        
-        //dummy
-        messages.add("MSG 1");
-        messages.add("MSG 2");
     }
     
     public void close () {
-        System.out.println("WARNING: Dummy network connection close");
     }
     
     public Boolean hasMessage () {
@@ -23,6 +19,12 @@ class NetworkConnection {
         String m = messages.get(0);
         messages.removeElementAt(0);
         return m;
+    }
+    
+    public void postMessage (String msg, PublicKey recipient) {
+        System.out.println("WARNING: Dummy post method");
+        msg = "POST\\" + msg;
+        messages.add(Crypto.encrypt(msg, recipient));
     }
     
     private String url;
