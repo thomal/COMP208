@@ -61,16 +61,16 @@ class Crypto {
     
     public static String sign (String msg) {
         System.out.println("WARNING: Dummy sign method");
-        return msg;
+        return "notasig";
     }
     
-    public static String encrypt(String msg, PublicKey recipient) {
+    public static String encrypt(String cmd, String text, PublicKey recipient) {
         try {
             //sign and encrypt
-            msg = Crypto.sign(msg);
+            Message msg = new Message(cmd, text, Crypto.sign(text));
             Cipher rsa = Cipher.getInstance("RSA");
             rsa.init(Cipher.ENCRYPT_MODE, recipient);
-            byte[] cipherText = rsa.doFinal(msg.getBytes());
+            byte[] cipherText = rsa.doFinal(msg.toString().getBytes());
             return Base64Encode(cipherText);
         } catch (Exception e) {
             System.out.println("WARNING: Unable to encrypt message");
@@ -78,17 +78,17 @@ class Crypto {
         return "";
     }
     
-    public static String decrypt(String msg) {
+    public static Message decrypt(String msg) {
         try {
             byte[] cipherText = Base64Decode(msg);
             Cipher rsa = Cipher.getInstance("RSA");
             rsa.init(Cipher.DECRYPT_MODE, getPrivateKey());
             byte[] plainText = rsa.doFinal(cipherText);
-            return new String(plainText);
+            return Message.parse(new String(plainText));
         } catch (Exception e) {
             System.out.println("WARNING: Unable to decrypt message: " + e);
         }
-        return "";
+        return new Message("NULL", "", "");
     }
     
     public static String Base64Encode (byte[] data) {

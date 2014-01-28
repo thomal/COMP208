@@ -23,8 +23,7 @@ class NetworkConnection {
     
     public void postMessage (String msg, PublicKey recipient) {
         System.out.println("WARNING: Dummy post method");
-        msg = "POST\\" + msg;
-        messages.add(Crypto.encrypt(msg, recipient));
+        messages.add(Crypto.encrypt("POST", msg, recipient));
     }
     
     private String url;

@@ -17,9 +17,9 @@ class GUI {
         //parse input
         //READ
         if (input.equals("READ")) {
-            Vector<String> msgs = database.getPosts();
+            Vector<Message> msgs = database.getPosts();
             for (int i = 0; i < msgs.size(); i++)
-                System.out.println(msgs.get(i));
+                System.out.println(msgs.get(i).getContent());
         } else
         
         //QUIT
