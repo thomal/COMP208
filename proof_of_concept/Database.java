@@ -30,6 +30,14 @@ class Database {
         return null;
     }
     
+    public String getSignatory (Message m) {
+        for (int i = 0; i < friends.size(); i++) {
+            if (Crypto.verifySig(m, friends.get(i).getKey()))
+                return friends.get(i).getName();
+        }
+        return "unknown";
+    }
+    
     public void addPost (Message post) {
         posts.add(post);
     }

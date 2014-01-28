@@ -19,7 +19,8 @@ class GUI {
         if (input.equals("READ")) {
             Vector<Message> msgs = database.getPosts();
             for (int i = 0; i < msgs.size(); i++)
-                System.out.println(msgs.get(i).getContent());
+                System.out.println(database.getSignatory(msgs.get(i)) + "\t" + 
+                                   msgs.get(i).getContent());
         } else
         
         //QUIT

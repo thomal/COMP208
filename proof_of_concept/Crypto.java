@@ -2,7 +2,10 @@
 import java.io.*;
 import java.security.*;
 import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
+import javax.crypto.spec.IvParameterSpec;
 import javax.xml.bind.DatatypeConverter;
+import java.util.StringTokenizer;
 
 class Crypto {    
     public static Boolean keysExist() {
@@ -60,31 +63,84 @@ class Crypto {
     }
     
     public static String sign (String msg) {
-        System.out.println("WARNING: Dummy sign method");
-        return "notasig";
+        try {
+            Signature sig = Signature.getInstance("SHA1withRSA");
+            sig.initSign(Crypto.getPrivateKey());
+            sig.update(msg.getBytes());
+            byte[] bytesig = sig.sign();
+            return Base64Encode(bytesig);
+        } catch (Exception e) {
+            System.out.println("ERROR: Could not sign message");
+        }
+        return "";
+    }
+    
+    public static boolean verifySig (Message msg, PublicKey author) {
+        try {
+            Signature sig = Signature.getInstance("SHA1withRSA");
+            sig.initVerify(author);
+            sig.update(msg.getContent().getBytes());
+            return sig.verify(Base64Decode(msg.getSig()));
+        } catch (Exception e) {
+            System.out.println("ERROR: Could not verify signature");
+        }
+        return false;
     }
     
     public static String encrypt(String cmd, String text, PublicKey recipient) {
         try {
             //sign and encrypt
             Message msg = new Message(cmd, text, Crypto.sign(text));
+            
+            //encrypt with random AES key
+            System.out.println("WARNING: AES not using a random key or iv, IV sent in cleartext");
+            String password        = "1234567890123456";
+            String iv              = "0345750576243763";
+            SecretKeySpec aesKey   = new SecretKeySpec(password.getBytes(), "AES");
+            IvParameterSpec ivspec = new IvParameterSpec(iv.getBytes());
+            
+            Cipher aes = Cipher.getInstance("AES/CBC/PKCS5Padding");
+            aes.init(Cipher.ENCRYPT_MODE, aesKey, ivspec);
+            byte[] aesCipherText = aes.doFinal(msg.toString().getBytes());
+            
+            //encrypt AES key with RSA
             Cipher rsa = Cipher.getInstance("RSA");
             rsa.init(Cipher.ENCRYPT_MODE, recipient);
-            byte[] cipherText = rsa.doFinal(msg.toString().getBytes());
-            return Base64Encode(cipherText);
+            byte[] RSAaesKey = rsa.doFinal(password.getBytes());
+            
+            //"iv\RSA encrypted AES key\ciper text"
+            return Base64Encode(iv.getBytes()) + "\\" + Base64Encode(RSAaesKey) + "\\" + Base64Encode(aesCipherText);
         } catch (Exception e) {
-            System.out.println("WARNING: Unable to encrypt message");
+            System.out.println("WARNING: Unable to encrypt message: " + e);
         }
         return "";
     }
     
     public static Message decrypt(String msg) {
         try {
-            byte[] cipherText = Base64Decode(msg);
+            String[] tokens = new String[3];
+            StringTokenizer tokenizer = new StringTokenizer(msg, "\\", false);
+            tokens[0] = tokenizer.nextToken();
+            tokens[1] = tokenizer.nextToken();
+            tokens[2] = tokenizer.nextToken();
+        
+            String iv            = new String(Base64Decode(tokens[0]));
+            byte[] cipheredKey   = Base64Decode(tokens[1]);
+            byte[] cipherText    = Base64Decode(tokens[2]);
+            
+            //decrypt AES key
             Cipher rsa = Cipher.getInstance("RSA");
             rsa.init(Cipher.DECRYPT_MODE, getPrivateKey());
-            byte[] plainText = rsa.doFinal(cipherText);
-            return Message.parse(new String(plainText));
+            byte[] aesBytePassword = rsa.doFinal(cipheredKey);
+            
+            //decrypt AES Ciphertext
+            SecretKeySpec aesKey = new SecretKeySpec(aesBytePassword, "AES");
+            IvParameterSpec ivspec = new IvParameterSpec(iv.getBytes());
+            Cipher aes = Cipher.getInstance("AES/CBC/PKCS5Padding");
+            aes.init(Cipher.DECRYPT_MODE, aesKey, ivspec);
+            byte[] messagePlaintext = aes.doFinal(cipherText);
+
+            return Message.parse(new String(messagePlaintext));
         } catch (Exception e) {
             System.out.println("WARNING: Unable to decrypt message: " + e);
         }

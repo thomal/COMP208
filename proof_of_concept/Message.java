@@ -1,3 +1,5 @@
+import java.util.StringTokenizer;
+
 public class Message {
     public Message (String cmd, String con, String sig) {
         command = cmd;
@@ -7,11 +9,13 @@ public class Message {
     
     /* "POST\520adfc4\Hello, World!" -> new Message("POST", "Hello, World!", "520adfc4") */
     public static Message parse (String msg) {
-        String cmd = msg.substring(0, msg.indexOf("\\"));
-        String p2 = msg.substring(msg.indexOf("\\")+1);
-        String sig = p2.substring(0, p2.indexOf("\\"));
-        String text = p2.substring(p2.indexOf("\\")+1);
-        return new Message(cmd, text, sig);
+        String[] tokens = new String[3];
+        StringTokenizer tokenizer = new StringTokenizer(msg, "\\", false);
+        tokens[0] = tokenizer.nextToken();
+        tokens[1] = tokenizer.nextToken();
+        tokens[2] = tokenizer.nextToken();
+        
+        return new Message(tokens[0], tokens[2], tokens[1]);
     }
     
     public String toString () {
