@@ -66,7 +66,7 @@ class Crypto {
         try {
             Signature sig = Signature.getInstance("SHA1withRSA");
             sig.initSign(Crypto.getPrivateKey());
-            sig.update(msg.getBytes());
+            sig.update(msg.getBytes("UTF-8"));
             byte[] bytesig = sig.sign();
             return Base64Encode(bytesig);
         } catch (Exception e) {
@@ -79,7 +79,7 @@ class Crypto {
         try {
             Signature sig = Signature.getInstance("SHA1withRSA");
             sig.initVerify(author);
-            sig.update(msg.getContent().getBytes());
+            sig.update(msg.getContent().getBytes("UTF-8"));
             return sig.verify(Base64Decode(msg.getSig()));
         } catch (Exception e) {
             System.out.println("ERROR: Could not verify signature");
@@ -96,20 +96,20 @@ class Crypto {
             System.out.println("WARNING: AES not using a random key or iv");
             String password        = "1234567890123456";
             String iv              = "0345750576243763";
-            SecretKeySpec aesKey   = new SecretKeySpec(password.getBytes(), "AES");
-            IvParameterSpec ivspec = new IvParameterSpec(iv.getBytes());
+            SecretKeySpec aesKey   = new SecretKeySpec(password.getBytes("UTF-8"), "AES");
+            IvParameterSpec ivspec = new IvParameterSpec(iv.getBytes("UTF-8"));
             
             Cipher aes = Cipher.getInstance("AES/CBC/PKCS5Padding");
             aes.init(Cipher.ENCRYPT_MODE, aesKey, ivspec);
-            byte[] aesCipherText = aes.doFinal(msg.toString().getBytes());
+            byte[] aesCipherText = aes.doFinal(msg.toString().getBytes("UTF-8"));
             
             //encrypt AES key with RSA
             Cipher rsa = Cipher.getInstance("RSA");
             rsa.init(Cipher.ENCRYPT_MODE, recipient);
-            byte[] RSAaesKey = rsa.doFinal(password.getBytes());
+            byte[] RSAaesKey = rsa.doFinal(password.getBytes("UTF-8"));
             
             //"iv\RSA encrypted AES key\ciper text"
-            return Base64Encode(iv.getBytes()) + "\\" + Base64Encode(RSAaesKey) + "\\" + Base64Encode(aesCipherText);
+            return Base64Encode(iv.getBytes("UTF-8")) + "\\" + Base64Encode(RSAaesKey) + "\\" + Base64Encode(aesCipherText);
         } catch (Exception e) {
             System.out.println("WARNING: Unable to encrypt message: " + e);
         }
@@ -135,7 +135,7 @@ class Crypto {
             
             //decrypt AES Ciphertext
             SecretKeySpec aesKey = new SecretKeySpec(aesBytePassword, "AES");
-            IvParameterSpec ivspec = new IvParameterSpec(iv.getBytes());
+            IvParameterSpec ivspec = new IvParameterSpec(iv.getBytes("UTF-8"));
             Cipher aes = Cipher.getInstance("AES/CBC/PKCS5Padding");
             aes.init(Cipher.DECRYPT_MODE, aesKey, ivspec);
             byte[] messagePlaintext = aes.doFinal(cipherText);
@@ -158,7 +158,7 @@ class Crypto {
     public static String hash (String data) {
         try {
             MessageDigest hasher = MessageDigest.getInstance("SHA-256");        
-            return DatatypeConverter.printHexBinary(hasher.digest(data.getBytes()));
+            return DatatypeConverter.printHexBinary(hasher.digest(data.getBytes("UTF-8")));
         } catch (Exception e) {
             System.out.println("SHA-256 isn't supported.");
         }
