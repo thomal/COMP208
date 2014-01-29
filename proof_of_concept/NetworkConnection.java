@@ -1,4 +1,5 @@
 import java.util.Vector;
+import java.util.*; //time
 import java.security.*;
 import java.io.*;
 
@@ -7,7 +8,7 @@ class NetworkConnection {
         System.out.println("WARNING: Duumy network connection constructor");
         url = serverurl;
         messages = new Vector<String>();
-        readMessages = new Vector<String>();
+        lastRead = -1;
     }
     
     public void close () {
@@ -27,10 +28,12 @@ class NetworkConnection {
         System.out.println("WARNING: Dummy post method");
         
         try {
+        Date now = new Date();
         String ciphertext = Crypto.encrypt("POST", msg, recipient);
         BufferedWriter writer = new BufferedWriter(
                                 new FileWriter(
-                                new File("./fakeserver/" + Crypto.hash(ciphertext))));
+                                new File("./fakeserver/" + now.getTime() +
+                                         "_" + Crypto.hash(ciphertext))));
         writer.write(ciphertext);
         writer.close();
         } catch (Exception e) {
@@ -39,7 +42,6 @@ class NetworkConnection {
     }
     
     public void downloadMessages () {
-        System.out.println("download");
         try {
             File server = new File("./fakeserver");
             File[] files = server.listFiles();
@@ -47,17 +49,31 @@ class NetworkConnection {
                 BufferedReader reader = new BufferedReader(
                                         new FileReader(files[i]));
                 String msg = reader.readLine();
-                if (!readMessages.contains(msg)) {
+                if (lastRead <= getTimestamp(files[i])) {
                     messages.add(msg);
-                    readMessages.add(msg);
                 }
             }
+            
+            lastRead = new Date().getTime();
         } catch (Exception e) {
             System.out.println("ERROR: Could not read from server: " + e);
         }
     }
     
+    //44634633434_HASH -> 44634633434
+    private double getTimestamp (File f) {
+        try {
+            String fn = f.getCanonicalPath();
+            String ts = fn.substring(fn.lastIndexOf("/")+1, fn.lastIndexOf("_"));
+            
+            return Double.parseDouble(ts);
+        } catch (Exception e) {
+            System.out.println("ERROR: Could not parse file timestamp: " + e);
+        }
+        return 1;
+    }
+    
     private String url;
     private Vector<String> messages;
-    private Vector<String> readMessages;
+    private long lastRead;
 }
