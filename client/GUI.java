@@ -17,11 +17,11 @@ class GUI {
         //parse input
         //READ
         if (input.equals("READ")) {
-            System.out.println("Friends walls:");
+            System.out.println("Private messages:");
             Vector<Friend> friends = database.getFriends();
             for (int i = 0; i < friends.size(); i++) {
                 Vector<Message> msgs = database.getPostsBy(friends.get(i).getName());
-                System.out.println("Wall of " + friends.get(i).getName());
+                System.out.println("Messages from " + friends.get(i).getName());
                 for (int j = 0; j < msgs.size(); j++)
                     if (msgs.get(j).getCmd().equals("POST"))
                         System.out.println("\t" + msgs.get(j).getContent());

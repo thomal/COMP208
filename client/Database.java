@@ -1,10 +1,10 @@
 import java.util.Vector;
 import java.security.*;
 
-//NB: My initial version is crude an inefficient, and not even a database. It
+//NB: My initial version is crude, inefficient, and not even a database. It
 //    exists solely to allow me to write other parts of the system. While the
-//    methods are useful, their implementation should be rewritten where (often)
-//    approriate.
+//    methods are useful, their implementation should be rewritten in almost all
+//    cases.
 
 class Database {
     public Database (String location) {
