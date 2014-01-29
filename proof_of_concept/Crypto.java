@@ -154,4 +154,14 @@ class Crypto {
     public static byte[] Base64Decode (String data) {
         return DatatypeConverter.parseBase64Binary(data);
     }
+    
+    public static String hash (String data) {
+        try {
+            MessageDigest hasher = MessageDigest.getInstance("SHA-256");        
+            return DatatypeConverter.printHexBinary(hasher.digest(data.getBytes()));
+        } catch (Exception e) {
+            System.out.println("SHA-256 isn't supported.");
+        }
+        return "not_a_hash";
+    }
 }

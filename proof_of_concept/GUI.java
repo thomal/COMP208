@@ -26,9 +26,6 @@ class GUI {
                 for (int j = 0; j < msgs.size(); j++)
                     System.out.println("\t" + msgs.get(j).getContent());
             }
-            
-            System.out.println("Private chats:");
-            
         } else
         
         //QUIT
