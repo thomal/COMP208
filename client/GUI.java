@@ -51,9 +51,19 @@ class GUI {
                 System.out.println("\t" + friends.get(i).getName());
         }
         
+        //SHOWKEY
+        if (input.equals("SHOWKEY"))
+                System.out.println("Your public key is below, you should give this to your friends." +
+                                   " Please ensure you copy/paste it correctly.\n" +
+                                   Crypto.encodeKey(Crypto.getPublicKey()));
+        
+        //ADDKEY
+        //handle Crypto.decodeKey() returning null
+        
         //Invalid command
         else {
-            System.out.println("\nYou may \"READ\", \"LIST\", \"QUIT\", or \"POST texthere\"");
+            System.out.println("\nYou may \"READ\", \"LIST\", \"QUIT\"," +
+                               " \"SHOWKEY\", \"ADDKEY\", or \"POST texthere\"");
         }
             
        return true;

@@ -41,6 +41,7 @@ public class Server
     }
     
     public static void main (String[] argv) {
+        System.out.println("Server running...");
         start(31415);
     }
 }

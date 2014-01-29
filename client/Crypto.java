@@ -1,6 +1,7 @@
 //All methods ought to be static
 import java.io.*;
 import java.security.*;
+import java.security.spec.X509EncodedKeySpec;
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 import javax.crypto.spec.IvParameterSpec;
@@ -145,7 +146,8 @@ class Crypto {
 
             return Message.parse(new String(messagePlaintext));
         } catch (Exception e) {
-            System.out.println("WARNING: Unable to decrypt message: " + e);
+            //This is to be expected for messages not addressed to you
+            //System.out.println("WARNING: Unable to decrypt message: " + e);
         }
         return new Message("NULL", "", 0, "");
     }
@@ -156,6 +158,20 @@ class Crypto {
     
     public static byte[] Base64Decode (String data) {
         return DatatypeConverter.parseBase64Binary(data);
+    }
+    
+    public static String encodeKey (PublicKey key) {
+        return Base64Encode(key.getEncoded());
+    }
+    
+    public static PublicKey decodeKey (String codedKey) {
+        try {
+            return KeyFactory.getInstance("RSA").generatePublic(
+                                new X509EncodedKeySpec(Base64Decode(codedKey)));
+        } catch (Exception e) {
+            System.out.println("ERROR: Could not decode key");
+        }
+        return null;
     }
     
     public static String hash (String data) {
