@@ -5,7 +5,7 @@ class Database {
     public Database (String location) {
         System.out.println("WARNING: Dummy database constructor");
         path = location;
-        posts = new Vector<Message>();
+        posts = new Vector<Pair<String, Message>>();
         friends = new Vector<Friend>();
         
         friends.add(new Friend("me", Crypto.getPublicKey()));
@@ -14,8 +14,16 @@ class Database {
     public void close () {
     }
     
-    public Vector<Message> getPosts () {
+    public Vector<Pair<String, Message>> getPosts () {
         return posts;
+    }
+    
+    public Vector<Message> getPostsBy (String name) {
+        Vector<Message> msgs = new Vector<Message> ();
+        for (int i = 0; i < posts.size(); i++)
+            if (posts.get(i).first.equals(name))
+                msgs.add(posts.get(i).second);
+        return msgs;
     }
     
     public Vector<Friend> getFriends () {
@@ -39,10 +47,10 @@ class Database {
     }
     
     public void addPost (Message post) {
-        posts.add(post);
+        posts.add(new Pair<String, Message>(getSignatory(post), post));
     }
     
     private String path;
-    private Vector<Message> posts;
+    Vector<Pair<String, Message>> posts; //<String author, Message m>
     private Vector<Friend> friends;
 }

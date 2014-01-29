@@ -17,10 +17,18 @@ class GUI {
         //parse input
         //READ
         if (input.equals("READ")) {
-            Vector<Message> msgs = database.getPosts();
-            for (int i = 0; i < msgs.size(); i++)
-                System.out.println(database.getSignatory(msgs.get(i)) + "\t" + 
-                                   msgs.get(i).getContent());
+            System.out.println("Friends walls:");
+            Vector<Friend> friends = database.getFriends();
+            for (int i = 0; i < friends.size(); i++) {
+                Vector<Message> msgs = database.getPostsBy(friends.get(i).getName());
+                if (msgs.size() > 0)
+                    System.out.println(friends.get(i).getName());
+                for (int j = 0; j < msgs.size(); j++)
+                    System.out.println("\t" + msgs.get(j).getContent());
+            }
+            
+            System.out.println("Private chats:");
+            
         } else
         
         //QUIT

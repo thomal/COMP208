@@ -1,3 +1,4 @@
+//Having an "Author" field would be reduncant and untrusted
 import java.util.StringTokenizer;
 
 public class Message {
