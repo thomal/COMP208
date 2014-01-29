@@ -93,7 +93,7 @@ class Crypto {
             Message msg = new Message(cmd, text, Crypto.sign(text));
             
             //encrypt with random AES key
-            System.out.println("WARNING: AES not using a random key or iv, IV sent in cleartext");
+            System.out.println("WARNING: AES not using a random key or iv");
             String password        = "1234567890123456";
             String iv              = "0345750576243763";
             SecretKeySpec aesKey   = new SecretKeySpec(password.getBytes(), "AES");
