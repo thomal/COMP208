@@ -1,5 +1,5 @@
 import java.util.Vector;
-import java.util.*; //time
+import java.util.Date;
 import java.security.*;
 import java.io.*;
 
@@ -66,7 +66,7 @@ class NetworkConnection {
             String fn = f.getCanonicalPath();
             String ts = fn.substring(fn.lastIndexOf("/")+1, fn.lastIndexOf("_"));
             
-            return Double.parseDouble(ts);
+            return Long.parseLong(ts);
         } catch (Exception e) {
             System.out.println("ERROR: Could not parse file timestamp: " + e);
         }
