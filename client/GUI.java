@@ -21,20 +21,20 @@ class GUI {
             Vector<Friend> friends = database.getFriends();
             for (int i = 0; i < friends.size(); i++) {
                 Vector<Message> msgs = database.getPostsBy(friends.get(i).getName());
-                if (msgs.size() > 0)
-                    System.out.println(friends.get(i).getName());
+                System.out.println("Wall of " + friends.get(i).getName());
                 for (int j = 0; j < msgs.size(); j++)
-                    System.out.println("\t" + msgs.get(j).getContent());
+                    if (msgs.get(j).getCmd().equals("POST"))
+                        System.out.println("\t" + msgs.get(j).getContent());
             }
-        } else
+        }
         
         //QUIT
-        if (input.equals("QUIT")) {
+        else if (input.equals("QUIT")) {
             return false;
-        } else
+        }
         
         //POST
-        if (input.length() > 5 && input.substring(0,5).equals("POST ")) {
+        else if (input.length() > 5 && input.substring(0,5).equals("POST ")) {
             System.out.print("Enter name of recipient:");
             PublicKey key = database.getKey(in.nextLine());
             if (key != null)
@@ -44,7 +44,7 @@ class GUI {
         }
         
         //LIST
-        if (input.equals("LIST")) {
+        else if (input.equals("LIST")) {
             Vector<Friend> friends = database.getFriends();
             System.out.println("Known friends:");
             for (int i = 0; i < friends.size(); i++)
@@ -52,20 +52,36 @@ class GUI {
         }
         
         //SHOWKEY
-        if (input.equals("SHOWKEY"))
+        else if (input.equals("SHOWKEY")) {
                 System.out.println("Your public key is below, you should give this to your friends." +
                                    " Please ensure you copy/paste it correctly.\n" +
                                    Crypto.encodeKey(Crypto.getPublicKey()));
-        
-        //ADDKEY
-        if (input.equals("ADDKEY")) {
-            //handle Crypto.decodeKey() returning null
         }
         
+        //ADDKEY
+        else if (input.length() > 7 && input.substring(0,7).equals("ADDKEY ")) {
+            //handle Crypto.decodeKey() returning null
+            PublicKey friendsKey = Crypto.decodeKey(input.substring(7));
+            if (friendsKey != null)
+                database.addFriend(friendsKey);
+            else
+                System.out.println("Sorry, you seem to have mistyped the key");
+        }
+        
+        //CLAIM
+        else if (input.equals("CLAIM")) {
+            System.out.print("Enter desired username (publically vsisible): ");
+            if (connection.claimName(in.nextLine()))
+                System.out.println("Succes.");
+            else
+                System.out.println("Sorry, that name is taken.");
+        }
+                
         //Invalid command
         else {
             System.out.println("\nYou may \"READ\", \"LIST\", \"QUIT\"," +
-                               " \"SHOWKEY\", \"ADDKEY <name> <key>\", or \"POST <text>\"");
+                               " \"SHOWKEY\", \"ADDKEY <key>\", \"CLAIM\"" +
+                               " or \"POST <text>\"");
         }
             
        return true;

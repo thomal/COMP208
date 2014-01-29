@@ -53,6 +53,20 @@ class NetworkConnection {
         }
     }
     
+    public Boolean claimName (String name) { //The only time unencrypted data is sent
+        try {
+            Message claim = new Message("CLAIM", name,
+                     getTime()+Crypto.rand(0,50), Crypto.sign(name));
+            String cmd = "c " + Crypto.Base64Encode(claim.toString().getBytes("UTF-8"));
+            if (serverCmd(cmd).get(0).equals("s"))
+                return true;
+        } catch (Exception e) {
+            System.out.println("ERROR: Could not register name: " + e);
+        }
+    
+        return false;
+    }
+    
     public void downloadMessages () {
         Vector<String> msgs = serverCmd("get " + lastRead);
         lastRead = getTime();

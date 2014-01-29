@@ -50,7 +50,16 @@ class Database {
         posts.add(new Pair<String, Message>(getSignatory(post), post));
     }
     
-    private String path;
+    public void addFriend (PublicKey k) {
+        friends.add(new Friend(getName(k), k));
+    }
+    
+    public String getName (PublicKey k) {
+        System.out.println("UNIMPLEMENTED: cannot yet find name for non-friends from public key");
+        return "unknown";
+    }
+    
+    private String path; //path to database directory
     Vector<Pair<String, Message>> posts; //<String author, Message m>
     private Vector<Friend> friends;
 }

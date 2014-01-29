@@ -2,6 +2,8 @@ import java.io.*;
 import java.net.*;
 import java.util.Date;
 import java.util.concurrent.Semaphore;
+import java.util.StringTokenizer;
+import javax.xml.bind.DatatypeConverter;
 
 public class Server
 {
@@ -92,6 +94,7 @@ class Session implements Runnable
     //    t          - request the number of milliseconds since midnight 1970-01-01
     //    s <string> - request that a string be stored on the server
     //    get <long> - get every message posted since <long> number of milliseconds past midnight 1970-01-01
+    //    c <claim message> - claim a username UNENCRYPTED PUBLICALLY KNOWN
     //Responses are the following:
     //s         - success
     //e         - error
@@ -147,6 +150,28 @@ class Session implements Runnable
             }
         }
         
+        else if (cmd.length() > 5 && cmd.substring(0,1).equals("c")) {
+            Message claim = Message.parse(
+                                new String(
+                                    DatatypeConverter.parseBase64Binary(
+                                        cmd.substring(2))));
+        
+            File data = new File("./data/" + (new Date()).getTime() + "_" + claim.getContent());
+            if(userExists(claim.getContent())) {
+                out.println("e");
+            } else {
+                try {
+                    BufferedWriter writer = new BufferedWriter(new FileWriter(data));
+                    writer.write(cmd);
+                    writer.close();
+                    out.println("s");
+                } catch (Exception e) {
+                    System.out.println("ERROR: Could not write claim to disk");
+                    out.println("e");
+                }
+            }
+        }
+        
         else {
             System.out.println("recieved \"" + cmd + "\", ignoring it");
             out.println("e");
@@ -166,5 +191,20 @@ class Session implements Runnable
             System.out.println("ERROR: Could not parse file timestamp: " + e);
         }
         return 1;
+    }
+    
+    private Boolean userExists (String name) {
+        File dir = new File("./data");
+        File[] files = dir.listFiles();
+            for (int i = 0; i < files.length; i++) {
+                String fname = files[i].getName();
+                String[] tokens = new String[2];
+                StringTokenizer tokenizer = new StringTokenizer(fname, "_", false);
+                tokens[0] = tokenizer.nextToken();
+                tokens[1] = tokenizer.nextToken();
+                if (tokens[1].equals(name))
+                    return true;
+            }
+        return false;
     }
 }
