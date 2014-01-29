@@ -10,6 +10,10 @@ class Friend {
         return name;
     }
     
+    public void setName (String nname) {
+        name = nname;
+    }
+    
     public PublicKey getKey () {
         return key;
     }

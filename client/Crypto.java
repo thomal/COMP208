@@ -125,8 +125,11 @@ class Crypto {
     
     public static Message decrypt(String msg) {
         try {
-            if (msg.substring(0,2).equals("c ")) //claim messages are the only plaintext
-                return Message.parse(new String(Base64Decode(msg.substring(0,2))));
+            //claim messages are the only plaintext in the system, still need decoding
+            if (msg.substring(0,2).equals("c ")) {
+                String decoding = new String(Base64Decode(msg.substring(2)));
+                return Message.parse(decoding);
+            }
         
             String[] tokens = new String[3];
             StringTokenizer tokenizer = new StringTokenizer(msg, "\\", false);

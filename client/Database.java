@@ -1,14 +1,20 @@
 import java.util.Vector;
 import java.security.*;
 
+//NB: My initial version is crude an inefficient, and not even a database. It
+//    exists solely to allow me to write other parts of the system. While the
+//    methods are useful, their implementation should be rewritten where (often)
+//    approriate.
+
 class Database {
     public Database (String location) {
         System.out.println("WARNING: Dummy database constructor");
         path = location;
         posts = new Vector<Pair<String, Message>>();
+        claims = new Vector<Message>();
         friends = new Vector<Friend>();
         
-        friends.add(new Friend("me", Crypto.getPublicKey()));
+        addFriend(Crypto.getPublicKey());
     }
     
     public void close () {
@@ -54,12 +60,29 @@ class Database {
         friends.add(new Friend(getName(k), k));
     }
     
+    public void addClaim (Message claim) {
+        claims.add(claim);
+        for (int i = 0; i < friends.size(); i++)
+            if (friends.get(i).getName().equals("unknown"))
+                friends.get(i).setName(getName(friends.get(i).getKey()));
+        recalcPostAuthors();
+    }
+    
+    private void recalcPostAuthors () {
+        for (int i = 0; i < posts.size(); i++)
+            posts.get(i).first = getSignatory(posts.get(i).second);
+    }
+    
     public String getName (PublicKey k) {
-        System.out.println("UNIMPLEMENTED: cannot yet find name for non-friends from public key");
+        for (int i = 0; i < claims.size(); i++)
+            if (Crypto.verifySig(claims.get(i), k))
+                return claims.get(i).getContent();
         return "unknown";
     }
     
     private String path; //path to database directory
     Vector<Pair<String, Message>> posts; //<String author, Message m>
+    Vector<Message> claims; //<String name, PublicKey publicKey>
+    
     private Vector<Friend> friends;
 }
