@@ -1,0 +1,34 @@
+Parser should take messages like the following, and update the database:
+    POST
+    <authorname>
+    Hello, world!
+in this case the parser should call Database.addPost with appropriate arguments
+
+NetworkConnection should send and recieve data from the server
+
+Crypto should do crypto, and make it as simple and easy as possible
+
+GUI should use the DB to provide a simple user interface
+
+Database should build a database from information passed to it by the parser,
+and provide easy access to that data.
+
+Server
+ - Recieve and store sent data
+ - Send saved data to clients
+   - Allow client to request all data from one time to the present
+NetworkConnection
+ - Runs in its own thread
+ - Send data to server
+ - Retrieve data from server
+GUI
+ - Use the database to display a user interface
+ - Display users walls
+ - Display private messages
+ - Allow adding a friend (copy/pase their key)
+Database
+ - Set up a database, none currently exists
+Crypto
+ - Randomize AES key and IVs
+Parser
+ - Allow sending of private messages
