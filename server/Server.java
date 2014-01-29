@@ -104,8 +104,8 @@ class Session implements Runnable
         }
         
         else if (cmd.equals("t")) {
-            out.write(String.valueOf(new Date().getTime()) + "\n");
-            out.write("s");
+            out.println(String.valueOf(new Date().getTime()));
+            out.println("s");
         }
         
         else if (cmd.length() > 2 && cmd.substring(0,1).equals("s")) {
@@ -118,7 +118,7 @@ class Session implements Runnable
                                              "_" + Hasher.hash(message))));
                 writer.write(message);
                 writer.close();
-                out.write("s");
+                out.println("s");
             } catch (Exception e) {
                 System.out.println("ERROR: Unable to save: " + e);
             }
@@ -136,20 +136,22 @@ class Session implements Runnable
                         BufferedReader reader = new BufferedReader(
                                                 new FileReader(files[i]));
                         String msg = reader.readLine();
-                        out.write(getTimestamp(files[i]) + "\\" + msg + "\n");
+                        out.println(msg);
                     }
                 }
-                out.write("s");
+                out.println("s");
             } catch (Exception e) {
                 System.out.println("ERROR: Cannot execute \"" + cmd + "\"");
-                out.write("e");
+                out.println("e");
             }
         }
         
         else {
             System.out.println("recieved \"" + cmd + "\", ignoring it");
-            out.write("e");
+            out.println("e");
         }
+        
+        out.flush();
     }
     
     //44634633434_HASH -> 44634633434

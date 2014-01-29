@@ -1,8 +1,9 @@
 Clean my (luke) code up
+Errors shouldn't just display a message, they should be properly handled
 
 Parser should take messages like the following, and update the database:
     POST
-    <authorname>
+    <signature>
     Hello, world!
 in this case the parser should call Database.addPost with appropriate arguments
 
