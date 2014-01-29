@@ -7,7 +7,7 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.xml.bind.DatatypeConverter;
 import java.util.StringTokenizer;
 
-class Crypto {    
+class Crypto {
     public static Boolean keysExist() {
         File puk = new File("./db/public.key");
         File prk = new File("./db/private.key");
