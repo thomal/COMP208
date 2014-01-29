@@ -42,35 +42,7 @@ class NetworkConnection {
     }
     
     public void downloadMessages () {
-        try {
-            File server = new File("./fakeserver");
-            File[] files = server.listFiles();
-            for (int i = 0; i < files.length; i++) {
-                BufferedReader reader = new BufferedReader(
-                                        new FileReader(files[i]));
-                String msg = reader.readLine();
-                if (lastRead <= getTimestamp(files[i])) {
-                    messages.add(msg);
-                }
-            }
-            
-            lastRead = new Date().getTime();
-        } catch (Exception e) {
-            System.out.println("ERROR: Could not read from server: " + e);
-        }
-    }
-    
-    //44634633434_HASH -> 44634633434
-    private double getTimestamp (File f) {
-        try {
-            String fn = f.getCanonicalPath();
-            String ts = fn.substring(fn.lastIndexOf("/")+1, fn.lastIndexOf("_"));
-            
-            return Long.parseLong(ts);
-        } catch (Exception e) {
-            System.out.println("ERROR: Could not parse file timestamp: " + e);
-        }
-        return 1;
+        System.out.println("WARNING: Unimplemented downloadMessages function");
     }
     
     private String url;

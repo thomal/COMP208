@@ -13,10 +13,6 @@ GUI should use the DB to provide a simple user interface
 Database should build a database from information passed to it by the parser,
 and provide easy access to that data.
 
-Server
- - Recieve and store sent data
- - Send saved data to clients
-   - Allow client to request all data from one time to the present
 NetworkConnection
  - Runs in its own thread
  - Send data to server

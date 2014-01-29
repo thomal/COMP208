@@ -104,7 +104,8 @@ class Session implements Runnable
         }
         
         else if (cmd.equals("t")) {
-            out.write(String.valueOf(new Date().getTime()));
+            out.write(String.valueOf(new Date().getTime()) + "\n");
+            out.write("s");
         }
         
         else if (cmd.length() > 2 && cmd.substring(0,1).equals("s")) {
@@ -117,6 +118,7 @@ class Session implements Runnable
                                              "_" + Hasher.hash(message))));
                 writer.write(message);
                 writer.close();
+                out.write("s");
             } catch (Exception e) {
                 System.out.println("ERROR: Unable to save: " + e);
             }
@@ -125,8 +127,19 @@ class Session implements Runnable
         else if (cmd.length() > 4 && cmd.substring(0,3).equals("get")) {
             try {
                 String timestamp = cmd.substring(4);
-                long ts = Long.parseLong(timestamp);
-                System.out.println("NOT returning messages posted since " + ts);
+                long lastRead = Long.parseLong(timestamp);
+
+                File dataDir = new File("./data");
+                File[] files = dataDir.listFiles();
+                for (int i = 0; i < files.length; i++) {
+                    if (lastRead <= getTimestamp(files[i])) {
+                        BufferedReader reader = new BufferedReader(
+                                                new FileReader(files[i]));
+                        String msg = reader.readLine();
+                        out.write(getTimestamp(files[i]) + "\\" + msg + "\n");
+                    }
+                }
+                out.write("s");
             } catch (Exception e) {
                 System.out.println("ERROR: Cannot execute \"" + cmd + "\"");
                 out.write("e");
@@ -137,5 +150,18 @@ class Session implements Runnable
             System.out.println("recieved \"" + cmd + "\", ignoring it");
             out.write("e");
         }
+    }
+    
+    //44634633434_HASH -> 44634633434
+    private long getTimestamp (File f) {
+        try {
+            String fn = f.getCanonicalPath();
+            String ts = fn.substring(fn.lastIndexOf("/")+1, fn.lastIndexOf("_"));
+            
+            return Long.parseLong(ts);
+        } catch (Exception e) {
+            System.out.println("ERROR: Could not parse file timestamp: " + e);
+        }
+        return 1;
     }
 }
