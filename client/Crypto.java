@@ -94,7 +94,10 @@ class Crypto {
                                  NetworkConnection connection) {
         try {
             //sign and encrypt
-            Message msg = new Message(cmd, text, connection.getTime(), Crypto.sign(text));
+            //Latency could be used to locate the client if they interact with
+            //  multiple malicious servers, or one server in multiple locations
+            Message msg = new Message(cmd, text,
+                     connection.getTime()+Crypto.rand(0,50), Crypto.sign(text));
             
             //encrypt with random AES key
             System.out.println("WARNING: AES not using a random key or iv");
@@ -182,5 +185,11 @@ class Crypto {
             System.out.println("SHA-256 isn't supported.");
         }
         return "not_a_hash";
+    }
+    
+    //TODO: Find a good source of entropy
+    public static int rand (int min, int max) {
+        int range = max - min;
+        return (int)(Math.random() * (range + 1)) + min;
     }
 }

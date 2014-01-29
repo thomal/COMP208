@@ -58,12 +58,14 @@ class GUI {
                                    Crypto.encodeKey(Crypto.getPublicKey()));
         
         //ADDKEY
-        //handle Crypto.decodeKey() returning null
+        if (input.equals("ADDKEY")) {
+            //handle Crypto.decodeKey() returning null
+        }
         
         //Invalid command
         else {
             System.out.println("\nYou may \"READ\", \"LIST\", \"QUIT\"," +
-                               " \"SHOWKEY\", \"ADDKEY\", or \"POST texthere\"");
+                               " \"SHOWKEY\", \"ADDKEY <name> <key>\", or \"POST <text>\"");
         }
             
        return true;
