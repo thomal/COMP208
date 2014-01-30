@@ -150,12 +150,13 @@ class Session implements Runnable
             }
         }
         
-        else if (cmd.length() > 5 && cmd.substring(0,1).equals("c")) {
+        else if (cmd.length() > 2 && cmd.substring(0,2).equals("c ")) {
             Message claim = Message.parse(
                                 new String(
                                     DatatypeConverter.parseBase64Binary(
                                         cmd.substring(2))));
-        
+            System.out.println("Checking to see if name is in use");
+            
             File data = new File("./data/" + (new Date()).getTime() + "_" + claim.getContent());
             if(userExists(claim.getContent())) {
                 out.println("e");
@@ -173,7 +174,7 @@ class Session implements Runnable
         }
         
         else {
-            System.out.println("recieved \"" + cmd + "\", ignoring it");
+            System.out.println("Recieved \"" + cmd + "\", ignoring it");
             out.println("e");
         }
         
@@ -183,10 +184,11 @@ class Session implements Runnable
     //44634633434_HASH -> 44634633434
     private long getTimestamp (File f) {
         try {
-            String fn = f.getCanonicalPath();
-            String ts = fn.substring(fn.lastIndexOf("/")+1, fn.lastIndexOf("_"));
-            
-            return Long.parseLong(ts);
+            String fn = f.getName();
+            if (fn.indexOf("_") != -1) {
+                String ts = fn.substring(0, fn.indexOf("_"));
+                return Long.parseLong(ts);
+            }
         } catch (Exception e) {
             System.out.println("ERROR: Could not parse file timestamp: " + e);
         }
@@ -194,16 +196,19 @@ class Session implements Runnable
     }
     
     private Boolean userExists (String name) {
+        System.out.println("userExists(" + name + ")");
         File dir = new File("./data");
         File[] files = dir.listFiles();
             for (int i = 0; i < files.length; i++) {
-                String fname = files[i].getName();
-                String[] tokens = new String[2];
-                StringTokenizer tokenizer = new StringTokenizer(fname, "_", false);
-                tokens[0] = tokenizer.nextToken();
-                tokens[1] = tokenizer.nextToken();
-                if (tokens[1].equals(name))
-                    return true;
+                if (files[i].getName().indexOf("_") != -1) {
+                    String fname = files[i].getName();
+                    String[] tokens = new String[2];
+                    StringTokenizer tokenizer = new StringTokenizer(fname, "_", false);
+                    tokens[0] = tokenizer.nextToken();
+                    tokens[1] = tokenizer.nextToken();
+                    if (tokens[1].equals(name))
+                        return true;
+                }
             }
         return false;
     }

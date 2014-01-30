@@ -101,22 +101,22 @@ class Crypto {
             
             //encrypt with random AES key
             System.out.println("WARNING: AES not using a random key or iv");
-            String password        = "1234567890123456";
+            String aeskey        = "1234567890123456";
             String iv              = "0345750576243763";
-            SecretKeySpec aesKey   = new SecretKeySpec(password.getBytes("UTF-8"), "AES");
-            IvParameterSpec ivspec = new IvParameterSpec(iv.getBytes("UTF-8"));
+            SecretKeySpec aesKeySpec   = new SecretKeySpec(aeskey.getBytes("UTF-8"), "AES");
+            IvParameterSpec IVSpec = new IvParameterSpec(iv.getBytes("UTF-8"));
             
             Cipher aes = Cipher.getInstance("AES/CBC/PKCS5Padding");
-            aes.init(Cipher.ENCRYPT_MODE, aesKey, ivspec);
+            aes.init(Cipher.ENCRYPT_MODE, aesKeySpec, IVSpec);
             byte[] aesCipherText = aes.doFinal(msg.toString().getBytes("UTF-8"));
             
             //encrypt AES key with RSA
             Cipher rsa = Cipher.getInstance("RSA");
             rsa.init(Cipher.ENCRYPT_MODE, recipient);
-            byte[] RSAaesKey = rsa.doFinal(password.getBytes("UTF-8"));
+            byte[] encryptedAESKey = rsa.doFinal(aeskey.getBytes("UTF-8"));
             
             //"iv\RSA encrypted AES key\ciper text"
-            return Base64Encode(iv.getBytes("UTF-8")) + "\\" + Base64Encode(RSAaesKey) + "\\" + Base64Encode(aesCipherText);
+            return Base64Encode(iv.getBytes("UTF-8")) + "\\" + Base64Encode(encryptedAESKey) + "\\" + Base64Encode(aesCipherText);
         } catch (Exception e) {
             System.out.println("WARNING: Unable to encrypt message: " + e);
         }

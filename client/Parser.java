@@ -6,7 +6,7 @@ class Parser {
         } else if (msg.getCmd().equals("CLAIM")) {
             db.addClaim(msg);
         } else if (msg.getCmd().equals("NULL")) {
-            System.out.println("WARNING: NULL Message type parsed, this should never happen");
+            //undecryptable
         }
     }
 }
