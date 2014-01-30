@@ -117,9 +117,9 @@ class Session implements Runnable
                 String message = cmd.substring(2);
                 System.out.println("Storing: " + message);
                 BufferedWriter writer = new BufferedWriter(
-                                    new FileWriter(
-                                    new File("./data/" + (new Date()).getTime() +
-                                             "_" + Hasher.hash(message))));
+                                        new FileWriter(
+                                        new File("./data/" + (new Date()).getTime() +
+                                                 "_" + Hasher.hash(message))));
                 writer.write(message);
                 writer.close();
                 out.println("s");
@@ -155,7 +155,6 @@ class Session implements Runnable
                                 new String(
                                     DatatypeConverter.parseBase64Binary(
                                         cmd.substring(2))));
-            System.out.println("Checking to see if name is in use");
             
             File data = new File("./data/" + (new Date()).getTime() + "_" + claim.getContent());
             if(userExists(claim.getContent())) {

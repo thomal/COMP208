@@ -10,12 +10,15 @@ import java.util.StringTokenizer;
 import java.security.SecureRandom;
 
 class Crypto {
-    public static SecureRandom srand = new SecureRandom(Long.toString(System.currentTimeMillis()).getBytes());
+    public static SecureRandom srand = new SecureRandom(
+                                               Long.toString(
+                                                   System.currentTimeMillis())
+                                               .getBytes());
 
     public static Boolean keysExist() {
-        File puk = new File("./db/public.key");
-        File prk = new File("./db/private.key");
-        return puk.exists() && prk.exists();
+        File publicKey  = new File("./db/public.key");
+        File privateKey = new File("./db/private.key");
+        return publicKey.exists() && privateKey.exists();
     }
     
     public static void keyGen() {
@@ -23,20 +26,20 @@ class Crypto {
             //generate the key
             KeyPairGenerator gen = KeyPairGenerator.getInstance("RSA");
             gen.initialize(1024);
-            KeyPair key = gen.generateKeyPair();
+            KeyPair keys = gen.generateKeyPair();
             
             //and save it
-            ObjectOutputStream pukfile = new ObjectOutputStream(
-                                        new FileOutputStream(
-                                        new File("./db/public.key")));
-            pukfile.writeObject(key.getPublic());
-            pukfile.close();
+            ObjectOutputStream publicKeyFile = new ObjectOutputStream(
+                                                   new FileOutputStream(
+                                                       new File("./db/public.key")));
+            publicKeyFile.writeObject(keys.getPublic());
+            publicKeyFile.close();
             
-            ObjectOutputStream prkfile = new ObjectOutputStream(
-                                        new FileOutputStream(
-                                        new File("./db/private.key")));
-            prkfile.writeObject(key.getPrivate());
-            prkfile.close();
+            ObjectOutputStream privateKeyFile = new ObjectOutputStream(
+                                                    new FileOutputStream(
+                                                        new File("./db/private.key")));
+            privateKeyFile.writeObject(keys.getPrivate());
+            privateKeyFile.close();
         } catch (Exception e) {
             System.out.println("ERROR: Could not generate keypair");
         }
@@ -68,11 +71,11 @@ class Crypto {
     
     public static String sign (String msg) {
         try {
-            Signature sig = Signature.getInstance("SHA1withRSA");
-            sig.initSign(Crypto.getPrivateKey());
-            sig.update(msg.getBytes("UTF-8"));
-            byte[] bytesig = sig.sign();
-            return Base64Encode(bytesig);
+            Signature signer = Signature.getInstance("SHA1withRSA");
+            signer.initSign(Crypto.getPrivateKey());
+            signer.update(msg.getBytes("UTF-8"));
+            byte[] sig = signer.sign();
+            return Base64Encode(sig);
         } catch (Exception e) {
             System.out.println("ERROR: Could not sign message");
         }
@@ -81,18 +84,21 @@ class Crypto {
     
     public static boolean verifySig (Message msg, PublicKey author) {
         try {
-            Signature sig = Signature.getInstance("SHA1withRSA");
-            sig.initVerify(author);
-            sig.update(msg.getContent().getBytes("UTF-8"));
-            return sig.verify(Base64Decode(msg.getSig()));
+            Signature sigChecker = Signature.getInstance("SHA1withRSA");
+            sigChecker.initVerify(author);
+            sigChecker.update(msg.getContent().getBytes("UTF-8"));
+            return sigChecker.verify(Base64Decode(msg.getSig()));
         } catch (Exception e) {
             System.out.println("ERROR: Could not verify signature");
         }
         return false;
     }
     
-    //time differentials can, and have, been used to corrolate otherwise
-    //  anonymous messages; therefore server time is used.
+    //Time differentials can, and have, been used to corrolate otherwise
+    //  anonymous messages; therefore server time is used. This is not to
+    //  protect against malicious server operators, but operators ordered after
+    //  the fact to provide the data they've collected.
+    //The NetworkConnection is used to get the servers time.
     public static String encrypt(String cmd, String text, PublicKey recipient,
                                  NetworkConnection connection) {
         try {
@@ -105,7 +111,7 @@ class Crypto {
             //encrypt with random AES key
             byte[]     iv = new byte[16];
             byte[] aeskey = new byte[16];
-            srand.nextBytes(iv);
+            srand.nextBytes(iv); //fills the array with random data
             srand.nextBytes(aeskey);
             
             SecretKeySpec aesKeySpec = new SecretKeySpec(aeskey, "AES");
@@ -198,7 +204,6 @@ class Crypto {
         return "not_a_hash";
     }
     
-    //TODO: Find a good source of entropy
     public static int rand (int min, int max) {
         int range = max - min;
         return (int)(Math.random() * (range + 1)) + min;

@@ -2,21 +2,21 @@
 import java.util.StringTokenizer;
 
 public class Message {
-    public Message (String cmd, String con, long ts, String sig) {
+    public Message (String cmd, String _content, long timeCreated, String RSAsig) {
         command   = cmd;
-        content   = con;
-        signature = sig;
-        timestamp = ts;
+        content   = _content;
+        signature = RSAsig;
+        timestamp = timeCreated;
     }
     
     /* "POST\520adfc4\Hello, World!\123" -> new Message("POST", "Hello, World!", "520adfc4", 123) */
     public static Message parse (String msg) {
         String[] tokens = new String[4];
         StringTokenizer tokenizer = new StringTokenizer(msg, "\\", false);
-        tokens[0] = tokenizer.nextToken();
-        tokens[1] = tokenizer.nextToken();
-        tokens[2] = tokenizer.nextToken();
-        tokens[3] = tokenizer.nextToken();
+        tokens[0] = tokenizer.nextToken(); //command
+        tokens[1] = tokenizer.nextToken(); //signature
+        tokens[2] = tokenizer.nextToken(); //message content
+        tokens[3] = tokenizer.nextToken(); //timestamp
         long ts = Long.parseLong(tokens[3]);
         
         return new Message(tokens[0], tokens[2], ts, tokens[1]);

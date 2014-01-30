@@ -1,3 +1,8 @@
+//NB: The GUI should be very careful when allowing the user to select a friend
+//    by their username, the server may be malicious and allow duplicate names.
+//    if a duplicate name exists, the user should be informed. Users may be
+//    uniquely identified by their public keys.
+
 import java.util.Scanner;
 import java.util.Vector;
 import java.security.PublicKey;
@@ -34,6 +39,7 @@ class GUI {
         }
         
         //POST
+        //This doesn't handle multiple firends having the same username
         else if (input.length() > 5 && input.substring(0,5).equals("POST ")) {
             System.out.print("Enter name of recipient:");
             PublicKey key = database.getKey(in.nextLine());
@@ -60,7 +66,6 @@ class GUI {
         
         //ADDKEY
         else if (input.length() > 7 && input.substring(0,7).equals("ADDKEY ")) {
-            //handle Crypto.decodeKey() returning null
             PublicKey friendsKey = Crypto.decodeKey(input.substring(7));
             if (friendsKey != null)
                 database.addFriend(friendsKey);
@@ -74,14 +79,14 @@ class GUI {
             if (connection.claimName(in.nextLine()))
                 System.out.println("Succes.");
             else
-                System.out.println("Sorry, that name is taken.");
+                System.out.println("Sorry, that name is taken");
         }
                 
         //Invalid command
         else {
-            System.out.println("\nYou may \"READ\", \"LIST\", \"QUIT\"," +
-                               " \"SHOWKEY\", \"ADDKEY <key>\", \"CLAIM\"" +
-                               " or \"POST <text>\"");
+            System.out.println("INVALID COMMAND\n\nYou may \"READ\", \"LIST\"," +
+                               " \"QUIT\", \"SHOWKEY\", \"ADDKEY <key>\", " +
+                               " \"CLAIM\" or \"POST <text>\"");
         }
             
        return true;

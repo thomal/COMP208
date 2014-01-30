@@ -8,7 +8,7 @@ class Client {
             Crypto.keyGen();
         
         while (running) {
-            connection.downloadMessages();
+            connection.downloadNewMessages();
             while (connection.hasMessage())
                 Parser.handle(Crypto.decrypt(connection.getMessage()), db);
             running = gui.update();

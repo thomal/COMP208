@@ -9,9 +9,9 @@ import java.security.*;
 class Database {
     public Database (String location) {
         System.out.println("WARNING: Dummy database constructor");
-        path = location;
-        posts = new Vector<Pair<String, Message>>();
-        claims = new Vector<Message>();
+        path    = location;
+        posts   = new Vector<Pair<String, Message>>();
+        claims  = new Vector<Message>();
         friends = new Vector<Friend>();
         
         addFriend(Crypto.getPublicKey());
@@ -82,7 +82,7 @@ class Database {
     
     private String path; //path to database directory
     Vector<Pair<String, Message>> posts; //<String author, Message m>
-    Vector<Message> claims; //<String name, PublicKey publicKey>
+    Vector<Message> claims;
     
     private Vector<Friend> friends;
 }

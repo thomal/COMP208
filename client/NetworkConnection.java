@@ -6,10 +6,10 @@ import java.net.*;
 
 class NetworkConnection {
     public NetworkConnection (String serverurl) {
-        url = serverurl;
+        url      = serverurl;
         messages = new Vector<String>();
         lastRead = 0;
-        System.out.println("UNIMPLEMENTED: NetworkConnection.close() ought to" +
+        System.out.println("UNIMPLEMENTED: NetworkConnection(...) ought to" +
                            "read the current value of lastRead from file.");
     }
     
@@ -30,8 +30,6 @@ class NetworkConnection {
         return m;
     }
     
-    //gets the server time, adds between 0 and 50 milliseconds to it randomly
-    //  to prevent location being discovered via timing attack
     public long getTime () {
         Vector<String> time = serverCmd("t");
         
@@ -53,7 +51,8 @@ class NetworkConnection {
         }
     }
     
-    public Boolean claimName (String name) { //The only time unencrypted data is sent
+    //The only time unencrypted data is sent
+    public Boolean claimName (String name) {
         try {
             Message claim = new Message("CLAIM", name,
                      getTime()+Crypto.rand(0,50), Crypto.sign(name));
@@ -67,7 +66,7 @@ class NetworkConnection {
         return false;
     }
     
-    public void downloadMessages () {
+    public void downloadNewMessages () {
         Vector<String> msgs = serverCmd("get " + lastRead);
         lastRead = getTime();
         
@@ -84,8 +83,8 @@ class NetworkConnection {
         
         //connect
         try {
-            s = new Socket(url, port);
-            in = new BufferedReader(new InputStreamReader(s.getInputStream()));
+            s   = new Socket(url, port);
+            in  = new BufferedReader(new InputStreamReader(s.getInputStream()));
             out = new PrintWriter(s.getOutputStream(), true);
         } catch (Exception e) {
             System.out.println("ERROR in connecting: " + e.getMessage());
@@ -102,12 +101,11 @@ class NetworkConnection {
             String line = null;
             do {
                 line = in.readLine();
-                if (line != null) {
+                if (line != null)
                     output.add(line);
-                }
             } while (line != null);
         } catch (Exception e) {
-            System.out.println("ERROR in getting output: " + e.getMessage());
+            System.out.println("ERROR reading from server: " + e.getMessage());
         }
         
         //disconnect
