@@ -7,8 +7,11 @@ import javax.crypto.spec.SecretKeySpec;
 import javax.crypto.spec.IvParameterSpec;
 import javax.xml.bind.DatatypeConverter;
 import java.util.StringTokenizer;
+import java.security.SecureRandom;
 
 class Crypto {
+    public static SecureRandom srand = new SecureRandom(Long.toString(System.currentTimeMillis()).getBytes());
+
     public static Boolean keysExist() {
         File puk = new File("./db/public.key");
         File prk = new File("./db/private.key");
@@ -100,11 +103,13 @@ class Crypto {
                      connection.getTime()+Crypto.rand(0,50), Crypto.sign(text));
             
             //encrypt with random AES key
-            System.out.println("WARNING: AES not using a random key or iv");
-            String aeskey        = "1234567890123456";
-            String iv              = "0345750576243763";
-            SecretKeySpec aesKeySpec   = new SecretKeySpec(aeskey.getBytes("UTF-8"), "AES");
-            IvParameterSpec IVSpec = new IvParameterSpec(iv.getBytes("UTF-8"));
+            byte[]     iv = new byte[16];
+            byte[] aeskey = new byte[16];
+            srand.nextBytes(iv);
+            srand.nextBytes(aeskey);
+            
+            SecretKeySpec aesKeySpec = new SecretKeySpec(aeskey, "AES");
+            IvParameterSpec IVSpec   = new IvParameterSpec(iv);
             
             Cipher aes = Cipher.getInstance("AES/CBC/PKCS5Padding");
             aes.init(Cipher.ENCRYPT_MODE, aesKeySpec, IVSpec);
@@ -113,10 +118,10 @@ class Crypto {
             //encrypt AES key with RSA
             Cipher rsa = Cipher.getInstance("RSA");
             rsa.init(Cipher.ENCRYPT_MODE, recipient);
-            byte[] encryptedAESKey = rsa.doFinal(aeskey.getBytes("UTF-8"));
+            byte[] encryptedAESKey = rsa.doFinal(aeskey);
             
             //"iv\RSA encrypted AES key\ciper text"
-            return Base64Encode(iv.getBytes("UTF-8")) + "\\" + Base64Encode(encryptedAESKey) + "\\" + Base64Encode(aesCipherText);
+            return Base64Encode(iv) + "\\" + Base64Encode(encryptedAESKey) + "\\" + Base64Encode(aesCipherText);
         } catch (Exception e) {
             System.out.println("WARNING: Unable to encrypt message: " + e);
         }
@@ -137,20 +142,20 @@ class Crypto {
             tokens[1] = tokenizer.nextToken();
             tokens[2] = tokenizer.nextToken();
         
-            String iv            = new String(Base64Decode(tokens[0]));
+            byte[] iv            = Base64Decode(tokens[0]);
             byte[] cipheredKey   = Base64Decode(tokens[1]);
             byte[] cipherText    = Base64Decode(tokens[2]);
             
             //decrypt AES key
             Cipher rsa = Cipher.getInstance("RSA");
             rsa.init(Cipher.DECRYPT_MODE, getPrivateKey());
-            byte[] aesBytePassword = rsa.doFinal(cipheredKey);
+            byte[] aesKey = rsa.doFinal(cipheredKey);
             
             //decrypt AES Ciphertext
-            SecretKeySpec aesKey = new SecretKeySpec(aesBytePassword, "AES");
-            IvParameterSpec ivspec = new IvParameterSpec(iv.getBytes("UTF-8"));
+            SecretKeySpec aesKeySpec = new SecretKeySpec(aesKey, "AES");
+            IvParameterSpec IVSpec = new IvParameterSpec(iv);
             Cipher aes = Cipher.getInstance("AES/CBC/PKCS5Padding");
-            aes.init(Cipher.DECRYPT_MODE, aesKey, ivspec);
+            aes.init(Cipher.DECRYPT_MODE, aesKeySpec, IVSpec);
             byte[] messagePlaintext = aes.doFinal(cipherText);
 
             return Message.parse(new String(messagePlaintext));
