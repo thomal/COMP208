@@ -8,12 +8,11 @@ BUGS:
 The 'DB' allows adding a friend multiple times, no reason to fix because the
     whole thing needs rewriting as a real DB anyway
 Key generation is deterministic
-AES key and IV are not random
 
 WARNINGS:
 The client assumes a sensible UI is being used, not a CLI that allows breach of
 protocol. Breaching protocol gives wierd effects, but should never happen with a
-read UI.
+real UI.
 
 OVERVIEW:
 Parser should take messages like the following, and update the database:
@@ -33,16 +32,10 @@ and provide easy access to that data.
 
 NetworkConnection
  - Runs in its own thread
- - Send data to server
- - Retrieve data from server
 GUI
  - Use the database to display a user interface
  - Display users walls
- - Display private messages
- - Allow adding a friend (copy/pase their key)
+Parser
+ - Wall posts
 Database
  - Set up a database, none currently exists
-Crypto
- - Randomize AES key and IVs
-Parser
- - Allow sending of private messages
