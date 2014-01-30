@@ -2,7 +2,7 @@ Clean my (luke) code up
 Errors shouldn't just display a message, they should be properly handled
 Get a real DB
 REVOKE claims and messages after a certain date if private key leaked
-write out communication spec
+ensure that key generation is random
 
 Parser should take messages like the following, and update the database:
     POST
