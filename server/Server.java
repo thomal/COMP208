@@ -1,7 +1,6 @@
 import java.io.*;
 import java.net.*;
 import java.util.Date;
-import java.util.concurrent.Semaphore;
 import java.util.StringTokenizer;
 import javax.xml.bind.DatatypeConverter;
 
@@ -129,6 +128,7 @@ class Session implements Runnable
         }
         
         else if (cmd.length() > 4 && cmd.substring(0,3).equals("get")) {
+            System.out.println(cmd);
             try {
                 String timestamp = cmd.substring(4);
                 long lastRead = Long.parseLong(timestamp);
@@ -195,7 +195,6 @@ class Session implements Runnable
     }
     
     private Boolean userExists (String name) {
-        System.out.println("userExists(" + name + ")");
         File dir = new File("./data");
         File[] files = dir.listFiles();
             for (int i = 0; i < files.length; i++) {
