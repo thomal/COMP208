@@ -1,9 +1,13 @@
 REQUIREMENTS (Week 1 - 2)
 
-Planning phase
-- Scheduling: Produce a Gantt chart
-- milestone identification ? (not sure if its part of the Gantt chart or not)
-- risk assessment
+PLANNING_PHASE:
+Scheduling:
+    Produce a Gantt chart (can show concurrent tasks and dependancies).
+    Produce a PERT chart (the chart full of circles - shows critical path
+        analysis).
+    Milestone Identification (Milestones can most easily be recognised as 
+        deliverables in a project - a project requirement document and the collaboration of research, for example.)
+    Risk Assessment
 
 Requirements
 - Documentation
