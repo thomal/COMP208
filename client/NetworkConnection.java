@@ -12,8 +12,18 @@ class NetworkConnection implements Runnable {
         lastRead = 0;
         messageLock = new Semaphore(1);
         connected = true;
-        System.out.println("UNIMPLEMENTED: NetworkConnection(...) ought to" +
-                           "read the current value of lastRead from file.");
+        
+        //parse db/lastread
+        File lastReadFile = new File("./db/lastread");
+        if (lastReadFile.exists()) {
+            try {
+                BufferedReader reader = new BufferedReader(
+                                            new FileReader(lastReadFile));
+                lastRead = Long.parseLong(reader.readLine());
+            } catch (Exception e) {
+                System.out.println("ERROR: Coult not read lastread from file");
+            }
+        }
     }
     
     public void run () {
@@ -29,8 +39,19 @@ class NetworkConnection implements Runnable {
     
     public void close () {
         connected = false;
-        System.out.println("UNIMPLEMENTED: NetworkConnection.close() ought to" +
-                           "save the current value of lastRead to file.");
+        try {
+            File lastReadFile = new File("./db/lastread");
+            
+            if (lastReadFile.exists())
+                lastReadFile.delete();
+            
+            BufferedWriter writer = new BufferedWriter(
+                                    new FileWriter(lastReadFile));
+            writer.write(Long.toString(lastRead));
+            writer.close();
+        } catch (Exception e) {
+            System.out.println("ERROR: Unable to save lastRead: " + e);
+        }
     }
     
     //returns true if a message is available
