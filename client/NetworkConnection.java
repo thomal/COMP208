@@ -21,7 +21,7 @@ class NetworkConnection implements Runnable {
                                             new FileReader(lastReadFile));
                 lastRead = Long.parseLong(reader.readLine());
             } catch (Exception e) {
-                System.out.println("ERROR: Coult not read lastread from file");
+                System.out.println("ERROR: Could not read lastread from file");
             }
         }
     }
