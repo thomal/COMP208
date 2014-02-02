@@ -3,31 +3,82 @@ import java.util.Date;
 import java.security.*;
 import java.io.*;
 import java.net.*;
+import java.util.concurrent.Semaphore;
 
-class NetworkConnection {
+class NetworkConnection implements Runnable {
     public NetworkConnection (String serverurl) {
         url      = serverurl;
         messages = new Vector<String>();
         lastRead = 0;
-        System.out.println("UNIMPLEMENTED: NetworkConnection(...) ought to" +
-                           "read the current value of lastRead from file.");
+        messageLock = new Semaphore(1);
+        connected = true;
+        
+        //parse db/lastread
+        File lastReadFile = new File("./db/lastread");
+        if (lastReadFile.exists()) {
+            try {
+                BufferedReader reader = new BufferedReader(
+                                            new FileReader(lastReadFile));
+                lastRead = Long.parseLong(reader.readLine());
+            } catch (Exception e) {
+                System.out.println("ERROR: Could not read lastread from file");
+            }
+        }
+    }
+    
+    public void run () {
+        while (connected) {
+            try {
+                Thread.sleep(1000); //update every second
+            } catch (Exception e) {
+                System.out.println("WARNING: Sleep interrupted: " + e);
+            }
+            downloadNewMessages();
+        }
     }
     
     public void close () {
-        System.out.println("UNIMPLEMENTED: NetworkConnection.close() ought to" +
-                           "save the current value of lastRead to file.");
+        connected = false;
+        try {
+            File lastReadFile = new File("./db/lastread");
+            
+            if (lastReadFile.exists())
+                lastReadFile.delete();
+            
+            BufferedWriter writer = new BufferedWriter(
+                                    new FileWriter(lastReadFile));
+            writer.write(Long.toString(lastRead));
+            writer.close();
+        } catch (Exception e) {
+            System.out.println("ERROR: Unable to save lastRead: " + e);
+        }
     }
     
     //returns true if a message is available
     public Boolean hasMessage () {
-        return messages.size() >= 1;
+        try {
+            messageLock.acquire();
+            boolean haveMessage = messages.size() >= 1;
+            messageLock.release();
+            return haveMessage;
+        } catch (Exception e) {
+            System.out.println("WARNING: Acquire interrupted");
+        }
+        return false;
     }
     
     //get the next message in the queue, and remove it from the queue
     public String getMessage() {
-        String m = messages.get(0);
-        messages.removeElementAt(0);
-        return m;
+        try {
+            messageLock.acquire();
+            String m = messages.get(0);
+            messages.removeElementAt(0);
+            messageLock.release();
+            return m;
+        } catch (Exception e) {
+            System.out.println("WARNING: Acquire interrupted");
+        }
+        return new Message("NULL", "", 0, "").toString();
     }
     
     public long getTime () {
@@ -70,9 +121,17 @@ class NetworkConnection {
         Vector<String> msgs = serverCmd("get " + lastRead);
         lastRead = getTime();
         
-        for (int i = 0; i < msgs.size(); i++)
-            if (!(msgs.get(i) == null) && !msgs.get(i).equals("s") && !msgs.get(i).equals("e"))
-                messages.add(msgs.get(i));
+        for (int i = 0; i < msgs.size(); i++) {
+            if (!(msgs.get(i) == null) && !msgs.get(i).equals("s") && !msgs.get(i).equals("e")) {
+                try {
+                    messageLock.acquire();
+                    messages.add(msgs.get(i));
+                    messageLock.release();
+                } catch (Exception e) {
+                    System.out.println("WARNING: Acquire interrupted.");
+                }
+            }
+        }
     }
     
     //send text to the server, recieve its response
@@ -133,5 +192,8 @@ class NetworkConnection {
     private String url;
     private final int port = 31415;
     private Vector<String> messages;
+    
     private long lastRead;
+    private boolean connected;
+    private Semaphore messageLock;
 }

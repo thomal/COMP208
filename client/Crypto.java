@@ -25,7 +25,7 @@ class Crypto {
         try {
             //generate the key
             KeyPairGenerator gen = KeyPairGenerator.getInstance("RSA");
-            gen.initialize(1024);
+            gen.initialize(1024, srand);
             KeyPair keys = gen.generateKeyPair();
             
             //and save it

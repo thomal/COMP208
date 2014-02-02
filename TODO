@@ -1,5 +1,4 @@
 TODO:
-Clean my (luke) code up
 Errors shouldn't just display a message, they should be properly handled
 Get a real DB
 REVOKE claims and messages after a certain date if private key leaked
@@ -7,7 +6,6 @@ REVOKE claims and messages after a certain date if private key leaked
 BUGS:
 The 'DB' allows adding a friend multiple times, no reason to fix because the
     whole thing needs rewriting as a real DB anyway
-Key generation is deterministic
 
 WARNINGS:
 The client assumes a sensible UI is being used, not a CLI that allows breach of
