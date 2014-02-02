@@ -14,29 +14,41 @@ gender VARCHAR(6)
 -------------
 comment_table
 -------------
-comment_id INT(25)
-post_id INT(25)
+comment_id INT(25) PK
+post_id INT(25) FK
 comment_from VARCHAR(25)
+comment_time DATE
 
 // private message can be seen by 2 parties only. unless stated.
 ---------------
 private_message
 ---------------
-message_id INT(25)
+message_id INT(25) PK
 message_by VARCHAR(25)
-message_to VARCHAR(25)
+message_from VARCHAR(25)
 message_content CHAR(100)
+message_time DATE
 
 // post that can be viewed by friends, friends of friends, or public
+// question: posts on a friend's wall or on newsfeed, or both?
 ---------
 wall_post
 ---------
-wall_id INT(25)
-wall_by VARCHAR(25)
+wall_id INT(25) PK
+wall_from VARCHAR(25)
+wall_from VARCHAR(25)
 wall_security_type VARCHAR(25) // friends, friends of friends or public
 wall_content CHAR(100)
 comment_id INT(25)
+post_time DATE
 
+//need logs e.g. login/logout logs
+----------------
+login_logout_log
+----------------
+user_email VARCHAR(25) PK
+login_time DATE
+logout_time DATE
 
 
 
