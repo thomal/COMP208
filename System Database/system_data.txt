@@ -1,0 +1,43 @@
+NOTE to Luke: VARCHAR limits to 25. Due to encryption, I'm sure the amount of characters is likely to be more than 25. I might need clarifications. - Aishah
+NOTE to all: Little functionalities at the moment. could add more
+
+----
+user
+----
+email VARCHAR(25) PK
+first_name VARCHAR(25)
+last_name VARCHAR(25)
+password VARCHAR(15)
+date_of_birth DATE
+gender VARCHAR(6)
+
+-------------
+comment_table
+-------------
+comment_id INT(25)
+post_id INT(25)
+comment_from VARCHAR(25)
+
+// private message can be seen by 2 parties only. unless stated.
+---------------
+private_message
+---------------
+message_id INT(25)
+message_by VARCHAR(25)
+message_to VARCHAR(25)
+message_content CHAR(100)
+
+// post that can be viewed by friends, friends of friends, or public
+---------
+wall_post
+---------
+wall_id INT(25)
+wall_by VARCHAR(25)
+wall_security_type VARCHAR(25) // friends, friends of friends or public
+wall_content CHAR(100)
+comment_id INT(25)
+
+
+
+
+
