@@ -1,15 +1,41 @@
 NOTE to Luke: VARCHAR limits to 25. Due to encryption, I'm sure the amount of characters is likely to be more than 25. I might need clarifications. - Aishah
-NOTE to all: Little functionalities at the moment. could add more
+NOTE to all: Not normalised.  
 
 ----
 user
 ----
-email VARCHAR(25) PK
-first_name VARCHAR(25)
+user_id INT(25) PK
+email VARCHAR(25)
+first_name VARCHAR(25) 
 last_name VARCHAR(25)
-password VARCHAR(15)
-date_of_birth DATE
+password VARCHAR(15) 
+date_of_birth DATE 
 gender VARCHAR(6)
+
+------------
+friends_with
+------------
+user_id INT(25)
+friend_id INT(25)
+start_friend DATE
+end_friend DATE
+
+----------
+group_with
+----------
+group_id
+user_id
+join_date
+leave_date
+member_type
+
+-----
+group
+-----
+group_id
+group_name
+group_genre
+group_description
 
 -------------
 comment_table
@@ -17,6 +43,7 @@ comment_table
 comment_id INT(25) PK
 post_id INT(25) FK
 comment_from VARCHAR(25)
+comment_time DATE
 
 // private message can be seen by 2 parties only. unless stated.
 ---------------
