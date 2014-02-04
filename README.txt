@@ -27,6 +27,8 @@ Meeting #3 minutes (Tuesday, 4/2/2014)
 - Class diagram (Someone please clarify on this)
 - Sketches of GUI (Peter and Mike to do this together)
 - GANTT chart and risk assessment (after user requirements has been drafted out)
+- Data dictionary (Aishah)
+- Read about how to implement SQLite (Aishah)
 
 ---------------------------------------
 Meeting #2 Minutes (Friday, 31/01/2014)
