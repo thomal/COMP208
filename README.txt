@@ -12,9 +12,9 @@ KAWAII TURTLE~
 
 Hail to the turtle.
 
--------------------------------------------
-Meeting #4 Scheduled (Thursday, 06/02/2014)
--------------------------------------------
+-----------------------------------------
+Meeting #4 Scheduled (Friday, 07/02/2014)
+-----------------------------------------
 Location: Common Room
 Agenda: Introduction of Louis Prince, see whats left on requirements (mostly whats below)
 
