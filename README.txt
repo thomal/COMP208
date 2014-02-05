@@ -12,15 +12,15 @@ KAWAII TURTLE~
 
 Hail to the turtle.
 
---------------------------------------
-GROUP ANNOUNCEMENT (Tuesday, 4/2/2014)
---------------------------------------
-Check uni email, Prince has acknoledge the fact that he's in our team and requests for another meeting. Proposed meeting on Wednesday, tomorrow, 5/2/14. Leader, Peter, reply his email. :D T'sall. -- Aishah
-Update: Responded, suggested an optional meeting for those who wish to attend Wednesday sometime between 10-12 after our lecture. -- Peter
+-------------------------------------------
+Meeting #4 Scheduled (Thursday, 06/02/2014)
+-------------------------------------------
+Location: Common Room
+Agenda: Introduction of Louis Prince, see whats left on requirements (mostly whats below)
 
---------------------------------------
-Meeting #3 minutes (Tuesday, 4/2/2014)
---------------------------------------
+----------------------------------------
+Meeting #3 Minutes (Tuesday, 04/02/2014)
+----------------------------------------
 - State out the problems, criticisms on Facebook regarding user privacy issues (Leon to do this)
 - Data flow of the system (Luke has done the draft)
 - User requirements (Luke has done the draft. Refinement to be done by Aishah and Peter)
