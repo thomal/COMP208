@@ -20,9 +20,10 @@ type
 
 known_persons
 -------------
-user_id PK
+relation_id PK
+user_id FK
+category_id FK
 public_key
-category_type
 
 // NOTE: The person in column 'to' should be automatically added into the permission_allowed_to as well!
 wall_post
@@ -31,8 +32,8 @@ id  PK
 permission_allowed_to FK // this list of users are permissible to view the post, its comments and likes
 from FK
 to FK // this can be NULL if the wall is not posted for a specific person
-content
 comment_id FK
+content
 time
 
 login_logout_log
