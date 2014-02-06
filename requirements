@@ -72,7 +72,7 @@ People you know:
     Known people are adding by adding their public key. See CLAIM/PDATA messages
     
     Allow user to manage their list of known people into groups such as friend,
-      family, and cooworker.
+      family, and cooworker. The user defines these groups.
 
 Chat:
     Real time chat between users
