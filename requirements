@@ -16,7 +16,8 @@ Profile Data
     
     Fields:
         - Names (not unique)
-        - Username (unique)
+        - Username (unique, but this uniqueness is ensured by server and shouldn't
+		    be trusted)
         - Birthday
         - Sex
         - E-Mail

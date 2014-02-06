@@ -1,4 +1,7 @@
-NOTE TO DB ADMINISTRATORS: Public keys are 217 characters long
+--------------------------
+NOTE TO DB ADMINISTRATORS: 
+--------------------------
+Public keys are 217 characters long
 all id's are auto-incremented
 
 user
@@ -21,27 +24,29 @@ user_id PK
 public_key
 category_type
 
+// NOTE: The person in column 'to' should be automatically added into the permission_allowed_to as well!
 wall_post
 ---------
 id  PK
-permission_allowed_to // this list of users are permissible to view the post, its comments and likes
-from
-to // this can be NULL if the wall is not posted for a specific person
+permission_allowed_to FK // this list of users are permissible to view the post, its comments and likes
+from FK
+to FK // this can be NULL if the wall is not posted for a specific person
 content
-comment_id
+comment_id FK
 time
 
 login_logout_log
 ----------------
-username 
+id PK
+user_id FK 
 login_time 
 logout_time
 
 private_message
 ---------------
 message_id PK
-from 
-to // user_id
+from FK
+to FK
 content
 time 
 
@@ -56,5 +61,13 @@ like
 ----
 id PK
 post_id FK
-like_from
+like_from FK
+
+events
+------
+id PK
+title 
+content
+from FK
+permission_allowed_to FK
 
