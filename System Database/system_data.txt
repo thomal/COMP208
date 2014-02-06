@@ -12,6 +12,7 @@ name
 birthday
 sex
 e-mail
+public_key
 
 category
 --------
@@ -19,10 +20,6 @@ id PK
 user_id FK
 name 
 
-known_persons
--------------
-relation_id PK
-public_key
 
 // NOTE: The person in column 'to' should be automatically added into the permission_allowed_to as well!
 wall_post
@@ -38,7 +35,6 @@ time
 login_logout_log
 ----------------
 id PK
-user_id FK 
 login_time 
 logout_time
 

@@ -16,14 +16,9 @@ e-mail
 category
 --------
 id PK
-type
-
-known_persons
--------------
-relation_id PK
 user_id FK
-category_id FK
-public_key
+name 
+
 
 // NOTE: The person in column 'to' should be automatically added into the permission_allowed_to as well!
 wall_post
