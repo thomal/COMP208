@@ -1,8 +1,10 @@
-NOTE: Public keys are 217 characters long
+NOTE TO DB ADMINISTRATORS: Public keys are 217 characters long
+all id's are auto-incremented
 
 user
 ----
-username PK
+id PK
+username 
 name
 birthday
 sex
@@ -15,22 +17,23 @@ type
 
 known_persons
 -------------
-username PK
+user_id PK
 public_key
 category_type
 
 wall_post
 ---------
 id  PK
-permission_allowed_to // list of users
+permission_allowed_to // this list of users are permissible to view the post, its comments and likes
 from
+to // this can be NULL if the wall is not posted for a specific person
 content
 comment_id
 time
 
 login_logout_log
 ----------------
-username PK
+username 
 login_time 
 logout_time
 
@@ -38,7 +41,7 @@ private_message
 ---------------
 message_id PK
 from 
-to
+to // user_id
 content
 time 
 
@@ -48,4 +51,10 @@ id PK
 post_id FK (From wall_post table)
 comment_from
 comment_time 
+
+like
+----
+id PK
+post_id FK
+like_from
 
