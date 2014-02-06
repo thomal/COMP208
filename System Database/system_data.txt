@@ -1,82 +1,51 @@
-NOTE to Luke: VARCHAR limits to 25. Due to encryption, I'm sure the amount of characters is likely to be more than 25. I might need clarifications. - Aishah
-NOTE to all: Not normalised.  
+NOTE TO DB ADMINISTRATORS: Public keys are 217 characters long
 
-----
 user
 ----
-user_id INT(25) PK
-email VARCHAR(25)
-first_name VARCHAR(25) 
-last_name VARCHAR(25)
-password VARCHAR(15) 
-date_of_birth DATE 
-gender VARCHAR(6)
+username PK
+name
+birthday
+sex
+e-mail
 
-------------
-friends_with
-------------
-user_id INT(25) PK & FK
-friend_id INT(25)
-start_friend DATE
-end_friend DATE
+category
+--------
+id PK
+type
 
-----------
-group_with
-----------
-group_id INT(25) PK & FK
-user_id INT(25) FK
-join_date DATE
-leave_date DATE
-member_type VARCHAR(25)
-
------
-group
------
-group_id INT(25) PK
-group_name VARCHAR(25)
-group_genre VARCHAR(25)
-group_description CHAR(100)
-
+known_persons
 -------------
-comment_table
--------------
-comment_id INT(25) PK
-post_id INT(25) FK
-comment_from VARCHAR(25)
-comment_time DATE
+username PK
+public_key
+category_type
 
-// private message can be seen by 2 parties only. unless stated.
----------------
-private_message
----------------
-message_id INT(25) PK
-message_by VARCHAR(25)
-message_from VARCHAR(25)
-message_content CHAR(100)
-message_time DATE
-
-// post that can be viewed by friends, friends of friends, or public
-// question: posts on a friend's wall or on newsfeed, or both?
----------
 wall_post
 ---------
-wall_id INT(25) PK
-group_id INT(25) //can be null if not from group
-wall_from VARCHAR(25)
-wall_from VARCHAR(25)
-wall_security_type VARCHAR(25) // friends, friends of friends or public
-wall_content CHAR(100)
-comment_id INT(25)
-post_time DATE
+id  PK
+permission_allowed_to // list of users
+from
+content
+comment_id
+time
 
-//need logs e.g. login/logout logs
-----------------
 login_logout_log
 ----------------
-user_email VARCHAR(25) PK
-login_time DATE
-logout_time DATE
+username PK
+login_time 
+logout_time
 
+private_message
+---------------
+message_id PK
+from 
+to
+content
+time 
 
-
+comment
+-------
+id PK
+post_id FK (From wall_post table)
+comment_from
+comment_time 
 
