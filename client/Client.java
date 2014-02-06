@@ -4,22 +4,20 @@ class Client {
         Thread            networkThread = new Thread(connection);
         Database          db            = new Database("./db");
         GUI               gui           = new GUI(db, connection);
+        Thread            guiThread     = new Thread(gui);
         
-        if (!Crypto.keysExist())
+        if (!Crypto.keysExist()) //move into GUI class
             Crypto.keyGen();
         
-        networkThread.start();
+        networkThread.start(); //download new messages, wait 1 second, repeat
+        guiThread.start();     //display content of DB, get user input, repeat
         
-        while (running) {
+        while (gui.isRunning())
             while (connection.hasMessage())
                 Parser.handle(Crypto.decrypt(connection.getMessage()), db);
-            running = gui.update();
-        }
         
         gui.close();
         connection.close();
         db.close();
     }
-    
-    private static boolean running = true;
 }

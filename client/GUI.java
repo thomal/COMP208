@@ -6,14 +6,37 @@
 import java.util.Scanner;
 import java.util.Vector;
 import java.security.PublicKey;
+import java.util.concurrent.Semaphore;
 
-class GUI {
+class GUI implements Runnable {
     public GUI (Database db, NetworkConnection nc) {
-        database = db;
-        connection = nc;
+        database    = db;
+        connection  = nc;
+        running     = true;
+        runningLock = new Semaphore(1);
     }
     
-    public Boolean update () {
+    public void run () {
+        while (isRunning())
+            update();
+    }
+    
+    public void close () {
+    }
+    
+    public boolean isRunning () {
+        boolean r = false;
+        try {
+            runningLock.acquire();
+            r = running;
+            runningLock.release();
+        } catch (Exception e) {
+            System.out.println("WARNING: Acquire interrupted: " + e);
+        }
+        return r;
+    }
+    
+    private void update () {
         //get input
         System.out.print(">");
         Scanner in = new Scanner(System.in);
@@ -35,7 +58,13 @@ class GUI {
         
         //QUIT
         else if (input.equals("QUIT")) {
-            return false;
+            try {
+                runningLock.acquire();
+                running = false;
+                runningLock.release();
+            } catch (Exception e) {
+                System.out.println("WARNING: Acquire interrupted: " + e);
+            }
         }
         
         //POST
@@ -88,13 +117,10 @@ class GUI {
                                " \"QUIT\", \"SHOWKEY\", \"ADDKEY <key>\", " +
                                " \"CLAIM\" or \"POST <text>\"");
         }
-            
-       return true;
     }
     
-    public void close () {
-    }
-    
-    Database database;
+    Database          database;
     NetworkConnection connection;
+    boolean           running;
+    Semaphore         runningLock;
 }
