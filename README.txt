@@ -1,8 +1,8 @@
 KAWAII TURTLE~
 
-        ------------------
-     ( I will eat your soul )
-        ----------  ------
+         ---------------
+        ( Aishah smells )
+         ----------  ---
                   \|
 
                   ------     /^^---^^---^^\
@@ -13,10 +13,12 @@ KAWAII TURTLE~
 Hail to the turtle.
 
 -----------------------------------------
-Meeting #4 Scheduled (Friday, 07/02/2014)
+Meeting #4 Minutes (Friday, 07/02/2014)
 -----------------------------------------
-Location: Common Room
-Agenda: Introduction of Louis Prince, see whats left on requirements (mostly whats below)
+- Introduced Louis Prince to members/project
+- Assigned Roles to requirement sections
+- Team Review date proposed (Wed 19th, Afternoon)
+- Team name: Ballmer Peak
 
 ----------------------------------------
 Meeting #3 Minutes (Tuesday, 04/02/2014)
