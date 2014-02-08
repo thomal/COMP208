@@ -1,10 +1,13 @@
 facebook function
 
+
+
+
 /------------------------------------------------------------------------------------
 user
 /------------------------------------------------------------------------------------
 	-user Name register(signing up)
-		-sign up your -email
+			-sign up your 	  -email
 					  -SureName
 					  -LastName
 					  -UserName
@@ -16,6 +19,7 @@ user
 
 	-user login 
 		-the userName or phone and Password check on facebook database
+
 		-check the user login in IP from the last time login in, inform the user if the location is no seance .
 		Or given a check(e.g. the user have to given the Name of whose in the photo )
 		
@@ -121,13 +125,17 @@ wall
 	-user can read friends' post or share post (the most recent update one)
 	
 	-the post will shows - the creator's Name
-								(get in the user's wall by clicking it)
-						 - the number of like 
-								(like +1 by clicking it)
-						 - Comment
-								(input Comment by clicking it)
-						 -Share
-								get in the share function by clicking it.
+		(get in the user's wall by clicking it)
+		
+	- the number of like 
+		(like +1 by clicking it)
+	
+
+	 - Comment
+		(input Comment by clicking it)
+	
+	 - Share
+		(get in the share function by clicking it.)
 
 	-User can see whose birthday
 
