@@ -7,11 +7,11 @@ import java.util.concurrent.Semaphore;
 
 class NetworkConnection implements Runnable {
     public NetworkConnection (String serverurl) {
-        url      = serverurl;
-        messages = new Vector<String>();
-        lastRead = 0;
+        url         = serverurl;
+        messages    = new Vector<String>();
+        lastRead    = 0;
         messageLock = new Semaphore(1);
-        connected = true;
+        connected   = true;
         
         //parse db/lastread
         File lastReadFile = new File("./db/lastread");
