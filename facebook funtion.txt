@@ -1,43 +1,7 @@
-facebook function
-
-
-
-
-/------------------------------------------------------------------------------------
-user
-/------------------------------------------------------------------------------------
-	-user Name register(signing up)
-			-sign up your 	  -email
-					  -SureName
-					  -LastName
-					  -UserName
-					  -Password
-					  -Birthday
-					  -Sex
-					  -email
-
-
-	-user login 
-		-the userName or phone and Password check on facebook database
-
-		-check the user login in IP from the last time login in, inform the user if the location is no seance .
-		Or given a check(e.g. the user have to given the Name of whose in the photo )
-		
-	-password forgotten
-		-ask for Email, Phone, Username or Full Name to help the user to get the password
-		
-	
-
 /-----------------------------------------------------------------------------
 	Post
 /-----------------------------------------------------------------------------
-	Posting
-	-allow user posting on wall
-	
-		-user can delete the posts(only the post creator)
-		
-		-user can rewrite(current) the post
-		
+
 		-user can set post as public, Only me, friends Only, Customer private, 
 			
 			-about public
@@ -52,29 +16,6 @@ user
 			
 			-friends Only
 			Only the user in the friends List allows to visit the post
-	
-	-type of post 	
-		-Message Posting 
-		-picture Posting
-		-video posting
-		-Message and Picture posting
-		-video and Message posting 
-	
-	sharing
-		-firstly confirm is he user really wants to share than get in to the share function
-			
-			-share function
-				-allow user post other user's post to his friend (by posting to the users wall)
-				-allow user to share the post on third-party web(e.g. YouTube, steam information)
-				-user can input message which to sharing type post 
-
-	comment
-		-user can comment on the post
-		-user can comment on the shared post
-	
-	Like 
-		-user can like the post 
-		-user can like the shared post
 		
 	-facebook Manager
 		-have authority to deleted all the users post
@@ -87,11 +28,7 @@ Friend
 
 	-friend Search
 		-searching from the user input
-		- the result is from the facebook data user database
-	
-	Friend add
-		-the user(A) can ask user(B) for the permeation to add in the friend list
-		
+		- the result is from the facebook data user database		
 	
 	-Friend list
 		-all the added friend stored in a friend list
@@ -107,16 +44,6 @@ account Manage
 	-allow use to disable the comment
 	- apps managing
 	
-
-
-/------------------------------------------------------------------------------------
-Security
-/------------------------------------------------------------------------------------
-
-
-
-
-
 
 
 /------------------------------------------------------------------------------------
@@ -156,6 +83,4 @@ Chat
 	- allow user to Mute Conversation 
 	- allow user clear up the interface
 	- user can see the Conversation that stored in sever
-	- user can report unusual behaviours 
-
-
+	- user can report unusual behaviours

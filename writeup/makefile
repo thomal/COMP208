@@ -1,6 +1,7 @@
-pdf : project.tex text/*.tex
+pdf : project.tex text/*/*.tex
 	pdflatex project.tex
 	pdflatex project.tex # because of the TOC and todo list
+	pdflatex project.tex
 clean : project.log project.aux project.toc project.tdo
 	rm project.log
 	rm project.aux
