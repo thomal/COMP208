@@ -3,8 +3,5 @@
 *.tdo
 *.aux
 *.log
-*~
 client/db/lastread
-client/*~
-server/*~
-System Database/*~
+*~
