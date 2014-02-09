@@ -1,0 +1,94 @@
+\todo{consider implementing a WOT system with levels of trust}
+\todo{turn all these lists into real text}
+
+NB: 'friend' isn't special, but merely a group of public keys the user deems
+friends. They may have other groups such as 'close friend', 'family', 'coworker'
+etc.\\
+When I here say group, I mean it in a different sense to a facebook group, but
+more like a google+ circle. Once the data dictionary is drafted, I will rewrite
+with standard terminology.
+
+\section{Profile Data}
+    \begin{itemize}
+    \item Posted as a PDATA message to all who may view it
+    \item Different versions for different people/groups
+    \item New PDATA messages can update old values (change your name/email)
+    \end{itemize}
+    
+    Fields:
+    \begin{itemize}
+        \item Names (not unique)
+        \item Username (unique, but this uniqueness is ensured by server and shouldn't
+		    be trusted)
+        \item Birthday
+        \item Sex
+        \item E-Mail
+    \end{itemize}
+
+\section{Account recovery}
+Not possible without keypair, have GUI keep a backup or urge user to store a
+copy on a flash drive?
+
+\section{Posts}
+    \subsection{Walls}
+        Each user has their own wall.
+        Posting a message on their wall
+            \begin{itemize}
+            \item all posts should be addressed to self so they can see their own posts
+            \item to a group
+            \item to a specific person or a list of people
+            \item never public, this breeds bad habbits
+            \item to themselves
+            \end{itemize}
+        
+        Posting to anothers wall Is much the same as posting to your own.
+        
+        Sharing a link on their wall
+            \begin{itemize}
+            \item displayed differently in GUI, client MUST NEVER thumbnail link or
+              otherwise access it without EXPLICIT user consent (see tor/js
+              exploit on freedom hosting by the USA and tracking techniques
+              recently thwarted by GMail caching images)
+            \item can post a message along with the link
+            \end{itemize}
+        
+        \begin{itemize}
+        \item Can edit old posts (though old versions still available to malicious clients)
+        \item Can delete posts (though still available to malicious clients)
+        \item no pictures/video/audio
+        \end{itemize}
+        
+    \subsection{Commenting}
+        \begin{itemize}
+        \item All wall posts may be commented on
+        \item Comments must be forwarded by original posters client to all the same
+          recipients.
+          (unless the original post contains a list of public keys who can see
+          the message, look into this, single point of failure if implemented??)
+        \end{itemize}
+    
+    \subsection{Liking}
+        Any wall post may be liked. Likes are only visible to those whom you
+          choose.
+    
+    \subsection{Events}
+        Client posts a message to itself alterting it of an event, such as a
+        birthday, interview, or other event.
+    
+\section{Interacting with other users}
+    Adding someone to a group (friend/family/coworker) is asymmetric. Just
+      because you add them doesn't mean they've added you. You do not require
+      consent.
+    
+    Known people are adding by adding their public key. See CLAIM/PDATA messages
+    
+    Allow user to manage their list of known people into groups such as friend,
+      family, and cooworker. The user defines these groups.
+
+\section{Chat}
+    \begin{itemize}
+    \item Real time chat between users
+    \item Allow posting messages to be delivered when user logs in
+    \item Save past conversations
+    \item Block users from messaging you (client actually just ignores their messages)
+    \end{itemize}
