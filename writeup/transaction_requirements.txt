@@ -1,0 +1,54 @@
+Transaction requirements
+------------------------
+- the transactions involved for each user activity
+- how these data are used
+- 3 categories
+  data entry
+  data update and deletion
+  data queries
+- transaction should be related to user view, ensure all functions are supported
+
+data entry
+----------
+1. user enters his profile information 
+username | user is to make his own username 
+name     | user is to enter his name (first and last name)
+birthday |  user enters his date of birth by selecting the date from a calendar 
+sex      | user is to select either his/her gender, male or female
+email    |  user is to enter his email address
+
+2. user starts a new conversation by adding a new message
+message_id        | id is to be incremented when a new message is initiated
+from(user_id)     | system is to insert the user_id of whoever initiated the message
+to(user_id)       | user is to select the person whom he wants to send the message to
+content           | content of the message which the user intends to send to the receiver
+message_time_date | the time and date is recorded of which the message is sent to the receiver
+
+3. user adds a new post
+post_id               | id is to be incremented when a new post is added
+permission_allowed_to | user is to choose specific users (he knows) to view his post
+from                  | system is to insert the creator's name of the post
+to                    | the user_name of the post is inserted if the user directs this post to specific person(s)
+comment_id            | comment_id lists down the comment made out from other users
+content               | the content of the post
+message_time_date     | the time and date is recorded of which the post is created
+
+4. user adds a new event
+event_id              | id is to be incremented when a new event is added
+title                 | title of the event
+content               | content of the event
+from                  | the user_id of the person who posted the event
+permission_allowed_to | user is to choose specific users (he knows) to view his event
+
+5. user adds a comment
+comment_id         |
+post_id            |
+comment_from       |
+comment_time_ date |
+
+6. user likes a post
+like_id   |
+post_id   |
+like_from |
+
+
