@@ -1,94 +1,94 @@
 \todo{consider implementing a WOT system with levels of trust}
 \todo{turn all these lists into real text}
 
-NB: 'friend' isn't special, but merely a group of public keys the user deems
-friends. They may have other groups such as 'close friend', 'family', 'coworker'
-etc.\\
-When I here say group, I mean it in a different sense to a facebook group, but
-more like a google+ circle. Once the data dictionary is drafted, I will rewrite
-with standard terminology.
+\section{Registration}
+Users may register by sending a CLAIM message to the server, this will claim a
+username for that user, and allow people they send messages to to see their
+username.
+
+Before registering the user must generate an RSA keypair, they will be given the
+option of generating a new keypair, or using an existing keypair. The keypair
+provided will be encrypted using AES with the users password being used to
+derive the key. The user therefore must enter their password to log in to the
+client. The database will be encrypted using the same AES key as the keys are
+encrypted with.
+
+\section{Interacting with other users}
+People are adding by adding their public key, this is transmitted outside of our
+system, via whichever channel the users deem appropriate\footnote{This is
+required to prevent server operators from MitM'ing users}.
+
+Adding someone is asymmetric. Just because you add them doesn't mean they've
+added you. You do not require consent to add someone, just their public key.
+    
+The system allows the user to manage their list of known people into groups such
+as friends, family, and cooworkers. The user defines these groups as lists of
+people whose public key they know. The user may create any group they desire,
+these groups are visible to only the user, and private\todo{groups should be
+posted to the server as a message only that user can read, this supports the
+same user using multiple clients (on, say, a phone and laptop)}.
 
 \section{Profile Data}
+Profile data will be transmitted via PDATA messages. Different versions of
+profile information may be provided to different groups of people. Profile data
+may be update by the user.
+
+The supported fields in a PDATA message are:
     \begin{itemize}
-    \item Posted as a PDATA message to all who may view it
-    \item Different versions for different people/groups
-    \item New PDATA messages can update old values (change your name/email)
-    \end{itemize}
-    
-    Fields:
-    \begin{itemize}
-        \item Names (not unique)
-        \item Username (unique, but this uniqueness is ensured by server and shouldn't
-		    be trusted)
+        \item Name
+        \item Username (unique, but this uniqueness is ensured by server and
+              shouldn't be relied on)
         \item Birthday
         \item Sex
         \item E-Mail
+        \item About
     \end{itemize}
 
 \section{Account recovery}
-Not possible without keypair, have GUI keep a backup or urge user to store a
-copy on a flash drive?
+Account recovery is not possible without your keypair, due to the the GUI should
+urge the user to keep a copy on a flash drive, or external hard drive. The keys
+themselved will be encrypted with the users password.
 
 \section{Posts}
-    \subsection{Walls}
-        Each user has their own wall.
-        Posting a message on their wall
-            \begin{itemize}
-            \item all posts should be addressed to self so they can see their own posts
-            \item to a group
-            \item to a specific person or a list of people
-            \item never public, this breeds bad habbits
-            \item to themselves
-            \end{itemize}
-        
-        Posting to anothers wall Is much the same as posting to your own.
-        
-        Sharing a link on their wall
-            \begin{itemize}
-            \item displayed differently in GUI, client MUST NEVER thumbnail link or
-              otherwise access it without EXPLICIT user consent (see tor/js
-              exploit on freedom hosting by the USA and tracking techniques
-              recently thwarted by GMail caching images)
-            \item can post a message along with the link
-            \end{itemize}
-        
-        \begin{itemize}
-        \item Can edit old posts (though old versions still available to malicious clients)
-        \item Can delete posts (though still available to malicious clients)
-        \item no pictures/video/audio
-        \end{itemize}
-        
-    \subsection{Commenting}
-        \begin{itemize}
-        \item All wall posts may be commented on
-        \item Comments must be forwarded by original posters client to all the same
-          recipients.
-          (unless the original post contains a list of public keys who can see
-          the message, look into this, single point of failure if implemented??)
-        \end{itemize}
+\subsection{Walls}
+Each user has their own wall. On their wall they may posts messages for
+themselves and others to see. All wall posts should be addressed to the user
+themself so they can see their own posts, otherwise they will be unable to even
+view their own posts. When posting to their wall they choose who will be able to
+see the post, whether this is a group or people, a specific list of people, or
+just themselves is up to the user. They will not however be given the option to
+post publically. Users may also post to another users wall.
+
+Wall posts may contain links to other content, however this content is never
+thumbnailed\footnote{client MUST NEVER thumbnail link or otherwise access it
+without EXPLICIT user consent (see tor/js exploit on freedom hosting by the USA
+and tracking techniques recently thwarted by GMail caching images}.
+
+A user may edit their old posts, however older versions will still be available
+for viewing; similarly users may 'delete' posts, but they are still visible to
+malicious clients.
+
+Due to bandwidth limitations on such networks as we are building, a user may
+only post plaintext, they may not post images, video, or audio.
+
+\subsection{Commenting}
+All wall posts may be commented on by any user who can see them. Comments are
+visible to all people who can see the original post; due to this comments must
+be forwarded by original posters client to all the same recipients, as the
+commenter may not know whom the original posters allowed to see the post.
     
-    \subsection{Liking}
-        Any wall post may be liked. Likes are only visible to those whom you
-          choose.
+\subsection{Liking}
+Any wall post may be liked. Likes are simply a specially formatted comment
+which contains only the text: "__LIKE__". As such they are handled in the same
+way\todo{inband metadata is probably a bad idea}.
     
-    \subsection{Events}
-        Client posts a message to itself alterting it of an event, such as a
-        birthday, interview, or other event.
-    
-\section{Interacting with other users}
-    Adding someone to a group (friend/family/coworker) is asymmetric. Just
-      because you add them doesn't mean they've added you. You do not require
-      consent.
-    
-    Known people are adding by adding their public key. See CLAIM/PDATA messages
-    
-    Allow user to manage their list of known people into groups such as friend,
-      family, and cooworker. The user defines these groups.
+\subsection{Events}
+The client will alert the user to other users birthdays by automatically posting
+a wall post that only the user may read, which alerts the user of the event.
+These are normal wall posts.
 
 \section{Chat}
-    \begin{itemize}
-    \item Real time chat between users
-    \item Allow posting messages to be delivered when user logs in
-    \item Save past conversations
-    \item Block users from messaging you (client actually just ignores their messages)
-    \end{itemize}
+Users may chat in real time, however messages can still be sent when one user
+logs off, to be recieved when they log in. Past conversations are saved, and a
+user may block users from messaging them; the client actually just ignores their
+messages, it's impossible to stop someone from messaging you.
