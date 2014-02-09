@@ -18,14 +18,11 @@ Regarding Future Work
 Please update /writeup/text/ when you do work, rather than leaving it in a text
 file somewhere. It is easier for everyone if they can find everyone elses work
 in the contents page of project.pdf instead of digging about in the repo.
+I've already created placeholder files for you to put your work into, but feel
+free to create more files if you feel the need.
 
-If you're unfamiliar with LaTeX, just put your work in a text file, and insert:
-    \chapter{My Section Name}
-    \input{text/requirements/your_filename.tex}
-in the appropriate place. The filepath is the path from the /writeup directory.
-Currently it's very likely that you should add those two lines to
-/writeup/text/requirements/requirements.tex as we are currently working on the
-requirements.
+If anyone is unsure about how to use Git, please contact me
+(luke@luke-thomas.net | 07592034395).
 
 -----------------------------------------
 Meeting #4 Minutes (Friday, 07/02/2014)
