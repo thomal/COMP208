@@ -1,4 +1,4 @@
-\section{Introduction}
+\chapter{Introduction}
 The proposed project is a simple, privacy oriented social network, which demands
 zero security knowledge on behalf of its users. In order to ensure security and
 privacy in the face of nation state adversaries the system must be unable spy on
@@ -62,7 +62,7 @@ decrypt them all using ones private key. Our protocol will build atop this
 simple premise, and the the server will be a mere repository of messages, the
 real work occuring wholly in the client.
 
-\section{Summary of protocol} \todo[noline]{pretty dataflow diagrams}
+\chapter{Summary of protocol} \todo[noline]{pretty dataflow diagrams}
 \textbf{Creating an account} is done by generating an RSA keypair, and choosing
 a name. An unencrypted (but signed) message is then posted to the server
 associating that keypair with that name. In this way, by knowing the public key
@@ -111,7 +111,7 @@ is entirely based on crypto signatures, so it doesn't matter who posts the
 message).\footnote{This is required because it is impossible for one to know who
 their friends friends are.}
 
-\section{Tasks and Challanges}
+\chapter{Tasks and Challanges}
 What would need to be done:
 \begin{itemize}
 \item  Server
@@ -129,7 +129,7 @@ What would need to be done:
     \end{itemize}
 \end{itemize}
 
-\subsection{Data Flow to Clients and Required Server Storage}
+\section{Data Flow to Clients and Required Server Storage}
 A estimate is hereafter given as to the size of all stored messages, and the
 amount of data which would need downloading by each client when it is started.
 The following assumptions are used:
@@ -188,7 +188,7 @@ used, it would come at the cost of the server operator being able to learn that
 somebody is sending or recieving messages, and also who those messages are sent
 to/from (although they couldn't know what the messages said).
 
-\section{Task Partitioning}
+\chapter{Task Partitioning}
 \begin{itemize}
 \item D. Breslin
     \begin{itemize}
@@ -202,13 +202,13 @@ to/from (although they couldn't know what the messages said).
     \end{itemize}
 \end{itemize}
 
-\section{Proposed Tools}
+\chapter{Proposed Tools}
 Git, with a central (private) repository hosted on github will be used for
 version control. The language used has yet to be decided..\todo{choose
 programming language}.\todo{Talk more about tools, specifically about
 communication between group members}
 
-\section{Deliverables}
+\chapter{Deliverables}
 \begin{itemize}
 \item Protocol documentation for developers writing third party clients
 \item Windows and Linux executable: client

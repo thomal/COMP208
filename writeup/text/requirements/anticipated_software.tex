@@ -1,0 +1,25 @@
+Description of anticipated software
+
+\begin{itemize}
+\item ensure optimal security, when passing messages, viewing profile
+\item ensure server will not able to detect any activies between the users of
+      the system
+\item users can share posts only to specific people
+\item users to keep their own data and only friends with users as well
+\item users is to pass public key with any type of medium they prefer to other
+      users
+\end{itemize}
+
+The purpose of this system is to emphasise on the security measures of a social
+media by encrypting user details such as profile information, messages which are
+used to pass to other users, and posts which are only designated for specific
+users t[o read?\todo{this was missing from the original commit too}]
+
+The system is to have strict security measures implemented. It is able to
+encrypt messages with the use of RSA and AES. The only way for the other user to
+decrypt the data is if it was encrypted using their public key; which is given
+from the recipient to the sender via whichever medium he prefers, e.g. email.
+
+Server capabilities are strongly limited as it only funtion is to handle the
+traffic of the encrypted data between different users. 
+
