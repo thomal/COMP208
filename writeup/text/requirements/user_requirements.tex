@@ -1,5 +1,4 @@
 \todo{consider implementing a WOT system with levels of trust}
-\todo{turn all these lists into real text}
 
 \section{Registration}
 Users may register by sending a CLAIM message to the server, this will claim a
@@ -9,23 +8,23 @@ username.
 Before registering the user must generate an RSA keypair, they will be given the
 option of generating a new keypair, or using an existing keypair. The keypair
 provided will be encrypted using AES with the users password being used to
-derive the key. The user therefore must enter their password to log in to the
+derive the key. The user therefore must enter their password to log into the
 client. The database will be encrypted using the same AES key as the keys are
 encrypted with.
 
 \section{Interacting with other users}
-People are adding by adding their public key, this is transmitted outside of our
+People are add by adding their public key, this is transmitted outside of our
 system, via whichever channel the users deem appropriate\footnote{This is
 required to prevent server operators from MitM'ing users}. We will provide a
-user with their public key as a QR code, or a plaintext string, depedning on
+user with their public key as a QR code, or a plaintext string, dependning on
 user preference.
 
 Adding someone is asymmetric. Just because you add them doesn't mean they've
 added you. You do not require consent to add someone, just their public key.
     
-The system allows the user to manage their list of known people into groups such
-as friends, family, and cooworkers. The user defines these groups as lists of
-people whose public key they know. The user may create any group they desire,
+The system allows the user to manage their list of known people into categroys
+such as friends, family, and cooworkers. The user defines these groups as lists
+of people whose public key they know. The user may create any group they desire,
 these groups are visible to only the user, and private\todo{groups should be
 posted to the server as a message only that user can read, this supports the
 same user using multiple clients (on, say, a phone and laptop)}.
@@ -33,7 +32,7 @@ same user using multiple clients (on, say, a phone and laptop)}.
 \section{Profile Data}
 Profile data will be transmitted via PDATA messages. Different versions of
 profile information may be provided to different groups of people. Profile data
-may be update by the user.
+may be updated by the user by future PDATA messages.
 
 The supported fields in a PDATA message are:
     \begin{itemize}
@@ -47,9 +46,9 @@ The supported fields in a PDATA message are:
     \end{itemize}
 
 \section{Account recovery}
-Account recovery is not possible without your keypair, due to the the GUI should
-urge the user to keep a copy on a flash drive, or external hard drive. The keys
-themselved will be encrypted with the users password.
+Account recovery is not possible without your keypair, due to this the the GUI
+should urge the user to keep a copy on a flash drive, or external hard drive.
+The keys themselves will be encrypted with the users password.
 
 \section{Posts}
 \subsection{Walls}
@@ -62,9 +61,14 @@ just themselves is up to the user. They will not however be given the option to
 post publically. Users may also post to another users wall.
 
 Wall posts may contain links to other content, however this content is never
-thumbnailed\footnote{client MUST NEVER thumbnail link or otherwise access it
-without EXPLICIT user consent (see tor/js exploit on freedom hosting by the USA
-and tracking techniques recently thwarted by GMail caching images}.
+thumbnailed\footnote{client MUST NEVER thumbnail links or otherwise access
+external content without EXPLICIT user consent (see tor/js exploit on freedom
+hosting by the USA and tracking techniques recently thwarted by GMail now
+caching images. Specifically the fact that by delivering content over a secure
+channel that initiates communications outside of that channel, the recipients of
+content may be identified. A common variation of this is 'pixels' whereby a
+would be tracker embeds a 1x1 transparent png in a document, and watches who
+downloads that image from their servers.\cite{webbug}}.
 
 A user may edit their old posts, however older versions will still be available
 for viewing; similarly users may 'delete' posts, but they are still visible to
@@ -73,21 +77,21 @@ malicious clients.
 Due to bandwidth limitations on such networks as we are building, a user may
 only post plaintext, they may not post images, video, or audio.
 
-\subsection{Commenting}
+\subsection{Commenting and Liking}
 All wall posts may be commented on by any user who can see them. Comments are
 visible to all people who can see the original post; due to this comments must
 be forwarded by original posters client to all the same recipients, as the
 commenter may not know whom the original posters allowed to see the post.
-    
-\subsection{Liking}
-Any wall post may be liked. Likes are simply a specially formatted comment
-which contains only the text: "\_\_LIKE\_\_". As such they are handled in the same
-way\todo{inband metadata is probably a bad idea}.
+
+Any wall post, comment, or other item on a wall may be liked.
     
 \subsection{Events}
 The client will alert the user to other users birthdays by automatically posting
 a wall post that only the user may read, which alerts the user of the event.
-These are normal wall posts.
+These are otherwise normal wall posts.
+
+The user has the option of setting a category of people as people for whom they
+desire to be alerted of events regarding.
 
 \section{Chat}
 Users may chat in real time, however messages can still be sent when one user

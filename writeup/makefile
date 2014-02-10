@@ -4,6 +4,7 @@ pdf : project.tex text/*/*.tex
 	bibtex project.aux
 	pdflatex project.tex # because of latexbib
 	pdflatex project.tex # '
+	make clean
 clean : project.log project.aux project.toc project.tdo project.bbl project.blg project-blx.bib
 	rm project.log
 	rm project.aux

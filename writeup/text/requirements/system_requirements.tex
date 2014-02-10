@@ -1,6 +1,6 @@
 A estimate is hereafter given as to the size of all stored messages, and the
 amount of data which would need downloading by each client when it is started.
-The following assumptions are used:
+The following assumptions are used throughout:
 \begin{itemize}
 \item A users avarage message posted to their wall is ~200 characters
 \item A users avarage number of messages posted to their wall per day is 10
@@ -21,8 +21,8 @@ Every time a client connects, it must download all messages posted since it last
 connected to the server. To mitigate this we may run as a daemon on linux, or a
 background process in windows, that starts when the user logs in. If we can
 expect a computer to be turned on for just 4 hours a day then 20 hours of data
-must be downloaded. ((236,500*no\_of\_users)/24)*hours\_off\_per\_day bytes must be
-downloaded when the users computer is turned on.
+must be downloaded. ((236,500*no\_of\_users)/24)*hours\_off\_per\_day bytes must
+be downloaded when the users computer is turned on.
 
 The following table shows the delays between the computer turning on, and every
 message having been downloaded (assuming a download speed of 500KB/second, and a
@@ -42,10 +42,9 @@ netowrk of 1000 users).
     \caption{Hours a computer is turned off per day vs minutes to sync}
 \end{table}
 
-To mitigate this, posts will be downloaded in reverse order, so that more recent
-posts are downloaded first. We feel that waiting 2-5 mins is an acceptable delay
-for the degree of privacy provided. Once the user is synced after turning their
-computer on, no further delays will be incurred until the computer is shut down.
+We feel that waiting 2-5 mins is an acceptable delay for the degree of privacy
+provided. Once the user is synced after turning their computer on, no further
+delays will be incurred until the computer is shut down.
 
 Due to the inherantly limited network size (\textless1500 users of one server is
 practical) we recomend a number of smaller servers, each serving either a
@@ -55,3 +54,12 @@ While this latency could be avoided, and huge networks (\textgreater1,000,000)
 used, it would come at the cost of the server operator being able to learn that
 somebody is sending or recieving messages, and also who those messages are sent
 to/from (although they couldn't know what the messages said).
+
+The server therefore merely needs a fast internet connection to upload and
+download content from clients. The client is required to perform a significant
+amount of encryption and decryption, however the client will almost certainly be
+able to encrypt/decrypt faster than a connection to the internet so the network
+speed may be considered the limiting factor for users on the internet. Large
+companies however may very well use the system over a LAN, however these can be
+reasonably expected to have fairly modern computers which can more than handle
+RSA decryption.
