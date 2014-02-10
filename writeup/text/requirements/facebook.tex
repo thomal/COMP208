@@ -1,18 +1,181 @@
-\section{User}
-\input{text/requirements/facebook_user.tex}
+\section{Overview}
+A user has a profile with information about them, they may add other users as
+'friends', friends may view each others 'posts' and talk to each other. Posts
+are multimedia messages typically visible to all the friends of the person who
+made the post. Most posts can be commented upon, and both posts and comments may
+be 'liked'. Liking merely publically marks the fact that you approve of
+something.
 
-\section{Post}
-\input{text/requirements/facebook_post.tex}
+\section{Registration}
+In order to be a user of facebook, one must register. In doing so you provide
+facebook with the following information, this may also be used to later reset
+the password of your account, should you forget it.
 
+\begin{itemize}
+\item First Name
+\item Last Name
+\item E-Mail
+\item Password
+\item Birthday\todo{friends of a user are automatically alerted of friends BD's}
+\item Sex
+\end{itemize}
+
+In order to register one must read and agree to their terms \cite{fbterms}, read
+their data use policy \cite{fbdatause}, and read their cookie policy
+\cite{fbcookies}.
+Given profile information can be changed at a later date, within certain bounds.
+Facebook requires the use of your real name, and in fact forbids all false
+personal information, under their terms.\cite{fbterms, 4.1}
+
+\section{Account Managment}
+The user is given the ability to set the security defaults for their posts and
+information. Tese options include who is able to see wall posts, whether
+comments are enabled by default, and who may see which aspects of your profile
+information. You can also manage the permissions granted to facebook apps\todo{
+more information on FB apps}.
+
+A users profile may contain the following information:
+\begin{itemize}
+\item Work and education
+\item PLece Lived
+\item Relationship
+\item Basic Information
+    \begin{itemize}
+        \item Birthday
+        \item Relaionship
+        \item Status
+        \item Anniversary
+        \item Languages
+        \item Religious
+        \item Political
+        \item Family
+        \item Contact Information
+    \end{itemize}
+
+\item \begin{table}[h]
+    \centering
+    \begin{tabular}{ll}
+    field         & description\\ \hline
+    photo         & all the photo have user's taged\\
+    friend        & what friend the user had\\
+    note          & what notes the user droped and uploaded to facebook .\\
+    groups        & what group have user join.\\
+    events        & what events user have\\
+    likes         & what page (unknow type) user liked.\\
+    apps          & what apps user have.\\
+    books         & what books page user liked/follow.\\
+    TV programmes & what TV page user liked/follow.\\
+    films         & what films page user liked/follow\\
+    music         & what music(or stars) user liked/ follow.\\
+    sports        & what sport page user liked\\
+    place         & where's the place that user had been .\\
+    \end{tabular}
+    \caption{user adds a new post}
+    \end{table}
+\end{itemize}
 
 \section{Friend}
-\input{text/requirements/facebook_friend.tex}
+In facebook, 'friending' someone is symmetric; that is, if you are friends with
+them, they are friends with you. The facebook severs store which user is friends
+with which other users. Adding another user as a friend is simply a matter of
+sending that user a friend request, and having it approved by the second user. A
+user may see a list of all who are their 'friend' on FB, in the friend list.
+After friending somebody that persons wall posts will appear on your news feed,
+and you will be able to chat with that user.
 
-\section{Personal Information}
-\input{text/requirements/facebook_personalInfo.tex}
+In order to add friends, facebook allows you to see your friends friend lists,
+and search by name, email, and location for other users. Facebook also suggests
+other users whom you may already know IRL, based on your friends friends.
+Non-users are also able to search facebook for people that they may know.
+
+\section{Post}
+\subsection{Posts, and functions thereof}
+Facebook allows a user to post on their wall or friend's wall (if they are
+friens with the facebook user). Posts may contain: text, images, videos, or any
+combination thereof.
+
+A user posting a post may do the following:
+\begin{itemize}
+\item delete their own post
+\item rewrite their own post
+\item decide who may view a post, the options are as follows:
+    \begin{itemize}
+    \item public
+    \item private
+    \item only-me
+    \item friends only
+    \item friends of friends
+    \item \ldots \todo{does FB allow sharing to one or two specific people?}
+    \end{itemize}
+\end{itemize}
+
+\subsection{Interaction with anothers posts}
+A post will typically be displayed on the newsfeeds of the people who are able
+to see it, due to this the name of the person who made a post is always
+displayed next to it. Posts themselves may be commented upon, liked, and
+reposted to the viewers wall ('shared') with an additional message; the number
+and names of people who have liked a post is displayed underneath it; likes may
+be cancelled at a later date. The comment function may however be disabled by
+the user who makes a post.
+
+A user may hide specific posts, or hide all posts by a specific user. They may
+also, instead of hiding anothers posts alltogether, merely prevent them from
+being automatically displayed on their newsfeed. \todo{See 72d5e2dc, what
+is 'set a notification'?} A user may report an image, video or comment to
+facebook team (for example:the post is offensive). Comments may also be liked,
+hidden, and reported; following such a report FB is able to remove offensive or
+illegal posts. \todo{allow user to share the post on third-party web(e.g.
+YouTube, Steam information): really? I don't remember seeing this option in
+steam}
+
+Images which are posted may be tagged, this allows other users to mouse-over
+parts of the image and be informed who is pictured. This functionality is also
+used to add all posted images of someone to their profile.
 
 \section{wall}
-\input{text/requirements/facebook_wall.tex}
+A users wall stores all the posts of the user posted since the account was
+created and the informaation about the user, this information is presented in
+reverse choronlogical order, so that recent events are at the top of the page
+and easily visible. Other users may view the users wall by clicking the name of
+the user from anywhere in facebook. Other users may post on a friends wall as
+well as the owner, see section on posts for more information; In this case, both
+the poster and the ownder of the wall can delete the post. Facebook also retains
+the power to erase any content on its service.
+
+Posts mentioning a user are automatically reposted to that users wall, this can
+occur manually or when that person is tagged in an image.
 
 \section{Chat System}
-\input{text/requirements/facebook_chatSystem.tex}
+Facebook allows a user to chat with their friends, and will inform a user of
+whether their friends are online or not (though this can be faked), and whether
+the user you are chatting with has read the last message that you sent them.
+Facebook determines that you have read a message when... \todo{how does FB do
+this?}. You are also informed whether your friend is logged in on a mobile
+device or not.
+
+Whole groups of users may chat together, in multi-user conversations. Facebook
+also supports video calling and file transfer during chats. If a user does not
+wish to be bothered by another using chatting with them, then they may 'mute'
+that users conversion. Users spamming via chat may be reported to facebook.
+Because multi-user conversations (and indeed long running one-to-one
+conversations) can get rather large, facebook allows you to hide the history of
+a conversation.
+
+Facebook chat alerts the user to new messages in a conversation by playing a
+sound.
+
+\section{Architechture}
+\ldots
+
+\section{Security}
+In order to use facebook post registration a user must 'log in'. This places an
+authentication cookie on the users computer which gives anyone in possesion of
+it the ability to act as that user.\todo{verify they didn't change this since I
+left FB} Users login using their email and password.
+
+there might be some checking to the user. For example ,Once the user login in,
+the facebook AI will check on the userIP , if the IP shows the location is to
+far from last login IP , the facebook might need to confirm the user by asking
+whats the friend's name on the photo that user had tap .Nevertheless, If the
+user forgotten the password,ask for Email, Phone, Username or Full Name to help
+the user to get the password
