@@ -2,6 +2,7 @@
 \usepackage{appendix}
 \usepackage{todonotes}
 \usepackage{graphicx}
+\usepackage{cite}
 
 \renewcommand{\chaptername}{}
 
@@ -31,10 +32,12 @@
 \input{text/appendicies/todo.tex}
 \chapter{Bugs}
 \input{text/appendicies/bugs.tex}
-
 \end{appendices}
 
 \listoftodos
 \todototoc
+
+\bibliography{text/appendicies/bibliography.bib}{}
+\bibliographystyle{plain}
 
 \end{document}
