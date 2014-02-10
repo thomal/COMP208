@@ -1,12 +1,12 @@
 KAWAII TURTLE~
 
          ------------------------------------
-        /                                    \
-        |  ::PROGRAMMER'S TIP 101::          |
+        /  ::PROGRAMMER'S TIP 101::          \
         |  If you can't find your            |
         |  glasses anywhere, don't forget to |
         |  check it on your face.            |
-        \                                    /
+        |                                    |
+        \  PS: Aishah Smells                 /
          ---------  -------------------------
                   \|
 
