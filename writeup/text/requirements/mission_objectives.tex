@@ -15,7 +15,7 @@ interest.
 
 \begin{itemize}
 \item ensure optimal security, when passing messages, viewing profile
-\item ensure server will not able to detect any activies between the users of
+\item ensure server will not able to detect any activities between the users of
       the system
 \item users can share posts only to specific people
 \item users to keep their own data and only friends with users as well
@@ -51,9 +51,9 @@ In order to ensure nobody can tell who is talking with whom we will base our
 security model on the idea of shared mailboxes, as seen in practice at
 alt.anonymous.messages
 \footnote{https://groups.google.com/forum/\#!forum/alt.anonymous.messages}.
-In this model one posts a message by encryping it using the public key of the
+In this model one posts a message by encrypting it using the public key of the
 recipient, and posting it in a public location. In this model one reads a
 message by downloading all messages from that location, and attempting to
 decrypt them all using ones private key. Our protocol will build atop this
 simple premise, and the the server will be a mere repository of messages, the
-real work occuring wholly in the client.
+real work occurring wholly in the client.
