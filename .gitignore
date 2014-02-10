@@ -3,5 +3,7 @@
 *.tdo
 *.aux
 *.log
+*.blg
+*.bbl
 client/db/lastread
 *~
