@@ -1,34 +1,39 @@
-The purpose of this system is to emphasise on the security measures of a social
-media by encrypting user details such as profile information, messages which are
-used to pass to other users, and posts which are only designated for specific
-users t[o read?\todo{this was missing from the original commit too}]
+Our goal is to produce an easy to use social network, within which nearly all
+data is encrypted.
 
 The system is to have strict security measures implemented. It is able to
 encrypt messages with the use of RSA and AES. The only way for the other user to
 decrypt the data is if it was encrypted using their public key; which is given
 from the recipient to the sender via whichever medium he prefers, e.g. email.
+We will also allow users to transmit public keys as QR codes, for ease of use.
 
 The system will provide a platform for people to securely communicate, both
 one-to-one and in groups. Users will be able to post information to all of their
 friends, or a subset of them as well as sharing links and discussing matters of
 interest.
 
+The following are our main design goals, please note that the system is designed
+with axiom that the server operators are evil, seeking to spy on every user, and
+able to modify the source for the server.
 \begin{itemize}
-\item ensure optimal security, when passing messages, viewing profile
-\item ensure server will not able to detect any activities between the users of
-      the system
-\item users can share posts only to specific people
-\item users to keep their own data and only friends with users as well
-\item users is to pass public key with any type of medium they prefer to other
-      users
+\item strong cryptography protecting the content of messages
+\item make it an impossible task to derive, from the information the server has
+      or is able to collect, which users send a message to which users
+\item make it an impossible task to derive, from the information the server has
+      or is able to collect, which users recieve a message at all
+\item transmission of public key is easy, and doesn't require knowing what a
+      public key is
+\item be intuitive and easy to use, prompting the user when required
+\item provide a rich social network experiance, so as to draw regular members
+      and drive up network diversity
 \end{itemize}
 
 The server operator will have access to the following information:
 \begin{itemize}
 \item Which IP uploaded which message (although they will be ignorant of its
-content)
+content, type, recipient, and sender)
 \item Which IPs are connecting to the server as clients (but not what they view,
-      or whom they talk with)
+      , whom they talk with, or whether they recieve a message at all)
 \item What times a specific IP connects \footnote {While this will aid in tying
 an IP address to a person, it is deemed acceptable because it is not useful
 information unless the persons private key is compromised.}
