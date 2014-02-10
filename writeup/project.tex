@@ -2,9 +2,15 @@
 \usepackage{appendix}
 \usepackage{todonotes}
 \usepackage{graphicx}
-\usepackage{cite}
+\usepackage{comment}
+\usepackage{setspace}
 
+\onehalfspacing
 \renewcommand{\chaptername}{}
+
+\usepackage{biblatex}
+\bibliography{text/appendicies/bibliography.bib}{}
+%\usepackage{cite}
 
 \title{COMP208 - Group Software Project\\Ballmer Peak}
 \author{Choi, S.F; M. Chadwick; P. Duff; L. Prince; A.Senin; L. Thomas}
@@ -37,7 +43,6 @@
 \listoftodos
 \todototoc
 
-\bibliography{text/appendicies/bibliography.bib}{}
-\bibliographystyle{plain}
+\printbibliography
 
 \end{document}
