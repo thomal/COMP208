@@ -1,17 +1,24 @@
 \section{Overview of Protocol}
 Tor is an implementation of onion routing, it routes traffic from your computer
-to an entry guard. That entry guard routes it to an internal node, which in turn
-routes it to an exit node. The exit node the routes the transmission to the
-final destination.\todo{how are nodes found, how are nodes public keys found,
-describe hidden services and directory authorities, describe hidden services
-using their public key as a URL}
+through a number of other nodes; the final 'exit' node the routes the traffic
+to the final destination. Node IP's are listed publically in directory servers.
+In this manner to IP of clients connecting to a server is obscured from that
+server.
 
 RSA/AES is used to ensure that only you, the exit node, and the final
 destination see the plaintext traffic being routed. With the use of TLS, SSL, or
 other end-to-end encryption those who see the plaintext can be reduced to you
 and the final destination. However a malicious exit node can MitM SSL connections
 using ssl-strip or a similar tool. There are methods of avoiding this, but it is
-a serious issue because users believe that SSL is secure.
+a serious issue because users believe that SSL is secure. This exploit is found
+in the wild\cite{badRelays} and so is most definetly a concern.
+
+Tor also supports 'hidden services' which seek to conceal the IP of the client
+from the server, and the IP of the server from the client. These are
+significantly more secure as the traffic never exits the tor network, however
+provide no protection from the adversary as will be described later; after all,
+we're assuming the server operators are colluding, so they will provide data
+required for traffic confirmation.
 
 \section{Security}
 Given that Tor is a low-latency network traffic can easily be correlated. This
