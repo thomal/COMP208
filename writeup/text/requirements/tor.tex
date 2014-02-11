@@ -14,18 +14,23 @@ using ssl-strip or a similar tool. There are methods of avoiding this, but it is
 a serious issue because users believe that SSL is secure.
 
 \section{Security}
-Given that Tor is a low-latency network traffic can easily be correlated. An
-example of this occuring is \todo{cite lulzsec bloke who came on irc when
-someone came home, and dropped off irc when they cut that someones internet
-connection}
+Given that Tor is a low-latency network traffic can easily be correlated. This
+problem is ameliorated in high-latency netowrks such as mix nets, but not
+eliminated.
 
-Tor does not seek to protect against size correlation of time correlation of
+Tor does not seek to protect against size correlation or time correlation of
 traffic. Rather the purview of tor is to conceal the IP address of a client from
 the servers which it connects to.
 
 Should a global passive adversary have perfect visibility of the internet, they
 would be able to track tor traffic from source to host by correlating the size
 and time of transmissions.
+
+\begin{quote}
+The Tor design doesn't try to protect against an attacker who can see or measure
+both traffic going into the Tor network and also traffic coming out of the Tor
+network\cite{torOneCell}. - Roger Dingledine
+\end{quote}
 
 While such an attack amy initially sound infeasable, access is only needed to
 the client, the host, the entry guard, the exit node, and the internal node.
@@ -36,20 +41,20 @@ We can safely assume that the adversary has access to the clients traffic, since
 our threat model is that of a nation state seeking to spy on its citizens.
 Furthermore we may assume that the adversary has access to the content host, as
 our threat model assumes that service operators may be pressured legally or
-otherwise into spying on their users. Therefore we must instead consider how
-likely is it that three random nodes will either be compromised, malicious, or
-merely be in such a situation (e.g.: geographic positioning) as to have their
-traffic visible to an attacker.
+otherwise into spying on their users. Therefore we must conclude, at least for
+\textit{the} adversary, that Tor is unsuitable for concealing activity in
+traditional social networks.
 
-Given that the number of normal nodes is likely to vastly outnumber the
-compromised, or malicous nodes, we can merely consider tor to be as secure as
-the traffic between these three nodes.
+Does this then mean that Tor is insecure? No. So far as we know\cite{torStinks}
+the US does not currently have the ability to reliably and consistently track
+tor users; if the US is incapable of doing so, it is reasonable to assume that
+no other nation state has this ability. This is however not something which
+should be relied upon, therefore we shall consider Tor as unsuitable for
+transmitting our data, at least if we were to do so as a traditional social
+network.
 
-Given that X\%\todo{stats} of tor nodes are in the US, the chance that every tor
-node will lie within the US is Y\%.
-
-Does this then mean that Tor is insecure? No. So far as we know\todo{cite tor
-sucks NSA slide}the US does not currently have the ability to reliably and
-consistently track tor users. This is however not something which should be
-relied upon.\todo{talk about other nations, reasons to hide from US (avoid
-harrassment after being 'selected')}
+\begin{quote}
+With manual analysis we can de-anonymize a \uline{very small fraction} of Tor
+users, however, no success de-anonymizing a user in response to a TOPI request/
+on demand\cite{torStinks}.
+\end{quote}
