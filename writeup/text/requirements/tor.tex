@@ -1,5 +1,5 @@
 \section{Overview of Protocol}
-Tor is an imlpementation of onion routing, it routes traffic from your computer
+Tor is an implementation of onion routing, it routes traffic from your computer
 to an entry guard. That entry guard routes it to an internal node, which in turn
 routes it to an exit node. The exit node the routes the transmission to the
 final destination.\todo{how are nodes found, how are nodes public keys found,
@@ -9,7 +9,7 @@ using their public key as a URL}
 RSA/AES is used to ensure that only you, the exit node, and the final
 destination see the plaintext traffic being routed. With the use of TLS, SSL, or
 other end-to-end encryption those who see the plaintext can be reduced to you
-and the final destination. However a malicous exit node can MitM SSL connections
+and the final destination. However a malicious exit node can MitM SSL connections
 using ssl-strip or a similar tool. There are methods of avoiding this, but it is
 a serious issue because users believe that SSL is secure.
 
