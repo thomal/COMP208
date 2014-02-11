@@ -1,6 +1,14 @@
 \section{Performance Testing}
-How well does the system response match the user’s work
-practice?
+Evaluating how well the system performs under a high work load.
+\begin{itemize}
+\item Test to see how many simultaneous clients the server can handle.
+\item Test to see if the data received from the server under a high work load is 
+accurate.
+\item Test the impact of a large number of clients on the servers response time.
+\end{itemize}
+A high work load will be simulated by automated clients performing user actions
+at random. The server should be capable of allowing each of these clients to
+communicate with another quickly.
 
 \section{Robustness Testing}
 System level black box testing.  
@@ -9,14 +17,42 @@ System level black box testing.
 \item Run these inputs through the system and record the actual outputs.
 \item Compare the actual outputs with the expected outputs.
 \end{itemize}
-Inputs used should range from expected use patterns to silly as users tend to do things totally unexpected.
+Inputs used should range from expected use patterns to silly as users tend to do 
+things totally unexpected.
 
 \section{Recoverability Testing}
-How good is the system at recovering from user errors?
+Evaluating how well the application recovers from crashes and errors.
+\begin{itemize}
+\item Restart the computer while the application is running.
+Ensure the local database is not corrupted.
+\item While the application is running terminate the computers network 
+connection. Ensure the application continues working after the connection is
+reestablished.
+\item Send a badly formatted message to another client. Ensure the application 
+is able to keep running after receiving unexpected data from another client.
+\end{itemize}
 
 \section{Learnability Testing}
-How long does it take a new user to become productive with
-the system?
+Trialling the user interface with non expert users. Users should be able to use
+the system with minimal frustration and, ideally, without consulting the manual.
+\begin{itemize}
+\item Ensure users understand how to add friends, send messages, create posts, 
+comment on posts and like posts.
+\item Ensure users don't spend excessive time searching for functions within the
+interface.
+\item Ensure error messages can be understood by the user and offer 
+understandable advice on how to proceed.
+\end{itemize}
 
 \section{Security Testing}
-Are users able to view messages intended for other people?
+The main goal of the system is to be secure. To ensure this goal is met the 
+security of the system should be tested.
+\being{itemize}
+\item Send non standard messages to clients. These should be rejected. If there 
+is a flaw in the system the client may reveal information unintended for the 
+recipient, in this case the program sending non standard messages.
+\item Recruit experienced programmers from outside of the group to attempt to 
+penetrate or otherwise break the system. All attempts should be unsuccessful.
+\item Simulate a denial of service attack. Evaluate how well the system deals 
+with the attack.
+\end{itemize}
