@@ -5,24 +5,14 @@ Transaction requirements
 2. Data update and deletion
 3. Date queries
 
-Content
--------
-1. Profile creation of the user
-2. Adding of user relations
-3. Assigning relations users into categories
-4. Adding of posts
-5. Adding of events
-6. Creating a new message
-7. Receiving a message
-
-1. Profile creation of the user
+\subsection{Profile creation of the user}
 The user is required to own an account with TurtleShell in order to log in. If
 no account has been made, the user is required to create one before proceeding
 to use the system. In order to create one, the user has to enter his profile
 information such as his name, date of birth, gender, and other necessary
 attributes. Once user has submitted it, it will be inserted into the database.
 
-2. Adding of user relations
+\subsection{Adding of user relations}
 The term relations for this case means that the user has added has added the
 other particular user into the list of the people whom he knows. Note that the
 word 'friend' isn't used here mainly because a related user can fall into
@@ -35,14 +25,14 @@ key as a reference to get the details of the user. Once it is recognised, the
 system then displays the user information whilst adding him into a list of
 relations.
 
-3. Assigning relations into categories
+\subsection{Assigning relations into categories}
 When a user adds a relation, he has a choice of adding him onto a specific
 category (or categories). A user can create any category he wants by going to
 the options and click 'Add new category'. The database then records the new
 category into the category table.  The user then can then assign the relation
 into the existing category. 
 
-4. Adding of posts
+\subsection{Adding of posts}
 When a user adds a new post, details such as creator of the post, content, date
 and time of when the post has been created is inserted into the database. The
 user has a choice of making his post either public, shared amongst a certain
@@ -50,14 +40,14 @@ category or shared with only a group of specific users. The user has the click
 the names of those who can view the posts, and these names will be inserted into
 the post table in the database.
 
-5. Adding of events
+\subsection{Adding of events}
 This works similarly like adding a new post. However the only difference is
 details such as date of the event is inserted into the database when a new event
 is created. The security function is the same with post where the user can add
 others to view their event. The details of these users are inserted into the
 events table. 
 
-6. User creating a new message
+\subsection{User creating a new message}
 A user can initiate a conversation with another user by creating a new message.
 When message is created, the public key is generated for user's relation to
 obtain for decrypting the message. The message will then be logged by inserting
@@ -65,7 +55,7 @@ the time and date into the message table by the time the message is sent. Other
 details such as the sender's and receiver's user\_id, content of the message
 will be inserted into the message table as well. 
 
-7. Receiving and unlocking a message
+\subsection{Receiving and unlocking a message}
 When the user receives a message from a relation, a notification will be sent to 
 he user indicating that there is a new message. Simultaneously, this will record
 the encrypted message into the message table, along with the logged details,
