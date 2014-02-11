@@ -1,0 +1,25 @@
+alt.anonymous.messages is a newsgroup to which people publically post encrypted
+messages. In order to retreieve messages a recipient downloads all new messages
+and attempts to decrypt them all, those which they are able to decrypt are read,
+and others ignored.
+
+This type of system is known as a 'shared mailbox', and is often not used by
+hand, but by mix network servers, which provide high-latency email forwarding,
+and handle the encryption on behalf of the users. Mix-networks massivly slow
+timing-based traffic confirmation because they cache a large number of messages
+before sending them all out at once in a random order.
+
+This system provides the property we are seeking: concealing who talks with whom
+on our network, even from the server itself. This property is ensured by the
+fact that the server cannot tell who reads a specific message, even though it
+knows which IP uploaded it. It also introduces a huge amount of overhead, in the
+form of downloading everyone elses messages as well as ones own.
+
+Mix networks however have some serious issues, and misconfiguration easily
+allows for traffic correlation\cite{mixnet}, albeit not confirmation (without a
+large sample size). Furthermore mix networks only function if the operator is
+trusted, this is unacceptable vs the adversary. For these reasons we will not
+use the idea of mix networks.
+
+We have identified the method of operation of shared mailboxes as the basis for
+our communications protocol, and will build a social netowrk atop this concept.
