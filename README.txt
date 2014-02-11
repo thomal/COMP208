@@ -32,6 +32,7 @@ If anyone is unsure about how to use Git, please contact me
 -------------------------------------------
 Meeting #5 Scheduled (Wednesday, 11/02/2014)
 -------------------------------------------
+- 12pm - Common Room
 - Collate findings on Requirements
 - Clarify any outstanding issues (if any)
 - Generally wrap up this section of project
