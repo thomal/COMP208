@@ -1,91 +1,74 @@
-\begin{itemize}
-\item the transactions involved for each user activity
-\item how these data are used
-\item 3 categories
-   \begin{itemize}
-    \item data entry
-    \item data update and deletion
-    \item data queries
-    \end{itemize}
-\item transaction should be related to user view, ensure all functions are supported
-\end{itemize}
+Transaction requirements
 
-\section {data entry}
+3 categories of data transaction
+1. Data entry
+2. Data update and deletion
+3. Date queries
 
-\begin{table}[h]
-    \centering
-    \begin{tabular}{ll}
-    field    & notes\\ \hline
-    username & user is to make his own username\\
-    name     & user is to enter his name (first and last name)\\
-    birthday & user enters his date of birth by selecting the date from a calendar\\
-    sex      & user is to select either his/her sex, male or female\\
-    email    & user is to enter his email address\\
-    \end{tabular}
-    \caption{User enters his profile information}
-\end{table}
+Content
+-------
+1. Profile creation of the user
+2. Adding of user relations
+3. Assigning relations users into categories
+4. Adding of posts
+5. Adding of events
+6. Creating a new message
+7. Receiving a message
 
-\todo{user\_id's and post\_id's are local and don't exist outside the DB}
-\begin{table}[h]
-    \centering
-    \begin{tabular}{ll}
-    field              & notes\\ \hline
-    message\_id         & id is to be incremented when a new message is initiated\\
-    from(user\_id)      & system is to insert the user\_id of whoever initiated the message\\
-    to(user\_id)        & user is to select the person whom he wants to send the message to\\
-    content            & content of the message which the user intends to send to the receiver\\
-    message\_times\_date & the time and date is recorded of which the message is sent to the receiver\\
-    \end{tabular}
-    \caption{User starts a new conversation by adding a new message}
-\end{table}
+1. Profile creation of the user
+The user is required to own an account with TurtleShell in order to log in. If
+no account has been made, the user is required to create one before proceeding
+to use the system. In order to create one, the user has to enter his profile
+information such as his name, date of birth, gender, and other necessary
+attributes. Once user has submitted it, it will be inserted into the database.
 
-\begin{table}[h]
-    \centering
-    \begin{tabular}{ll}
-    field                 & notes\\ \hline
-    post\_id               & id is to be incremented when a new post is added\\
-    permission\_allowed\_to & user is to choose specific users (he knows) to view his post\\
-    from                  & system is to insert the creator's name of the post\\
-    to                    & the user\_name of the post is inserted if the user directs this post to specific person(s)\\
-    comment\_id            & comment\_id lists down the comment made out from other users\\
-    content               & the content of the post\\
-    message\_time\_date     & the time and date is recorded of which the post is created\\
-    \end{tabular}
-    \caption{user adds a new post}
-\end{table}
+2. Adding of user relations
+The term relations for this case means that the user has added has added the
+other particular user into the list of the people whom he knows. Note that the
+word 'friend' isn't used here mainly because a related user can fall into
+different sorts of categories which is not necessarily called 'friends'.
 
-\begin{table}[h]
-    \centering
-    \begin{tabular}{ll}
-    field                 & notes\\ \hline
-    event\_id              & id is to be incremented when a new event is added\\
-    title                 & title of the event\\
-    content               & content of the event\\
-    from                  & the user\_id of the person who posted the event\\
-    permission\_allowed\_to & user is to choose specific users (he knows) to view his event\\
-    \end{tabular}
-    \caption{user adds a new event}
-\end{table}
+When a user adds another user as a relation, a public key of the other user has
+to be acquired first before the relationship between the two takes place. When
+the public key is acquired and inserted into a field, the database will use the
+key as a reference to get the details of the user. Once it is recognised, the
+system then displays the user information whilst adding him into a list of
+relations.
 
-\begin{table}[h]
-    \centering
-    \begin{tabular}{ll}
-    field              & notes\\ \hline
-    comment\_id         & \\
-    post\_id            & \\
-    comment\_from       & \\
-    comment\_time\_ date & \\
-    \end{tabular}
-    \caption{user adds a comment}
-\end{table}
+3. Assigning relations into categories
+When a user adds a relation, he has a choice of adding him onto a specific
+category (or categories). A user can create any category he wants by going to
+the options and click 'Add new category'. The database then records the new
+category into the category table.  The user then can then assign the relation
+into the existing category. 
 
-\begin{table}[h]
-    \centering
-    \begin{tabular}{ll}
-    field     & notes\\ \hline
-    like\_id   & \\
-    post\_id   & \\
-    like\_from & \\
-    \end{tabular}
-    \caption{user likes a post}
-\end{table}
+4. Adding of posts
+When a user adds a new post, details such as creator of the post, content, date
+and time of when the post has been created is inserted into the database. The
+user has a choice of making his post either public, shared amongst a certain
+category or shared with only a group of specific users. The user has the click
+the names of those who can view the posts, and these names will be inserted into
+the post table in the database.
+
+5. Adding of events
+This works similarly like adding a new post. However the only difference is
+details such as date of the event is inserted into the database when a new event
+is created. The security function is the same with post where the user can add
+others to view their event. The details of these users are inserted into the
+events table. 
+
+6. User creating a new message
+A user can initiate a conversation with another user by creating a new message.
+When message is created, the public key is generated for user's relation to
+obtain for decrypting the message. The message will then be logged by inserting
+the time and date into the message table by the time the message is sent. Other
+details such as the sender's and receiver's user\_id, content of the message
+will be inserted into the message table as well. 
+
+7. Receiving and unlocking a message
+When the user receives a message from a relation, a notification will be sent to 
+he user indicating that there is a new message. Simultaneously, this will record
+the encrypted message into the message table, along with the logged details,
+which is the time and date of the message. When the user enters the correct
+public key, the message will the by decrypted, and this will update the message
+table with the new contents of a decrypted message. 
