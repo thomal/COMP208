@@ -1,1 +1,55 @@
-Tor is an imlpementation of onion routing, \ldots\todo{tor}
+\section{Overview of Protocol}
+Tor is an imlpementation of onion routing, it routes traffic from your computer
+to an entry guard. That entry guard routes it to an internal node, which in turn
+routes it to an exit node. The exit node the routes the transmission to the
+final destination.\todo{how are nodes found, how are nodes public keys found,
+describe hidden services and directory authorities, describe hidden services
+using their public key as a URL}
+
+RSA/AES is used to ensure that only you, the exit node, and the final
+destination see the plaintext traffic being routed. With the use of TLS, SSL, or
+other end-to-end encryption those who see the plaintext can be reduced to you
+and the final destination. However a malicous exit node can MitM SSL connections
+using ssl-strip or a similar tool. There are methods of avoiding this, but it is
+a serious issue because users believe that SSL is secure.
+
+\section{Security}
+Given that Tor is a low-latency network traffic can easily be correlated. An
+example of this occuring is \todo{cite lulzsec bloke who came on irc when
+someone came home, and dropped off irc when they cut that someones internet
+connection}
+
+Tor does not seek to protect against size correlation of time correlation of
+traffic. Rather the purview of tor is to conceal the IP address of a client from
+the servers which it connects to.
+
+Should a global passive adversary have perfect visibility of the internet, they
+would be able to track tor traffic from source to host by correlating the size
+and time of transmissions.
+
+While such an attack amy initially sound infeasable, access is only needed to
+the client, the host, the entry guard, the exit node, and the internal node.
+So the question becomes: how likely is it that an adversary will have access to
+these five nodes?
+
+We can safely assume that the adversary has access to the clients traffic, since
+our threat model is that of a nation state seeking to spy on its citizens.
+Furthermore we may assume that the adversary has access to the content host, as
+our threat model assumes that service operators may be pressured legally or
+otherwise into spying on their users. Therefore we must instead consider how
+likely is it that three random nodes will either be compromised, malicious, or
+merely be in such a situation (e.g.: geographic positioning) as to have their
+traffic visible to an attacker.
+
+Given that the number of normal nodes is likely to vastly outnumber the
+compromised, or malicous nodes, we can merely consider tor to be as secure as
+the traffic between these three nodes.
+
+Given that X\%\todo{stats} of tor nodes are in the US, the chance that every tor
+node will lie within the US is Y\%.
+
+Does this then mean that Tor is insecure? No. So far as we know\todo{cite tor
+sucks NSA slide}the US does not currently have the ability to reliably and
+consistently track tor users. This is however not something which should be
+relied upon.\todo{talk about other nations, reasons to hide from US (avoid
+harrassment after being 'selected')}
