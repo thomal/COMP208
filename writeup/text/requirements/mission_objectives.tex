@@ -6,11 +6,15 @@ server operators intend to.
 
 We feel that obscuring the content of messages isn't enough, because suspicion
 may, and often does, fall upon people not for what they say, but to whom they
-are speaking\todo{citation needed}. Our system will therefore not merely hide
+are speaking\cite{trackingFriends}. Our system will therefore not merely hide
 the content of messages, but the recipient of messages too. Hiding the fact that
 an IP address sent a message is out of scope, but hiding which user/keypair did
 so is in scope, as is which IP/user/keypair received the message and the content
-of the message.
+of the message. It is important to hide the recipient of the message, because
+otherwise they may be murdered by the USA\cite{droneCellTracking} if they use
+our services to communicate with the wrong people on a phone which is later
+identified, or they may merely be 'selected' for spying and harrassment
+\cite[3]{greenwaldAnnoying}.
 
 We feel that current tools have significant usability problems, as was recently
 made starkly clear when Glenn Greenwald, a reporter of the guardian, was unable
@@ -22,10 +26,8 @@ Greenwald \cite{greenwaldAnnoying}
 \end{quote}
 
 While there exist many tools for hiding what you are saying, relatively few seek
-to hide who talks with whom, and those which do often\todo{this REALLY needs
-citations} implement it merely as a proxy.\todo{section comparing extant
-security systems such as Tor (talk about ssl-strip on exit notes, netowrk
-visibility, and node distribution)}
+to hide who talks with whom, and those which do often implement it merely as a
+proxy, or seek to provide conveinience over security.
 
 The system is to have strict security measures implemented. It is able to
 encrypt messages with the use of RSA and AES. The only way for the other user to
@@ -66,9 +68,9 @@ information unless the persons private key is compromised.}
 \end{itemize}
 
 A third party logging all traffic between all clients and a server will have
-access to \todo{Talk about TLS, end-to-end crypto} what IPs connect to the
-server, and whether they upload or download information \footnote{size
-correlation attacks could be used here if the message content is known}
+access to what IPs connect to the server, and whether they upload or download
+information \footnote{size correlation attacks could be used here if the message
+content is known}
 
 The benefits we feel this system provides over current solutions are:
 \begin{itemize}
