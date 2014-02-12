@@ -16,14 +16,14 @@ encrypted with.
 People are add by adding their public key, this is transmitted outside of our
 system, via whichever channel the users deem appropriate\footnote{This is
 required to prevent server operators from MitM'ing users}. We will provide a
-user with their public key as a QR code, or a plaintext string, dependning on
+user with their public key as a QR code, or a plaintext string, depending on
 user preference.
 
 Adding someone is asymmetric. Just because you add them doesn't mean they've
 added you. You do not require consent to add someone, just their public key.
     
-The system allows the user to manage their list of known people into categroys
-such as friends, family, and cooworkers. The user defines these groups as lists
+The system allows the user to manage their list of known people into categories
+such as friends, family, and co-workers. The user defines these groups as lists
 of people whose public key they know. The user may create any group they desire,
 these groups are visible to only the user, and private\todo{groups should be
 posted to the server as a message only that user can read, this supports the
@@ -54,14 +54,14 @@ The keys themselves will be encrypted with the users password.
 \subsection{Walls}
 Each user has their own wall. On their wall they may posts messages for
 themselves and others to see. All wall posts should be addressed to the user
-themself so they can see their own posts, otherwise they will be unable to even
+themselves so they can see their own posts, otherwise they will be unable to even
 view their own posts. When posting to their wall they choose who will be able to
 see the post, whether this is a group or people, a specific list of people, or
 just themselves is up to the user. They will not however be given the option to
-post publically. Users may also post to another users wall.
+post publicly. Users may also post to another users wall.
 
 Wall posts may contain links to other content, however this content is never
-thumbnailed\footnote{client MUST NEVER thumbnail links or otherwise access
+thumb-nailed\footnote{client MUST NEVER thumbnail links or otherwise access
 external content without EXPLICIT user consent (see tor/js exploit on freedom
 hosting by the USA and tracking techniques recently thwarted by GMail now
 caching images. Specifically the fact that by delivering content over a secure
@@ -95,6 +95,6 @@ desire to be alerted of events regarding.
 
 \section{Chat}
 Users may chat in real time, however messages can still be sent when one user
-logs off, to be recieved when they log in. Past conversations are saved, and a
+logs off, to be received when they log in. Past conversations are saved, and a
 user may block users from messaging them; the client actually just ignores their
 messages, it's impossible to stop someone from messaging you.

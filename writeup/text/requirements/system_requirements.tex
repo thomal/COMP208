@@ -1,19 +1,19 @@
-A estimate is hereafter given as to the size of all stored messages, and the
+An estimate is hereafter given as to the size of all stored messages, and the
 amount of data which would need downloading by each client when it is started.
 The following assumptions are used throughout:
 \begin{itemize}
-\item A users avarage message posted to their wall is ~200 characters
-\item A users avarage number of messages posted to their wall per day is 10
-\item A users avarage number of friends is 100 (each and every friend represents
+\item A users average message posted to their wall is ~200 characters
+\item A users average number of messages posted to their wall per day is 10
+\item A users average number of friends is 100 (each and every friend represents
 one key exchange)
-\item A users avarage private message (to single user) is 50 characters
-\item A users avarage number of private (to single user) messages per day is 300
+\item A users average private message (to single user) is 50 characters
+\item A users average number of private (to single user) messages per day is 300
 \end{itemize}
 With these generous estimates, each user would generate (200*10*100)+(50*300*1)
 bytes of raw data per day. Assuming a 10\% protocol overhead we would see
 236,500 bytes of data per day per user.\\
 
-The storage space required for a server is therfore 86MB per year per user. On a
+The storage space required for a server is therefore 86MB per year per user. On a
 server with 50,000 users that has been running for 3 years, there would be just
 1.3TB of data.\\
 
@@ -26,7 +26,7 @@ be downloaded when the users computer is turned on.
 
 The following table shows the delays between the computer turning on, and every
 message having been downloaded (assuming a download speed of 500KB/second, and a
-netowrk of 1000 users).
+network of 1000 users).
 
 \begin{table}[h]
     \centering
@@ -42,17 +42,17 @@ netowrk of 1000 users).
     \caption{Hours a computer is turned off per day vs minutes to sync}
 \end{table}
 
-We feel that waiting 2-5 mins is an acceptable delay for the degree of privacy
+We feel that waiting 2-5 minutes is an acceptable delay for the degree of privacy
 provided. Once the user is synced after turning their computer on, no further
 delays will be incurred until the computer is shut down.
 
-Due to the inherantly limited network size (\textless1500 users of one server is
-practical) we recomend a number of smaller servers, each serving either a
+Due to the inherently limited network size (\textless1500 users of one server is
+practical) we recommend a number of smaller servers, each serving either a
 geographic location, or a specific interest group.
 
 While this latency could be avoided, and huge networks (\textgreater1,000,000)
 used, it would come at the cost of the server operator being able to learn that
-somebody is sending or recieving messages, and also who those messages are sent
+somebody is sending or receiving messages, and also who those messages are sent
 to/from (although they couldn't know what the messages said).
 
 The server therefore merely needs a fast internet connection to upload and

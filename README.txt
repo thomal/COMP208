@@ -29,6 +29,14 @@ free to create more files if you feel the need.
 If anyone is unsure about how to use Git, please contact me
 (luke@luke-thomas.net | 07592034395).
 
+------------------------------------------
+Meeting #5 Minutes (Wednesday, 11/02/2014)
+------------------------------------------
+- Allocated left over parts
+- Feedback on project and requirements so far
+- Project name: Turtlenet
+- Louis Prince absent from scheduled meeting.
+
 -----------------------------------------
 Meeting #4 Minutes (Friday, 07/02/2014)
 -----------------------------------------

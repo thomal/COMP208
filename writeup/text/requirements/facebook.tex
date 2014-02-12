@@ -3,7 +3,7 @@ A user has a profile with information about them, they may add other users as
 'friends', friends may view each others 'posts' and talk to each other. Posts
 are multimedia messages typically visible to all the friends of the person who
 made the post. Most posts can be commented upon, and both posts and comments may
-be 'liked'. Liking merely publically marks the fact that you approve of
+be 'liked'. Liking merely publicly marks the fact that you approve of
 something.
 
 \section{Registration}
@@ -16,7 +16,7 @@ the password of your account, should you forget it.
 \item Last Name
 \item E-Mail
 \item Password
-\item Birthday\todo{friends of a user are automatically alerted of friends BD's}
+\item Birthday
 \item Sex
 \end{itemize}
 
@@ -27,9 +27,9 @@ Given profile information can be changed at a later date, within certain bounds.
 Facebook requires the use of your real name, and in fact forbids all false
 personal information, under their terms.\cite[4.1]{fbterms}
 
-\section{Account Managment}
+\section{Account Management}
 The user is given the ability to set the security defaults for their posts and
-information. Tese options include who is able to see wall posts, whether
+information. These options include who is able to see wall posts, whether
 comments are enabled by default, and who may see which aspects of your profile
 information. You can also manage the permissions granted to facebook apps\todo{
 more information on FB apps}.
@@ -45,7 +45,7 @@ A users profile may contain the following information:
 \item Basic Information
     \begin{itemize}
         \item Birthday
-        \item Relaionship
+        \item Relationship
         \item Status
         \item Anniversary
         \item Languages
@@ -54,6 +54,7 @@ A users profile may contain the following information:
         \item Family
         \item Contact Information
     \end{itemize}
+\end{itemize}
 
 \item \begin{table}[h]
     \centering
@@ -61,17 +62,17 @@ A users profile may contain the following information:
     Field         & Description\\ \hline
     Photo         & All the photos the user's has tagged\\
     Friend        & What friends the user has\\
-    Note          & What notes the users up/downloaded to facebook .\\
-    Groups        & What groups the user has join.\\
+    Note          & What notes the users up/downloaded to facebook\\
+    Groups        & What groups the user has join\\
     Events        & What events user may be attending\\
-    Likes         & What page(s) (unknown type) the user liked.\\
+    Likes         & What page(s) (unknown type) the user liked\\
     Apps          & What apps the user has\\
     Books         & What book pages the user liked/followed\\
     TV programmes & What TV pages the user liked/followed\\
     Films         & What films pages the user liked/followed\\
     Music         & What music(or stars) the user liked/followed\\
     Sports        & What sport pages the user liked\\
-    Place         & Where's the place that user has been\\
+    Place         & Where's the user has been\\
     \end{tabular}
     \caption{The user adds a new post}
     \end{table}
@@ -112,8 +113,8 @@ A user posting a post may do the following:
     \end{itemize}
 \end{itemize}
 
-\subsection{Interaction with anothers posts}
-A post will typically be displayed on the newsfeeds of the people who are able
+\subsection{Interaction with another's posts}
+A post will typically be displayed on the news feeds of the people who are able
 to see it, due to this the name of the person who made a post is always
 displayed next to it. Posts themselves may be commented upon, liked, and
 reposted to the viewers wall ('shared') with an additional message; the number
@@ -122,8 +123,8 @@ be cancelled at a later date. The comment function may however be disabled by
 the user who makes a post.
 
 A user may hide specific posts, or hide all posts by a specific user. They may
-also, instead of hiding anothers posts alltogether, merely prevent them from
-being automatically displayed on their newsfeed. \todo{See 72d5e2dc, what
+also, instead of hiding another's posts all together, merely prevent them from
+being automatically displayed on their news feed. \todo{See 72d5e2dc, what
 is 'set a notification'?} A user may report an image, video or comment to
 facebook team (for example:the post is offensive). Comments may also be liked,
 hidden, and reported; following such a report FB is able to remove offensive or
@@ -137,12 +138,12 @@ used to add all posted images of someone to their profile.
 
 \section{wall}
 A users wall stores all the posts of the user posted since the account was
-created and the informaation about the user, this information is presented in
-reverse choronlogical order, so that recent events are at the top of the page
+created and the information about the user, this information is presented in
+reverse chronological order, so that recent events are at the top of the page
 and easily visible. Other users may view the users wall by clicking the name of
 the user from anywhere in facebook. Other users may post on a friends wall as
 well as the owner, see section on posts for more information; In this case, both
-the poster and the ownder of the wall can delete the post. Facebook also retains
+the poster and the owner of the wall can delete the post. Facebook also retains
 the power to erase any content on its service.
 
 Posts mentioning a user are automatically reposted to that users wall, this can
@@ -167,25 +168,25 @@ a conversation.
 Facebook chat alerts the user to new messages in a conversation by playing a
 sound.
 
-\section{Architechture}
+\section{Architecture}
 From a users point of view facebook is ostensibly organised as a single central
-server; we are here concerned with the general architechture and not the
-specific imlpementation of it, and so we will consider all of facebooks servers
+server; we are here concerned with the general architecture and not the
+specific implementation of it, and so we will consider all of facebooks servers
 to be a single server for the purposes of this section.
 
-Users connect to facebook using a webbrowser, and proceed to download a client
+Users connect to facebook using a web browser, and proceed to download a client
 written in javascript. User data is uploaded to facebook over HTTP as cleartext.
-The data is stored on unecnrypted on facebooks servers, and facebook maintains
+The data is stored on unencrypted on facebooks servers, and facebook maintains
 a database of all data.
 
 This allows clients to download only the data they need, as they can simply ask
-for it. This in turn means that facebooks current architechture can, and does,
-support a huge userbase, measured in the millions.
+for it. This in turn means that facebooks current architecture can, and does,
+support a huge user-base, measured in the millions.
 
 
 \section{Security}
 In order to use facebook after registration a user must 'log in'. This places an
-authentication cookie on the users computer which gives anyone in possesion of
+authentication cookie on the users computer which gives anyone in possession of
 it the ability to act as that user.\todo{verify they didn't change this since I
 left FB} Users login using their email and password.
 
@@ -194,11 +195,11 @@ the last login, facebook will confirm that the user owns the account by asking
 them to identify a friend in a photograph, or by other means.
 
 Facebook chat turns the users computer into a server, whereby facebooks central
-server sends messages to the client as it recieves them, rather than the client
+server sends messages to the client as it receives them, rather than the client
 requesting new messages. This has been used in the past to identify facebook
-users by correlting sent messages of specific size sent at a specific time, with
+users by correlating sent messages of specific size sent at a specific time, with
 , and collect evidence toward prosecuting people. \todo{citation needed}
 
 Facebook has access to all its users data, and is able to erase, modify, and
 fabricate it. Facebook is aware of everything which happens on facebook.
-Censorship is a common occurance on facebook.
+Censorship is a common occurrence on facebook.
