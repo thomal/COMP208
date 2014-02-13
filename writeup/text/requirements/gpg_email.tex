@@ -1,9 +1,9 @@
 GPG is an implementation of the PGP\cite{rfc4880}, providing both public/private
 key encryption and also a number of symmetric ciphers that can be used
-seperatly.
+separately.
 
 It is common practice to use GPG to encrypt email, and several popular addons
-for browsers exist to aid in this\cite{gpgaddon}. Unfortunetly gpg itself is
+for browsers exist to aid in this\cite{gpgaddon}. Unfortunately GPG itself is
 difficult to use\cite{greenwaldAnnoying}, and a significant barrier to entry.
 
 The encrypting of email with RSA\footnote{and a symmetric cipher} is a good
@@ -13,7 +13,7 @@ find the underlying cryptography sound, our scope is simply too different for
 PGP to be of any use; with one exception.
 
 Public key distribution is a significant challenge \footnote{Our system can't do
-it, or it would be trivial to MitM users who don't check they recived the
+it, or it would be trivial to MitM users who don't check they received the
 correct key via another channel}. PGP partially solves this problem by
 introducing the concept of a 'web of trust'. In such a system one marks public
 keys as trusted, presumably the keys of people you trust, and the people whom
@@ -22,8 +22,8 @@ trust. These keys may then be distributed, with the RSA signatures of everyone
 who signed them, to everyone. If I download a key and see that it has been
 verified by someone that I trust, then I can trust that key (albeit less than
 the original key). This in combination with the small word hypothesis\footnote{
-The phenomenon that people in earths population seem to be seperated by at most
-6 intermediaries.}\cite{sixdegrees} allows a large number of public keys to
+The phenomenon that people in the earth's population seem to be separated by at 
+most 6 intermediaries.}\cite{sixdegrees} allows a large number of public keys to
 become known to a user merely by adding one friends key, and having the client
 automatically sign all keys it comes across from a trusted source.
 
