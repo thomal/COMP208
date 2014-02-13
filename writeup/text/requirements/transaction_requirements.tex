@@ -1,64 +1,84 @@
+Due to the nature of Turtlenet there may exist no central database, rather each
+client maintains their own local database of everything they know. The data
+forming this is all stored centrally, however to build a complete database would
+require the private key of every user of the service, which clearly we do not
+have access to.
+
 There are 3 categories of data transaction:
 \begin{itemize}
 \item 1. Data entry
 \item 2. Data update and deletion
-\item 3. Date queries
+\item 3. Data queries
 \end{itemize}
 
 \section{Profile creation of the user}
-The user is required to own an account with Turtlenet in order to log in. If
-no account has been made, the user is required to create one before proceeding
-to use the system. In order to create one, the user has to enter his profile
-information such as his name, date of birth, gender, and other necessary
-attributes. Once user has submitted it, it will be inserted into the database.
+All that is required to use a Turtlenet server is a valid RSA keypair. Users
+don't have accounts per se, but rather associate profile data with a public key
+if they so desire. Users have no login information, rather posts are
+authenticated via RSA signatures. Usernames are the sole public information in
+our system, and as such each client has a complete list of usernames.
+
+When a client first connects it is advisable, albeit not required, to claim a
+username. This is done merely by posting that username, and a signed hash of it
+to the server. Therefore the DB must store all such CLAIM messages.
+
+Optional profile data which the user may enter is stored as PDATA messages, and
+the databse will be required to store these.
 
 \section{Adding of user relations}
-The term relations for this case means that the user has added the other 
-particular user into the list of the people whom he knows. Note that the word 
-'friend' isn't used here, mainly because a related user can fall into different 
-sorts of categories which is not necessarily called 'friends'.
+Communication between people on Turtlenet requires that one is in possesion of
+the public key of the recipient, and should they wish to respond then they must
+be in possesion of your public key. We define 'A being related to B' to mean
+that A is in possesion of B's public key, and B is in possesion of A's public
+key. This is given a special name as it is a very common situation.
 
-When a user adds another user as a relation, a public key of the other user has
-to be acquired first before the relationship between the two takes place. When
-the public key is acquired and inserted into a field, the database will use the
-key as a reference to get the details of the user. Once it is recognised, the
-system then displays the user information whilst adding him into a list of
-relations.
+A user may be uniquely identified by their public key, and it may be used to
+derive their username, if they claimed one. Being in a relation with someone
+doesn't mean that you can see any profile information of theirs, however the
+GUI will ask the user whether they wish to share their own profile information
+with someone when they add that persons key.
 
 \section{Assigning relations into categories}
-When a user adds a relation, he has a choice of adding him onto a specific
+When a user adds a relation, he has a choice of adding him into a specific
 category (or categories). A user can create any category he wants by going to
 the options and click 'Add new category'. The database then records the new
 category into the category table.  The user then can then assign the relation
-into the existing category. 
+into the existing category.
+
+Categories are useful because they allow the user to share their posts with a
+predetermined set of people automatically, withing having to list each
+individual as a recipient.
 
 \section{Adding of posts}
-When a user adds a new post, details such as creator of the post, content, date
-and time of when the post has been created is inserted into the database. The
-user has a choice of making his post either public, shared amongst a certain
-category or shared with only a group of specific users. The user has the click
-the names of those who can view the posts, and these names will be inserted into
-the post table in the database.
+Users may post on their, or - with permission - others, walls. A post has a list
+of people who can see it (the user may choose a previously defined category or
+a specific list of people) however this list isn't public so only the DB of the
+author of a post (and the owner of the wall) will contain information as to who
+is able to see it.
+
+The post itself has a timestamp, a signature (authenticating it), and content.
+The databse will store all of these.
+
+NB: When a user posts something, they are automatically added to the list of
+recipients. A users own posts are downloaded from the server, just like everyone
+elses, and are in no way special.
 
 \section{Adding of events}
-This works similarly like adding a new post. However the only difference is
-details such as date of the event is inserted into the database when a new event
-is created. The security function is the same with post where the user can add
-others to view their event. The details of these users are inserted into the
-events table. 
+The database will store events, these may be created by the user, or recieved
+from other users. At the appropriate time the GUI will notify the user of an
+event occuring. Example include birthdays, deadlines, and important dates.
+Events recieved from other users must be accepted by the user before the GUI
+will alert the user of them, for this reason the DB must also store whether an
+event is accepted or not.
 
 \section{User creating a new message}
-A user can initiate a conversation with another user by creating a new message.
-When message is created, the public key is generated for user's relation to
-obtain for decrypting the message. The message will then be logged by inserting
-the time and date into the message table by the time the message is sent. Other
-details such as the sender's and receiver's user\_id, content of the message
-will be inserted into the message table as well. 
+A user can initiate a conversation with (an)other user(s) by creating a new
+message. Messages are merely a special case of wall posts, which are handled
+differently by the GUI.
 
-\section{Receiving and unlocking a message}
-When the user receives a message from a relation, a notification will be sent to 
-he user indicating that there is a new message. Simultaneously, this will record
-the encrypted message into the message table, along with the logged details,
-which is the time and date of the message. When the user enters the correct
-public key, the message will the by decrypted, and this will update the message
-table with the new contents of a decrypted message. 
+\section{Receiving Content}
+When the client connects it will download all messages posted since it last
+connected, it will then attempt to decrypt them all using the users private key.
+Those messages which are successfully decrypted are authenticated by verfying
+the signature and the content added to the database. It is in this manner that
+all content is passed from server to client.
