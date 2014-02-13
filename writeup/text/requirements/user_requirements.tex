@@ -11,7 +11,7 @@ client. The database will be encrypted using the same AES key as the keys are
 encrypted with.
 
 \section{Interacting with other users}
-People are add by adding their public key, this is transmitted outside of our
+People are added by adding their public key, this is transmitted outside of our
 system, via whichever channel the users deem appropriate\footnote{This is
 required to prevent server operators from MitM'ing users}. We will provide a
 user with their public key as a QR code, or a plaintext string, depending on
@@ -63,7 +63,7 @@ hosting by the USA and tracking techniques recently thwarted by GMail now
 caching images. Specifically the fact that by delivering content over a secure
 channel that initiates communications outside of that channel, the recipients of
 content may be identified. A common variation of this is 'pixels' whereby a
-would be tracker embeds a 1x1 transparent png in a document, and watches who
+would be tracker embeds a 1x1 transparent .png in a document, and watches who
 downloads that image from their servers.\cite{webbug}}.
 
 A user may edit their old posts, however older versions will still be available
@@ -75,8 +75,8 @@ only post plaintext, they may not post images, video, or audio.
 
 \subsection{Commenting and Liking}
 All wall posts may be commented on by any user who can see them. Comments are
-visible to all people who can see the original post; due to this comments must
-be forwarded by original posters client to all the same recipients, as the
+visible to all people who can see the original post; due to this, comments must
+be forwarded by the original posters client to all the same recipients, as the
 commenter may not know whom the original posters allowed to see the post.
 
 Any wall post, comment, or other item on a wall may be liked.
