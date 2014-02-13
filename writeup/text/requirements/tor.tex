@@ -1,8 +1,8 @@
 \section{Overview of Protocol}
 Tor is an implementation of onion routing, it routes traffic from your computer
 through a number of other nodes; the final 'exit' node the routes the traffic
-to the final destination\cite{torProtocol}. Node IP's are listed publically in
-directory servers. In this manner to IP of clients connecting to a server is
+to the final destination\cite{torProtocol}. Node IP's are listed publicly in
+directory servers. In this manner the IP of clients connecting to a server is
 obscured from that server.
 
 RSA/AES is used to ensure that only you, the exit node, and the final
@@ -11,7 +11,7 @@ other end-to-end encryption those who see the plaintext can be reduced to you
 and the final destination. However a malicious exit node can MitM SSL connections
 using ssl-strip or a similar tool. There are methods of avoiding this, but it is
 a serious issue because users believe that SSL is secure. This exploit is found
-in the wild\cite{badRelays} and so is most definetly a concern.
+in the wild\cite{badRelays}, and so is most definitely a concern.
 
 Tor also supports 'hidden services' which seek to conceal the IP of the client
 from the server, and the IP of the server from the client. These are
@@ -21,11 +21,11 @@ we're assuming the server operators are colluding, so they will provide data
 required for traffic confirmation.
 
 \section{Security}
-Given that Tor is a low-latency network traffic can easily be correlated. This
-problem is ameliorated in high-latency netowrks such as mix nets, but not
+Given that Tor is a low-latency network, traffic can easily be correlated. This
+problem is ameliorated in high-latency networks such as mix nets, but not
 eliminated.
 
-Tor does not seek to protect against size correlation or time correlation of
+Tor does not seek to protect against size correlation, or time correlation of
 traffic. Rather the purview of tor is to conceal the IP address of a client from
 the servers which it connects to.
 
@@ -39,7 +39,7 @@ both traffic going into the Tor network and also traffic coming out of the Tor
 network\cite{torOneCell}. - Roger Dingledine
 \end{quote}
 
-While such an attack amy initially sound infeasable, access is only needed to
+While such an attack any initially sound unfeasible, access is only needed to
 the client, the host, the entry guard, the exit node, and the internal node.
 So the question becomes: how likely is it that an adversary will have access to
 these five nodes?
@@ -56,9 +56,9 @@ Does this then mean that Tor is insecure? No. So far as we know\cite{torStinks}
 the US does not currently have the ability to reliably and consistently track
 tor users; if the US is incapable of doing so, it is reasonable to assume that
 no other nation state has this ability. This is however not something which
-should be relied upon, therefore we shall consider Tor as unsuitable for
-transmitting our data, at least if we were to do so as a traditional social
-network.
+should be relied upon, as assumptions widely lead to mistakes. We shall 
+therefore consider Tor as unsuitable for transmitting our data, at least if we 
+were to do so as a traditional social network.
 
 \begin{quote}
 With manual analysis we can de-anonymize a \uline{very small fraction} of Tor
