@@ -1,13 +1,16 @@
-alt.anonymous.messages is a newsgroup to which people publically post encrypted
-messages. In order to retreieve messages a recipient downloads all new messages
-and attempts to decrypt them all, those which they are able to decrypt are read,
-and others ignored.
+alt.anonymous.messages is a newsgroup\footnote{It may be accessed, without an
+installed usenet client, through several websites providing an interface to it,
+one such website is google groups, and may be accessed here:
+https://groups.google.com/forum/\#!forum/alt.anonymous.messages} to which people
+publically post encrypted messages. In order to retreieve messages a recipient
+downloads all new messages and attempts to decrypt them all, those which they
+are able to decrypt are read, and others ignored.
 
 This type of system is known as a 'shared mailbox', and is often not used by
 hand, but by mix network servers, which provide high-latency email forwarding,
 and handle the encryption on behalf of the users. Mix-networks massivly slow
 timing-based traffic confirmation because they cache a large number of messages
-before sending them all out at once in a random order.
+before sending them all out at once in a random order\cite{mixnetOperation}.
 
 This system provides the property we are seeking: concealing who talks with whom
 on our network, even from the server itself. This property is ensured by the
