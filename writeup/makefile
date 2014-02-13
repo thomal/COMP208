@@ -6,11 +6,11 @@ pdf : project.tex text/*/*.tex
 	bibtex project
 	pdflatex project.tex
 	make clean
-clean : project.log project.aux project.toc project.tdo project.bbl project.blg project-blx.bib
-	rm project.log
-	rm project.aux
-	rm project.toc
-	rm project.tdo
-	rm project.bbl
-	rm project.blg
-	rm project-blx.bib
+clean :
+	rm -f project.log
+	rm -f project.aux
+	rm -f project.toc
+	rm -f project.tdo
+	rm -f project.bbl
+	rm -f project.blg
+	rm -f project-blx.bib
