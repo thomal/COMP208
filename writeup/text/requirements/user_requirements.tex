@@ -39,6 +39,7 @@ The supported fields in a PDATA message are:
         \item Sex
         \item E-Mail
         \item About
+        \item Misc.
     \end{itemize}
 
 \section{Account recovery}
@@ -84,13 +85,18 @@ Any wall post, comment, or other item on a wall may be liked.
 \subsection{Events}
 The client will alert the user to other users birthdays by automatically posting
 a wall post that only the user may read, which alerts the user of the event.
-These are otherwise normal wall posts.
+These are otherwise normal wall posts. The user has the option of setting a
+category of people as people for whom they desire to be alerted of events
+regarding.
 
-The user has the option of setting a category of people as people for whom they
-desire to be alerted of events regarding.
+Furthermore users may create their own events, for themselves and others to be
+alterted to. Recipients of events they did not create must accept the event
+before they are alerted of it.
 
 \section{Chat}
 Users may chat in real time, however messages can still be sent when one user
 logs off, to be received when they log in. Past conversations are saved, and a
 user may block users from messaging them; the client actually just ignores their
 messages, it's impossible to stop someone from messaging you.
+
+Conversations may include two or more people.

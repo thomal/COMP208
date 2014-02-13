@@ -9,7 +9,8 @@ accurate.
 A high work load will be simulated by automated clients performing user actions
 at random. The server should be capable of allowing these clients to
 communicate with one another quickly. The maximum number of concurrent clients 
-possible without noticeable lag (1 second) should be recorded.
+possible without noticeable lag (twice the frequency of updates) should be
+recorded.
 
 \section{Robustness Testing}
 System level black box testing.  
@@ -17,11 +18,13 @@ System level black box testing.
 \item Devise a series of inputs and expected outputs.
 \item Run these inputs through the system and record the actual outputs.
 \item Compare the actual outputs with the expected outputs.
+\item Simulate a denial of service attack. The server should be able to recover
+from the attack quickly and with minimal impact on the clients. Blocking such an
+attack is beyond the scope of this project.
 \end{itemize}
 Inputs used should range from expected use patterns to silly as users tend to do 
-things totally unexpected. Expected and actual outputs should be recorded in a 
-spreadsheet for easy comparison. Any differences will indicate problems with the
-system which need to be fixed.
+things totally unexpected. Expected and actual outputs should be recorded. Any
+differences will indicate problems with the system which need to be fixed.
 
 \section{Recoverability Testing}
 Evaluating how well the application recovers from crashes and errors.
@@ -64,9 +67,6 @@ is a flaw in the system the client may reveal information unintended for the
 recipient, in this case the program sending non standard messages.
 \item Recruit experienced programmers from outside of the group to attempt to 
 penetrate or otherwise break the system. All attempts should be unsuccessful.
-\item Simulate a denial of service attack. The server should be able to recover
-from the attack quickly and with minimal impact on the clients. Blocking such an
-attack is beyond the scope of this project.
 \end{itemize}
 If any test fails this indicates a vulnerability in the system which 
 should to be corrected immediately. Security tests should be rerun after any 

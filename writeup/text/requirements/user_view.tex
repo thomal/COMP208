@@ -6,15 +6,19 @@ plaintext string (depending on user preference), both of which may be easily
 transmitted via email, SMS, meeting in person, or over any other channel.
 
 Upon connecting to the system for the first time, the user will be prompted to
-enter a username, and any profile information they choose to share. They will be
-urged to avoid using their real name as their username, and informed that
-profile information is shared on a case by case basis, and is not automatically
-visible to people whom they add.
+enter a username, and any profile information they choose to share, and a
+passphrase. They will be urged to avoid using their real name as their username,
+and informed that profile information is shared on a case by case basis, and is
+not automatically visible to people whom they add. The entered passphrase will
+be used to deterministically derive an AES key which will be used to encrypt the
+users keypair and local DB. The user will be given the option of creating a
+second passphrase which, when entered, will overwrite the keypair and local DB
+with random data.
 
 They will then be brought to the main page of the system, where they (and)
 people they authorize, may post message. There will be a prompt for them to add
-peoples public keys, and the option to add either an image or plaintext public
-key.
+peoples public keys, and the option to add either a QR encoded or plaintext
+encoded public key.
 
 Upon adding another's public key, they will first be informed of that persons
 username, and prompted to categorise the person. The user will be able to create

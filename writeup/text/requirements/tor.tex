@@ -39,18 +39,13 @@ both traffic going into the Tor network and also traffic coming out of the Tor
 network\cite{torOneCell}. - Roger Dingledine
 \end{quote}
 
-While such an attack may initially sound unfeasible, access is only needed to
-the client, the host, the entry guard, the exit node, and the internal node.
-So the question becomes: how likely is it that an adversary will have access to
-these five nodes?
-
 We can safely assume that the adversary has access to the clients traffic, since
 our threat model is that of a nation state seeking to spy on its citizens.
 Furthermore we may assume that the adversary has access to the content host, as
 our threat model assumes that service operators may be pressured legally or
 otherwise into spying on their users. Therefore we must conclude, at least for
 \textit{the} adversary, that Tor is unsuitable for concealing activity in
-traditional social networks.
+traditional social networks, due to traffic confirmation.
 
 Does this then mean that Tor is insecure? No. So far as we know\cite{torStinks}
 the US does not currently have the ability to reliably and consistently track
@@ -62,6 +57,6 @@ were to do so as a traditional social network.
 
 \begin{quote}
 With manual analysis we can de-anonymize a \uline{very small fraction} of Tor
-users, however, no success de-anonymizing a user in response to a TOPI request/
-on demand\cite{torStinks}.
+users, however, \uline{no} success de-anonymizing a user in response to a TOPI
+request/on demand\cite{torStinks}.
 \end{quote}
