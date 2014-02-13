@@ -37,7 +37,9 @@ then able to click on the notification to open the message, and chat. When
 chatting with another user they have the ability to 'ignore' that user, in this
 case the user will see no more messages from that user.
 
-TEXT GOES HERE LOLZ
+\section{System Boundary Diagram}
+We can see the users interaction with the system below in the System Boundary 
+Diagram:
 
 \begin{figure}[h]
     \centering
@@ -46,4 +48,11 @@ TEXT GOES HERE LOLZ
     \label{fig:sbd_diag}
 \end{figure}
 
-MAYBE SOME MORE HERE TOO, DUNNO MEGA-LOL
+Each client (of which there may be many) has his own client boundary consisting 
+of his database and program client, whilst the server operators have their own 
+boundary consisting of just the server. You can see in the diagram that at no 
+point does the server operator or user functionality coincide with each other, 
+leaving their privacy fully independent of one another. Each client (of which 
+there may be many) has his own client boundary consisting of his database and 
+program client, whilst the server operators have their own boundary consisting 
+of just the server.
