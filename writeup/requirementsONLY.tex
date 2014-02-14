@@ -1,0 +1,32 @@
+\documentclass[openany]{book}
+\usepackage{appendix}
+\usepackage{todonotes}
+\usepackage{graphicx}
+\usepackage{comment}
+\usepackage{setspace}
+\usepackage{biblatex}
+\usepackage{booktabs}
+\usepackage{pgfgantt}
+\usepackage{ulem}
+\usepackage{geometry}
+
+%\def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
+%\let\endchangemargin=\endlist 
+
+\onehalfspacing
+\renewcommand{\chaptername}{}
+\bibliography{text/appendicies/bibliography.bib}{}
+
+\title{COMP208 - Group Software Project\\Ballmer Peak}
+\author{M. Chadwick; Choi, S.F; P. Duff; L. Prince; A.Senin; L. Thomas}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\part{Requirements}
+\input{text/requirements/requirements.tex}
+
+\printbibliography
+
+\end{document}
