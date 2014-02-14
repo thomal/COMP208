@@ -6,6 +6,16 @@ pdf : project.tex text/*/*.tex
 	bibtex project
 	pdflatex project.tex
 	make clean
+	
+req :   requirementsONLY.tex text/*/*.tex
+	pdflatex requirementsONLY.tex
+	pdflatex requirementsONLY.tex #toc and todo
+	bibtex requirementsONLY
+	pdflatex requirementsONLY.tex #references
+	bibtex requirementsONLY
+	pdflatex requirementsONLY.tex
+	make clean
+
 clean :
 	rm -f project.log
 	rm -f project.aux
@@ -14,3 +24,10 @@ clean :
 	rm -f project.bbl
 	rm -f project.blg
 	rm -f project-blx.bib
+	rm -f requirementsONLY.log
+	rm -f requirementsONLY.aux
+	rm -f requirementsONLY.toc
+	rm -f requirementsONLY.tdo
+	rm -f requirementsONLY.bbl
+	rm -f requirementsONLY.blg
+	rm -f requirementsONLY-blx.bib
