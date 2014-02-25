@@ -1,19 +1,21 @@
 % Write about what kind of queries you are expect to get in this system
-\section{The execution of the database queries}
-List of situation the database administrator is to expect and what are the types of execution for the database when this occur
-% Write more information about this section
 
-\subsection{Classification of functionalities: }
-\textbf{Adding}\\
-User adds post, comment and event.\\
-User creates and sends message to another user\\
-User sends a friend request to another user \\
-A User agrees to friend request by adding the user into his list of relations\\
+\section{Database execution }
+% What are the execution methods when these functionalities are carried out
+In this section, we go through the execution methods of the database based on the transactions that have been carried out within the system. This also shows where the data is expected to roughly end up, however this will be explained in greater detail along with the diagrams which will be found later in this document.
 
-\texbf{Getting}\\
-User receives a message\\
-User receives a friend request\\
+Stakeholders and users have to be aware that due to lightweight database files are stored locally in each users' computer, there are not just one but a number of databases involve when the transactions are carried out. The reason why it is designed this way is to ensure and avoid any malicious activities conducted especially by the server. 
 
+\subsection{User adds post, comment and event}
+When a user adds a content into Turtlenet such as posts, comments and events, the system is expected to capture these details and add them into its respective tables. The database system is expected to log the posts, comments and events by capturing the time and date when the transaction is carried out.
+
+\subsection{User creates and sends message to another user}
+As when the user creates a message then sends it, the database system is expected to store the message and log it by recording its date and time of which the message is sent. 
+
+\subsection{User sends a friend request to another user}
+\subsection{A user agrees to a friend request by adding the yser into his list of relations}
+\subsection{User receives a message}
+\subsection{User receives a friend request}
 
 % Note to Aishah: There is a difference between Foreign Keys and Referential keys!!!
 NB: Public keys are 217 characters long, all id's are auto-incremented.
