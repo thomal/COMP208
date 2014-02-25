@@ -4,20 +4,29 @@
 % What are the execution methods when these functionalities are carried out
 In this section, we go through the execution methods of the database based on the transactions that have been carried out within the system. This also shows where the data is expected to roughly end up, however this will be explained in greater detail along with the diagrams which will be found later in this document.
 
-Stakeholders and users have to be aware that due to lightweight database files are stored locally in each users' computer, there are not just one but a number of databases involve when the transactions are carried out. The reason why it is designed this way is to ensure and avoid any malicious activities conducted especially by the server. 
+Stakeholders and users have to be aware that due to lightweight database files are stored locally in each users' computer, there are a number of databases involve when the transactions are carried out. The reason why it is designed this way is to ensure and avoid any malicious activities conducted especially by the server. 
 
 \subsection{User adds post, comment and event}
 When a user adds a content into Turtlenet such as posts, comments and events, the system is expected to capture these details and add them into its respective tables. The database system is expected to log the posts, comments and events by capturing the time and date when the transaction is carried out.
 
 \subsection{User creates and sends message to another user}
-As when the user creates a message then sends it, the database system is expected to store the message and log it by recording its date and time of which the message is sent. 
+As when the user creates a message then sends it, the database system is expected to store the message and log it by recording its date and time of which the message is sent. Other details like the reciever's user\_id are inserted into the database well.
 
 \subsection{User sends a friend request to another user}
-\subsection{A user agrees to a friend request by adding the yser into his list of relations}
-\subsection{User receives a message}
-\subsection{User receives a friend request}
+% Is there any friend request, or when a friend is added using their key, they are automatically friends?
 
+\subsection{A user adds a relation}
+When a user adds a relation, the details of this related user will be captured, such as his profile, and will be added into the users table. From then on, the user can see his relation's profile information. 
+
+\subsection{User receives a message} %Clarify with Luke on this
+As the encrypted message has received, it will be stored in the message table along with other details such as the date and time, and the encrypted sender's details. The encrypted data will be stored in the database until which the user decrypts it by using the designated public key that has been shared with each other. After the data has been decrypt, the database is to update the particular tuple with decrypted data.
+
+\subsection{User receives a friend request}
+The user will be notified when a friend request is sent. The details of the person who sends the request will be recorded in the database. The user has two options to deal with a friend request, either to accept or reject it. Once it is accepted, the profile details of the sender will be stored in the user's local database, same goes to the user's details store on the sender's local database.
+
+\section{Table layout of the database}
 % Note to Aishah: There is a difference between Foreign Keys and Referential keys!!!
+% Aishah says: I will redo this pile (of shit designed database) once I clarify with other team members on the functionalities of Tu-tu-roo-net.
 NB: Public keys are 217 characters long, all id's are auto-incremented.
 
 \begin{table}[h]
