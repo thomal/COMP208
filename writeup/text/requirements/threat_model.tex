@@ -1,0 +1,69 @@
+When designing a system in which security is a significant aspect, it helps to
+define clearly exactly what adversaries are anticipated. In this section we will
+describe a hypothetical adversary (hereafter 'the adversary') against whom we
+will protect our users.
+
+The adversary will be granted all powers available to all conceivable attackers,
+such that no collusion of attackers may overcome our security (should it work
+for any given considered attacker).
+
+The following individual attackers are considered, those attackers excluded are
+excluded on the basis that their abilities are a subset of the union of the
+abilities of the already considered attackers.
+
+\begin{itemize}
+    \item Nation state without regard for international law and convention (e.g.: USA)
+        \begin{itemize}
+            \item Pressure those it claims governance over into doing as it
+                  demands
+            \item Pressure companies operating within it into colluding in an
+                  attack
+            \item Identify all people connecting to the server. (Formed from the
+                  union of powers of the ISP and the server owner and operators)
+        \end{itemize}
+    \item ISP (e.g.: BSkyB)
+        \begin{itemize}
+            \item View all traffic on their network, after the point at which a
+                  user comes under suspicion.
+            \item Manipulate all traffic on their network however they desire.
+            \item Identify an IP address (during a specific time) with a person.
+        \end{itemize}
+    \item Server Owners and Operators (i.e.: Those who own and operate Turtlenet)
+        \begin{itemize}
+            \item Alter the source of the server in any way they desire.
+            \item Log all traffic before and after a user comes under attack.
+            \item Manipulate all traffic in any way they desire.
+            \item Collect the IP of all connecting users.
+        \end{itemize}
+\end{itemize}
+
+Some of these claims may seem extreme, but given that companies such as BT,
+Vodafone Cable, Verizon, Level 3, and others have provided unlimited access to
+their networks\cite{tempora} to governmental spy agencies, we feel it is a
+reasonable threat model in light of recent revelations\cite{wikiDisclosures}.
+
+Given that our system is intended to both protect people from the governments
+which claim governance over them, and mere greedy companies looking to sell or
+collect user data for profit, we will assume the worst case: i.e. that all
+our users, their ISPs, and the owners and operators of the Turtlenet server they
+use are able to be pressured by the adversary.
+
+We grant the adversary all the powers listed above, and assume that
+all ISPs, companies, and Turtlenet server operators are actively working against
+all of our users. In summary, we consider the adversary to be:
+
+\begin{quote}
+\centering
+A nation state for which money is no object, claims governance over the user,
+and has the ability to pressure service providers into spying on their users.
+\end{quote}
+
+\section{Scope}
+We do not attempt to protect against an adversary who has access to and the
+ability to modify the users hardware, nor do we attempt to conceal that an IP
+uploads data to the network.
+
+While we recognise that the ability to post messages anonymously is important,
+especially considering that countries normally considered benign are prosecuting
+people over whom they claim governance for saying 'offensive' things
+\cite{illegalOpinions}, it is unfortunately out of scope for this project.

@@ -1,18 +1,195 @@
-\section{User}
-\input{text/requirements/facebook_user.tex}
+\section{Overview}
+A user has a profile with information about them, they may add other users as
+'friends', friends may view each others 'posts' and talk to each other. Posts
+are multimedia messages typically visible to all the friends of the person who
+made the post. Most posts can be commented upon, and both posts and comments may
+be 'liked'. Liking merely publicly marks the fact that you approve of
+something.
 
-\section{Post}
-\input{text/requirements/facebook_post.tex}
+\section{Registration}
+In order to be a user of facebook, one must register. In doing so you provide
+facebook with the following information, this may also be used to later reset
+the password of your account, should you forget it.
 
+\begin{itemize}
+\item First Name
+\item Last Name
+\item E-Mail
+\item Password
+\item Birthday
+\item Sex
+\end{itemize}
+
+In order to register one must read and agree to their terms \cite{fbterms}, read
+their data use policy \cite{fbdatause}, and read their cookie policy
+\cite{fbcookies}.
+Given profile information can be changed at a later date, within certain bounds.
+Facebook requires the use of your real name, and in fact forbids all false
+personal information, under their terms.\cite[4.1]{fbterms}
+
+\section{Account Management}
+The user is given the ability to set the security defaults for their posts and
+information. These options include who is able to see wall posts, whether
+comments are enabled by default, and who may see which aspects of your profile
+information. You can also manage the permissions granted to facebook apps.
+
+Access may be gained to an account by knowing certain information, the intent is
+to allow people to recover their account if they forget their password.
+
+A users profile may contain the following information:
+\begin{itemize}
+\item Work and education
+\item Place of Birth
+\item Relationship
+\item Basic Information
+    \begin{itemize}
+        \item Birthday
+        \item Relationship
+        \item Status
+        \item Anniversary
+        \item Languages
+        \item Religious
+        \item Political
+        \item Family
+        \item Contact Information
+    \end{itemize}
+\end{itemize}
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{ll}
+    Field         & Description\\ \hline
+    Photo         & All the photos the user's has tagged\\
+    Friend        & What friends the user has\\
+    Note          & What notes the users up/downloaded to facebook\\
+    Groups        & What groups the user has join\\
+    Events        & What events user may be attending\\
+    Likes         & What page(s) (unknown type) the user liked\\
+    Apps          & What apps the user has\\
+    Books         & What book pages the user liked/followed\\
+    TV programmes & What TV pages the user liked/followed\\
+    Films         & What films pages the user liked/followed\\
+    Music         & What music(or stars) the user liked/followed\\
+    Sports        & What sport pages the user liked\\
+    Place         & Where's the user has been\\
+    \end{tabular}
+    \caption{The user adds a new post}
+\end{table}
 
 \section{Friend}
-\input{text/requirements/facebook_friend.tex}
+In facebook, 'friending' someone is symmetric; that is, if you are friends with
+them, they are friends with you. The facebook severs store which user is friends
+with which other users. Adding another user as a friend is simply a matter of
+sending that user a friend request, and having it approved by the second user. A
+user may see a list of all who are their 'friend' on FB, in the friend list.
+After friending somebody that persons wall posts will appear on your news feed,
+and you will be able to chat with that user.
 
-\section{Personal Information}
-\input{text/requirements/facebook_personalInfo.tex}
+In order to add friends, facebook allows you to see your friends friend lists,
+and search by name, email, and location for other users. Facebook also suggests
+other users whom you may already know IRL, based on your friends friends.
+Non-users are also able to search facebook for people that they may know.
 
-\section{wall}
-\input{text/requirements/facebook_wall.tex}
+\section{Post}
+\subsection{Posts, and functions thereof}
+Facebook allows a user to post on their wall or friend's wall (if they are
+friens with the facebook user). Posts may contain: text, images, videos, or any
+combination thereof.
+
+A user posting a post may do the following:
+\begin{itemize}
+\item Delete their own post
+\item Rewrite their own post
+\item Decide who may view a post, the options are as follows:
+    \begin{itemize}
+    \item Public
+    \item Private
+    \item Only-me
+    \item Friends only
+    \item Friends of friends
+    \end{itemize}
+\end{itemize}
+
+\subsection{Interaction with another's posts}
+A post will typically be displayed on the news feeds of the people who are able
+to see it, due to this the name of the person who made a post is always
+displayed next to it. Posts themselves may be commented upon, liked, and
+reposted to the viewers wall ('shared') with an additional message; the number
+and names of people who have liked a post is displayed underneath it; likes may
+be cancelled at a later date. The comment function however, may be disabled by
+the user who makes the post.
+
+A user may hide specific posts, or hide all posts by a specific user. They may
+also, instead of hiding another's posts all together, merely prevent them from
+being automatically displayed on their news feed. A user may report an image,
+video or comment to facebook team (e.g. the post is offensive). Comments
+may also be liked, hidden, and reported; following such a report FB is able to
+remove offensive or illegal posts.
+
+Images which are posted may be tagged, this allows other users to mouse-over
+parts of the image and be informed who is pictured. This functionality is also
+used to add all posted images of someone to their profile.
+
+\section{Wall}
+A users wall stores all the posts of the user posted since the account was
+created and the information about the user, this information is presented in
+reverse chronological order, so that recent events are at the top of the page
+and easily visible. Other users may view the users wall by clicking the name of
+the user from anywhere in facebook. Other users may post on a friends wall along
+with it's owner (see section on posts for more information); in this case, both
+the poster and the owner of the wall can delete the post. Facebook also retains
+the power to erase any content on its service.
+
+Posts mentioning a user are automatically reposted to that users wall, this can
+occur manually or when that person is tagged in an image.
 
 \section{Chat System}
-\input{text/requirements/facebook_chatSystem.tex}
+Facebook allows a user to chat with their friends, and will inform a user of
+whether their friends are online or not (though this can be faked), and whether
+the user you are chatting with has read the last message that you sent them. You
+are also informed whether your friend is logged in on a mobile device or not.
+
+Whole groups of users may chat together, in multi-user conversations. Facebook
+also supports video calling and file transfer during chats. If a user does not
+wish to be bothered by another using chatting with them, then they may 'mute'
+that users conversion. Users spamming via chat may be reported to facebook.
+Because multi-user conversations (and indeed long running one-to-one
+conversations) can get rather large, facebook allows you to hide the history of
+a conversation.
+
+Facebook chat alerts the user to new messages in a conversation by playing a
+sound.
+
+\section{Architecture}
+From a users point of view facebook is ostensibly organised as a single central
+server; we are here concerned with the general architecture and not the
+specific implementation of it, and so we will consider all of facebooks servers
+to be a single server for the purposes of this section.
+
+Users connect to facebook using a web browser, and proceed to download a client
+written in javascript. User data is uploaded to facebook over HTTP as cleartext.
+The data is stored on unencrypted on facebooks servers, and facebook maintains
+a database of all data.
+
+This allows clients to download only the data they need, as they can simply ask
+for it. This in turn means that facebooks current architecture can, and does,
+support a huge user-base, measured in the millions.
+
+
+\section{Security}
+In order to use facebook after registration a user must 'log in'. This places an
+authentication cookie on the users computer which gives anyone in possession of
+it the ability to act as that user.
+
+If the user logs in from an IP associated with a region geographically far from
+the last login, facebook will confirm that the user owns the account by asking
+them to identify a friend in a photograph, or by other means.
+
+Facebook chat turns the users computer into a server, whereby facebooks central
+server sends messages to the client as it receives them, rather than the client
+requesting new messages. This has been used in the past to identify facebook
+users by correlating sent messages of specific size sent at a specific time.
+
+Facebook has access to all its users data, and is able to erase, modify, and
+fabricate it. Facebook is aware of everything which happens on facebook.
+Censorship is a common occurrence on facebook.

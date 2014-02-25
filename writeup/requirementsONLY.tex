@@ -8,10 +8,10 @@
 \usepackage{booktabs}
 \usepackage{pgfgantt}
 \usepackage{ulem}
-\usepackage{geometry}
+\usepackage[lmargin=2.3in,rmargin=1.5in]{geometry}
 
 %\def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
-%\let\endchangemargin=\endlist 
+%\let\endchangemargin=\endlist
 
 \onehalfspacing
 \renewcommand{\chaptername}{}
@@ -27,9 +27,6 @@
 \part{Requirements}
 \input{text/requirements/requirements.tex}
 
-\part{Design}
-\input{text/design/design.tex}
-
 \begin{appendices}
 \appendixpage % Page empty but for page# and "Appendicies" precedes appendicies
 \noappendicestocpagenum % Remove the page# from the TOC for that ^ page
@@ -39,14 +36,7 @@
 \input{text/appendicies/deadlines.tex}
 \chapter{Licence}
 \input{text/appendicies/licence.tex}
-\chapter{TODO}
-\input{text/appendicies/todo.tex}
-\chapter{Bugs}
-\input{text/appendicies/bugs.tex}
 \end{appendices}
-
-\listoftodos
-\todototoc
 
 \printbibliography
 

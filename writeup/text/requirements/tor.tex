@@ -1,0 +1,62 @@
+\section{Overview of Protocol}
+Tor is an implementation of onion routing, it routes traffic from your computer
+through a number of other nodes; the final 'exit' node the routes the traffic
+to the final destination\cite{torProtocol}. Node IP's are listed publicly in
+directory servers. In this manner the IP of clients connecting to a server is
+obscured from that server.
+
+RSA/AES is used to ensure that only you, the exit node, and the final
+destination see the plaintext traffic being routed. With the use of TLS, SSL, or
+other end-to-end encryption those who see the plaintext can be reduced to you
+and the final destination. However a malicious exit node can MitM SSL connections
+using ssl-strip or a similar tool. There are methods of avoiding this, but it is
+a serious issue because users believe that SSL is secure. This exploit is found
+in the wild\cite{badRelays}, and so is most definitely a concern.
+
+Tor also supports 'hidden services' which seek to conceal the IP of the client
+from the server, and the IP of the server from the client. These are
+significantly more secure as the traffic never exits the tor network, however
+provide no protection from the adversary as will be described later; after all,
+we're assuming the server operators are colluding, so they will provide data
+required for traffic confirmation.
+
+\section{Security}
+Given that Tor is a low-latency network, traffic can easily be correlated. This
+problem is ameliorated in high-latency networks such as mix nets, but not
+eliminated.
+
+Tor does not seek to protect against size correlation, or time correlation of
+traffic. Rather the purview of tor is to conceal the IP address of a client from
+the servers which it connects to.
+
+Should a global passive adversary have perfect visibility of the internet, they
+would be able to track tor traffic from source to host by correlating the size
+and time of transmissions.
+
+\begin{quote}
+The Tor design doesn't try to protect against an attacker who can see or measure
+both traffic going into the Tor network and also traffic coming out of the Tor
+network\cite{torOneCell}. - Roger Dingledine
+\end{quote}
+
+We can safely assume that the adversary has access to the clients traffic, since
+our threat model is that of a nation state seeking to spy on its citizens.
+Furthermore we may assume that the adversary has access to the content host, as
+our threat model assumes that service operators may be pressured legally or
+otherwise into spying on their users. Therefore we must conclude, at least for
+\textit{the} adversary, that Tor is unsuitable for concealing activity in
+traditional social networks, due to traffic confirmation.
+
+Does this then mean that Tor is insecure? No. So far as we know\cite{torStinks}
+the US does not currently have the ability to reliably and consistently track
+tor users; if the US is incapable of doing so, it is reasonable to assume that
+no other nation state has this ability. This is however not something which
+should be relied upon, as assumptions widely lead to mistakes. We shall 
+therefore consider Tor as unsuitable for transmitting our data, at least if we 
+were to do so as a traditional social network.
+
+\begin{quote}
+With manual analysis we can de-anonymize a \uline{very small fraction} of Tor
+users, however, \uline{no} success de-anonymizing a user in response to a TOPI
+request/on demand\cite{torStinks}.
+\end{quote}

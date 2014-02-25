@@ -1,0 +1,11 @@
+I've found a website that generates QR Codes - both professionally and otherwise
+for free.  We could implement it into our prgram by having the program output
+the URL it gives you as because it's generated via URL, we should be able to
+store it in a string and then output either that or have an image viewer in the
+program to output the actual image, whichever is easiest for the user.
+
+The website's create function: http://goqr.me/api/doc/create-qr-code/
+The website's read function: http://goqr.me/api/doc/read-qr-code/
+A test one I did:
+https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=%3Ci'mThePublicKeyVariable%3E&format=svg
+

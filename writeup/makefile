@@ -1,13 +1,33 @@
 pdf : project.tex text/*/*.tex
 	pdflatex project.tex
-	pdflatex project.tex # because of the TOC and todo list
-	bibtex project.aux
-	pdflatex project.tex # because of BibTeX
-	pdflatex project.tex # '
-clean : project.log project.aux project.toc project.tdo project.bbl project.blg
-	rm project.log
-	rm project.aux
-	rm project.toc
-	rm project.tdo
-	rm project.bbl
-	rm project.blg
+	pdflatex project.tex #toc and todo
+	bibtex project
+	pdflatex project.tex #references
+	bibtex project
+	pdflatex project.tex
+	make clean
+	
+req :   requirementsONLY.tex text/*/*.tex
+	pdflatex requirementsONLY.tex
+	pdflatex requirementsONLY.tex #toc and todo
+	bibtex requirementsONLY
+	pdflatex requirementsONLY.tex #references
+	bibtex requirementsONLY
+	pdflatex requirementsONLY.tex
+	make clean
+
+clean :
+	rm -f project.log
+	rm -f project.aux
+	rm -f project.toc
+	rm -f project.tdo
+	rm -f project.bbl
+	rm -f project.blg
+	rm -f project-blx.bib
+	rm -f requirementsONLY.log
+	rm -f requirementsONLY.aux
+	rm -f requirementsONLY.toc
+	rm -f requirementsONLY.tdo
+	rm -f requirementsONLY.bbl
+	rm -f requirementsONLY.blg
+	rm -f requirementsONLY-blx.bib
