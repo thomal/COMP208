@@ -2,22 +2,20 @@
 \section{The execution of the database queries}
 List of situation the database administrator is to expect and what are the types of execution for the database when this occur
 % Write more information about this section
-\begin{itemize}
-\item User creates post
-\item User comments post
-\item User creates message
-\item User receives message
-\item User adds friend (relation)
-\item User receives friend request
-\item 
-\end{itemize}
 
-\subsection{User creates a new post}
-The database is expected to create a new data which is added into the tables including any necessary relations that relates to the post.
+\subsection{Classification of functionalities: }
+\textbf{Adding}\\
+User adds post, comment and event.\\
+User creates and sends message to another user\\
+User sends a friend request to another user \\
+A User agrees to friend request by adding the user into his list of relations\\
 
-\subsection{User comments post}
+\texbf{Getting}\\
+User receives a message\\
+User receives a friend request\\
 
-\section{Database table layout}
+
+% Note to Aishah: There is a difference between Foreign Keys and Referential keys!!!
 NB: Public keys are 217 characters long, all id's are auto-incremented.
 
 \begin{table}[h]
