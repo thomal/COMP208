@@ -1,0 +1,28 @@
+The client-server architecture is neccessarily simple.
+
+The client connects to the server, sends a single command, receives the servers
+response and then disconnects. The following shows commands sent by the client,
+and the servers action in response.
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{lll}
+    command                     & purpose             & servers action\\ \hline
+    t                           & get the server time & sends back the current time (unix time in milliseconds)\\
+    s   \textit{ascii\_text}    & send messages       & the text sent is stored on the server\\
+    get \textit{ms\_unix\_time} & get new messages    & every message stored since the given time is sent\\
+    c   \textit{ascii\_text}    & claim a username    & the text sent is stored on the server, with a special filename\\
+    \end{tabular}
+    \caption{Client-Server Protocol}
+\end{table}
+
+Every command is terminated with a linefeed. Every response from the server will
+be terminated with a linefeed. The last line sent by the server will always be
+"s" for success, or "e" for failure (this is ommitted from the above table).
+
+CLAIM messages (sent with c) will be parsed by the Message class and the
+username extracted for use in a filename. The filename of claim messages is as
+follows
+\textit{\textless unix\_time\_in\_ms\textgreater \_\textless username\textgreater};
+the filename of all other messages is as follows
+\textit{\textless unix\_time\_in\_ms\textgreater \_\textless SHA256\_hash\textgreater}.
