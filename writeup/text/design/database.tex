@@ -13,7 +13,6 @@ When a user adds a content into Turtlenet such as posts, comments and events, th
 As when the user creates a message then sends it, the database system is expected to store the message and log it by recording its date and time of which the message is sent. Other details like the reciever's user\_id are inserted into the database well.
 
 \subsection{User sends a friend request to another user}
-% Is there any friend request, or when a friend is added using their key, they are automatically friends?
 When the user sends a request to others, this request will be sent and the details will be captured and recorded into the other user's local database file under the friend request table. This will be stored in this table until which the user decides to either accept or reject the invitation.
 
 \subsection{User receives a friend request from another user}
@@ -22,10 +21,8 @@ Another situation with the friend request is when a user receives a friend reque
 \subsection{A user adds a relation}
 When a user adds a relation, the details of this related user will be captured, such as his profile, and will be added into the users table. From then on, the user can see his relation's profile information. 
 
-\subsection{User receives a message} %Clarify with Luke on this
+\subsection{User receives a message} 
 As the user receives a message, it will be stored in the message table along with other details such as the date and time, and the sender's details.
-
-As the user receives his message
 
 \subsection{User receives a friend request}
 The user will be notified when a friend request is sent. The details of the person who sends the request will be recorded in the database. The user has two options to deal with a friend request, either to accept or reject it. Once it is accepted, the profile details of the sender will be stored in the user's local database, same goes to the user's details store on the sender's local database.
@@ -33,7 +30,6 @@ The user will be notified when a friend request is sent. The details of the pers
 \clearpage
 
 \section{Table layout of the database}
-% Note to Aishah: There is a difference between Foreign Keys and Referential keys!!!
 % Aishah says: I will redo this pile (of shit designed database) once I clarify with other team members on the functionalities of Tu-tu-roo-net.
 NB: Public keys are 217 characters long, all id's are auto-incremented.
 
@@ -80,7 +76,8 @@ email              & VARCHAR(30) &    \\
 \hline\hline
 Name               & Datatype    & Key \\
 \hline
-category\_id       & INT(10)     & PK   \\
+is\_in\_id         & INT(10)     & PK   \\
+category\_id       & INT(10)     & FK   \\
 user\_id           & INT(5)      & FK   \\
 \hline
 \end{tabular}
@@ -128,10 +125,9 @@ time               & DATE        &     \\
 Name                    & Datatype    & Key \\
 \hline
 wall\_id                & INT(10)     & PK  \\
-permission\_allowed\_to & VARCHAR(8)  & FK  \\
 from                    & VARCHAR(8)  & FK  \\
 to                      & VARCHAR(8)  & FK  \\
-comment\_id             & INT(10)     & FK  \\
+permission\_to          & VARCHAR(8)  & FK  \\
 content                 & VARCHAR(50) &     \\
 time                    & DATE        &     \\
 \hline
@@ -219,11 +215,9 @@ logout\_time       & DATE        &     \\
 
 \clearpage
 
-\section{ER diagram}
-
 \begin{figure}[h]
     \centering
-    \includegraphics[width=\textwidth]{images/design/er_diagram.jpg}
-    \caption{Database E-R Diagram}
+    \includegraphics[width=0.9\textwidth]{images/design/project_er_diagram.png}
+    \caption{Database Entity Relationship diagram}
     \label{fig:db_er_diag}
 \end{figure}
