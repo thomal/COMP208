@@ -14,7 +14,7 @@ class Client {
         
         while (gui.isRunning())
             while (connection.hasMessage())
-                Parser.handle(Crypto.decrypt(connection.getMessage()), db);
+                Parser.parse(Crypto.decrypt(connection.getMessage()), db);
         
         gui.close();
         connection.close();
