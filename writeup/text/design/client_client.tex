@@ -1,1 +1,84 @@
 \todo{copy/paste from github wiki and notebook, scan diagrams in notebook 2}
+\section{Summary}
+All client-client communication is mediated by the server. When one client
+wishes to send a message to another it encrypts the message with the public key
+associated with the recipient and uploads it to the server. When one client
+wishes to recieve a message it downloads all new messages from the server and
+parses those it can decrypt. This is performed in order to hide who recieves a
+message.
+
+\section{Message Formatting}
+\subsection{Unecrypted Messages}
+Messages have a command (or type), which specifies the nature of the message;
+messages have content, which specifies the details of the message;
+messages have an RSA signature, which authenticates the message;
+messages have a timestamp, which dates the message down to the millisecond, the
+time format is unix time in milliseconds.
+
+Messages are represented external to the system as ascii strings, and internally
+via the Message class. The string representation is as follows:\\
+
+\begin{center}
+\textless \textit{command}\textgreater\textbackslash
+\textless \textit{signature}\textgreater\textbackslash
+\textless \textit{content}\textgreater\textbackslash
+\textless \textit{timestamp}\textgreater
+\end{center}
+
+Backslashes are literal, angle brackets denote placeholder values where data
+specific to a message is placed.
+
+An example follows:
+\begin{center}
+POST\textbackslash\textless\textit{signature}\textgreater\textbackslash Hello, World!\textbackslash 1393407435547
+\end{center}
+
+backslashes in message content are escaped with a backslash, signatures are
+base64 encoded SHA256/RSA signatures. All text is encoded in UTF-8.
+
+\missingfigure{Diagram from wiki page}
+
+\subsection{Encrypted Messages}
+Encrypted messages contain the AES IV's; the RSA encrypted AES key; and the AES
+encrypted message.
+
+Messages are encrypted by encoding the entire message to be sent with UTF-8;
+encrypting the message with a randomly generated AES key; encrypting the AES key
+with RSA; encoding the RSA encrypted AES key in base64; encoding the (random)
+AES initialization vectors in base64 and concatenating these three parts with a
+backslash between each. The format follows:
+
+\begin{center}
+\textless \textit{AES IV}\textgreater\textbackslash
+\textless \textit{RSA encrypted random AES key}\textgreater\textbackslash
+\textless \textit{AES encrypted message}\textgreater
+\end{center}
+
+Backslashes are literal, angle brackets denote placeholder values where data
+specific to a message is placed.
+
+\missingfigure{Diagram from wiki page}
+
+\section{Claiming a Username}
+\subsection{Message Format}
+
+\section{Revoking a Key}
+\subsection{Message Format}
+
+\section{Profile Data}
+\subsection{Message Format}
+
+\section{Inter-User Realtime Chat}
+\subsection{Message Format}
+
+\section{Posting to own wall}
+\subsection{Message Format}
+
+\section{Posting on anothers wall}
+\subsection{Message Format}
+
+\section{Commenting}
+\subsection{Message Format}
+
+\section{Liking}
+\subsection{Message Format}
