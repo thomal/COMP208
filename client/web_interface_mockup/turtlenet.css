@@ -15,7 +15,7 @@ h1 {
 	width: 770px;
 	height: 100px;
 	margin: 0 auto;
-	background: #a5c9e5;
+	background: #E3E3E3;
 }
 
 #header h1, #header p {
@@ -65,7 +65,7 @@ h1 {
 #content {
 	float: left;
 	width: 530px;
-	background: #a5c9e5;
+	background: #E3E3E3;
 }
 
 .post {
@@ -91,7 +91,7 @@ h1 {
 #sidebar {
 	float: left;
 	width: 240px;
-	background: #a5c9e5;
+	background: #E3E3E3;
 }
 
 #sidebar ul {
