@@ -1,0 +1,120 @@
+body {
+	margin: 0;
+	padding: 0;
+	background: #F2F2F2;
+	color: #666666;
+	font-family: "Lucida Console", monospace;
+}
+
+h1 {
+	letter-spacing: -2px;
+	font-size: 3.2em;
+}
+
+#header {
+	width: 770px;
+	height: 100px;
+	margin: 0 auto;
+}
+
+#header h1, #header p {
+	margin: 0;
+}
+
+#header h1 {
+	float: left;
+	padding: 34px 0 0 0;
+}
+
+#menu {
+	width: 770px;
+	height: 65px;
+	margin: 0 auto;
+}
+
+#menu ul {
+	margin: 0;
+	padding: 7px 0 0 0;
+	list-style: none;
+}
+
+#menu li {
+	display: inline;
+}
+
+#menu a {
+	padding-right: 30px;
+	text-decoration: none;
+	letter-spacing: -1px;
+	font-size: 1.2em;
+	font-weight: bold;
+	color: #333333;
+}
+
+#menu a:hover {
+	text-decoration: underline;
+}
+
+#feed {
+	width: 770px;
+	margin: 0 auto;
+}
+
+#content {
+	float: left;
+	width: 530px;
+}
+
+.post {
+	padding: 40px 40px 0px 0px;
+}
+
+.post .links {
+	padding: 2px 20px;
+	background: #CCCCCC;
+	text-align: right;
+}
+
+.post .links a {
+	text-decoration: none;
+	font-weight: bold;
+	color: #333333;
+}
+
+.post .links a:hover {
+	text-decoration: underline;
+}
+
+#sidebar ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+#sidebar li li {
+	font-size: .85em;
+}
+
+#sidebar a {
+	text-decoration: none;
+	font-weight: bold;
+	color: #333333;
+}
+
+#sidebar a:hover {
+	text-decoration: underline;
+}
+
+#footer {
+	clear: both;
+	width: 950px;
+	margin: 0 auto;
+	padding: 30px 0;
+}
+
+#footer p {
+	margin: 0 0 5px 0;
+	text-align: center;
+	line-height: normal;
+	font-size: .9em;
+}
