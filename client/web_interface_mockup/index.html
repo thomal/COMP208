@@ -3,6 +3,8 @@
 	<head>
 		<title>Turtlenet</title>
 		<link href="turtlenet.css" rel="stylesheet" type="text/css" />
+		<script src="jquery.js">
+		</script>
 	</head>
 	
 	<body>
@@ -21,6 +23,7 @@
 
 		<div id="feed">
 			<div id="content">
+
 				
 				<div class="post">
 					<div class="entry">
@@ -46,6 +49,14 @@
 					<p class="links">&nbsp;&bull;&nbsp;&bull;&nbsp;<small>Posted on 1st Janurary 1970 by USERNAME&nbsp;&bull;&nbsp;&bull;&nbsp;</small>
 					<a href="#" class="comments">Read Comments</a></p>
 				</div>
+
+				<div class="post">
+					<div class="entry">
+						<p>Han shot first</p>
+					</div>
+					<p class="links">&nbsp;&bull;&nbsp;&bull;&nbsp;<small>Posted on 1st Janurary 1970 by USERNAME&nbsp;&bull;&nbsp;&bull;&nbsp;</small>
+					<a href="#" class="comments">Read Comments</a></p>
+				</div>
 			</div>
 		</div>
 
@@ -61,6 +72,12 @@
 				</li>
 			</ul>
 		</div>
+
+		<script>
+			$(document).ready(function() {
+  				$("#sidebar").css("height", $("#content").height());
+			});
+		</script>
 	
 		<div id="footer">
 			<p> Legal Stuff Here</p>
