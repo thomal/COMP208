@@ -44,5 +44,35 @@ the Java platform. It is now provided and maintained by the Eclipse Foundation,
 and provided as a part of their widely used Eclipse IDE, something a lot of the 
 team is familiar with.
 
-\section{HTML/CSS}
-Louis' work goes here.
+\section{GWT}
+GWT allows you to create HTML/Javascript based user interfaces for Java 
+applications running locally. The interface is programmed in Java and then GWT 
+creates valid HTML/Javascript automatically. A web server is required in order
+for Javascript events to be sent to the Java application.
+
+The user can then interact with the system by pointing their web browser at 
+localhost. This has the benefit of being familiar to novice users as most modern 
+computer interaction is done within a web browser. 
+
+Another advantage of using GWT is the ability to alter the appearance of web 
+pages using CSS. This facilitates the creation of a modern, attractive user 
+interface that integrates nicely with current operating systems and software.
+
+\section{Javascript}
+It is possible to create the entire client application in Javascript and use a 
+HTML/Javascript GUI. This approach removes the need for a local web server 
+meaning the only software the user is required to run is a modern web browser.
+
+Another advantage would be tight integration between the logic and interface 
+elements of the client application and no risk of errors caused by using 
+multiple programming languages.
+
+The main disadvantage of this approach is the difficulty in implementing the 
+required security measures and encryption in Javascript. This can be remedied by 
+using a Javascript library such as the Forge project which implements many 
+cryptography methods.
+
+\begin{comment}
+Starts to get more into client side logic here but I think it is important to 
+mention as this method would require an entire rewrite of the client. -Louis-
+\end{comment}
