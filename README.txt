@@ -1,9 +1,10 @@
 KAWAII TURTLE~
 
          ------------------------------------
-        /  ::PROGRAMMER'S TIP 101::          \
-        |  ALL HAIL SATAN, LORD AND MASTER   |
-        |  OF THE TURTLE DYSTOPIAN FUTURE!   |
+        /  ::PROGRAMMER'S TIP 102::          \
+        |  Always pull before doing any work |
+        |  work, lest ye anger the mercurial |
+        |  merge gods.                       |
         |                                    |
         \  PS: Aishah Still Smells           /
          ---------  -------------------------
