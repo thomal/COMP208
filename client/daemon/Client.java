@@ -1,6 +1,6 @@
 class Client {
     public static void main (String[] argv) {
-        NetworkConnection connection    = new NetworkConnection("127.0.0.1");
+        NetworkConnection connection    = new NetworkConnection("localhost");
         Thread            networkThread = new Thread(connection);
         Database          db            = new Database("./db");
         GUI               gui           = new GUI(db, connection);

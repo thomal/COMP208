@@ -140,9 +140,13 @@ class NetworkConnection implements Runnable {
         BufferedReader in;
         PrintWriter out;
         
+        
         //connect
         try {
-            s   = new Socket(url, port);
+            s = new Socket(new Proxy(Proxy.Type.SOCKS,
+                                     new InetSocketAddress("localhost", 9050)));
+            s.connect(new InetSocketAddress(url, port));
+            
             in  = new BufferedReader(new InputStreamReader(s.getInputStream()));
             out = new PrintWriter(s.getOutputStream(), true);
         } catch (Exception e) {

@@ -57,6 +57,7 @@ class Session implements Runnable
 
     // execute()s the clients command and then closes the connection.
     public void run() {
+        System.out.println("Connection from " + client.getInetAddress().getHostAddress());
         BufferedReader in = null;
         PrintWriter out = null;
 
