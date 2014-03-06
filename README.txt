@@ -5,8 +5,7 @@ KAWAII TURTLE~
         |  Always pull before doing any work |
         |  work, lest ye anger the mercurial |
         |  merge gods.                       |
-        |                                    |
-        \  PS: Aishah Still Smells           /
+        \                                    /
          ---------  -------------------------
                   \|
 
