@@ -1,0 +1,75 @@
+
+
+\section{IOS GUI}
+
+
+\section{login page}
+the page for user to login by password. only allows user get to the "user interface" if the password is right.
+
+
+\section{user interface}
+
+the user interface will show the following information
+
+\begin{itemize}
+\item the post of all the user(include yourself)
+\item user can read the other user by press there name's
+\item user can like other's post here
+\item user can do a quick comment by press comment uder other user's psot.
+\item get to "post interface" from user interface
+\item get to "Setting" from user interface
+\item get to "read others" from user interface
+\item get to "chat room list" from user interface
+\end{itemize}
+
+
+\section{Post}
+
+there's three stage user have to press for posting a message. "post interface", "post confirm stage" , and "post sending stage" .
+
+
+\section{post interface}
+
+	post interface allows user input the information he wants to post. After the user 	
+enter the post and press "post", it will move to "post confirm stage". Or user can press "back" to leave the "post interface" and get back to "user interface".
+
+
+\section{*post confirm stage}
+
+	user can set the "post authority"  and press "encrypt" to get to "post encryption stage" ,
+or press "back" to get back to "post interface" .If the post encrypting stage is disable, the "encrypt" button will change to "post", the user will get back to "user interface" after press "post". on the very top of user interface, it will show only by words "encrypting, encrypted, posted!" one by one.
+
+
+\section{*post encryption stage}
+
+	the purpose of this stage is to make the user believe that the data is encrypted. user can 
+disable this page from the setting if he wish. if this stage is disable, the encryption and 
+post will do it automatic in the background, user will straight back to user interface after press post in "post confirm stage".
+it shows the post go though three stage on top , "encrypting, encrypted, posted! ", the block will move behind the words which user can read which stage they are. The cycly in the middle of the screen show the presentage of the post encrypt(goes 100  when data is encrypted".user can press "see the encryption" to see what's the post look after encrypted. than press "post" to post the information . back to user interface after the stage get to "posted!".
+
+
+\section{read other's post}
+
+allows user to read speicify post only by press the post in "user interface". it contain's only the post itself, the comment that user comment on the post and the number of like.
+
+\begin{itemize}
+\item press "User Name" can read the user's wall
+\item press "back" to get back to the  user interface.
+\end{itemize}
+
+\section{ user's wall}
+	contain all the post that the user posted. there's option "Back" on top of the page will target to the user prev action, For example, If the user is get the the other user's wall from user interface, "Back" will get back to user interface when user press it.On the other hands, If the user get to the user's wall from "read post stage", user will get back to "read post stage" when he press "BACK".
+
+
+\section{Chat}
+
+\section{Chat room list}
+allows user to chat in real time, the list will shows whose online and offline. the user get to chat room by press the user's name.User can press "back" to get back to User interface.
+
+
+\section{Chat room }
+user can chat with friend in the chat room.User can input what he wants to say and send to others. Also user can track the chat record with friend .User can press back to get to Chat room list.
+
+
+\section{Setting}
+
