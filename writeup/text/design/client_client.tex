@@ -1,5 +1,5 @@
-\todo{copy/paste from github wiki and notebook, scan diagrams in notebook 2}
 \section{Summary}
+\todo{consider computational cost of seperating RSA header and AES message}
 All client-client communication is mediated by the server. When one client
 wishes to send a message to another it encrypts the message with the public key
 associated with the recipient and uploads it to the server. When one client
@@ -15,7 +15,7 @@ messages have an RSA signature, which authenticates the message;
 messages have a timestamp, which dates the message down to the millisecond, the
 time format is unix time in milliseconds.
 
-Messages are represented external to the system as ascii strings, and internally
+Messages are represented external to the system as utf-8 strings, and internally
 via the Message class. The string representation is as follows:\\
 
 \begin{center}
