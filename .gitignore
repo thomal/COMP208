@@ -5,6 +5,7 @@
 *.log
 *.blg
 *.bbl
-client/db/lastread
+client/daemon/db/lastread
+*.key
 *~
 writeup/project-blx.bib
