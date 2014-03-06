@@ -1,10 +1,5 @@
 KAWAII TURTLE~
 
-<<<<<<< HEAD
-         ---------------
-        ( Aishah smells heads off)
-         ----------  ---
-=======
          ------------------------------------
         /  ::PROGRAMMER'S TIP 101::          \
         |  ALL HAIL SATAN, LORD AND MASTER   |
@@ -12,7 +7,6 @@ KAWAII TURTLE~
         |                                    |
         \  PS: Aishah Still Smells           /
          ---------  -------------------------
->>>>>>> 965d8ce8fd1366c9c312e8ffdb08012adf02afc1
                   \|
 
                   ------       /^^---^^---^^\
