@@ -1,0 +1,129 @@
+\todo{copy/paste from github wiki and notebook, scan diagrams in notebook 2}
+\section{Summary}
+All client-client communication is mediated by the server. When one client
+wishes to send a message to another it encrypts the message with the public key
+associated with the recipient and uploads it to the server. When one client
+wishes to recieve a message it downloads all new messages from the server and
+parses those it can decrypt. This is performed in order to hide who recieves a
+message. All messages except CLAIM messages are encrypted.
+
+\section{Message Formatting}
+\subsection{Unecrypted Messages}
+Messages have a command (or type), which specifies the nature of the message;
+messages have content, which specifies the details of the message;
+messages have an RSA signature, which authenticates the message;
+messages have a timestamp, which dates the message down to the millisecond, the
+time format is unix time in milliseconds.
+
+Messages are represented external to the system as ascii strings, and internally
+via the Message class. The string representation is as follows:\\
+
+\begin{center}
+\textless \textit{command}\textgreater\textbackslash
+\textless \textit{signature}\textgreater\textbackslash
+\textless \textit{content}\textgreater\textbackslash
+\textless \textit{timestamp}\textgreater
+\end{center}
+
+Backslashes are literal, angle brackets denote placeholder values where data
+specific to a message is placed.
+
+An example follows:
+\begin{center}
+POST\textbackslash\textless\textit{signature}\textgreater\textbackslash Hello, World!\textbackslash 1393407435547
+\end{center}
+
+backslashes in message content are escaped with a backslash, signatures are
+base64 encoded SHA256/RSA signatures. All text is encoded in UTF-8.
+
+\missingfigure{Diagram from wiki page}
+
+\subsection{Encrypted Messages}
+Encrypted messages contain the AES IV's; the RSA encrypted AES key; and the AES
+encrypted message.
+
+Messages are encrypted by encoding the entire message to be sent with UTF-8;
+encrypting the message with a randomly generated AES key; encrypting the AES key
+with RSA; encoding the RSA encrypted AES key in base64; encoding the (random)
+AES initialization vectors in base64 and concatenating these three parts with a
+backslash between each. The format follows:
+
+\begin{center}
+\textless \textit{AES IV}\textgreater\textbackslash
+\textless \textit{RSA encrypted random AES key}\textgreater\textbackslash
+\textless \textit{AES encrypted message}\textgreater
+\end{center}
+
+Backslashes are literal, angle brackets denote placeholder values where data
+specific to a message is placed.
+
+\missingfigure{Diagram from wiki page}
+
+\section{Claiming a Username}
+Each user (keypair) should claim one username. Uniqueness is enforced by the
+server, and so not relied upon at all. Usernames are useful because public keys
+are not human readable. In order to claim a username, one must sent an
+unencrypted CLAIM message to the server. The format follows:
+
+\begin{center}
+CLAIM\textbackslash
+\textless \textit{signature}\textgreater\textbackslash
+\textless \textit{username}\textgreater\textbackslash
+\textless \textit{timestamp}\textgreater
+\end{center}
+
+\section{Revoking a Key}
+If a users private key should be leaked, then they must be able to revoke that
+key. This is done by sending a REVOKE message to the server. All content signed
+by the private key after the stated time will be flagged as untrusted. The
+format follows:
+
+\begin{center}
+REVOKE\textbackslash
+\textless \textit{signature}\textgreater\textbackslash
+\textless \textit{time}\textgreater\textbackslash
+\textless \textit{timestamp}\textgreater
+\end{center}
+
+\section{Profile Data}
+Users may wish to share personal details with certain people, they may share
+this information via profile data. Profile data is shared using PDATA messages.
+A PDATA message contains a list of fields, followed by a colon, followed by the
+value, followed by a semicolon. The format follows:
+
+\begin{center}
+PDATA\textbackslash
+\textless \textit{signature}\textgreater\textbackslash
+\textless \textit{values}\textgreater\textbackslash
+\textless \textit{timestamp}\textgreater
+\end{center}
+
+The format for values follows:
+
+\begin{center}
+\textless \textit{field}\textgreater:
+\textless \textit{value}\textgreater;
+\ldots
+\end{center}
+
+An example follows:
+
+\begin{center}
+PDATA\textbackslash
+\textless \textit{signature}\textgreater\textbackslash
+name:Luke Thomas;dob:1994;\textbackslash
+\textless \textit{timestamp}\textgreater
+\end{center}
+
+\section{Inter-User Realtime Chat}
+Users can chat in real time, this by sending a CHAT message to all people you
+wish the include in the conversation. This messages includes a full list of
+public keys involved in the 
+
+\section{Posting to own wall}
+
+\section{Posting on anothers wall}
+
+\section{Commenting}
+
+\section{Liking}

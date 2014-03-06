@@ -5,44 +5,46 @@ associating that keypair with that name. In this way, by knowing the public key
 of someone, you may discover their name in the service, but not vice versa.\\
 
 \textbf{Connecting for the first time} Every unencrypted message stored on the
-server is downloaded(signed nicknames and nothing more) \footnote{clients use
-bittorrent to lighten server load?} (if someone retroactivly grants you
-permission to view something they publish it as a new message with an old
-timestamp). At this time the local database contains only signed messages
+server is downloaded(signed nicknames and nothing more). At this time the local
+database contains only signed messages
 claiming usernames. The public keys are not provided, these are of use only when
 you learn the public key behind a name. The rationale for not providing public
 keys is provided in the section regarding adding a friend. Messages posted
 after your name was claimed will require downloading too, as once you claim a
-name people may send you messages.\\
+name people may send you messages. It's worth noting that messages from before
+you connected for the first time are now downloaded because they can not have
+been sent to you (with a complient client) if someone retroactivly grants you
+permission to view something they publish it as a new message with an old
+timestamp; the sole exception to this is when you connect using a new device,
+in which case all messages since you first claimed a name will be downloaded.\\
 
-\textbf{Connecting subsequently} The client requests every message from the last
-time they connected (sent by the client, not stored by the server) up to the
-present. Decryptable messages are used to update the local DB, others are
-discarded.\\
+\textbf{Connecting subsequently} The client requests every message stored on the
+server since the last time they connected up to the present. Decryptable
+messages are used to update the local DB, others are discarded.\\
 
 \textbf{Continued connection} During a session the client requests updates from
-the server every 1-5 seconds (configurable by the user).\\
+the server every 0.5-5 seconds (configurable by the user).\\
 
 \textbf{Adding a friend} is performed by having a friend email (or otherwise
 transfere) you their public key. This is input to the client, and it finds their
-name (via public posting that occured when registering). You may now interact
-with that person. They may not interact with you until they recieve your public
-key.\footnote{This is the one part that will be difficult for normal users,
-however any protocol by which the server stores and serves public keys is
-entirely unsuitable as a MitM would be trivial on behalf of the server
-operators}\\
+username (via public posting that occured when registering). You may now
+interact with that person. They may not interact with you until they recieve
+your public key. Public key transferal will be performed via exchaning plaintext
+base64 encoded strings, or QR codes. The user will be prompted, after retrieving
+the username of the user, to catagorise them.\\
 
 \textbf{Talking with a friend or posting on your wall} is achieved by writing
 a message, signing it with your private key, and encrypting one copy of it with
 each of the recipiants public keys before posting it to the server. The client
-prevents one from posting a message to someones public key, if they have not
+prevents one from posting a message to someones public key if they have not
 claimed a nickname.\\
 
-\textbf{Posting to a friends wall} may be requested by sending a specially
-formated message to that friend (all handled by the GUI, like much else here),
-when that friend logs in they will recieve your request to post on their wall
-and may confirm or deny it. If they confirm then they take your (signed) message
-and transmit it to each of their friends as previously described (authentication
-is entirely based on crypto signatures, so it doesn't matter who posts the
-message).\footnote{This is required because it is impossible for one to know who
-their friends friends are.}
+\textbf{Posting to a friends wall, commenting and liking} may be requested by
+sending a EPOST/CMNT/LIKE message to the friend (upon whose wall/post you are
+posting, commenting or liking), when that friend logs in they will recieve your
+request and may confirm or deny it. If they confirm then they take your (signed)
+message and transmit it to each of their friends as previously described. Given
+that authentication is entirely based on crypto signatures it doesn't matter
+that your friend relays the message.This is required because it is impossible
+for one to know who is able to see the persons wall, post, or comment upon which
+you seek to post, like, or comment.
