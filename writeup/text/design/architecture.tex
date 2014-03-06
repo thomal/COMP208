@@ -6,9 +6,6 @@ clients.
 Due to the inherantly limited network size (5-50K users per server depending on
 percentage of active participants vs consumers and local internet speeds) we
 reccomend that servers serve a particular interest group or geographic locality.
-The client will allow inter-server communication completely transparently such
-that while the users knows the networks they are part of, they are unaware of
-the details of how communication takes place between them.
 
 Clients send messages to, and only to, these central servers. Due to the fact
 that all messages (except CLAIM messages, see client-server/client-client
@@ -18,7 +15,8 @@ such information to which they have been granted access.
 
 When a client wishes to send a message to a person they encrypt the message with
 the public key of the recipient\footnote{using RSA/AES, see protocol for
-details} and upload it to the server.
+details} and upload it to the server. It is important to note that all network
+connections are performed via Tor.
 
 When a client wishes to view messages sent to them, they download all messages
 posted to the server since they last downloaded all messages from it and attempt
@@ -34,19 +32,9 @@ achieved by having multiple types of messages (see client-client protocol).
 \section{System Architecture}
 The system has a number of modules which interact with one another via strictly
 defined interfaces. Each module has one function, and interacts as little as
-possible with the rest of the system. The modules are:
-\todo{Update continually, this section is likely to fall into error at some
-      point}
-\begin{itemize}
-    \item GUI Server (a simplified HTTP server)
-    \item Crypto
-    \item Database
-    \item NetworkConnection
-    \item Parser
-    \item Tor client (seperate process, written in python)
-    \item Server (on a different machine (central server))
-\end{itemize}
+possible with the rest of the system. The modules and their interactions are
+shown below.
+NB: a->b denotes that data passes from module a to module b, and a<->b similarly
+denotes that data passes both from a to b and from b to a.
 
-The interactions are here shown:
-\missingfigure{the interactions are not here shown :(\\
-                 \textit{scan from notebook}}
+\input{text/design/interaction_diagram.tex}

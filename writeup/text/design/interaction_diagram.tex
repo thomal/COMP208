@@ -1,0 +1,20 @@
+\begin{figure}[h]
+\centering
+\begin{tikzpicture} [node distance=.5cm, start chain=going below,]
+    \node[punktchain, join] (serv)  {Turtlenet Server};
+    \node[punktchain, join] (tor)   {Tor}
+        edge[pil] (serv.south);
+    \node[punktchain, join] (netc)  {NetworkConnection}
+        edge[pil] (tor.south);
+    \node[punktchain, join] (crypt) {Crypto}
+        edge[pil] (netc.south);
+    \node[punktchain, join] (parse) {Parser};
+    \node[punktchain, join] (db)    {Database};
+    \node[punktchain, join] (gserv) {Local HTTP Server}
+            edge[pil,bend left=45] (netc.west);
+    \node[punktchain, join] (brows) {Web Browser}
+            edge[pil] (gserv.south);
+\end{tikzpicture}
+\label{module_diagram}
+\caption{Module Interaction}
+\end{figure}
