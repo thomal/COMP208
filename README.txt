@@ -21,6 +21,15 @@ Proposed Agenda Items
 Class diagram to match class interfaces section
 
 ------------------------------------------
+Meeting #7 Minutes (Friday, 97/03/2014)
+------------------------------------------
+- Business Rules (Peter)
+- Gantt Chart (Mike)
+- Various DB tweaks (Aishah)
+- Merge work into PDF (Luke)
+- Rename GUI design as storyboard
+
+------------------------------------------
 Meeting #6 Minutes (Wednesday, 19/02/2014)
 ------------------------------------------
 - Discussed design phase, outlined what needs to be done
