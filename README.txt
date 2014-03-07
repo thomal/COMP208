@@ -3,7 +3,7 @@ KAWAII TURTLE~
          ------------------------------------
         /  ::PROGRAMMER'S TIP 102::          \
         |  Always pull before doing any work |
-        |  work, lest ye anger the mercurial |
+        |  lest ye anger the mercurial merge |
         |  merge gods.                       |
         \                                    /
          ---------  -------------------------
