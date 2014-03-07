@@ -5,7 +5,9 @@ wishes to send a message to another it encrypts the message with the public key
 associated with the recipient and uploads it to the server. When one client
 wishes to recieve a message it downloads all new messages from the server and
 parses those it can decrypt. This is performed in order to hide who recieves a
-message. All messages except CLAIM messages are encrypted.
+message. All messages except CLAIM messages are encrypted. Multiple recipients
+imply multiple messages being uploaded, this is taken for granted in the text
+which follows.
 
 \section{Message Formatting}
 \subsection{Unecrypted Messages}
@@ -116,14 +118,114 @@ name:Luke Thomas;dob:1994;\textbackslash
 \end{center}
 
 \section{Inter-User Realtime Chat}
-Users can chat in real time, this by sending a CHAT message to all people you
-wish the include in the conversation. This messages includes a full list of
-public keys involved in the 
+Users can chat in in real time, this by achieved by sending a CHAT message to
+all people you wish the include in the conversation. This message includes a
+full list of colon delimited public keys involved in the chat. The format
+follows:
+
+\begin{center}
+CHAT\textbackslash
+\textless \textit{signature}\textgreater\textbackslash
+\textless \textit{keys}\textgreater\textbackslash
+\textless \textit{timestamp}\textgreater
+\end{center}
+
+The format for keys follows:
+
+\begin{center}
+\textless \textit{key}\textgreater:
+\textless \textit{another\_key}\textgreater
+\ldots
+\end{center}
+
+An example follows:
+
+\begin{center}
+CHAT\textbackslash
+\textless \textit{signature}\textgreater\textbackslash
+\textless \textit{key1}\textgreater:\textless \textit{key2}\textgreater\textbackslash
+\textless \textit{timestamp}\textgreater
+\end{center}
 
 \section{Posting to own wall}
+When a user posts to their own wall they upload a POST message to the server of
+the following format.
+
+\begin{center}
+POST\textbackslash
+\textless \textit{signature}\textgreater\textbackslash
+\textless \textit{message}\textgreater\textbackslash
+\textless \textit{timestamp}\textgreater
+\end{center}
+
+The format of message is merely UTF-8 text, with backslashes escaped with
+blackslashes.
+
+An example follows which contains the text "Hello, World!", a newline, "foo
+\textbackslash bar\textbackslash baz":
+
+\begin{center}
+POST\textbackslash
+\textless \textit{signature}\textgreater\textbackslash
+Hello, World!\\
+foo\textbackslash\textbackslash bar\textbackslash\textbackslash baz\textbackslash
+\textless \textit{timestamp}\textgreater
+\end{center}
 
 \section{Posting on anothers wall}
+A user may request to post on a friends wall by sending them an FPOST message,
+the poster may not decide who is able to view the message. The format is
+identical to that of a POST message, except for the command and singular
+recipient. An example follows:
+
+\begin{center}
+FPOST\textbackslash
+\textless \textit{signature}\textgreater\textbackslash
+Hello, World!\textbackslash
+\textless \textit{timestamp}\textgreater
+\end{center}
+
+Upon recipt of an FPOST message the friend is prompted by the client to choose
+whether or not to display it, and if so who may view it. Once this is done the
+friend reposts the message with the command changed to POST instead of FPOST as
+they would post anything to their own wall. This works because authentication is
+entirely based on RSA signatures so in copying the original signature the friend
+may post as the original author provided they don't alter the message (and thus
+its hash and required signature).
 
 \section{Commenting}
+Commenting works simiarly to posting on anothers wall, so an explanation of
+details of how it occurs is not provided (see prior section). The only
+difference is the format of a CMNT message from an FPOST message. The format of
+a CMNT message is as follows:
+
+\begin{center}
+CMNT\textbackslash
+\textless \textit{signature}\textgreater\textbackslash
+\textless \textit{hash}\textgreater:
+\textless \textit{comment}\textgreater\textbackslash
+\textless \textit{timestamp}\textgreater
+\end{center}
+
+Where \textless \textit{hash}\textgreater denotes the hash of the post or
+comment being commented upon. An example comment follows:
+
+\begin{center}
+CMNT\textbackslash
+\textless \textit{signature}\textgreater\textbackslash
+9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08:
+Yeah, well, that's just like, your opinion, man.\textbackslash
+\textless \textit{timestamp}\textgreater
+\end{center}
 
 \section{Liking}
+Like messages are identical to comments except for the command and the the fact
+that no ":\textless \textit{comment}\textgreater" follows the hash. An example
+like follows:
+
+\begin{center}
+LIKE\textbackslash
+\textless \textit{signature}\textgreater\textbackslash
+9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08\textbackslash
+\textless \textit{timestamp}\textgreater
+\end{center}
