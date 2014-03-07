@@ -14,7 +14,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.3.1 r9886"
-   sodipodi:docname="data_flow_diagram.png">
+   sodipodi:docname="data_flow_diagram.svg">
   <defs
      id="defs4">
     <marker
@@ -52,7 +52,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.96291535"
-     inkscape:cx="347.60832"
+     inkscape:cx="165.86856"
      inkscape:cy="606.41807"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -70,7 +70,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -498,28 +498,50 @@
          x="570.41162"
          y="466.13382"
          style="font-size:14px">data</tspan></text>
-    <path
-       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-mid:none;marker-end:url(#Arrow1Lend)"
-       d="m 407.63081,476.02677 c -46.89555,10.73951 -73.91609,33.18184 -76.20275,192.71804"
-       id="path7461"
-       inkscape:connector-type="polyline"
-       inkscape:connector-curvature="0"
-       inkscape:connection-start="#path2985-8"
-       inkscape:connection-start-point="d4"
-       inkscape:connection-end="#path2985-4"
-       inkscape:connection-end-point="d4"
-       sodipodi:nodetypes="cc" />
     <text
        xml:space="preserve"
        style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-       x="304.18015"
-       y="533.49304"
+       x="291.71799"
+       y="598.91937"
        id="text7311-28-53"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan7313-2-8"
-         x="304.18015"
-         y="533.49304"
+         x="291.71799"
+         y="598.91937"
          style="font-size:14px">public keys</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.97753561px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:none;marker-end:url(#Arrow1Lend)"
+       d="m 440.32946,503.74867 0,83.35974"
+       id="path3206"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Lend)"
+       d="M 395.09202,611.08421 258.99138,605.97194"
+       id="path4908"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-start="#rect3162-8"
+       inkscape:connection-start-point="d4"
+       inkscape:connection-end="#rect3162-4"
+       inkscape:connection-end-point="d4" />
+    <text
+       xml:space="preserve"
+       style="font-size:40px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="369.65366"
+       y="521.39038"
+       id="text7311-28-53-0"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan7313-2-8-8"
+         x="369.65366"
+         y="521.39038"
+         style="font-size:14px;text-align:center;text-anchor:middle">QR Code/X509</tspan><tspan
+         sodipodi:role="line"
+         x="369.65366"
+         y="538.89038"
+         style="font-size:14px;text-align:center;text-anchor:middle"
+         id="tspan5299">Encoded Public Key</tspan></text>
   </g>
 </svg>
