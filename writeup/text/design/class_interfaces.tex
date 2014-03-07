@@ -1,108 +1,15 @@
 \section{Class Interfaces}
-The following is a description of the public functions of all classes.
+The following is a description of the public functions of all public classes.
+Many classes have inner private classes they use for conveinience, however to
+simplify interaction between parts of our system ('modules') we have very few
+conveinience classes.
+
 \todo{Make sure anything public not listed here is made private}
-\todo{manually linebreak tables}
 \todo{specify what's static}
 
 \begin{table}[h]
     \centering
-    \begin{tabular}{ll}
-    function                                  & description\\ \hline
-    void run()                                & idle until a message is recieved or asked to close\\
-    void close()                              & closes the tor connection\\
-    boolean connect(String address, int port) & connects to the given URL or IP on the given port\\
-    String send(String msg)                   & sends the given msg over tor, returns the servers response\\    
-    \end{tabular}
-    \caption{Tor Interface}
-\end{table}
-
-\begin{table}[h]
-    \centering
-    \begin{tabular}{ll}
-    function                            & description\\ \hline
-    NetworkConnection(String serverurl) & Constructs a NetworkConnection and connects to the given URL\\
-    void run()                          & periodically download new messages until asked to close, downloaded messages are stored in a FIFO buffer\\
-    void close()                        & close\\
-    boolean hasMessage()                & return true if there is a message in the buffer, false otherwise\\
-    String getMessage()                 & return the oldest message in the buffer\\
-    void postMessage(String msg, PublicKey recipient) & encrypt and post a message to the server, readable by the recipient\\
-    boolean claimName(String name)      & claim a given username, returns true on success, false otherwise\\    
-    \end{tabular}
-    \caption{NetworkConnection}
-\end{table}
-
-\begin{table}[h]
-    \centering
-    \begin{tabular}{ll}
-    function                              & description\\ \hline
-    boolean keysExist()                   & return true if the user has a keypair, false otherwise\\
-    void keyGen()                         & generate a keypair for the user\\
-    PublicKey getPublicKey()              & returns the users public key\\
-    PrivateKey getPrivateKey()            & returns the users private key\\
-    String sign(String msg)               & returns an RSA signature of the passed string\\
-    boolean verifySig(Message msg, PublicKey author) & returns true if author signed msg, false otherwise\\
-    String encrypt(String cmd, String text, PublicKey recipient, NetworkConnection connection) & returns an encoded, encrypted message constructed from the passed parameters\\
-    Message decrypt(String msg)           & decrypts the passed string, returns the appropriate message, on failure a NULL message is returned\\
-    String base64Encode(byte[] data)      & base64 encodes the passed data, returns the string\\
-    byte[] base64Decode(String data)      & base64 decodes the passed data, returns the byte[]\\
-    String encodeKey (PublicKey key)      & encodes a public key as a string, returns that string (X509)\\
-    PublicKey decodeKey (String codedKey) & decodes a public key encoded as a string, returns that public key(X509)\\
-    String hash (String data)             & returns the SHA256 hash the the passed string as a hex string\\
-    int rand (int min, int max)           & returns a pseudorandom value <= max and >= min\\
-    \end{tabular}
-    \caption{Crypto}
-\end{table}
-
-\begin{table}[h]
-    \centering
-    \begin{tabular}{ll}
-    function                              & description\\ \hline
-    void parse (Message msg, Database db) & parses msg, records parsed data in db\\
-    \end{tabular}
-    \caption{Parser}
-\end{table}
-
-\todo{go over DB interface}
-\begin{table}[h]
-    \centering
-    \begin{tabular}{ll}
-    function                                & description\\ \hline
-    PublicKey getPublicKey(String username) & returns the public key associated with the username\\
-    String getUsername(PublicKey key)       & returns the username associated with a public key\\    
-    Post[] getPosts(long start, long end)   & returns posts posted with given timeframe (unix time in milliseconds)\\
-    Comment[] getComments(String postID)    & returns all comments on the given post\\
-    Like[] getLikes(String postID)          & returns all likes on the given post\\
-    addFriend(Friend f)                     & adds the given friend to the DB\\
-    addCategory(String name)                & adds a new category to the DB\\
-    addToCategory(PublicKey user, String category) & adds a user to a category\\
-    \end{tabular}
-    \caption{Database}
-\end{table}
-
-\begin{table}[h]
-    \centering
-    \begin{tabular}{ll}
-    function                                       & description\\ \hline
-    GUI\_Server(Database db, NetworkConnection nc) & Constructs a GUI\_Server\\
-    void run()                                     & continually updates the GUI from the DB\\
-    void close()                                   & closes the GUI\_Server\\
-    boolean isRunning()                            & returns true if the GUI\_Server is running, false otherwise\\
-    \end{tabular}
-    \caption{GUI\_Server}
-\end{table}
-
-\begin{table}[h]
-    \centering
-    \begin{tabular}{ll}
-    function                 & description\\ \hline
-    void main(String[] argv) & constructs and starts all nececary classes and threads, runs the main loop\\
-    \end{tabular}
-    \caption{Client}
-\end{table}
-
-\begin{table}[h]
-    \centering
-    \begin{tabular}{ll}
+    \begin{tabular}{p{2cm}p{3cm}}
     function    & description\\ \hline
     void main() & starts the server\\
     \end{tabular}
@@ -111,78 +18,112 @@ The following is a description of the public functions of all classes.
 
 \begin{table}[h]
     \centering
-    \begin{tabular}{ll}
-    function                               & description\\ \hline
-    Friend(String \_name, PublicKey \_key) & constructs a friend\\
-    String getName()                       & returns the persons username\\
-    void setName()                         & sets the persons username\\
-    PublicKey getKey()                     & gets the persons public key\\
+    \begin{tabular}{p{2cm}p{9cm}}
+    function    & description\\ \hline
+    void main() & constructs and starts all nececary classes and threads, runs the main loop\\
     \end{tabular}
-    \caption{Friend}
+    \caption{Client}
 \end{table}
 
 \begin{table}[h]
     \centering
-    \begin{tabular}{ll}
-    function                  & description\\ \hline
-    Message(String cmd, String \_content, long timeCreated, String RSAsig) & Consturcts a message with given data\\
-    Message parse(String msg) & parses the string representation of a message into a message\\
-    String toString()         & creates a string representation of the message\\
-    String getCmd()           & returns the type of message\\
-    String getContent()       & returns the content of the message\\
-    String getSig()           & returns the RSA signature on the message\\
-    long getTimestamp()       & returns the timestamp on the message\\
+    \begin{tabular}{p{3.6cm}p{9cm}}
+    function             & description\\ \hline
+    NetworkConnection()  & Constructs a NetworkConnection and connects to the given URL (through tor)\\
+    void run()           & periodically download new messages until asked to close, downloaded messages are stored in a FIFO buffer\\
+    void close()         & kills the thread started by run()\\
+    boolean hasMessage() & return true if there is a message in the buffer, false otherwise\\
+    String getMessage()  & return the oldest message in the buffer\\
+    
+    boolean claimName()  & claim a given username, returns true on success, false otherwise\\
+    void revokeKeypair() & revokes your keypair\\
+    void pdata()         & adds or updates profile infomration\\
+    void chat()          & begins or continues a conversaion\\
+    void post()          & post a message to your wall\\
+    void fpost()         & post a message to a friends wall\\
+    void comment()       & comment on a comment or post\\
+    void like()          & like a comment or post\\
+    \end{tabular}
+    \caption{NetworkConnection}
+\end{table}
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{p{4.3cm}p{9cm}}
+    function                   & description\\ \hline
+    boolean keysExist()        & return true if the user has a keypair, false otherwise\\
+    void keyGen()              & generate a keypair for the user\\
+    PublicKey getPublicKey()   & returns the users public key\\
+    PrivateKey getPrivateKey() & returns the users private key\\
+
+    String sign()         & returns an RSA signature of the passed string\\
+    boolean verifySig()   & returns true if author signed msg, false otherwise\\
+    String encrypt()      & returns an encrypted message constructed from the passed parameters\\
+    Message decrypt()     & decrypts the passed string, returns the appropriate message, on failure a NULL message is returned\\
+    String base64Encode() & base64 encodes the passed data, returns the string\\
+    byte[] base64Decode() & base64 decodes the passed data, returns the byte[]\\
+    String encodeKey()    & encodes a public key as a string, returns that string (X509)\\
+    PublicKey decodeKey() & decodes a public key encoded as a string, returns that public key(X509)\\
+    String hash ()        & returns the SHA256 hash the the passed string as a hex string\\
+    int rand ()           & returns a pseudorandom value <= max and >= min\\
+    \end{tabular}
+    \caption{Crypto}
+\end{table}
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{p{3.6cm}p{9cm}}
+    function     & description\\ \hline
+    void parse() & parses a sting message, records parsed data in the database\\
+    \end{tabular}
+    \caption{Parser}
+\end{table}
+
+\todo{go over DB interface with GUI guys and aishiah}
+\begin{table}[h]
+    \centering
+    \begin{tabular}{p{4.3cm}p{9cm}}
+    function                 & description\\ \hline
+    PublicKey getPublicKey() & returns the public key associated with the username\\
+    String getUsername()     & returns the username associated with a public key\\    
+    Post[] getPosts()        & returns posts posted with given timeframe (unix time in milliseconds)\\
+    Comment[] getComments()  & returns all comments on the given post\\
+    Like[] getLikes()        & returns all likes on the given post or comment\\
+    addFriend()              & adds the given friend to the DB\\
+    addCategory()            & adds a new category to the DB\\
+    addToCategory()          & adds a user to a category\\
+    \end{tabular}
+    \caption{Database}
+\end{table}
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{p{3.6cm}p{9cm}}
+    function            & description\\ \hline
+    GUIServer()         & Constructs a GUIServer\\
+    void run()          & continually updates the GUI from the DB\\
+    void close()        & kills the GUIServer thread\\
+    
+    boolean isRunning() & returns true if the GUIServer is running, false otherwise\\
+    \end{tabular}
+    \caption{GUI}
+\end{table}
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{p{3.6cm}p{9cm}}
+    function            & description\\ \hline
+    Message()           & Consturcts a message with given data\\
+    
+    Message parse()     & parses the string representation of a message into a message\\
+    
+    String toString()   & creates a string representation of the message\\
+    String getCmd()     & returns the type of message\\
+    String getContent() & returns the content of the message\\
+    String getSig()     & returns the RSA signature on the message\\
+    long getTimestamp() & returns the timestamp on the message\\
     \end{tabular}
     \caption{Message}
-\end{table}
-
-\begin{table}[h]
-    \centering
-    \begin{tabular}{ll}
-    function         & description\\ \hline
-    Pair\textless A, B\textgreater (A f, B s) & constructs a pair\\
-    \end{tabular}
-    \caption{Pair}
-\end{table}
-
-\todo{comment interface}
-\begin{table}[h]
-    \centering
-    \begin{tabular}{ll}
-    function         & description\\ \hline
-    & \\
-    \end{tabular}
-    \caption{Comment}
-\end{table}
-
-\todo{like interface}
-\begin{table}[h]
-    \centering
-    \begin{tabular}{ll}
-    function         & description\\ \hline
-    & \\
-    \end{tabular}
-    \caption{Like}
-\end{table}
-
-\todo{conversation interface}
-\begin{table}[h]
-    \centering
-    \begin{tabular}{ll}
-    function         & description\\ \hline
-    & \\
-    \end{tabular}
-    \caption{Conversation}
-\end{table}
-
-\todo{post interface}
-\begin{table}[h]
-    \centering
-    \begin{tabular}{ll}
-    function         & description\\ \hline
-    & \\
-    \end{tabular}
-    \caption{Post}
 \end{table}
 
 \section{Class Diagram}
