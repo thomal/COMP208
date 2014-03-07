@@ -1,0 +1,99 @@
+
+\begin{tabular}{lllll}
+
+\toprule
+    
+    Entity & Attributes & Description & Key & Nulls \\
+
+\midrule
+
+    'You' & username      & Human-readable identifier         & PK & No  \\
+          & name          & User's first name                 &    & Yes \\
+          & birthday      & User's date of birth              &    & Yes \\
+          & sex           & User's gender                     &    & Yes \\
+          & email         & User's email address              &    & Yes \\
+          & public-key    & Key for distribution              &    & No  \\
+
+\midrule
+
+    User  & user-id       & Numeric identifier                & PK & No  \\
+          & username      & Human-readable identifier         &    & Yes \\ 
+          & name          & User's first name                 &    & Yes \\
+          & birthday      & User's date of birth              &    & Yes \\
+          & sex           & User's gender                     &    & Yes \\
+          & email         & User's email address              &    & Yes \\
+          
+\midrule
+
+  'Is-in' & is-in-id      & Category/user relation identifier & PK & No  \\
+          & category-id   & Category ID used in relation      & FK & No  \\
+          & user-id       & User ID used in relation          & FK & No  \\
+          
+\midrule
+
+Category & category-id & Numeric identifier for category     & PK & No  \\
+         & name        & Human-readable name for category    &    & Yes \\
+
+\midrule
+
+private-message & message-id  & Numeric identifier for the message & PK & No  \\
+                & from        & Sender of the message              & FK & No  \\
+                & to          & Receiver of the message            & FK & No  \\
+                & content     & The content of the message         &    & No  \\
+                & time        & Time of message creation           &    & No  \\
+
+\midrule
+
+      wall-post & wall-id     & Numeric identifier for the wall    & PK & No  \\
+                & from        & Sender of the message              & FK & No  \\
+                & to          & Receiver of the message            & FK & No  \\
+                & perm-To     & User/s that have permission        & FK & No  \\
+                & content     & Data placed upon wall              &    & No  \\
+                & time        & Time of message creation           &    & No  \\
+
+\bottomrule
+
+\end{tabular}
+
+\begin{tabular}{lllll}
+
+\toprule
+    
+    Entity & Attributes & Description & Key & Nulls \\
+
+\midrule
+
+    has-comment & comment-id  & Numeric identifier for the comment & PK & No  \\
+                & post-id     & Numeric identifier for the post    & FK & No  \\
+                & user-id     & Numeric identifier for the user    & FK & No  \\
+                & commentTime & Time the comment was made          &    & No  \\
+
+\midrule
+
+       has-like & like-id     & Numeric identifier for the 'like'  & PK & No  \\
+                & post-id     & Numeric identifier for the post    & FK & No  \\
+                & user-id     & Numeric identifier for the user    & FK & No  \\
+                
+\midrule
+
+         events & event-id    & Numeric identifier for the event   & PK & No  \\
+                & title       & Heading for the event              &    & No  \\
+                & content     & Data placed within the event       &    & No  \\
+                & from        & User that created the event        & FK & No  \\
+                & perm-To     & Users allowed to view the event    & FK & No  \\
+                
+\midrule
+
+ friend-request & public-key  & Key from a different user          & PK & No  \\
+                & req-time    & Time the request was sent          &    & No  \\
+                & req-react   & Reaction of the user               &    & No  \\
+                
+\midrule
+
+           log* & log-id      & Numerical identifier of the log*   & PK & No  \\
+                & login-time  & Date the user logged in to server  &    & No  \\
+                & logout-time & Date the user logged out of server &    & No  \\
+                
+\bottomrule
+
+\end{tabular}
