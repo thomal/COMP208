@@ -4,7 +4,7 @@ Many classes have inner private classes they use for conveinience, however to
 simplify interaction between parts of our system ('modules') we have very few
 conveinience classes.
 
-\todo{Make sure anything public not listed here is made private}
+\todo{Reoconcile return types with stated public classes}
 \todo{specify what's static}
 
 \begin{table}[h]
@@ -82,13 +82,17 @@ conveinience classes.
 \todo{go over DB interface with GUI guys and aishiah}
 \begin{table}[h]
     \centering
-    \begin{tabular}{p{4.3cm}p{9cm}}
+    \begin{tabular}{p{5cm}p{9cm}}
     function                 & description\\ \hline
     PublicKey getPublicKey() & returns the public key associated with the username\\
     String getUsername()     & returns the username associated with a public key\\    
+    
     Post[] getPosts()        & returns posts posted with given timeframe (unix time in milliseconds)\\
     Comment[] getComments()  & returns all comments on the given post\\
     Like[] getLikes()        & returns all likes on the given post or comment\\
+    
+    Conversation getConversation() & returns a given conversaion\\
+    
     addFriend()              & adds the given friend to the DB\\
     addCategory()            & adds a new category to the DB\\
     addToCategory()          & adds a user to a category\\

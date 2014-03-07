@@ -35,8 +35,10 @@ An example follows:
 POST\textbackslash\textless\textit{signature}\textgreater\textbackslash Hello, World!\textbackslash 1393407435547
 \end{center}
 
-backslashes in message content are escaped with a backslash, signatures are
-base64 encoded SHA256/RSA signatures. All text is encoded in UTF-8.
+backslashes in message content are escaped with another backslash, signatures
+are base64 encoded SHA256/RSA signatures of the content of the message
+concatenated with a decimal string representation of the timestamp. All text is
+encoded in UTF-8.
 
 \missingfigure{Diagram from wiki page}
 
@@ -144,6 +146,26 @@ An example follows:
 CHAT\textbackslash
 \textless \textit{signature}\textgreater\textbackslash
 \textless \textit{key1}\textgreater:\textless \textit{key2}\textgreater\textbackslash
+\textless \textit{timestamp}\textgreater
+\end{center}
+
+Following the establishment of a conversation, messages may be added to it with
+PCHAT messages, the format follows:
+
+\begin{center}
+PCHAT\textbackslash
+\textless \textit{signature}\textgreater\textbackslash
+\textless \textit{conversation}\textgreater:\textless \textit{message}\textgreater\textbackslash
+\textless \textit{timestamp}\textgreater
+\end{center}
+
+Whereby \textless \textit{conversation}\textgreater denotes the signature
+present on the establishing message. An example follows:
+
+\begin{center}
+PCHAT\textbackslash
+\textless \textit{signature}\textgreater\textbackslash
+9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08:First!\textbackslash
 \textless \textit{timestamp}\textgreater
 \end{center}
 
