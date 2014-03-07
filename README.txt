@@ -15,17 +15,10 @@ KAWAII TURTLE~
                    -----     u              u
 
 
------------------------------------------
-Regarding Future Work
------------------------------------------
-Please update /writeup/text/ when you do work, rather than leaving it in a text
-file somewhere. It is easier for everyone if they can find everyone elses work
-in the contents page of project.pdf instead of digging about in the repo.
-I've already created placeholder files for you to put your work into, but feel
-free to create more files if you feel the need.
-
-If anyone is unsure about how to use Git, please contact me
-(luke@luke-thomas.net | 07592034395).
+------------------------------------------
+Proposed Agenda Items
+------------------------------------------
+Class diagram to match class interfaces section
 
 ------------------------------------------
 Meeting #6 Minutes (Wednesday, 19/02/2014)
