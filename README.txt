@@ -21,7 +21,7 @@ Proposed Agenda Items
 Class diagram to match class interfaces section
 
 ------------------------------------------
-Meeting #7 Minutes (Friday, 97/03/2014)
+Meeting #7 Minutes (Friday, 07/03/2014)
 ------------------------------------------
 - Business Rules (Peter)
 - Gantt Chart (Mike)
