@@ -52,12 +52,12 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.96291535"
-     inkscape:cx="165.86856"
-     inkscape:cy="606.41807"
+     inkscape:cx="367.19641"
+     inkscape:cy="616.19253"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1596"
+     inkscape:window-width="955"
      inkscape:window-height="861"
      inkscape:window-x="0"
      inkscape:window-y="37"
@@ -335,16 +335,6 @@
        inkscape:connection-end-point="d4" />
     <path
        style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Lend)"
-       d="m 497.42434,446.77276 22.6957,-69.96088"
-       id="path6347"
-       inkscape:connector-type="polyline"
-       inkscape:connector-curvature="0"
-       inkscape:connection-start="#rect3162"
-       inkscape:connection-start-point="d4"
-       inkscape:connection-end="#path2985-8"
-       inkscape:connection-end-point="d4" />
-    <path
-       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Lend)"
        d="m 471.78417,315.84554 -73.6023,-32.60095"
        id="path6533"
        inkscape:connector-type="polyline"
@@ -426,18 +416,6 @@
          x="152.3905"
          y="408.19244"
          style="font-size:14px">messages</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-       x="509.80569"
-       y="415.1026"
-       id="text7311-28-5"
-       sodipodi:linespacing="125%"><tspan
-         sodipodi:role="line"
-         id="tspan7313-2-9"
-         x="509.80569"
-         y="415.1026"
-         style="font-size:14px">data</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
@@ -529,19 +507,35 @@
     <text
        xml:space="preserve"
        style="font-size:40px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-       x="369.65366"
-       y="521.39038"
+       x="410.15567"
+       y="543.19916"
        id="text7311-28-53-0"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
-         id="tspan7313-2-8-8"
-         x="369.65366"
-         y="521.39038"
-         style="font-size:14px;text-align:center;text-anchor:middle">QR Code/X509</tspan><tspan
-         sodipodi:role="line"
-         x="369.65366"
-         y="538.89038"
+         x="410.15567"
+         y="543.19916"
          style="font-size:14px;text-align:center;text-anchor:middle"
-         id="tspan5299">Encoded Public Key</tspan></text>
+         id="tspan5299">user actions</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-mid:none;marker-end:url(#Arrow1Lend)"
+       d="M 394.63489,587.10841 C 222.19115,406.55467 351.97491,382.52055 511.79715,376.27027"
+       id="path3288"
+       inkscape:connector-type="polyline"
+       inkscape:connector-curvature="0"
+       inkscape:connection-end="#path2985-8"
+       inkscape:connection-end-point="d4"
+       sodipodi:nodetypes="cc" />
+    <text
+       xml:space="preserve"
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="275.97354"
+       y="453.88699"
+       id="text7311-4-4"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan7313-4-5"
+         x="275.97354"
+         y="453.88699"
+         style="font-size:14px">messages</tspan></text>
   </g>
 </svg>
