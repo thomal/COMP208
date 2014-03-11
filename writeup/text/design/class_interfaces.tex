@@ -43,6 +43,8 @@ conveinience classes.
     void fpost()         & post a message to a friends wall\\
     void comment()       & comment on a comment or post\\
     void like()          & like a comment or post\\
+    void event()         & create an event\\
+    void revoke()        & revoke your keypair\\
     \end{tabular}
     \caption{NetworkConnection}
 \end{table}
@@ -84,18 +86,43 @@ conveinience classes.
     \centering
     \begin{tabular}{p{5cm}p{9cm}}
     function                 & description\\ \hline
-    PublicKey getPublicKey() & returns the public key associated with the username\\
-    String getUsername()     & returns the username associated with a public key\\    
     
-    Post[] getPosts()        & returns posts posted with given timeframe (unix time in milliseconds)\\
-    Comment[] getComments()  & returns all comments on the given post\\
-    Like[] getLikes()        & returns all likes on the given post or comment\\
+    addClaim        & \\
+    getClaims       & \\
+    getUsernames    & \\
     
-    Conversation getConversation() & returns a given conversaion\\
+    addRevocation   & \\
+    getRevocations  & \\
     
-    addFriend()              & adds the given friend to the DB\\
-    addCategory()            & adds a new category to the DB\\
-    addToCategory()          & adds a user to a category\\
+    addPData        & \\
+    getPData        & \\
+    
+    createChat      & \\
+    getChat         & \\
+    addToChat       & \\
+    getPostsInChat  & \\
+    
+    addPost         & \\
+    getPosts        & (within timeframe, from certain people within timeframe)\\
+    
+    addComment      & \\
+    getComment      & (within timeframe, from certain people within timeframe)\\
+    
+    addLike         & \\
+    getLikes        & (within timeframe, from certain people within timeframe)\\
+    
+    addEvent        & \\
+    getEvent        & (within timeframe, for person, or those that you've agreed to or rejected)\\
+    acceptEvent     & \\
+    declineEvent    & \\
+    
+    addKey          & \\
+    getKey          & (for usernamne, all stored)\\
+    getName         & \\
+
+    addFriend()     & adds the given friend to the DB\\
+    addCategory()   & adds a new category to the DB\\
+    addToCategory() & adds a user to a category\\
     \end{tabular}
     \caption{Database}
 \end{table}
@@ -103,10 +130,10 @@ conveinience classes.
 \begin{table}[h]
     \centering
     \begin{tabular}{p{3.6cm}p{9cm}}
-    function            & description\\ \hline
-    GUIServer()         & Constructs a GUIServer\\
-    void run()          & continually updates the GUI from the DB\\
-    void close()        & kills the GUIServer thread\\
+    function     & description\\ \hline
+    GUI()        & Constructs a GUI\\
+    void run()   & continually updates the GUI from the DB\\
+    void close() & kills the GUIServer thread\\
     
     boolean isRunning() & returns true if the GUIServer is running, false otherwise\\
     \end{tabular}
