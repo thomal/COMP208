@@ -251,3 +251,31 @@ LIKE\textbackslash
 9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08\textbackslash
 \textless \textit{timestamp}\textgreater
 \end{center}
+
+\section{Events}
+A user may have the client remind him of an event by alerting him when it
+occurs. A user may inform others of events, and they may choose to be reminded
+about them. When a user creates an event just for themselves they just create a
+normal event and only inform themselves of it. An event is created by posting an
+EVNT message to the server. The format follows:
+
+\begin{center}
+EVNT\textbackslash
+\textless \textit{signature}\textgreater\textbackslash
+\textless \textit{event\_start\_time}\textgreater:
+\textless \textit{event\_end\_time}\textgreater:
+\textless \textit{event\_name}\textgreater\textbackslash
+\textless \textit{timestamp}\textgreater
+\end{center}
+
+An example follows of a reminder for bobs birthday which occurs on the 14th of
+january, the event was created on the second of january:
+
+\begin{center}
+EVNT\textbackslash
+\textless \textit{signature}\textgreater\textbackslash
+1389657600000:
+1389744000000:
+bobs birthday\textbackslash
+1388676821000
+\end{center}
