@@ -96,6 +96,7 @@
 \umlusecase[name=ucServerStatus,x=0,y=0]{Server Status}
 \umlusecase[name=ucServerStart,x=-5,y=0]{Start}
 \umlusecase[name=ucServerStop,x=-5,y=1]{Stop}
+\umlusecase[name=ucServerLoad,x=-9,y=1]{Monitor Server Load}
 
 %Check Use Cases
 \umlusecase[name=ucCheck,x=0,y=2]{Check}
@@ -116,6 +117,7 @@
 \umlassoc[name=assOpStatus]{Server Operator}{ucServerStatus}
 \umlextend[name=extStatusStart]{ucServerStart}{ucServerStatus}
 \umlextend[name=extStatusStop]{ucServerStop}{ucServerStatus}
+\umlextend[name=extStatusLoad]{ucServerLoad}{ucServerStatus}
 
 %Check Relations
 \umlassoc[name=assOpStatus]{Server Operator}{ucCheck}
