@@ -20,6 +20,7 @@ Current TODO
 ------------------------------------------
 class diagram
 pseudocode
+update DFD to show parser authentication
 
 ------------------------------------------
 Meeting #7 Minutes (Friday, 07/03/2014)

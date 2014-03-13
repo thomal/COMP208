@@ -43,10 +43,74 @@ static void main () {
 \section{Crypto}
 \begin{lstlisting}
 keyGen () {
-    keypair = generateRSA()
-    pw      = getUserInputString();
-    filesystem.write("keypair.rsa.aes", Crypto.aes(pw, keypair))
+    keypair = generateRSAkeypair()
+    pw      = GUI.getUserInputString();
+    filesystem.write("keypair", Crypto.aes(pw, keypair))
 }
+\end{lstlisting}
+
+\begin{lstlisting}
+static String sign (String msg) {
+    byte[] sig = SHA1RSAsign(msg.getBytes("UTF-8"), Crypto.getPrivateKey());
+    return Crypto.Base64Encode(sig);
+}
+\end{lstlisting}
+
+\begin{lstlisting}
+static String encrypt(String cmd, String text, PublicKey recipient, NetworkConnection connection) {
+    Message msg = new Message(cmd, text, connection.getTime()+Crypto.rand(0,50), Crypto.sign(text));
+    
+    //encrypt with random AES key with random initalization vectors
+    byte[]     iv = new byte[16];
+    byte[] aeskey = new byte[16];
+    
+    fillWithRandomData(iv);
+    fillWithRandomData(aeskey);
+    
+    byte[] aesCipherText = aes(aeskey, iv, msg.toString().getBytes("UTF-8"));
+            
+    //encrypt AES key with RSA
+    byte[] encryptedAESKey = rsa(Crypto.getPrivateKey(), aeskey);
+            
+    //"iv\RSA encrypted AES key\ciper text"
+    return Base64Encode(iv) + "\\" + Base64Encode(encryptedAESKey) + "\\" + Base64Encode(aesCipherText);
+}
+\end{lstlisting}
+
+\begin{lstlisting}
+static Message decrypt(String msg) {
+    //claim messages are the only plaintext in the system, they will still need
+    //decoding. Decoding here while unintuitive is easier for the rest of
+    //the system because it reduces the impact of this special case.
+    if (msg.substring(0,2).equals("c ")) {
+        String decoding = new String(Base64Decode(msg.substring(2)));
+        return Message.parse(decoding);
+    }
+        
+    String[] tokens = new String[3];
+    StringTokenizer tokenizer = new StringTokenizer(msg, "\\", false);
+    tokens[0] = tokenizer.nextToken();
+    tokens[1] = tokenizer.nextToken();
+    tokens[2] = tokenizer.nextToken();
+        
+    byte[] iv            = Base64Decode(tokens[0]);
+    byte[] cipheredKey   = Base64Decode(tokens[1]);
+    byte[] cipherText    = Base64Decode(tokens[2]);
+            
+    //decrypt AES key
+    Cipher rsa = Cipher.getInstance("RSA");
+    rsa.init(Cipher.DECRYPT_MODE, getPrivateKey());
+    byte[] aesKey = rsa.doFinal(cipheredKey);
+            
+    //decrypt AES Ciphertext
+    SecretKeySpec aesKeySpec = new SecretKeySpec(aesKey, "AES");
+    IvParameterSpec IVSpec = new IvParameterSpec(iv);
+    Cipher aes = Cipher.getInstance("AES/CBC/PKCS5Padding");
+    aes.init(Cipher.DECRYPT_MODE, aesKeySpec, IVSpec);
+    byte[] messagePlaintext = aes.doFinal(cipherText);
+
+    return Message.parse(messagePlaintext);
+    }
 \end{lstlisting}
 
 \section{Database}
