@@ -1,91 +1,36 @@
-\begin{itemize}
-\item the transactions involved for each user activity
-\item how these data are used
-\item 3 categories
-   \begin{itemize}
-    \item data entry
-    \item data update and deletion
-    \item data queries
-    \end{itemize}
-\item transaction should be related to user view, ensure all functions are supported
-\end{itemize}
+\begin{center}
+    \begin{tabular}{ | l | l | l | p{5cm} |}
+    \hline
+    Function        & Table(s) involved & Transaction(s) \\ \hline
+    addClaim()      &                   &                \\ \hline 
+    getClaims       &                   &                \\ \hline 
+    getUsernames    & user              & Read           \\ \hline 
+    addRevocation   & key\_revoke       & Insert         \\ \hline 
+    getRevocations  & key\_revoke       &    Read        \\ \hline 
+    isRevoked()     & key\_revoke       &  Insert        \\ \hline 
+    addPData()      &                   &                \\ \hline 
+    getPData()      &                   &                \\ \hline 
+    createChat()    & private\_message  &  Insert        \\ \hline 
+    getChat()       & private\_message, is\_in\_message             & Read           \\ \hline 
+    addToChat()     & is\_in\_message   &   Insert       \\ \hline 
+    addPost()       & wall\_post        &  Insert        \\ \hline 
+    getPosts()      & wall\_post        &    Read        \\ \hline 
+    addComment()    & has\_comment      &   Insert       \\ \hline 
+    getComments()   & has\_comment      &  Read          \\ \hline 
+    addLike()       & has\_like         &  Insert        \\ \hline 
+    getLikes()      & has\_like         &  Read          \\ \hline 
+    countLikes()    & has\_like         &  Read and count\\ \hline 
+    addEvent()      & events            &    Insert      \\ \hline 
+    getEvent()      & events            &  Read          \\ \hline 
+    acceptEvent()   & events            &   Update       \\ \hline 
+    declineEvent()  & events            &  Update        \\ \hline 
+    addKey()        &                   &                \\ \hline 
+    getKey()        &                   &                \\ \hline 
+    getName()       & user              &  Read          \\ \hline 
+    addFriend()     &                   &                \\ \hline 
+    addCategory()   & category          &     Insert     \\ \hline  
+    addToCategory() & is\_in\_category  &   Insert       \\ \hline 
 
-\section {data entry}
-
-\begin{table}[h]
-    \centering
-    \begin{tabular}{ll}
-    field    & notes\\ \hline
-    username & user is to make his own username\\
-    name     & user is to enter his name (first and last name)\\
-    birthday & user enters his date of birth by selecting the date from a calendar\\
-    sex      & user is to select either his/her sex, male or female\\
-    email    & user is to enter his email address\\
+    \hline
     \end{tabular}
-    \caption{User enters his profile information}
-\end{table}
-
-\todo{user\_id's and post\_id's are local and don't exist outside the DB}
-\begin{table}[h]
-    \centering
-    \begin{tabular}{ll}
-    field              & notes\\ \hline
-    message\_id         & id is to be incremented when a new message is initiated\\
-    from(user\_id)      & system is to insert the user\_id of whoever initiated the message\\
-    to(user\_id)        & user is to select the person whom he wants to send the message to\\
-    content            & content of the message which the user intends to send to the receiver\\
-    message\_times\_date & the time and date is recorded of which the message is sent to the receiver\\
-    \end{tabular}
-    \caption{User starts a new conversation by adding a new message}
-\end{table}
-
-\begin{table}[h]
-    \centering
-    \begin{tabular}{ll}
-    field                 & notes\\ \hline
-    post\_id               & id is to be incremented when a new post is added\\
-    permission\_allowed\_to & user is to choose specific users (he knows) to view his post\\
-    from                  & system is to insert the creator's name of the post\\
-    to                    & the user\_name of the post is inserted if the user directs this post to specific person(s)\\
-    comment\_id            & comment\_id lists down the comment made out from other users\\
-    content               & the content of the post\\
-    message\_time\_date     & the time and date is recorded of which the post is created\\
-    \end{tabular}
-    \caption{user adds a new post}
-\end{table}
-
-\begin{table}[h]
-    \centering
-    \begin{tabular}{ll}
-    field                 & notes\\ \hline
-    event\_id              & id is to be incremented when a new event is added\\
-    title                 & title of the event\\
-    content               & content of the event\\
-    from                  & the user\_id of the person who posted the event\\
-    permission\_allowed\_to & user is to choose specific users (he knows) to view his event\\
-    \end{tabular}
-    \caption{user adds a new event}
-\end{table}
-
-\begin{table}[h]
-    \centering
-    \begin{tabular}{ll}
-    field              & notes\\ \hline
-    comment\_id         & \\
-    post\_id            & \\
-    comment\_from       & \\
-    comment\_time\_ date & \\
-    \end{tabular}
-    \caption{user adds a comment}
-\end{table}
-
-\begin{table}[h]
-    \centering
-    \begin{tabular}{ll}
-    field     & notes\\ \hline
-    like\_id   & \\
-    post\_id   & \\
-    like\_from & \\
-    \end{tabular}
-    \caption{user likes a post}
-\end{table}
+\end{center}

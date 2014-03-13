@@ -34,36 +34,19 @@ The user will be notified when a friend request is sent. The details of the pers
 NB: Public keys are 217 characters long, all id's are auto-incremented.
 
 \begin{table}[!ht]
-\caption{you}
-\centering
-\begin{tabular}{c c c}
-\hline\hline
-Name               & Datatype    & Key \\
-\hline
-username           & VARCHAR(25) & PK   \\
-name               & VARCHAR(30) &      \\
-birthday           & DATE        &      \\
-sex                & VARCHAR(1)  &      \\
-email              & VARCHAR(30) &      \\
-public\_key        & VARCHAR(8)  &      \\
-\hline
-\end{tabular}
-\label{table:nonlin}
-\end{table}
-
-\begin{table}[!ht]
 \caption{user}
 \centering
 \begin{tabular}{c c c}
 \hline\hline
 Name               & Datatype    & Key \\
 \hline
-user\_id           & VARCHAR(8)  & PK \\  % 64-bit has key public key
-username           & VARCHAR(25) &    \\
-name               & VARCHAR(30) &    \\
-birthday           & DATE        &    \\
-sex                & VARCHAR(1)  &    \\
-email              & VARCHAR(30) &    \\
+user\_id           & VARCHAR(50)  & PK \\  % 64-bit has key public key
+username           & VARCHAR(25)  &    \\
+name               & VARCHAR(30)  &    \\
+birthday           & DATE         &    \\
+sex                & VARCHAR(1)   &    \\
+email              & VARCHAR(30)  &    \\
+public\_key        & VARCHAR(8)   & PK \\
 \hline
 \end{tabular}
 \label{table:nonlin}
@@ -78,7 +61,7 @@ Name               & Datatype    & Key \\
 \hline
 is\_in\_id         & INT(10)     & PK   \\
 category\_id       & INT(10)     & FK   \\
-user\_id           & INT(5)      & FK   \\
+user\_id           & INT(50)     & FK   \\
 \hline
 \end{tabular}
 \label{table:nonlin}
@@ -99,7 +82,6 @@ name               & VARCHAR(30) &     \\
 \end{table}
 
 
-
 \begin{table}[!ht]
 \caption{private\_message}
 \centering
@@ -118,6 +100,22 @@ time               & DATE        &     \\
 \end{table}
 
 \begin{table}[!ht]
+\caption{is\_in\_message}
+\centering
+\begin{tabular}{c c c}
+\hline\hline
+Name               & Datatype        & Key \\
+\hline
+is\_in\_id         & VARCHAR(50)     & PK  \\
+time               & DATETIME        &     \\
+message\_id        & VARCHAR(50)     &     \\
+user\_id           & VARCHAR(8)      &     \\
+\hline
+\end{tabular}
+\label{table:nonlin}
+\end{table}
+
+\begin{table}[!ht]
 \caption{wall\_post}
 \centering
 \begin{tabular}{c c c}
@@ -129,7 +127,7 @@ from                    & VARCHAR(8)  & FK  \\
 to                      & VARCHAR(8)  & FK  \\
 permission\_to          & VARCHAR(8)  & FK  \\
 content                 & VARCHAR(50) &     \\
-time                    & DATE        &     \\
+time                    & DATETIME    &     \\
 \hline
 \end{tabular}
 \label{table:nonlin}
@@ -140,12 +138,13 @@ time                    & DATE        &     \\
 \centering
 \begin{tabular}{c c c}
 \hline\hline
-Name               & Datatype    & Key \\
+Name                 & Datatype     & Key \\
 \hline
-comment\_id        & INT(10)     & PK  \\
-post\_id           & INT(10)     & FK  \\
-user\_id           & VARCHAR(8)  & FK  \\
-comment\_time      & DATE        &     \\
+comment\_id          & INT(100)     & PK  \\
+post\_id             & INT(100)     & FK  \\
+user\_id             & VARCHAR(50)  & FK  \\
+comment\_comment\_id & INT(100)     &     \\
+time                 & DATETIME     &     \\
 \hline
 \end{tabular}
 \label{table:nonlin}
@@ -158,9 +157,11 @@ comment\_time      & DATE        &     \\
 \hline\hline
 Name               & Datatype    & Key \\
 \hline
-like\_id           & INT(10)     & PK  \\
-post\_id           & INT(8)      & FK  \\
-user\_id           & VARCHAR(8)  & FK  \\
+like\_id           & INT(100)     & PK  \\
+post\_id           & INT(100)     & FK  \\
+user\_id           & INT(100)     & FK  \\
+comment\_id        & INT(100)     & FK  \\
+time               & DATETIME     &     \\
 \hline
 \end{tabular}
 \label{table:nonlin}
@@ -173,26 +174,29 @@ user\_id           & VARCHAR(8)  & FK  \\
 \hline\hline
 Name                    & Datatype    & Key \\
 \hline
-event\_id               & INT(10)     & PK  \\
-title                   & VARCHAR(10) &     \\
-content                 & VARCHAR(40) &     \\
-from                    & VARCHAR(8)  & FK  \\
-permission\_allowed\_to & VARCHAR(8)  & FK  \\
+event\_id               & INT(100)     & PK  \\
+title                   & VARCHAR(10)  &     \\
+content                 & VARCHAR(40)  &     \\
+time\_created           & DATETIME     & \\
+start\_date              & DATETIME     & \\
+end\_date                & DATETIME     & \\
+from                    & INT(100)     & FK  \\
+invite                  & INT(100)     & FK  \\
+decision\_id            & INT(100)     & \\
 \hline
 \end{tabular}
 \label{table:nonlin}
 \end{table}
 
 \begin{table}[!ht]
-\caption{friend\_request}
+\caption{event\_decision}
 \centering
 \begin{tabular}{c c c}
 \hline\hline
-Name               & Datatype    & Key \\
+Name                    & Datatype    & Key \\
 \hline
-public\_key        & VARCHAR(8)  & PK  \\
-request\_time      & DATE        &     \\
-request\_react     & VARCHAR(10) &     \\ % pending, accepted, rejected
+decision\_id            & INT(100)    & PK  \\
+decision                & VARCHAR(6)  &     \\
 \hline
 \end{tabular}
 \label{table:nonlin}
@@ -206,8 +210,37 @@ request\_react     & VARCHAR(10) &     \\ % pending, accepted, rejected
 Name               & Datatype    & Key \\
 \hline
 log\_id            & INT(10)     & PK  \\
-login\_time        & DATE        &     \\
-logout\_time       & DATE        &     \\
+login\_time        & DATETIME    &     \\
+logout\_time       & DATETIME    &     \\
+\hline
+\end{tabular}
+\label{table:nonlin}
+\end{table}
+
+\begin{table}[!ht]
+\caption{key\_revoke}
+\centering
+\begin{tabular}{c c c}
+\hline\hline
+Name               & Datatype    & Key \\
+\hline
+revoke\_id         & INT(100)     & PK  \\
+signature          & VARCHAR(?)   &     \\
+time               & DATETIME     &     \\
+\hline
+\end{tabular}
+\label{table:nonlin}
+\end{table}
+
+\begin{table}[!ht]
+\caption{message\_claim}
+\centering
+\begin{tabular}{c c c}
+\hline\hline
+Name               & Datatype    & Key \\
+\hline
+username           & VARCHAR(25) & PK  \\
+signature          & VARCHAR(?)  &     \\
 \hline
 \end{tabular}
 \label{table:nonlin}
