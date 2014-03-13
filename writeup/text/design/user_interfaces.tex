@@ -1,9 +1,10 @@
+\section{Interface Research}
 As a social network, the user interface design is of high importance, as a lot 
 of users of the program will have little core system knowledge, and rely 
 entirely on the user interface. As a result we have looked at a variety of 
 options into designing which will be the best for the project.
 
-\section{Swing}
+\subsection{Swing}
 Swing is the primary Java GUI toolkit, providing a basic standpoint for entry 
 level interface designing. Introduced back in 1996, Swing was designed to be 
 an interface style that required minimal changes to the applications code, 
@@ -20,15 +21,20 @@ would be coding the user interface in:
 nineties." - Sebastian Coope
 \end{quote}
 
-Sebastian is not wrong either, as Swing does a very plain feel to it. "Fig ???" 
+Sebastian is not wrong either, as Swing does a very plain feel to it. This figure 
 shows an old instant messaging system written with Swing by one of our team 
 members. As you can see it is unlikely to appeal to the mass market with such 
 visually plain appearance. This makes Swing, unlikely to be our GUI toolkit of 
 choice, despite some of our members experience with it.
 
-\missingfigure{}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{images/requirements/swing.jpg}
+    \caption{Swing Instant Messaging Application}
+    \label{fig:swing_im}
+\end{figure}
 
-\section{Abstract Window Toolkit}
+\subsection{Abstract Window Toolkit}
 Abstract Window Toolkit (otherwise known as AWT), was another choice given 
 that we are programming in Java, and synchronicity between the two would be an 
 advantage. Whilst AWT retained some advantages such as its style blending in 
@@ -38,20 +44,25 @@ the current team has any proficiency with AWT however, and whilst it is
 possible to learn, there are still other options to consider that may provide 
 the use with a more professional GUI build.
 
-\section{Standard Widget Toolkit}
+\subsection{Standard Widget Toolkit}
 Standard Widget Toolkit (otherwise known as SWT), is one of the more promising 
 candidates so far given its look and up-to-date support packages. The latest 
 stable release of SWT was only last year, and is capable of producing programs 
-with a modern and professionally built appearance, as shown in "Fig ???".
+with a modern and professionally built appearance, as shown in the figure.
 
-\missingfigure{}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{images/requirements/swt.jpg}
+    \caption{SWT Appearance Style}
+    \label{fig:swt_style}
+\end{figure}
 
 Unlike both Swing and AWT, SWT is not provided by Sun Microsystems as a part of 
 the Java platform. It is now provided and maintained by the Eclipse Foundation, 
 and provided as a part of their widely used Eclipse IDE, something a lot of the 
 team is familiar with.
 
-\section{GWT}
+\subsection{GWT}
 GWT allows you to create HTML/Javascript based user interfaces for Java 
 applications running locally. The interface is programmed in Java and then GWT 
 creates valid HTML/Javascript automatically. A web server is required in order
@@ -65,7 +76,7 @@ Another advantage of using GWT is the ability to alter the appearance of web
 pages using CSS. This facilitates the creation of a modern, attractive user 
 interface that integrates nicely with current operating systems and software.
 
-\section{Javascript}
+\subsection{Javascript}
 It is possible to create the entire client application in Javascript and use a 
 HTML/Javascript GUI. This approach removes the need for a local web server 
 meaning the only software the user is required to run is a modern web browser.
@@ -82,3 +93,58 @@ cryptography methods.
 The main disadvantage is that in this approach the server operator has complete
 control of the client the user uses. This is unacceptable because we're assuming
 that the server operator is seeking to spy on the user.
+
+\section{GUI Design}
+\subsection{Client Design}
+
+
+\subsection{Server Design}
+Whilst not critically important, as it would only be operated by those with 
+technical knowledge, is still an important aspect to consider. It needs to hold 
+the system level settings and control mechanisms a server client would need, 
+whilst not making them immediately and 'accidentally' accessible via the form of 
+large obvious buttons. The easiest way of doing this is via a command input box 
+beneath a chat log window to provide commands that way. It is also may be an 
+idea to show server data such as memory usage on the operators end, as this data 
+is completely accessible and non-intrusive to the client. The figure labelled 
+'Server Design Image' shows an example of how the server client may be completed.
+Pending on the features allowed in GWT, our method of choice, we will aim for 
+it to retain a similar appearance.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{images/requirements/server.jpg}
+    \caption{Server Design Image}
+    \label{fig:server}
+\end{figure}
+
+\section{Future Work}
+With some of the spare resources available during this phase, we were able to 
+look into some future design work on the mobile front. One of our designers had
+some experience in this field of work and offered to put some images together 
+of what a mobile application version of our product could potentially look like. 
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{images/requirements/mobile_send.jpg}
+    \caption{Mobile Sending Stage GUI}
+    \label{fig:mobile_send}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{images/requirements/mobile_post.jpg}
+    \caption{Mobile Post Stage GUI}
+    \label{fig:mobile_post}
+\end{figure}
+
+The mobile interface data flow diagram shows how the application would flow 
+between screens, giving an idea to the level of depth an application of this 
+size might have.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{images/requirements/mobile_flow_diag.png}
+    \caption{Mobile Data Flow Diagram}
+    \label{fig:mobile_flow}
+\end{figure}
