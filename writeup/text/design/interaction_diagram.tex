@@ -11,7 +11,8 @@
     \node[punktchain, join] (parse) {Parser};
     \node[punktchain, join] (db)    {Database};
     \node[punktchain, join] (gserv) {Local HTTP Server}
-            edge[pil,bend left=45] (netc.west);
+            edge[pil,bend left=55] (netc.west)
+            edge[pil,bend right=45] (db.east);
     \node[punktchain, join] (brows) {Web Browser}
             edge[pil] (gserv.south);
 \end{tikzpicture}
