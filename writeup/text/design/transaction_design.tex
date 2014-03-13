@@ -1,7 +1,14 @@
+The table below shows the transaction details of each function which will be found in the program. There are four types of transactions for databases which are insert, read, update and delete. 
+
+Insertion is done when new data is added into a NULL attribute.
+Read on the other hand, is to view information from selected table(s) and its attribute(s).
+Similar as insertion but update is conducted when data already exists in the particular attribute. This basically removes previous data and add a new one.
+Lastly, delete, as it is self explanatory, deletes the whole tuple from the database. However this is usually avoided in database norms.
+
 \begin{center}
-    \begin{tabular}{ | l | l | l | p{5cm} |}
+    \begin{tabular}{ | p{3cm} | p{5cm} | p{3cm} |}
     \hline
-    Function        & Table(s) involved & Transaction(s) \\ \hline
+    {\bf Function}        & {\bf Table(s) involved} & {\bf Transaction(s)} \\ \hline
     addClaim()      &                   &                \\ \hline 
     getClaims       &                   &                \\ \hline 
     getUsernames    & user              & Read           \\ \hline 
@@ -15,6 +22,13 @@
     addToChat()     & is\_in\_message   &   Insert       \\ \hline 
     addPost()       & wall\_post        &  Insert        \\ \hline 
     getPosts()      & wall\_post        &    Read        \\ \hline 
+    \end{tabular}
+\end{center}
+
+\begin{center}
+    \begin{tabular}{ | p{3cm} | p{5cm} | p{3cm} |}
+    \hline
+    {\bf Function}        & {\bf Table(s) involved} & {\bf Transaction(s)} \\ \hline
     addComment()    & has\_comment      &   Insert       \\ \hline 
     getComments()   & has\_comment      &  Read          \\ \hline 
     addLike()       & has\_like         &  Insert        \\ \hline 
@@ -31,6 +45,5 @@
     addCategory()   & category          &     Insert     \\ \hline  
     addToCategory() & is\_in\_category  &   Insert       \\ \hline 
 
-    \hline
     \end{tabular}
 \end{center}
