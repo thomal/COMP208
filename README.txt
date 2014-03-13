@@ -21,6 +21,7 @@ Current TODO
 class diagram
 pseudocode
 review use of Message class
+pair class in class interfaces
 
 DB needs to store the following:
 revocation     | public key	signature	leaked_at	timestamp

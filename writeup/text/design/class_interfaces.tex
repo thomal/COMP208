@@ -84,45 +84,46 @@ conveinience classes.
 \todo{go over DB interface with GUI guys and aishiah}
 \begin{table}[h]
     \centering
-    \begin{tabular}{p{5cm}p{9cm}}
-    function                             & description\\ \hline
+    \begin{tabular}{p{3cm}p{3cm}p{9cm}}
+    return                & function                             & description\\ \hline
     
-    void                  addClaim()     & adds a username CLAIM message\\
-    pair<string,string>[] getClaims()    & gets all CLAIMs to usernames\\
-    string[]              getUsernames() & gets all usernames\\
+    void                  & addClaim()     & adds a username CLAIM message\\
+    pair<string,string>[] & getClaims()    & gets all CLAIMs to usernames\\
+    string[]              & getUsernames() & gets all usernames\\
     
-    void                    addRevocation()  & adds a keypair revocation\\
-    pair<PublicKey, long>[] getRevocations() & gets all revocations\\
-    boolean                 isRevoked()      & returns the time a key was revoked, if the given key has not been revokes then 0 is returned.\\
+    void                    & addRevocation()  & adds a keypair revocation\\
+    pair<PublicKey, long>[] & getRevocations() & gets all revocations\\
+    boolean                 & isRevoked()      & returns the time a key was revoked, if the given key has not been revokes then 0 is returned.\\
     
-    void   addPData() & adds (or amends existing) profile data\\
-    string getPData() & gets the specified piece of profile data for a specified user\\
+    void   & addPData() & adds (or amends existing) profile data\\
+    string & getPData() & gets the specified piece of profile data for a specified user\\
     
-    void createChat()   & creates new chat\\
-    Message[] getChat() & returns messages from a given chat\\
-    void addToChat()    & adds a post to a given chat\\
+    void                  & createChat() & creates new chat\\
+    pair<string,string>[] & getChat()    & returns messages from a given chat\\
+    void                  & addToChat()  & adds a post to a given chat\\
     
-    void      addPost()  & creates new post, on your or anothers wall\\
-    Message[] getPosts() & gets all posts either within timeframe, or from certain people within a timeframe\\
+    void                  & addPost()  & creates new post, on your or anothers wall\\
+    pair<string,string>[] & getPosts() & gets all posts either within timeframe, or from certain people within a timeframe\\
     
-    void addComment()       & adds a comment onto post or comment\\
-    Message[] getComments() & gets all comments for a post or comment\\
+    void                  &  addComment() & adds a comment onto post or comment\\
+    pair<string,string>[] & getComments() & gets all comments for a post or comment\\
     
-    addLike()        & likes a post or comment\\
-    getLikes()       & gets all likes for a post or comment, or from certain people within a timeframe\\
+    void     & addLike() & likes a post or comment\\
+    String[] & getLikes() & gets all likes from certain person within a timeframe\\
+    int      & countLikes() & gets the number of likes for a comment or post\\
     
-    addEvent()       & adds new event\\
-    getEvent()       & gets all events within timeframe\\
-    acceptEvent()    & accepts notification of an event\\
-    declineEvent()   & declines notification of an event\\
+    void                & addEvent()     & adds new event\\
+    pair<string,long>[] & getEvent()     & gets all events within timeframe\\
+    void                & acceptEvent()  & accepts notification of an event\\
+    void                & declineEvent() & declines notification of an event\\
     
-    addKey()         & adds a public key to the DB\\
-    getKey()         & gets the public key for a usernamne, or all which are stored)\\
-    getName()        & gets a username for the given public key\\
+    void      & addKey()  & adds a public key to the DB\\
+    PublicKey & getKey()  & gets the public key for a usernamne, or all which are stored)\\
+    string    & getName() & gets a username for the given public key\\
 
-    addFriend()      & adds the given friend to the DB\\
-    addCategory()    & adds a new category to the DB\\
-    addToCategory()  & adds a user to a category\\
+    void & addFriend()     & adds the given friend to the DB\\
+    void & addCategory()   & adds a new category to the DB\\
+    void & addToCategory() & adds a user to a category\\
     \end{tabular}
     \caption{Database}
 \end{table}
