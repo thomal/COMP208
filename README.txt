@@ -21,10 +21,6 @@ Current TODO
 class diagram
 pseudocode
 
-DB needs to store the following:
-revocation     | public key	signature	leaked_at	timestamp
-claim messages | username  	signature	timestamp
-
 ------------------------------------------
 Meeting #7 Minutes (Friday, 07/03/2014)
 ------------------------------------------
