@@ -20,12 +20,7 @@ Current TODO
 ------------------------------------------
 class diagram
 pseudocode
-review use of Message class
-specify what is static in class interaces
-
-DB needs to store the following:
-revocation     | public key	signature	leaked_at	timestamp
-claim messages | username  	signature	timestamp
+update DFD to show parser authentication
 
 ------------------------------------------
 Meeting #7 Minutes (Friday, 07/03/2014)
