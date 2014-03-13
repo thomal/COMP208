@@ -101,7 +101,50 @@ that the server operator is seeking to spy on the user.
 \subsection{Server Design}
 Whilst not critically important, as it would only be operated by those with 
 technical knowledge, is still an important aspect to consider. It needs to hold 
-the system level settings and control mechanisms 
+the system level settings and control mechanisms a server client would need, 
+whilst not making them immediately and 'accidentally' accessible via the form of 
+large obvious buttons. The easiest way of doing this is via a command input box 
+beneath a chat log window to provide commands that way. It is also may be an 
+idea to show server data such as memory usage on the operators end, as this data 
+is completely accessible and non-intrusive to the client. The figure labelled 
+'Server Design Image' shows an example of how the server client may be completed.
+Pending on the features allowed in GWT, our method of choice, we will aim for 
+it to retain a similar appearance.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{images/requirements/server.jpg}
+    \caption{Server Design Image}
+    \label{fig:server}
+\end{figure}
 
 \section{Future Work}
-Leons image going here yo~
+With some of the spare resources available during this phase, we were able to 
+look into some future design work on the mobile front. One of our designers had
+some experience in this field of work and offered to put some images together 
+of what a mobile application version of our product could potentially look like. 
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{images/requirements/mobile_send.jpg}
+    \caption{Mobile Sending Stage GUI}
+    \label{fig:mobile_send}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{images/requirements/mobile_post.jpg}
+    \caption{Mobile Post Stage GUI}
+    \label{fig:mobile_post}
+\end{figure}
+
+The mobile interface data flow diagram shows how the application would flow 
+between screens, giving an idea to the level of depth an application of this 
+size might have.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{images/requirements/mobile_flow_diag.png}
+    \caption{Mobile Data Flow Diagram}
+    \label{fig:mobile_flow}
+\end{figure}
