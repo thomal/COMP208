@@ -16,9 +16,15 @@ KAWAII TURTLE~
 
 
 ------------------------------------------
-Proposed Agenda Items
+Current TODO
 ------------------------------------------
-Class diagram to match class interfaces section
+class diagram
+pseudocode
+review use of Message class
+
+DB needs to store the following:
+revocation     | public key	signature	leaked_at	timestamp
+claim messages | username  	signature	timestamp
 
 ------------------------------------------
 Meeting #7 Minutes (Friday, 07/03/2014)

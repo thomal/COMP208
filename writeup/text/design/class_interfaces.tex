@@ -85,44 +85,44 @@ conveinience classes.
 \begin{table}[h]
     \centering
     \begin{tabular}{p{5cm}p{9cm}}
-    function                 & description\\ \hline
+    function                             & description\\ \hline
     
-    addClaim        & \\
-    getClaims       & \\
-    getUsernames    & \\
+    void                  addClaim()     & adds a username CLAIM message\\
+    pair<string,string>[] getClaims()    & gets all CLAIMs to usernames\\
+    string[]              getUsernames() & gets all usernames\\
     
-    addRevocation   & \\
-    getRevocations  & \\
+    void                    addRevocation()  & adds a keypair revocation\\
+    pair<PublicKey, long>[] getRevocations() & gets all revocations\\
+    boolean                 isRevoked()      & returns the time a key was revoked, if the given key has not been revokes then 0 is returned.\\
     
-    addPData        & \\
-    getPData        & \\
+    void   addPData() & adds (or amends existing) profile data\\
+    string getPData() & gets the specified piece of profile data for a specified user\\
     
-    createChat      & creates new chat log\\
-    getChat         & receiving chat messages\\
-    addToChat       & add user(s) into the conversation\\
-    getPostsInChat  & \\
+    void createChat()   & creates new chat\\
+    Message[] getChat() & returns messages from a given chat\\
+    void addToChat()    & adds a post to a given chat\\
     
-    addPost         & creates new post and added onto either the wall or someone else's wall\\
-    getPosts        & (within timeframe, from certain people within timeframe)\\
+    void      addPost()  & creates new post, on your or anothers wall\\
+    Message[] getPosts() & gets all posts either within timeframe, or from certain people within a timeframe\\
     
-    addComment      & adds comment onto post or another comment\\
-    getComment      & (within timeframe, from certain people within timeframe)\\
+    void addComment()       & adds a comment onto post or comment\\
+    Message[] getComments() & gets all comments for a post or comment\\
     
-    addLike         & adds like onto post or comments\\
-    getLikes        & (within timeframe, from certain people within timeframe)\\
+    addLike()        & likes a post or comment\\
+    getLikes()       & gets all likes for a post or comment, or from certain people within a timeframe\\
     
-    addEvent        & adds new event\\
-    getEvent        & (within timeframe, for person, or those that you've agreed to or rejected)\\
-    acceptEvent     & sending acceptance to an event invitation\\
-    declineEvent    & sending a decline to an event inivitation\\
+    addEvent()       & adds new event\\
+    getEvent()       & gets all events within timeframe\\
+    acceptEvent()    & accepts notification of an event\\
+    declineEvent()   & declines notification of an event\\
     
-    addKey          & \\
-    getKey          & (for usernamne, all stored)\\
-    getName         & \\
+    addKey()         & adds a public key to the DB\\
+    getKey()         & gets the public key for a usernamne, or all which are stored)\\
+    getName()        & gets a username for the given public key\\
 
-    addFriend()     & adds the given friend to the DB\\
-    addCategory()   & adds a new category to the DB\\
-    addToCategory() & adds a user to a category\\
+    addFriend()      & adds the given friend to the DB\\
+    addCategory()    & adds a new category to the DB\\
+    addToCategory()  & adds a user to a category\\
     \end{tabular}
     \caption{Database}
 \end{table}
