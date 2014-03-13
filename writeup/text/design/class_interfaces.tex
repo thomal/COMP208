@@ -11,7 +11,7 @@ conveinience classes.
     \centering
     \begin{tabular}{p{1cm}p{1cm}p{3cm}}
     return & function & description\\ \hline
-    void   & main() & starts the server\\
+    void   & main() & (static) starts the server\\
     \end{tabular}
     \caption{Server}
 \end{table}
@@ -20,7 +20,7 @@ conveinience classes.
     \centering
     \begin{tabular}{p{1cm}p{1cm}p{9cm}}
     return & function & description\\ \hline
-    void   & main()   & constructs and starts all nececary classes and threads, runs the main loop\\
+    void   & main()   & (static) constructs and starts all nececary classes and threads, runs the main loop\\
     \end{tabular}
     \caption{Client}
 \end{table}
@@ -53,21 +53,21 @@ conveinience classes.
     \centering
     \begin{tabular}{p{1.4cm}p{3.3cm}p{9cm}}
     return     & function        & description\\ \hline
-    boolean    & keysExist()     & return true if the user has a keypair, false otherwise\\
-    void       & keyGen()        & generate a keypair for the user\\
-    PublicKey  & getPublicKey()  & returns the users public key\\
-    PrivateKey & getPrivateKey() & returns the users private key\\
+    boolean    & keysExist()     & (static) return true if the user has a keypair, false otherwise\\
+    void       & keyGen()        & (static) generate a keypair for the user\\
+    PublicKey  & getPublicKey()  & (static) returns the users public key\\
+    PrivateKey & getPrivateKey() & (static) returns the users private key\\
 
-    String     & sign()      & returns an RSA signature of the passed string\\
-    boolean    & verifySig() & returns true if author signed msg, false otherwise\\
-    String     & encrypt()   & returns an encrypted message constructed from the passed parameters\\
-    Message    & decrypt()   & decrypts the passed string, returns the appropriate message, on failure a NULL message is returned\\
-    String    & base64Encode() & base64 encodes the passed data, returns the string\\
-    byte[]    & base64Decode() & base64 decodes the passed data, returns the byte[]\\
-    String    & encodeKey()    & encodes a public key as a string, returns that string (X509)\\
-    PublicKey & decodeKey() & decodes a public key encoded as a string, returns that public key(X509)\\
-    String    & hash ()        & returns the SHA256 hash the the passed string as a hex string\\
-    int       & rand ()           & returns a pseudorandom value <= max and >= min\\
+    String     & sign()      & (static) returns an RSA signature of the passed string\\
+    boolean    & verifySig() & (static) returns true if author signed msg, false otherwise\\
+    String     & encrypt()   & (static) returns an encrypted message constructed from the passed parameters\\
+    Message    & decrypt()   & (static) decrypts the passed string, returns the appropriate message, on failure a NULL message is returned\\
+    String    & base64Encode() & (static) base64 encodes the passed data, returns the string\\
+    byte[]    & base64Decode() & (static) base64 decodes the passed data, returns the byte[]\\
+    String    & encodeKey()    & (static) encodes a public key as a string, returns that string (X509)\\
+    PublicKey & decodeKey()    & (static) decodes a public key encoded as a string, returns that public key(X509)\\
+    String    & hash ()        & (static) returns the SHA256 hash the the passed string as a hex string\\
+    int       & rand ()        & (static) returns a pseudorandom value <= max and >= min\\
     \end{tabular}
     \caption{Crypto}
 \end{table}
@@ -76,7 +76,7 @@ conveinience classes.
     \centering
     \begin{tabular}{p{1cm}p{2.6cm}p{9cm}}
     return & function & description\\ \hline
-    void   & parse()  & parses a sting message, records parsed data in the database\\
+    void   & parse()  & (static) parses a sting message, records parsed data in the database\\
     \end{tabular}
     \caption{Parser}
 \end{table}
@@ -146,7 +146,7 @@ conveinience classes.
     return  & function       & description\\ \hline
     N/A     & Message()      & Consturcts a message with given data\\
     
-    Message & parse()        & parses the string representation of a message into a message\\
+    Message & parse()        & (static) parses the string representation of a message into a message\\
     
     String  & toString()     & creates a string representation of the message\\
     String  & getCmd()       & returns the type of message\\

@@ -20,8 +20,6 @@ Current TODO
 ------------------------------------------
 class diagram
 pseudocode
-review use of Message class
-specify what is static in class interaces
 
 DB needs to store the following:
 revocation     | public key	signature	leaked_at	timestamp
