@@ -1,1 +1,59 @@
-\todo{List important functions, copy/paste from java and edit}
+\section{Server}
+\begin{lstlisting}
+static void main () {
+    startGUIthread()
+    startServer()
+}
+\end{lstlisting}
+
+\begin{lstlisting}
+static void start () {
+    socket = new ServerSocket(port);
+    while (running) {
+        incoming = socket.accept();
+        t = new Thread(new Session(incoming));
+        t.start();
+    }
+    
+    shutdown();
+}
+\end{lstlisting}
+
+\section{Client}
+\begin{lstlisting}
+static void main () {
+    NetworkConnection connection    = new NetworkConnection("server.tld");
+    Thread            networkThread = new Thread(connection);
+    Database          db            = new Database("./db");
+    GUI               gui           = new GUI(db, connection);
+    Thread            guiThread     = new Thread(gui);
+        
+    if (!Crypto.keysExist())
+        Crypto.keyGen();
+        
+    networkThread.start();
+    guiThread.start();
+        
+    while (gui.isRunning())
+        while (connection.hasMessage())
+            Parser.parse(Crypto.decrypt(connection.getMessage()), db);
+}
+\end{lstlisting}
+
+\section{Crypto}
+\begin{lstlisting}
+keyGen () {
+    keypair = generateRSA()
+    pw      = getUserInputString();
+    filesystem.write("keypair.rsa.aes", Crypto.aes(pw, keypair))
+}
+\end{lstlisting}
+
+\section{Database}
+
+\section{Network Connection}
+
+\section{Parser}
+
+\section{GUI}
+
