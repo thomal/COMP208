@@ -17,7 +17,7 @@ would be coding the user interface in:
 
 \begin{quote}
 "You should avoid Swing to prevent it looking like it was done in the 
-seventies." - Sebastian Coope
+nineties." - Sebastian Coope
 \end{quote}
 
 Sebastian is not wrong either, as Swing does a very plain feel to it. "Fig ???" 
@@ -33,9 +33,10 @@ Abstract Window Toolkit (otherwise known as AWT), was another choice given
 that we are programming in Java, and synchronicity between the two would be an 
 advantage. Whilst AWT retained some advantages such as its style blending in 
 with each operating system it runs on, it is even older than Swing being Java's 
-original toolkit, as per such making it redundant for this project.\todo{rsa is
-18 years older, we're going to need a better reason about how it's wierd for
-users, web tech is more developed for this type of application, or something}
+original toolkit, making any GUI displayed via it look rather dated. None of the
+the current team has any proficiency with AWT however, and whilst it is 
+possible to learn, there are still other options to consider that may provide 
+the use with a more professional GUI build.
 
 \section{Standard Widget Toolkit}
 Standard Widget Toolkit (otherwise known as SWT), is one of the more promising 
@@ -81,8 +82,3 @@ cryptography methods.
 The main disadvantage is that in this approach the server operator has complete
 control of the client the user uses. This is unacceptable because we're assuming
 that the server operator is seeking to spy on the user.
-
-\begin{comment}
-Starts to get more into client side logic here but I think it is important to 
-mention as this method would require an entire rewrite of the client. -Louis-
-\end{comment}

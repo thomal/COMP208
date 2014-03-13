@@ -9,74 +9,74 @@ conveinience classes.
 
 \begin{table}[h]
     \centering
-    \begin{tabular}{p{2cm}p{3cm}}
-    function    & description\\ \hline
-    void main() & starts the server\\
+    \begin{tabular}{p{1cm}p{1cm}p{3cm}}
+    return & function & description\\ \hline
+    void   & main() & starts the server\\
     \end{tabular}
     \caption{Server}
 \end{table}
 
 \begin{table}[h]
     \centering
-    \begin{tabular}{p{2cm}p{9cm}}
-    function    & description\\ \hline
-    void main() & constructs and starts all nececary classes and threads, runs the main loop\\
+    \begin{tabular}{p{1cm}p{1cm}p{9cm}}
+    return & function & description\\ \hline
+    void   & main()   & constructs and starts all nececary classes and threads, runs the main loop\\
     \end{tabular}
     \caption{Client}
 \end{table}
 
 \begin{table}[h]
     \centering
-    \begin{tabular}{p{3.6cm}p{9cm}}
-    function             & description\\ \hline
-    NetworkConnection()  & Constructs a NetworkConnection and connects to the given URL (through tor)\\
-    void run()           & periodically download new messages until asked to close, downloaded messages are stored in a FIFO buffer\\
-    void close()         & kills the thread started by run()\\
-    boolean hasMessage() & return true if there is a message in the buffer, false otherwise\\
-    String getMessage()  & return the oldest message in the buffer\\
+    \begin{tabular}{p{1cm}p{2.8cm}p{9cm}}
+    return   & function            & description\\ \hline
+    N/A      & NetworkConnection() & Constructs a NetworkConnection and connects to the given URL (through tor)\\
+    void     & run()               & periodically download new messages until asked to close, downloaded messages are stored in a FIFO buffer\\
+    void     & close()             & kills the thread started by run()\\
+    boolean  & hasMessage()        & return true if there is a message in the buffer, false otherwise\\
+    String   & getMessage()        & return the oldest message in the buffer\\
     
-    boolean claimName()  & claim a given username, returns true on success, false otherwise\\
-    void revokeKeypair() & revokes your keypair\\
-    void pdata()         & adds or updates profile infomration\\
-    void chat()          & begins or continues a conversaion\\
-    void post()          & post a message to your wall\\
-    void fpost()         & post a message to a friends wall\\
-    void comment()       & comment on a comment or post\\
-    void like()          & like a comment or post\\
-    void event()         & create an event\\
-    void revoke()        & revoke your keypair\\
+    boolean  & claimName()     & claim a given username, returns true on success, false otherwise\\
+    void     & revokeKeypair() & revokes your keypair\\
+    void     & pdata()         & adds or updates profile infomration\\
+    void     & chat()          & begins or continues a conversaion\\
+    void     & post()          & post a message to your wall\\
+    void     & fpost()         & post a message to a friends wall\\
+    void     & comment()       & comment on a comment or post\\
+    void     & like()          & like a comment or post\\
+    void     & event()         & create an event\\
+    void     & revoke()        & revoke your keypair\\
     \end{tabular}
     \caption{NetworkConnection}
 \end{table}
 
 \begin{table}[h]
     \centering
-    \begin{tabular}{p{4.3cm}p{9cm}}
-    function                   & description\\ \hline
-    boolean keysExist()        & return true if the user has a keypair, false otherwise\\
-    void keyGen()              & generate a keypair for the user\\
-    PublicKey getPublicKey()   & returns the users public key\\
-    PrivateKey getPrivateKey() & returns the users private key\\
+    \begin{tabular}{p{1.4cm}p{3.3cm}p{9cm}}
+    return     & function        & description\\ \hline
+    boolean    & keysExist()     & return true if the user has a keypair, false otherwise\\
+    void       & keyGen()        & generate a keypair for the user\\
+    PublicKey  & getPublicKey()  & returns the users public key\\
+    PrivateKey & getPrivateKey() & returns the users private key\\
 
-    String sign()         & returns an RSA signature of the passed string\\
-    boolean verifySig()   & returns true if author signed msg, false otherwise\\
-    String encrypt()      & returns an encrypted message constructed from the passed parameters\\
-    Message decrypt()     & decrypts the passed string, returns the appropriate message, on failure a NULL message is returned\\
-    String base64Encode() & base64 encodes the passed data, returns the string\\
-    byte[] base64Decode() & base64 decodes the passed data, returns the byte[]\\
-    String encodeKey()    & encodes a public key as a string, returns that string (X509)\\
-    PublicKey decodeKey() & decodes a public key encoded as a string, returns that public key(X509)\\
-    String hash ()        & returns the SHA256 hash the the passed string as a hex string\\
-    int rand ()           & returns a pseudorandom value <= max and >= min\\
+    String     & sign()      & returns an RSA signature of the passed string\\
+    boolean    & verifySig() & returns true if author signed msg, false otherwise\\
+    String     & encrypt()   & returns an encrypted message constructed from the passed parameters\\
+    Message    & decrypt()   & decrypts the passed string, returns the appropriate message, on failure a NULL message is returned\\
+    String    & base64Encode() & base64 encodes the passed data, returns the string\\
+    byte[]    & base64Decode() & base64 decodes the passed data, returns the byte[]\\
+    String    & encodeKey()    & encodes a public key as a string, returns that string (X509)\\
+    PublicKey & decodeKey() & decodes a public key encoded as a string, returns that public key(X509)\\
+    String    & hash ()        & returns the SHA256 hash the the passed string as a hex string\\
+    int       & rand ()           & returns a pseudorandom value <= max and >= min\\
     \end{tabular}
     \caption{Crypto}
 \end{table}
 
 \begin{table}[h]
     \centering
-    \begin{tabular}{p{3.6cm}p{9cm}}
-    function     & description\\ \hline
-    void parse() & parses a sting message, records parsed data in the database\\
+    \begin{tabular}{p{1cm}p{2.6cm}p{9cm}}
+    return & function & description\\ \hline
+    void   & parse()  & parses a sting message, records parsed data in the database\\
     \end{tabular}
     \caption{Parser}
 \end{table}
@@ -85,7 +85,7 @@ conveinience classes.
 \begin{table}[h]
     \centering
     \begin{tabular}{p{3cm}p{3cm}p{9cm}}
-    return                & function                             & description\\ \hline
+    return                & function       & description\\ \hline
     
     void                  & addClaim()     & adds a username CLAIM message\\
     pair<string,string>[] & getClaims()    & gets all CLAIMs to usernames\\
@@ -130,37 +130,36 @@ conveinience classes.
 
 \begin{table}[h]
     \centering
-    \begin{tabular}{p{3.6cm}p{9cm}}
-    function     & description\\ \hline
-    GUI()        & Constructs a GUI\\
-    void run()   & continually updates the GUI from the DB\\
-    void close() & kills the GUIServer thread\\
-    
-    boolean isRunning() & returns true if the GUIServer is running, false otherwise\\
+    \begin{tabular}{p{1cm}p{2.6cm}p{9cm}}
+    return  & function    & description\\ \hline
+    N/A     & GUI()       & Constructs a GUI\\
+    void    & run()       & continually updates the GUI from the DB\\
+    void    & close()     & kills the GUIServer thread\\
+    boolean & isRunning() & returns true if the GUIServer is running, false otherwise\\
     \end{tabular}
     \caption{GUI}
 \end{table}
 
 \begin{table}[h]
     \centering
-    \begin{tabular}{p{3.6cm}p{9cm}}
-    function            & description\\ \hline
-    Message()           & Consturcts a message with given data\\
+    \begin{tabular}{p{1cm}p{2.6cm}p{9cm}}
+    return  & function       & description\\ \hline
+    N/A     & Message()      & Consturcts a message with given data\\
     
-    Message parse()     & parses the string representation of a message into a message\\
+    Message & parse()        & parses the string representation of a message into a message\\
     
-    String toString()   & creates a string representation of the message\\
-    String getCmd()     & returns the type of message\\
-    String getContent() & returns the content of the message\\
-    String getSig()     & returns the RSA signature on the message\\
-    long getTimestamp() & returns the timestamp on the message\\
+    String  & toString()     & creates a string representation of the message\\
+    String  & getCmd()       & returns the type of message\\
+    String  & getContent()   & returns the content of the message\\
+    String  & getSig()       & returns the RSA signature on the message\\
+    long    & getTimestamp() & returns the timestamp on the message\\
     \end{tabular}
     \caption{Message}
 \end{table}
 
 \begin{table}[h]
     \centering
-    \begin{tabular}{p{1cm}{2cm}p{9cm}}
+    \begin{tabular}{p{1cm}p{2cm}p{9cm}}
     return & function & description\\ \hline
     
     N/A    & Pair()   & Consturcts a pair with given data\\
