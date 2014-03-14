@@ -6,17 +6,17 @@ of someone, you may discover their name in the service, but not vice versa.\\
 
 \textbf{Connecting for the first time} Every unencrypted message stored on the
 server is downloaded(signed nicknames and nothing more). At this time the local
-database contains only signed messages
-claiming usernames. The public keys are not provided, these are of use only when
-you learn the public key behind a name. The rationale for not providing public
-keys is provided in the section regarding adding a friend. Messages posted
-after your name was claimed will require downloading too, as once you claim a
-name people may send you messages. It's worth noting that messages from before
-you connected for the first time are now downloaded because they can not have
-been sent to you (with a complient client) if someone retroactivly grants you
-permission to view something they publish it as a new message with an old
-timestamp; the sole exception to this is when you connect using a new device,
-in which case all messages since you first claimed a name will be downloaded.\\
+database contains only signed messages claiming usernames. The public keys are 
+not provided, these are of use only when you learn the public key behind a name. 
+The rationale for not providing public keys is provided in the section regarding 
+adding a friend. Messages posted after your name was claimed will require 
+downloading too, as once you claim a name people may send you messages. It's 
+worth noting that messages from before you connected for the first time are now 
+downloaded because they can not have been sent to you (with a compliment client) 
+if someone retroactively grants you permission to view something they publish it 
+as a new message with an old timestamp; the sole exception to this is when you 
+connect using a new device, in which case all messages since you first claimed a 
+name will be downloaded.\\
 
 \textbf{Connecting subsequently} The client requests every message stored on the
 server since the last time they connected up to the present. Decryptable
@@ -26,22 +26,22 @@ messages are used to update the local DB, others are discarded.\\
 the server every 0.5-5 seconds (configurable by the user).\\
 
 \textbf{Adding a friend} is performed by having a friend email (or otherwise
-transfere) you their public key. This is input to the client, and it finds their
-username (via public posting that occured when registering). You may now
-interact with that person. They may not interact with you until they recieve
-your public key. Public key transferal will be performed via exchaning plaintext
+transfer) you their public key. This is input to the client, and it finds their
+username (via public posting that occurred when registering). You may now
+interact with that person. They may not interact with you until they receive
+your public key. Public key transferral will be performed via exchanging plaintext
 base64 encoded strings, or QR codes. The user will be prompted, after retrieving
-the username of the user, to catagorise them.\\
+the username of the user, to categorise them.\\
 
 \textbf{Talking with a friend or posting on your wall} is achieved by writing
 a message, signing it with your private key, and encrypting one copy of it with
-each of the recipiants public keys before posting it to the server. The client
-prevents one from posting a message to someones public key if they have not
+each of the recipients public keys before posting it to the server. The client
+prevents one from posting a message to someone's public key if they have not
 claimed a nickname.\\
 
 \textbf{Posting to a friends wall, commenting and liking} may be requested by
 sending a EPOST/CMNT/LIKE message to the friend (upon whose wall/post you are
-posting, commenting or liking), when that friend logs in they will recieve your
+posting, commenting or liking), when that friend logs in they will receive your
 request and may confirm or deny it. If they confirm then they take your (signed)
 message and transmit it to each of their friends as previously described. Given
 that authentication is entirely based on crypto signatures it doesn't matter

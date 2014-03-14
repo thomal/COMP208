@@ -1,28 +1,28 @@
 \section{Network Architecture}
 Turtlenet is a centralized service, whereby a large number of clients connect to
-a single server which provides storage and facillitates communication between
+a single server which provides storage, and facilitates communication between
 clients.
 
-Due to the inherantly limited network size (5-50K users per server depending on
+Due to the inherently limited network size (5-50K users per server depending on
 percentage of active participants vs consumers and local internet speeds) we
-reccomend that servers serve a particular interest group or geographic locality.
+recommend that servers serve a particular interest group or geographic locality.
 
 Clients send messages to, and only to, these central servers. Due to the fact
 that all messages (except CLAIM messages, see client-server/client-client
-protocols for details) are encrypted the server does not maintain a databse, it
-cannot; rather clients each maintain their own local databased populated with
+protocols for details) are encrypted the server does not maintain a database, it
+cannot; rather clients each maintain their own local database, populated with
 such information to which they have been granted access.
 
-When a client wishes to send a message to a person they encrypt the message with
+When a client wishes to send a message to a person, they encrypt the message with
 the public key of the recipient\footnote{using RSA/AES, see protocol for
 details} and upload it to the server. It is important to note that all network
 connections are performed via Tor.
 
 When a client wishes to view messages sent to them, they download all messages
-posted to the server since they last downloaded all messages from it and attempt
+posted to the server since they last downloaded all messages from it, and attempt
 to decrypt them all with their private key; those messages the client
 successfully decrypts (message decryption/integrity is verified via SHA256 hash)
-where intended for it and parsed. During the parsing of a message the sender is
+were intended for it and parsed. During the parsing of a message the sender is
 determined by seeing which known public key can verify the RSA signature.
 
 Due to the nature of data storage in client-local databases, all events and data
