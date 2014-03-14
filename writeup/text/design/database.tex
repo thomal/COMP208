@@ -2,30 +2,58 @@
 
 \section{Database execution }
 % What are the execution methods when these functionalities are carried out
-In this section, we go through the execution methods of the database based on the transactions that have been carried out within the system. This also shows where the data is expected to roughly end up, however this will be explained in greater detail along with the diagrams which will be found later in this document.
+In this section, we go through the execution methods of the database based on 
+the transactions that have been carried out within the system. This also shows 
+where the data is expected to roughly end up, however this will be explained in 
+greater detail along with the diagrams which will be found later in this 
+document.
 
-Stakeholders and users have to be aware that due to lightweight database files are stored locally in each users' computer, there are a number of databases involve when the transactions are carried out. The reason why it is designed this way is to ensure and avoid any malicious activities conducted especially by the server. 
+Stakeholders and users have to be aware that due to lightweight database files 
+are stored locally in each users' computer, there are a number of databases 
+involve when the transactions are carried out. The reason why it is designed 
+this way is to ensure and avoid any malicious activities conducted especially 
+by the server. 
 
 \subsection{User adds post, comment and event}
-When a user adds a content into Turtlenet such as posts, comments and events, the system is expected to capture these details and add them into its respective tables. The database system is expected to log the posts, comments and events by capturing the time and date when the transaction is carried out.
+When a user adds a content into Turtlenet such as posts, comments and events, 
+the system is expected to capture these details and add them into its 
+respective tables. The database system is expected to log the posts, comments 
+and events by capturing the time and date when the transaction is carried out.
 
 \subsection{User creates and sends message to another user}
-As when the user creates a message then sends it, the database system is expected to store the message and log it by recording its date and time of which the message is sent. Other details like the reciever's user\_id are inserted into the database well.
+As when the user creates a message then sends it, the database system is 
+expected to store the message and log it by recording its date and time of 
+which the message is sent. Other details like the receiver's user\_id are 
+inserted into the database well.
 
 \subsection{User sends a friend request to another user}
-When the user sends a request to others, this request will be sent and the details will be captured and recorded into the other user's local database file under the friend request table. This will be stored in this table until which the user decides to either accept or reject the invitation.
+When the user sends a request to others, this request will be sent and the 
+details will be captured and recorded into the other user's local database 
+file under the friend request table. This will be stored in this table until 
+which the user decides to either accept or reject the invitation.
 
 \subsection{User receives a friend request from another user}
-Another situation with the friend request is when a user receives a friend request, this time the information such as the public key will be recorded into the user's local database until which the user decides to do something either accept or reject it.
+Another situation with the friend request is when a user receives a friend 
+request, this time the information such as the public key will be recorded 
+into the user's local database until which the user decides to do something 
+either accept or reject it.
 
 \subsection{A user adds a relation}
-When a user adds a relation, the details of this related user will be captured, such as his profile, and will be added into the users table. From then on, the user can see his relation's profile information. 
+When a user adds a relation, the details of this related user will be captured, 
+such as his profile, and will be added into the users table. From then on, the 
+user can see his relation's profile information. 
 
 \subsection{User receives a message} 
-As the user receives a message, it will be stored in the message table along with other details such as the date and time, and the sender's details.
+As the user receives a message, it will be stored in the message table along 
+with other details such as the date and time, and the sender's details.
 
 \subsection{User receives a friend request}
-The user will be notified when a friend request is sent. The details of the person who sends the request will be recorded in the database. The user has two options to deal with a friend request, either to accept or reject it. Once it is accepted, the profile details of the sender will be stored in the user's local database, same goes to the user's details store on the sender's local database.
+The user will be notified when a friend request is sent. The details of the 
+person who sends the request will be recorded in the database. The user has 
+two options to deal with a friend request, either to accept or reject it. Once 
+it is accepted, the profile details of the sender will be stored in the user's 
+local database, same goes to the user's details store on the sender's local 
+database.
 
 \clearpage
 

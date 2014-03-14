@@ -1,9 +1,13 @@
-The table below shows the transaction details of each function which will be found in the program. There are four types of transactions for databases which are insert, read, update and delete. 
+The table below shows the transaction details of each function which will be 
+found in the program. There are four types of transactions for databases which 
+are insert, read, update and delete. 
 
-Insertion is done when new data is added into a NULL attribute.
-Read on the other hand, is to view information from selected table(s) and its attribute(s).
-Similar as insertion but update is conducted when data already exists in the particular attribute. This basically removes previous data and add a new one.
-Lastly, delete, as it is self explanatory, deletes the whole tuple from the database. However this is usually avoided in database norms.
+Insertion is done when new data is added into a NULL attribute. Read on the 
+other hand, is to view information from selected table(s) and its attribute(s).
+Similar as insertion but update is conducted when data already exists in the 
+particular attribute. This basically removes previous data and add a new one.
+Lastly, delete, as it is self explanatory, deletes the whole tuple from the 
+database. However this is usually avoided in database norms.
 
 \begin{center}
     \begin{tabular}{ | p{3cm} | p{5cm} | p{3cm} |}
@@ -13,8 +17,8 @@ Lastly, delete, as it is self explanatory, deletes the whole tuple from the data
     getClaims       &                   &                \\ \hline 
     getUsernames    & user              & Read           \\ \hline 
     addRevocation   & key\_revoke       & Insert         \\ \hline 
-    getRevocations  & key\_revoke       & Read        \\ \hline 
-    isRevoked()     & key\_revoke       & Insert        \\ \hline 
+    getRevocations  & key\_revoke       & Read           \\ \hline 
+    isRevoked()     & key\_revoke       & Insert         \\ \hline 
     addPData()      &                   &                \\ \hline 
     getPData()      &                   &                \\ \hline 
     createChat()    & private\_message  &  Insert        \\ \hline 

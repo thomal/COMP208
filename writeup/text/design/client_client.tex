@@ -1,10 +1,10 @@
 \section{Summary}
-\todo{consider computational cost of seperating RSA header and AES message}
+\todo{consider computational cost of separating RSA header and AES message}
 All client-client communication is mediated by the server. When one client
 wishes to send a message to another it encrypts the message with the public key
 associated with the recipient and uploads it to the server. When one client
-wishes to recieve a message it downloads all new messages from the server and
-parses those it can decrypt. This is performed in order to hide who recieves a
+wishes to receive a message it downloads all new messages from the server and
+parses those it can decrypt. This is performed in order to hide who receives a
 message. All messages except CLAIM messages are encrypted. Multiple recipients
 imply multiple messages being uploaded, this is taken for granted in the text
 which follows.
@@ -181,7 +181,7 @@ POST\textbackslash
 \end{center}
 
 The format of message is merely UTF-8 text, with backslashes escaped with
-blackslashes.
+backslashes.
 
 An example follows which contains the text "Hello, World!", a newline, "foo
 \textbackslash bar\textbackslash baz":
@@ -194,7 +194,7 @@ foo\textbackslash\textbackslash bar\textbackslash\textbackslash baz\textbackslas
 \textless \textit{timestamp}\textgreater
 \end{center}
 
-\section{Posting on anothers wall}
+\section{Posting on another users wall}
 A user may request to post on a friends wall by sending them an FPOST message,
 the poster may not decide who is able to view the message. The format is
 identical to that of a POST message, except for the command and singular
@@ -207,7 +207,7 @@ Hello, World!\textbackslash
 \textless \textit{timestamp}\textgreater
 \end{center}
 
-Upon recipt of an FPOST message the friend is prompted by the client to choose
+Upon receipt of an FPOST message the friend is prompted by the client to choose
 whether or not to display it, and if so who may view it. Once this is done the
 friend reposts the message with the command changed to POST instead of FPOST as
 they would post anything to their own wall. This works because authentication is
@@ -216,7 +216,7 @@ may post as the original author provided they don't alter the message (and thus
 its hash and required signature).
 
 \section{Commenting}
-Commenting works simiarly to posting on anothers wall, so an explanation of
+Commenting works similarly to posting on another's wall, so an explanation of
 details of how it occurs is not provided (see prior section). The only
 difference is the format of a CMNT message from an FPOST message. The format of
 a CMNT message is as follows:
@@ -269,7 +269,7 @@ EVNT\textbackslash
 \end{center}
 
 An example follows of a reminder for bobs birthday which occurs on the 14th of
-january, the event was created on the second of january:
+January, the event was created on the second of January:
 
 \begin{center}
 EVNT\textbackslash
