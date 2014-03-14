@@ -103,7 +103,7 @@ stage will be through this client, as per such its design takes a high level of
 importance. Its for this reason we have chosen something common users will be 
 more accustomed to; web pages.
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{images/design/client_interface.jpg}
     \caption{Client Design Image}
@@ -113,6 +113,11 @@ more accustomed to; web pages.
 Most users will be familiar with HTML and CSS page layouts, even if they do not
 know what HTML or CSS is. This will provide a certain level of comfort when it 
 comes to using new applications and how to navigate between pages or tabs.
+Javascript would be used to pipe the data to the client program, but this is 
+something the user would not interact with or see. It also provides the 
+advantage of knowing nearly every operating system nowadays comes with a web 
+browser natively meaning a HTML/CSS based GUI would likely be supported on 
+nearly all platforms. 
 
 \subsection{Server Design}
 Whilst not critically important, as it would only be operated by those with 
@@ -125,14 +130,18 @@ idea to show server data such as memory usage on the operators end, as this data
 is completely accessible and non-intrusive to the client. The figure labelled 
 'Server Design Image' shows an example of how the server client may be completed.
 Pending on the features allowed in GWT, our method of choice, we will aim for 
-it to retain a similar appearance.
+it to retain a similar appearance.   
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{images/design/server.jpg}
     \caption{Server Design Image}
     \label{fig:server}
 \end{figure}
+
+It should further be noted, a local web server has been decided as the best way 
+forward, as it will provide the best form of security from the server operators 
+if the operator is a user itself.
 
 \section{Future Work}
 With some of the spare resources available during this phase, we were able to 
@@ -140,14 +149,14 @@ look into some future design work on the mobile front. One of our designers had
 some experience in this field of work and offered to put some images together 
 of what a mobile application version of our product could potentially look like. 
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{images/design/mobile_send.jpg}
     \caption{Mobile Sending Stage GUI}
     \label{fig:mobile_send}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{images/design/mobile_post.jpg}
     \caption{Mobile Post Stage GUI}

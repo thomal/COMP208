@@ -2,35 +2,62 @@
 
 \section{Database execution }
 % What are the execution methods when these functionalities are carried out
-In this section, we go through the execution methods of the database based on the transactions that have been carried out within the system. This also shows where the data is expected to roughly end up, however this will be explained in greater detail along with the diagrams which will be found later in this document.
+In this section, we go through the execution methods of the database based on 
+the transactions that have been carried out within the system. This also shows 
+where the data is expected to roughly end up, however this will be explained in 
+greater detail along with the diagrams which will be found later in this 
+document.
 
-Stakeholders and users have to be aware that due to lightweight database files are stored locally in each users' computer, there are a number of databases involve when the transactions are carried out. The reason why it is designed this way is to ensure and avoid any malicious activities conducted especially by the server. 
+Stakeholders and users have to be aware that due to lightweight database files 
+are stored locally in each users' computer, there are a number of databases 
+involve when the transactions are carried out. The reason why it is designed 
+this way is to ensure and avoid any malicious activities conducted especially 
+by the server. 
 
 \subsection{User adds post, comment and event}
-When a user adds a content into Turtlenet such as posts, comments and events, the system is expected to capture these details and add them into its respective tables. The database system is expected to log the posts, comments and events by capturing the time and date when the transaction is carried out.
+When a user adds a content into Turtlenet such as posts, comments and events, 
+the system is expected to capture these details and add them into its 
+respective tables. The database system is expected to log the posts, comments 
+and events by capturing the time and date when the transaction is carried out.
 
 \subsection{User creates and sends message to another user}
-As when the user creates a message then sends it, the database system is expected to store the message and log it by recording its date and time of which the message is sent. Other details like the reciever's user\_id are inserted into the database well.
+As when the user creates a message then sends it, the database system is 
+expected to store the message and log it by recording its date and time of 
+which the message is sent. Other details like the receiver's user\_id are 
+inserted into the database well.
 
 \subsection{User sends a friend request to another user}
-When the user sends a request to others, this request will be sent and the details will be captured and recorded into the other user's local database file under the friend request table. This will be stored in this table until which the user decides to either accept or reject the invitation.
+When the user sends a request to others, this request will be sent and the 
+details will be captured and recorded into the other user's local database 
+file under the friend request table. This will be stored in this table until 
+which the user decides to either accept or reject the invitation.
 
 \subsection{User receives a friend request from another user}
-Another situation with the friend request is when a user receives a friend request, this time the information such as the public key will be recorded into the user's local database until which the user decides to do something either accept or reject it.
+Another situation with the friend request is when a user receives a friend 
+request, this time the information such as the public key will be recorded 
+into the user's local database until which the user decides to do something 
+either accept or reject it.
 
 \subsection{A user adds a relation}
-When a user adds a relation, the details of this related user will be captured, such as his profile, and will be added into the users table. From then on, the user can see his relation's profile information. 
+When a user adds a relation, the details of this related user will be captured, 
+such as his profile, and will be added into the users table. From then on, the 
+user can see his relation's profile information. 
 
 \subsection{User receives a message} 
-As the user receives a message, it will be stored in the message table along with other details such as the date and time, and the sender's details.
+As the user receives a message, it will be stored in the message table along 
+with other details such as the date and time, and the sender's details.
 
 \subsection{User receives a friend request}
-The user will be notified when a friend request is sent. The details of the person who sends the request will be recorded in the database. The user has two options to deal with a friend request, either to accept or reject it. Once it is accepted, the profile details of the sender will be stored in the user's local database, same goes to the user's details store on the sender's local database.
+The user will be notified when a friend request is sent. The details of the 
+person who sends the request will be recorded in the database. The user has 
+two options to deal with a friend request, either to accept or reject it. Once 
+it is accepted, the profile details of the sender will be stored in the user's 
+local database, same goes to the user's details store on the sender's local 
+database.
 
 \clearpage
 
 \section{Table layout of the database}
-% Aishah says: I will redo this pile (of shit designed database) once I clarify with other team members on the functionalities of Tu-tu-roo-net.
 NB: Public keys are 217 characters long, all id's are auto-incremented.
 
 \begin{table}[!ht]
@@ -251,8 +278,50 @@ signature          & VARCHAR(?)  &     \\
 \begin{landscape}
 \begin{figure}[h]
     
-    \includegraphics[width=1.2\textwidth]{images/design/project_er_diagram.png}
+    \includegraphics[width=1.4\textwidth]{images/design/project_er_diagram.png}
     \caption{Database Entity Relationship diagram}
     \label{fig:db_er_diag}
 \end{figure}
 \end{landscape}
+
+\clearpage
+
+\section{Database design description}
+{\it Note the difference between 'main user' and 'user'. Main user refers to the user who owns the local database. 'User' or 'other user' refers to other users, usually the relations of the main user.}
+\subsection{user table} 
+This table stores user details, which includes the main user's own details and its relations. As the user makes a new relation with another user, its details will be stored in this table. Every user has their own public key which uniquely identifies their accounts which also be stored in this table.
+
+\subsection{user, is\_in\_category, category table}
+With the category table, the user can create new categories to group his relations. As it is possible for many users to belong in many categories, the {\it is\_in\_category} table is needed to identify which set of users belong in the categories.
+
+\subsection{user, is\_invited, events}
+These tables suggest that users can create events. One particular feature regarding these tables that on the {\it is\_invited table}, where the user (the main one) can invite anyone individually from the relations list or as a group from the category list. However, there will be no tuples added under this table when another user posts the event. Reason being is that the main user is not allowed to see who the list of other users invited in the event which was not created by the main user. 
+
+When the main user creates an event, he invites other people, either from the user table or from the category table or both. Once the invitation is sent out to those users, the users can either accept or reject the invitation. Using the {\it decision} attribute from the {\it is\_invited} table, if decision has not been made, it will be NULL. If user accepts the invitation, it will be 1 for true. If rejected, it will be 0 for false. 
+
+\subsection{user, allowed\_to, wall\_post}
+When users create post, its data will be inserted into the {\it wall\_post} table. The attribute {\it from} refers to the user who has created the post, whilst the attribute {\it to} refers to the user who is referred or mentioned in this post. The main user can also choose a allow a set of his relations to view his post. Using the {\it allowed\_to} table, similar as the {\it is\_invited} table, the main user can select his relations either individually or through categories or both. If the post is created by another user, no tuples will be inserted into the {\it allowed\_to} table.
+
+\subsection{user, has\_like, wall\_post}
+Users can like any posts that appears in his main wall or personal wall. When a post is liked, a new tuple is created in the has\_like table to indentify who liked the post, which post is liked, and the time the post is liked. These likes are counted and displayed in the GUI showing how many users have liked this post.
+
+\subsection{user, has\_like, has\_comment}
+Other than liking posts, users can like individual comments as well. Same feature as liking the post by this time, data is inserted into the attribute {\it comment\_id} from the {\it has\_like} table to show which particular comment has been liked by this user.
+
+\subsection{user, has\_comment, wall\_post}
+Users can comment on posts. When post is commented on, a new tuple will be added into the {\it has\_comment} table on information like the content of the comment, which post has been commented on, who commented on the post, and the time of comment.
+
+\subsection{user, has\_comment}
+Users can also comment on comments itself. This will create and indentation on the GUI to suggest that the parent comment has a child comment. When a comment is commented upon, the attribute {\it comment\_comment\_id} will insert the parent comment\_id which shows the relation of two comments, one parent and the other being the child.
+
+\subsection{user, is\_in\_message, private\_message}
+Another functionality found in Turtlenet is the user is able to send private messages to users. When a private message is created by the main user, a new tuple is added into the {\it private\_message} table. The user then has the option to add other user(s) into the conversation. When done so, a tuple or tuples, depending on the number of users he has added onto the conversation, are added into the {\it is\_in\_message} table. This inserts the information such as the time of when the user has been added into the conversation, the user's ID and message ID. The {\it private\_message} table on the other hand stores data such as the content of the message and the time for which this whole conversation was created. 
+
+\subsection{message\_claim}
+When the main user has not required any public key from the other user he is intended to add, the details will be entered onto this table until which a pubic key is retrieved. When retrieved, this information found in this table will be deleted and transferred into the {\it user} table along with other information that comes with it.
+
+\subsection{key\_revoke}
+In times when malicious activity might have been conducted, the users of Turtlenet is able to revoke their relations signature key. A signature suggests that this post is written by this person in particular, so when it is revoked, whatever that has been posted with this signature is considered false. This will inform the user not to trust any information that has been posted with this signature in particular. 
+
+\subsection{login\_logout\_log}
+This table simply tracks the login and logout activities of the main user. When a user logs in and out, a new tuple will be inserted into this table.

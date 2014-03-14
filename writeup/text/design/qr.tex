@@ -1,10 +1,16 @@
-I've found a website that generates QR Codes - both professionally and otherwise
-for free.  We could implement it into our prgram by having the program output
-the URL it gives you as because it's generated via URL, we should be able to
-store it in a string and then output either that or have an image viewer in the
-program to output the actual image, whichever is easiest for the user.
+Another possibility of sharing our private keys with other users would be via the
+form of QR codes. One of our members located a website that generates QR Codes - 
+both professionally and otherwise for free. It is possible to implement it into 
+our program by having the program output the URL it gives us, as because it's 
+generated via URL, we should be able to store it in a string and then output 
+either that or have an image viewer in the program to output the actual image, 
+whichever is easiest for the user.
 
-The website's create function: http://goqr.me/api/doc/create-qr-code/
-The website's read function: http://goqr.me/api/doc/read-qr-code/
-A test one I did:
-https://api.qrserver.com/v1/create-qr-code/?size=300x300\&data=\%3Ci'mThePublicKeyVariable\%3E\&format=svg
+The website's create function: 
+\url{http://goqr.me/api/doc/create-qr-code/}
+
+The website's read function:
+\url{http://goqr.me/api/doc/read-qr-code/}
+
+Test example using the website:
+\url{https://api.qrserver.com/v1/create-qr-code/?size=300x300\&data=\%3Ci'mThePublicKeyVariable\%3E\&format=svg}
