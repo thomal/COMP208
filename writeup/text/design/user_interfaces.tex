@@ -52,7 +52,7 @@ with a modern and professionally built appearance, as shown in the figure.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{images/design/swt.jpg}
+    \includegraphics[width=\textwidth/2]{images/design/swt.jpg}
     \caption{SWT Appearance Style}
     \label{fig:swt_style}
 \end{figure}
@@ -101,7 +101,7 @@ the standard user will be interacting with, a person whom we are assuming has no
 knowledge of any inner workings. All tests we perform on our system at a later 
 stage will be through this client, as per such its design takes a high level of
 importance. Its for this reason we have chosen something common users will be 
-more accustomed to; web pages.
+more accustomed to: web pages.
 
 \begin{figure}[H]
     \centering
@@ -117,7 +117,9 @@ Javascript would be used to pipe the data to the client program, but this is
 something the user would not interact with or see. It also provides the 
 advantage of knowing nearly every operating system nowadays comes with a web 
 browser natively meaning a HTML/CSS based GUI would likely be supported on 
-nearly all platforms. 
+nearly all platforms. For these reasons we have chosen to use GWT. A local web
+server has been decided as the best way forward, as it will provide the best
+form of security from the server operators.
 
 \subsection{Server Design}
 Whilst not critically important, as it would only be operated by those with 
@@ -138,10 +140,6 @@ it to retain a similar appearance.
     \caption{Server Design Image}
     \label{fig:server}
 \end{figure}
-
-It should further be noted, a local web server has been decided as the best way 
-forward, as it will provide the best form of security from the server operators 
-if the operator is a user itself.
 
 \section{Future Work}
 
