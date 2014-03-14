@@ -23,20 +23,21 @@ operator. We also have a sequence diagram to augment the use case diagrams.
 %Account Use Cases
 \umlusecase[name=ucAccount,x=0,y=7]{Account Management}
 \umlusecase[name=ucCreateClaim,x=5,y=6]{Create/Claim}
-\umlusecase[name=ucPDATA,x=5,y=7]{PDATA}
-\umlusecase[name=ucDataAdd,x=10,y=6]{Add PDATA}
+\umlusecase[name=ucPDATA,x=5,y=7]{Profile Data}
+\umlusecase[name=ucDataAdd,x=10,y=6]{Add Profile Data}
 \umlusecase[name=ucDataEditUpdate,x=10,y=7]{Edit/Update}
 
 %Communication Use Cases
 \umlusecase[name=ucCommunication,x=0,y=10.5]{Communication}
 \umlusecase[name=ucEncrypt,x=5,y=8]{Encrypt}
+\umlusecase[name=ucDecrypt,x=2,y=8]{Decrypt}
 \umlusecase[name=ucRtChat,x=5,y=9]{Real-Time Chat}
 \umlusecase[name=ucPost,x=5,y=10]{Post}
 \umlusecase[name=ucPostOwnWall,x=10,y=9]{Own Wall}
 \umlusecase[name=ucPostOtherWall,x=10,y=10]{Other's Wall}
 \umlusecase[name=ucComment,x=5,y=11]{Comment}
 \umlusecase[name=ucLike,x=5,y=12]{Like}
-\umlusecase[name=ucUpdateDb,x=5,y=13]{Update Database}
+\umlusecase[name=ucUpdateDb,x=5,y=13]{Event}
 
 %Revoke Use Case
 \umlusecase[name=ucRevoke,x=0,y=14]{Revoke Private Key}
@@ -63,6 +64,7 @@ operator. We also have a sequence diagram to augment the use case diagrams.
 %Communication Relations
 \umlassoc[name=assClientCommunication]{Client}{ucCommunication}
 \umlinclude[name=extCommunicationEncrypt]{ucEncrypt}{ucCommunication}
+\umlinclude[name=extCommunicationEncrypt]{ucDecrypt}{ucCommunication}
 \umlextend[name=extCommunicationRtChat]{ucRtChat}{ucCommunication}
 \umlextend[name=extCommunicationPost]{ucPost}{ucCommunication}
 \umlextend[name=extPostOwnWall]{ucPostOwnWall}{ucPost}
@@ -91,9 +93,9 @@ operator. We also have a sequence diagram to augment the use case diagrams.
 \umlusecase[name=ucServerLoad,x=-9,y=1]{Monitor Server Load}
 
 %Check Use Cases
-\umlusecase[name=ucCheck,x=0,y=2]{Check}
+\umlusecase[name=ucCheck,x=0,y=2]{Inspect}
 \umlusecase[name=ucClientIP,x=-5,y=2]{Client IP}
-\umlusecase[name=ucJoinTime,x=-10,y=2]{Join Time}
+\umlusecase[name=ucJoinTime,x=-10,y=2]{Login Times}
 \umlusecase[name=ucMessagesSent,x=-5,y=3]{Messages}
 
 %Deletion Use Cases
@@ -122,7 +124,6 @@ operator. We also have a sequence diagram to augment the use case diagrams.
 \umlextend[name=extSpecific]{ucSpecificMessage}{ucDeleteMessage}
 \umlextend[name=extTimeBased]{ucTimeBased}{ucDeleteMessage}
 \umlextend[name=extAll]{ucAll}{ucDeleteMessage}
-\umlextend[name=extIpSpecific]{ucByIp}{ucSpecificMessage}
 \umlextend[name=extIpTimeBased]{ucByIp}{ucTimeBased}
 \umlextend[name=extIpAll]{ucByIp}{ucAll}
 
