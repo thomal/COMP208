@@ -1,4 +1,3 @@
-
 These are excerpts from the Gantt charts made during the requirements stage of
 the project.  They have been used as a guide throughout the completed sections
 of the project.  As the design section was foreseen as the most work-intensive
@@ -7,11 +6,52 @@ made to make sure that official deadlines were met, through the use of
 un-official end dates for each task.
 
 By doing so, therefore finishing tasks earlier than required, it has provided a 
-buffer used for quality controlling the project's deliverables.  
+buffer used for quality controlling the project's deliverables. A partial
+reproduction of the task list is also provided:
+
+\begin{tabular}{llrl}
+    
+    \toprule
+    
+    Task ID  & Task Description (Desc.)     & Due Date    & Deliverable       \\
+    
+    \midrule
+    
+    2        & Project Design               & 14/03/2014  & Design Segment    \\
+    
+    \cmidrule(r){2-3}
+    2.1      & Research (Res.)              & 21/02/2014  & Research Segment  \\
+    2.1.1    & Res: Database Languages      & 21/02/2014  & Same as Desc.     \\
+    2.1.2    & Res: Programming Languages   & 21/02/2014  & Same as Desc.     \\
+    2.1.3    & Res: Interfaces              & 21/02/2014  & Same as Desc.     \\
+    \cmidrule(r){2-3}
+    
+    2.2      & Designs (Des.)               & 07/03/2014  & Design Segment    \\
+    2.2.1    & Des: Databases               & 28/02/2014  & Same as Desc.     \\
+    2.2.2    & Des: Class Interfaces        & 28/02/2014  & Same as Desc.     \\
+    2.2.3    & Des: Protocol                & 28/02/2014  & Same as Desc.     \\
+    2.2.4    & Des: Architecture            & 28/02/2014  & Same as Desc.     \\
+    2.2.5    & Des: Sequence Diagrams       & 28/02/2014  & Same as Desc.     \\
+    2.2.6    & Des: Data Flow Diagrams      & 28/02/2014  & Same as Desc.     \\
+    2.2.7    & Des: Class Diagrams          & 28/02/2014  & Same as Desc.     \\
+    2.2.8    & Des: Server-side Interfaces  & 28/02/2014  & Same as Desc.     \\
+    2.2.9    & Des: Client-side Interfaces  & 28/02/2014  & Same as Desc.     \\
+    2.2.10   & Des: Server-side Protocols   & 28/02/2014  & Same as Desc.     \\
+    2.2.11   & Des: Client-side Protocols   & 28/02/2014  & Same as Desc.     \\
+    2.2.12   & Des: Server-side Pseudo-code & 07/03/2014  & Same as Desc.     \\
+    2.2.13   & Des: Client-side Pseudo-code & 07/03/2014  & Same as Desc.     \\
+    \cmidrule(r){2-3}
+    
+    2.3      & Segment Review               & 10/03/2014  & Design Segment    \\
+    2.3.1    & Evaluate Segment Quality     & 14/03/2014  & N/A               \\
+    2.3.2    & Improve Segment              & 14/03/2014  & Design Segment    \\
+    
+    \bottomrule
+\end{tabular}
 
 \begin{ganttchart}{14}{12}
 \addtolength{\oddsidemargin}{-1in}
-\addtolength{\evensidemargin}{-1.5in}
+\addtolength{\evensidemargin}{-1in}
 
 
     \gantttitle{February 2014}{14}                                            \\
@@ -73,15 +113,15 @@ buffer used for quality controlling the project's deliverables.
     \ganttlink{2.2.13}{msDesign}
 
 \addtolength{\oddsidemargin}{1in}
-\addtolength{\evensidemargin}{1.5in}
+\addtolength{\evensidemargin}{1in}
 \end{ganttchart}
 
-\begin{ganttchart}{31}{12}
+\begin{ganttchart}{16}{12}
 \addtolength{\oddsidemargin}{-1in}
-\addtolength{\evensidemargin}{-1.5in}
+\addtolength{\evensidemargin}{-2in}
 
-    \gantttitle{March 2014}{31}                                               \\
-    \gantttitlelist{1,...,31}{1}                                              \\
+    \gantttitle{March 2014}{16}                                               \\
+    \gantttitlelist{1,...,16}{1}                                              \\
     \ganttgroup{Design (2)}{1}{13}                                            \\
     \ganttgroup{S.R (2.3)}{1}{13}                                             \\
     \ganttbar[name=2.3.1]{2.3.1}{1}{13}                                       \\
@@ -92,48 +132,6 @@ buffer used for quality controlling the project's deliverables.
     \ganttlink{2.3.1}{msDesign}
     \ganttlink{2.3.2}{msDesign}
     \ganttlink{2.3.3}{msDesign}
-    
-    \ganttgroup{Imp. (3)}{16}{31}                                             \\
-    \ganttbar[name=3.1.1]{3.1.1}{16}{20}                                      \\
-    \ganttbar[name=3.1.2]{3.1.2}{16}{20}                                      \\
-    \ganttbar[name=3.2.1]{3.2.1}{16}{20}                                      \\
-    \ganttbar[name=3.2.2]{3.2.2}{16}{20}                                      \\
-    \ganttbar[name=3.3.1]{3.3.1}{16}{20}                                      \\
-    \ganttbar[name=3.3.2]{3.3.2}{16}{20}                                      \\
-    
-    \ganttlink{msDesign}{3.1.1}
-    \ganttlink{msDesign}{3.1.2}
-    \ganttlink{msDesign}{3.2.1}
-    \ganttlink{msDesign}{3.2.2}
-    \ganttlink{msDesign}{3.3.1}
-    \ganttlink{msDesign}{3.3.2}
-    
-    \ganttmilestone[name=msBackend]{Proj. Backend}{21}                        \\
-    
-    \ganttlink{3.1.1}{msBackend}
-    \ganttlink{3.1.2}{msBackend}
-    \ganttlink{3.2.1}{msBackend}
-    \ganttlink{3.2.2}{msBackend}
-    \ganttlink{3.3.1}{msBackend}
-    \ganttlink{3.3.2}{msBackend}
-    
-    \ganttbar[name=3.4.1]{3.4.1}{23}{27}                                      \\
-    \ganttbar[name=3.4.2]{3.4.2}{23}{27}                                      \\
-    \ganttbar[name=3.5.1]{3.5.1}{23}{27}                                      \\
-    \ganttbar[name=3.5.2]{3.5.2}{23}{27}                                      \\
-    
-    \ganttlink{msBackend}{3.4.1}
-    \ganttlink{msBackend}{3.4.2}
-    \ganttlink{msBackend}{3.5.1}
-    \ganttlink{msBackend}{3.5.2}
-    
-    \ganttmilestone[name=msProtocols]{Protocols}{28}
-    
-    \ganttlink{3.4.1}{msProtocols}
-    \ganttlink{3.4.2}{msProtocols}
-    \ganttlink{3.5.1}{msProtocols}
-    \ganttlink{3.5.2}{msProtocols}
-
 \addtolength{\oddsidemargin}{1in}
-\addtolength{\evensidemargin}{1.5in}
+\addtolength{\evensidemargin}{2in}
 \end{ganttchart}
