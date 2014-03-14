@@ -79,19 +79,15 @@ such as the content of the message and the time for which this whole conversatio
 was created. 
 
 \subsection{message\_claim table}
-When the main user has not required any public key from the other user he is 
-intended to add, the details will be entered onto this table until which a pubic 
-key is retrieved. When retrieved, this information found in this table will be 
-deleted and transferred into the {\it user} table along with other information 
-that comes with it.
+This tables stores all CLAIM messages which cannot be matched with a public key.
+When a new key is entered we search for the CLAIM message, erase it, and add a
+new entry to the user table.
 
 \subsection{key\_revoke table}
-In times when malicious activity might have been conducted, the users of 
-Turtlenet is able to revoke their relations signature key. A signature suggests 
-that this post is written by this person in particular, so when it is revoked, 
-whatever that has been posted with this signature is considered false. This will 
-inform the user not to trust any information that has been posted with this 
-signature in particular. 
+This stores key revocation messages. If a user suspects that there private key
+has been compromised then they can send a message informing their relations of
+this. Once a key revocation message is sent all content posted after the given
+time and signed with the corresponding private key is marked as untrusted.
 
 \subsection{login\_logout\_log table}
 This table simply tracks the login and logout activities of the main user. When a 
