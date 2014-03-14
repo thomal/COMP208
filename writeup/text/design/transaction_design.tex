@@ -13,19 +13,19 @@ database. However this is usually avoided in database norms.
     \begin{tabular}{ | p{3cm} | p{5cm} | p{3cm} |}
     \hline
     {\bf Function}        & {\bf Table(s) involved} & {\bf Transaction(s)} \\ \hline
-    addClaim()      &                   &                \\ \hline 
-    getClaims       &                   &                \\ \hline 
+    addClaim()      & message\_claim    & Insert         \\ \hline 
+    getClaims       & message\_claim    & Read           \\ \hline 
     getUsernames    & user              & Read           \\ \hline 
     addRevocation   & key\_revoke       & Insert         \\ \hline 
     getRevocations  & key\_revoke       & Read           \\ \hline 
-    isRevoked()     & key\_revoke       & Insert         \\ \hline 
-    addPData()      &                   &                \\ \hline 
-    getPData()      &                   &                \\ \hline 
-    createChat()    & private\_message  &  Insert        \\ \hline 
-    getChat()       & private\_message, is\_in\_message             & Read           \\ \hline 
-    addToChat()     & is\_in\_message   &   Insert       \\ \hline 
-    addPost()       & wall\_post        &  Insert        \\ \hline 
-    getPosts()      & wall\_post        &    Read        \\ \hline 
+    isRevoked()     & key\_revoke       & Read           \\ \hline 
+    addPData()      & user              & Update         \\ \hline 
+    getPData()      & user              & Read           \\ \hline 
+    createChat()    & private\_message  & Insert         \\ \hline 
+    getChat()       & private\_message, is\_in\_message & Read\\ \hline 
+    addToChat()     & is\_in\_message   & Insert         \\ \hline 
+    addPost()       & wall\_post        & Insert         \\ \hline 
+    getPosts()      & wall\_post        & Read           \\ \hline 
     \end{tabular}
 \end{center}
 
@@ -33,21 +33,20 @@ database. However this is usually avoided in database norms.
     \begin{tabular}{ | p{3cm} | p{5cm} | p{3cm} |}
     \hline
     {\bf Function}        & {\bf Table(s) involved} & {\bf Transaction(s)} \\ \hline
-    addComment()    & has\_comment      &   Insert       \\ \hline 
-    getComments()   & has\_comment      &  Read          \\ \hline 
-    addLike()       & has\_like         &  Insert        \\ \hline 
-    getLikes()      & has\_like         &  Read          \\ \hline 
-    countLikes()    & has\_like         &  Read and count\\ \hline 
-    addEvent()      & events            &    Insert      \\ \hline 
-    getEvent()      & events            &  Read          \\ \hline 
-    acceptEvent()   & events            &   Update       \\ \hline 
-    declineEvent()  & events            &  Update        \\ \hline 
-    addKey()        &                   &                \\ \hline 
-    getKey()        &                   &                \\ \hline 
-    getName()       & user              &  Read          \\ \hline 
-    addFriend()     &                   &                \\ \hline 
-    addCategory()   & category          &     Insert     \\ \hline  
-    addToCategory() & is\_in\_category  &   Insert       \\ \hline 
+    addComment()    & has\_comment, wall\_post & Insert, Read\\ \hline 
+    getComments()   & has\_comment, wall\_post & Read\\ \hline 
+    addLike()       & has\_like, wall\_post, has\_comment & Insert, Read\\ \hline 
+    getLikes()      & has\_like, wall\_post, has\_comment, user & Read           \\ \hline 
+    countLikes()    & has\_like, wall\_post, has\_comment & Read\\ \hline 
+    addEvent()      & events            & Insert         \\ \hline 
+    getEvent()      & events            & Read           \\ \hline 
+    acceptEvent()   & events            & Update         \\ \hline 
+    declineEvent()  & events            & Update         \\ \hline 
+    addKey()        & message\_claim, user & Read, Delete, Insert\\ \hline 
+    getKey()        & user              & Read           \\ \hline 
+    getName()       & user              & Read           \\ \hline 
+    addCategory()   & category          & Insert         \\ \hline  
+    addToCategory() & category, is\_in\_category & Read, Insert\\ \hline 
 
     \end{tabular}
 \end{center}
