@@ -1,10 +1,10 @@
 \section{Class Interfaces}
 The following is a description of the public functions of all public classes.
-Many classes have inner private classes they use for conveinience, however to
+Many classes have inner private classes they use for convenience, however to
 simplify interaction between parts of our system ('modules') we have very few
-conveinience classes.
+convenience classes.
 
-\todo{Reoconcile return types with stated public classes}
+\todo{Reconcile return types with stated public classes}
 \todo{specify what's static}
 
 \begin{table}[h]
@@ -20,7 +20,7 @@ conveinience classes.
     \centering
     \begin{tabular}{p{1cm}p{1cm}p{9cm}}
     return & function & description\\ \hline
-    void   & main()   & (static) constructs and starts all nececary classes and threads, runs the main loop\\
+    void   & main()   & (static) constructs and starts all necessary classes and threads, runs the main loop\\
     \end{tabular}
     \caption{Client}
 \end{table}
@@ -37,8 +37,8 @@ conveinience classes.
     
     boolean  & claimName()     & claim a given username, returns true on success, false otherwise\\
     void     & revokeKeypair() & revokes your keypair\\
-    void     & pdata()         & adds or updates profile infomration\\
-    void     & chat()          & begins or continues a conversaion\\
+    void     & pdata()         & adds or updates profile information\\
+    void     & chat()          & begins or continues a conversation\\
     void     & post()          & post a message to your wall\\
     void     & fpost()         & post a message to a friends wall\\
     void     & comment()       & comment on a comment or post\\
@@ -81,7 +81,7 @@ conveinience classes.
     \caption{Parser}
 \end{table}
 
-\todo{go over DB interface with GUI guys and aishiah}
+\todo{go over DB interface with GUI guys and Aishah}
 \begin{table}[h]
     \centering
     \begin{tabular}{p{3cm}p{3cm}p{9cm}}
@@ -102,7 +102,7 @@ conveinience classes.
     pair<string,string>[] & getChat()    & returns messages from a given chat\\
     void                  & addToChat()  & adds a post to a given chat\\
     
-    void                  & addPost()  & creates new post, on your or anothers wall\\
+    void                  & addPost()  & creates new post, on your or another's wall\\
     pair<string,string>[] & getPosts() & gets all posts either within timeframe, or from certain people within a timeframe\\
     
     void                  &  addComment() & adds a comment onto post or comment\\
@@ -144,7 +144,7 @@ conveinience classes.
     \centering
     \begin{tabular}{p{1cm}p{2.6cm}p{9cm}}
     return  & function       & description\\ \hline
-    N/A     & Message()      & Consturcts a message with given data\\
+    N/A     & Message()      & Constructs a message with given data\\
     
     Message & parse()        & (static) parses the string representation of a message into a message\\
     
@@ -162,7 +162,7 @@ conveinience classes.
     \begin{tabular}{p{1cm}p{2cm}p{9cm}}
     return & function & description\\ \hline
     
-    N/A    & Pair()   & Consturcts a pair with given data\\
+    N/A    & Pair()   & Constructs a pair with given data\\
     A      & first()  & returns the first value passed to the constructor\\
     B      & second() & returns the second value passed to the constructor\\
     \end{tabular}
