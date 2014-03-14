@@ -2,7 +2,7 @@ Here we have a use case diagram displaying an actors interaction with our
 system. It shows the functionality available to both the client, and the 
 operator. We also have a sequence diagram to augment the use case diagrams.
 
-\begin{landscape}
+%\begin{landscape}
 
 \begin{tikzpicture}
 
@@ -12,14 +12,8 @@ operator. We also have a sequence diagram to augment the use case diagrams.
 \begin{umlsystem}[x=4,y=0]{System}
 %Client Use case Declarations
 
-%Connect Use Cases
-\umlusecase[name=ucConnect,x=0,y=1]{Connect}
-\umlusecase[name=ucFirstTime,x=5,y=0]{First-time}
-\umlusecase[name=ucSustained,x=5,y=1]{Sustained}
-\umlusecase[name=ucSubsequent,x=5,y=2]{Subsequent}
-
 %Public Key Use Cases
-\umlusecase[name=ucPublicKey,x=0,y=4]{Public Key}
+\umlusecase[name=ucPublicKey,x=0,y=4]{Manage Relations}
 \umlusecase[name=ucAddAuthorise,x=5,y=3]{Add/Authorise}
 \umlusecase[name=ucAddPublicKey,x=10,y=3]{Public Key}
 \umlusecase[name=ucQrCode,x=10,y=2]{QR Code}
@@ -27,7 +21,7 @@ operator. We also have a sequence diagram to augment the use case diagrams.
 \umlusecase[name=ucIgnore,x=5,y=5]{Ignore}
 
 %Account Use Cases
-\umlusecase[name=ucAccount,x=0,y=7]{Account}
+\umlusecase[name=ucAccount,x=0,y=7]{Account Management}
 \umlusecase[name=ucCreateClaim,x=5,y=6]{Create/Claim}
 \umlusecase[name=ucPDATA,x=5,y=7]{PDATA}
 \umlusecase[name=ucDataAdd,x=10,y=6]{Add PDATA}
@@ -50,12 +44,6 @@ operator. We also have a sequence diagram to augment the use case diagrams.
 \end{umlsystem}
 
 %Start of Client's Relations
-
-%Connect Relations
-\umlassoc[name=assClientConnect]{Client}{ucConnect}
-\umlextend[name=extConnectFirst]{ucFirstTime}{ucConnect}
-\umlextend[name=extConnectSustained]{ucSustained}{ucConnect}
-\umlextend[name=extConnectSubsequent]{ucSubsequent}{ucConnect}
 
 %Public Key Relations
 \umlassoc[name=assClientPublicKey]{Client}{ucPublicKey}
@@ -142,7 +130,7 @@ operator. We also have a sequence diagram to augment the use case diagrams.
 
 \end{tikzpicture}
 
-\end{landscape}
+%\end{landscape}
 
 \begin{figure}[h]
     \centering
