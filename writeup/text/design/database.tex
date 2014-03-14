@@ -142,6 +142,22 @@ time                    & DATETIME    &     \\
 \end{table}
 
 \begin{table}[!ht]
+\caption{allowed\_to}
+\centering
+\begin{tabular}{c c c}
+\hline\hline
+Name                    & Datatype    & Key \\
+\hline
+allowed\_to\_id         & INT         & PK  \\
+user\_id                & INT         & FK  \\
+category\_id            & INT         & FK  \\
+post\_id                & INT         & FK  \\
+\hline
+\end{tabular}
+\label{table:nonlin}
+\end{table}
+
+\begin{table}[!ht]
 \caption{has\_comment}
 \centering
 \begin{tabular}{c c c}
