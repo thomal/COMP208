@@ -118,7 +118,6 @@ Name               & Datatype    & Key \\
 \hline
 message\_id        & INT(10)     & PK  \\
 from               & VARCHAR(8)  &     \\
-to                 & VARCHAR(8)  &     \\
 content            & VARCHAR(50) &     \\
 time               & DATE        &     \\
 \hline
@@ -204,26 +203,27 @@ Name                    & Datatype    & Key \\
 event\_id               & INT(100)     & PK  \\
 title                   & VARCHAR(10)  &     \\
 content                 & VARCHAR(40)  &     \\
-time\_created           & DATETIME     & \\
+time           & DATETIME     & \\
 start\_date              & DATETIME     & \\
 end\_date                & DATETIME     & \\
 from                    & INT(100)     & FK  \\
-invite                  & INT(100)     & FK  \\
-decision\_id            & INT(100)     & \\
 \hline
 \end{tabular}
 \label{table:nonlin}
 \end{table}
 
 \begin{table}[!ht]
-\caption{event\_decision}
+\caption{is\_invited}
 \centering
 \begin{tabular}{c c c}
 \hline\hline
 Name                    & Datatype    & Key \\
 \hline
-decision\_id            & INT(100)    & PK  \\
-decision                & VARCHAR(6)  &     \\
+is\_invited\_id         & INT         & PK  \\
+user\_id                & INT         & FK     \\
+is\_in\_category\_id    & INT         & FK \\
+event\_id               & INT         & FK \\
+decision                & BIT         & \\
 \hline
 \end{tabular}
 \label{table:nonlin}
