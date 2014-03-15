@@ -12,7 +12,7 @@ body {
 }
 
 h1 {
-	font-size: 4em;
+	font-size: 4.5em;
 	margin: 0;
 	letter-spacing: 10px;
 	font-weight: lighter;
@@ -22,9 +22,9 @@ h1 {
 	width: 1000px;
 	height: 100px;
 	margin: 0 auto;
-	background: #dcf1f9;
+	background: #E0EEEE;
 	font-family: 'turtles';
-	color: #54B059;
+	color: #61B329;
 }
 
 #header h1 {
@@ -35,7 +35,7 @@ h1 {
 	width: 1000px;
 	height: 65px;
 	margin: 0 auto;
-	background: #54B059;
+	background: #61B329;
 	text-align: center;
 }
 
@@ -70,7 +70,7 @@ h1 {
 #content {
 	float: left;
 	width: 750px;
-	background: #dcf1f9;
+	background: #E0EEEE;
 }
 
 .post {
@@ -79,7 +79,7 @@ h1 {
 
 .post .links {
 	padding: 2px 20px;
-	background: #54B059;
+	background: #61B329;
 	color: #E3E3E3;
 	text-align: right;
 }
@@ -97,7 +97,7 @@ h1 {
 #sidebar {
 	float: left;
 	width: 250px;
-	background: #E3E3E3;
+	background: #C1CDCD;
 }
 
 #sidebar ul {
