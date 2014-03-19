@@ -1,5 +1,4 @@
 \section{Summary}
-\todo{consider computational cost of separating RSA header and AES message}
 All client-client communication is mediated by the server. When one client
 wishes to send a message to another it encrypts the message with the public key
 associated with the recipient and uploads it to the server. When one client
@@ -40,8 +39,6 @@ are base64 encoded SHA256/RSA signatures of the content of the message
 concatenated with a decimal string representation of the timestamp. All text is
 encoded in UTF-8.
 
-\missingfigure{Diagram from wiki page}
-
 \subsection{Encrypted Messages}
 Encrypted messages contain the AES IV's; the RSA encrypted AES key; and the AES
 encrypted message.
@@ -60,8 +57,6 @@ backslash between each. The format follows:
 
 Backslashes are literal, angle brackets denote placeholder values where data
 specific to a message is placed.
-
-\missingfigure{Diagram from wiki page}
 
 \section{Claiming a Username}
 Each user (keypair) should claim one username. Uniqueness is enforced by the

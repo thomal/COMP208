@@ -2,7 +2,7 @@ Here we have a use case diagram displaying an actors interaction with our
 system. It shows the functionality available to both the client, and the 
 operator. We also have a sequence diagram to augment the use case diagrams.
 
-\begin{landscape}
+%\begin{landscape}
 
 \begin{tikzpicture}
 
@@ -12,14 +12,8 @@ operator. We also have a sequence diagram to augment the use case diagrams.
 \begin{umlsystem}[x=4,y=0]{System}
 %Client Use case Declarations
 
-%Connect Use Cases
-\umlusecase[name=ucConnect,x=0,y=1]{Connect}
-\umlusecase[name=ucFirstTime,x=5,y=0]{First-time}
-\umlusecase[name=ucSustained,x=5,y=1]{Sustained}
-\umlusecase[name=ucSubsequent,x=5,y=2]{Subsequent}
-
 %Public Key Use Cases
-\umlusecase[name=ucPublicKey,x=0,y=4]{Public Key}
+\umlusecase[name=ucPublicKey,x=0,y=4]{Manage Relations}
 \umlusecase[name=ucAddAuthorise,x=5,y=3]{Add/Authorise}
 \umlusecase[name=ucAddPublicKey,x=10,y=3]{Public Key}
 \umlusecase[name=ucQrCode,x=10,y=2]{QR Code}
@@ -27,22 +21,23 @@ operator. We also have a sequence diagram to augment the use case diagrams.
 \umlusecase[name=ucIgnore,x=5,y=5]{Ignore}
 
 %Account Use Cases
-\umlusecase[name=ucAccount,x=0,y=7]{Account}
+\umlusecase[name=ucAccount,x=0,y=7]{Account Management}
 \umlusecase[name=ucCreateClaim,x=5,y=6]{Create/Claim}
-\umlusecase[name=ucPDATA,x=5,y=7]{PDATA}
-\umlusecase[name=ucDataAdd,x=10,y=6]{Add PDATA}
+\umlusecase[name=ucPDATA,x=5,y=7]{Profile Data}
+\umlusecase[name=ucDataAdd,x=10,y=6]{Add Profile Data}
 \umlusecase[name=ucDataEditUpdate,x=10,y=7]{Edit/Update}
 
 %Communication Use Cases
 \umlusecase[name=ucCommunication,x=0,y=10.5]{Communication}
 \umlusecase[name=ucEncrypt,x=5,y=8]{Encrypt}
+\umlusecase[name=ucDecrypt,x=2,y=8]{Decrypt}
 \umlusecase[name=ucRtChat,x=5,y=9]{Real-Time Chat}
 \umlusecase[name=ucPost,x=5,y=10]{Post}
 \umlusecase[name=ucPostOwnWall,x=10,y=9]{Own Wall}
 \umlusecase[name=ucPostOtherWall,x=10,y=10]{Other's Wall}
 \umlusecase[name=ucComment,x=5,y=11]{Comment}
 \umlusecase[name=ucLike,x=5,y=12]{Like}
-\umlusecase[name=ucUpdateDb,x=5,y=13]{Update Database}
+\umlusecase[name=ucUpdateDb,x=5,y=13]{Event}
 
 %Revoke Use Case
 \umlusecase[name=ucRevoke,x=0,y=14]{Revoke Private Key}
@@ -50,12 +45,6 @@ operator. We also have a sequence diagram to augment the use case diagrams.
 \end{umlsystem}
 
 %Start of Client's Relations
-
-%Connect Relations
-\umlassoc[name=assClientConnect]{Client}{ucConnect}
-\umlextend[name=extConnectFirst]{ucFirstTime}{ucConnect}
-\umlextend[name=extConnectSustained]{ucSustained}{ucConnect}
-\umlextend[name=extConnectSubsequent]{ucSubsequent}{ucConnect}
 
 %Public Key Relations
 \umlassoc[name=assClientPublicKey]{Client}{ucPublicKey}
@@ -75,6 +64,7 @@ operator. We also have a sequence diagram to augment the use case diagrams.
 %Communication Relations
 \umlassoc[name=assClientCommunication]{Client}{ucCommunication}
 \umlinclude[name=extCommunicationEncrypt]{ucEncrypt}{ucCommunication}
+\umlinclude[name=extCommunicationEncrypt]{ucDecrypt}{ucCommunication}
 \umlextend[name=extCommunicationRtChat]{ucRtChat}{ucCommunication}
 \umlextend[name=extCommunicationPost]{ucPost}{ucCommunication}
 \umlextend[name=extPostOwnWall]{ucPostOwnWall}{ucPost}
@@ -103,9 +93,9 @@ operator. We also have a sequence diagram to augment the use case diagrams.
 \umlusecase[name=ucServerLoad,x=-9,y=1]{Monitor Server Load}
 
 %Check Use Cases
-\umlusecase[name=ucCheck,x=0,y=2]{Check}
+\umlusecase[name=ucCheck,x=0,y=2]{Inspect}
 \umlusecase[name=ucClientIP,x=-5,y=2]{Client IP}
-\umlusecase[name=ucJoinTime,x=-10,y=2]{Join Time}
+\umlusecase[name=ucJoinTime,x=-10,y=2]{Login Times}
 \umlusecase[name=ucMessagesSent,x=-5,y=3]{Messages}
 
 %Deletion Use Cases
@@ -134,7 +124,6 @@ operator. We also have a sequence diagram to augment the use case diagrams.
 \umlextend[name=extSpecific]{ucSpecificMessage}{ucDeleteMessage}
 \umlextend[name=extTimeBased]{ucTimeBased}{ucDeleteMessage}
 \umlextend[name=extAll]{ucAll}{ucDeleteMessage}
-\umlextend[name=extIpSpecific]{ucByIp}{ucSpecificMessage}
 \umlextend[name=extIpTimeBased]{ucByIp}{ucTimeBased}
 \umlextend[name=extIpAll]{ucByIp}{ucAll}
 
@@ -142,11 +131,25 @@ operator. We also have a sequence diagram to augment the use case diagrams.
 
 \end{tikzpicture}
 
-\end{landscape}
+%\end{landscape}
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=\textwidth]{images/design/sequence.jpg}
-    \caption{Sequence Diagram}
-    \label{fig:sequence}
+    \includegraphics[width=\textwidth]{images/design/sequence_first.png}
+    \caption{Sequence Diagram - Registering}
+    \label{fig:sequencef}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{images/design/sequence_recieve.png}
+    \caption{Sequence Diagram - Recieving Data}
+    \label{fig:sequencer}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{images/design/sequence_send.png}
+    \caption{Sequence Diagram - Sending Data}
+    \label{fig:sequences}
 \end{figure}

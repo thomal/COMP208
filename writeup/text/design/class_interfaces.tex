@@ -4,10 +4,7 @@ Many classes have inner private classes they use for convenience, however to
 simplify interaction between parts of our system ('modules') we have very few
 convenience classes.
 
-\todo{Reconcile return types with stated public classes}
-\todo{specify what's static}
-
-\begin{table}[h]
+\begin{table}[H]
     \centering
     \begin{tabular}{p{1cm}p{1cm}p{3cm}}
     return & function & description\\ \hline
@@ -16,7 +13,7 @@ convenience classes.
     \caption{Server}
 \end{table}
 
-\begin{table}[h]
+\begin{table}[H]
     \centering
     \begin{tabular}{p{1cm}p{1cm}p{9cm}}
     return & function & description\\ \hline
@@ -25,7 +22,7 @@ convenience classes.
     \caption{Client}
 \end{table}
 
-\begin{table}[h]
+\begin{table}[H]
     \centering
     \begin{tabular}{p{1cm}p{2.8cm}p{9cm}}
     return   & function            & description\\ \hline
@@ -48,7 +45,7 @@ convenience classes.
     \caption{NetworkConnection}
 \end{table}
 
-\begin{table}[h]
+\begin{table}[H]
     \centering
     \begin{tabular}{p{1.4cm}p{3.3cm}p{9cm}}
     return     & function        & description\\ \hline
@@ -71,7 +68,7 @@ convenience classes.
     \caption{Crypto}
 \end{table}
 
-\begin{table}[h]
+\begin{table}[H]
     \centering
     \begin{tabular}{p{1cm}p{2.6cm}p{9cm}}
     return & function & description\\ \hline
@@ -80,8 +77,7 @@ convenience classes.
     \caption{Parser}
 \end{table}
 
-\todo{go over DB interface with GUI guys and Aishah}
-\begin{table}[h]
+\begin{table}[H]
     \centering
     \begin{tabular}{p{3cm}p{3cm}p{9cm}}
     return                & function       & description\\ \hline
@@ -126,7 +122,7 @@ convenience classes.
     \caption{Database}
 \end{table}
 
-\begin{table}[h]
+\begin{table}[H]
     \centering
     \begin{tabular}{p{1cm}p{2.6cm}p{9cm}}
     return  & function    & description\\ \hline
@@ -138,7 +134,7 @@ convenience classes.
     \caption{GUI}
 \end{table}
 
-\begin{table}[h]
+\begin{table}[H]
     \centering
     \begin{tabular}{p{1cm}p{2.6cm}p{9cm}}
     return  & function       & description\\ \hline
@@ -155,7 +151,7 @@ convenience classes.
     \caption{Message}
 \end{table}
 
-\begin{table}[h]
+\begin{table}[H]
     \centering
     \begin{tabular}{p{1cm}p{2cm}p{9cm}}
     return & function & description\\ \hline
@@ -167,5 +163,11 @@ convenience classes.
     \caption{Pair\textless A, B\textgreater }
 \end{table}
 
+%\clearpage
 \section{Class Diagram}
-\missingfigure{Class Diagram Goes Here}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{images/design/class_diagram.png}
+    \caption{UML Class Diagram}
+    \label{fig:class_diagram}
+\end{figure}
