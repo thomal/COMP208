@@ -15,12 +15,29 @@ KAWAII TURTLE~
                    -----     u              u
 
 
-------------------------------------------
-Current TODO
-------------------------------------------
-class diagram
-pseudocode
-update DFD to show parser authentication
+--------------------------------------------
+Meeting #7.5 Minutes (Wednesday, 19/03/2014)
+--------------------------------------------
+Server.java		(Luke)
+Client.java		(Luke)
+Crypto.java		(Luke)
+NetworkConnection.java	(Luke)
+Parser.java		(Luke)
+HTTPServer.java		(Luke)
+helper classes		(Luke)
+browser plugins		(Luke)
+QR Code parser		(Luke)
+Test harness		(Luke)
+Installer		(Peter)
+Website			(Peter [mimic gnome.org])
+Manual			(Peter)
+Hardware Server		(Peter)
+ServerGUI.java		(Leon)
+First run config	(Leon)
+Database.java		(Mike, Aishia)
+SQLite Database		(Aishia)
+Logo and Graphic Design	(Aishia)
+GUI.java		(Louis)
 
 ------------------------------------------
 Meeting #7 Minutes (Friday, 07/03/2014)
