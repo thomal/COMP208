@@ -12,6 +12,7 @@ class NetworkConnection implements Runnable {
         lastRead    = 0;
         messageLock = new Semaphore(1);
         connected   = true;
+        tor         = false;
         
         //parse db/lastread
         File lastReadFile = new File("./db/lastread");
@@ -143,9 +144,13 @@ class NetworkConnection implements Runnable {
         
         //connect
         try {
-            s = new Socket(new Proxy(Proxy.Type.SOCKS,
-                                     new InetSocketAddress("localhost", 9050)));
-            s.connect(new InetSocketAddress(url, port));
+            if (tor) {
+                s = new Socket(new Proxy(Proxy.Type.SOCKS,
+                                         new InetSocketAddress("localhost", 9050))); //connect to Tor SOCKS proxy
+                s.connect(new InetSocketAddress(url, port));                         //connect to server through Tor
+            } else {
+                s = new Socket(url, port);
+            }
             
             in  = new BufferedReader(new InputStreamReader(s.getInputStream()));
             out = new PrintWriter(s.getOutputStream(), true);
@@ -199,5 +204,6 @@ class NetworkConnection implements Runnable {
     
     private long lastRead;
     private boolean connected;
+    private boolean tor;
     private Semaphore messageLock;
 }
