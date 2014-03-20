@@ -18,8 +18,12 @@ KAWAII TURTLE~
 Agenda Items
 --------------------------------------------
 build enviroments and build scripts
+ - Install ant and download GWT SDK
+ - Install chrome/firefox GWT extension
+ - Everyone write their own makefile targets + web_interface/build.xml
 review task allocation
 set deadlines for functionality
+ - Everyone can build the project from source by next meeting
 
 --------------------------------------------
 TODO
