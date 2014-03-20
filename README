@@ -14,6 +14,29 @@ KAWAII TURTLE~
                 \  w     /   /___ /_____|_____\ >
                    -----     u              u
 
+
+--------------------------------------------
+HOW-TO
+--------------------------------------------
+Compile:
+    in COMP208 folder type `make'
+
+Test:
+    in COMP208 folder type `make run_server'
+    in another terminal in COMP208 type `make run_client'
+    click "Copy to Clipboard" and visit that link in a webbrowser
+
+Edit GUI:
+    Edit src/ballmerpeak/turtlenet/client/frontend.java
+    Edit web_interface/war/frontend.html
+    Edit web_interface/war/frontend.css
+
+Edit (Remote) Server:
+    Edit src/ballmerpeak/turtlenet/remoteserver/Server.java
+
+Edit Client:
+    Edit src/ballmerpeak/turtlenet/server/*.java
+
 --------------------------------------------
 TODO
 --------------------------------------------
