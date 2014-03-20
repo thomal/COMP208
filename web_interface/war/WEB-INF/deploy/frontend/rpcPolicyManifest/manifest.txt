@@ -1,0 +1,3 @@
+# Module frontend
+# RPC service class, partial path of RPC policy file
+ballmerpeak.turtlenet.client.GreetingService, CEB9E106FC363CF07453E30C6036AEE6.gwt.rpc
