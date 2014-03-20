@@ -1,3 +1,5 @@
+package ballmerpeak.turtlenet.remoteserver;
+
 import javax.xml.bind.DatatypeConverter;
 import java.security.MessageDigest;
 

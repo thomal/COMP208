@@ -1,4 +1,6 @@
-//Having an "Author" field would be reduncant and untrusted
+//Having an "Author" field would be redundant and untrusted
+package ballmerpeak.turtlenet.remoteserver;
+
 import java.util.StringTokenizer;
 
 public class Message {
