@@ -1,4 +1,19 @@
-all : clean web rserver
+LUKE_GWTPATH="/home/luke/Downloads/gwt-2.6.0"
+PETER_GWTPATH="i dunno"
+AISHIAH_GWTPATH="this is for you"
+LEON_GWTPATH="to fill in, not me."
+MIKE_GWTPATH="see my example prior"
+LOUIS_GWTPATH="so you know what to do."
+
+ifeq ($(USER), luke)
+	GWTPATH=$(LUKE_GWTPATH)
+else ifeq ($(USER), someone else)
+	GWTPATH="YOUR USERNAME HERE"
+else
+	GWTPATH="SET YO GODDAMN PATH"
+endif
+
+all : clean web rserver config
 	@echo "              --------------------------"
 	@echo "              successfully built project"
 	@echo "              --------------------------"
@@ -18,26 +33,29 @@ all : clean web rserver
 	@echo "                   -----     u              u"
 
 
-web:
-	sed -e 's:___GWTPATH___:/home/luke/Downloads/gwt-2.6.0:g' web_interface/protobuild.xml > web_interface/build.xml
+web : config
+	sed -e `echo 's:___GWTPATH___:'$(GWTPATH)':g'` web_interface/protobuild.xml > web_interface/build.xml
 	ant -f web_interface/build.xml build
 	rm web_interface/build.xml
 
-rserver:
+rserver : config
 	javac -cp src src/ballmerpeak/turtlenet/remoteserver/*.java
 	
-clean:
-	sed -e 's:___GWTPATH___:/home/luke/Downloads/gwt-2.6.0:g' web_interface/protobuild.xml > web_interface/build.xml
+clean : config
+	sed -e `echo 's:___GWTPATH___:'$(GWTPATH)':g'` web_interface/protobuild.xml > web_interface/build.xml
 	rm -f src/ballmerpeak/turtlenet/*/*.class
 	rm -f src/ballmerpeak/turtlenet/remoteserver/Message.java
 	ant -f web_interface/build.xml clean
 	rm web_interface/build.xml
 	
-run_server:
+run_server : config
 	mkdir -p data
 	java -cp src ballmerpeak.turtlenet.remoteserver.Server
 	
-run_client:
-	sed -e 's:___GWTPATH___:/home/luke/Downloads/gwt-2.6.0:g' web_interface/protobuild.xml > web_interface/build.xml
+run_client : config
+	sed -e `echo 's:___GWTPATH___:'$(GWTPATH)':g'` web_interface/protobuild.xml > web_interface/build.xml
 	ant -f web_interface/build.xml devmode
 	rm web_interface/build.xml
+	
+config:
+	@echo "config"
