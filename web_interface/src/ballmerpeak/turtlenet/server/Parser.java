@@ -1,4 +1,6 @@
- //All methods ought to be static
+//All methods ought to be static
+package ballmerpeak.turtlenet.server;
+
 class Parser {
     public static void parse (Message msg, Database db) {
         if (msg.getCmd().equals("POST")) {

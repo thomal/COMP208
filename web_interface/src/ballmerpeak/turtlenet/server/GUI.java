@@ -2,6 +2,7 @@
 //    by their username, the server may be malicious and allow duplicate names.
 //    if a duplicate name exists, the user should be informed. Users may be
 //    uniquely identified by their public keys.
+package ballmerpeak.turtlenet.server;
 
 import java.util.Scanner;
 import java.util.Vector;

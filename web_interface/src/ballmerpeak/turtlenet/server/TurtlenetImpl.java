@@ -4,9 +4,21 @@ import ballmerpeak.turtlenet.client.Turtlenet;
 import ballmerpeak.turtlenet.shared.FieldVerifier;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import java.io.*;
+import ballmerpeak.turtlenet.server.TNClient;
 
 @SuppressWarnings("serial")
 public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
+    public String startTN() {
+        TNClient c = new TNClient();
+        Thread t = new Thread(c);
+        t.start();
+        return "success";
+    }
+    
+    public String stopTN() {
+        TNClient.running = false;
+        return "success";
+    }
 
     public String test(String input) throws IllegalArgumentException {
         if (!FieldVerifier.isValidName(input))

@@ -1,3 +1,5 @@
+package ballmerpeak.turtlenet.server;
+
 //All methods ought to be static
 import java.io.*;
 import java.security.*;

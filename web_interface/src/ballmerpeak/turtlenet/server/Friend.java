@@ -1,3 +1,5 @@
+package ballmerpeak.turtlenet.server;
+
 import java.security.PublicKey;
 
 class Friend {
