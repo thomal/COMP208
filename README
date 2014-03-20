@@ -17,22 +17,22 @@ KAWAII TURTLE~
 --------------------------------------------
 Agenda Items
 --------------------------------------------
-build enviroments and build scripts
- - Install ant and download GWT SDK
- - Install chrome/firefox GWT extension
- - Everyone write their own makefile targets + web_interface/build.xml
-review task allocation
-set deadlines for functionality
- - Everyone can build the project from source by next meeting
+- build enviroments and build scripts
+    - Install ant and download GWT SDK
+    - Install chrome/firefox GWT extension
+- review task allocation
+- set deadlines for functionality
+    - Everyone can build the project from source by next meeting
 
 --------------------------------------------
 TODO
 --------------------------------------------
-move Message to ballmerpeak.turtlenet.shared
-make JAR files
-move PDF makefile into main makefile
-add dependancies to build targets
-merge web_prototype with web_interface
+- Makefile modify web_interface/build.xml to have correct paths
+- move Message to ballmerpeak.turtlenet.shared
+- make JAR files
+- move PDF makefile into main makefile
+- add dependancies to build targets
+- merge web_prototype with web_interface
 
 --------------------------------------------
 HOW-TO

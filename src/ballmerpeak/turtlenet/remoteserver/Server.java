@@ -1,5 +1,6 @@
 package ballmerpeak.turtlenet.remoteserver;
 
+import ballmerpeak.turtlenet.shared.Message;
 import java.io.*;
 import java.net.*;
 import java.util.Date;

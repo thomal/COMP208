@@ -1,14 +1,27 @@
 all : clean web rserver
-	echo "building all"
+	@echo "              --------------------------"
+	@echo "              successfully built project"
+	@echo "              --------------------------"
+	@echo ""	
+	@echo "         ------------------------------------"
+	@echo "        /  ::PROGRAMMER'S TIP 103::          \\"
+	@echo "        |  Breaking the build upsets the     |"
+	@echo "        |  turtle. Good job getting the damn |"
+	@echo "        |  thing to compile.                 |"
+	@echo "        \                                    /"
+	@echo "         ---------  -------------------------"
+	@echo "                  \|"
+	@echo ""
+	@echo "                  ------       /^^---^^---^^\\"
+	@echo "                / o  o   \    /___/____|_____\\"
+	@echo "                \  w     /   /___ /_____|_____\ >"
+	@echo "                   -----     u              u"
+
 
 web:
 	ant -f web_interface/build.xml build
 
 rserver:
-	cp src/ballmerpeak/turtlenet/server/Message.java Message.java
-	sed s/ballmerpeak.turtlenet.server/ballmerpeak.turtlenet.remoteserver/ Message.java > Message2.java
-	rm Message.java
-	mv Message2.java src/ballmerpeak/turtlenet/remoteserver/Message.java
 	javac -cp src src/ballmerpeak/turtlenet/remoteserver/*.java
 	
 clean:

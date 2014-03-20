@@ -1,5 +1,5 @@
 //Having an "Author" field would be redundant and untrusted
-package ballmerpeak.turtlenet.remoteserver;
+package ballmerpeak.turtlenet.shared;
 
 import java.util.StringTokenizer;
 

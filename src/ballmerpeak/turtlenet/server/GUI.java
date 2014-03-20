@@ -4,6 +4,7 @@
 //    uniquely identified by their public keys.
 package ballmerpeak.turtlenet.server;
 
+import ballmerpeak.turtlenet.shared.Message;
 import java.util.Scanner;
 import java.util.Vector;
 import java.security.PublicKey;

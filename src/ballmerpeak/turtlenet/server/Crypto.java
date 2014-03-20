@@ -1,6 +1,7 @@
+//All methods ought to be static
 package ballmerpeak.turtlenet.server;
 
-//All methods ought to be static
+import ballmerpeak.turtlenet.shared.Message;
 import java.io.*;
 import java.security.*;
 import java.security.spec.X509EncodedKeySpec;
