@@ -3,7 +3,7 @@ package ballmerpeak.turtlenet.client;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
-@RemoteServiceRelativePath("greet")
+@RemoteServiceRelativePath("turtlenet")
 public interface Turtlenet extends RemoteService {
-  String greetServer(String name) throws IllegalArgumentException;
+  String test(String name) throws IllegalArgumentException;
 }

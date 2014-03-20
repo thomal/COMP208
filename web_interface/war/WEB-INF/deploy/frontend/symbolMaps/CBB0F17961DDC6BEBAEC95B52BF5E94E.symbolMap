@@ -4,7 +4,7 @@
 m,,ballmerpeak.turtlenet.client.Turtlenet_Proxy,,gen/ballmerpeak/turtlenet/client/Turtlenet_Proxy.java,14,-1
 D,ballmerpeak.turtlenet.client.Turtlenet_Proxy::$clinit()V,ballmerpeak.turtlenet.client.Turtlenet_Proxy,$clinit,gen/ballmerpeak/turtlenet/client/Turtlenet_Proxy.java,14,0
 F,ballmerpeak.turtlenet.client.Turtlenet_Proxy::$createStreamWriter(Lballmerpeak/turtlenet/client/Turtlenet_Proxy;)Lcom/google/gwt/user/client/rpc/SerializationStreamWriter;,ballmerpeak.turtlenet.client.Turtlenet_Proxy,$createStreamWriter,gen/ballmerpeak/turtlenet/client/Turtlenet_Proxy.java,38,0
-G,ballmerpeak.turtlenet.client.Turtlenet_Proxy::$greetServer(Lballmerpeak/turtlenet/client/Turtlenet_Proxy;Ljava/lang/String;Lcom/google/gwt/user/client/rpc/AsyncCallback;)V,ballmerpeak.turtlenet.client.Turtlenet_Proxy,$greetServer,gen/ballmerpeak/turtlenet/client/Turtlenet_Proxy.java,26,0
+G,ballmerpeak.turtlenet.client.Turtlenet_Proxy::$test(Lballmerpeak/turtlenet/client/Turtlenet_Proxy;Ljava/lang/String;Lcom/google/gwt/user/client/rpc/AsyncCallback;)V,ballmerpeak.turtlenet.client.Turtlenet_Proxy,$test,gen/ballmerpeak/turtlenet/client/Turtlenet_Proxy.java,26,0
 C,ballmerpeak.turtlenet.client.Turtlenet_Proxy::SERIALIZER,ballmerpeak.turtlenet.client.Turtlenet_Proxy,SERIALIZER,gen/ballmerpeak/turtlenet/client/Turtlenet_Proxy.java,17,-1
 H,ballmerpeak.turtlenet.client.Turtlenet_Proxy::Turtlenet_Proxy()V,ballmerpeak.turtlenet.client.Turtlenet_Proxy,Turtlenet_Proxy,gen/ballmerpeak/turtlenet/client/Turtlenet_Proxy.java,19,0
 I,,ballmerpeak.turtlenet.client.Turtlenet_TypeSerializer,,gen/ballmerpeak/turtlenet/client/Turtlenet_TypeSerializer.java,10,-1

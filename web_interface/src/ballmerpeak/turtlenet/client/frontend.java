@@ -113,7 +113,7 @@ public class frontend implements EntryPoint {
         sendButton.setEnabled(false);
         textToServerLabel.setText(textToServer);
         serverResponseLabel.setText("");
-        turtlenet.greetServer(textToServer, new AsyncCallback<String>() {
+        turtlenet.test(textToServer, new AsyncCallback<String>() {
           public void onFailure(Throwable caught) {
             // Show the RPC error message to the user
             dialogBox.setText("Remote Procedure Call - Failure");

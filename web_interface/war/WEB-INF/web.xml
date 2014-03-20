@@ -13,7 +13,7 @@
   
   <servlet-mapping>
     <servlet-name>turtlenetServlet</servlet-name>
-    <url-pattern>/frontend/greet</url-pattern>
+    <url-pattern>/frontend/turtlenet</url-pattern>
   </servlet-mapping>
   
   <!-- Default page to serve -->

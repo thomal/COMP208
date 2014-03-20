@@ -10,7 +10,7 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 @SuppressWarnings("serial")
 public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
 
-  public String greetServer(String input) throws IllegalArgumentException {
+  public String test(String input) throws IllegalArgumentException {
     if (!FieldVerifier.isValidName(input)) {
       throw new IllegalArgumentException(
           "Name must be at least 4 characters long");
