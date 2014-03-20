@@ -13,7 +13,7 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
   public String test(String input) throws IllegalArgumentException {
     if (!FieldVerifier.isValidName(input)) {
       throw new IllegalArgumentException(
-          "Name must be at least 4 characters long");
+          "Command must be at least 4 characters long");
     }
 
     return "Ignoring: \"" + input + "\"";
