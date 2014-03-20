@@ -14,6 +14,21 @@ KAWAII TURTLE~
                 \  w     /   /___ /_____|_____\ >
                    -----     u              u
 
+--------------------------------------------
+Agenda Items
+--------------------------------------------
+build enviroments and build scripts
+review task allocation
+set deadlines for functionality
+
+--------------------------------------------
+TODO
+--------------------------------------------
+move Message to ballmerpeak.turtlenet.shared
+make JAR files
+move PDF makefile into main makefile
+add dependancies to build targets
+merge web_prototype with web_interface
 
 --------------------------------------------
 HOW-TO
@@ -36,15 +51,6 @@ Edit (Remote) Server:
 
 Edit Client:
     Edit src/ballmerpeak/turtlenet/server/*.java
-
---------------------------------------------
-TODO
---------------------------------------------
-move Message to ballmerpeak.turtlenet.shared
-make JAR files
-move PDF makefile into main makefile
-add dependancies to build targets
-merge web_prototype with web_interface
 
 --------------------------------------------
 Meeting #7.5 Minutes (Wednesday, 19/03/2014)
