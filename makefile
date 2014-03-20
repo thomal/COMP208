@@ -4,7 +4,7 @@ all : clean web rserver
 web:
 	ant -f web_interface/build.xml build
 
-rserver : src/ballmerpeak/turtlenet/remoteserver/*.java src/ballmerpeak/turtlenet/shared/*.java
+rserver:
 	cp src/ballmerpeak/turtlenet/server/Message.java Message.java
 	sed s/ballmerpeak.turtlenet.server/ballmerpeak.turtlenet.remoteserver/ Message.java > Message2.java
 	rm Message.java
