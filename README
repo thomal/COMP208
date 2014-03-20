@@ -14,6 +14,14 @@ KAWAII TURTLE~
                 \  w     /   /___ /_____|_____\ >
                    -----     u              u
 
+--------------------------------------------
+TODO
+--------------------------------------------
+move Message to ballmerpeak.turtlenet.shared
+make JAR files
+move PDF makefile into main makefile
+add dependancies to build targets
+merge web_prototype with web_interface
 
 --------------------------------------------
 Meeting #7.5 Minutes (Wednesday, 19/03/2014)

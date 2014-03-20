@@ -1,4 +1,4 @@
-pdf : project.tex text/*/*.tex
+pdf :
 	pdflatex project.tex
 	pdflatex project.tex #toc and todo
 	bibtex project
