@@ -21,18 +21,13 @@ import com.google.gwt.user.client.ui.VerticalPanel;
  * Entry point classes define <code>onModuleLoad()</code>.
  */
 public class frontend implements EntryPoint {
-  /**
-   * The message displayed to the user when the server cannot be reached or
-   * returns an error.
-   */
-  private static final String SERVER_ERROR = "An error occurred while "
-      + "attempting to contact the server. Please check your network "
-      + "connection and try again.";
+  private static final String SERVER_ERROR = "An error occurred while " +
+         "attempting to contact the server. Please check Turtlenet is running.";
 
   /**
-   * Create a remote service proxy to talk to the server-side Greeting service.
+   * Create a remote service proxy to talk to the server-side Turtlenet service.
    */
-  private final GreetingServiceAsync greetingService = GWT.create(GreetingService.class);
+  private final TurtlenetAsync turtlenet = GWT.create(Turtlenet.class);
 
   /**
    * This is the entry point method.
@@ -40,7 +35,7 @@ public class frontend implements EntryPoint {
   public void onModuleLoad() {
     final Button sendButton = new Button("Send");
     final TextBox nameField = new TextBox();
-    nameField.setText("GWT User");
+    nameField.setText("");
     final Label errorLabel = new Label();
 
     // We can add style names to widgets
@@ -67,7 +62,7 @@ public class frontend implements EntryPoint {
     final HTML serverResponseLabel = new HTML();
     VerticalPanel dialogVPanel = new VerticalPanel();
     dialogVPanel.addStyleName("dialogVPanel");
-    dialogVPanel.add(new HTML("<b>Sending name to the server:</b>"));
+    dialogVPanel.add(new HTML("<b>Sending command to the server:</b>"));
     dialogVPanel.add(textToServerLabel);
     dialogVPanel.add(new HTML("<br><b>Server replies:</b>"));
     dialogVPanel.add(serverResponseLabel);
@@ -118,7 +113,7 @@ public class frontend implements EntryPoint {
         sendButton.setEnabled(false);
         textToServerLabel.setText(textToServer);
         serverResponseLabel.setText("");
-        greetingService.greetServer(textToServer, new AsyncCallback<String>() {
+        turtlenet.greetServer(textToServer, new AsyncCallback<String>() {
           public void onFailure(Throwable caught) {
             // Show the RPC error message to the user
             dialogBox.setText("Remote Procedure Call - Failure");

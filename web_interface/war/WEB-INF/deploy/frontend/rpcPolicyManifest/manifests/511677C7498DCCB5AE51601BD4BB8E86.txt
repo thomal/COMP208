@@ -1,2 +1,0 @@
-serviceClass: ballmerpeak.turtlenet.client.GreetingService
-path: CEB9E106FC363CF07453E30C6036AEE6.gwt.rpc
