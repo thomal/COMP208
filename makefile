@@ -8,7 +8,7 @@ LOUIS_GWTPATH="so you know what to do."
 
 ifeq ($(HOSTNAME), slowbox)
 	GWTPATH=$(LUKEWIN_GWTPATH)
-else ifeq ($(HOSTNAME), teumessian)
+else ifeq ($(USERNAME), luke)
 	GWTPATH=$(LUKE_GWTPATH)
 else
 	GWTPATH="SET YO GODDAMN PATH"
@@ -59,4 +59,4 @@ run_client : config
 	rm web_interface/build.xml
 	
 config:
-	@echo "config"
+	@echo "Path: $(GWTPATH)"
