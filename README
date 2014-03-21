@@ -15,17 +15,6 @@ KAWAII TURTLE~
                    -----     u              u
 
 --------------------------------------------
-Agenda Items
---------------------------------------------
-- build enviroments and build scripts
-    - Install ant and download GWT SDK
-    - Set your GWT path in the makefile
-    - Install chrome/firefox GWT extension
-- review task allocation
-- set deadlines for functionality
-    - Everyone can build the project from source by next meeting
-
---------------------------------------------
 TODO
 --------------------------------------------
 - make JAR files
@@ -66,6 +55,33 @@ Create windows build environment:
     ant -version
 	make sure that javac and ant are in your path (export JAVA_HOME="C:\Program Files\Java\jdk1.7.0_21:\Program Files\Java\jre7", and in windows too NOT A JDE, BUT A JDK)
 
+
+--------------------------------------------
+Meeting #8 Minutes (Friday, 21/03/2014)
+--------------------------------------------
+By next meeting:
+    - Everyone can build project
+    - DB Connection
+    - GWT Interface stubs
+    - Stubs for other classes
+    - Manual contents page
+    - Create table statements
+    - Compile remote server as a JAR
+    - Server GUI, start up and shut down
+
+Leon absent.
+
+--------------------------------------------
+Agenda Items
+--------------------------------------------
+- build enviroments and build scripts
+    - Install ant and download GWT SDK
+    - Set your GWT path in the makefile
+    - Install chrome/firefox GWT extension
+- review task allocation
+- set deadlines for functionality
+    - Everyone can build the project from source by next meeting
+
 --------------------------------------------
 Meeting #7.5 Minutes (Wednesday, 19/03/2014)
 --------------------------------------------
@@ -85,10 +101,24 @@ Manual			(Peter)
 Hardware Server		(Peter)
 ServerGUI.java		(Leon)
 First run config	(Leon)
-Database.java		(Mike, Aishia)
-SQLite Database		(Aishia)
-Logo and Graphic Design	(Aishia)
-GUI.java		(Louis)
+Database.java		(Mike, Aishah)
+    - Stubs
+SQLite Database		(Aishah)
+    - Database connection
+    - Create DB
+Logo and Graphic Design	(Aishah)
+GWT interface		(Louis)
+    - Stubs in interface
+    - error on failure to connect
+    - Add public keys
+    - Categorise users
+    - Post to your wall
+    - Read others wall posts
+    - Post to anothers wall
+    - Events create and recieve
+    - Chat
+    - Comment posts and comments
+    - Like posts and comments
 
 ------------------------------------------
 Meeting #7 Minutes (Friday, 07/03/2014)

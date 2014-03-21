@@ -24,9 +24,7 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
         if (!FieldVerifier.isValidName(input))
             throw new IllegalArgumentException("Command must be at least 4 characters long");
 
-        try {
-            File lastReadFile = new File("./db/lastread");
-                        
+        try {           
             BufferedWriter writer = new BufferedWriter(new FileWriter("./TESTFILE"));
             writer.write(input + "\n");
             writer.close();
