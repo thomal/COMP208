@@ -56,6 +56,16 @@ Edit (Remote) Server:
 Edit Client:
     Edit src/ballmerpeak/turtlenet/server/*.java
 
+Create windows build environment:
+    Install cygwin with git etc.
+    download and unzip GWT
+    set path in makefile (use forward slash, escape colon)
+    download and unzip ant
+    export ANT_HOME=/cygdrive/c/Users/luke/Downloads/apache-ant-1.9.3
+    export PATH=$ANT_HOME/bin:$PATH
+    ant -version
+	make sure that javac and ant are in your path (export JAVA_HOME="C:\Program Files\Java\jdk1.7.0_21:\Program Files\Java\jre7", and in windows too NOT A JDE, BUT A JDK)
+
 --------------------------------------------
 Meeting #7.5 Minutes (Wednesday, 19/03/2014)
 --------------------------------------------

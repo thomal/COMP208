@@ -1,14 +1,15 @@
 LUKE_GWTPATH="/home/luke/Downloads/gwt-2.6.0"
+LUKEWIN_GWTPATH="C\:/Users/luke/Downloads/gwt-2.6.0"
 PETER_GWTPATH="i dunno"
 AISHIAH_GWTPATH="this is for you"
 LEON_GWTPATH="to fill in, not me."
 MIKE_GWTPATH="see my example prior"
 LOUIS_GWTPATH="so you know what to do."
 
-ifeq ($(USER), luke)
+ifeq ($(HOSTNAME), slowbox)
+	GWTPATH=$(LUKEWIN_GWTPATH)
+else ifeq ($(HOSTNAME), teumessian)
 	GWTPATH=$(LUKE_GWTPATH)
-else ifeq ($(USER), someone else)
-	GWTPATH="YOUR USERNAME HERE"
 else
 	GWTPATH="SET YO GODDAMN PATH"
 endif
