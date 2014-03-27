@@ -77,7 +77,7 @@ content VARCHAR(40),
 time DATETIME,
 start_date DATETIME,
 end_date DATETIME,
-PRIMARY KEY (event_id),
+PRIMARY KEY (event_id)
 );
 
 -- error detected, 'is_in_category_id' should be 'category_id'
@@ -85,7 +85,7 @@ CREATE TABLE is_invited
 (
 is_invited_id INT NOT NULL,
 user_id INT,
-is_in_category INT,
+category_id INT, -- changed is_in_category_id to category_id
 event_id INT,
 decision BIT,
 PRIMARY KEY (is_invited_id),
@@ -97,14 +97,15 @@ FOREIGN KEY (event_id) REFERENCES events(event_id)
 CREATE TABLE wall_post
 (
 post_id INT NOT NULL, -- change this from 'wall_id' to 'post_id'
-from INT,
-to INT,
+user_from_id INT,
+user_to_id INT,
 content VARCHAR(50),
 time DATETIME,
-PRIMARY KEY (wall_id),
-FOREIGN KEY (from) REFERENCES user(user_id),
-FOREIGN KEY (to) REFERENCES user(user_id)
+PRIMARY KEY (post_id),
+FOREIGN KEY (user_from_id) REFERENCES user(user_id),
+FOREIGN KEY (user_to_id) REFERENCES user(user_id)
 );
+
 
 CREATE TABLE allowed_to
 (
@@ -115,7 +116,7 @@ post_id INT,
 PRIMARY KEY (allowed_to_id),
 FOREIGN KEY (user_id) REFERENCES user(user_id),
 FOREIGN KEY (category_id) REFERENCES category(category_id),
-FOREIGN KEY (post_id) REFERENCES wall_post(allowed_to_id)
+FOREIGN KEY (post_id) REFERENCES wall_post(post_id)
 );
 
 CREATE TABLE has_comment
@@ -157,7 +158,7 @@ CREATE TABLE key_revoke
 revoke_id INT NOT NULL,
 signature VARCHAR(45),
 time DATETIME,
-PRIMARY KEY (key_revoke)
+PRIMARY KEY (revoke_id)
 );
 
 CREATE TABLE login_logout_log
