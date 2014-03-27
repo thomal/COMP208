@@ -22,6 +22,6 @@ class TNClient implements Runnable {
         
         //gui.close();
         connection.close();
-        db.close();
+        db.dbDisconnect();
     }
 }
