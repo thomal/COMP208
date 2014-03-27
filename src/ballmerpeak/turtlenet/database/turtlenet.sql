@@ -9,23 +9,22 @@
 -- 6 events [done, changes made]
 -- 7 is_invited [done, changes made]
 -- 8 wall_post [done]
--- 9 allowed_to
--- 10 has_like
--- 11 has_comment
--- 12 message_claim
--- 13 key_revoke
--- 14 login_logout_log
+-- 9 allowed_to [done]
+-- 10 has_like [done]
+-- 11 has_comment [done]
+-- 12 message_claim [done]
+-- 13 key_revoke [done]
+-- 14 login_logout_log [done]
 
 -- INCLUDE:
 -- auto_increments
 -- specify NOT NULLS
--- auto insertion DATETIME
 
 -- create tables
 CREATE TABLE user 
 (
 user_id INT NOT NULL, 
-username VARCHAR(25), 
+username VARCHAR(25) NOT NULL, 
 name VARCHAR(30), 
 birthday DATE, 
 sex VARCHAR(1), 
@@ -44,7 +43,7 @@ PRIMARY KEY (category_id)
 CREATE TABLE is_in_category
 (
 is_in_id INT NOT NULL,
-category_id INT, -- DATATYPE IS WRONG ON DIAGRAM
+category_id INT NOT NULL, -- DATATYPE IS WRONG ON DIAGRAM
 user_id VARCHAR(50),
 PRIMARY KEY (is_in_id),
 FOREIGN KEY (category_id) REFERENCES category(category_id)
@@ -84,7 +83,7 @@ PRIMARY KEY (event_id),
 -- error detected, 'is_in_category_id' should be 'category_id'
 CREATE TABLE is_invited
 (
-is_invited_id INT,
+is_invited_id INT NOT NULL,
 user_id INT,
 is_in_category INT,
 event_id INT,
@@ -97,7 +96,7 @@ FOREIGN KEY (event_id) REFERENCES events(event_id)
 
 CREATE TABLE wall_post
 (
-post_id INT, -- change this from 'wall_id' to 'post_id'
+post_id INT NOT NULL, -- change this from 'wall_id' to 'post_id'
 from INT,
 to INT,
 content VARCHAR(50),
@@ -109,12 +108,63 @@ FOREIGN KEY (to) REFERENCES user(user_id)
 
 CREATE TABLE allowed_to
 (
-allowed_to_id INT,
+allowed_to_id INT NOT NULL,
 user_id INT,
 category_id INT,
 post_id INT,
 PRIMARY KEY (allowed_to_id),
 FOREIGN KEY (user_id) REFERENCES user(user_id),
 FOREIGN KEY (category_id) REFERENCES category(category_id),
-FOREGN
+FOREIGN KEY (post_id) REFERENCES wall_post(allowed_to_id)
 );
+
+CREATE TABLE has_comment
+(
+comment_id INT NOT NULL,
+comment_content VARCHAR(50),
+post_id INT,
+user_id INT, 
+comment_comment_id INT,
+time DATETIME,
+PRIMARY KEY (comment_id),
+FOREIGN KEY (post_id) REFERENCES wall_post(post_id),
+FOREIGN KEY (user_id) REFERENCES user(user_id),
+FOREIGN KEY (comment_comment_id) REFERENCES has_comment(comment_id)
+);
+
+CREATE TABLE has_like
+(
+like_id INT NOT NULL,
+post_id INT, 
+user_id INT,
+comment_id INT,
+time DATETIME,
+PRIMARY KEY (like_id),
+FOREIGN KEY (post_id) REFERENCES wall_post(post_id),
+FOREIGN KEY (user_id) REFERENCES user(user_id),
+FOREIGN KEY (comment_id) REFERENCES has_comment(comment_id)
+);
+
+CREATE TABLE message_claim
+(
+username VARCHAR(25) NOT NULL,
+signature VARCHAR(45),
+PRIMARY KEY (username)
+);
+
+CREATE TABLE key_revoke
+(
+revoke_id INT NOT NULL,
+signature VARCHAR(45),
+time DATETIME,
+PRIMARY KEY (key_revoke)
+);
+
+CREATE TABLE login_logout_log
+(
+log_id INT NOT NULL,
+login_time DATETIME,
+logout_time DATETIME,
+PRIMARY KEY (log_id)
+);
+
