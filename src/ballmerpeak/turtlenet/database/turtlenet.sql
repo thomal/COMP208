@@ -8,7 +8,7 @@
 -- 5 is_in_message [done]
 -- 6 events [done, changes made]
 -- 7 is_invited [done, changes made]
--- 8 wall_post
+-- 8 wall_post [done]
 -- 9 allowed_to
 -- 10 has_like
 -- 11 has_comment
@@ -97,7 +97,7 @@ FOREIGN KEY (event_id) REFERENCES events(event_id)
 
 CREATE TABLE wall_post
 (
-wall_id INT,
+post_id INT, -- change this from 'wall_id' to 'post_id'
 from INT,
 to INT,
 content VARCHAR(50),
@@ -105,4 +105,16 @@ time DATETIME,
 PRIMARY KEY (wall_id),
 FOREIGN KEY (from) REFERENCES user(user_id),
 FOREIGN KEY (to) REFERENCES user(user_id)
+);
+
+CREATE TABLE allowed_to
+(
+allowed_to_id INT,
+user_id INT,
+category_id INT,
+post_id INT,
+PRIMARY KEY (allowed_to_id),
+FOREIGN KEY (user_id) REFERENCES user(user_id),
+FOREIGN KEY (category_id) REFERENCES category(category_id),
+FOREGN
 );
