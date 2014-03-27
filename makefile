@@ -12,6 +12,8 @@ else ifeq ($(USERNAME), luke)
 	GWTPATH=$(LUKE_GWTPATH)
 else ifeq ($(USERNAME), louis)
 	GWTPATH=$(LOUIS_GWTPATH)
+else ifeq ($(USERNAME), Mike)
+	GWTPATH=$(MIKE_GWTPATH)
 else
 	GWTPATH="SET YO GODDAMN PATH"
 endif
