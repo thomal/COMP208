@@ -3,7 +3,7 @@ LUKEWIN_GWTPATH="C\:/Users/luke/Downloads/gwt-2.6.0"
 PETER_GWTPATH="i dunno"
 AISHIAH_GWTPATH="this is for you"
 LEON_GWTPATH="to fill in, not me."
-MIKE_GWTPATH="see my example prior"
+MIKE_GWTPATH="/home/Mike/gwt-2.6.0"
 LOUIS_GWTPATH="/home/louis/gwt-2.6.0"
 
 ifeq ($(HOSTNAME), slowbox)
