@@ -3,6 +3,7 @@ package ballmerpeak.turtlenet.server;
 import ballmerpeak.turtlenet.shared.Message;
 import java.util.Vector;
 import java.security.*;
+import java.sql.*;
 
 //NB: My initial version is crude, inefficient, and not even a database. It
 //    exists solely to allow me to write other parts of the system. While the
@@ -16,11 +17,45 @@ class Database {
         posts   = new Vector<Pair<String, Message>>();
         claims  = new Vector<Message>();
         friends = new Vector<Friend>();
+	dbConnection = null;
         
         addFriend(Crypto.getPublicKey());
     }
-    
-    public void close () {
+
+    //Connects to a pre-defined database
+    public void dbConnect() {
+
+	try {
+	    Class.forName("org.sqlite.JDBC");
+	    dbConnection = DriverManager.getConnection("jdbc:sqlite:"
+						   + path + "/turtlenet.db");
+	    //so the DB doesn't make changes when we don't want it to
+	    dbConnection.setAutoCommit(false);
+
+	//don't quite know what to make the program do here
+	} catch(Exception e) {
+	    System.err.println(e.getClass().getName() + ": " + e.getMessage() );
+	    System.exit(0);
+	}
+
+	System.out.println("TurtleNet Database Connected Successfully.");
+
+    }
+
+    //Disconnects the pre-defined database
+    public void dbDisconnect() {
+	
+	try {
+	    dbConnection.close();
+	
+	//same problem here - don't know whether to kill it or let it hang
+	} catch(Exception e) {
+	    System.err.println(e.getClass().getName() + ": " + e.getMessage() );
+	    System.exit(0);
+	}
+
+	System.out.println("TurtleNet Database Disconnected Successfully.");
+	
     }
     
     public Vector<Pair<String, Message>> getPosts () {
@@ -83,9 +118,12 @@ class Database {
         return "unknown";
     }
     
+    //variable declarations
     private String path; //path to database directory
     Vector<Pair<String, Message>> posts; //<String author, Message m>
     Vector<Message> claims;
     
     private Vector<Friend> friends;
+
+    private Connection dbConnection;
 }
