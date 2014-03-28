@@ -18,14 +18,13 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.cellview.client.Header;
-import com.google.gwt.user.client.ui.Hyperlink;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.event.shared.GwtEvent;
 import com.google.gwt.user.client.History;
 import com.google.gwt.dom.client.Element;
-import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.ui.Anchor;
+import com.google.gwt.user.client.ui.FlexTable;
 
 public class frontend implements EntryPoint{
 
@@ -34,22 +33,75 @@ public class frontend implements EntryPoint{
      */
     private final TurtlenetAsync turtlenet = GWT.create(Turtlenet.class);
     
-    HorizontalPanel navigation = new HorizontalPanel();
+    //Create panels
+    FlexTable loginPanel = new FlexTable();
+    HorizontalPanel navigationPanel = new HorizontalPanel();
+    VerticalPanel sidebarPanel = new VerticalPanel();
 
-    public void onModuleLoad() {        
-		//Create Navigation Links
+    public void onModuleLoad() {
+    	loginPanelSetup();   
+		navigationPanelSetup();
+        sidebarPanelSetup();
+        
+        //Add style name to panels for CSS
+        navigationPanel.addStyleName("gwt-navigation");
+        loginPanel.addStyleName("gwt-login");
+	}
+	
+	private void loginPanelSetup() {
+		//Create login panel widgets
+		final Button loginButton = new Button("Login");
+        final TextBox usernameInput = new TextBox();
+        final Label usernameLabel = new Label();
+		
+		//Setup widgets
+		usernameInput.setText("");
+        usernameLabel.setText("Please enter your username:");
+		
+		//Add widgets to login panel
+        loginPanel.setWidget(1, 1, usernameLabel);
+        loginPanel.setWidget(2, 1, usernameInput);
+        loginPanel.setWidget(3, 1, loginButton);
+        //Add login panel to page
+        RootPanel.get().add(loginPanel);
+        
+        //This happens when the user tries to login
+		loginButton.addClickHandler(new ClickHandler() {
+    		public void onClick(ClickEvent event) {
+    			String usernameToServer = usernameInput.getText();
+    		
+				if (!FieldVerifier.isValidName(usernameToServer)) {
+                    usernameLabel.setText("Please enter at least four characters:");
+                    return;
+                }
+                else loadWall();
+    		}
+		});
+	}
+	
+	private void navigationPanelSetup() {
+		//Create navigation links
 		Anchor linkWall = new Anchor("Wall");
 		Anchor linkMessages = new Anchor("Messages");
 		Anchor linkFriends = new Anchor("Friends");
 		Anchor linkEvents = new Anchor("Events");
+
         //Add links to navigation panel
-        navigation.add(linkWall);
-        navigation.add(linkMessages);
-        navigation.add(linkFriends);
-        navigation.add(linkEvents);
-        //Add style name to navigation for CSS
-        navigation.addStyleName("gwt-navigation");
-        //Add navigation to page
-        RootPanel.get().add(navigation);
+        navigationPanel.add(linkWall);
+        navigationPanel.add(linkMessages);
+        navigationPanel.add(linkFriends);
+        navigationPanel.add(linkEvents);
 	}
+	
+	private void sidebarPanelSetup() {
+		//Add some widgets and stuff		
+	}
+	
+	private void loadWall() {
+		//Clear page
+		RootPanel.get().clear();
+		//Add navigation to page
+        RootPanel.get().add(navigationPanel);
+	}
+	
 }
