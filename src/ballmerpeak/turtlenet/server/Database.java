@@ -12,12 +12,13 @@ import java.sql.*;
 
 class Database {
     public Database (String location) {
-        System.out.println("WARNING: Dummy database constructor");
         path    = location;
         posts   = new Vector<Pair<String, Message>>();
         claims  = new Vector<Message>();
         friends = new Vector<Friend>();
 	dbConnection = null;
+
+	dbConnect();
         
         addFriend(Crypto.getPublicKey());
     }
