@@ -57,6 +57,17 @@ Create windows build environment:
 
 
 --------------------------------------------
+Meeting #9 Minutes (Friday, 28/03/2014)
+---------------------------------------------
+By next meeting:
+    - Fix manual stuff, add makefile, finish initial test setup (luke)
+    - Create tables from Database.java (aishah/mike)
+    - GWT Interface (louis)
+    - Start/Stop server via gui (leon)
+    - Webstie Prototype (peter)
+    - Document regarding hashing for various classes (luke)
+
+--------------------------------------------
 Meeting #8 Minutes (Friday, 21/03/2014)
 --------------------------------------------
 By next meeting:
