@@ -25,6 +25,7 @@ import com.google.gwt.event.shared.GwtEvent;
 import com.google.gwt.user.client.History;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.DOM;
+import com.google.gwt.user.client.ui.Anchor;
 
 public class frontend implements EntryPoint{
 
@@ -37,10 +38,10 @@ public class frontend implements EntryPoint{
 
     public void onModuleLoad() {        
 		//Create Navigation Links
-		Hyperlink linkWall = new Hyperlink("Wall", "wall");
-		Hyperlink linkMessages = new Hyperlink("Messages", "messages");
-		Hyperlink linkFriends = new Hyperlink("Friends", "friends");
-		Hyperlink linkEvents = new Hyperlink("Events", "events");
+		Anchor linkWall = new Anchor("Wall");
+		Anchor linkMessages = new Anchor("Messages");
+		Anchor linkFriends = new Anchor("Friends");
+		Anchor linkEvents = new Anchor("Events");
         //Add links to navigation panel
         navigation.add(linkWall);
         navigation.add(linkMessages);
