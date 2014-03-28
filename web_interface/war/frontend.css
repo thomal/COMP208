@@ -24,25 +24,16 @@ h1 {
 	color: #61B329;
 }
 
-#menu {
+.gwt-navigation {
 	width: 1000px;
 	height: 65px;
 	margin: 0 auto;
 	background: #61B329;
 	text-align: center;
+	padding: 0 50px 0 0;
 }
 
-#menu ul {
-	margin: 0;
-	padding: 20px 0 0 0;
-	list-style: none;
-}
-
-#menu li {
-	display: inline;
-}
-
-#menu a {
+.gwt-Hyperlink {
 	padding-right: 30px;
 	text-decoration: none;
 	letter-spacing: -1px;
@@ -51,9 +42,6 @@ h1 {
 	color: #F2F2F2;
 }
 
-#menu a:hover {
-	text-decoration: underline;
-}
 
 #main {
 	width: 1000px;
