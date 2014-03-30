@@ -23,19 +23,38 @@ public class frontend implements EntryPoint {
 	 */
 	//private final TurtlenetAsync turtlenet = GWT.create(Turtlenet.class);
 
-	// Create panels
+	//Create panels that have only one use
 	FlexTable loginPanel = new FlexTable();
 	HorizontalPanel navigationPanel = new HorizontalPanel();
-	FlowPanel postPanel = new FlowPanel();
+	HorizontalPanel settingsPanel = new HorizontalPanel();
+	
+	//Create panels that display lists of things
+	FlexTable friendsListPanel = new FlexTable();
+	FlexTable messageListPanel = new FlexTable();
+	
+	//Create panels for working with text
+	FlowPanel inputPanel = new FlowPanel();
+	FlowPanel outputPanel = new FlowPanel();
+	
+	//Create panels that display controls for views
+	FlowPanel commentsControlPanel = new FlowPanel();
+	FlowPanel postsControlPanel = new FlowPanel();
+	FlowPanel groupsControlPanel = new FlowPanel();
 
 	public void onModuleLoad() {
 		//Call methods to set up panels
 		loginPanelSetup();
 		navigationPanelSetup();
-		postPanelSetup();
+		postsControlPanelSetup();
 		//Call method to load the initial login page
 		loadLogin();
 	}
+	
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+//////////////////////Setup panels needed to create views///////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 
 	private void loginPanelSetup() {
 		// Create login panel widgets
@@ -65,14 +84,14 @@ public class frontend implements EntryPoint {
 							.setText("Please enter at least four characters:");
 					return;
 				} else
-					loadWall();
+					loadMyPosts();
 			}
 		});
 	}
 
 	private void navigationPanelSetup() {
 		// Create navigation links
-		Anchor linkWall = new Anchor("Wall");
+		Anchor linkMyPosts = new Anchor("Posts");
 		Anchor linkProfile = new Anchor("Profile");
 		Anchor linkMessages = new Anchor("Messages");
 		Anchor linkFriends = new Anchor("Friends");
@@ -80,7 +99,7 @@ public class frontend implements EntryPoint {
 		Anchor linkLogout = new Anchor("Logout");
 
 		// Add links to navigation panel
-		navigationPanel.add(linkWall);
+		navigationPanel.add(linkMyPosts);
 		navigationPanel.add(linkProfile);
 		navigationPanel.add(linkMessages);
 		navigationPanel.add(linkFriends);
@@ -91,19 +110,24 @@ public class frontend implements EntryPoint {
 		navigationPanel.addStyleName("gwt-navigation");
 	}
 	
-	private void postPanelSetup() {
+	private void postsControlPanelSetup() {
 		//Add username
-		//Add post contents
-		//Add view 'comments' link
+		//Add output panel
+		//Add post controls panel
 		
 		//Add style name to post panel for CSS
-		postPanel.addStyleName("gwt-post");
+		postsControlPanel.addStyleName("gwt-posts-control");
 	}
 	
 	private void commentsPanelSetup() {
 	
 	}
-	
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////Load different views///////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////	
 	private void loadLogin() {
 		// Clear page
 		RootPanel.get().clear();
@@ -111,13 +135,26 @@ public class frontend implements EntryPoint {
 		RootPanel.get().add(loginPanel);
 	}
 
-	private void loadWall() {
+	private void loadMyPosts() {
 		// Clear page
 		RootPanel.get().clear();
 		// Add navigation to page
 		RootPanel.get().add(navigationPanel);
-		RootPanel.get().add(postPanel);
+		RootPanel.get().add(outputPanel);
+		RootPanel.get().add(postsControlPanel);
 	}
+	
+	private void loadFriendsPosts() {
+	
+	}
+	
+	private void loadMyDetails() {
+	
+	}
+	
+	private void loadFriendsDetails() {
+	
+	}	
 	
 	private void loadComments () {
 	
@@ -131,11 +168,15 @@ public class frontend implements EntryPoint {
 	
 	}
 	
-	private void loadFriends () {
+	private void loadFriendsList () {
 	
 	}
 	
-	private void loadGorups () {
+	private void loadAddKey () {
+	
+	}
+	
+	private void loadGroups () {
 	
 	}
 	
@@ -143,11 +184,23 @@ public class frontend implements EntryPoint {
 	
 	}
 	
-	private void loadSettings () {
+	private void loadEditDetails() {
 	
 	}
 	
-	private void loadAddKey () {
+	private void loadSettings () {
+	
+	}	
+	
+	private void loadCreatePost() {
+	
+	}
+	
+	private void loadCreateComment() {
+	
+	}
+	
+	private void loadCreateMessages() {
 	
 	}
 
