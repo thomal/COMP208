@@ -15,7 +15,7 @@ h1 {
 }
 
 #header {
-	width: 1000px;
+	width: 1150px;
 	height: 100px;
 	margin: 0 auto;
 	background: #E0EEEE;
@@ -24,8 +24,7 @@ h1 {
 }
 
 .gwt-login {
-	width: 1000px;
-	height: 75px;
+	width: 1150px;
 	margin: 0 auto;
 	background: #61B329;
 	text-align: center;
@@ -34,12 +33,12 @@ h1 {
 }
 
 .gwt-navigation {
-	width: 1000px;
-	height: 65px;
+	width: 1150px;
+	height: 70px;
 	margin: 0 auto;
 	background: #61B329;
 	text-align: center;
-	padding: 20px 50px 0 0;
+	padding: 25px 75px 0 0;
 }
 
 .gwt-Anchor {
@@ -55,88 +54,4 @@ h1 {
 
 .gwt-Anchor:hover {
 	color:#F2F2F2;
-}
-
-#content {
-	float: left;
-	width: 750px;
-	background: #E0EEEE;
-}
-
-.post {
-	padding: 40px 40px 0px 0px;
-}
-
-.post .links {
-	padding: 2px 20px;
-	background: #61B329;
-	color: #E3E3E3;
-	text-align: right;
-}
-
-.post .links a {
-	text-decoration: none;
-	font-weight: bold;
-	color: #F2F2F2;
-}
-
-.post .links a:hover {
-	text-decoration: underline;
-}
-
-#sidebar {
-	float: left;
-	width: 250px;
-	background: #C1CDCD;
-}
-
-#sidebar ul {
-	margin: 0;
-	padding: 0;
-	list-style: none;
-	padding: 10px 10px 10px 10px;
-}
-
-#sidebar li li {
-	font-size: .85em;
-}
-
-#sidebar a {
-	text-decoration: none;
-	font-weight: bold;
-	color: #333333;
-}
-
-#sidebar a:hover {
-	text-decoration: underline;
-}
-
-#footer {
-	clear: both;
-	width: 950px;
-	margin: 0 auto;
-	padding: 30px 0;
-	color: #333333;
-}
-
-#footer p {
-	margin: 0 0 5px 0;
-	text-align: center;
-	line-height: normal;
-	font-size: .9em;
-}
-
-/** GWT Stuff*/
-
-
-.gwt-DialogBox {
-  width: 400px;
-}
-
-.dialogVPanel {
-  margin: 5px;
-}
-
-#closeButton {
-  margin: 15px 6px 6px;
 }
