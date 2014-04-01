@@ -102,7 +102,7 @@ public class frontend implements EntryPoint {
 	}
 	
 	private void settingsPanelSetup() {
-		
+		settingsPanel.addStyleName("gwt-settings-panel");
 	}
 
 	private void navigationPanelSetup() {
@@ -127,23 +127,23 @@ public class frontend implements EntryPoint {
 	}
 	
 	private void friendsListPanelSetup() {
-	
+		friendsListPanel.addStyleName("gwt-friends-list");
 	}
 	
 	private void messageListPanelSetup() {
-	
+		messageListPanel.addStyleName("gwt-message-list");
 	}
 	
 	private void myDetailsPanelSetup() {
-	
+		myDetailsPanel.addStyleName("gwt-my-details");
 	}
 	
 	private void inputPanelSetup() {
-	
+		inputPanel.addStyleName("gwt-input");
 	}
 	
 	private void outputPanelSetup() {
-	
+		outputPanel.addStyleName("gwt-output");
 	}
 	
 	private void postsControlPanelSetup() {
@@ -152,19 +152,19 @@ public class frontend implements EntryPoint {
 	}
 	
 	private void groupsControlPanelSetup() {
-	
+		groupsControlPanel.addStyleName("gwt-groups-control");
 	}
 	
 	private void editDetailsControlPanelSetup() {
-	
+		editDetailsControlPanel.addStyleName("gwt-edit-details");
 	}
 	
 	private void messagesControlPanelSetup() {
-	
+		messagesControlPanel.addStyleName("gwt-messages-control");
 	}
 	
 	private void commentsControlPanelSetup() {
-	
+		commentsControlPanel.addStyleName("gwt-comments-control");
 	}
 
 ////////////////////////////////////////////////////////////////////////////////
