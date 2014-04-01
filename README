@@ -20,7 +20,7 @@ TODO
 - make JAR files
 - move PDF makefile into main makefile
 - add dependancies to build targets
-- merge web_prototype with web_interface
+- get money, get paid
 - consider cost of seperating daemon from HTTP server
 
 --------------------------------------------

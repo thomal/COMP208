@@ -12,29 +12,29 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
-import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.FlowPanel;
 
 public class frontend implements EntryPoint {
 
-	//Create a remote service proxy to talk to the server-side Turtlenet service
-	//private final TurtlenetAsync turtlenet = GWT.create(Turtlenet.class);
+	// Create a remote service proxy to talk to the server-side Turtlenet
+	// service
+	// private final TurtlenetAsync turtlenet = GWT.create(Turtlenet.class);
 
-	//Create panels that have only one use
-	FlexTable loginPanel = new FlexTable();	
+	// Create panels that have only one use
+	FlexTable loginPanel = new FlexTable();
 	HorizontalPanel settingsPanel = new HorizontalPanel();
-	
-	//Create panels that display lists of things
+
+	// Create panels that display lists of things
 	FlexTable friendsListPanel = new FlexTable();
 	FlexTable messageListPanel = new FlexTable();
 	FlexTable myDetailsPanel = new FlexTable();
-	
-	//Reusable Panels
+
+	// Reusable Panels
 	FlowPanel inputPanel = new FlowPanel();
 	FlowPanel outputPanel = new FlowPanel();
 	HorizontalPanel navigationPanel = new HorizontalPanel();
-	
-	//Create panels that display controls for views
+
+	// Create panels that display controls for views
 	FlowPanel commentsControlPanel = new FlowPanel();
 	FlowPanel postsControlPanel = new FlowPanel();
 	FlowPanel groupsControlPanel = new FlowPanel();
@@ -42,7 +42,7 @@ public class frontend implements EntryPoint {
 	FlowPanel messagesControlPanel = new FlowPanel();
 
 	public void onModuleLoad() {
-		//Call methods to set up panels
+		// Call methods to set up panels
 		loginPanelSetup();
 		navigationPanelSetup();
 		postsControlPanelSetup();
@@ -56,17 +56,18 @@ public class frontend implements EntryPoint {
 		editDetailsControlPanelSetup();
 		messagesControlPanelSetup();
 		commentsControlPanelSetup();
-		
-		//Call method to load the initial login page
-		//loadLogin();
+
+		// Call method to load the initial login page
+		// loadLogin();
 		loadPanelDev();
 	}
-	
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-//////////////////////Setup panels needed to create views///////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
+
+	// //////////////////////////////////////////////////////////////////////////////
+	// //////////////////////////////////////////////////////////////////////////////
+	// ////////////////////Setup panels needed to create
+	// views///////////////////////
+	// //////////////////////////////////////////////////////////////////////////////
+	// //////////////////////////////////////////////////////////////////////////////
 
 	private void loginPanelSetup() {
 		// Create login panel widgets
@@ -82,10 +83,10 @@ public class frontend implements EntryPoint {
 		loginPanel.setWidget(1, 1, usernameLabel);
 		loginPanel.setWidget(2, 1, usernameInput);
 		loginPanel.setWidget(3, 1, loginButton);
-		
-		//Add style name to loginPanel for CSS
+
+		// Add style name to loginPanel for CSS
 		loginPanel.addStyleName("gwt-login");
-		
+
 		// This happens when the user tries to login
 		loginButton.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
@@ -100,7 +101,7 @@ public class frontend implements EntryPoint {
 			}
 		});
 	}
-	
+
 	private void settingsPanelSetup() {
 		settingsPanel.addStyleName("gwt-settings-panel");
 	}
@@ -121,59 +122,60 @@ public class frontend implements EntryPoint {
 		navigationPanel.add(linkFriends);
 		navigationPanel.add(linkSettings);
 		navigationPanel.add(linkLogout);
-		
-		//Add style name to navigationPanel for CSS
+
+		// Add style name to navigationPanel for CSS
 		navigationPanel.addStyleName("gwt-navigation");
 	}
-	
+
 	private void friendsListPanelSetup() {
 		friendsListPanel.addStyleName("gwt-friends-list");
 	}
-	
+
 	private void messageListPanelSetup() {
 		messageListPanel.addStyleName("gwt-message-list");
 	}
-	
+
 	private void myDetailsPanelSetup() {
 		myDetailsPanel.addStyleName("gwt-my-details");
 	}
-	
+
 	private void inputPanelSetup() {
 		inputPanel.addStyleName("gwt-input");
 	}
-	
+
 	private void outputPanelSetup() {
 		outputPanel.addStyleName("gwt-output");
 	}
-	
+
 	private void postsControlPanelSetup() {
-		//Add style name to post panel for CSS
+		// Add style name to post panel for CSS
 		postsControlPanel.addStyleName("gwt-posts-control");
 	}
-	
+
 	private void groupsControlPanelSetup() {
 		groupsControlPanel.addStyleName("gwt-groups-control");
 	}
-	
+
 	private void editDetailsControlPanelSetup() {
 		editDetailsControlPanel.addStyleName("gwt-edit-details");
 	}
-	
+
 	private void messagesControlPanelSetup() {
 		messagesControlPanel.addStyleName("gwt-messages-control");
 	}
-	
+
 	private void commentsControlPanelSetup() {
 		commentsControlPanel.addStyleName("gwt-comments-control");
 	}
 
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////Load different views///////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////	
+	// //////////////////////////////////////////////////////////////////////////////
+	// //////////////////////////////////////////////////////////////////////////////
+	// ///////////////////////////Load different
+	// views///////////////////////////////
+	// //////////////////////////////////////////////////////////////////////////////
+	// //////////////////////////////////////////////////////////////////////////////
 	private void loadPanelDev() {
-		//load all panels
+		// load all panels
 		RootPanel.get().add(loginPanel);
 		RootPanel.get().add(settingsPanel);
 		RootPanel.get().add(friendsListPanel);
@@ -188,7 +190,7 @@ public class frontend implements EntryPoint {
 		RootPanel.get().add(editDetailsControlPanel);
 		RootPanel.get().add(messagesControlPanel);
 	}
-	
+
 	private void loadLogin() {
 		// Clear page
 		RootPanel.get().clear();
@@ -204,65 +206,65 @@ public class frontend implements EntryPoint {
 		RootPanel.get().add(outputPanel);
 		RootPanel.get().add(postsControlPanel);
 	}
-	
+
 	private void loadFriendsPosts() {
-	
+
 	}
-	
+
 	private void loadMyDetails() {
-	
+
 	}
-	
+
 	private void loadFriendsDetails() {
-	
-	}	
-	
-	private void loadComments () {
-	
+
 	}
-	
-	private void loadMessageList () {
-	
+
+	private void loadComments() {
+
 	}
-	
-	private void loadMessageContents () {
-	
+
+	private void loadMessageList() {
+
 	}
-	
-	private void loadFriendsList () {
-	
+
+	private void loadMessageContents() {
+
 	}
-	
-	private void loadAddKey () {
-	
+
+	private void loadFriendsList() {
+
 	}
-	
-	private void loadGroups () {
-	
+
+	private void loadAddKey() {
+
 	}
-	
-	private void loadEditGroups () {
-	
+
+	private void loadGroups() {
+
 	}
-	
+
+	private void loadEditGroups() {
+
+	}
+
 	private void loadEditDetails() {
-	
+
 	}
-	
-	private void loadSettings () {
-	
-	}	
-	
+
+	private void loadSettings() {
+
+	}
+
 	private void loadCreatePost() {
-	
+
 	}
 
 	private void loadCreateComment() {
-	
+
 	}
 
 	private void loadCreateMessages() {
-	
+
 	}
 
 }
