@@ -17,37 +17,49 @@ import com.google.gwt.user.client.ui.FlowPanel;
 
 public class frontend implements EntryPoint {
 
-	/**
-	 * Create a remote service proxy to talk to the server-side Turtlenet
-	 * service.
-	 */
+	//Create a remote service proxy to talk to the server-side Turtlenet service
 	//private final TurtlenetAsync turtlenet = GWT.create(Turtlenet.class);
 
 	//Create panels that have only one use
-	FlexTable loginPanel = new FlexTable();
-	HorizontalPanel navigationPanel = new HorizontalPanel();
+	FlexTable loginPanel = new FlexTable();	
 	HorizontalPanel settingsPanel = new HorizontalPanel();
 	
 	//Create panels that display lists of things
 	FlexTable friendsListPanel = new FlexTable();
 	FlexTable messageListPanel = new FlexTable();
+	FlexTable myDetailsPanel = new FlexTable();
 	
-	//Create panels for working with text
+	//Reusable Panels
 	FlowPanel inputPanel = new FlowPanel();
 	FlowPanel outputPanel = new FlowPanel();
+	HorizontalPanel navigationPanel = new HorizontalPanel();
 	
 	//Create panels that display controls for views
 	FlowPanel commentsControlPanel = new FlowPanel();
 	FlowPanel postsControlPanel = new FlowPanel();
 	FlowPanel groupsControlPanel = new FlowPanel();
+	FlowPanel editDetailsControlPanel = new FlowPanel();
+	FlowPanel messagesControlPanel = new FlowPanel();
 
 	public void onModuleLoad() {
 		//Call methods to set up panels
 		loginPanelSetup();
 		navigationPanelSetup();
 		postsControlPanelSetup();
+		settingsPanelSetup();
+		friendsListPanelSetup();
+		messageListPanelSetup();
+		myDetailsPanelSetup();
+		inputPanelSetup();
+		outputPanelSetup();
+		groupsControlPanelSetup();
+		editDetailsControlPanelSetup();
+		messagesControlPanelSetup();
+		commentsControlPanelSetup();
+		
 		//Call method to load the initial login page
-		loadLogin();
+		//loadLogin();
+		loadPanelDev();
 	}
 	
 ////////////////////////////////////////////////////////////////////////////////
@@ -88,6 +100,10 @@ public class frontend implements EntryPoint {
 			}
 		});
 	}
+	
+	private void settingsPanelSetup() {
+		
+	}
 
 	private void navigationPanelSetup() {
 		// Create navigation links
@@ -110,16 +126,44 @@ public class frontend implements EntryPoint {
 		navigationPanel.addStyleName("gwt-navigation");
 	}
 	
+	private void friendsListPanelSetup() {
+	
+	}
+	
+	private void messageListPanelSetup() {
+	
+	}
+	
+	private void myDetailsPanelSetup() {
+	
+	}
+	
+	private void inputPanelSetup() {
+	
+	}
+	
+	private void outputPanelSetup() {
+	
+	}
+	
 	private void postsControlPanelSetup() {
-		//Add username
-		//Add output panel
-		//Add post controls panel
-		
 		//Add style name to post panel for CSS
 		postsControlPanel.addStyleName("gwt-posts-control");
 	}
 	
-	private void commentsPanelSetup() {
+	private void groupsControlPanelSetup() {
+	
+	}
+	
+	private void editDetailsControlPanelSetup() {
+	
+	}
+	
+	private void messagesControlPanelSetup() {
+	
+	}
+	
+	private void commentsControlPanelSetup() {
 	
 	}
 
@@ -128,6 +172,23 @@ public class frontend implements EntryPoint {
 /////////////////////////////Load different views///////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////	
+	private void loadPanelDev() {
+		//load all panels
+		RootPanel.get().add(loginPanel);
+		RootPanel.get().add(settingsPanel);
+		RootPanel.get().add(friendsListPanel);
+		RootPanel.get().add(messageListPanel);
+		RootPanel.get().add(myDetailsPanel);
+		RootPanel.get().add(inputPanel);
+		RootPanel.get().add(outputPanel);
+		RootPanel.get().add(navigationPanel);
+		RootPanel.get().add(commentsControlPanel);
+		RootPanel.get().add(postsControlPanel);
+		RootPanel.get().add(groupsControlPanel);
+		RootPanel.get().add(editDetailsControlPanel);
+		RootPanel.get().add(messagesControlPanel);
+	}
+	
 	private void loadLogin() {
 		// Clear page
 		RootPanel.get().clear();
@@ -195,11 +256,11 @@ public class frontend implements EntryPoint {
 	private void loadCreatePost() {
 	
 	}
-	
+
 	private void loadCreateComment() {
 	
 	}
-	
+
 	private void loadCreateMessages() {
 	
 	}
