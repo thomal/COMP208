@@ -37,7 +37,7 @@ public class frontend implements EntryPoint {
 	FlowPanel commentsControlPanel = new FlowPanel();
 	FlowPanel postsControlPanel = new FlowPanel();
 	FlowPanel groupsControlPanel = new FlowPanel();
-	FlowPanel editDetailsControlPanel = new FlowPanel();
+	FlowPanel myDetailsControlPanel = new FlowPanel();
 	FlowPanel messagesControlPanel = new FlowPanel();
 
 	public void onModuleLoad() {
@@ -52,12 +52,14 @@ public class frontend implements EntryPoint {
 		inputPanelSetup();
 		outputPanelSetup();
 		groupsControlPanelSetup();
-		editDetailsControlPanelSetup();
+		myDetailsControlPanelSetup();
 		messagesControlPanelSetup();
 		commentsControlPanelSetup();
 
 		// Call method to load the initial login page
 		// loadLogin();
+		
+		//Call temporary constuction method
 		loadPanelDev();
 	}
 
@@ -82,10 +84,10 @@ public class frontend implements EntryPoint {
 		loginPanel.setWidget(2, 1, usernameInput);
 		loginPanel.setWidget(3, 1, loginButton);
 
-		// Add style name to loginPanel for CSS
+		// Add style name for CSS
 		loginPanel.addStyleName("gwt-login");
 
-		// This happens when the user tries to login
+		// Add click handler for button
 		loginButton.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				String usernameToServer = usernameInput.getText();
@@ -98,10 +100,6 @@ public class frontend implements EntryPoint {
 					loadMyPosts();
 			}
 		});
-	}
-
-	private void settingsPanelSetup() {
-		settingsPanel.addStyleName("gwt-settings-panel");
 	}
 
 	private void navigationPanelSetup() {
@@ -121,49 +119,131 @@ public class frontend implements EntryPoint {
 		navigationPanel.add(linkSettings);
 		navigationPanel.add(linkLogout);
 
-		// Add style name to navigationPanel for CSS
+		// Add style name for CSS
 		navigationPanel.addStyleName("gwt-navigation");
+		
+		// Add click handlers for anchors
 	}
 
 	private void friendsListPanelSetup() {
+		// Create widgets
+	
+		// Add widgets to panel
+		
+		// Add style name for CSS
 		friendsListPanel.addStyleName("gwt-friends-list");
+		
+		// Add click handlers for anchors
 	}
 
 	private void messageListPanelSetup() {
+		// Create widgets
+	
+		// Add widgets to panel
+		
+		// Add style name for CSS
 		messageListPanel.addStyleName("gwt-message-list");
+		
+		// Add click handlers for anchors
 	}
 
 	private void myDetailsPanelSetup() {
+		// Create widgets
+	
+		// Add widgets to panel
+		
+		// Add style name for CSS
 		myDetailsPanel.addStyleName("gwt-my-details");
 	}
 
 	private void inputPanelSetup() {
+		// Create widgets
+	
+		// Add widgets to panel
+		
+		// Add style name for CSS
 		inputPanel.addStyleName("gwt-input");
 	}
 
 	private void outputPanelSetup() {
+		// Create widgets
+	
+		// Add widgets to panel
+		
+		// Add style name for CSS
 		outputPanel.addStyleName("gwt-output");
 	}
 
 	private void postsControlPanelSetup() {
-		// Add style name to post panel for CSS
+		// Create widgets
+	
+		// Add widgets to panel
+		
+		// Add style name for CSS
 		postsControlPanel.addStyleName("gwt-posts-control");
+		
+		// Add click handlers for anchors
+		
 	}
 
 	private void groupsControlPanelSetup() {
+		// Create widgets
+	
+		// Add widgets to panel
+		
+		// Add style name for CSS
 		groupsControlPanel.addStyleName("gwt-groups-control");
+		
+		// Add click handlers for anchors
+		
 	}
 
-	private void editDetailsControlPanelSetup() {
-		editDetailsControlPanel.addStyleName("gwt-edit-details");
+	private void myDetailsControlPanelSetup() {
+		// Create widgets
+	
+		// Add widgets to panel
+		
+		// Add style name for CSS
+		myDetailsControlPanel.addStyleName("gwt-details-control");
+		
+		// Add click handlers for anchors
+		
 	}
 
 	private void messagesControlPanelSetup() {
+		// Create widgets
+	
+		// Add widgets to panel
+		
+		// Add style name for CSS
 		messagesControlPanel.addStyleName("gwt-messages-control");
+		
+		// Add click handlers for anchors
+		
 	}
 
 	private void commentsControlPanelSetup() {
+		// Create widgets
+	
+		// Add widgets to panel
+		
+		// Add style name for CSS
 		commentsControlPanel.addStyleName("gwt-comments-control");
+		
+		// Add click handlers for anchors
+		
+	}
+	
+	private void settingsPanelSetup() {
+		// Create widgets
+	
+		// Add widgets to panel
+		
+		// Add style name for CSS
+		settingsPanel.addStyleName("gwt-settings-panel");
+		
+		// Add click handlers for anchors
+		
 	}
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -185,7 +265,7 @@ public class frontend implements EntryPoint {
 		RootPanel.get().add(commentsControlPanel);
 		RootPanel.get().add(postsControlPanel);
 		RootPanel.get().add(groupsControlPanel);
-		RootPanel.get().add(editDetailsControlPanel);
+		RootPanel.get().add(myDetailsControlPanel);
 		RootPanel.get().add(messagesControlPanel);
 	}
 
@@ -242,10 +322,6 @@ public class frontend implements EntryPoint {
 	}
 
 	private void loadEditGroups() {
-
-	}
-
-	private void loadEditDetails() {
 
 	}
 
