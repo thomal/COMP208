@@ -41,17 +41,34 @@ h1 {
 	padding: 25px 75px 0 0;
 }
 
+.gwt-friends-list {
+	width: 1150px;
+	margin: 0 auto;
+	background: #E0EEEE;
+	color: #666666;
+	padding: 0 700px 0 0;
+}
+
+.gwt-my-wall-control {
+	width: 1150px;
+	height: 70px;
+	margin: 0 auto;
+	background: #61B329;
+	text-align: center;
+	padding: 25px 0 0 0;
+}
+
 .gwt-Anchor {
 	padding-left: 100px;
 	font-size: 1.2em;
 	font-weight: bold;
-	color: #F2F2F2;
+	color: #333333;
 }
 
 .gwt-Anchor:visited {
-	color:#F2F2F2;
+	color: #666666;
 }
 
 .gwt-Anchor:hover {
-	color:#F2F2F2;
+	color: #666666;
 }
