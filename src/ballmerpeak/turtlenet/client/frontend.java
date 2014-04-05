@@ -14,6 +14,7 @@ import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.Widget;
+import com.google.gwt.dom.client.Style.FontWeight;
 
 public class frontend implements EntryPoint {
 
@@ -161,6 +162,17 @@ public class frontend implements EntryPoint {
 	}
 
 	private void friendsListPanelSetup() {
+		// Column title for anchors linking to messages
+		Label friendsNameLabel = new Label("Friend's Name");
+		friendsNameLabel.getElement().getStyle().setFontWeight(FontWeight.BOLD);
+		friendsNameLabel.getElement().getStyle().setProperty("paddingLeft" , "100px");
+		friendsListPanel.setWidget(0, 0, friendsNameLabel);
+		
+		// Column title for labels outputing the date a message was recieved
+		Label friendsKeyLabel = new Label("Friend's Public Key");
+		friendsKeyLabel.getElement().getStyle().setFontWeight(FontWeight.BOLD);
+		friendsListPanel.setWidget(0, 1, friendsKeyLabel);
+	
 		/*
 		 * The number 10 in the following for loop should be replaced with the
 		 * return from a method that queries the database to find out how many
@@ -173,7 +185,7 @@ public class frontend implements EntryPoint {
 			 * friend. To find this call a method that returns the list of all
 			 * of the users friends(hopefully as an array) and then use Variable
 			 * i from the loop we are currently in to select a friends key from
-			 * the list.
+			 * the array.
 			 */
 			final String friendKey = Integer.toString(i);
 
@@ -201,14 +213,65 @@ public class frontend implements EntryPoint {
 	}
 
 	private void messageListPanelSetup() {
-		// Create widgets
-
-		// Add widgets to panel
-
+		// Column title for anchors linking to messages
+		Label messageRecievedFromLabel = new Label("Message recieved from");
+		messageRecievedFromLabel.getElement().getStyle().setFontWeight(FontWeight.BOLD);
+		messageRecievedFromLabel.getElement().getStyle().setProperty("paddingLeft" , "100px");
+		messageListPanel.setWidget(0, 0, messageRecievedFromLabel);
+		
+		// Column title for labels outputing the date a message was recieved
+		Label messageRecievedOnLabel = new Label("Message recieved on");
+		messageRecievedOnLabel.getElement().getStyle().setFontWeight(FontWeight.BOLD);
+		messageListPanel.setWidget(0, 1, messageRecievedOnLabel);
+		
+		/*
+		 * The number 10 in the following for loop should be replaced with the
+		 * return from a method that queries the database to find out how many
+		 * messages have been sent to the user(every message ever if possible)
+		 */
+		for (int i = 1; i <= 10; i++) {
+		
+			/*
+			 * 'Integer.toString(i)' should be replaced by the ID of a message. 
+			 * To find this call a method that returns the list of all
+			 * of the messages a user has recieved(hopefully as an array) and 
+			 * then use Variable i from the loop we are currently in to select 
+			 * a message ID from the array
+			 */
+			final String messageID = Integer.toString(i);
+			
+			/*
+			 * 'Integer.toString(i)' should be replaced by the ID of the friend
+			 * who sent the message to the current user.
+			 * To find this call a method that returns the ID of the user who
+			 * sent a message when given the ID of that message. Give it messageID.
+			 */
+			final String userID = Integer.toString(i);
+			
+			/*
+			 * "Friend's Name" should be replaced with a call to a method that 
+			 * returns a users name when given the ID of a user. Give it userID.
+			 */			 
+			Anchor linkMessageContents = new Anchor("Friend's Name");
+			messageListPanel.setWidget(i, 0, linkMessageContents);
+			
+			/*
+			 * '01/01/1970' should be replaced with a call to a method that
+			 * returns the date a message was recieved when given the ID of a message.
+			 * Give it messageID.
+			 */
+			Label displayMessageDate = new Label("01/01/1970 @ 00:00");
+			messageListPanel.setWidget(i, 1, displayMessageDate);
+			
+			// Add click handlers for anchors
+			linkMessageContents.addClickHandler(new ClickHandler() {
+				public void onClick(ClickEvent event) {
+					loadMessageContents(messageID);
+				}
+			});
+		}
 		// Add style name for CSS
 		messageListPanel.addStyleName("gwt-message-list");
-
-		// Add click handlers for anchors
 	}
 
 	private void myDetailsPanelSetup() {
@@ -386,7 +449,7 @@ public class frontend implements EntryPoint {
 
 	}
 
-	private void loadMessageContents() {
+	private void loadMessageContents(String messageID) {
 
 	}
 

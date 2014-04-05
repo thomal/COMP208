@@ -15,7 +15,7 @@ h1 {
 }
 
 #header {
-	width: 1150px;
+	width: 1000px;
 	height: 100px;
 	margin: 0 auto;
 	background: #E0EEEE;
@@ -24,7 +24,7 @@ h1 {
 }
 
 .gwt-login {
-	width: 1150px;
+	width: 1000px;
 	margin: 0 auto;
 	background: #61B329;
 	text-align: center;
@@ -33,7 +33,7 @@ h1 {
 }
 
 .gwt-navigation {
-	width: 1150px;
+	width: 1000px;
 	height: 70px;
 	margin: 0 auto;
 	background: #61B329;
@@ -42,15 +42,23 @@ h1 {
 }
 
 .gwt-friends-list {
-	width: 1150px;
+	width: 1000px;
 	margin: 0 auto;
 	background: #E0EEEE;
 	color: #666666;
-	padding: 0 700px 0 0;
+	padding: 0 350px 0 0;
+}
+
+.gwt-message-list {
+	width: 1000px;
+	margin: 0 auto;
+	background: #E0EEEE;
+	color: #666666;
+	padding: 0 400px 0 0;
 }
 
 .gwt-my-wall-control {
-	width: 1150px;
+	width: 1000px;
 	height: 70px;
 	margin: 0 auto;
 	background: #61B329;
