@@ -57,6 +57,14 @@ h1 {
 	padding: 0 400px 0 0;
 }
 
+.gwt-my-details {
+	width: 1000px;
+	margin: 0 auto;
+	background: #E0EEEE;
+	color: #666666;
+	padding: 0 400px 0 100px;
+}
+
 .gwt-my-wall-control {
 	width: 1000px;
 	height: 70px;
@@ -79,4 +87,8 @@ h1 {
 
 .gwt-Anchor:hover {
 	color: #666666;
+}
+
+.gwt-Button {
+	width: 150px;
 }
