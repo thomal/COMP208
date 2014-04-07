@@ -5,7 +5,7 @@ AISHIAH_GWTPATH="this is for you"
 LEON_GWTPATH="to fill in, not me."
 MIKE_GWTPATH="/home/Mike/gwt-2.6.0"
 LOUIS_GWTPATH="/home/louis/gwt-2.6.0"
-LOUISWIN_GWTPATH="C\:/cygwin/home/Administrator/gwt-2.6.0"
+LOUISWIN_GWTPATH="C\:/gwt-2.6.0"
 
 ifeq ($(HOSTNAME), slowbox)
 	GWTPATH=$(LUKEWIN_GWTPATH)
