@@ -14,10 +14,10 @@ public class Parser {
             db.addRevocation(msg);
         else if (msg.getCmd().equals("PDATA"))  //create or update profile data
             db.addPdata(msg);
-        else if (msg.getCmd().equals("CHAT"))   //n-n chat
+        else if (msg.getCmd().equals("CHAT"))   //establish chat
             db.addChat(msg);
-        else if (msg.getCmd().equals("PCHAT"))  //1-1 chat
-            db.addPChat(msg);
+        else if (msg.getCmd().equals("PCHAT"))  //add message to chat
+            db.addMessageToChat(msg);
         else if (msg.getCmd().equals("FPOST"))  //someone posting to your wall
             db.addFPost(msg);
         else if (msg.getCmd().equals("CMNT"))   //comment
@@ -31,14 +31,19 @@ public class Parser {
     }
     
     //escape blackslashes with backslashes
-    public static String escape (String s) {
+    public static String removeEscapes (String s) {
         int pos;
         if ((pos = s.indexOf("\\\\")) != -1) {
             StringBuilder sb = new StringBuilder(s);
             sb.deleteCharAt(pos);
-            return escape(sb.toString());
+            return removeEscapes(sb.toString());
         } else {
             return  s;
         }
+    }
+    
+    public static String addEscapes (String s) {
+        //TODO
+        return s;
     }
 }

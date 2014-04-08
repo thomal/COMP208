@@ -24,6 +24,8 @@ TODO
 - get money, get paid
 - consider cost of seperating daemon from HTTP server
 - Message.get* methods
+- Crypto shouldn't parse/encode anything except keys, use Parse class to
+    generate messages to pass to crypto and then NetworkConnect [Crypto.encrypt]
 
 --------------------------------------------
 NOTES

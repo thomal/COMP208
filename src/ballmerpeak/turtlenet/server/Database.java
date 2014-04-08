@@ -132,11 +132,12 @@ public class Database {
         System.out.println("CRITICAL: Unimplemented method Database.addChat(...)");
     }
     
-    public void addPChat (Message chat) {
+    public void addMessageToChat (Message msg) {
         //REPLACE ME
-        System.out.println("CRITICAL: Unimplemented method Database.addPChat(...)");
+        System.out.println("CRITICAL: Unimplemented method Database.addMessageToChat(...)");
     }
     
+    /* If you can see an FPOST, it's a request to post it on your wall */
     public void addFPost (Message fpost) {
         //REPLACE ME
         System.out.println("CRITICAL: Unimplemented method Database.addFPost(...)");
