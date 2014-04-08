@@ -43,7 +43,13 @@ public class Parser {
     }
     
     public static String addEscapes (String s) {
-        //TODO
-        return s;
+        int pos;
+        if ((pos = s.indexOf("\\")) != -1) {
+            StringBuilder sb = new StringBuilder(s);
+            sb.insert(pos, '\\');
+            return removeEscapes(sb.toString());
+        } else {
+            return  s;
+        }
     }
 }
