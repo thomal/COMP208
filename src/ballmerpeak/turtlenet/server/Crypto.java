@@ -12,7 +12,7 @@ import javax.xml.bind.DatatypeConverter;
 import java.util.StringTokenizer;
 import java.security.SecureRandom;
 
-class Crypto {
+public class Crypto {
     public static SecureRandom srand = new SecureRandom(
                                                Long.toString(
                                                    System.currentTimeMillis())

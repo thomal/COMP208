@@ -2,7 +2,7 @@ package ballmerpeak.turtlenet.server;
 
 import java.security.PublicKey;
 
-class Friend {
+public class Friend {
     public Friend (String _name, PublicKey _key) {
         name = _name;
         key = _key;

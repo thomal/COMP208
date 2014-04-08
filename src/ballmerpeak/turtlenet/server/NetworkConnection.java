@@ -8,7 +8,7 @@ import java.io.*;
 import java.net.*;
 import java.util.concurrent.Semaphore;
 
-class NetworkConnection implements Runnable {
+public class NetworkConnection implements Runnable {
     public NetworkConnection (String serverurl) {
         url         = serverurl;
         messages    = new Vector<String>();

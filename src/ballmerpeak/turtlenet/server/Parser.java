@@ -4,7 +4,7 @@ package ballmerpeak.turtlenet.server;
 
 import ballmerpeak.turtlenet.shared.Message;
 
-class Parser {
+public class Parser {
     public static void parse (Message msg, Database db) {
         if (msg.getCmd().equals("POST"))        //post to own wall
             db.addPost(msg);
@@ -17,7 +17,7 @@ class Parser {
         else if (msg.getCmd().equals("CHAT"))   //n-n chat
             db.addChat(msg);
         else if (msg.getCmd().equals("PCHAT"))  //1-1 chat
-            db.addPChar(msg);
+            db.addPChat(msg);
         else if (msg.getCmd().equals("FPOST"))  //someone posting to your wall
             db.addFPost(msg);
         else if (msg.getCmd().equals("CMNT"))   //comment
@@ -27,6 +27,18 @@ class Parser {
         else if (msg.getCmd().equals("EVNT"))   //event
             db.addEvent(msg);
         //else if (msg.getCmd().equals("NULL"))
-            //undecryptable
+            //undecryptable, no need to handle, useful to remember it though
+    }
+    
+    //escape blackslashes with backslashes
+    public static String escape (String s) {
+        int pos;
+        if ((pos = s.indexOf("\\\\")) != -1) {
+            StringBuilder sb = new StringBuilder(s);
+            sb.deleteCharAt(pos);
+            return escape(sb.toString());
+        } else {
+            return  s;
+        }
     }
 }

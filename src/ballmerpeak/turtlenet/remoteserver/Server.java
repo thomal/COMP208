@@ -160,8 +160,9 @@ class Session implements Runnable
                                     DatatypeConverter.parseBase64Binary(
                                         cmd.substring(2))));
             
-            File data = new File("./data/" + (new Date()).getTime() + "_" + claim.getContent());
-            if(userExists(claim.getContent())) {
+            String content = claim.getContent();
+            File data = new File("./data/" + (new Date()).getTime() + "_" + content);
+            if(userExists(content)) {
                 out.println("e");
             } else {
                 try {

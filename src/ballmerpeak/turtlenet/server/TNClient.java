@@ -1,6 +1,6 @@
 package ballmerpeak.turtlenet.server;
 
-class TNClient implements Runnable {
+public class TNClient implements Runnable {
     static boolean running = true;
     
     public void run () {

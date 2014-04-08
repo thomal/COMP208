@@ -4,13 +4,14 @@ import ballmerpeak.turtlenet.shared.Message;
 import java.util.Vector;
 import java.security.*;
 import java.sql.*;
+import java.security.*;
 
 //NB: My initial version is crude, inefficient, and not even a database. It
 //    exists solely to allow me to write other parts of the system. While the
 //    methods are useful, their implementation should be rewritten in almost all
 //    cases.
 
-class Database {
+public class Database {
     public Database (String location) {
         path    = location;
         posts   = new Vector<Pair<String, Message>>();
@@ -91,6 +92,15 @@ class Database {
         return "unknown";
     }
     
+    public PublicKey getSignatoryKey (Message m) {
+        for (int i = 0; i < friends.size(); i++) {
+            if (Crypto.verifySig(m, friends.get(i).getKey()))
+                return friends.get(i).getKey();
+        }
+        System.out.println("WARNING: Can't find signatory, about to crash due to not handling this case");
+        return null;
+    }
+    
     public void addPost (Message post) {
         posts.add(new Pair<String, Message>(getSignatory(post), post));
     }
@@ -105,6 +115,46 @@ class Database {
             if (friends.get(i).getName().equals("unknown"))
                 friends.get(i).setName(getName(friends.get(i).getKey()));
         recalcPostAuthors();
+    }
+    
+    public void addRevocation (Message revocation) {
+        //REPLACE ME
+        System.out.println("CRITICAL: Unimplemented method Database.addRevocation(...)");
+    }
+    
+    public void addPdata (Message update) {
+        //REPLACE ME
+        System.out.println("CRITICAL: Unimplemented method Database.addPdata(...)");
+    }
+    
+    public void addChat (Message chat) {
+        //REPLACE ME
+        System.out.println("CRITICAL: Unimplemented method Database.addChat(...)");
+    }
+    
+    public void addPChat (Message chat) {
+        //REPLACE ME
+        System.out.println("CRITICAL: Unimplemented method Database.addPChat(...)");
+    }
+    
+    public void addFPost (Message fpost) {
+        //REPLACE ME
+        System.out.println("CRITICAL: Unimplemented method Database.addFPost(...)");
+    }
+    
+    public void addComment (Message comment) {
+        //REPLACE ME
+        System.out.println("CRITICAL: Unimplemented method Database.addComment(...)");
+    }
+    
+    public void addLike (Message Like) {
+        //REPLACE ME
+        System.out.println("CRITICAL: Unimplemented method Database.addLike(...)");
+    }
+    
+    public void addEvent (Message event) {
+        //REPLACE ME
+        System.out.println("CRITICAL: Unimplemented method Database.addEvent(...)");
     }
     
     private void recalcPostAuthors () {
