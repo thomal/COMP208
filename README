@@ -17,11 +17,19 @@ KAWAII TURTLE~
 --------------------------------------------
 TODO
 --------------------------------------------
+- everything listed in minutes
 - make JAR files
 - move PDF makefile into main makefile
 - add dependancies to build targets
 - get money, get paid
 - consider cost of seperating daemon from HTTP server
+- Message.get* methods
+
+--------------------------------------------
+NOTES
+--------------------------------------------
+- DB should use Message.get* methods to get data specific to a message type,
+    these have yet to be added
 
 --------------------------------------------
 HOW-TO
