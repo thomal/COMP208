@@ -18,14 +18,14 @@ KAWAII TURTLE~
 TODO
 --------------------------------------------
 - everything listed in minutes
+- Crypto shouldn't parse/encode anything except keys, use Parse class to
+    generate messages to pass to crypto and then NetworkConnect [Crypto.encrypt]
+- Update NetworkConnection to send all message types
 - make JAR files
 - move PDF makefile into main makefile
 - add dependancies to build targets
 - get money, get paid
 - consider cost of seperating daemon from HTTP server
-- Message.get* methods
-- Crypto shouldn't parse/encode anything except keys, use Parse class to
-    generate messages to pass to crypto and then NetworkConnect [Crypto.encrypt]
 
 --------------------------------------------
 NOTES

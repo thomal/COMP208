@@ -5,6 +5,12 @@ package ballmerpeak.turtlenet.server;
 import ballmerpeak.turtlenet.shared.Message;
 
 public class Parser {
+    /* Useful to ID the type of message on behalf of the DB so it can use type
+     * specific get methods (e.g.: Message.PCHATgetConversationID()). Most
+     * parsing actually occurs in the Message class itself. Maybe this should
+     * be changed so parsing occurs here, e.g.: Parser.LIKEgetItemID(msg), but
+     * msg.LIKEgetItemID() is more natual.
+     */
     public static void parse (Message msg, Database db) {
         if (msg.getCmd().equals("POST"))        //post to own wall
             db.addPost(msg);
