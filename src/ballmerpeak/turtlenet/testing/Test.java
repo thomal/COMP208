@@ -14,6 +14,7 @@ class Test {
         testMessageContructors();
         testMessageParsing();
         testMessageAccessors();
+        testCrypto();
         System.out.println("===========================================================================");
         System.out.println("Pass: " + passes + " Failures: " + failures + " Anomalies: " + anomalies);
         System.out.println("===========================================================================");
@@ -109,8 +110,8 @@ class Test {
         
         KeyPair k1 = Crypto.getTestKey();
         KeyPair k2 = Crypto.getTestKey();
-        String    k1e = Crypto.encodeKey(k1.getPublic());
-        String    k2e = Crypto.encodeKey(k2.getPublic());
+        String  k1e = Crypto.encodeKey(k1.getPublic());
+        String  k2e = Crypto.encodeKey(k2.getPublic());
         Message claimm  = new Message("CLAIM",  "zero_cool",                  4224, "<sig>");
         Message revokem = new Message("REVOKE", "2442",                       4224, "<sig>");
         Message pdatam  = new Message("PDATA",  "name:John Doe;dob:1972;",    4224, "<sig>");
@@ -128,12 +129,12 @@ class Test {
         
         String[][] pdvs = pdatam.PDATAgetValues();
         test("3  PDATAgetValues", pdvs[0][0], "name");
-        test("4  PDATAgetValues", pdvs[0][0], "John Doe");
-        test("5  PDATAgetValues", pdvs[0][0], "dob");
-        test("6  PDATAgetValues", pdvs[0][0], "1972");
+        test("4  PDATAgetValues", pdvs[0][1], "John Doe");
+        test("5  PDATAgetValues", pdvs[1][0], "dob");
+        test("6  PDATAgetValues", pdvs[1][1], "1972");
         
-        test("7  CHATgetKeys", chatm.CHATgetKeys()[0].equals(k1));
-        test("8  CHATgetKeys", chatm.CHATgetKeys()[1].equals(k2));
+        test("7  CHATgetKeys", chatm.CHATgetKeys()[0].equals(k1.getPublic()));
+        test("8  CHATgetKeys", chatm.CHATgetKeys()[1].equals(k2.getPublic()));
         
         test("9  PCHATgetText",  pchatm.PCHATgetText(),           "Hi bob.");
         test("10 PCHATgetConversationID", pchatm.PCHATgetConversationID(), "<convsig>");
@@ -152,6 +153,21 @@ class Test {
         test("17 EVNTgetEnd",   eventm.EVNTgetEnd(),   60000);
  
         System.out.println("\tWARNING: Not testing Message::REVOKEgetKey()");
+        anomalies++;              
+        
+        
+        return failures == ifailures;
+    }
+    
+    private static boolean testCrypto() {
+        System.out.println("\ntestCrypto:");
+        int ifailures = failures;
+        
+        KeyPair k1 = Crypto.getTestKey();
+        
+        test("1 key = decode(encode(key))", k1.getPublic().equals(Crypto.decodeKey(Crypto.encodeKey(k1.getPublic()))));
+        
+        System.out.println("\tWARNING: Not nearly enough crypto tests");
         anomalies++;              
         
         return failures == ifailures;
