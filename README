@@ -18,8 +18,7 @@ KAWAII TURTLE~
 TODO (Due before next meeting)
 --------------------------------------------
 Luke:
-    - Document regarding hashing for various classes
-    - Fix manual stuff, add makefile
+    - Fix manual PDF, add makefile for it
     
 
 Aishah/Mike:
@@ -35,16 +34,21 @@ Peter:
 Other TODO
 --------------------------------------------
 Luke:
-    - Test Message.XgetY() methods
+    - Message constructor should automatically add signaure, not require it to
+        be given. It should be an option to give it for FPOSTs.
+    - Talk w/aishah about storing signature for comments, posts, and
+        conversations
     - consider seperating daemon from HTTP server
-    - Talk w/aishah about caching hash of posts and comments in the DB
-    - make JAR files
+    - make JAR file for remote server
 
 --------------------------------------------
 NOTES
 --------------------------------------------
 - DB should use Message.XgetY methods to get message content. See Message.java
     in: src/ballmerpeak/turtlenet/shared
+- Posts, Comments, and Conversations can be uniquely identified by the signature
+    of the message which created them. The DB doesn't, but now needs to, store
+    this.
 
 --------------------------------------------
 HOW-TO
