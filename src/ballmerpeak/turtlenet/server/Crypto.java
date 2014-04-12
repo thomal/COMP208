@@ -48,6 +48,17 @@ public class Crypto {
         }
     }
     
+    public static KeyPair getTestKey() {
+        try {
+            KeyPairGenerator gen = KeyPairGenerator.getInstance("RSA");
+            gen.initialize(1024, srand);
+            return gen.generateKeyPair();
+        } catch (Exception e) {
+            System.out.println("ERROR: Couldn't generate test keypair: " + e);
+            return null;
+        }
+    }
+    
     public static PublicKey getPublicKey() {
         try {
             ObjectInputStream file = new ObjectInputStream(
