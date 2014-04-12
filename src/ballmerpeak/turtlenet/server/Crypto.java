@@ -102,15 +102,8 @@ public class Crypto {
     //  protect against malicious server operators, but operators ordered after
     //  the fact to provide the data they've collected.
     //The NetworkConnection is used to get the servers time.
-    public static String encrypt(String cmd, String text, PublicKey recipient,
-                                 NetworkConnection connection) {
+    public static String encrypt(Message msg, PublicKey recipient, NetworkConnection connection) {
         try {
-            //sign and encrypt
-            //Latency could be used to locate the client if they interact with
-            //  multiple malicious servers, or one server in multiple locations
-            Message msg = new Message(cmd, text,
-                     connection.getTime()+Crypto.rand(0,50), Crypto.sign(text));
-            
             //encrypt with random AES key
             byte[]     iv = new byte[16];
             byte[] aeskey = new byte[16];

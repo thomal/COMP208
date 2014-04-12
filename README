@@ -15,23 +15,36 @@ KAWAII TURTLE~
                    -----     u              u
 
 --------------------------------------------
-TODO
+TODO (Due before next meeting)
 --------------------------------------------
-- everything listed in minutes
-- Crypto shouldn't parse/encode anything except keys, use Parse class to
-    generate messages to pass to crypto and then NetworkConnect [Crypto.encrypt]
-- Update NetworkConnection to send all message types
-- make JAR files
-- move PDF makefile into main makefile
-- add dependancies to build targets
-- get money, get paid
-- consider cost of seperating daemon from HTTP server
+Luke:
+    - Document regarding hashing for various classes
+    - Fix manual stuff, add makefile
+    
+
+Aishah/Mike:
+    - Create tables from Database.java
+
+Leon:
+    - Start/Stop server via gui (leon)
+
+Peter:
+    - Webstie Prototype
+
+--------------------------------------------
+Other TODO
+--------------------------------------------
+Luke:
+    - Test Message.XgetY() methods
+    - consider seperating daemon from HTTP server
+    - Talk w/aishah about caching hash of posts and comments in the DB
+    - make JAR files
 
 --------------------------------------------
 NOTES
 --------------------------------------------
-- DB should use Message.get* methods to get data specific to a message type,
-    these have yet to be added
+- DB should use Message.XgetY methods to get message content. See Message.java
+    in: src/ballmerpeak/turtlenet/shared
 
 --------------------------------------------
 HOW-TO

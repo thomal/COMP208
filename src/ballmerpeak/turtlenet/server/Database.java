@@ -6,22 +6,12 @@ import java.security.*;
 import java.sql.*;
 import java.security.*;
 
-//NB: My initial version is crude, inefficient, and not even a database. It
-//    exists solely to allow me to write other parts of the system. While the
-//    methods are useful, their implementation should be rewritten in almost all
-//    cases.
-
 public class Database {
     public Database (String location) {
         path    = location;
-        posts   = new Vector<Pair<String, Message>>();
-        claims  = new Vector<Message>();
-        friends = new Vector<Friend>();
 	dbConnection = null;
-
+	
 	dbConnect();
-        
-        addFriend(Crypto.getPublicKey());
     }
 
     //Connects to a pre-defined database
@@ -57,64 +47,47 @@ public class Database {
 	}
 
 	System.out.println("TurtleNet Database Disconnected Successfully.");
-	
     }
     
-    public Vector<Pair<String, Message>> getPosts () {
-        return posts;
-    }
-    
-    public Vector<Message> getPostsBy (String name) {
-        Vector<Message> msgs = new Vector<Message> ();
-        for (int i = 0; i < posts.size(); i++)
-            if (posts.get(i).first.equals(name))
-                msgs.add(posts.get(i).second);
-        return msgs;
-    }
-    
-    public Vector<Friend> getFriends () {
-        return friends;
-    }
-    
-    public PublicKey getKey (String name) {
-        for (int i = 0; i < friends.size(); i++)
-            if (friends.get(i).getName().equals(name))
-                return friends.get(i).getKey();
-        
+    //Get from DB
+    public Vector<Message> getPostsBy (PublicKey key) {
+        //REPLACE ME
+        System.out.println("CRITICAL: Unimplemented method Database.getPostsBy(...)");
         return null;
     }
     
-    public String getSignatory (Message m) {
-        for (int i = 0; i < friends.size(); i++) {
-            if (Crypto.verifySig(m, friends.get(i).getKey()))
-                return friends.get(i).getName();
-        }
-        return "unknown";
-    }
-    
-    public PublicKey getSignatoryKey (Message m) {
-        for (int i = 0; i < friends.size(); i++) {
-            if (Crypto.verifySig(m, friends.get(i).getKey()))
-                return friends.get(i).getKey();
-        }
-        System.out.println("WARNING: Can't find signatory, about to crash due to not handling this case");
+    public PublicKey[] getKey (String name) {
+        //REPLACE ME
+        System.out.println("CRITICAL: Unimplemented method Database.getKey(...)");
         return null;
     }
     
+    public String getName (PublicKey k) {
+        //REPLACE ME
+        System.out.println("CRITICAL: Unimplemented method Database.getName(...)");
+        return null;
+    }
+    
+    public PublicKey getSignatory (Message m) {
+        //REPLACE ME
+        System.out.println("CRITICAL: Unimplemented method Database.addSignatory(...)");
+        return null;
+    }
+    
+    //Add to DB
     public void addPost (Message post) {
-        posts.add(new Pair<String, Message>(getSignatory(post), post));
+        //REPLACE ME
+        System.out.println("CRITICAL: Unimplemented method Database.addPost(...)");
     }
     
-    public void addFriend (PublicKey k) {
-        friends.add(new Friend(getName(k), k));
+    public void addKey (PublicKey k) {
+        //REPLACE ME
+        System.out.println("CRITICAL: Unimplemented method Database.addKey(...)");
     }
     
     public void addClaim (Message claim) {
-        claims.add(claim);
-        for (int i = 0; i < friends.size(); i++)
-            if (friends.get(i).getName().equals("unknown"))
-                friends.get(i).setName(getName(friends.get(i).getKey()));
-        recalcPostAuthors();
+        //REPLACE ME
+        System.out.println("CRITICAL: Unimplemented method Database.addClaim(...)");
     }
     
     public void addRevocation (Message revocation) {
@@ -158,24 +131,7 @@ public class Database {
         System.out.println("CRITICAL: Unimplemented method Database.addEvent(...)");
     }
     
-    private void recalcPostAuthors () {
-        for (int i = 0; i < posts.size(); i++)
-            posts.get(i).first = getSignatory(posts.get(i).second);
-    }
-    
-    public String getName (PublicKey k) {
-        for (int i = 0; i < claims.size(); i++)
-            if (Crypto.verifySig(claims.get(i), k))
-                return claims.get(i).getContent();
-        return "unknown";
-    }
-    
     //variable declarations
     private String path; //path to database directory
-    Vector<Pair<String, Message>> posts; //<String author, Message m>
-    Vector<Message> claims;
-    
-    private Vector<Friend> friends;
-
     private Connection dbConnection;
 }

@@ -35,27 +35,4 @@ public class Parser {
         //else if (msg.getCmd().equals("NULL"))
             //undecryptable, no need to handle, useful to remember it though
     }
-    
-    //escape blackslashes with backslashes
-    public static String removeEscapes (String s) {
-        int pos;
-        if ((pos = s.indexOf("\\\\")) != -1) {
-            StringBuilder sb = new StringBuilder(s);
-            sb.deleteCharAt(pos);
-            return removeEscapes(sb.toString());
-        } else {
-            return  s;
-        }
-    }
-    
-    public static String addEscapes (String s) {
-        int pos;
-        if ((pos = s.indexOf("\\")) != -1) {
-            StringBuilder sb = new StringBuilder(s);
-            sb.insert(pos, '\\');
-            return removeEscapes(sb.toString());
-        } else {
-            return  s;
-        }
-    }
 }

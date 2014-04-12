@@ -8,7 +8,7 @@ import java.security.*;
 public class Message {
     public Message (String cmd, String _content, long timeCreated, String RSAsig) {
         command   = cmd;
-        content   = Parser.addEscapes(_content);
+        content   = _content;
         signature = RSAsig;
         timestamp = timeCreated;
     }
@@ -19,8 +19,8 @@ public class Message {
         StringTokenizer tokenizer = new StringTokenizer(msg, "\\", false);
         tokens[0] = tokenizer.nextToken(); //command
         tokens[1] = tokenizer.nextToken(); //signature
-        tokens[2] = Parser.removeEscapes(tokenizer.nextToken()); //message content
-        tokens[3] = tokenizer.nextToken(); //timestamp
+        tokens[2] = msg.substring(msg.indexOf("\\", msg.indexOf("\\",0)+1)+1, msg.lastIndexOf("\\")); //message content
+        tokens[3] = msg.substring(msg.lastIndexOf("\\")+1); //timestamp
         long ts = Long.parseLong(tokens[3]);
         
         return new Message(tokens[0], tokens[2], ts, tokens[1]);
@@ -48,7 +48,6 @@ public class Message {
     }
     
     /* type specific */
-    /* inband backslashes are escaped with backslashes */
     public String POSTgetText() {
         return content;
     }
@@ -154,7 +153,7 @@ public class Message {
     }
     
     public PublicKey REVOKEgetKey(Database db) {
-        return db.getSignatoryKey(this);
+        return db.getSignatory(this);
     }
     
     private String command;

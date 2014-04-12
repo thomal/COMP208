@@ -96,9 +96,9 @@ public class NetworkConnection implements Runnable {
         return 0;
     }
     
-    public void postMessage (String msg, PublicKey recipient) {
+    public void postMessage (Message msg, PublicKey recipient) {
         try {
-            String ciphertext = Crypto.encrypt("POST", msg, recipient, this);
+            String ciphertext = Crypto.encrypt(msg, recipient, this);
             if (!serverCmd("s " + ciphertext).get(0).equals("s"))
                throw new Exception("server reported failure");
         } catch (Exception e) {
