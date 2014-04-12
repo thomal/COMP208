@@ -5,13 +5,25 @@ import java.util.Vector;
 import java.security.*;
 import java.sql.*;
 import java.security.*;
+import java.io.File;
 
 public class Database {
     public Database (String location) {
         path    = location;
 	dbConnection = null;
 	
+	File db = new File(path);
+	if (!db.exists())
+	    if (!dbCreate(path))
+	        System.out.println("CRITICAL: Unable to create DB at: " + path);
+	
 	dbConnect();
+    }
+    
+    //Creates a database from scratch
+    public static boolean dbCreate(String path) {
+        System.out.println("CRITICAL: Unimplemented method Database.dbCreate(" + path + ")");
+        return false;
     }
 
     //Connects to a pre-defined database
