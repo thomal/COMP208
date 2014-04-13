@@ -99,6 +99,7 @@ run_server : config
 	mkdir -p data
 	java -cp $(CLASSPATH) ballmerpeak.turtlenet.remoteserver.Server
 	rm -rf data
+	rmdir data
 
 run_client : config
 	sed -e `echo 's:___GWTPATH___:'$(GWTPATH)':g'` web_interface/protobuild.xml > web_interface/build.xml

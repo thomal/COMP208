@@ -35,21 +35,10 @@ public class Database {
         try {
             if (!Database.DBDirExists())
                 Database.createDBDir();
-            Logger.write("CRITICAL: Unimplemented method Database.dbCreate(" + path + ")");
+            Logger.write("INFO: Creating database");
             dbConnect();
-            Statement statement = dbConnection.createStatement();
-            dbConnection.setAutoCommit(false);
-            statement.executeUpdate("CREATE TABLE user (                  " +
-                                        "user_id    INT         NOT NULL, " + 
-                                        "username   VARCHAR(25) NOT NULL, " +
-                                        "name       VARCHAR(30),          " +
-                                        "birthday   DATE,                 " + 
-                                        "sex        VARCHAR(1),           " + 
-                                        "email      VARCHAR(30),          " + 
-                                        "public_key VARCHAR(8),           " +
-                                        "PRIMARY KEY (user_id)            " +
-                                    ");");
-            dbConnection.commit();
+            for (int i = 0; i < DBStrings.createDB.length; i++)
+                execute(DBStrings.createDB[i]);
         } catch (Exception e) {
             Logger.write("FATAL: Failed to create databse: " + e);
         }
@@ -61,7 +50,6 @@ public class Database {
     try {
         Class.forName("org.sqlite.JDBC");
         dbConnection = DriverManager.getConnection("jdbc:sqlite:db/turtlenet.db");
-        dbConnection.setAutoCommit(false);
     } catch(Exception e) { //Exception logged to disk, program allowed to crash naturally
         Logger.write("FATAL: Could not connect: " + e.getClass().getName() + ": " + e.getMessage() );
     }
@@ -78,6 +66,14 @@ public class Database {
         } catch(Exception e) { //Exception logged to disk, program allowed to continue
             Logger.write("FATAL: Could not disconnect: " + e.getClass().getName() + ": " + e.getMessage() );
         }
+    }
+    
+    public void execute (String query) throws Exception {
+        Statement statement = dbConnection.createStatement();
+        dbConnection.setAutoCommit(false);
+        statement.executeUpdate(query);
+        dbConnection.commit();
+        dbConnection.setAutoCommit(true);
     }
     
     //Get from DB
