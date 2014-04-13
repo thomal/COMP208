@@ -15,7 +15,7 @@ KAWAII TURTLE~
                    -----     u              u
                    
 --------------------------------------------
-Meeting #10 Agenda (Sunday, 13/04/2014)
+Meeting #10 Minutes (Sunday, 13/04/2014)
 --------------------------------------------
 - Progress Recap:
     Luke:
@@ -34,7 +34,11 @@ Meeting #10 Agenda (Sunday, 13/04/2014)
 --------------------------------------------
 TODO (Due by next meeting)
 --------------------------------------------
+Luke:
+    - Installer
+
 Aishah/Mike:
+    - Store the signature (String) for posts and comments
 
 Leon:
     - Start/Stop server via gui (leon)

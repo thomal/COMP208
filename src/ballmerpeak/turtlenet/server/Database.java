@@ -97,82 +97,82 @@ public class Database {
     //Get from DB
     public Vector<Message> getPostsBy (PublicKey key) {
         //REPLACE ME
-        Logger.write("CRITICAL", "DB", "Unimplemented method Database.getPostsBy(...)");
+        Logger.write("UNIMPL", "DB", "Unimplemented method Database.getPostsBy(...)");
         return null;
     }
     
     public PublicKey[] getKey (String name) {
         //REPLACE ME
-        Logger.write("CRITICAL", "DB", "Unimplemented method Database.getKey(...)");
+        Logger.write("UNIMPL", "DB", "Unimplemented method Database.getKey(...)");
         return null;
     }
     
     public String getName (PublicKey k) {
         //REPLACE ME
-        Logger.write("CRITICAL", "DB", "Unimplemented method Database.getName(...)");
+        Logger.write("UNIMPL", "DB", "Unimplemented method Database.getName(...)");
         return null;
     }
     
     public PublicKey getSignatory (Message m) {
         //REPLACE ME
-        Logger.write("CRITICAL", "DB", "Unimplemented method Database.addSignatory(...)");
+        Logger.write("UNIMPL", "DB", "Unimplemented method Database.addSignatory(...)");
         return null;
     }
     
     //Add to DB
     public void addPost (Message post) {
         //REPLACE ME
-        Logger.write("CRITICAL", "DB", "Unimplemented method Database.addPost(...)");
+        Logger.write("UNIMPL", "DB", "Unimplemented method Database.addPost(...)");
     }
     
     public void addKey (PublicKey k) {
         //REPLACE ME
-        Logger.write("CRITICAL", "DB", "Unimplemented method Database.addKey(...)");
+        Logger.write("UNIMPL", "DB", "Unimplemented method Database.addKey(...)");
     }
     
     public void addClaim (Message claim) {
         //REPLACE ME
-        Logger.write("CRITICAL", "DB", "Unimplemented method Database.addClaim(...)");
+        Logger.write("UNIMPL", "DB", "Unimplemented method Database.addClaim(...)");
     }
     
     public void addRevocation (Message revocation) {
         //REPLACE ME
-        Logger.write("CRITICAL", "DB", "Unimplemented method Database.addRevocation(...)");
+        Logger.write("UNIMPL", "DB", "Unimplemented method Database.addRevocation(...)");
     }
     
     public void addPdata (Message update) {
         //REPLACE ME
-        Logger.write("CRITICAL", "DB", "Unimplemented method Database.addPdata(...)");
+        Logger.write("UNIMPL", "DB", "Unimplemented method Database.addPdata(...)");
     }
     
     public void addChat (Message chat) {
         //REPLACE ME
-        Logger.write("CRITICAL", "DB", "Unimplemented method Database.addChat(...)");
+        Logger.write("UNIMPL", "DB", "Unimplemented method Database.addChat(...)");
     }
     
     public void addMessageToChat (Message msg) {
         //REPLACE ME
-        Logger.write("CRITICAL", "DB", "Unimplemented method Database.addMessageToChat(...)");
+        Logger.write("UNIMPL", "DB", "Unimplemented method Database.addMessageToChat(...)");
     }
     
     /* If you can see an FPOST, it's a request to post it on your wall */
     public void addFPost (Message fpost) {
         //REPLACE ME
-        Logger.write("CRITICAL", "DB", "Unimplemented method Database.addFPost(...)");
+        Logger.write("UNIMPL", "DB", "Unimplemented method Database.addFPost(...)");
     }
     
     public void addComment (Message comment) {
         //REPLACE ME
-        Logger.write("CRITICAL", "DB", "Unimplemented method Database.addComment(...)");
+        Logger.write("UNIMPL", "DB", "Unimplemented method Database.addComment(...)");
     }
     
     public void addLike (Message Like) {
         //REPLACE ME
-        Logger.write("CRITICAL", "DB", "Unimplemented method Database.addLike(...)");
+        Logger.write("UNIMPL", "DB", "Unimplemented method Database.addLike(...)");
     }
     
     public void addEvent (Message event) {
         //REPLACE ME
-        Logger.write("CRITICAL", "DB", "Unimplemented method Database.addEvent(...)");
+        Logger.write("UNIMPL", "DB", "Unimplemented method Database.addEvent(...)");
     }
 }
