@@ -24,24 +24,27 @@ public class NetworkConnection implements Runnable {
                 BufferedReader reader = new BufferedReader(
                                             new FileReader(lastReadFile));
                 lastRead = Long.parseLong(reader.readLine());
+                Logger.write("INFO", "NetCon","Read lastRead from file");
             } catch (Exception e) {
-                Logger.write("ERROR: Could not read lastread from file");
+                Logger.write("ERROR", "NetCon", "Could not read lastread from file");
             }
         }
     }
     
     public void run () {
+        Logger.write("INFO", "NetCon","NetworkConnection started");
         while (connected) {
             try {
                 Thread.sleep(1000); //update every second
             } catch (Exception e) {
-                Logger.write("WARNING: Sleep interrupted: " + e);
+                Logger.write("WARNING", "NetCon", "Sleep interrupted: " + e);
             }
             downloadNewMessages();
         }
     }
     
     public void close () {
+        Logger.write("INFO", "NetCon","close()");
         connected = false;
         try {
             File lastReadFile = new File("./db/lastread");
@@ -53,8 +56,9 @@ public class NetworkConnection implements Runnable {
                                     new FileWriter(lastReadFile));
             writer.write(Long.toString(lastRead));
             writer.close();
+            Logger.write("INFO", "NetCon","Saved lastRead to disk");
         } catch (Exception e) {
-            Logger.write("ERROR: Unable to save lastRead: " + e);
+            Logger.write("ERROR", "NetCon", "Unable to save lastRead: " + e);
         }
     }
     
@@ -66,7 +70,7 @@ public class NetworkConnection implements Runnable {
             messageLock.release();
             return haveMessage;
         } catch (Exception e) {
-            Logger.write("WARNING: Acquire interrupted");
+            Logger.write("WARNING", "NetCon", "Acquire interrupted");
         }
         return false;
     }
@@ -80,7 +84,7 @@ public class NetworkConnection implements Runnable {
             messageLock.release();
             return m;
         } catch (Exception e) {
-            Logger.write("WARNING: Acquire interrupted");
+            Logger.write("WARNING", "NetCon", "Acquire interrupted");
         }
         return new Message("NULL", "", 0, "").toString();
     }
@@ -91,19 +95,17 @@ public class NetworkConnection implements Runnable {
         if (time.size() == 2)
             return Long.parseLong(time.get(0));
         else
-            Logger.write("ERROR: Couldn't retreive time from server");
+            Logger.write("ERROR", "NetCon", "Couldn't retreive time from server");
             
         return 0;
     }
     
     public void postMessage (Message msg, PublicKey recipient) {
-        try {
             String ciphertext = Crypto.encrypt(msg, recipient, this);
             if (!serverCmd("s " + ciphertext).get(0).equals("s"))
-               throw new Exception("server reported failure");
-        } catch (Exception e) {
-            Logger.write("ERROR: Could not upload message: " + e);
-        }
+                Logger.write("RED", "NetCon", "server reported failure uploading message");
+            else
+                Logger.write("INFO", "NetCon", "uploaded message: \"" + msg + "\"");
     }
     
     //The only time unencrypted data is sent
@@ -112,10 +114,12 @@ public class NetworkConnection implements Runnable {
             Message claim = new Message("CLAIM", name,
                      getTime()+Crypto.rand(0,50), Crypto.sign(name));
             String cmd = "c " + Crypto.Base64Encode(claim.toString().getBytes("UTF-8"));
-            if (serverCmd(cmd).get(0).equals("s"))
+            if (serverCmd(cmd).get(0).equals("s")) {
+                Logger.write("INFO", "NetCon","Claimed name: " + name);
                 return true;
+            }
         } catch (Exception e) {
-            Logger.write("ERROR: Could not register name: " + e);
+            Logger.write("ERROR", "NetCon", "Could not register name: " + e);
         }
     
         return false;
@@ -132,7 +136,7 @@ public class NetworkConnection implements Runnable {
                     messages.add(msgs.get(i));
                     messageLock.release();
                 } catch (Exception e) {
-                    Logger.write("WARNING: Acquire interrupted.");
+                    Logger.write("WARNING", "NetCon", "Acquire interrupted.");
                 }
             }
         }
@@ -143,7 +147,7 @@ public class NetworkConnection implements Runnable {
         Socket s;
         BufferedReader in;
         PrintWriter out;
-        
+        Logger.write("VERBOSE", "NetCon", "Sending command to server: \"" + cmd + "\"");
         
         //connect
         try {
@@ -158,7 +162,7 @@ public class NetworkConnection implements Runnable {
             in  = new BufferedReader(new InputStreamReader(s.getInputStream()));
             out = new PrintWriter(s.getOutputStream(), true);
         } catch (Exception e) {
-            Logger.write("ERROR in connecting: " + e.getMessage());
+            Logger.write("ERROR", "NetCon", "Could not connect to network: " + e);
             return null;
         }
         
@@ -176,26 +180,26 @@ public class NetworkConnection implements Runnable {
                     output.add(line);
             } while (line != null);
         } catch (Exception e) {
-            Logger.write("ERROR reading from server: " + e.getMessage());
+            Logger.write("ERROR", "NetCon", "Could not read from rserver: " + e.getMessage());
         }
         
         //disconnect
         try {
             out.close();
         } catch (Exception e) {
-            Logger.write("ERROR in disconnecting: " + e.getMessage());
+            Logger.write("ERROR", "NetCon", "Could not disconnect from rserver: " + e.getMessage());
         }
         
         try {
             in.close();
         } catch (Exception e) {
-            Logger.write("ERROR in disconnecting: " + e.getMessage());
+            Logger.write("ERROR", "NetCon", "Could not disconnect from rserver: " + e.getMessage());
         }
         
         try {
             s.close();
         } catch (Exception e) {
-            Logger.write("ERROR in disconnecting: " + e.getMessage());
+            Logger.write("ERROR", "NetCon", "Could not close socket: " + e.getMessage());
         }
         
         return output;

@@ -1,4 +1,29 @@
-===== Turtlenet started at Sun Apr 13 03:32:02 BST 2014=====
-CRITICAL: Unimplemented method Database.dbCreate(./db)
-TurtleNet Database Disconnected Successfully.
-===== Turtlenet closed  at Sun Apr 13 03:34:09 BST 2014=====
+===== Turtlenet started at Sun Apr 13 11:13:50 BST 2014=====
+1397384030 INFO		DB	Creating database
+1397384030 INFO		DB	Connecting to database
+1397384031 VERBOSE	DB	execute("CREATE TABLE user ...")
+1397384031 VERBOSE	DB	execute("CREATE TABLE category ...")
+1397384031 VERBOSE	DB	execute("CREATE TABLE is_in_category ...")
+1397384031 VERBOSE	DB	execute("CREATE TABLE private_message ...")
+1397384031 VERBOSE	DB	execute("CREATE TABLE is_in_message ...")
+1397384031 VERBOSE	DB	execute("CREATE TABLE events ...")
+1397384031 VERBOSE	DB	execute("CREATE TABLE is_invited ...")
+1397384032 VERBOSE	DB	execute("CREATE TABLE wall_post ...")
+1397384032 VERBOSE	DB	execute("CREATE TABLE allowed_to ...")
+1397384032 VERBOSE	DB	execute("CREATE TABLE has_comment ...")
+1397384032 VERBOSE	DB	execute("CREATE TABLE has_like ...")
+1397384032 VERBOSE	DB	execute("CREATE TABLE message_claim ...")
+1397384032 VERBOSE	DB	execute("CREATE TABLE key_revoke ...")
+1397384032 VERBOSE	DB	execute("CREATE TABLE login_logout_log ...")
+1397384032 INFO		Crypto	Generating keys
+1397384033 INFO		NetCon	NetworkConnection started
+1397384034 VERBOSE	NetCon	Sending command to server: "get 0"
+1397384034 VERBOSE	NetCon	Sending command to server: "t"
+1397384035 VERBOSE	NetCon	Sending command to server: "get 1397384034110"
+1397384035 VERBOSE	NetCon	Sending command to server: "t"
+1397384036 VERBOSE	NetCon	Sending command to server: "get 1397384035112"
+1397384036 VERBOSE	NetCon	Sending command to server: "t"
+1397384036 INFO		NetCon	close()
+1397384036 INFO		NetCon	Saved lastRead to disk
+1397384036 INFO		DB	Disconnecting from database
+===== Turtlenet closed  at Sun Apr 13 11:13:56 BST 2014=====

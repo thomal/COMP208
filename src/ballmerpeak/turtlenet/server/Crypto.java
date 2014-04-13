@@ -28,6 +28,8 @@ public class Crypto {
     
     public static void keyGen() {
         try {
+            Logger.write("INFO", "Crypto","Generating keys");
+            
             //generate the key
             KeyPairGenerator gen = KeyPairGenerator.getInstance("RSA");
             gen.initialize(1024, srand);
@@ -50,17 +52,18 @@ public class Crypto {
             privateKeyFile.writeObject(keys.getPrivate());
             privateKeyFile.close();
         } catch (Exception e) {
-            Logger.write("ERROR: Could not generate keypair");
+            Logger.write("ERROR", "Crypto", "Could not generate keypair");
         }
     }
     
     public static KeyPair getTestKey() {
+        Logger.write("INFO", "Crypto","Generating test keypair");
         try {
             KeyPairGenerator gen = KeyPairGenerator.getInstance("RSA");
             gen.initialize(1024, srand);
             return gen.generateKeyPair();
         } catch (Exception e) {
-            Logger.write("ERROR: Couldn't generate test keypair: " + e);
+            Logger.write("ERROR", "Crypto", "Couldn't generate test keypair: " + e);
             return null;
         }
     }
@@ -72,7 +75,7 @@ public class Crypto {
                                      new File("./db/public.key")));
             return (PublicKey) file.readObject();
         } catch (Exception e) {
-            Logger.write("WARNING: Could not read public key");
+            Logger.write("WARNING", "Crypto", "Could not read public key");
         }
         return null;
     }
@@ -84,12 +87,13 @@ public class Crypto {
                                      new File("./db/private.key")));
             return (PrivateKey) file.readObject();
         } catch (Exception e) {
-            Logger.write("WARNING: Could not read private key");
+            Logger.write("WARNING", "Crypto", "Could not read private key");
         }
         return null;
     }
     
     public static String sign (String msg) {
+        Logger.write("INFO", "Crypto","sign()");
         try {
             Signature signer = Signature.getInstance("SHA1withRSA");
             signer.initSign(Crypto.getPrivateKey());
@@ -97,19 +101,20 @@ public class Crypto {
             byte[] sig = signer.sign();
             return Base64Encode(sig);
         } catch (Exception e) {
-            Logger.write("ERROR: Could not sign message");
+            Logger.write("ERROR", "Crypto", "Could not sign message");
         }
         return "";
     }
     
     public static boolean verifySig (Message msg, PublicKey author) {
+        Logger.write("INFO", "Crypto","verifySig()");
         try {
             Signature sigChecker = Signature.getInstance("SHA1withRSA");
             sigChecker.initVerify(author);
             sigChecker.update(msg.getContent().getBytes("UTF-8"));
             return sigChecker.verify(Base64Decode(msg.getSig()));
         } catch (Exception e) {
-            Logger.write("ERROR: Could not verify signature");
+            Logger.write("ERROR", "Crypto", "Could not verify signature");
         }
         return false;
     }
@@ -121,6 +126,7 @@ public class Crypto {
     //The NetworkConnection is used to get the servers time.
     public static String encrypt(Message msg, PublicKey recipient, NetworkConnection connection) {
         try {
+            Logger.write("INFO", "Crypto","encrypt()");
             //encrypt with random AES key
             byte[]     iv = new byte[16];
             byte[] aeskey = new byte[16];
@@ -142,12 +148,13 @@ public class Crypto {
             //"iv\RSA encrypted AES key\ciper text"
             return Base64Encode(iv) + "\\" + Base64Encode(encryptedAESKey) + "\\" + Base64Encode(aesCipherText);
         } catch (Exception e) {
-            Logger.write("WARNING: Unable to encrypt message: " + e);
+            Logger.write("WARNING", "Crypto", "Unable to encrypt message: " + e);
         }
         return "";
     }
     
     public static Message decrypt(String msg) {
+        Logger.write("INFO", "Crypto","decrypt()");
         try {
             //claim messages are the only plaintext in the system, still need decoding
             if (msg.substring(0,2).equals("c ")) {
@@ -180,7 +187,7 @@ public class Crypto {
             return Message.parse(new String(messagePlaintext));
         } catch (Exception e) {
             //This is to be expected for messages not addressed to you
-            //Logger.write("WARNING: Unable to decrypt message: " + e);
+            //Logger.write("WARNING", "Crypto", "Unable to decrypt message: " + e);
         }
         return new Message("NULL", "", 0, "");
     }
@@ -194,25 +201,28 @@ public class Crypto {
     }
     
     public static String encodeKey (PublicKey key) {
+        Logger.write("INFO", "Crypto","encodeKey()");
         return Base64Encode(key.getEncoded());
     }
     
     public static PublicKey decodeKey (String codedKey) {
+        Logger.write("INFO", "Crypto","decodeKey()");
         try {
             return KeyFactory.getInstance("RSA").generatePublic(
                                 new X509EncodedKeySpec(Base64Decode(codedKey)));
         } catch (Exception e) {
-            Logger.write("ERROR: Could not decode key");
+            Logger.write("ERROR", "Crypto", "Could not decode key");
         }
         return null;
     }
     
     public static String hash (String data) {
+        Logger.write("INFO", "Crypto","hash()");
         try {
             MessageDigest hasher = MessageDigest.getInstance("SHA-256");        
             return DatatypeConverter.printHexBinary(hasher.digest(data.getBytes("UTF-8")));
         } catch (Exception e) {
-            Logger.write("SHA-256 isn't supported.");
+            Logger.write("FATAL", "Crypto", "SHA-256 isn't supported.");
         }
         return "not_a_hash";
     }

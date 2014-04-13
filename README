@@ -46,8 +46,7 @@ Peter:
 Other TODO
 --------------------------------------------
 Luke:
-    - Message constructor should automatically add signaure, not require it to
-        be given. It should be an option to give it for FPOSTs.
+    - Message constructor should use server time for timestamp
     - Deal with message content containing (semi-)colons, or make explicit
         (semi-)colons are forbidden
     - Talk w/aishah about storing signature for comments, posts, and

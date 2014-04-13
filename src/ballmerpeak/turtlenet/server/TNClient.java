@@ -23,14 +23,12 @@ public class TNClient implements Runnable {
     
     public void run () {
         Logger.init("LOG_turtlenet");
-        Logger.write("===== Turtlenet started at " + new Date() + "=====");
         NetworkConnection connection    = new NetworkConnection("localhost");
         Thread            networkThread = new Thread(connection);
         Database          db            = new Database();
         
         if (!Crypto.keysExist()) //move into GUI class
             Crypto.keyGen();
-        
         networkThread.start(); //download new messages, wait 1 second, repeat
         
         while (running)
@@ -39,7 +37,6 @@ public class TNClient implements Runnable {
         
         connection.close();
         db.dbDisconnect();
-        Logger.write("===== Turtlenet closed  at " + new Date() + "=====");
         Logger.close();
     }
 }

@@ -9,6 +9,7 @@ import ballmerpeak.turtlenet.server.TNClient;
 @SuppressWarnings("serial")
 public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
     public String startTN() {
+        Logger.write("INFO", "TNImpl","startTN()");
         TNClient c = new TNClient();
         Thread t = new Thread(c);
         t.start();
@@ -16,11 +17,13 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
     }
     
     public String stopTN() {
+        Logger.write("INFO", "TNImpl","stopTN()");
         TNClient.running = false;
         return "success";
     }
 
     public String test(String input) throws IllegalArgumentException {
+        Logger.write("INFO", "TNImpl","test(" + input + ")");
         if (!FieldVerifier.isValidName(input))
             throw new IllegalArgumentException("Command must be at least 4 characters long");
 

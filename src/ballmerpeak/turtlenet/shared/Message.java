@@ -15,7 +15,7 @@ public class Message {
 
     public Message (String cmd, String _content, long timeCreated, String RSAsig) {
         if (!cmd.equals("FPOST"))
-            Logger.write("WARNING: Non FPOST message constructed with explicit signature");
+            Logger.write("WARNING", "Msg", "Non FPOST message constructed with explicit signature");
         command   = cmd;
         content   = _content;
         signature = RSAsig;
