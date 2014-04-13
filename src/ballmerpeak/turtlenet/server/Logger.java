@@ -33,10 +33,11 @@ public class Logger {
     }
     
     public static void close () {
-        log.println("===== Turtlenet closed  at " + new Date() + "=====");
-        log.flush();
-        if(started)
+        if(started) {
+            log.println("===== Turtlenet closed  at " + new Date() + "=====");
+            log.flush();
             log.close();
+        }
     }
     
     public static void write (String level, String place, String s) {
