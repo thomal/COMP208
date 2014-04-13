@@ -15,36 +15,26 @@ KAWAII TURTLE~
                    -----     u              u
                    
 --------------------------------------------
-Meeting #10 Minutes (Sunday, 13/04/2014)
---------------------------------------------
-- Progress Recap:
-    Luke:
-        - All:        Added testing
-        - All:        Added logger
-        - Mike/Aisha: Implemented createDatabase to execute aishahs create table
-                        SQL queries
-        - Mike:       Message::XgetY methods
-        - Louis:      Altered frontend to start turtlenet when it starts, and
-                        stop it when the tab is closed
-- Luke/Mike Re: setAutoCommit(false) in dbConnect():
-    shouldn't this be done on a case-by-case basis to mark the start and end of
-    transactions?
-- Luke/Louis Re: Enable -strict for compiling frontend
-
---------------------------------------------
 TODO (Due by next meeting)
 --------------------------------------------
 Luke:
     - Installer
+    - Documentation (javadoc)
 
 Aishah/Mike:
     - Store the signature (String) for posts and comments
+    - SQL for database methods
+    - Implement database methods
 
 Leon:
     - Start/Stop server via gui (leon)
 
 Peter:
     - Website Prototype
+    - User manual (\missingfigure{})
+
+Louis:
+    - Call appropriate Database.getX methods
 
 --------------------------------------------
 Other TODO
@@ -105,6 +95,44 @@ Create windows build environment:
 
         Your JDK path should look something like:
             C:\Program Files\Java\jdk1.7.0_51\bin
+
+--------------------------------------------
+Meeting #10 Minutes (Sunday, 13/04/2014)
+--------------------------------------------
+- Progress Recap:
+    Luke:
+        - All:        Added testing
+        - All:        Added logger
+        - Mike/Aisha: Implemented createDatabase to execute aishahs create table
+                        SQL queries
+        - Mike:       Message::XgetY methods
+        - Louis:      Altered frontend to start turtlenet when it starts, and
+                        stop it when the tab is closed
+- Luke/Mike Re: setAutoCommit(false) in dbConnect():
+    shouldn't this be done on a case-by-case basis to mark the start and end of
+    transactions?
+- Luke/Louis Re: Enable -strict for compiling frontend
+
+Reassigned installer, updated todo:
+Luke:
+    - Installer
+
+Aishah/Mike:
+    - Store the signature (String) for posts and comments
+    - SQL for database methods
+    - Implement database methods
+
+Leon:
+    - Start/Stop server via gui (leon)
+
+Peter:
+    - Website Prototype
+
+Louis:
+    - Call appropriate Database.getX methods
+
+Leon, Mike not present.
+
 
 --------------------------------------------
 Meeting #9 Minutes (Friday, 28/03/2014)
