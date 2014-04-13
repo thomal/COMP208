@@ -1,9 +1,13 @@
 package ballmerpeak.turtlenet.server;
 
+import java.util.Date;
+
 public class TNClient implements Runnable {
     static boolean running = true;
     
     public void run () {
+        Logger.init("LOG_turtlenet");
+        Logger.write("===== Turtlenet started at " + new Date() + "=====");
         NetworkConnection connection    = new NetworkConnection("localhost");
         Thread            networkThread = new Thread(connection);
         Database          db            = new Database("./db");
@@ -19,5 +23,7 @@ public class TNClient implements Runnable {
         
         connection.close();
         db.dbDisconnect();
+        Logger.write("===== Turtlenet closed  at " + new Date() + "=====");
+        Logger.close();
     }
 }

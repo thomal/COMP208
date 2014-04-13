@@ -44,7 +44,7 @@ public class Crypto {
             privateKeyFile.writeObject(keys.getPrivate());
             privateKeyFile.close();
         } catch (Exception e) {
-            System.out.println("ERROR: Could not generate keypair");
+            Logger.write("ERROR: Could not generate keypair");
         }
     }
     
@@ -54,7 +54,7 @@ public class Crypto {
             gen.initialize(1024, srand);
             return gen.generateKeyPair();
         } catch (Exception e) {
-            System.out.println("ERROR: Couldn't generate test keypair: " + e);
+            Logger.write("ERROR: Couldn't generate test keypair: " + e);
             return null;
         }
     }
@@ -66,7 +66,7 @@ public class Crypto {
                                      new File("./db/public.key")));
             return (PublicKey) file.readObject();
         } catch (Exception e) {
-            System.out.println("WARNING: Could not read public key");
+            Logger.write("WARNING: Could not read public key");
         }
         return null;
     }
@@ -78,7 +78,7 @@ public class Crypto {
                                      new File("./db/private.key")));
             return (PrivateKey) file.readObject();
         } catch (Exception e) {
-            System.out.println("WARNING: Could not read private key");
+            Logger.write("WARNING: Could not read private key");
         }
         return null;
     }
@@ -91,7 +91,7 @@ public class Crypto {
             byte[] sig = signer.sign();
             return Base64Encode(sig);
         } catch (Exception e) {
-            System.out.println("ERROR: Could not sign message");
+            Logger.write("ERROR: Could not sign message");
         }
         return "";
     }
@@ -103,7 +103,7 @@ public class Crypto {
             sigChecker.update(msg.getContent().getBytes("UTF-8"));
             return sigChecker.verify(Base64Decode(msg.getSig()));
         } catch (Exception e) {
-            System.out.println("ERROR: Could not verify signature");
+            Logger.write("ERROR: Could not verify signature");
         }
         return false;
     }
@@ -136,7 +136,7 @@ public class Crypto {
             //"iv\RSA encrypted AES key\ciper text"
             return Base64Encode(iv) + "\\" + Base64Encode(encryptedAESKey) + "\\" + Base64Encode(aesCipherText);
         } catch (Exception e) {
-            System.out.println("WARNING: Unable to encrypt message: " + e);
+            Logger.write("WARNING: Unable to encrypt message: " + e);
         }
         return "";
     }
@@ -174,7 +174,7 @@ public class Crypto {
             return Message.parse(new String(messagePlaintext));
         } catch (Exception e) {
             //This is to be expected for messages not addressed to you
-            //System.out.println("WARNING: Unable to decrypt message: " + e);
+            //Logger.write("WARNING: Unable to decrypt message: " + e);
         }
         return new Message("NULL", "", 0, "");
     }
@@ -196,7 +196,7 @@ public class Crypto {
             return KeyFactory.getInstance("RSA").generatePublic(
                                 new X509EncodedKeySpec(Base64Decode(codedKey)));
         } catch (Exception e) {
-            System.out.println("ERROR: Could not decode key");
+            Logger.write("ERROR: Could not decode key");
         }
         return null;
     }
@@ -206,7 +206,7 @@ public class Crypto {
             MessageDigest hasher = MessageDigest.getInstance("SHA-256");        
             return DatatypeConverter.printHexBinary(hasher.digest(data.getBytes("UTF-8")));
         } catch (Exception e) {
-            System.out.println("SHA-256 isn't supported.");
+            Logger.write("SHA-256 isn't supported.");
         }
         return "not_a_hash";
     }

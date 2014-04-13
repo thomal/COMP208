@@ -25,7 +25,7 @@ public class Database {
     //Creates a database from scratch
     public void dbCreate() {
         try {
-            System.out.println("CRITICAL: Unimplemented method Database.dbCreate(" + path + ")");
+            Logger.write("CRITICAL: Unimplemented method Database.dbCreate(" + path + ")");
             dbConnect();
             Statement statement = dbConnection.createStatement();
             dbConnection.setAutoCommit(false);
@@ -41,7 +41,7 @@ public class Database {
                                     ");");
             dbConnection.commit();
         } catch (Exception e) {
-            System.out.println("CRITICAL: Failed to create databse: " + e);
+            Logger.write("CRITICAL: Failed to create databse: " + e);
         }
     }
 
@@ -76,88 +76,88 @@ public class Database {
 	    System.exit(0);
 	}
 
-	System.out.println("TurtleNet Database Disconnected Successfully.");
+	Logger.write("TurtleNet Database Disconnected Successfully.");
     }
     
     //Get from DB
     public Vector<Message> getPostsBy (PublicKey key) {
         //REPLACE ME
-        System.out.println("CRITICAL: Unimplemented method Database.getPostsBy(...)");
+        Logger.write("CRITICAL: Unimplemented method Database.getPostsBy(...)");
         return null;
     }
     
     public PublicKey[] getKey (String name) {
         //REPLACE ME
-        System.out.println("CRITICAL: Unimplemented method Database.getKey(...)");
+        Logger.write("CRITICAL: Unimplemented method Database.getKey(...)");
         return null;
     }
     
     public String getName (PublicKey k) {
         //REPLACE ME
-        System.out.println("CRITICAL: Unimplemented method Database.getName(...)");
+        Logger.write("CRITICAL: Unimplemented method Database.getName(...)");
         return null;
     }
     
     public PublicKey getSignatory (Message m) {
         //REPLACE ME
-        System.out.println("CRITICAL: Unimplemented method Database.addSignatory(...)");
+        Logger.write("CRITICAL: Unimplemented method Database.addSignatory(...)");
         return null;
     }
     
     //Add to DB
     public void addPost (Message post) {
         //REPLACE ME
-        System.out.println("CRITICAL: Unimplemented method Database.addPost(...)");
+        Logger.write("CRITICAL: Unimplemented method Database.addPost(...)");
     }
     
     public void addKey (PublicKey k) {
         //REPLACE ME
-        System.out.println("CRITICAL: Unimplemented method Database.addKey(...)");
+        Logger.write("CRITICAL: Unimplemented method Database.addKey(...)");
     }
     
     public void addClaim (Message claim) {
         //REPLACE ME
-        System.out.println("CRITICAL: Unimplemented method Database.addClaim(...)");
+        Logger.write("CRITICAL: Unimplemented method Database.addClaim(...)");
     }
     
     public void addRevocation (Message revocation) {
         //REPLACE ME
-        System.out.println("CRITICAL: Unimplemented method Database.addRevocation(...)");
+        Logger.write("CRITICAL: Unimplemented method Database.addRevocation(...)");
     }
     
     public void addPdata (Message update) {
         //REPLACE ME
-        System.out.println("CRITICAL: Unimplemented method Database.addPdata(...)");
+        Logger.write("CRITICAL: Unimplemented method Database.addPdata(...)");
     }
     
     public void addChat (Message chat) {
         //REPLACE ME
-        System.out.println("CRITICAL: Unimplemented method Database.addChat(...)");
+        Logger.write("CRITICAL: Unimplemented method Database.addChat(...)");
     }
     
     public void addMessageToChat (Message msg) {
         //REPLACE ME
-        System.out.println("CRITICAL: Unimplemented method Database.addMessageToChat(...)");
+        Logger.write("CRITICAL: Unimplemented method Database.addMessageToChat(...)");
     }
     
     /* If you can see an FPOST, it's a request to post it on your wall */
     public void addFPost (Message fpost) {
         //REPLACE ME
-        System.out.println("CRITICAL: Unimplemented method Database.addFPost(...)");
+        Logger.write("CRITICAL: Unimplemented method Database.addFPost(...)");
     }
     
     public void addComment (Message comment) {
         //REPLACE ME
-        System.out.println("CRITICAL: Unimplemented method Database.addComment(...)");
+        Logger.write("CRITICAL: Unimplemented method Database.addComment(...)");
     }
     
     public void addLike (Message Like) {
         //REPLACE ME
-        System.out.println("CRITICAL: Unimplemented method Database.addLike(...)");
+        Logger.write("CRITICAL: Unimplemented method Database.addLike(...)");
     }
     
     public void addEvent (Message event) {
         //REPLACE ME
-        System.out.println("CRITICAL: Unimplemented method Database.addEvent(...)");
+        Logger.write("CRITICAL: Unimplemented method Database.addEvent(...)");
     }
 }

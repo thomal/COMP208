@@ -25,7 +25,7 @@ public class NetworkConnection implements Runnable {
                                             new FileReader(lastReadFile));
                 lastRead = Long.parseLong(reader.readLine());
             } catch (Exception e) {
-                System.out.println("ERROR: Could not read lastread from file");
+                Logger.write("ERROR: Could not read lastread from file");
             }
         }
     }
@@ -35,7 +35,7 @@ public class NetworkConnection implements Runnable {
             try {
                 Thread.sleep(1000); //update every second
             } catch (Exception e) {
-                System.out.println("WARNING: Sleep interrupted: " + e);
+                Logger.write("WARNING: Sleep interrupted: " + e);
             }
             downloadNewMessages();
         }
@@ -54,7 +54,7 @@ public class NetworkConnection implements Runnable {
             writer.write(Long.toString(lastRead));
             writer.close();
         } catch (Exception e) {
-            System.out.println("ERROR: Unable to save lastRead: " + e);
+            Logger.write("ERROR: Unable to save lastRead: " + e);
         }
     }
     
@@ -66,7 +66,7 @@ public class NetworkConnection implements Runnable {
             messageLock.release();
             return haveMessage;
         } catch (Exception e) {
-            System.out.println("WARNING: Acquire interrupted");
+            Logger.write("WARNING: Acquire interrupted");
         }
         return false;
     }
@@ -80,7 +80,7 @@ public class NetworkConnection implements Runnable {
             messageLock.release();
             return m;
         } catch (Exception e) {
-            System.out.println("WARNING: Acquire interrupted");
+            Logger.write("WARNING: Acquire interrupted");
         }
         return new Message("NULL", "", 0, "").toString();
     }
@@ -91,7 +91,7 @@ public class NetworkConnection implements Runnable {
         if (time.size() == 2)
             return Long.parseLong(time.get(0));
         else
-            System.out.println("ERROR: Couldn't retreive time from server");
+            Logger.write("ERROR: Couldn't retreive time from server");
             
         return 0;
     }
@@ -102,7 +102,7 @@ public class NetworkConnection implements Runnable {
             if (!serverCmd("s " + ciphertext).get(0).equals("s"))
                throw new Exception("server reported failure");
         } catch (Exception e) {
-            System.out.println("ERROR: Could not upload message: " + e);
+            Logger.write("ERROR: Could not upload message: " + e);
         }
     }
     
@@ -115,7 +115,7 @@ public class NetworkConnection implements Runnable {
             if (serverCmd(cmd).get(0).equals("s"))
                 return true;
         } catch (Exception e) {
-            System.out.println("ERROR: Could not register name: " + e);
+            Logger.write("ERROR: Could not register name: " + e);
         }
     
         return false;
@@ -132,7 +132,7 @@ public class NetworkConnection implements Runnable {
                     messages.add(msgs.get(i));
                     messageLock.release();
                 } catch (Exception e) {
-                    System.out.println("WARNING: Acquire interrupted.");
+                    Logger.write("WARNING: Acquire interrupted.");
                 }
             }
         }
@@ -158,7 +158,7 @@ public class NetworkConnection implements Runnable {
             in  = new BufferedReader(new InputStreamReader(s.getInputStream()));
             out = new PrintWriter(s.getOutputStream(), true);
         } catch (Exception e) {
-            System.out.println("ERROR in connecting: " + e.getMessage());
+            Logger.write("ERROR in connecting: " + e.getMessage());
             return null;
         }
         
@@ -176,26 +176,26 @@ public class NetworkConnection implements Runnable {
                     output.add(line);
             } while (line != null);
         } catch (Exception e) {
-            System.out.println("ERROR reading from server: " + e.getMessage());
+            Logger.write("ERROR reading from server: " + e.getMessage());
         }
         
         //disconnect
         try {
             out.close();
         } catch (Exception e) {
-            System.out.println("ERROR in disconnecting: " + e.getMessage());
+            Logger.write("ERROR in disconnecting: " + e.getMessage());
         }
         
         try {
             in.close();
         } catch (Exception e) {
-            System.out.println("ERROR in disconnecting: " + e.getMessage());
+            Logger.write("ERROR in disconnecting: " + e.getMessage());
         }
         
         try {
             s.close();
         } catch (Exception e) {
-            System.out.println("ERROR in disconnecting: " + e.getMessage());
+            Logger.write("ERROR in disconnecting: " + e.getMessage());
         }
         
         return output;
