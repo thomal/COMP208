@@ -3,14 +3,25 @@ package ballmerpeak.turtlenet.server;
 import java.util.Date;
 
 public class TNClient implements Runnable {
-    static boolean running = true;
+    public static boolean running = true;
+    
+    public static void main (String[] argv) {
+        TNClient c = new TNClient();
+        Thread t = new Thread(c);
+        t.start();
+        while (TNClient.running) {
+            int a = 12;
+            int b = 5;
+            int r = a/b;
+        }
+    }
     
     public void run () {
         Logger.init("LOG_turtlenet");
         Logger.write("===== Turtlenet started at " + new Date() + "=====");
         NetworkConnection connection    = new NetworkConnection("localhost");
         Thread            networkThread = new Thread(connection);
-        Database          db            = new Database("./db");
+        Database          db            = new Database();
         
         if (!Crypto.keysExist()) //move into GUI class
             Crypto.keyGen();

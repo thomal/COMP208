@@ -46,7 +46,7 @@ public class frontend implements EntryPoint {
 	FlowPanel messagesControlPanel = new FlowPanel();
 
 	public void onModuleLoad() {
-	        /*Connect to turtlenet server
+	        /*Connect to turtlenet server*/
 	        turtlenet.startTN(new AsyncCallback<String>() {
 	                              public void onFailure(Throwable caught) {
 	                                  //pretend nothing happened
@@ -54,7 +54,7 @@ public class frontend implements EntryPoint {
 	                              public void onSuccess(String result) {
 	                                  //bask in success
 	                              }
-	                          });*/
+	                          });
 	        
 		// Call methods to set up panels
 		loginPanelSetup();

@@ -19,8 +19,10 @@ public class Crypto {
                                                .getBytes());
 
     public static Boolean keysExist() {
-        File publicKey  = new File("./db/public.key");
-        File privateKey = new File("./db/private.key");
+        if (!Database.DBDirExists())
+            return false;
+        File publicKey  = new File(Database.path + "/public.key");
+        File privateKey = new File(Database.path + "/private.key");
         return publicKey.exists() && privateKey.exists();
     }
     
@@ -31,7 +33,11 @@ public class Crypto {
             gen.initialize(1024, srand);
             KeyPair keys = gen.generateKeyPair();
             
-            //and save it
+            //create the DB directory if needed
+            if (!Database.DBDirExists())
+                Database.createDBDir();
+            
+            //and save the keys into it
             ObjectOutputStream publicKeyFile = new ObjectOutputStream(
                                                    new FileOutputStream(
                                                        new File("./db/public.key")));

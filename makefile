@@ -105,5 +105,9 @@ run_client : config
 	rm web_interface/build.xml
 	rm -rf web_interface/db
 
+run_headlessclient : config
+	javac -cp src `ls -1 src/ballmerpeak/turtlenet/server/*.java | grep -v Impl` src/ballmerpeak/turtlenet/shared/*.java
+	java -cp src ballmerpeak.turtlenet.server.TNClient
+
 config:
 	@echo "Path: $(GWTPATH)"

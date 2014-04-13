@@ -8,11 +8,10 @@ import java.security.*;
 import java.io.File;
 
 public class Database {
-    private String path; //path to database directory
+    public static String path = "./db"; //path to database directory
     private Connection dbConnection;
 
-    public Database (String location) {
-        path    = location;
+    public Database () {
 	dbConnection = null;
 	
 	File db = new File(path);
@@ -22,9 +21,20 @@ public class Database {
 	    dbConnect(); //this occurs during dbCreate, no need to repeat it
     }
     
+    public static boolean DBDirExists() {
+        File dir = new File(path);
+        return dir.exists();
+    }
+    
+    public static boolean createDBDir() {
+        return (new File(path)).mkdirs();
+    }
+    
     //Creates a database from scratch
     public void dbCreate() {
         try {
+            if (!Database.DBDirExists())
+                Database.createDBDir();
             Logger.write("CRITICAL: Unimplemented method Database.dbCreate(" + path + ")");
             dbConnect();
             Statement statement = dbConnection.createStatement();
@@ -55,10 +65,8 @@ public class Database {
 	    //so the DB doesn't make changes when we don't want it to
 	    dbConnection.setAutoCommit(false);
 
-	//don't quite know what to make the program do here
-	} catch(Exception e) {
-	    System.err.println(e.getClass().getName() + ": " + e.getMessage() );
-	    System.exit(0);
+	} catch(Exception e) { //Exception logged to disk, program allowed to crash naturally
+	    Logger.write(e.getClass().getName() + ": " + e.getMessage() );
 	}
 
         return true;
@@ -70,10 +78,8 @@ public class Database {
 	try {
 	    dbConnection.close();
 	
-	//same problem here - don't know whether to kill it or let it hang
-	} catch(Exception e) {
-	    System.err.println(e.getClass().getName() + ": " + e.getMessage() );
-	    System.exit(0);
+	} catch(Exception e) { //Exception logged to disk, program allowed to continue
+	    Logger.write(e.getClass().getName() + ": " + e.getMessage() );
 	}
 
 	Logger.write("TurtleNet Database Disconnected Successfully.");
