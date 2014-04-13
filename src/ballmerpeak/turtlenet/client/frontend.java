@@ -3,8 +3,10 @@ package ballmerpeak.turtlenet.client;
 import ballmerpeak.turtlenet.shared.FieldVerifier;
 
 import com.google.gwt.core.client.EntryPoint;
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlexTable;
@@ -19,7 +21,7 @@ import com.google.gwt.dom.client.Style.FontWeight;
 public class frontend implements EntryPoint {
 
 	// Create remote service proxy to talk to the server-side Turtlenet service
-	// private final TurtlenetAsync turtlenet = GWT.create(Turtlenet.class);
+	private final TurtlenetAsync turtlenet = GWT.create(Turtlenet.class);
 
 	// Create panels that have only one use
 	FlexTable loginPanel = new FlexTable();
@@ -44,6 +46,16 @@ public class frontend implements EntryPoint {
 	FlowPanel messagesControlPanel = new FlowPanel();
 
 	public void onModuleLoad() {
+	        /*Connect to turtlenet server
+	        turtlenet.startTN(new AsyncCallback<String>() {
+	                              public void onFailure(Throwable caught) {
+	                                  //pretend nothing happened
+	                              }
+	                              public void onSuccess(String result) {
+	                                  //bask in success
+	                              }
+	                          });*/
+	        
 		// Call methods to set up panels
 		loginPanelSetup();
 		navigationPanelSetup();

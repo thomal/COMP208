@@ -88,8 +88,16 @@ Create windows build environment:
             C:\Program Files\Java\jdk1.7.0_51\bin
 
 --------------------------------------------
+Meeting #10 Agenda (Sunday, 13/04/2014)
+--------------------------------------------
+- Luke/Mike Re: setAutoCommit(false) in dbConnect():
+    shouldn't this be done on a case-by-case basis to mark the start and end of
+    transactions?
+- Luke/Louis Re: Enable -strict for compiling frontend
+
+--------------------------------------------
 Meeting #9 Minutes (Friday, 28/03/2014)
----------------------------------------------
+--------------------------------------------
 By next meeting:
     - Fix manual stuff, add makefile, finish initial test setup (luke)
     - Create tables from Database.java (aishah/mike)

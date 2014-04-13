@@ -8,26 +8,45 @@ import java.security.*;
 import java.io.File;
 
 public class Database {
+    private String path; //path to database directory
+    private Connection dbConnection;
+
     public Database (String location) {
         path    = location;
 	dbConnection = null;
 	
 	File db = new File(path);
 	if (!db.exists())
-	    if (!dbCreate(path))
-	        System.out.println("CRITICAL: Unable to create DB at: " + path);
-	
-	dbConnect();
+	    dbCreate();
+	else
+	    dbConnect(); //this occurs during dbCreate, no need to repeat it
     }
     
     //Creates a database from scratch
-    public static boolean dbCreate(String path) {
-        System.out.println("CRITICAL: Unimplemented method Database.dbCreate(" + path + ")");
-        return false;
+    public void dbCreate() {
+        try {
+            System.out.println("CRITICAL: Unimplemented method Database.dbCreate(" + path + ")");
+            dbConnect();
+            Statement statement = dbConnection.createStatement();
+            dbConnection.setAutoCommit(false);
+            statement.executeUpdate("CREATE TABLE user (                   " +
+                                        "user_id    INT         NOT NULL, " + 
+                                        "username   VARCHAR(25) NOT NULL, " +
+                                        "name       VARCHAR(30),          " +
+                                        "birthday   DATE,                 " + 
+                                        "sex        VARCHAR(1),           " + 
+                                        "email      VARCHAR(30),          " + 
+                                        "public_key VARCHAR(8),           " +
+                                        "PRIMARY KEY (user_id)            " +
+                                    ");");
+            dbConnection.commit();
+        } catch (Exception e) {
+            System.out.println("CRITICAL: Failed to create databse: " + e);
+        }
     }
 
     //Connects to a pre-defined database
-    public void dbConnect() {
+    public boolean dbConnect() {
 
 	try {
 	    Class.forName("org.sqlite.JDBC");
@@ -42,8 +61,7 @@ public class Database {
 	    System.exit(0);
 	}
 
-	System.out.println("TurtleNet Database Connected Successfully.");
-
+        return true;
     }
 
     //Disconnects the pre-defined database
@@ -142,8 +160,4 @@ public class Database {
         //REPLACE ME
         System.out.println("CRITICAL: Unimplemented method Database.addEvent(...)");
     }
-    
-    //variable declarations
-    private String path; //path to database directory
-    private Connection dbConnection;
 }
