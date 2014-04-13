@@ -3,17 +3,18 @@ package ballmerpeak.turtlenet.server;
 import java.io.*;
 
 class Logger {
-    static boolean started;
+    static boolean started = false;
     static String path;
     static PrintWriter log;
     
     public static void init (String logfile) {
+        started = true;
         path = logfile;
         
         try {
-            PrintWriter log = new PrintWriter(new BufferedWriter(new FileWriter(path)));
+            log = new PrintWriter(new BufferedWriter(new FileWriter(path)));
         } catch (Exception e) {
-            System.out.println("ERROR: Unable to open log");
+            throw new RuntimeException("ERROR: Unable to open log: " + e);
         }
     }
     
