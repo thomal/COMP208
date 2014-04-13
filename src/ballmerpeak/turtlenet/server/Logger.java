@@ -2,7 +2,7 @@ package ballmerpeak.turtlenet.server;
 
 import java.io.*;
 
-class Logger {
+public class Logger {
     static boolean started = false;
     static String path;
     static PrintWriter log;
