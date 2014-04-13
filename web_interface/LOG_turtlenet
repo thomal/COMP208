@@ -1,7 +1,4 @@
-===== Turtlenet started at Sun Apr 13 02:17:24 BST 2014=====
+===== Turtlenet started at Sun Apr 13 02:58:02 BST 2014=====
 CRITICAL: Unimplemented method Database.dbCreate(./db)
-FATAL: Could not connect: java.lang.ClassNotFoundException: org.sqlite.JDBC
-CRITICAL: Failed to create databse: java.lang.NullPointerException
-FATAL: Could not disconnect: java.lang.NullPointerException: null
 TurtleNet Database Disconnected Successfully.
-===== Turtlenet closed  at Sun Apr 13 02:17:32 BST 2014=====
+===== Turtlenet closed  at Sun Apr 13 02:58:19 BST 2014=====

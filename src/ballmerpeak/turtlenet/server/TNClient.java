@@ -1,6 +1,7 @@
 package ballmerpeak.turtlenet.server;
 
 import java.util.Date;
+import java.util.Scanner;
 
 public class TNClient implements Runnable {
     public static boolean running = true;
@@ -9,10 +10,14 @@ public class TNClient implements Runnable {
         TNClient c = new TNClient();
         Thread t = new Thread(c);
         t.start();
+        
+        Scanner s = new Scanner(System.in);
+        String l;
         while (TNClient.running) {
-            int a = 12;
-            int b = 5;
-            int r = a/b;
+            if ((l=s.nextLine()).equals("exit"))
+                TNClient.running = false;
+            else
+                System.out.println(l);
         }
     }
     

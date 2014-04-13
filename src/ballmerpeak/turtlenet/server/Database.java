@@ -12,13 +12,13 @@ public class Database {
     private Connection dbConnection;
 
     public Database () {
-	dbConnection = null;
-	
-	File db = new File(path);
-	if (!db.exists())
-	    dbCreate();
-	else
-	    dbConnect(); //this occurs during dbCreate, no need to repeat it
+    dbConnection = null;
+    
+    File db = new File(path);
+    if (!db.exists())
+        dbCreate();
+    else
+        dbConnect(); //this occurs during dbCreate, no need to repeat it
     }
     
     public static boolean DBDirExists() {
@@ -39,7 +39,7 @@ public class Database {
             dbConnect();
             Statement statement = dbConnection.createStatement();
             dbConnection.setAutoCommit(false);
-            statement.executeUpdate("CREATE TABLE user (                   " +
+            statement.executeUpdate("CREATE TABLE user (                  " +
                                         "user_id    INT         NOT NULL, " + 
                                         "username   VARCHAR(25) NOT NULL, " +
                                         "name       VARCHAR(30),          " +
@@ -58,29 +58,26 @@ public class Database {
     //Connects to a pre-defined database
     public boolean dbConnect() {
 
-	try {
-	    Class.forName("org.sqlite.JDBC");
-	    dbConnection = DriverManager.getConnection("jdbc:sqlite:"
-						   + path + "/turtlenet.db");
-	    dbConnection.setAutoCommit(false);
-	} catch(Exception e) { //Exception logged to disk, program allowed to crash naturally
-	    Logger.write("FATAL: Could not connect: " + e.getClass().getName() + ": " + e.getMessage() );
-	}
+    try {
+        Class.forName("org.sqlite.JDBC");
+        dbConnection = DriverManager.getConnection("jdbc:sqlite:db/turtlenet.db");
+        dbConnection.setAutoCommit(false);
+    } catch(Exception e) { //Exception logged to disk, program allowed to crash naturally
+        Logger.write("FATAL: Could not connect: " + e.getClass().getName() + ": " + e.getMessage() );
+    }
 
         return true;
     }
 
     //Disconnects the pre-defined database
     public void dbDisconnect() {
-	
-	try {
-	    dbConnection.close();
-	
-	} catch(Exception e) { //Exception logged to disk, program allowed to continue
-	    Logger.write("FATAL: Could not disconnect: " + e.getClass().getName() + ": " + e.getMessage() );
-	}
-
-	Logger.write("TurtleNet Database Disconnected Successfully.");
+    
+    try {
+            dbConnection.close();
+            Logger.write("TurtleNet Database Disconnected Successfully.");
+        } catch(Exception e) { //Exception logged to disk, program allowed to continue
+            Logger.write("FATAL: Could not disconnect: " + e.getClass().getName() + ": " + e.getMessage() );
+        }
     }
     
     //Get from DB

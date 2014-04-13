@@ -1,3 +1,5 @@
+CLASSPATH="src:libs/sqlite-jdbc-3.7.2.jar"
+
 LUKE_GWTPATH="/home/luke/Downloads/gwt-2.6.0"
 LUKEWIN_GWTPATH="C\:/Users/luke/Downloads/gwt-2.6.0"
 PETER_GWTPATH="i dunno"
@@ -60,7 +62,7 @@ rserver : config
 	@echo "              ----------------------"
 	@echo "              building remote server"
 	@echo "              ----------------------"
-	javac -cp src src/ballmerpeak/turtlenet/remoteserver/*.java
+	javac -cp $(CLASSPATH) src/ballmerpeak/turtlenet/remoteserver/*.java
 	@echo "              *******************************"
 	@echo "              successfuly built remote server"
 	@echo "              *******************************"
@@ -70,15 +72,14 @@ testing : config
 	@echo "              --------------"
 	@echo "              Building Tests"
 	@echo "              --------------"
-	#javac -cp src src/ballmerpeak/turtlenet/testing/*.java `ls -1 src/ballmerpeak/turtlenet/server/*.java | grep -v Impl` src/ballmerpeak/turtlenet/shared/*.java
-	javac -cp src src/ballmerpeak/turtlenet/testing/*.java
+	javac -cp $(CLASSPATH) src/ballmerpeak/turtlenet/testing/*.java
 	@echo "              ***********************"
 	@echo "              successfuly built tests"
 	@echo "              ***********************"
 
 test : testing
 	@echo ""
-	java -cp src ballmerpeak.turtlenet.testing.Test
+	java -cp $(CLASSPATH) ballmerpeak.turtlenet.testing.Test
 
 clean : config
 	@echo ""
@@ -96,7 +97,7 @@ clean : config
 
 run_server : config
 	mkdir -p data
-	java -cp src ballmerpeak.turtlenet.remoteserver.Server
+	java -cp $(CLASSPATH) ballmerpeak.turtlenet.remoteserver.Server
 	rm -rf data
 
 run_client : config
@@ -106,8 +107,9 @@ run_client : config
 	rm -rf web_interface/db
 
 run_headlessclient : config
-	javac -cp src `ls -1 src/ballmerpeak/turtlenet/server/*.java | grep -v Impl` src/ballmerpeak/turtlenet/shared/*.java
-	java -cp src ballmerpeak.turtlenet.server.TNClient
+	javac -cp $(CLASSPATH) `ls -1 src/ballmerpeak/turtlenet/server/*.java | grep -v Impl` src/ballmerpeak/turtlenet/shared/*.java
+	java -cp $(CLASSPATH) ballmerpeak.turtlenet.server.TNClient
+	rm -rf db
 
 config:
 	@echo "Path: $(GWTPATH)"
