@@ -51,7 +51,7 @@ public class Database {
                                     ");");
             dbConnection.commit();
         } catch (Exception e) {
-            Logger.write("CRITICAL: Failed to create databse: " + e);
+            Logger.write("FATAL: Failed to create databse: " + e);
         }
     }
 
@@ -62,11 +62,9 @@ public class Database {
 	    Class.forName("org.sqlite.JDBC");
 	    dbConnection = DriverManager.getConnection("jdbc:sqlite:"
 						   + path + "/turtlenet.db");
-	    //so the DB doesn't make changes when we don't want it to
 	    dbConnection.setAutoCommit(false);
-
 	} catch(Exception e) { //Exception logged to disk, program allowed to crash naturally
-	    Logger.write(e.getClass().getName() + ": " + e.getMessage() );
+	    Logger.write("FATAL: Could not connect: " + e.getClass().getName() + ": " + e.getMessage() );
 	}
 
         return true;
@@ -79,7 +77,7 @@ public class Database {
 	    dbConnection.close();
 	
 	} catch(Exception e) { //Exception logged to disk, program allowed to continue
-	    Logger.write(e.getClass().getName() + ": " + e.getMessage() );
+	    Logger.write("FATAL: Could not disconnect: " + e.getClass().getName() + ": " + e.getMessage() );
 	}
 
 	Logger.write("TurtleNet Database Disconnected Successfully.");
