@@ -2,20 +2,12 @@ package ballmerpeak.turtlenet.client;
 
 import ballmerpeak.turtlenet.shared.FieldVerifier;
 
-import com.google.gwt.core.client.EntryPoint;
-import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.core.client.*;
+import com.google.gwt.event.dom.client.*;
+import com.google.gwt.user.client.ui.*;
+import com.google.gwt.event.logical.shared.*;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.ui.Anchor;
-import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.FlexTable;
-import com.google.gwt.user.client.ui.HorizontalPanel;
-import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.RootPanel;
-import com.google.gwt.user.client.ui.TextBox;
-import com.google.gwt.user.client.ui.FlowPanel;
-import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.dom.client.Style.FontWeight;
 
 public class frontend implements EntryPoint {
@@ -55,6 +47,19 @@ public class frontend implements EntryPoint {
 	                                  //bask in success
 	                              }
 	                          });
+	        // Add handler for window closing
+	        Window.addCloseHandler(new CloseHandler<Window>() {
+                    public void onClose(CloseEvent<Window> event) {
+                        turtlenet.stopTN(new AsyncCallback<String>() {
+	                    public void onFailure(Throwable caught) {
+	                        //pretend nothing happened
+	                    }
+	                    public void onSuccess(String result) {
+	                        //bask in success
+	                    }
+	                });
+                    }
+                });
 	        
 		// Call methods to set up panels
 		loginPanelSetup();
