@@ -118,7 +118,19 @@ VALUES
 );
 
 -- getEvent()
-acceptEvent()
+-- without showing who is invited
+SELECT user.username, user.name, events.title, events.content, events.time, events.start_date, events.end_date, events.from 
+FROM user
+INNER JOIN events
+ON user.user_id = events.from 
+WHERE event_id = 'variable';
+
+-- showing who is invited
+-- TODO
+-- tables involved events, is_invited, user, category
+
+-- acceptEvent()
+
 declineEvent()
 addKey()
 getKey()
