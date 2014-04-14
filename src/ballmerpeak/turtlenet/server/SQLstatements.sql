@@ -5,8 +5,8 @@
 INSERT INTO message_claim (username, signature)
 VALUES
 (
-variable1, -- username
-variable2 -- signature
+'variable1', -- username
+'variable2' -- signature
 );
 
 -- getClaims()
@@ -41,12 +41,29 @@ AND time <= DATETIME('2014-12-31 00:00:00')
 -- NOTE: SQLite do not store datetime as datetime, instead it stores as string. 
 
 -- isRevoked()
--- not sure what is the difference between this and previous function
+INSERT INTO key_revoke (signature)
+VALUES
+(
+'signature'
+);
 
 -- addPData()
+INSERT INTO user (username, name, birthday, sex, email)
+VALUES
+(
+'username',
+'name',
+'1990-01-01',
+'F' -- drop down option preferable F - female, M - male
+'email@email.com'
+);
+
 -- createChat()
+
 -- getChat()
+
 -- addToChat()
+
 -- addPost()
 INSERT INTO wall_post (from, to, content)
 VALUES
@@ -152,10 +169,32 @@ WHERE user_id = 'user_id here';
 
 -- addKey()
 
-getKey()
-getName()
-addCategory()
-addToCategory()
+
+-- getKey()
+SELECT public_key
+FROM user
+WHERE username = 'something_something_bla_bla_turtlepoop';
+
+-- getName()
+-- getting name through public key
+SELECT username, name
+FROM user
+WHERE public_key = 'publickey';
+
+-- addCategory()
+INSERT INTO category (name)
+VALUES
+(
+'name'
+);
+
+-- addToCategory()
+INSERT INTO is_in_category (category_id, user_id)
+VALUES
+(
+'category_id',
+'user_id'
+);
 
 ---------------
 -- things to do
@@ -163,3 +202,5 @@ addToCategory()
 -- auto-increment the primary key columns 
 -- default values for time with current time
 -- default values for is_invited, decision should be NULL when newly inserted
+-- default value public key? 
+-- note: adding key does not let you see anything but username 
