@@ -33,7 +33,7 @@ getRevocations()
 SELECT signature, time
 FROM key_revoke
 
--- get only selected through specific time
+-- get only selected through specific time [I don't know if this is going to be used, but what the hell]
 SELECT signature
 FROM key_revoke
 WHERE time >= DATETIME('2014-01-01 00:00:00') 
@@ -128,11 +128,30 @@ WHERE event_id = 'variable';
 -- showing who is invited
 -- TODO
 -- tables involved events, is_invited, user, category
+SELECT events.title, events.content, events.time, events.start_date, events.end_date, events.from, user.username, user.name
+FROM events
+INNER JOIN is_invited
+ON events.event_id = is_invited.event_id
+INNER JOIN user
+ON is_invited.user_id = user.user_id
+INNER JOIN is_in_category
+ON user.user_id = is_in_category.user_id
+INNER JOIN category
+ON is_in_category.category_id = category.category_id
+WHERE event_id = 'state event id here';
 
 -- acceptEvent()
+UPDATE is_invited
+SET decision = '1'
+WHERE user_id = 'user_id here';
 
-declineEvent()
-addKey()
+-- declineEvent()
+UPDATE is_invited
+SET decision = '0'
+WHERE user_id = 'user_id here';
+
+-- addKey()
+
 getKey()
 getName()
 addCategory()
@@ -143,3 +162,4 @@ addToCategory()
 ---------------
 -- auto-increment the primary key columns 
 -- default values for time with current time
+-- default values for is_invited, decision should be NULL when newly inserted
