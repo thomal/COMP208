@@ -16,7 +16,7 @@ public class Message implements Serializable {
     }
     
     public Message () {
-        command = "NOP";
+        command = "NULL";
         content = "";
         signature = "";
         timestamp = -1;
@@ -85,6 +85,8 @@ public class Message implements Serializable {
     }
     
     /* establish a chat and the people in it, without any messages */
+    // returns an array of strings and now of keys because of GWT,
+    //   Crypto.decodeKey should be used to turn each string into a key
     public String[] CHATgetKeys() {
         Tokenizer st = new Tokenizer(content, ':');
         String[] keys = new String[st.countTokens()];
@@ -152,6 +154,7 @@ public class Message implements Serializable {
     }
     
     /* time of revocation, not timestamp of message */
+    /* there cannot be a REVOKEgetKey due to GWT */
     public long REVOKEgetTime() {
         try {
             return Long.parseLong(content);

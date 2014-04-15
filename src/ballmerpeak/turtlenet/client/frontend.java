@@ -29,6 +29,20 @@ I've no idea what the scope of these callbacks is.
 
 You can add to the DB by calling c.db.addX methods, just like demoDBCall. I'll
 add more message constructors for you presently.
+
+You also can't use the PublicKey class. The TurtlenetImpl class can use anything
+it likes, so you should return Crypto.encodeKey(key) instead of trying to return
+the keys the DB gives you. Similarly for functions adding to the DB, you should
+pass them a string (you don't have any other choice actually) and pass
+Crypto.decodeKey(key) to the DB function.
+
+You can't make an interface for the Database class directly, so you have to use
+the example above and have loads of one-line functions that just call the
+corresponding DB function.
+
+Oh, and conversaions/posts/comments are identified by their signature. So when
+you like something then you pass the signature from whatever you're liking to
+the DB.
 */
 
 package ballmerpeak.turtlenet.client;
