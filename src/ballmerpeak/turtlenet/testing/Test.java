@@ -133,8 +133,8 @@ class Test {
         test("5  PDATAgetValues", pdvs[1][0], "dob");
         test("6  PDATAgetValues", pdvs[1][1], "1972");
         
-        test("7  CHATgetKeys", chatm.CHATgetKeys()[0].equals(k1.getPublic()));
-        test("8  CHATgetKeys", chatm.CHATgetKeys()[1].equals(k2.getPublic()));
+        test("7  CHATgetKeys", Crypto.decodeKey(chatm.CHATgetKeys()[0]).equals(k1.getPublic()));
+        test("8  CHATgetKeys", Crypto.decodeKey(chatm.CHATgetKeys()[1]).equals(k2.getPublic()));
         
         test("9  PCHATgetText",  pchatm.PCHATgetText(),           "Hi bob.");
         test("10 PCHATgetConversationID", pchatm.PCHATgetConversationID(), "<convsig>");

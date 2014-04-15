@@ -6,7 +6,10 @@ public class Tokenizer {
     int i = 0;
     
     public Tokenizer (String s, char c) {
-        tokens = new String[s.count(c)];
+        String regex = "" + c;
+        if (c == '\\')
+            regex = "\\\\";
+        tokens = s.split(regex);
     }
     
     public String nextToken () {
