@@ -1,6 +1,7 @@
 package ballmerpeak.turtlenet.testing;
 
 import ballmerpeak.turtlenet.shared.Message;
+import ballmerpeak.turtlenet.server.MessageFactoryImpl;
 import ballmerpeak.turtlenet.server.Crypto;
 import java.security.*;
 
@@ -14,7 +15,8 @@ class Test {
         testMessageContructors();
         testMessageParsing();
         testMessageAccessors();
-        testCryptoAndEncoder();
+        testMessageFactory();
+        testCrypto();
         System.out.println("===========================================================================");
         System.out.println("Pass: " + passes + " Failures: " + failures + " Anomalies: " + anomalies);
         System.out.println("===========================================================================");
@@ -151,15 +153,67 @@ class Test {
         test("15 EVNTgetName",  eventm.EVNTgetName(), "bobs birthday");
         test("16 EVNTgetStart", eventm.EVNTgetStart(), 0);
         test("17 EVNTgetEnd",   eventm.EVNTgetEnd(),   60000);
- 
-        System.out.println("\tWARNING: Not testing Message::REVOKEgetKey()");
-        anomalies++;              
         
         
         return failures == ifailures;
     }
     
-    private static boolean testCryptoAndEncoder() {
+    private static boolean testMessageFactory() {
+        System.out.println("\ntestMessageFactory:");
+        int ifailures = failures;
+        
+        MessageFactoryImpl f = new MessageFactoryImpl();
+        KeyPair k1 = Crypto.getTestKey();
+        KeyPair k2 = Crypto.getTestKey();
+        PublicKey keys[] = {k1.getPublic(), k2.getPublic()};
+        String  k1e = Crypto.encodeKey(k1.getPublic());
+        String  k2e = Crypto.encodeKey(k2.getPublic());
+        Message claimm  = f.newCLAIM("zero_cool");
+        Message revokem = f.newREVOKE(2442);
+        Message pdatam  = f.newPDATA("name", "John Doe");
+        Message chatm   = f.newCHAT(keys);
+        Message pchatm  = f.newPCHAT("<convsig>", "Hi bob.");
+        Message postm   = f.newPOST("Hello, World! \\_O_/");
+        Message fpostm  = f.newFPOST("I'm posting on your wall");
+        Message cmntm   = f.newCMNT("<post or comment sig>", "nice");
+        Message likem   = f.newLIKE("<post or comment sig>");
+        Message eventm  = f.newEVNT(0, 60000, "bobs birthday");
+        
+        test("1  newCLAIM", claimm.CLAIMgetName(), "zero_cool");
+        
+        test("2  newREVOKE", revokem.REVOKEgetTime(), 2442);
+        
+        String[][] pdvs = pdatam.PDATAgetValues();
+        test("3  newPDATA", pdvs[0][0], "name");
+        test("4  newPDATA", pdvs[0][1], "John Doe");
+        
+        test("5  newCHAT", Crypto.decodeKey(chatm.CHATgetKeys()[0]).equals(k1.getPublic()));
+        test("6  newCHAT", Crypto.decodeKey(chatm.CHATgetKeys()[1]).equals(k2.getPublic()));
+        
+        test("7  newPCHAT",  pchatm.PCHATgetText(),           "Hi bob.");
+        test("8  newPCHAT", pchatm.PCHATgetConversationID(), "<convsig>");
+        
+        test("9  newPOST", postm.POSTgetText(), "Hello, World! \\_O_/");
+        
+        //No FPOSTgetX() methods because FPOSTs are POSTs in disguise.
+        
+        test("10 newCMNT",   cmntm.CMNTgetText(),   "nice");
+        test("11 newCMNT", cmntm.CMNTgetItemID(), "<post or comment sig>");
+        
+        test("12 newLIKE", likem.LIKEgetItemID(), "<post or comment sig>");
+        
+        test("13 newEVNT",  eventm.EVNTgetName(), "bobs birthday");
+        test("14 newEVNT", eventm.EVNTgetStart(), 0);
+        test("15 newEVNT",   eventm.EVNTgetEnd(),   60000);
+ 
+        System.out.println("\tWARNING: Doesn't test signature or timestamp generation");
+        anomalies++;
+        
+        
+        return failures == ifailures;
+    }
+    
+    private static boolean testCrypto() {
         System.out.println("\ntestCrypto:");
         int ifailures = failures;
         
@@ -169,6 +223,7 @@ class Test {
         
         System.out.println("\tWARNING: Not nearly enough crypto tests");
         anomalies++;              
+        
         
         return failures == ifailures;
     }

@@ -2,12 +2,12 @@
 //These methods can't be static like they should be because of GWT
 
 package ballmerpeak.turtlenet.server;
-
 import ballmerpeak.turtlenet.client.MessageFactory;
+import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import ballmerpeak.turtlenet.shared.Message;
 import ballmerpeak.turtlenet.server.Crypto;
 import java.security.*;
-import com.google.gwt.user.server.rpc.RemoteServiceServlet;
+
 
 public class MessageFactoryImpl extends RemoteServiceServlet implements MessageFactory {
     public MessageFactoryImpl(){

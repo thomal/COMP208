@@ -72,7 +72,15 @@ testing : config
 	@echo "              --------------"
 	@echo "              Building Tests"
 	@echo "              --------------"
+	mv src/ballmerpeak/turtlenet/server/MessageFactoryImpl.java mfi.java
+	sed -e 's:import ballmerpeak.turtlenet.client.MessageFactory;::g' mfi.java > mfi2.java
+	sed -e 's:import com.google.gwt.user.server.rpc.RemoteServiceServlet;::g' mfi2.java > mfi3.java
+	sed -e 's:extends RemoteServiceServlet implements MessageFactory::g' mfi3.java > src/ballmerpeak/turtlenet/server/MessageFactoryImpl.java
 	javac -cp $(CLASSPATH) src/ballmerpeak/turtlenet/testing/*.java
+	rm src/ballmerpeak/turtlenet/server/MessageFactoryImpl.java
+	mv mfi.java src/ballmerpeak/turtlenet/server/MessageFactoryImpl.java
+	rm mfi2.java
+	rm mfi3.java
 	@echo "              ***********************"
 	@echo "              successfuly built tests"
 	@echo "              ***********************"
@@ -108,9 +116,10 @@ run_client : config
 	rm -rf web_interface/db
 
 run_headlessclient : config
-	javac -cp $(CLASSPATH) `ls -1 src/ballmerpeak/turtlenet/server/*.java | grep -v Impl` src/ballmerpeak/turtlenet/shared/*.java
+	javac -cp $(CLASSPATH) src/ballmerpeak/turtlenet/*/*.java
 	java -cp $(CLASSPATH) ballmerpeak.turtlenet.server.TNClient
 	rm -rf db
 
 config:
-	@echo "Path: $(GWTPATH)"
+	@echo "GWTPath: $(GWTPATH)"
+	@echo "Classpath: $(CLASSPATH)"
