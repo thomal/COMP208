@@ -99,11 +99,22 @@ public class Crypto {
             signer.initSign(Crypto.getPrivateKey());
             signer.update(msg.getBytes("UTF-8"));
             byte[] sig = signer.sign();
-            return Base64Encode(sig);
+            return Crypto.Base64Encode(sig);
         } catch (Exception e) {
             Logger.write("ERROR", "Crypto", "Could not sign message");
         }
         return "";
+    }
+    
+    public static String hash (String data) {
+        try {
+            MessageDigest hasher = MessageDigest.getInstance("SHA-256");        
+            return DatatypeConverter.printHexBinary(hasher.digest(data.getBytes("UTF-8")));
+        } catch (Exception e) {
+            //SHA-256 isn't supported
+            //TODO
+        }
+        return "not_a_hash";
     }
     
     public static boolean verifySig (Message msg, PublicKey author) {
@@ -112,7 +123,7 @@ public class Crypto {
             Signature sigChecker = Signature.getInstance("SHA1withRSA");
             sigChecker.initVerify(author);
             sigChecker.update(msg.getContent().getBytes("UTF-8"));
-            return sigChecker.verify(Base64Decode(msg.getSig()));
+            return sigChecker.verify(Crypto.Base64Decode(msg.getSig()));
         } catch (Exception e) {
             Logger.write("ERROR", "Crypto", "Could not verify signature");
         }
@@ -146,7 +157,8 @@ public class Crypto {
             byte[] encryptedAESKey = rsa.doFinal(aeskey);
             
             //"iv\RSA encrypted AES key\ciper text"
-            return Base64Encode(iv) + "\\" + Base64Encode(encryptedAESKey) + "\\" + Base64Encode(aesCipherText);
+            return Crypto.Base64Encode(iv) + "\\" + Crypto.Base64Encode(encryptedAESKey) + "\\" +
+                   Crypto.Base64Encode(aesCipherText);
         } catch (Exception e) {
             Logger.write("WARNING", "Crypto", "Unable to encrypt message: " + e);
         }
@@ -158,7 +170,7 @@ public class Crypto {
         try {
             //claim messages are the only plaintext in the system, still need decoding
             if (msg.substring(0,2).equals("c ")) {
-                String decoding = new String(Base64Decode(msg.substring(2)));
+                String decoding = new String(Crypto.Base64Decode(msg.substring(2)));
                 return Message.parse(decoding);
             }
         
@@ -168,9 +180,9 @@ public class Crypto {
             tokens[1] = tokenizer.nextToken();
             tokens[2] = tokenizer.nextToken();
         
-            byte[] iv            = Base64Decode(tokens[0]);
-            byte[] cipheredKey   = Base64Decode(tokens[1]);
-            byte[] cipherText    = Base64Decode(tokens[2]);
+            byte[] iv            = Crypto.Base64Decode(tokens[0]);
+            byte[] cipheredKey   = Crypto.Base64Decode(tokens[1]);
+            byte[] cipherText    = Crypto.Base64Decode(tokens[2]);
             
             //decrypt AES key
             Cipher rsa = Cipher.getInstance("RSA");
@@ -192,39 +204,27 @@ public class Crypto {
         return new Message("NULL", "", 0, "");
     }
     
+    public static String encodeKey (PublicKey key) {
+        return Base64Encode(key.getEncoded());
+    }
+    
+    public static PublicKey decodeKey (String codedKey) {
+        try {
+            return KeyFactory.getInstance("RSA").generatePublic(
+                                new X509EncodedKeySpec(Base64Decode(codedKey)));
+        } catch (Exception e) {
+            //no client side logger :(
+            //TODO
+        }
+        return null;
+    }
+    
     public static String Base64Encode (byte[] data) {
         return DatatypeConverter.printBase64Binary(data);
     }
     
     public static byte[] Base64Decode (String data) {
         return DatatypeConverter.parseBase64Binary(data);
-    }
-    
-    public static String encodeKey (PublicKey key) {
-        Logger.write("INFO", "Crypto","encodeKey()");
-        return Base64Encode(key.getEncoded());
-    }
-    
-    public static PublicKey decodeKey (String codedKey) {
-        Logger.write("INFO", "Crypto","decodeKey()");
-        try {
-            return KeyFactory.getInstance("RSA").generatePublic(
-                                new X509EncodedKeySpec(Base64Decode(codedKey)));
-        } catch (Exception e) {
-            Logger.write("ERROR", "Crypto", "Could not decode key");
-        }
-        return null;
-    }
-    
-    public static String hash (String data) {
-        Logger.write("INFO", "Crypto","hash()");
-        try {
-            MessageDigest hasher = MessageDigest.getInstance("SHA-256");        
-            return DatatypeConverter.printHexBinary(hasher.digest(data.getBytes("UTF-8")));
-        } catch (Exception e) {
-            Logger.write("FATAL", "Crypto", "SHA-256 isn't supported.");
-        }
-        return "not_a_hash";
     }
     
     public static int rand (int min, int max) {

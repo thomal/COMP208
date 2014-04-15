@@ -20,6 +20,7 @@ TODO (Due by next meeting)
 Luke:
     - Installer
     - Documentation (javadoc)
+    - Asyncronous message factory for GWT client
 
 Aishah/Mike:
     - Store the signature (String) for posts and comments

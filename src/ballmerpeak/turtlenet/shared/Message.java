@@ -1,31 +1,31 @@
-//Having an "Author" field would be redundant and untrusted
 package ballmerpeak.turtlenet.shared;
 
-import java.util.StringTokenizer;
-import ballmerpeak.turtlenet.server.*;
+import ballmerpeak.turtlenet.shared.Tokenizer;
 import java.security.*;
+import java.io.Serializable;
 
-public class Message {
-    public Message (String cmd, String _content) {
-        command   = cmd;
-        content   = _content;
-        timestamp = System.currentTimeMillis();
-        signature = Crypto.sign(timestamp + _content);
-    }
-
+public class Message implements Serializable {
+    //You shouldn't use this, rather use MessageFactory.newMessage(command, data)
+    //GWT cannot use the factory, it shouldn't construct messages but pass their
+    //    data as arguments to whatever needs it. Maybe have an async factory?
     public Message (String cmd, String _content, long timeCreated, String RSAsig) {
-        if (!cmd.equals("FPOST"))
-            Logger.write("WARNING", "Msg", "Non FPOST message constructed with explicit signature");
         command   = cmd;
         content   = _content;
         signature = RSAsig;
         timestamp = timeCreated;
     }
     
+    public Message () {
+        command = "NOP";
+        content = "";
+        signature = "";
+        timestamp = -1;
+    }
+    
     /* "POST\520adfc4\Hello, World!\123" -> new Message("POST", "Hello, World!", "520adfc4", 123) */
     public static Message parse (String msg) {
         String[] tokens = new String[4];
-        StringTokenizer tokenizer = new StringTokenizer(msg, "\\", false);
+        Tokenizer tokenizer = new Tokenizer(msg, '\\');
         tokens[0] = tokenizer.nextToken(); //command
         tokens[1] = tokenizer.nextToken(); //signature
         tokens[2] = msg.substring(msg.indexOf("\\", msg.indexOf("\\",0)+1)+1, msg.lastIndexOf("\\")); //message content
@@ -68,7 +68,7 @@ public class Message {
     //content in form "field1:value1;field2:value2;"
     public String[][] PDATAgetValues() {
         //Split into colon pairs, semicolon delimiter
-        StringTokenizer tokenizer = new StringTokenizer(content, ";", false);
+        Tokenizer tokenizer = new Tokenizer(content, ';');
         String[] colonPairs = new String[tokenizer.countTokens()];
         for (int i = 0; tokenizer.hasMoreTokens(); i++)
             colonPairs[i] = tokenizer.nextToken();
@@ -76,7 +76,7 @@ public class Message {
         //split into field/value pairs, colon delimiter
         String[][] values = new String[colonPairs.length][2];
         for (int i = 0; i < colonPairs.length; i++) {
-            StringTokenizer st = new StringTokenizer(colonPairs[i], ":", false);
+            Tokenizer st = new Tokenizer(colonPairs[i], ':');
             values[i][0] = st.nextToken();
             values[i][1] = st.nextToken();
         }
@@ -85,39 +85,39 @@ public class Message {
     }
     
     /* establish a chat and the people in it, without any messages */
-    public PublicKey[] CHATgetKeys() {
-        StringTokenizer st = new StringTokenizer(content, ":", false);
-        PublicKey[] keys = new PublicKey[st.countTokens()];
+    public String[] CHATgetKeys() {
+        Tokenizer st = new Tokenizer(content, ':');
+        String[] keys = new String[st.countTokens()];
         for (int i = 0; i < keys.length; i++)
-            keys[i] = Crypto.decodeKey(st.nextToken());
+            keys[i] = st.nextToken();
         return keys;
     }
     
     /* PCHAT adds messages to a conversation */
     /* returns <conversation ID, messageText> */
     public String PCHATgetText() {
-        StringTokenizer st = new StringTokenizer(content, ":", false);
+        Tokenizer st = new Tokenizer(content, ':');
         String convoID = st.nextToken();
         String text    = st.nextToken();
         return text;
     }
     
     public String PCHATgetConversationID() {
-        StringTokenizer st = new StringTokenizer(content, ":", false);
+        Tokenizer st = new Tokenizer(content, ':');
         String convoID = st.nextToken();
         String text    = st.nextToken();
         return convoID;
     }
     
     public String CMNTgetText() {
-        StringTokenizer st = new StringTokenizer(content, ":", false);
+        Tokenizer st = new Tokenizer(content, ':');
         String itemID  = st.nextToken();
         String text    = st.nextToken();
         return text;
     }
     
     public String CMNTgetItemID() {
-        StringTokenizer st = new StringTokenizer(content, ":", false);
+        Tokenizer st = new Tokenizer(content, ':');
         String itemID  = st.nextToken();
         String text    = st.nextToken();
         return itemID;
@@ -128,7 +128,7 @@ public class Message {
     }
     
     public String EVNTgetName() {
-        StringTokenizer st = new StringTokenizer(content, ":", false);
+        Tokenizer st = new Tokenizer(content, ':');
         long start  = Long.parseLong(st.nextToken());
         long end    = Long.parseLong(st.nextToken());
         String name = st.nextToken();
@@ -136,7 +136,7 @@ public class Message {
     }
     
     public long EVNTgetStart() {
-        StringTokenizer st = new StringTokenizer(content, ":", false);
+        Tokenizer st = new Tokenizer(content, ':');
         long start  = Long.parseLong(st.nextToken());
         long end    = Long.parseLong(st.nextToken());
         String name = st.nextToken();
@@ -144,7 +144,7 @@ public class Message {
     }
     
     public long EVNTgetEnd() {
-        StringTokenizer st = new StringTokenizer(content, ":", false);
+        Tokenizer st = new Tokenizer(content, ':');
         long start  = Long.parseLong(st.nextToken());
         long end    = Long.parseLong(st.nextToken());
         String name = st.nextToken();
@@ -156,13 +156,9 @@ public class Message {
         try {
             return Long.parseLong(content);
         } catch (Exception e) {
-            System.out.println("ERROR: Invalid timestamp");
+            //Invalid timestamp
             return -1;
         }
-    }
-    
-    public PublicKey REVOKEgetKey(Database db) {
-        return db.getSignatory(this);
     }
     
     private String command;

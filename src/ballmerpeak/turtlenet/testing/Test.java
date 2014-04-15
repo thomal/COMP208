@@ -14,7 +14,7 @@ class Test {
         testMessageContructors();
         testMessageParsing();
         testMessageAccessors();
-        testCrypto();
+        testCryptoAndEncoder();
         System.out.println("===========================================================================");
         System.out.println("Pass: " + passes + " Failures: " + failures + " Anomalies: " + anomalies);
         System.out.println("===========================================================================");
@@ -159,7 +159,7 @@ class Test {
         return failures == ifailures;
     }
     
-    private static boolean testCrypto() {
+    private static boolean testCryptoAndEncoder() {
         System.out.println("\ntestCrypto:");
         int ifailures = failures;
         
