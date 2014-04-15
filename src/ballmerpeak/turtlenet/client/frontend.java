@@ -47,7 +47,6 @@ the DB.
 
 package ballmerpeak.turtlenet.client;
 
-import ballmerpeak.turtlenet.shared.FieldVerifier;
 import ballmerpeak.turtlenet.shared.Message;
 
 import com.google.gwt.core.client.*;
@@ -158,7 +157,7 @@ public class frontend implements EntryPoint {
 		// Add click handler for button
 		loginButton.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				if (!FieldVerifier.isValidName(usernameInput.getText())) {
+				if (usernameInput.getText().length()<4) {
 					usernameLabel
 							.setText("Please enter at least four characters:");
 					return;

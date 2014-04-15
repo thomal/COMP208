@@ -1,7 +1,6 @@
 package ballmerpeak.turtlenet.server;
 
 import ballmerpeak.turtlenet.client.Turtlenet;
-import ballmerpeak.turtlenet.shared.FieldVerifier;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import java.io.*;
 import ballmerpeak.turtlenet.server.TNClient;
