@@ -1,3 +1,36 @@
+/* Louis:
+I've added two methods. The first is an example of how to call Database
+functions and returns all posts by the user "john_doe", the second takes a
+command ("POST", "PDATA", "CHAT") and the message content and constructs a
+message with a correct timestamp and hash. This second one will be useful, the
+first one is meant to serve as a demonstration. Be aware that if you want to use
+a class it has to be purged of all non-GWT-compatible code. Because of this it's
+better to just add more methods to the interface than call them directly. Below
+is how you would actually call the demo database method:
+
+turtlenet.demoDBCall(new AsyncCallback<String>() {
+    public void onFailure(Throwable caught) {
+        //code to execute on failure
+    }
+
+    public void onSuccess(Message[] results) {
+        //code to execute on success
+        //update the interface with new data or something here
+    }
+});
+
+Because these are asynchronous they don't block, i.e. the next line of code
+immediatly executes before the call is finished. For this reason I would
+reccomend having the onSuccess method in the callback do the real work of
+modifying the interface, and have the click event only trigger the asyncronous
+function.
+
+I've no idea what the scope of these callbacks is.
+
+You can add to the DB by calling c.db.addX methods, just like demoDBCall. I'll
+add more message constructors for you presently.
+*/
+
 package ballmerpeak.turtlenet.client;
 
 import ballmerpeak.turtlenet.shared.FieldVerifier;
@@ -62,17 +95,7 @@ public class frontend implements EntryPoint {
                     }
                 });
                 
-                /* DEBUG////////////////////////////////////////////////////////
-                turtlenet.demoDBCall(new AsyncCallback<String>() {
-	                                 public void onFailure(Throwable caught) {
-	                                      //pretend nothing happened
-	                                  }
-	                                  public void onSuccess(String result) {
-	                                      //bask in success
-	                                  }
-	                             });*/
-	        
-		// Call methods to set up panels
+                //Call methods to set up panels
 		loginPanelSetup();
 		navigationPanelSetup();
 		myWallControlPanelSetup();

@@ -5,6 +5,7 @@ import ballmerpeak.turtlenet.shared.FieldVerifier;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import java.io.*;
 import ballmerpeak.turtlenet.server.TNClient;
+import ballmerpeak.turtlenet.server.MessageFactory;
 import ballmerpeak.turtlenet.shared.Message;
 
 @SuppressWarnings("serial")
@@ -23,6 +24,10 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
         Logger.write("INFO", "TNImpl","stopTN()");
         TNClient.running = false;
         return "success";
+    }
+    
+    public Message newMessage(String command, String content) {
+        return MessageFactory.newMessage(command, content);
     }
     
     /*Use this as a template for further functions. Remember to add methods to

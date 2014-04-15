@@ -1,7 +1,6 @@
 package ballmerpeak.turtlenet.server;
 
 import ballmerpeak.turtlenet.shared.Message;
-import java.util.Vector;
 import java.security.*;
 import java.sql.*;
 import java.security.*;

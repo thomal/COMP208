@@ -1,31 +1,35 @@
-===== Turtlenet started at Sun Apr 13 21:29:40 BST 2014=====
-1397420980 INFO		DB	Creating database
-1397420980 INFO		DB	Connecting to database
-1397420981 VERBOSE	DB	execute("CREATE TABLE user ...")
-1397420981 VERBOSE	DB	execute("CREATE TABLE category ...")
-1397420981 VERBOSE	DB	execute("CREATE TABLE is_in_category ...")
-1397420981 VERBOSE	DB	execute("CREATE TABLE private_message ...")
-1397420981 VERBOSE	DB	execute("CREATE TABLE is_in_message ...")
-1397420981 VERBOSE	DB	execute("CREATE TABLE events ...")
-1397420981 VERBOSE	DB	execute("CREATE TABLE is_invited ...")
-1397420982 VERBOSE	DB	execute("CREATE TABLE wall_post ...")
-1397420982 VERBOSE	DB	execute("CREATE TABLE allowed_to ...")
-1397420982 VERBOSE	DB	execute("CREATE TABLE has_comment ...")
-1397420982 VERBOSE	DB	execute("CREATE TABLE has_like ...")
-1397420982 VERBOSE	DB	execute("CREATE TABLE message_claim ...")
-1397420982 VERBOSE	DB	execute("CREATE TABLE key_revoke ...")
-1397420982 VERBOSE	DB	execute("CREATE TABLE login_logout_log ...")
-1397420982 INFO		Crypto	Generating keys
-1397420983 INFO		NetCon	NetworkConnection started
-1397420984 VERBOSE	NetCon	Sending command to server: "get 0"
-1397420984 VERBOSE	NetCon	Sending command to server: "t"
-1397420985 VERBOSE	NetCon	Sending command to server: "get 1397420984186"
-1397420985 VERBOSE	NetCon	Sending command to server: "t"
-1397420986 VERBOSE	NetCon	Sending command to server: "get 1397420985187"
-1397420986 VERBOSE	NetCon	Sending command to server: "t"
-1397420987 VERBOSE	NetCon	Sending command to server: "get 1397420986189"
-1397420987 VERBOSE	NetCon	Sending command to server: "t"
-1397420988 VERBOSE	NetCon	Sending command to server: "get 1397420987190"
-1397420988 VERBOSE	NetCon	Sending command to server: "t"
-1397420989 VERBOSE	NetCon	Sending command to server: "get 1397420988192"
-1397420989 VERBOSE	NetCon	Sending command to server: "t"
+===== Turtlenet started at Tue Apr 15 11:53:30 BST 2014=====
+1397559210 INFO		DB	Creating database
+1397559210 INFO		DB	Connecting to database
+1397559210 VERBOSE	DB	execute("CREATE TABLE user ...")
+1397559210 VERBOSE	DB	execute("CREATE TABLE category ...")
+1397559210 VERBOSE	DB	execute("CREATE TABLE is_in_category ...")
+1397559210 VERBOSE	DB	execute("CREATE TABLE private_message ...")
+1397559210 VERBOSE	DB	execute("CREATE TABLE is_in_message ...")
+1397559210 VERBOSE	DB	execute("CREATE TABLE events ...")
+1397559210 VERBOSE	DB	execute("CREATE TABLE is_invited ...")
+1397559211 VERBOSE	DB	execute("CREATE TABLE wall_post ...")
+1397559211 VERBOSE	DB	execute("CREATE TABLE allowed_to ...")
+1397559211 VERBOSE	DB	execute("CREATE TABLE has_comment ...")
+1397559211 VERBOSE	DB	execute("CREATE TABLE has_like ...")
+1397559211 VERBOSE	DB	execute("CREATE TABLE message_claim ...")
+1397559211 VERBOSE	DB	execute("CREATE TABLE key_revoke ...")
+1397559212 VERBOSE	DB	execute("CREATE TABLE login_logout_log ...")
+1397559212 INFO		Crypto	Generating keys
+1397559212 INFO		NetCon	NetworkConnection started
+1397559213 VERBOSE	NetCon	Sending command to server: "get 0"
+1397559213 VERBOSE	NetCon	Sending command to server: "t"
+1397559214 VERBOSE	NetCon	Sending command to server: "get 1397559213366"
+1397559214 VERBOSE	NetCon	Sending command to server: "t"
+1397559215 VERBOSE	NetCon	Sending command to server: "get 1397559214367"
+1397559215 VERBOSE	NetCon	Sending command to server: "t"
+1397559216 VERBOSE	NetCon	Sending command to server: "get 1397559215369"
+1397559216 VERBOSE	NetCon	Sending command to server: "t"
+1397559217 VERBOSE	NetCon	Sending command to server: "get 1397559216371"
+1397559217 VERBOSE	NetCon	Sending command to server: "t"
+1397559218 VERBOSE	NetCon	Sending command to server: "get 1397559217372"
+1397559218 VERBOSE	NetCon	Sending command to server: "t"
+1397559219 VERBOSE	NetCon	Sending command to server: "get 1397559218374"
+1397559219 VERBOSE	NetCon	Sending command to server: "t"
+1397559220 VERBOSE	NetCon	Sending command to server: "get 1397559219375"
+1397559220 VERBOSE	NetCon	Sending command to server: "t"
