@@ -16,6 +16,16 @@
     <url-pattern>/frontend/turtlenet</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+    <servlet-name>messagefactoryServlet</servlet-name>
+    <servlet-class>ballmerpeak.turtlenet.server.MessageFactory</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>messagefactoryServlet</servlet-name>
+    <url-pattern>/frontend/messagefactory</url-pattern>
+  </servlet-mapping>
+  
   <!-- Default page to serve -->
   <welcome-file-list>
     <welcome-file>frontend.html</welcome-file>

@@ -1,12 +1,12 @@
 /* Louis:
-I've added two methods. The first is an example of how to call Database
-functions and returns all posts by the user "john_doe", the second takes a
-command ("POST", "PDATA", "CHAT") and the message content and constructs a
-message with a correct timestamp and hash. This second one will be useful, the
-first one is meant to serve as a demonstration. Be aware that if you want to use
-a class it has to be purged of all non-GWT-compatible code. Because of this it's
-better to just add more methods to the interface than call them directly. Below
-is how you would actually call the demo database method:
+I've added one method and a new interface. The first is an example of how to
+call Database functions and returns all posts by the user "john_doe", the new
+new interface constructs Messages with a correct timestamp and hash. This second
+one will be useful, the first one is meant to serve as a demonstration. Be aware
+that if you want to use a class it has to be purged of all non-GWT-compatible
+code. Because of this it's better to just add more methods to the interface than
+call them directly. Below is how you would actually call the demo database
+method:
 
 turtlenet.demoDBCall(new AsyncCallback<String>() {
     public void onFailure(Throwable caught) {
@@ -23,12 +23,8 @@ Because these are asynchronous they don't block, i.e. the next line of code
 immediatly executes before the call is finished. For this reason I would
 reccomend having the onSuccess method in the callback do the real work of
 modifying the interface, and have the click event only trigger the asyncronous
-function.
-
-I've no idea what the scope of these callbacks is.
-
-You can add to the DB by calling c.db.addX methods, just like demoDBCall. I'll
-add more message constructors for you presently.
+function. You can add to the DB by calling c.db.addX methods, just like
+demoDBCall.
 
 You also can't use the PublicKey class. The TurtlenetImpl class can use anything
 it likes, so you should return Crypto.encodeKey(key) instead of trying to return
@@ -36,9 +32,13 @@ the keys the DB gives you. Similarly for functions adding to the DB, you should
 pass them a string (you don't have any other choice actually) and pass
 Crypto.decodeKey(key) to the DB function.
 
-You can't make an interface for the Database class directly, so you have to use
-the example above and have loads of one-line functions that just call the
-corresponding DB function.
+Crypto.decodeKey :: String -> PublicKey
+Crypto.encodeKey :: PublicKey -> String
+
+You can't make an interface for the Database class directly, so you have to be
+like the example above and have loads of one-line functions that just call the
+corresponding DB function. This sucks, but I can't see a way around it because
+the DB cannot be purged of GWT-incompatible code.
 
 Oh, and conversaions/posts/comments are identified by their signature. So when
 you like something then you pass the signature from whatever you're liking to
@@ -62,6 +62,7 @@ public class frontend implements EntryPoint {
 
 	// Create remote service proxy to talk to the server-side Turtlenet service
 	private final TurtlenetAsync turtlenet = GWT.create(Turtlenet.class);
+	private final TurtlenetAsync msgfactory = GWT.create(MessageFactory.class);
 
 	// Create panels that have only one use
 	FlexTable loginPanel = new FlexTable();

@@ -22,6 +22,7 @@ Luke:
     - Documentation (javadoc)
     - An interface for MessageFactory
     - Testing for MessageFactory
+    - Remove field verifier
 
 Aishah/Mike:
     - Store the signature (String) for posts and comments
