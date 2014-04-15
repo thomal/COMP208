@@ -5,6 +5,9 @@ import java.util.Scanner;
 
 public class TNClient implements Runnable {
     public static boolean running = true;
+    public NetworkConnection connection;
+    public Thread networkThread;
+    public Database db;
     
     public static void main (String[] argv) {
         TNClient c = new TNClient();
@@ -23,13 +26,13 @@ public class TNClient implements Runnable {
     
     public void run () {
         Logger.init("LOG_turtlenet");
-        NetworkConnection connection    = new NetworkConnection("localhost");
-        Thread            networkThread = new Thread(connection);
-        Database          db            = new Database();
+        connection    = new NetworkConnection("localhost");
+        networkThread = new Thread(connection);
+        db            = new Database();
         
-        if (!Crypto.keysExist()) //move into GUI class
+        if (!Crypto.keysExist()) //move into GUI
             Crypto.keyGen();
-        networkThread.start(); //download new messages, wait 1 second, repeat
+        networkThread.start();
         
         while (running)
             while (connection.hasMessage())

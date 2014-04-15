@@ -5,12 +5,15 @@ import ballmerpeak.turtlenet.shared.FieldVerifier;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import java.io.*;
 import ballmerpeak.turtlenet.server.TNClient;
+import ballmerpeak.turtlenet.shared.Message;
 
 @SuppressWarnings("serial")
 public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
+    TNClient c;
+    
     public String startTN() {
         Logger.write("INFO", "TNImpl","startTN()");
-        TNClient c = new TNClient();
+        c = new TNClient();
         Thread t = new Thread(c);
         t.start();
         return "success";
@@ -21,19 +24,11 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
         TNClient.running = false;
         return "success";
     }
-
-    public String test(String input) throws IllegalArgumentException {
-        Logger.write("INFO", "TNImpl","test(" + input + ")");
-        if (!FieldVerifier.isValidName(input))
-            throw new IllegalArgumentException("Command must be at least 4 characters long");
-
-        try {           
-            BufferedWriter writer = new BufferedWriter(new FileWriter("./TESTFILE"));
-            writer.write(input + "\n");
-            writer.close();
-            return "Success";
-        } catch (Exception e) {
-            return "ERROR: Unable to save file: " + e.toString();
-        }
+    
+    /*Use this as a template for further functions. Remember to add methods to
+      the TurtlenetAsync.java and Turtlenet.java interfaces. When making a post
+      use c.connection.postMessage(msg, key) */
+    public Message[] demoDBCall () {
+        return c.db.getPostsBy(c.db.getKey("john_doe")[0]); /*get all posts made with the first public key using the name "john_doe" (there _should_ only be one, if multiple are returned user should be asked for clarification based on DoB or something)*/
     }
 }

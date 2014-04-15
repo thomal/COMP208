@@ -1,6 +1,7 @@
 package ballmerpeak.turtlenet.client;
 
 import ballmerpeak.turtlenet.shared.FieldVerifier;
+import ballmerpeak.turtlenet.shared.Message;
 
 import com.google.gwt.core.client.*;
 import com.google.gwt.event.dom.client.*;
@@ -47,7 +48,7 @@ public class frontend implements EntryPoint {
 	                                  //bask in success
 	                              }
 	                          });
-	        // Add handler for window closing
+	        /* Add handler for window closing */
 	        Window.addCloseHandler(new CloseHandler<Window>() {
                     public void onClose(CloseEvent<Window> event) {
                         turtlenet.stopTN(new AsyncCallback<String>() {
@@ -60,6 +61,16 @@ public class frontend implements EntryPoint {
 	                });
                     }
                 });
+                
+                /* DEBUG */
+                turtlenet.demoDBCall(new AsyncCallback<String>() {
+	                                 public void onFailure(Throwable caught) {
+	                                      //pretend nothing happened
+	                                  }
+	                                  public void onSuccess(String result) {
+	                                      //bask in success
+	                                  }
+	                             });
 	        
 		// Call methods to set up panels
 		loginPanelSetup();

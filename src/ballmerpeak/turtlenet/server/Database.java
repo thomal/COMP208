@@ -95,7 +95,7 @@ public class Database {
     }
     
     //Get from DB
-    public Vector<Message> getPostsBy (PublicKey key) {
+    public Message[] getPostsBy (PublicKey key) {
         //REPLACE ME
         Logger.write("UNIMPL", "DB", "Unimplemented method Database.getPostsBy(...)");
         return null;
