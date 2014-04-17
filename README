@@ -22,6 +22,7 @@ Luke:
     - Documentation (javadoc)
 
 Aishah/Mike:
+    - Update DBStrings.java to match new src/ballmerpeak/turtlenet/server/addTablesSQL.sql file
     - Store the signature (String) for posts and comments
     - SQL for database methods
     - Implement database methods
