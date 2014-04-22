@@ -6,5 +6,5 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 public interface TurtlenetAsync {
     void startTN(String password, AsyncCallback<String> callback);
     void stopTN(AsyncCallback<String> callback);
-    void demoDBCall(AsyncCallback<Message[]> callback);
+    void getCategoryMembers(String category, AsyncCallback<String[][]> callback);
 }

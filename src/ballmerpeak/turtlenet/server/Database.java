@@ -106,6 +106,12 @@ public class Database {
         return null;
     }
     
+    //Return the keys of each member of the category
+    public PublicKey[] getCategoryMembers (String category) {
+        Logger.write("UNIMPL", "DB", "Unimplemented method Database.getCategoryMembers(" + category + ")");
+        return null;
+    }
+    
     public String getName (PublicKey k) {
         //REPLACE ME
         Logger.write("UNIMPL", "DB", "Unimplemented method Database.getName(...)");

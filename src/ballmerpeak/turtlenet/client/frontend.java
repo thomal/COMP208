@@ -161,7 +161,7 @@ public class frontend implements EntryPoint {
                         if (result.equals("success"))
                             loadMyWall();
                         else
-                            passwordLabel.setText("Please enter your password (again): DEBUG" + result);
+                            passwordLabel.setText("Please enter your password (again): ");
                     }
                 });
             }
@@ -237,46 +237,27 @@ public class frontend implements EntryPoint {
         friendsKeyLabel.getElement().getStyle().setFontWeight(FontWeight.BOLD);
         friendsListPanel.setWidget(1, 1, friendsKeyLabel);
     
-        /*
-         * The number 10 in the following for loop should be replaced with the
-         * return from a method that takes a group ID and returns the number of
-         * friends(public keys) the user has in the current group. 
-         * Give it currentGroupID. If currentGroupID is "All" then it should 
-         * return the number of all of the current users friends
-         */
-        for (int i = 1; i <= 10; i++) {
-
-            /*
-             * 'Integer.toString(i)' should be replaced by the public key of a
-             * friend. To find this call a method that takes a groups ID and 
-             * returns the list of all of the users friend's keys in that group,
-             * hopefully as an array. Give it currentGroupID. 
-             * If currentGroupID = "All" then it should return the list of all
-             * of the current users friend's keys. 
-             * Use Variable i from the loop we are currently in to select an 
-             * individual friend's key from the array.
-             */
-            final String friendKey = Integer.toString(i);
-
-            /*
-             * Here "Friend's Name" should be replaced with a call to a method
-             * that takes a public key(give it friendKey) and returns a friend's
-             * name
-             */
-            Anchor linkFriendsWall = new Anchor("Friend's Name");
-            friendsListPanel.setWidget((i + 1), 0, linkFriendsWall);
-            
-            // Display each friend's key next to their name 
-            friendsListPanel.setWidget((i + 1), 1, new Label(friendKey));
-
-            // Add click handlers for anchors
-            linkFriendsWall.addClickHandler(new ClickHandler() {
-                public void onClick(ClickEvent event) {
-                    loadFriendsWall(friendKey);
+        String currentGroup = "all"; //TODO get this value from a textbox
+        turtlenet.getCategoryMembers(currentGroup, new AsyncCallback<String[][]>() {
+            public void onFailure(Throwable caught) {
+                //TODO Error
+            }
+            public void onSuccess(String[][] result) {
+                for (int i = 0; i <= result.length; i++) {
+                    //list names/keys
+                    Anchor linkFriendsWall = new Anchor(result[i][0]);
+                    friendsListPanel.setWidget((i + 1), 0, linkFriendsWall);
+                    friendsListPanel.setWidget((i + 1), 1, new Label(result[i][1]));
+                    //link names to walls
+                    linkFriendsWall.addClickHandler(new ClickHandler() {
+                        public void onClick(ClickEvent event) {
+                            //TODO loadFriendsWall(/*text in second column*/);
+                        }
+                    });
                 }
-            });
-            
-        }
+            }
+        });
+        
         // Add style name for CSS
         friendsListPanel.addStyleName("gwt-friends-list");
     }

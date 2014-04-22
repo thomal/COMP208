@@ -1,31 +1,28 @@
-===== Turtlenet started at Tue Apr 22 20:28:27 BST 2014=====
-1398194907 UNIMPL	TNClient	Ignoring password: hgfd
-1398194907 INFO		DB	Creating database
-1398194907 INFO		DB	Connecting to database
-1398194907 VERBOSE	DB	execute("CREATE TABLE user ...")
-1398194907 VERBOSE	DB	execute("CREATE TABLE category ...")
-1398194908 VERBOSE	DB	execute("CREATE TABLE is_in_category ...")
-1398194908 VERBOSE	DB	execute("CREATE TABLE private_message ...")
-1398194908 VERBOSE	DB	execute("CREATE TABLE is_in_message ...")
-1398194908 VERBOSE	DB	execute("CREATE TABLE events ...")
-1398194908 VERBOSE	DB	execute("CREATE TABLE is_invited ...")
-1398194908 VERBOSE	DB	execute("CREATE TABLE wall_post ...")
-1398194909 VERBOSE	DB	execute("CREATE TABLE allowed_to ...")
-1398194909 VERBOSE	DB	execute("CREATE TABLE has_comment ...")
-1398194909 VERBOSE	DB	execute("CREATE TABLE has_like ...")
-1398194909 VERBOSE	DB	execute("CREATE TABLE message_claim ...")
-1398194909 VERBOSE	DB	execute("CREATE TABLE key_revoke ...")
-1398194909 VERBOSE	DB	execute("CREATE TABLE login_logout_log ...")
-1398194910 INFO		Crypto	Generating keys
-1398194910 INFO		NetCon	NetworkConnection started
-1398194911 VERBOSE	NetCon	Sending command to server: "get 0"
-1398194911 VERBOSE	NetCon	Sending command to server: "t"
-1398194912 VERBOSE	NetCon	Sending command to server: "get 1398194911456"
-1398194912 VERBOSE	NetCon	Sending command to server: "t"
-1398194913 VERBOSE	NetCon	Sending command to server: "get 1398194912457"
-1398194913 VERBOSE	NetCon	Sending command to server: "t"
-1398194913 INFO		TNImpl	stopTN()
-1398194913 INFO		NetCon	close()
-1398194913 INFO		NetCon	Saved lastRead to disk
-1398194913 INFO		DB	Disconnecting from database
-===== Turtlenet closed  at Tue Apr 22 20:28:33 BST 2014=====
+===== Turtlenet started at Tue Apr 22 20:56:57 BST 2014=====
+1398196617 UNIMPL	TNClient	Ignoring password: gfds
+1398196617 INFO		DB	Connecting to database
+1398196617 INFO		NetCon	NetworkConnection started
+1398196618 VERBOSE	NetCon	Sending command to server: "get 0"
+1398196618 VERBOSE	NetCon	Sending command to server: "t"
+1398196619 VERBOSE	NetCon	Sending command to server: "get 1398196618384"
+1398196619 VERBOSE	NetCon	Sending command to server: "t"
+1398196620 VERBOSE	NetCon	Sending command to server: "get 1398196619385"
+1398196620 VERBOSE	NetCon	Sending command to server: "t"
+1398196621 VERBOSE	NetCon	Sending command to server: "get 1398196620387"
+1398196621 VERBOSE	NetCon	Sending command to server: "t"
+1398196622 VERBOSE	NetCon	Sending command to server: "get 1398196621388"
+1398196622 VERBOSE	NetCon	Sending command to server: "t"
+1398196622 UNIMPL	DB	Unimplemented method Database.getCategoryMembers(all)
+1398196623 VERBOSE	NetCon	Sending command to server: "get 1398196622389"
+1398196623 VERBOSE	NetCon	Sending command to server: "t"
+1398196624 VERBOSE	NetCon	Sending command to server: "get 1398196623391"
+1398196624 VERBOSE	NetCon	Sending command to server: "t"
+1398196625 VERBOSE	NetCon	Sending command to server: "get 1398196624392"
+1398196625 VERBOSE	NetCon	Sending command to server: "t"
+1398196626 VERBOSE	NetCon	Sending command to server: "get 1398196625393"
+1398196626 VERBOSE	NetCon	Sending command to server: "t"
+1398196626 INFO		TNImpl	stopTN()
+1398196626 INFO		NetCon	close()
+1398196626 INFO		NetCon	Saved lastRead to disk
+1398196626 INFO		DB	Disconnecting from database
+===== Turtlenet closed  at Tue Apr 22 20:57:06 BST 2014=====
