@@ -2,11 +2,12 @@
 -- aishahsenin@gmail.com, 07984656781
 
 -- addClaim()
-INSERT INTO message_claim (username, signature)
+INSERT INTO message_claim (claimID, username, signature)
 VALUES
 (
-'variable1', -- username
-'variable2' -- signature
+NULL, -- claimID
+'userVar', -- username
+'sigVar' -- signature
 );
 
 -- getClaims()
@@ -16,27 +17,26 @@ FROM message_claim;
 -- getUsername()
 SELECT username
 FROM message_claim
-WHERE signature = 'variable1';
+WHERE signature = 'sigVar';
 
 -- addRevocation()
--- do not have to add revoke_id, it is auto-incremented
-INSERT INTO key_revoke (signature, time)
+INSERT INTO key_revoke (revokeID, signature)
 VALUES
 (
-'variable1',
-'variable2',
-'variable3'
+NULL,
+'sigVar'
 );
 
-getRevocations()
+-- getRevocations()
 -- get the whole revocation list
 SELECT signature, time
 FROM key_revoke
 
 -- get only selected through specific time [I don't know if this is going to be used, but what the hell]
+-- getTimedRevocations
 SELECT signature
 FROM key_revoke
-WHERE time >= DATETIME('2014-01-01 00:00:00') 
+WHERE time >= DATETIME('2014-01-01 00:00:00')  --MIKE_IS_HERE
 AND time <= DATETIME('2014-12-31 00:00:00')
 -- NOTE: SQLite do not store datetime as datetime, instead it stores as string. 
 

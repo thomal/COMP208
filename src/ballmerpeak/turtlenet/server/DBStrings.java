@@ -140,4 +140,188 @@ class DBStrings {
             "PRIMARY KEY (log_id)        " +
         ");"
     };
+    
+    public static final String[] addClaim = {
+        
+        INSERT INTO message_claim (claimID, username, signature)
+        VALUES (
+                NULL,
+                'userVar',
+                'sigVar'
+                );
+    
+    };
+
+    public static final String[] getClaims = {
+
+        SELECT username, signature
+        FROM message_claim;
+
+    };
+
+    public static final String[] getUsername = {
+
+        SELECT username
+        FROM message_claim
+        WHERE signature = 'sigVar';
+
+    };
+
+    public static final String[] addRevocation = {
+
+        INSERT INTO key_revoke (revokeID, signature)
+        VALUES (
+                NULL,
+                'sigVar'
+                );
+
+    };
+
+    public static final String[] getRevocations = {
+
+        SELECT signature, time
+        FROM key_revoke
+
+    };
+
+    public static final String[] getTimedRevocations = {
+
+        SELECT signature
+        FROM key_revoke
+        WHERE time >= DATETIME('timeBeginVar') //MIKE_IS_HERE
+        AND time <= DATETIME('2014-12-31 00:00:00')
+
+    };
+
+
+    public static final String[] isRevoked = {
+
+        INSERT INTO key_revoke (signature)
+        VALUES (
+                'signature'
+                );
+
+    };
+
+    public static final String[] addPData = {
+
+        INSERT INTO user (username, name, birthday, sex, email)
+        VALUES (
+                'username',
+                'name',
+                'YYYY-MM-DD',
+                'genderChar' -- drop down option preferable F - female, M - male
+                'email@email.com'
+                );
+
+    };
+
+    public static final String[] addChat = {
+
+
+
+    };
+
+    public static final String[] addToChat = {
+
+
+
+    };
+
+    public static final String[] addPost = {
+
+
+
+    };
+
+    public static final String[] getPosts = {
+
+
+
+    };
+
+    public static final String[] addIndependentComment = {
+
+
+
+    };
+
+    public static final String[] addRelatedComment = {
+
+
+
+    };
+
+    public static final String[] getComments = {
+
+
+
+    };
+    
+    public static final String[] addLike = {
+
+
+
+    };
+
+    public static final String[] getPostLikes = {
+
+
+
+    };
+
+    public static final String[] getCommentLikes = {
+
+
+
+    };
+
+    public static final String[] addEvent = {
+
+
+
+    };
+
+    public static final String[] getEvent = {
+
+
+
+    };
+
+    public static final String[] getEventWithInvites = {
+
+
+
+    };
+
+    public static final String[] acceptEvent = {
+
+
+
+    };
+
+    public static final String[] declineEvent = {
+
+
+
+    };
+
+    public static final String[] addKey = {
+
+
+
+    };
+
+    public static final String[] getKey = {
+
+
+
+    };
+
+    public static final String[] getName = {
+
+
+
+    };
+
 }
