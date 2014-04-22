@@ -1,35 +1,57 @@
-===== Turtlenet started at Tue Apr 15 11:53:30 BST 2014=====
-1397559210 INFO		DB	Creating database
-1397559210 INFO		DB	Connecting to database
-1397559210 VERBOSE	DB	execute("CREATE TABLE user ...")
-1397559210 VERBOSE	DB	execute("CREATE TABLE category ...")
-1397559210 VERBOSE	DB	execute("CREATE TABLE is_in_category ...")
-1397559210 VERBOSE	DB	execute("CREATE TABLE private_message ...")
-1397559210 VERBOSE	DB	execute("CREATE TABLE is_in_message ...")
-1397559210 VERBOSE	DB	execute("CREATE TABLE events ...")
-1397559210 VERBOSE	DB	execute("CREATE TABLE is_invited ...")
-1397559211 VERBOSE	DB	execute("CREATE TABLE wall_post ...")
-1397559211 VERBOSE	DB	execute("CREATE TABLE allowed_to ...")
-1397559211 VERBOSE	DB	execute("CREATE TABLE has_comment ...")
-1397559211 VERBOSE	DB	execute("CREATE TABLE has_like ...")
-1397559211 VERBOSE	DB	execute("CREATE TABLE message_claim ...")
-1397559211 VERBOSE	DB	execute("CREATE TABLE key_revoke ...")
-1397559212 VERBOSE	DB	execute("CREATE TABLE login_logout_log ...")
-1397559212 INFO		Crypto	Generating keys
-1397559212 INFO		NetCon	NetworkConnection started
-1397559213 VERBOSE	NetCon	Sending command to server: "get 0"
-1397559213 VERBOSE	NetCon	Sending command to server: "t"
-1397559214 VERBOSE	NetCon	Sending command to server: "get 1397559213366"
-1397559214 VERBOSE	NetCon	Sending command to server: "t"
-1397559215 VERBOSE	NetCon	Sending command to server: "get 1397559214367"
-1397559215 VERBOSE	NetCon	Sending command to server: "t"
-1397559216 VERBOSE	NetCon	Sending command to server: "get 1397559215369"
-1397559216 VERBOSE	NetCon	Sending command to server: "t"
-1397559217 VERBOSE	NetCon	Sending command to server: "get 1397559216371"
-1397559217 VERBOSE	NetCon	Sending command to server: "t"
-1397559218 VERBOSE	NetCon	Sending command to server: "get 1397559217372"
-1397559218 VERBOSE	NetCon	Sending command to server: "t"
-1397559219 VERBOSE	NetCon	Sending command to server: "get 1397559218374"
-1397559219 VERBOSE	NetCon	Sending command to server: "t"
-1397559220 VERBOSE	NetCon	Sending command to server: "get 1397559219375"
-1397559220 VERBOSE	NetCon	Sending command to server: "t"
+===== Turtlenet started at Tue Apr 22 19:37:33 BST 2014=====
+1398191853 INFO		DB	Creating database
+1398191853 INFO		DB	Connecting to database
+1398191854 VERBOSE	DB	execute("CREATE TABLE user ...")
+1398191854 VERBOSE	DB	execute("CREATE TABLE category ...")
+1398191855 VERBOSE	DB	execute("CREATE TABLE is_in_category ...")
+1398191855 VERBOSE	DB	execute("CREATE TABLE private_message ...")
+1398191855 VERBOSE	DB	execute("CREATE TABLE is_in_message ...")
+1398191855 VERBOSE	DB	execute("CREATE TABLE events ...")
+1398191855 VERBOSE	DB	execute("CREATE TABLE is_invited ...")
+1398191855 VERBOSE	DB	execute("CREATE TABLE wall_post ...")
+1398191856 VERBOSE	DB	execute("CREATE TABLE allowed_to ...")
+1398191856 VERBOSE	DB	execute("CREATE TABLE has_comment ...")
+1398191857 VERBOSE	DB	execute("CREATE TABLE has_like ...")
+1398191857 VERBOSE	DB	execute("CREATE TABLE message_claim ...")
+1398191857 VERBOSE	DB	execute("CREATE TABLE key_revoke ...")
+1398191857 VERBOSE	DB	execute("CREATE TABLE login_logout_log ...")
+1398191857 INFO		Crypto	Generating keys
+1398191858 INFO		NetCon	NetworkConnection started
+1398191859 VERBOSE	NetCon	Sending command to server: "get 0"
+1398191859 VERBOSE	NetCon	Sending command to server: "t"
+1398191860 VERBOSE	NetCon	Sending command to server: "get 1398191859191"
+1398191860 VERBOSE	NetCon	Sending command to server: "t"
+1398191861 VERBOSE	NetCon	Sending command to server: "get 1398191860194"
+1398191861 VERBOSE	NetCon	Sending command to server: "t"
+1398191862 VERBOSE	NetCon	Sending command to server: "get 1398191861196"
+1398191862 VERBOSE	NetCon	Sending command to server: "t"
+1398191863 VERBOSE	NetCon	Sending command to server: "get 1398191862198"
+1398191863 VERBOSE	NetCon	Sending command to server: "t"
+1398191864 VERBOSE	NetCon	Sending command to server: "get 1398191863200"
+1398191864 VERBOSE	NetCon	Sending command to server: "t"
+1398191865 VERBOSE	NetCon	Sending command to server: "get 1398191864201"
+1398191865 VERBOSE	NetCon	Sending command to server: "t"
+1398191866 VERBOSE	NetCon	Sending command to server: "get 1398191865202"
+1398191866 VERBOSE	NetCon	Sending command to server: "t"
+1398191867 VERBOSE	NetCon	Sending command to server: "get 1398191866205"
+1398191867 VERBOSE	NetCon	Sending command to server: "t"
+1398191868 VERBOSE	NetCon	Sending command to server: "get 1398191867207"
+1398191868 VERBOSE	NetCon	Sending command to server: "t"
+1398191869 VERBOSE	NetCon	Sending command to server: "get 1398191868210"
+1398191869 VERBOSE	NetCon	Sending command to server: "t"
+1398191870 VERBOSE	NetCon	Sending command to server: "get 1398191869213"
+1398191870 VERBOSE	NetCon	Sending command to server: "t"
+1398191871 VERBOSE	NetCon	Sending command to server: "get 1398191870215"
+1398191871 VERBOSE	NetCon	Sending command to server: "t"
+1398191872 VERBOSE	NetCon	Sending command to server: "get 1398191871216"
+1398191872 VERBOSE	NetCon	Sending command to server: "t"
+1398191873 VERBOSE	NetCon	Sending command to server: "get 1398191872218"
+1398191873 VERBOSE	NetCon	Sending command to server: "t"
+1398191874 VERBOSE	NetCon	Sending command to server: "get 1398191873219"
+1398191874 VERBOSE	NetCon	Sending command to server: "t"
+1398191875 VERBOSE	NetCon	Sending command to server: "get 1398191874222"
+1398191875 VERBOSE	NetCon	Sending command to server: "t"
+1398191876 VERBOSE	NetCon	Sending command to server: "get 1398191875224"
+1398191876 VERBOSE	NetCon	Sending command to server: "t"
+1398191877 VERBOSE	NetCon	Sending command to server: "get 1398191876227"
+1398191877 VERBOSE	NetCon	Sending command to server: "t"

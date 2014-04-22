@@ -61,7 +61,7 @@ public class frontend implements EntryPoint {
 
 	// Create remote service proxy to talk to the server-side Turtlenet service
 	private final TurtlenetAsync turtlenet = GWT.create(Turtlenet.class);
-	private final TurtlenetAsync msgfactory = GWT.create(MessageFactory.class);
+	//private final TurtlenetAsync msgfactory = GWT.create(MessageFactory.class);
 
 	// Create panels that have only one use
 	FlexTable loginPanel = new FlexTable();
