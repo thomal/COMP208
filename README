@@ -18,8 +18,7 @@ KAWAII TURTLE~
 TODO (Due by next meeting)
 --------------------------------------------
 Luke:
-    - Installer
-    - Documentation (javadoc)
+    - Fill in DB calls in GWT
 
 Aishah/Mike:
     - Update DBStrings.java to match new src/ballmerpeak/turtlenet/server/addTablesSQL.sql file
@@ -35,7 +34,9 @@ Peter:
     - User manual (\missingfigure{})
 
 Louis:
-    - Call appropriate Database.getX methods
+    - All panels
+    - Prompt user to enter username, have username in profile data section
+    - Ctrl-F "//TODO" in frontend.java
 
 --------------------------------------------
 Other TODO

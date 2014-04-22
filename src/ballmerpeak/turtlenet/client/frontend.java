@@ -158,10 +158,14 @@ public class frontend implements EntryPoint {
                         //TODO error
                     }
                     public void onSuccess(String result) {
-                        if (result.equals("success"))
+                        if (result.equals("success")) {
                             loadMyWall();
-                        else
+                        } else if (result.equals("failure")) {
                             passwordLabel.setText("Please enter your password (again): ");
+                        } else {
+                            //TODO error, this ought NEVER happen
+                            passwordLabel.setText("INVALID RESPONSE FROM TNClient");
+                        }
                     }
                 });
             }
@@ -330,12 +334,16 @@ public class frontend implements EntryPoint {
         myDetailsPanel.setWidget(0, 0, usernameLabel);
         
         final TextBox editUsername = new TextBox();
-        /*
-         * "han" should be replaced with a call to a method that returns the 
-         * username of the current user.
-         * https://www.youtube.com/watch?v=xat70fI7Tag
-         */
-        editUsername.setText("han");
+        turtlenet.getUsername(new AsyncCallback<String>() {
+            public void onFailure(Throwable caught) {
+                //TODO error
+            }
+            public void onSuccess(String result) {
+                editUsername.setText(result);
+            }
+        });
+         
+        
         myDetailsPanel.setWidget(0, 1, editUsername);
         
         Button saveUsername = new Button("Save Username");
@@ -343,11 +351,18 @@ public class frontend implements EntryPoint {
         
         saveUsername.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                /*
-                 * Here should lie a call to a method that takes a String and
-                 * adds it to the database replacing the current user's username.
-                 * Give it editUsername.getText()
-                 */
+                turtlenet.claimUsername(editUsername.getText(), new AsyncCallback<String>() {
+                     public void onFailure(Throwable caught) {
+                         //TODO error
+                     }
+                     public void onSuccess(String result) {
+                         if (result.equals("success")) {
+                             //TODO Display success
+                         } else if (result.equals("failure")) {
+                             //TODO Username taken
+                         }
+                     }
+                 });
             }
         });
         
@@ -652,16 +667,12 @@ public class frontend implements EntryPoint {
     }
 
     private void loadLogin() {
-        // Clear page
         RootPanel.get().clear();
-        // Add login panel to page
         RootPanel.get().add(loginPanel);
     }
 
     private void loadMyWall() {
-        // Clear page
         RootPanel.get().clear();
-        // Add navigation to page
         RootPanel.get().add(navigationPanel);
         
         //Gonna need some kind of loop here
@@ -669,40 +680,36 @@ public class frontend implements EntryPoint {
         RootPanel.get().add(myWallControlPanel);
 
         // Some kind of way of accepting other peoples posts on your wall
+        //TODO
     }
 
     private void loadFriendsWall(String friendKey) {
-
+        //TODO
     }
 
     private void loadMyDetails() {
-
+        //TODO
     }
 
     private void loadFriendsDetails() {
-
+        //TODO
     }
 
     private void loadComments() {
-
+        //TODO
     }
 
     private void loadMessageList() {
-
+        //TODO
     }
 
     private void loadMessageContents(String messageID) {
-
+        //TODO
     }
 
     private void loadFriendsList(String currentGroupID) {
-        /*
         RootPanel.get().clear();
-        
-        // Add navigation to page
         RootPanel.get().add(navigationPanel);
-        
-        */
         
         // Prepare panels to add to page
         friendsListPanelSetup(currentGroupID);
@@ -714,28 +721,29 @@ public class frontend implements EntryPoint {
     }
 
     private void loadAddKey() {
-
+        //TODO
     }
 
 
     private void loadEditGroups() {
-
+        //TODO
     }
 
     private void loadSettings() {
-
+        RootPanel.get().clear();
+        RootPanel.get().add(navigationPanel);
+        RootPanel.get().add(myDetailsPanel);
     }
 
     private void loadCreatePost() {
-
+        //TODO
     }
 
     private void loadCreateComment() {
-
+        //TODO
     }
 
     private void loadCreateMessages() {
-
+        //TODO
     }
-
 }

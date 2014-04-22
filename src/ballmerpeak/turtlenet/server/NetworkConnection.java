@@ -122,6 +122,7 @@ public class NetworkConnection implements Runnable {
             Logger.write("ERROR", "NetCon", "Could not register name: " + e);
         }
     
+        Logger.write("INFO", "NetCon","Could not register name: " + name);
         return false;
     }
     

@@ -104,6 +104,8 @@ class Session implements Runnable
     //<long>    - number of milliseconds since midnight on 1970-01-01
     //<string>* - (0 or more strings) messages requested using get
     public void execute(String cmd, BufferedReader in, PrintWriter out) {
+        System.out.println("Recieved \"" + cmd);
+    
         if (cmd.equals(Server.shutdownPassword)) {
             System.out.println("WARNING: shutdown password should be loaded from config file");
             System.out.println("Shutting down");

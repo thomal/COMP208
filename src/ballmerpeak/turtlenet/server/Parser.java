@@ -12,6 +12,10 @@ public class Parser {
      * msg.LIKEgetItemID() is more natual.
      */
     public static void parse (Message msg, Database db) {
+    
+        Logger.write("VERBOSE", "PARSE", "parsing message");
+        
+        
         if (msg.getCmd().equals("POST"))        //post to own wall
             db.addPost(msg);
         else if (msg.getCmd().equals("CLAIM"))  //claim a username
@@ -32,7 +36,7 @@ public class Parser {
             db.addLike(msg);
         else if (msg.getCmd().equals("EVNT"))   //event
             db.addEvent(msg);
-        //else if (msg.getCmd().equals("NULL"))
-            //undecryptable, no need to handle, useful to remember it though
+        else if (msg.getCmd().equals("NULL"))
+            Logger.write("VERBOSE", "PARSE", "undecryptable message"); //not for us
     }
 }
