@@ -11,7 +11,7 @@ LOUISWIN_GWTPATH="C\:/gwt-2.6.0"
 
 ifeq ($(HOSTNAME), slowbox)
 	GWTPATH=$(LUKEWIN_GWTPATH)
-else ifeq ($(USERNAME), luke)
+else ifeq ($(USERNAME), teum)
 	GWTPATH=$(LUKE_GWTPATH)
 else ifeq ($(USERNAME), louis)
 	GWTPATH=$(LOUIS_GWTPATH)
