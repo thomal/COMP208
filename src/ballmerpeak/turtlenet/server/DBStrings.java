@@ -139,7 +139,7 @@ class DBStrings {
         ");"
     };
     
-    public static final String[] addClaim = {
+    public static final String addClaim = {
         
         INSERT INTO message_claim (claimID, username, signature)
         VALUES (
@@ -150,14 +150,14 @@ class DBStrings {
     
     };
 
-    public static final String[] getClaims = {
+    public static final String getClaims = {
 
         SELECT username, signature
         FROM message_claim;
 
     };
 
-    public static final String[] getUsername = {
+    public static final String getUsername = {
 
         SELECT username
         FROM message_claim
@@ -165,7 +165,7 @@ class DBStrings {
 
     };
 
-    public static final String[] addRevocation = {
+    public static final String addRevocation = {
 
         INSERT INTO key_revoke (revokeID, signature)
         VALUES (
@@ -175,14 +175,14 @@ class DBStrings {
 
     };
 
-    public static final String[] getRevocations = {
+    public static final String getRevocations = {
 
         SELECT signature, time
         FROM key_revoke
 
     };
 
-    public static final String[] getTimedRevocations = {
+    public static final String getTimedRevocations = {
 
         SELECT signature
         FROM key_revoke
@@ -192,7 +192,7 @@ class DBStrings {
     };
 
 
-    public static final String[] isRevoked = {
+    public static final String isRevoked = {
 
         INSERT INTO key_revoke (signature)
         VALUES (
@@ -201,7 +201,7 @@ class DBStrings {
 
     };
 
-    public static final String[] addPData = {
+    public static final String addPData = {
 
         INSERT INTO user (username, name, birthday, sex, email)
         VALUES (
@@ -214,109 +214,109 @@ class DBStrings {
 
     };
 
-    public static final String[] addChat = {
+    public static final String addChat = {
 
 
 
     };
 
-    public static final String[] addToChat = {
+    public static final String addToChat = {
 
 
 
     };
 
-    public static final String[] addPost = {
+    public static final String addPost = {
 
 
 
     };
 
-    public static final String[] getPosts = {
+    public static final String getPosts = {
 
 
 
     };
 
-    public static final String[] addIndependentComment = {
+    public static final String addIndependentComment = {
 
 
 
     };
 
-    public static final String[] addRelatedComment = {
+    public static final String addRelatedComment = {
 
 
 
     };
 
-    public static final String[] getComments = {
+    public static final String getComments = {
 
 
 
     };
     
-    public static final String[] addLike = {
+    public static final String addLike = {
 
 
 
     };
 
-    public static final String[] getPostLikes = {
+    public static final String getPostLikes = {
 
 
 
     };
 
-    public static final String[] getCommentLikes = {
+    public static final String getCommentLikes = {
 
 
 
     };
 
-    public static final String[] addEvent = {
+    public static final String addEvent = {
 
 
 
     };
 
-    public static final String[] getEvent = {
+    public static final String getEvent = {
 
 
 
     };
 
-    public static final String[] getEventWithInvites = {
+    public static final String getEventWithInvites = {
 
 
 
     };
 
-    public static final String[] acceptEvent = {
+    public static final String acceptEvent = {
 
 
 
     };
 
-    public static final String[] declineEvent = {
+    public static final String declineEvent = {
 
 
 
     };
 
-    public static final String[] addKey = {
+    public static final String addKey = {
 
 
 
     };
 
-    public static final String[] getKey = {
+    public static final String getKey = {
 
 
 
     };
 
-    public static final String[] getName = {
+    public static final String getName = {
 
 
 
