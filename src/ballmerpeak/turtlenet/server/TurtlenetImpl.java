@@ -11,12 +11,16 @@ import ballmerpeak.turtlenet.shared.Message;
 public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
     TNClient c;
     
-    public String startTN() {
+    public String startTN(String password) {
         Logger.write("INFO", "TNImpl","startTN()");
-        c = new TNClient();
-        Thread t = new Thread(c);
-        t.start();
-        return "success";
+        c = new TNClient(password);
+        if (c != null) {
+            Thread t = new Thread(c);
+            t.start();
+            return "success";
+        } else {
+            return "failure";
+        }
     }
     
     public String stopTN() {

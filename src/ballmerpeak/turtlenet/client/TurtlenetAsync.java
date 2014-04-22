@@ -4,7 +4,7 @@ import ballmerpeak.turtlenet.shared.Message;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
 public interface TurtlenetAsync {
-    void startTN(AsyncCallback<String> callback);
+    void startTN(String password, AsyncCallback<String> callback);
     void stopTN(AsyncCallback<String> callback);
     void demoDBCall(AsyncCallback<Message[]> callback);
 }

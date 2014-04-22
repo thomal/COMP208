@@ -6,7 +6,7 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
 @RemoteServiceRelativePath("turtlenet")
 public interface Turtlenet extends RemoteService {
-  String    startTN();
+  String    startTN(String password);
   String    stopTN();
   Message[] demoDBCall();
 }

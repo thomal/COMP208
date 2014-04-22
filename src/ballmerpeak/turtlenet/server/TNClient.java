@@ -8,9 +8,14 @@ public class TNClient implements Runnable {
     public NetworkConnection connection;
     public Thread networkThread;
     public Database db;
+    public String password;
+    
+    public TNClient (String pw) {
+        password = pw;
+    }
     
     public static void main (String[] argv) {
-        TNClient c = new TNClient();
+        TNClient c = new TNClient("password");
         Thread t = new Thread(c);
         t.start();
         
@@ -26,6 +31,7 @@ public class TNClient implements Runnable {
     
     public void run () {
         Logger.init("LOG_turtlenet");
+        Logger.write("UNIMPL", "TNClient", "Ignoring password: " + password);
         connection    = new NetworkConnection("localhost");
         networkThread = new Thread(connection);
         db            = new Database();
