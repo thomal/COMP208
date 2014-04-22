@@ -1,22 +1,25 @@
 @charset "utf-8";
 
 /* ------- Body ------------------------------------------------------------------------------------------------------------- */
-/*body { font: 14px/20px Helvetica, sans-serif; margin: 0; padding: 0; color: #333; }*/
+html, body { height: 100%; }
 
-body { font-family: "Trebuchet MS", Arial, Helvetica, sans-serif; margin: 0; padding: 0; color: #333; }
+body { font-family: "Trebuchet MS", Arial, Helvetica, sans-serif; margin: 0; color: #333; }
 
-/* Due to variations between browsers, it's best practices to zero padding and margin on lists. For consistency, you can either specify the amounts you want here, or on the list items (LI, DT, DD) they contain. Remember that what you do here will cascade to the .nav list unless you write a more specific selector. */
 ul, ol, dl { padding: 0; margin: 0; }
 
 /* removing the top margin gets around an issue where margins can escape from their containing div. The remaining bottom margin will hold it away from any elements that follow. */
 /* adding the padding to the sides of the elements within the divs, instead of the divs themselves, gets rid of any box model math. A nested div with side padding can also be used as an alternate method. */
-h1, h2, h3, h6, p { padding-right: 15px; padding-left: 15px; }
+h1, h6, p { padding-right: 15px; padding-left: 15px; }
+
+h2 { text-transform: uppercase; }
+
+h3 { padding-right: 15px; padding-left: 15px; }
 
 h4 { text-transform: uppercase; padding-right: 15px; padding-left: 15px; }
 
 h5 { padding-right: 15px; padding-left: 15px; color: #999999; font-family: Georgia, "Times New Roman", Times, serif; font-weight: lighter; }
 
-.container-background { background: linear-gradient(to bottom, #CBE2FE, #FFFFFF); background: -moz-linear-gradient(top, #CBE2FE, #FFFFFF); }
+.wrapper { min-height: 100%; height: auto !important; height: 100%; margin: 0 auto -40px; background: linear-gradient(to bottom, #CBE2FE, #FFFFFF); background: -moz-linear-gradient(top, #CBE2FE, #FFFFFF); }
 
 /* ------- Container -------------------------------------------------------------------------------------------------------- */
 .container { width: 80%; width: 1000px; margin: 0 auto; }
@@ -51,34 +54,17 @@ h5 { padding-right: 15px; padding-left: 15px; color: #999999; font-family: Georg
 
 .header-nav a:hover { background: linear-gradient(to bottom, rgba(120,120,120,1), rgba(90,90,90,1)); background: -moz-linear-gradient(top, rgba(120,120,120,1), rgba(90,90,90,1)); border-radius: 5px; padding-top: 2px; padding-bottom: 2px; }
 
-/* ------- Main ----------------------------------------------------------------------------------------------------------- */
-.main { padding: 5px; }
-
-.image { float: left; width: 420px; height: 236px; overflow: hidden; border-radius: 6px; box-shadow: 2px 2px 8px #888888; }
-
-.intro { font-size: 16px; float: right; width: 540px; padding-top: 10px; }
-
-.intro-h { padding-left: 20px; }
-
-.button-container { padding-left: 40px; padding-top: 20px; display: inline-block; }
-
-.intro-button { text-align: center; color: #333; text-decoration: none; background: linear-gradient(to bottom, rgba(250,250,250,1), rgba(220,220,220,1)); background: -moz-linear-gradient(top, rgba(250,250,250,1), rgba(220,220,220,1)); border-radius: 16px; border: grey 1px solid; padding: 5px; padding-left: 16px; padding-right: 16px; }
-
-/* ------- News ----------------------------------------------------------------------------------------------------------- */
-.news { padding-top: 260px; padding-bottom: 600px; }
-
-.news-left { float: left; width: 480px; text-align: justify; }
-
-.news-right { float: right; width: 480px; text-align: justify; }
-
 /* ------- Footer ----------------------------------------------------------------------------------------------------------- */
-.footer { color: #cccccc; background: #454545; bottom: 0px; left: 0px; right: 0px; height: 60px; }
+.footer, .push { height: 40px; }
 
-.footer-container { width: 80%; width: 1000px; margin: 0 auto; }
+.footer { color: #cccccc; background: #454545; bottom: 0px; left: 0px; right: 0px; height: 40px; font-size: 12px; }
 
-/*
-position:absolute;
-   bottom:0;
-   width:100%;
-   height:60px;
-   background:#6cf;
+.footer ul { list-style-type: none; }
+
+.footer li { float: left; padding-left: 20px; }
+
+.footer a { text-decoration: none; color: #cccccc; }
+
+.footer a:hover { text-decoration: underline; color: #cccccc; }
+
+.footer-button { padding-top: 3px; float: right; }
