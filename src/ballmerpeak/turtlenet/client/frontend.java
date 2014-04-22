@@ -1,4 +1,7 @@
-//Ctrl-F
+//TO-DO
+//Ctrl-F TODO
+//Add an option to choose which groups may see your profile data, right now only
+//  you can see your own profile info
 
 /* Louis:
 I've added one method and a new interface. The first is an example of how to
@@ -371,11 +374,14 @@ public class frontend implements EntryPoint {
         myDetailsPanel.setWidget(1, 0, nameLabel);
         
         final TextBox editName = new TextBox();
-        /*
-         * "John Hancock" should be replaced with a call to a method that returns 
-         * the name of the current user.
-         */
-        editName.setText("John Hancock");
+        turtlenet.getMyPDATA("RealName", new AsyncCallback<String>() {
+            public void onFailure(Throwable caught) {
+                //TODO error
+            }
+            public void onSuccess(String result) {
+                editName.setText(result);
+            }
+        });
         myDetailsPanel.setWidget(1, 1, editName);
         
         Button saveName = new Button("Save Name");
@@ -383,11 +389,18 @@ public class frontend implements EntryPoint {
         
         saveName.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                /*
-                 * Here should lie a call to a method that takes a String and
-                 * adds it to the database replacing the current user's name.
-                 * Give it editName.getText()
-                 */
+                turtlenet.updatePDATA("RealName", editName.getText(), new AsyncCallback<String>() {
+                     public void onFailure(Throwable caught) {
+                         //TODO error
+                     }
+                     public void onSuccess(String result) {
+                         if (result.equals("success")) {
+                             //TODO Display success
+                         } else if (result.equals("failure")) {
+                             //TODO
+                         }
+                     }
+                 });
             }
         });        
         
@@ -397,11 +410,14 @@ public class frontend implements EntryPoint {
         myDetailsPanel.setWidget(2, 0, birthdayLabel);
         
         final TextBox editBirthday = new TextBox();
-        /*
-         * "01011970" should be replaced with a call to a method that returns 
-         * the birthday of the current user.
-         */
-        editBirthday.setText("01/01/1970");
+        turtlenet.getMyPDATA("DOB", new AsyncCallback<String>() {
+            public void onFailure(Throwable caught) {
+                //TODO error
+            }
+            public void onSuccess(String result) {
+                editBirthday.setText(result);
+            }
+        });
         myDetailsPanel.setWidget(2, 1, editBirthday);
         
         Button saveBirthday = new Button("Save Birthday");
@@ -409,16 +425,20 @@ public class frontend implements EntryPoint {
         
         saveBirthday.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                /*
-                 * Here should lie a call to a method that takes a String and
-                 * adds it to the database replacing the current user's birthday.
-                 * Give it editBirthday.getText(). If the database requires a
-                 * number then you'll have to convert it first as gwt text boxes
-                 * give you strings. 
-                 * You can use Integer.parseInt(editBirthday.getText())
-                 */
+                turtlenet.updatePDATA("DOB", editBirthday.getText(), new AsyncCallback<String>() {
+                     public void onFailure(Throwable caught) {
+                         //TODO error
+                     }
+                     public void onSuccess(String result) {
+                         if (result.equals("success")) {
+                             //TODO Display success
+                         } else if (result.equals("failure")) {
+                             //TODO
+                         }
+                     }
+                 });
             }
-        });    
+        });
 
 
         // Create widgets relating to gender
@@ -429,11 +449,14 @@ public class frontend implements EntryPoint {
         myDetailsPanel.setWidget(3, 0, genderLabel);
         
         final TextBox editGender = new TextBox();
-        /*
-         * "Male" should be replaced with a call to a method that returns 
-         * the gender of the current user.
-         */
-        editGender.setText("Male");
+        turtlenet.getMyPDATA("Gender", new AsyncCallback<String>() {
+            public void onFailure(Throwable caught) {
+                //TODO error
+            }
+            public void onSuccess(String result) {
+                editGender.setText(result);
+            }
+        });
         myDetailsPanel.setWidget(3, 1, editGender);
         
         Button saveGender = new Button("Save Gender");
@@ -441,11 +464,18 @@ public class frontend implements EntryPoint {
         
         saveGender.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                /*
-                 * Here should lie a call to a method that takes a String and
-                 * adds it to the database replacing the current user's gender.
-                 * Give it editGender.getText()
-                 */
+                turtlenet.updatePDATA("Gender", editGender.getText(), new AsyncCallback<String>() {
+                     public void onFailure(Throwable caught) {
+                         //TODO error
+                     }
+                     public void onSuccess(String result) {
+                         if (result.equals("success")) {
+                             //TODO Display success
+                         } else if (result.equals("failure")) {
+                             //TODO
+                         }
+                     }
+                 });
             }
         });    
         
@@ -454,11 +484,14 @@ public class frontend implements EntryPoint {
         myDetailsPanel.setWidget(4, 0, emailLabel);
         
         final TextBox editEmail = new TextBox();
-        /*
-         * "john@hancock.com" should be replaced with a call to a method that returns 
-         * the email address of the current user.
-         */
-        editEmail.setText("john@hancock.com");
+        turtlenet.getMyPDATA("Email", new AsyncCallback<String>() {
+            public void onFailure(Throwable caught) {
+                //TODO error
+            }
+            public void onSuccess(String result) {
+                editEmail.setText(result);
+            }
+        });
         myDetailsPanel.setWidget(4, 1, editEmail);        
         
         Button saveEmail = new Button("Save Email");
@@ -466,11 +499,18 @@ public class frontend implements EntryPoint {
         
         saveEmail.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                /*
-                 * Here should lie a call to a method that takes a String and
-                 * adds it to the database replacing the current user's 
-                 * email address. Give it editEmail.getText()
-                 */
+                turtlenet.updatePDATA("Email", editEmail.getText(), new AsyncCallback<String>() {
+                     public void onFailure(Throwable caught) {
+                         //TODO error
+                     }
+                     public void onSuccess(String result) {
+                         if (result.equals("success")) {
+                             //TODO Display success
+                         } else if (result.equals("failure")) {
+                             //TODO
+                         }
+                     }
+                 });
             }
         });
         

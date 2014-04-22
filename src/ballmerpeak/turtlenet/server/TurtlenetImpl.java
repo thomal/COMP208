@@ -30,12 +30,25 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
         return "success";
     }
     
+    //Profile Data
     public String getUsername() {
         String name;
         if ((name = c.db.getName(Crypto.getPublicKey())) != null)
             return name;
         else
             return "<no username>";
+    }
+    
+    public String getMyPDATA(String field) {
+        return getPDATA(field, Crypto.encodeKey(Crypto.getPublicKey()));
+    }
+    
+    public String getPDATA(String field, String key) {
+        String value;
+        if ((value = c.db.getPDATA(field, Crypto.decodeKey(key))) != null)
+            return value;
+        else
+            return "<no value>";
     }
     
     public String[][] getCategoryMembers (String category) {
@@ -48,10 +61,18 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
         return pairs;
     }
     
+    
+    //Profile Data
     public String claimUsername (String uname) {
         if(c.connection.claimName(uname))
             return "success";
         else
             return "failure";
+    }
+    
+    public String updatePDATA (String field, String value) {
+        c.connection.postMessage(new MessageFactoryImpl().newPDATA(field, value),
+                                 Crypto.getPublicKey());
+        return "success";
     }
 }

@@ -106,20 +106,16 @@ clean : config
 run_server : config
 	mkdir -p data
 	java -cp $(CLASSPATH) ballmerpeak.turtlenet.remoteserver.Server
-	rm -rf data
-	rmdir data
 
 run_client : config
 	sed -e `echo 's:___GWTPATH___:'$(GWTPATH)':g'` web_interface/protobuild.xml > web_interface/build.xml
 	ant -f web_interface/build.xml clean
 	ant -f web_interface/build.xml devmode
 	rm web_interface/build.xml
-	rm -rf web_interface/db
 
 run_headlessclient : config
 	javac -cp $(CLASSPATH) src/ballmerpeak/turtlenet/*/*.java
 	java -cp $(CLASSPATH) ballmerpeak.turtlenet.server.TNClient
-	rm -rf db
 
 config:
 	@echo "GWTPath: $(GWTPATH)"

@@ -23,7 +23,7 @@ public class Parser {
         else if (msg.getCmd().equals("REVOKE")) //revoke private key
             db.addRevocation(msg);
         else if (msg.getCmd().equals("PDATA"))  //create or update profile data
-            db.addPdata(msg);
+            db.addPDATA(msg);
         else if (msg.getCmd().equals("CHAT"))   //establish chat
             db.addChat(msg);
         else if (msg.getCmd().equals("PCHAT"))  //add message to chat

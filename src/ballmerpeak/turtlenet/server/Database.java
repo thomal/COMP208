@@ -94,6 +94,12 @@ public class Database {
     }
     
     //Get from DB
+    public String getPDATA(String field, PublicKey key) {
+        //REPLACE ME
+        Logger.write("UNIMPL", "DB", "Unimplemented method Database.getPDATA(" + field + ",...)");
+        return null;
+    }
+    
     public Message[] getPostsBy (PublicKey key) {
         //REPLACE ME
         Logger.write("UNIMPL", "DB", "Unimplemented method Database.getPostsBy(...)");
@@ -145,9 +151,15 @@ public class Database {
         Logger.write("UNIMPL", "DB", "Unimplemented method Database.addRevocation(...)");
     }
     
-    public void addPdata (Message update) {
+    public void addPDATA (Message update) {
         //REPLACE ME
-        Logger.write("UNIMPL", "DB", "Unimplemented method Database.addPdata(...)");
+        Logger.write("UNIMPL", "DB", "Unimplemented method Database.addPDATA(...)");
+    }
+    
+    //same as method above, but without message parameter
+    public void updatePDATA (String field, String value, PublicKey k) {
+        //REPLACE ME
+        Logger.write("UNIMPL", "DB", "Unimplemented method Database.updatePDATA(...)");
     }
     
     public void addChat (Message chat) {
