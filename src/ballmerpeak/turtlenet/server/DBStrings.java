@@ -6,29 +6,27 @@ package ballmerpeak.turtlenet.server;
 
 class DBStrings {
     public static final String[] createDB = {
-        "CREATE TABLE user (                  " +
-            "user_id    INT         NOT NULL, " + 
-            "username   VARCHAR(25) NOT NULL, " +
-            "name       VARCHAR(30),          " +
-            "birthday   DATE,                 " + 
-            "sex        VARCHAR(1),           " + 
-            "email      VARCHAR(30),          " + 
-            "public_key VARCHAR(8),           " +
-            "PRIMARY KEY (user_id)            " +
+        "CREATE TABLE tbl_user (                  " +
+            "user_id    INTEGER      PRIMARY KEY, " + 
+            "username   VARCHAR(25),              " +
+            "name       VARCHAR(30),              " +
+            "birthday   DATE,                     " + 
+            "sex        VARCHAR(1),               " + 
+            "email      VARCHAR(30),             " + 
+            "public_key VARCHAR(8),              " +
         ");",
         
-        "CREATE TABLE category (        " +
-             "category_id INT NOT NULL, " +
-             "name VARCHAR(30),         " +
-             "PRIMARY KEY (category_id) " +
+        "CREATE TABLE tbl_category (        " +
+             "category_id INTEGER   PRIMARY KEY, " +
+             "name VARCHAR(30),                  " +
         ");",
         
-        "CREATE TABLE is_in_category ( " +
-            "is_in_id INT NOT NULL,    " +
-            "category_id INT NOT NULL, " +//DATATYPE IS WRONG ON DIAGRAM
-            "user_id VARCHAR(50),      " +
-            "PRIMARY KEY (is_in_id),   " +
-            "FOREIGN KEY (category_id) REFERENCES category(category_id)" +
+        "CREATE TABLE tbl_is_in_category ( " +
+            "is_in_id INTEGER       PRIMARY KEY, " +
+            "category_id INTEGER,                " +//DATATYPE IS WRONG ON DIAGRAM (Aishah: All ID's have to be in INTEGER)
+            "user_id VARCHAR(50),                " +
+            "FOREIGN KEY (category_id) REFERENCES tbl_category(category_id)  " +
+            "FOREIGN KEY (user_id)     REFERENCES tbl_user(user_id)          " +
         ");",
 
 // column 'from' is not included in private_message message table!
@@ -140,4 +138,188 @@ class DBStrings {
             "PRIMARY KEY (log_id)        " +
         ");"
     };
+    
+    public static final String[] addClaim = {
+        
+        INSERT INTO message_claim (claimID, username, signature)
+        VALUES (
+                NULL,
+                'userVar',
+                'sigVar'
+                );
+    
+    };
+
+    public static final String[] getClaims = {
+
+        SELECT username, signature
+        FROM message_claim;
+
+    };
+
+    public static final String[] getUsername = {
+
+        SELECT username
+        FROM message_claim
+        WHERE signature = 'sigVar';
+
+    };
+
+    public static final String[] addRevocation = {
+
+        INSERT INTO key_revoke (revokeID, signature)
+        VALUES (
+                NULL,
+                'sigVar'
+                );
+
+    };
+
+    public static final String[] getRevocations = {
+
+        SELECT signature, time
+        FROM key_revoke
+
+    };
+
+    public static final String[] getTimedRevocations = {
+
+        SELECT signature
+        FROM key_revoke
+        WHERE time >= DATETIME('timeBeginVar') //MIKE_IS_HERE
+        AND time <= DATETIME('2014-12-31 00:00:00')
+
+    };
+
+
+    public static final String[] isRevoked = {
+
+        INSERT INTO key_revoke (signature)
+        VALUES (
+                'signature'
+                );
+
+    };
+
+    public static final String[] addPData = {
+
+        INSERT INTO user (username, name, birthday, sex, email)
+        VALUES (
+                'username',
+                'name',
+                'YYYY-MM-DD',
+                'genderChar' -- drop down option preferable F - female, M - male
+                'email@email.com'
+                );
+
+    };
+
+    public static final String[] addChat = {
+
+
+
+    };
+
+    public static final String[] addToChat = {
+
+
+
+    };
+
+    public static final String[] addPost = {
+
+
+
+    };
+
+    public static final String[] getPosts = {
+
+
+
+    };
+
+    public static final String[] addIndependentComment = {
+
+
+
+    };
+
+    public static final String[] addRelatedComment = {
+
+
+
+    };
+
+    public static final String[] getComments = {
+
+
+
+    };
+    
+    public static final String[] addLike = {
+
+
+
+    };
+
+    public static final String[] getPostLikes = {
+
+
+
+    };
+
+    public static final String[] getCommentLikes = {
+
+
+
+    };
+
+    public static final String[] addEvent = {
+
+
+
+    };
+
+    public static final String[] getEvent = {
+
+
+
+    };
+
+    public static final String[] getEventWithInvites = {
+
+
+
+    };
+
+    public static final String[] acceptEvent = {
+
+
+
+    };
+
+    public static final String[] declineEvent = {
+
+
+
+    };
+
+    public static final String[] addKey = {
+
+
+
+    };
+
+    public static final String[] getKey = {
+
+
+
+    };
+
+    public static final String[] getName = {
+
+
+
+    };
+
 }
