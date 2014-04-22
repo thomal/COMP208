@@ -1,2 +1,0 @@
-serviceClass: ballmerpeak.turtlenet.client.MessageFactory
-path: E8BD0D859ABBA00E48D1AAE386AFE5F5.gwt.rpc

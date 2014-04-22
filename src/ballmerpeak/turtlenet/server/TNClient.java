@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class TNClient implements Runnable {
-    public static boolean running = true;
+    public boolean running = true;
     public NetworkConnection connection;
     public Thread networkThread;
     public Database db;
@@ -21,9 +21,9 @@ public class TNClient implements Runnable {
         
         Scanner s = new Scanner(System.in);
         String l;
-        while (TNClient.running) {
+        while (c.running) {
             if ((l=s.nextLine()).equals("exit"))
-                TNClient.running = false;
+                c.running = false;
             else
                 System.out.println(l);
         }

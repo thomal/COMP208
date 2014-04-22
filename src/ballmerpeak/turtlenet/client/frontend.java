@@ -123,10 +123,7 @@ public class frontend implements EntryPoint {
         friendsDetailsPanelSetup("publicKey");
 
         // Call method to load the initial login page
-        // loadLogin();
-
-        // Call temporary constuction method
-        loadPanelDev();
+        loadLogin();
     }
 
     // #########################################################################
@@ -161,10 +158,10 @@ public class frontend implements EntryPoint {
                         //TODO error
                     }
                     public void onSuccess(String result) {
-                        if (result == "success")
+                        if (result.equals("success"))
                             loadMyWall();
                         else
-                            passwordLabel.setText("Please enter your password (again): DEBUG" + passwordInput.getText());
+                            passwordLabel.setText("Please enter your password (again): DEBUG" + result);
                     }
                 });
             }

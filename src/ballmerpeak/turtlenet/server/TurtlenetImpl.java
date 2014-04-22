@@ -25,7 +25,7 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
     
     public String stopTN() {
         Logger.write("INFO", "TNImpl","stopTN()");
-        TNClient.running = false;
+        c.running = false;
         return "success";
     }
     

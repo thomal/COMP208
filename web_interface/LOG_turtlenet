@@ -1,54 +1,31 @@
-===== Turtlenet started at Tue Apr 22 20:15:27 BST 2014=====
-1398194127 UNIMPLEMENTED	TNClient	Ignoring password: fgsdgs
-1398194127 INFO		DB	Creating database
-1398194127 INFO		DB	Connecting to database
-1398194127 VERBOSE	DB	execute("CREATE TABLE user ...")
-1398194127 VERBOSE	DB	execute("CREATE TABLE category ...")
-1398194128 VERBOSE	DB	execute("CREATE TABLE is_in_category ...")
-1398194128 VERBOSE	DB	execute("CREATE TABLE private_message ...")
-1398194128 VERBOSE	DB	execute("CREATE TABLE is_in_message ...")
-1398194128 VERBOSE	DB	execute("CREATE TABLE events ...")
-1398194128 VERBOSE	DB	execute("CREATE TABLE is_invited ...")
-1398194129 VERBOSE	DB	execute("CREATE TABLE wall_post ...")
-1398194129 VERBOSE	DB	execute("CREATE TABLE allowed_to ...")
-1398194129 VERBOSE	DB	execute("CREATE TABLE has_comment ...")
-1398194129 VERBOSE	DB	execute("CREATE TABLE has_like ...")
-1398194129 VERBOSE	DB	execute("CREATE TABLE message_claim ...")
-1398194130 VERBOSE	DB	execute("CREATE TABLE key_revoke ...")
-1398194130 VERBOSE	DB	execute("CREATE TABLE login_logout_log ...")
-1398194130 INFO		Crypto	Generating keys
-1398194130 INFO		NetCon	NetworkConnection started
-1398194131 VERBOSE	NetCon	Sending command to server: "get 0"
-1398194131 VERBOSE	NetCon	Sending command to server: "t"
-1398194132 VERBOSE	NetCon	Sending command to server: "get 1398194131994"
-1398194133 VERBOSE	NetCon	Sending command to server: "t"
-1398194134 VERBOSE	NetCon	Sending command to server: "get 1398194133032"
-1398194134 VERBOSE	NetCon	Sending command to server: "t"
-1398194135 VERBOSE	NetCon	Sending command to server: "get 1398194134034"
-1398194135 VERBOSE	NetCon	Sending command to server: "t"
-1398194136 VERBOSE	NetCon	Sending command to server: "get 1398194135036"
-1398194136 VERBOSE	NetCon	Sending command to server: "t"
-1398194137 VERBOSE	NetCon	Sending command to server: "get 1398194136039"
-1398194137 VERBOSE	NetCon	Sending command to server: "t"
-1398194138 VERBOSE	NetCon	Sending command to server: "get 1398194137041"
-1398194138 VERBOSE	NetCon	Sending command to server: "t"
-1398194139 VERBOSE	NetCon	Sending command to server: "get 1398194138042"
-1398194139 VERBOSE	NetCon	Sending command to server: "t"
-1398194140 VERBOSE	NetCon	Sending command to server: "get 1398194139044"
-1398194140 VERBOSE	NetCon	Sending command to server: "t"
-1398194141 VERBOSE	NetCon	Sending command to server: "get 1398194140045"
-1398194141 VERBOSE	NetCon	Sending command to server: "t"
-1398194142 VERBOSE	NetCon	Sending command to server: "get 1398194141047"
-1398194142 VERBOSE	NetCon	Sending command to server: "t"
-1398194143 VERBOSE	NetCon	Sending command to server: "get 1398194142049"
-1398194143 VERBOSE	NetCon	Sending command to server: "t"
-1398194144 VERBOSE	NetCon	Sending command to server: "get 1398194143051"
-1398194144 VERBOSE	NetCon	Sending command to server: "t"
-1398194145 VERBOSE	NetCon	Sending command to server: "get 1398194144052"
-1398194145 VERBOSE	NetCon	Sending command to server: "t"
-1398194146 VERBOSE	NetCon	Sending command to server: "get 1398194145054"
-1398194146 VERBOSE	NetCon	Sending command to server: "t"
-1398194147 VERBOSE	NetCon	Sending command to server: "get 1398194146055"
-1398194147 VERBOSE	NetCon	Sending command to server: "t"
-1398194148 VERBOSE	NetCon	Sending command to server: "get 1398194147057"
-1398194148 VERBOSE	NetCon	Sending command to server: "t"
+===== Turtlenet started at Tue Apr 22 20:28:27 BST 2014=====
+1398194907 UNIMPL	TNClient	Ignoring password: hgfd
+1398194907 INFO		DB	Creating database
+1398194907 INFO		DB	Connecting to database
+1398194907 VERBOSE	DB	execute("CREATE TABLE user ...")
+1398194907 VERBOSE	DB	execute("CREATE TABLE category ...")
+1398194908 VERBOSE	DB	execute("CREATE TABLE is_in_category ...")
+1398194908 VERBOSE	DB	execute("CREATE TABLE private_message ...")
+1398194908 VERBOSE	DB	execute("CREATE TABLE is_in_message ...")
+1398194908 VERBOSE	DB	execute("CREATE TABLE events ...")
+1398194908 VERBOSE	DB	execute("CREATE TABLE is_invited ...")
+1398194908 VERBOSE	DB	execute("CREATE TABLE wall_post ...")
+1398194909 VERBOSE	DB	execute("CREATE TABLE allowed_to ...")
+1398194909 VERBOSE	DB	execute("CREATE TABLE has_comment ...")
+1398194909 VERBOSE	DB	execute("CREATE TABLE has_like ...")
+1398194909 VERBOSE	DB	execute("CREATE TABLE message_claim ...")
+1398194909 VERBOSE	DB	execute("CREATE TABLE key_revoke ...")
+1398194909 VERBOSE	DB	execute("CREATE TABLE login_logout_log ...")
+1398194910 INFO		Crypto	Generating keys
+1398194910 INFO		NetCon	NetworkConnection started
+1398194911 VERBOSE	NetCon	Sending command to server: "get 0"
+1398194911 VERBOSE	NetCon	Sending command to server: "t"
+1398194912 VERBOSE	NetCon	Sending command to server: "get 1398194911456"
+1398194912 VERBOSE	NetCon	Sending command to server: "t"
+1398194913 VERBOSE	NetCon	Sending command to server: "get 1398194912457"
+1398194913 VERBOSE	NetCon	Sending command to server: "t"
+1398194913 INFO		TNImpl	stopTN()
+1398194913 INFO		NetCon	close()
+1398194913 INFO		NetCon	Saved lastRead to disk
+1398194913 INFO		DB	Disconnecting from database
+===== Turtlenet closed  at Tue Apr 22 20:28:33 BST 2014=====
