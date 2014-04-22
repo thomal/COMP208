@@ -6,29 +6,27 @@ package ballmerpeak.turtlenet.server;
 
 class DBStrings {
     public static final String[] createDB = {
-        "CREATE TABLE user (                  " +
-            "user_id    INT         NOT NULL, " + 
-            "username   VARCHAR(25) NOT NULL, " +
-            "name       VARCHAR(30),          " +
-            "birthday   DATE,                 " + 
-            "sex        VARCHAR(1),           " + 
-            "email      VARCHAR(30),          " + 
-            "public_key VARCHAR(8),           " +
-            "PRIMARY KEY (user_id)            " +
+        "CREATE TABLE tbl_user (                  " +
+            "user_id    INTEGER      PRIMARY KEY, " + 
+            "username   VARCHAR(25),              " +
+            "name       VARCHAR(30),              " +
+            "birthday   DATE,                     " + 
+            "sex        VARCHAR(1),               " + 
+            "email      VARCHAR(30),             " + 
+            "public_key VARCHAR(8),              " +
         ");",
         
-        "CREATE TABLE category (        " +
-             "category_id INT NOT NULL, " +
-             "name VARCHAR(30),         " +
-             "PRIMARY KEY (category_id) " +
+        "CREATE TABLE tbl_category (        " +
+             "category_id INTEGER   PRIMARY KEY, " +
+             "name VARCHAR(30),                  " +
         ");",
         
-        "CREATE TABLE is_in_category ( " +
-            "is_in_id INT NOT NULL,    " +
-            "category_id INT NOT NULL, " +//DATATYPE IS WRONG ON DIAGRAM
-            "user_id VARCHAR(50),      " +
-            "PRIMARY KEY (is_in_id),   " +
-            "FOREIGN KEY (category_id) REFERENCES category(category_id)" +
+        "CREATE TABLE tbl_is_in_category ( " +
+            "is_in_id INTEGER       PRIMARY KEY, " +
+            "category_id INTEGER,                " +//DATATYPE IS WRONG ON DIAGRAM (Aishah: All ID's have to be in INTEGER)
+            "user_id VARCHAR(50),                " +
+            "FOREIGN KEY (category_id) REFERENCES tbl_category(category_id)  " +
+            "FOREIGN KEY (user_id)     REFERENCES tbl_user(user_id)          " +
         ");",
 
 // column 'from' is not included in private_message message table!

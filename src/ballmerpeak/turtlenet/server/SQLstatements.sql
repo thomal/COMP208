@@ -170,7 +170,7 @@ WHERE user_id = 'user_id here';
 -- addKey()
 
 
--- getKey()
+-- getKey() [not sure if this is right]
 SELECT public_key
 FROM user
 WHERE username = 'something_something_bla_bla_turtlepoop';
@@ -199,8 +199,8 @@ VALUES
 ---------------
 -- things to do
 ---------------
--- auto-increment the primary key columns 
--- default values for time with current time
--- default values for is_invited, decision should be NULL when newly inserted
+-- auto-increment the primary key columns [DONE]
+-- default values for time with current time [DONE]
+-- default values for is_invited, decision should be NULL when newly inserted [DONE]
 -- default value public key? 
 -- note: adding key does not let you see anything but username 
