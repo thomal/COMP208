@@ -102,13 +102,13 @@ Meeting #10 Minutes (Sunday, 13/04/2014)
 --------------------------------------------
 - Progress Recap:
     Luke:
-        - All:        Added testing
-        - All:        Added logger
-        - Mike/Aisha: Implemented createDatabase to execute aishahs create table
-                        SQL queries
-        - Mike:       Message::XgetY methods
-        - Louis:      Altered frontend to start turtlenet when it starts, and
-                        stop it when the tab is closed
+        - Added testing
+        - Added logger
+        - Implemented createDatabase to execute aishahs create table
+            SQL queries
+        - Message::XgetY methods
+        - Altered frontend to start turtlenet when it starts, and
+            stop it when the tab is closed
 - Luke/Mike Re: setAutoCommit(false) in dbConnect():
     shouldn't this be done on a case-by-case basis to mark the start and end of
     transactions?
