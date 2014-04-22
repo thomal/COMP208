@@ -108,8 +108,9 @@ public class frontend implements EntryPoint {
 	                });
                     }
                 });
-                
-                //Call methods to set up panels
+
+
+        //Call methods to set up panels
 		loginPanelSetup();
 		navigationPanelSetup();
 		myWallControlPanelSetup();
@@ -122,6 +123,11 @@ public class frontend implements EntryPoint {
 		myDetailsPanelSetup();
 		messagesControlPanelSetup();
 		commentsControlPanelSetup();
+		/*
+		 * "publicKey" here should be replaced with the key of the friend's 
+		 * details we want to look up
+		 */
+		friendsDetailsPanelSetup("publicKey");
 
 		// Call method to load the initial login page
 		// loadLogin();
@@ -479,16 +485,71 @@ public class frontend implements EntryPoint {
 		myDetailsPanel.addStyleName("gwt-my-details");
 	}
 	
-	private void friendsDetailsPanelSetup() {
+	private void friendsDetailsPanelSetup(String friendsDetailsKey) {
 		// Create widgets
+		Label friendsDetailsUsernameTitle = new Label("Username:");
+		friendsDetailsPanel.setWidget(0, 0, friendsDetailsUsernameTitle);
 
-		// Add widgets to panel
+		/*
+		 * "tsmith1" should be replaced with a call to a method that returns the
+		 * username of a friend when given a friend's key. Give it friendsDetailsKey.
+		 */
+		Label friendsDetailsUsernameLabel = new Label("tsmith1");
+		friendsDetailsPanel.setWidget(0, 1, friendsDetailsUsernameLabel);
+
+
+		Label friendsDetailsNameTitle = new Label("Name:");
+		friendsDetailsPanel.setWidget(1, 0, friendsDetailsNameTitle);
+
+		/*
+		 * "Tom Smith" should be replaced with a call to a method that returns the
+		 * name of a friend when given a friend's key. Give it friendsDetailsKey.
+		 */
+		Label friendsDetailsNameLabel = new Label("Tom Smith");
+		friendsDetailsPanel.setWidget(1, 1, friendsDetailsNameLabel);
+
+
+		Label friendsDetailsBirthdayTitle = new Label("Birthday:");
+		friendsDetailsPanel.setWidget(2, 0, friendsDetailsBirthdayTitle);
+
+		/*
+		 * "01/01/1970" should be replaced with a call to a method that returns the
+		 * birthday of a friend when given a friend's key. Give it friendsDetailsKey.
+		 */
+		Label friendsDetailsBirthdayLabel = new Label("01/01/1970");
+		friendsDetailsPanel.setWidget(2, 1, friendsDetailsBirthdayLabel);
+		
+
+		Label friendsDetailsGenderTitle = new Label("Gender:");
+		friendsDetailsPanel.setWidget(3, 0, friendsDetailsGenderTitle);
+
+		/*
+		 * "Male" should be replaced with a call to a method that returns the
+		 * gender of a friend when given a friend's key. Give it friendsDetailsKey.
+		 */
+		Label friendsDetailsGenderLabel = new Label("Male");
+		friendsDetailsPanel.setWidget(3, 1, friendsDetailsGenderLabel);
+
+
+		Label friendsDetailsEmailTitle = new Label("Email:");
+		friendsDetailsPanel.setWidget(4, 0, friendsDetailsEmailTitle);
+
+		/*
+		 * "john@smith.com" should be replaced with a call to a method that returns the
+		 * email of a friend when given a friend's key. Give it friendsDetailsKey.
+		 */
+		Label friendsDetailsEmailLabel = new Label("john@smith.com");
+		friendsDetailsPanel.setWidget(4, 1, friendsDetailsEmailLabel);
+
+
+		Label friendsDetailsKeyTitle = new Label("Public Key:");
+		friendsDetailsPanel.setWidget(5, 0, friendsDetailsKeyTitle);
+
+		Label friendsDetailsKeyLabel = new Label(friendsDetailsKey);
+		friendsDetailsPanel.setWidget(5, 1, friendsDetailsKeyLabel);
 
 		// Add style name for CSS
 		friendsDetailsPanel.addStyleName("gwt-friends-details");
-
-		// Add click handlers for anchors
-
 	}
 
 	private void inputPanelSetup() {
