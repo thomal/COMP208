@@ -81,7 +81,7 @@ public class frontend implements EntryPoint {
 
     // Create panels that display lists of things
     FlexTable friendsListPanel = new FlexTable();
-    FlexTable messageListPanel = new FlexTable();
+    FlexTable conversationListPanel = new FlexTable();
     FlexTable myDetailsPanel = new FlexTable();
     FlexTable myDetailsPermissionsPanel = new FlexTable();
     FlexTable friendsDetailsPanel = new FlexTable();
@@ -125,7 +125,7 @@ public class frontend implements EntryPoint {
         myWallControlPanelSetup();
         friendsWallControlPanelSetup();
         settingsPanelSetup();
-        messageListPanelSetup();
+        conversationListPanelSetup();
         myDetailsPanelSetup();
         inputPanelSetup();
         outputPanelSetup();
@@ -289,17 +289,17 @@ public class frontend implements EntryPoint {
         friendsListPanel.addStyleName("gwt-friends-list");
     }
 
-    private void messageListPanelSetup() {
+    private void conversationListPanelSetup() {
         // Column title for anchors linking to messages
         Label messageRecievedFromLabel = new Label("Message recieved from");
         messageRecievedFromLabel.getElement().getStyle().setFontWeight(FontWeight.BOLD);
         messageRecievedFromLabel.getElement().getStyle().setProperty("paddingLeft" , "100px");
-        messageListPanel.setWidget(0, 0, messageRecievedFromLabel);
+        conversationListPanel.setWidget(0, 0, messageRecievedFromLabel);
         
         // Column title for labels outputing the date a message was recieved
         Label messageRecievedOnLabel = new Label("Message recieved on");
         messageRecievedOnLabel.getElement().getStyle().setFontWeight(FontWeight.BOLD);
-        messageListPanel.setWidget(0, 1, messageRecievedOnLabel);
+        conversationListPanel.setWidget(0, 1, messageRecievedOnLabel);
         
         /*
          * The number 10 in the following for loop should be replaced with the
@@ -330,7 +330,7 @@ public class frontend implements EntryPoint {
              * returns a users name when given the ID of a user. Give it userID.
              */             
             Anchor linkMessageContents = new Anchor("Friend's Name");
-            messageListPanel.setWidget(i, 0, linkMessageContents);
+            conversationListPanel.setWidget(i, 0, linkMessageContents);
             
             /*
              * '01/01/1970' should be replaced with a call to a method that
@@ -338,7 +338,7 @@ public class frontend implements EntryPoint {
              * Give it messageID.
              */
             Label displayMessageDate = new Label("01/01/1970 @ 00:00");
-            messageListPanel.setWidget(i, 1, displayMessageDate);
+            conversationListPanel.setWidget(i, 1, displayMessageDate);
             
             // Add click handlers for anchors
             linkMessageContents.addClickHandler(new ClickHandler() {
@@ -348,7 +348,7 @@ public class frontend implements EntryPoint {
             });
         }
         // Add style name for CSS
-        messageListPanel.addStyleName("gwt-message-list");
+        conversationListPanel.addStyleName("gwt-message-list");
     }
 
     private void myDetailsPanelSetup() {
@@ -784,7 +784,7 @@ public class frontend implements EntryPoint {
         // Add all panels to page
         RootPanel.get().add(loginPanel);
         RootPanel.get().add(settingsPanel);
-        RootPanel.get().add(messageListPanel);
+        RootPanel.get().add(conversationListPanel);
         RootPanel.get().add(myDetailsPanel);
         RootPanel.get().add(inputPanel);
         RootPanel.get().add(outputPanel);
