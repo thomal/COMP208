@@ -1,5 +1,6 @@
 package ballmerpeak.turtlenet.client;
 
+import ballmerpeak.turtlenet.shared.Conversation;
 import ballmerpeak.turtlenet.shared.Message;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
@@ -17,6 +18,8 @@ public interface Turtlenet extends RemoteService {
   
   String[][] getCategories();                     //{{"friends", "false"}, {"family", "true"}}
   String[][] getCategoryMembers(String category); //{{"name1","key1"}, {"name2","key2"}}
+  
+  Conversation[] getConversations();
   
   //Profile Data
   String     claimUsername(String uname);

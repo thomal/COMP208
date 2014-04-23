@@ -1,5 +1,6 @@
 package ballmerpeak.turtlenet.client;
 
+import ballmerpeak.turtlenet.shared.Conversation;
 import ballmerpeak.turtlenet.shared.Message;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
@@ -15,6 +16,8 @@ public interface TurtlenetAsync {
     
     void getCategories(AsyncCallback<String[][]> callback);
     void getCategoryMembers(String category, AsyncCallback<String[][]> callback);
+    
+    void getConversations(AsyncCallback<Conversation[]> callback);
     
     //Profile Data
     void claimUsername(String uname, AsyncCallback<String> callback);

@@ -122,7 +122,7 @@ public class Crypto {
         try {
             Signature sigChecker = Signature.getInstance("SHA1withRSA");
             sigChecker.initVerify(author);
-            sigChecker.update(msg.getContent().getBytes("UTF-8"));
+            sigChecker.update((msg.getTimestamp()+msg.getContent()).getBytes("UTF-8"));
             return sigChecker.verify(Crypto.Base64Decode(msg.getSig()));
         } catch (Exception e) {
             Logger.write("ERROR", "Crypto", "Could not verify signature");

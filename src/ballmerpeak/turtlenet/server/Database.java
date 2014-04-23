@@ -1,6 +1,7 @@
 package ballmerpeak.turtlenet.server;
 
 import ballmerpeak.turtlenet.shared.Message;
+import ballmerpeak.turtlenet.shared.Conversation;
 import java.security.*;
 import java.sql.*;
 import java.security.*;
@@ -100,12 +101,32 @@ public class Database {
         return null;
     }
     
+    //Set the CMD to POST in the Message constructor
     public Message[] getPostsBy (PublicKey key) {
         //REPLACE ME
         Logger.write("UNIMPL", "DB", "Unimplemented method Database.getPostsBy(...)");
         return null;
     }
     
+    //Return all conversations
+    public Conversation[] getConversations () {
+        //REPLACE ME
+        Logger.write("UNIMPL", "DB", "Unimplemented method Database.getConversations(...)");
+        return null;
+    }
+    
+    //Return all messages in a conversation
+    //{{username, time, msg}, {username, time, msg}, etc.}
+    //Please order it so that element 0 is the oldest message
+    public String[][] getConversation (String signature) {
+        //REPLACE ME
+        Logger.write("UNIMPL", "DB", "Unimplemented method Database.getConversation(...)");
+        return null;
+    }
+    
+    //An array to deal with multiple people having the same name, shouldn't happen
+    //but might if people are evil. Alternativly feel free to return a PublicKey
+    //and "Logger.write("FATAL", "DB", "Duplicate usernames"); System.exit(1);"
     public PublicKey[] getKey (String name) {
         //REPLACE ME
         Logger.write("UNIMPL", "DB", "Unimplemented method Database.getKey(...)");
@@ -113,7 +134,7 @@ public class Database {
     }
     
     //Return the name of each member and if it can see your profile info
-    //In this format: {{"friends", "false"}, {"family", "true"}}
+    //In this format: {{"friends", "false"}, {"family", "true"}, etc.}
     public String[][] getCategories () {
         Logger.write("UNIMPL", "DB", "Unimplemented method Database.getCategories()");
         return null;
@@ -125,12 +146,14 @@ public class Database {
         return null;
     }
     
+    //In the case of multiple usernames return the newest one
     public String getName (PublicKey k) {
         //REPLACE ME
         Logger.write("UNIMPL", "DB", "Unimplemented method Database.getName(...)");
         return null;
     }
     
+    //"What key signed this message"
     public PublicKey getSignatory (Message m) {
         //REPLACE ME
         Logger.write("UNIMPL", "DB", "Unimplemented method Database.addSignatory(...)");
@@ -138,6 +161,7 @@ public class Database {
     }
     
     //Add to DB
+    //Remember to store the signautre, create table sql may need updating
     public void addPost (Message post) {
         //REPLACE ME
         Logger.write("UNIMPL", "DB", "Unimplemented method Database.addPost(...)");
@@ -148,16 +172,19 @@ public class Database {
         Logger.write("UNIMPL", "DB", "Unimplemented method Database.addKey(...)");
     }
     
+    //remember to store the signature
     public void addClaim (Message claim) {
         //REPLACE ME
         Logger.write("UNIMPL", "DB", "Unimplemented method Database.addClaim(...)");
     }
     
+    //remember to store the signature
     public void addRevocation (Message revocation) {
         //REPLACE ME
         Logger.write("UNIMPL", "DB", "Unimplemented method Database.addRevocation(...)");
     }
     
+    //fuck the signature
     public void addPDATA (Message update) {
         //REPLACE ME
         Logger.write("UNIMPL", "DB", "Unimplemented method Database.addPDATA(...)");
@@ -169,32 +196,38 @@ public class Database {
         Logger.write("UNIMPL", "DB", "Unimplemented method Database.updatePDATA(...)");
     }
     
+    //Remember to store the signautre, create table sql may need updating
     public void addChat (Message chat) {
         //REPLACE ME
         Logger.write("UNIMPL", "DB", "Unimplemented method Database.addChat(...)");
     }
     
+    //fuck the signature
     public void addMessageToChat (Message msg) {
         //REPLACE ME
         Logger.write("UNIMPL", "DB", "Unimplemented method Database.addMessageToChat(...)");
     }
     
+    //Remember to store the signautre, create table sql may need updating
     /* If you can see an FPOST, it's a request to post it on your wall */
     public void addFPost (Message fpost) {
         //REPLACE ME
         Logger.write("UNIMPL", "DB", "Unimplemented method Database.addFPost(...)");
     }
     
+    //Remember to store the signautre, create table sql may need updating
     public void addComment (Message comment) {
         //REPLACE ME
         Logger.write("UNIMPL", "DB", "Unimplemented method Database.addComment(...)");
     }
     
+    //fuck the signature
     public void addLike (Message Like) {
         //REPLACE ME
         Logger.write("UNIMPL", "DB", "Unimplemented method Database.addLike(...)");
     }
     
+    //Remember to store the signautre, create table sql may need updating
     public void addEvent (Message event) {
         //REPLACE ME
         Logger.write("UNIMPL", "DB", "Unimplemented method Database.addEvent(...)");

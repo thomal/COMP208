@@ -53,6 +53,7 @@ the DB.
 package ballmerpeak.turtlenet.client;
 
 import ballmerpeak.turtlenet.shared.Message;
+import ballmerpeak.turtlenet.shared.Conversation;
 
 import com.google.gwt.core.client.*;
 import com.google.gwt.event.dom.client.*;
@@ -75,28 +76,24 @@ public class frontend implements EntryPoint {
      * place a bunch of panels on screen to create a view).
      */
 
-    // Create panels that have only one use
+
     FlexTable loginPanel = new FlexTable();
     HorizontalPanel settingsPanel = new HorizontalPanel();
-
-    // Create panels that display lists of things
     FlexTable friendsListPanel = new FlexTable();
     FlexTable conversationListPanel = new FlexTable();
     FlexTable myDetailsPanel = new FlexTable();
     FlexTable myDetailsPermissionsPanel = new FlexTable();
     FlexTable friendsDetailsPanel = new FlexTable();
-
-    // Reusable Panels
+    FlexTable conversationPanel = new FlexTable();
+    FlexTable newConversationPanel = new FlexTable();
     FlowPanel inputPanel = new FlowPanel();
     FlowPanel outputPanel = new FlowPanel();
     HorizontalPanel navigationPanel = new HorizontalPanel();
-
-    // Create panels that display controls for views
     FlowPanel commentsControlPanel = new FlowPanel();
     FlowPanel myWallControlPanel = new FlowPanel();
     FlowPanel friendsWallControlPanel = new FlowPanel();
     FlowPanel groupsControlPanel = new FlowPanel();
-    FlowPanel messagesControlPanel = new FlowPanel();
+    
 
     public void onModuleLoad() {
         /* Add handler for window closing */
@@ -130,9 +127,10 @@ public class frontend implements EntryPoint {
         inputPanelSetup();
         outputPanelSetup();
         myDetailsPanelSetup();
-        messagesControlPanelSetup();
+        conversationPanelSetup();
         commentsControlPanelSetup();
         myDetailsPermissionsPanelSetup();
+        newConversationPanelSetup();
         /*
          * "publicKey" here should be replaced with the key of the friend's 
          * details we want to look up
@@ -142,8 +140,14 @@ public class frontend implements EntryPoint {
         // Call method to load the initial login page
         loadLogin();
         
+        /* For now we can compromise and leave both of these enabled. That way
+         * the still works(or lets you enter anything as it does now) and I can
+         * see all of the panels without us contantly battling over which one
+         * is enabled
+         */
+        
         // Louis temp
-        //loadPanelDev();
+        loadPanelDev();
     }
 
     // #########################################################################
@@ -195,14 +199,14 @@ public class frontend implements EntryPoint {
     private void navigationPanelSetup() {
         // Create navigation links
         Anchor linkMyWall = new Anchor("My Wall");
-        Anchor linkMessages = new Anchor("Messages");
+        Anchor linkConversations = new Anchor("Messages");
         Anchor linkFriends = new Anchor("Friends");
         Anchor linkSettings = new Anchor("Settings");
         Anchor linkLogout = new Anchor("Logout");
 
         // Add links to navigation panel
         navigationPanel.add(linkMyWall);
-        navigationPanel.add(linkMessages);
+        navigationPanel.add(linkConversations);
         navigationPanel.add(linkFriends);
         navigationPanel.add(linkSettings);
         navigationPanel.add(linkLogout);
@@ -217,7 +221,7 @@ public class frontend implements EntryPoint {
             }
         });
         
-        linkMessages.addClickHandler(new ClickHandler() {
+        linkConversations.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
                     loadConversationList();
             }
@@ -289,42 +293,32 @@ public class frontend implements EntryPoint {
     }
 
     private void conversationListPanelSetup() {
-        
-        /*
-         * The number 10 in the following for loop should be replaced with the
-         * return from a method that queries the database to find out how many
-         * conversations the user is a part of
-         */
-        for (int i = 1; i <= 10; i++) {
-        
-            // TODO LUKETODO "Integer.toString(i)" should be replaced a call to
-            // a method that returns all of the conversations the user is part
-            // of(hopefully as a string). You can then use i to chose a conversation
-            // from the array. 
-            final String conversationID = Integer.toString(i);
-            
-            /*
-             * "Last Message Contents Goes Here" should be replaced by the first 30 characters
-             * of the last message in the conversation. Use conversationID to select 
-             * correct conversation. This should allow you to select the first 30 characters:             *
-             * if (string.length() > 30) string = string.substring(0, 30) + "...";
-             */             
-            Anchor linkConversation = new Anchor("Last Message Contents Goes Here");
-            conversationListPanel.setWidget(i, 0, linkConversation);
-            
-            // Add click handlers for anchors
-            linkConversation.addClickHandler(new ClickHandler() {
-                public void onClick(ClickEvent event) {
-                    loadConversation(conversationID);
+        turtlenet.getConversations(new AsyncCallback<Conversation[]>() {
+            Conversation[] result;
+            int i;
+            public void onFailure(Throwable caught) {
+                //TODO Error
+            }
+            public void onSuccess(Conversation[] _result) {
+                result = _result;
+                for (i = 0; i <= result.length; i++) {
+                    final String conversationID = result[i].signature;
+                    Anchor linkConversation = new Anchor(result[i].firstMessage);
+                    conversationListPanel.setWidget(i, 0, linkConversation);
+                    
+                    // Add click handlers for anchors
+                    linkConversation.addClickHandler(new ClickHandler() {
+                        public void onClick(ClickEvent event) {
+                            loadConversation(conversationID);
+                        }
+                    });
+                    
+                    Label conversationParticipants = new Label(result[i].concatNames());
+                    conversationListPanel.setWidget(i, 1, conversationParticipants);
                 }
-            });
-            
-            // TODO LUKETODO "First Name" + "Second Name" + "Third Name" should
-            // replaced by the names of the other people in the a conversation
-            // using conversationID to choose a conversation
-            Label conversationParticipants = new Label("First Name, " + "Second Name, " + "Third Name ");
-            conversationListPanel.setWidget(i, 1, conversationParticipants);
-        }
+            }
+        });
+        
         // Add style name for CSS
         conversationListPanel.addStyleName("gwt-conversation-list");
     }
@@ -707,19 +701,6 @@ public class frontend implements EntryPoint {
 
     }
 
-
-    private void messagesControlPanelSetup() {
-        // Create widgets
-
-        // Add widgets to panel
-
-        // Add style name for CSS
-        messagesControlPanel.addStyleName("gwt-messages-control");
-
-        // Add click handlers for anchors
-
-    }
-
     private void commentsControlPanelSetup() {
         // Create widgets
 
@@ -739,6 +720,73 @@ public class frontend implements EntryPoint {
 
         // Add style name for CSS
         settingsPanel.addStyleName("gwt-settings-panel");
+
+        // Add click handlers for anchors
+
+    }
+    
+    private void newConversationPanelSetup() {
+        final ListBox currentFriends = new ListBox();
+        currentFriends.setVisibleItemCount(10);
+        newConversationPanel.setWidget(0, 0, currentFriends);
+        
+        TextArea input = new TextArea();
+        input.setCharacterWidth(80);
+        input.setVisibleLines(10); 
+        newConversationPanel.setWidget(0, 1, input);
+        
+        final ListBox chooseFriend = new ListBox();
+        
+        // TODO LUKETODO 10 should be replaced with the number of friends the
+        // user has
+        for (int i = 0; i < 10; i++) {
+            // TODO LUKETODO "Friend's Key" should be replaced with a call to a
+            // method that returns the list of all of the users friends keys.
+            // You can then use i to select a key from the list
+            String friendKey = ("Friend's Key");
+            
+            // TODO LUKETODO "Friend's Name" should be replaced with a call to a
+            // method that returns the name of a friend when given their key.
+            // Give it friendKey.
+            chooseFriend.addItem("Friend's Name");
+            
+            chooseFriend.setValue(i, friendKey); 
+        }
+        chooseFriend.setVisibleItemCount(1);
+        
+        FlexTable subPanel = new FlexTable();
+        newConversationPanel.setWidget(1, 1, subPanel);
+        subPanel.setWidget(1, 0, new Label("Choose a friend: "));
+        subPanel.setWidget(1, 1, chooseFriend);
+        Button addFriend = new Button("Add to the conversation");
+        subPanel.setWidget(1, 2, addFriend);
+        addFriend.addClickHandler(new ClickHandler() {
+            public void onClick(ClickEvent event) {
+                currentFriends.addItem(chooseFriend.getItemText(chooseFriend.getSelectedIndex()));
+                
+                // TODO LUKETODO Add friend to the conversation using:                
+                // chooseFriend.getValue(chooseFriend.getSelectedIndex());
+                // This will give you a friends key. Problem is we've not
+                // created the conversation yet so where do we store this?
+                // I can't create an array because I don't know how many friends
+                // the user is going to add to the conversation.
+            }
+        });
+        
+        //send
+        //click handler for send
+
+        // Add style name for CSS
+        newConversationPanel.addStyleName("gwt-conversation");
+    }
+    
+     private void conversationPanelSetup() {
+        // Create widgets
+
+        // Add widgets to panel
+
+        // Add style name for CSS
+        conversationPanel.addStyleName("gwt-conversation");
 
         // Add click handlers for anchors
 
@@ -763,7 +811,8 @@ public class frontend implements EntryPoint {
         RootPanel.get().add(myWallControlPanel);
         RootPanel.get().add(friendsWallControlPanel);
         RootPanel.get().add(myDetailsPanel);
-        RootPanel.get().add(messagesControlPanel);
+        RootPanel.get().add(conversationPanel);
+        RootPanel.get().add(newConversationPanel);
         RootPanel.get().add(myDetailsPermissionsPanel);
         RootPanel.get().add(friendsListPanel);
     }
@@ -802,7 +851,11 @@ public class frontend implements EntryPoint {
     }
 
     private void loadConversationList() {
-        //TODO
+        conversationListPanelSetup();
+        
+        RootPanel.get().clear();
+        RootPanel.get().add(navigationPanel);
+        RootPanel.get().add(conversationListPanel);
     }
 
     private void loadConversation(String conversationID) {
