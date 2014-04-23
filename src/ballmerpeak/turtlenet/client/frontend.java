@@ -262,11 +262,14 @@ public class frontend implements EntryPoint {
         friendsListPanel.setWidget(1, 1, friendsKeyLabel);
     
         turtlenet.getCategoryMembers(currentGroupID, new AsyncCallback<String[][]>() {
+            String[][] result;
+            int i;
             public void onFailure(Throwable caught) {
                 //TODO Error
             }
-            public void onSuccess(String[][] result) {
-                for (int i = 0; i <= result.length; i++) {
+            public void onSuccess(String[][] _result) {
+                result = _result;
+                for (i = 0; i <= result.length; i++) {
                     //list names/keys
                     Anchor linkFriendsWall = new Anchor(result[i][0]);
                     friendsListPanel.setWidget((i + 1), 0, linkFriendsWall);
@@ -274,8 +277,8 @@ public class frontend implements EntryPoint {
                     //link names to walls
                     linkFriendsWall.addClickHandler(new ClickHandler() {
                         public void onClick(ClickEvent event) {
-                            //TODO loadFriendsWall(/*text in second column*/);
-                            // Do you mean result[i][1]?
+                            loadFriendsWall(result[i][1]);
+
                         }
                     });
                 }
@@ -354,7 +357,7 @@ public class frontend implements EntryPoint {
         myDetailsPanel.setWidget(0, 0, usernameLabel);
         
         final TextBox editUsername = new TextBox();
-        turtlenet.getUsername(new AsyncCallback<String>() {
+        turtlenet.getMyUsername(new AsyncCallback<String>() {
             public void onFailure(Throwable caught) {
                 //TODO error
             }
@@ -600,61 +603,71 @@ public class frontend implements EntryPoint {
         // Create widgets
         Label friendsDetailsUsernameTitle = new Label("Username:");
         friendsDetailsPanel.setWidget(0, 0, friendsDetailsUsernameTitle);
-
-        /*
-         * "tsmith1" should be replaced with a call to a method that returns the
-         * username of a friend when given a friend's key. Give it friendsDetailsKey.
-         */
-        Label friendsDetailsUsernameLabel = new Label("tsmith1");
-        friendsDetailsPanel.setWidget(0, 1, friendsDetailsUsernameLabel);
-
-
+        
         Label friendsDetailsNameTitle = new Label("Name:");
         friendsDetailsPanel.setWidget(1, 0, friendsDetailsNameTitle);
-
-        /*
-         * "Tom Smith" should be replaced with a call to a method that returns the
-         * name of a friend when given a friend's key. Give it friendsDetailsKey.
-         */
-        Label friendsDetailsNameLabel = new Label("Tom Smith");
-        friendsDetailsPanel.setWidget(1, 1, friendsDetailsNameLabel);
-
-
+        
         Label friendsDetailsBirthdayTitle = new Label("Birthday:");
         friendsDetailsPanel.setWidget(2, 0, friendsDetailsBirthdayTitle);
-
-        /*
-         * "01/01/1970" should be replaced with a call to a method that returns the
-         * birthday of a friend when given a friend's key. Give it friendsDetailsKey.
-         */
-        Label friendsDetailsBirthdayLabel = new Label("01/01/1970");
-        friendsDetailsPanel.setWidget(2, 1, friendsDetailsBirthdayLabel);
         
-
         Label friendsDetailsGenderTitle = new Label("Gender:");
         friendsDetailsPanel.setWidget(3, 0, friendsDetailsGenderTitle);
-
-        /*
-         * "Male" should be replaced with a call to a method that returns the
-         * gender of a friend when given a friend's key. Give it friendsDetailsKey.
-         */
-        Label friendsDetailsGenderLabel = new Label("Male");
-        friendsDetailsPanel.setWidget(3, 1, friendsDetailsGenderLabel);
-
-
+        
         Label friendsDetailsEmailTitle = new Label("Email:");
         friendsDetailsPanel.setWidget(4, 0, friendsDetailsEmailTitle);
-
-        /*
-         * "john@smith.com" should be replaced with a call to a method that returns the
-         * email of a friend when given a friend's key. Give it friendsDetailsKey.
-         */
-        Label friendsDetailsEmailLabel = new Label("john@smith.com");
-        friendsDetailsPanel.setWidget(4, 1, friendsDetailsEmailLabel);
-
-
+        
         Label friendsDetailsKeyTitle = new Label("Public Key:");
         friendsDetailsPanel.setWidget(5, 0, friendsDetailsKeyTitle);
+
+        turtlenet.getUsername(friendsDetailsKey, new AsyncCallback<String>() {
+            public void onFailure(Throwable caught) {
+                //TODO error
+            }
+            public void onSuccess(String result) {
+                Label friendsDetailsUsernameLabel = new Label(result);
+                friendsDetailsPanel.setWidget(0, 1, friendsDetailsUsernameLabel);
+            }
+        });
+
+        turtlenet.getPDATA("RealName", friendsDetailsKey, new AsyncCallback<String>() {
+            public void onFailure(Throwable caught) {
+                //TODO error
+            }
+            public void onSuccess(String result) {
+                Label friendsDetailsNameLabel = new Label(result);
+                friendsDetailsPanel.setWidget(1, 1, friendsDetailsNameLabel);
+            }
+        });
+        
+        turtlenet.getPDATA("DOB", friendsDetailsKey, new AsyncCallback<String>() {
+            public void onFailure(Throwable caught) {
+                //TODO error
+            }
+            public void onSuccess(String result) {
+                Label friendsDetailsBirthdayLabel = new Label(result);
+                friendsDetailsPanel.setWidget(2, 1, friendsDetailsBirthdayLabel);
+            }
+        });
+        
+        turtlenet.getPDATA("Gender", friendsDetailsKey, new AsyncCallback<String>() {
+            public void onFailure(Throwable caught) {
+                //TODO error
+            }
+            public void onSuccess(String result) {
+                Label friendsDetailsGenderLabel = new Label(result);
+                friendsDetailsPanel.setWidget(3, 1, friendsDetailsGenderLabel);
+            }
+        });
+
+        turtlenet.getPDATA("Email", friendsDetailsKey, new AsyncCallback<String>() {
+            public void onFailure(Throwable caught) {
+                //TODO error
+            }
+            public void onSuccess(String result) {
+                Label friendsDetailsEmailLabel = new Label(result);
+                friendsDetailsPanel.setWidget(4, 1, friendsDetailsEmailLabel);
+            }
+        });
 
         Label friendsDetailsKeyLabel = new Label(friendsDetailsKey);
         friendsDetailsPanel.setWidget(5, 1, friendsDetailsKeyLabel);
