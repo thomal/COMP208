@@ -40,9 +40,16 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
     }
     
     public String getUsername(String key) {
+        //TODO TurnetImpl remove this debug code
         String name;
         if ((name = c.db.getName(Crypto.decodeKey(key))) != null)
             return name;
+        else if (key.equals("falsekey1"))
+            return "aubri";
+        else if (key.equals("falsekey2"))
+            return "skandranon";
+        else if (key.equals("falsekey3"))
+            return "zhaneel";
         else
             return "<no username>";
     }
@@ -52,9 +59,16 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
     }
     
     public String getPDATA(String field, String key) {
+        //TODO TurnetImpl remove this debug code
         String value;
         if ((value = c.db.getPDATA(field, Crypto.decodeKey(key))) != null)
             return value;
+        else if (key.equals("falsekey1"))
+            return "aubri's " + field;
+        else if (key.equals("falsekey2"))
+            return "skandranon's " + field;
+        else if (key.equals("falsekey3"))
+            return "zhaneels's " + field;
         else
             return "<no value>";
     }
@@ -74,11 +88,11 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
             Logger.write("INFO", "TnImpl", "Returning false getCategoryMembers results");
             String[][] fakes = new String[3][2];
             fakes[0][0] = "aubri";
-            fakes[0][1] = "<not a key>";
+            fakes[0][1] = "<falsekey1>";
             fakes[1][0] = "skandranon";
-            fakes[1][1] = "<also not a key>";
+            fakes[1][1] = "<falsekey2>";
             fakes[2][0] = "zhaneel";
-            fakes[2][1] = "<certainly not a key>";
+            fakes[2][1] = "<falsekey3>";
             return fakes;
         }
     }
