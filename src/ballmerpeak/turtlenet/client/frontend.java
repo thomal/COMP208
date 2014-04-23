@@ -76,28 +76,24 @@ public class frontend implements EntryPoint {
      * place a bunch of panels on screen to create a view).
      */
 
-    // Create panels that have only one use
+
     FlexTable loginPanel = new FlexTable();
     HorizontalPanel settingsPanel = new HorizontalPanel();
-
-    // Create panels that display lists of things
     FlexTable friendsListPanel = new FlexTable();
     FlexTable conversationListPanel = new FlexTable();
     FlexTable myDetailsPanel = new FlexTable();
     FlexTable myDetailsPermissionsPanel = new FlexTable();
     FlexTable friendsDetailsPanel = new FlexTable();
-
-    // Reusable Panels
+    FlexTable conversationPanel = new FlexTable();
+    FlexTable newConversationPanel = new FlexTable();
     FlowPanel inputPanel = new FlowPanel();
     FlowPanel outputPanel = new FlowPanel();
     HorizontalPanel navigationPanel = new HorizontalPanel();
-
-    // Create panels that display controls for views
     FlowPanel commentsControlPanel = new FlowPanel();
     FlowPanel myWallControlPanel = new FlowPanel();
     FlowPanel friendsWallControlPanel = new FlowPanel();
     FlowPanel groupsControlPanel = new FlowPanel();
-    FlowPanel messagesControlPanel = new FlowPanel();
+    
 
     public void onModuleLoad() {
         /* Add handler for window closing */
@@ -131,9 +127,10 @@ public class frontend implements EntryPoint {
         inputPanelSetup();
         outputPanelSetup();
         myDetailsPanelSetup();
-        messagesControlPanelSetup();
+        conversationPanelSetup();
         commentsControlPanelSetup();
         myDetailsPermissionsPanelSetup();
+        newConversationPanelSetup();
         /*
          * "publicKey" here should be replaced with the key of the friend's 
          * details we want to look up
@@ -143,8 +140,14 @@ public class frontend implements EntryPoint {
         // Call method to load the initial login page
         loadLogin();
         
+        /* For now we can compromise and leave both of these enabled. That way
+         * the still works(or lets you enter anything as it does now) and I can
+         * see all of the panels without us contantly battling over which one
+         * is enabled
+         */
+        
         // Louis temp
-        //loadPanelDev();
+        loadPanelDev();
     }
 
     // #########################################################################
@@ -196,14 +199,14 @@ public class frontend implements EntryPoint {
     private void navigationPanelSetup() {
         // Create navigation links
         Anchor linkMyWall = new Anchor("My Wall");
-        Anchor linkMessages = new Anchor("Messages");
+        Anchor linkConversations = new Anchor("Messages");
         Anchor linkFriends = new Anchor("Friends");
         Anchor linkSettings = new Anchor("Settings");
         Anchor linkLogout = new Anchor("Logout");
 
         // Add links to navigation panel
         navigationPanel.add(linkMyWall);
-        navigationPanel.add(linkMessages);
+        navigationPanel.add(linkConversations);
         navigationPanel.add(linkFriends);
         navigationPanel.add(linkSettings);
         navigationPanel.add(linkLogout);
@@ -218,7 +221,7 @@ public class frontend implements EntryPoint {
             }
         });
         
-        linkMessages.addClickHandler(new ClickHandler() {
+        linkConversations.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
                     loadConversationList();
             }
@@ -698,19 +701,6 @@ public class frontend implements EntryPoint {
 
     }
 
-
-    private void messagesControlPanelSetup() {
-        // Create widgets
-
-        // Add widgets to panel
-
-        // Add style name for CSS
-        messagesControlPanel.addStyleName("gwt-messages-control");
-
-        // Add click handlers for anchors
-
-    }
-
     private void commentsControlPanelSetup() {
         // Create widgets
 
@@ -730,6 +720,56 @@ public class frontend implements EntryPoint {
 
         // Add style name for CSS
         settingsPanel.addStyleName("gwt-settings-panel");
+
+        // Add click handlers for anchors
+
+    }
+    
+    private void newConversationPanelSetup() {
+        TextArea input = new TextArea();
+        input.setCharacterWidth(80);
+        input.setVisibleLines(10); 
+        newConversationPanel.setWidget(0, 1, input);
+        
+        ListBox chooseFriend = new ListBox();
+        
+        // TODO LUKETODO 10 should be replaced with the number of friends the
+        // user has
+        for (int i = 0; i < 10; i++) {
+            // TODO LUKETODO "Friend's Key" should be replaced with a call to a
+            // method that returns the list of all of the users friends keys.
+            // You can then use i to select a key from the list
+            String friendKey = ("Friend's Key");
+            
+            // TODO LUKETODO "Friend's Name" should be replaced with a call to a
+            // method that returns the name of a friend when given their key.
+            // Give it friendKey.
+            chooseFriend.addItem("Friend's Name");
+            
+            chooseFriend.setValue(i, friendKey); 
+        }
+        
+        chooseFriend.setVisibleItemCount(1);
+        newConversationPanel.setWidget(1, 0, chooseFriend);
+    
+        //add friend button
+        //click handler for add friend button
+        //Label for add friend
+        
+        //send
+        //click handler for send
+
+        // Add style name for CSS
+        newConversationPanel.addStyleName("gwt-conversation");
+    }
+    
+     private void conversationPanelSetup() {
+        // Create widgets
+
+        // Add widgets to panel
+
+        // Add style name for CSS
+        conversationPanel.addStyleName("gwt-conversation");
 
         // Add click handlers for anchors
 
@@ -754,7 +794,8 @@ public class frontend implements EntryPoint {
         RootPanel.get().add(myWallControlPanel);
         RootPanel.get().add(friendsWallControlPanel);
         RootPanel.get().add(myDetailsPanel);
-        RootPanel.get().add(messagesControlPanel);
+        RootPanel.get().add(conversationPanel);
+        RootPanel.get().add(newConversationPanel);
         RootPanel.get().add(myDetailsPermissionsPanel);
         RootPanel.get().add(friendsListPanel);
     }
