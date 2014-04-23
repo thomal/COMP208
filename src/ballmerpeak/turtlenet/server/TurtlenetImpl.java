@@ -109,6 +109,41 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
         return convos;
     }
     
+    public String[][] getConversation (String sig) {
+        String[][] convo = c.db.getConversation(sig);
+        
+        if (convo == null) {
+            convo = new String[3][3];
+            if (sig.equals("<fakesig>")) {
+                convo[0][0] = "aubri";
+                convo[0][1] = "2310";
+                convo[0][2] = "hi skan";
+                
+                convo[1][0] = "skan";
+                convo[1][1] = "2311";
+                convo[1][2] = "hey, aubri!";
+                
+                convo[2][0] = "aubri";
+                convo[2][1] = "2311";
+                convo[2][2] = "where's zhaneel?";
+            } else if (sig.equals("<fakesig2>")) {
+                convo[0][0] = "skan";
+                convo[0][1] = "2312";
+                convo[0][2] = "yo, zhaneel, you here?";
+                
+                convo[1][0] = "zhaneel";
+                convo[1][1] = "2312";
+                convo[1][2] = "sup skan?";
+                
+                convo[2][0] = "skan";
+                convo[2][1] = "2313";
+                convo[2][2] = "aubri wants you";
+            }
+        }
+        
+        return convo;
+    }
+    
     public String[][] getCategoryMembers (String category) {
         PublicKey[] keys = c.db.getCategoryMembers(category);
         
