@@ -45,7 +45,7 @@ like the example above and have loads of one-line functions that just call the
 corresponding DB function. This sucks, but I can't see a way around it because
 the DB cannot be purged of GWT-incompatible code.
 
-Oh, and conversaions/posts/comments are identified by their signature. So when
+Oh, and conversations/posts/comments are identified by their signature. So when
 you like something then you pass the signature from whatever you're liking to
 the DB.
 */
@@ -219,7 +219,7 @@ public class frontend implements EntryPoint {
         
         linkMessages.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                    loadMessageList();
+                    loadConversationList();
             }
         });
         
@@ -290,65 +290,44 @@ public class frontend implements EntryPoint {
     }
 
     private void conversationListPanelSetup() {
-        // Column title for anchors linking to messages
-        Label messageRecievedFromLabel = new Label("Message recieved from");
-        messageRecievedFromLabel.getElement().getStyle().setFontWeight(FontWeight.BOLD);
-        messageRecievedFromLabel.getElement().getStyle().setProperty("paddingLeft" , "100px");
-        conversationListPanel.setWidget(0, 0, messageRecievedFromLabel);
-        
-        // Column title for labels outputing the date a message was recieved
-        Label messageRecievedOnLabel = new Label("Message recieved on");
-        messageRecievedOnLabel.getElement().getStyle().setFontWeight(FontWeight.BOLD);
-        conversationListPanel.setWidget(0, 1, messageRecievedOnLabel);
         
         /*
          * The number 10 in the following for loop should be replaced with the
          * return from a method that queries the database to find out how many
-         * messages have been sent to the user(every message ever if possible)
+         * conversations the user is a part of
          */
         for (int i = 1; i <= 10; i++) {
         
-            /*
-             * 'Integer.toString(i)' should be replaced by the ID of a message. 
-             * To find this call a method that returns the list of all
-             * of the messages a user has recieved(hopefully as an array) and 
-             * then use Variable i from the loop we are currently in to select 
-             * a message ID from the array
-             */
-            final String messageID = Integer.toString(i);
+            // TODO LUKETODO "Integer.toString(i)" should be replaced a call to
+            // a method that returns all of the conversations the user is part
+            // of(hopefully as a string). You can then use i to chose a conversation
+            // from the array. 
+            final String conversationID = Integer.toString(i);
             
             /*
-             * 'Integer.toString(i)' should be replaced by the ID of the friend
-             * who sent the message to the current user.
-             * To find this call a method that returns the ID of the user who
-             * sent a message when given the ID of that message. Give it messageID.
-             */
-            final String userID = Integer.toString(i);
-            
-            /*
-             * "Friend's Name" should be replaced with a call to a method that 
-             * returns a users name when given the ID of a user. Give it userID.
+             * "Last Message Contents Goes Here" should be replaced by the first 30 characters
+             * of the last message in the conversation. Use conversationID to select 
+             * correct conversation. This should allow you to select the first 30 characters:             *
+             * if (string.length() > 30) string = string.substring(0, 30) + "...";
              */             
-            Anchor linkMessageContents = new Anchor("Friend's Name");
-            conversationListPanel.setWidget(i, 0, linkMessageContents);
-            
-            /*
-             * '01/01/1970' should be replaced with a call to a method that
-             * returns the date a message was recieved when given the ID of a message.
-             * Give it messageID.
-             */
-            Label displayMessageDate = new Label("01/01/1970 @ 00:00");
-            conversationListPanel.setWidget(i, 1, displayMessageDate);
+            Anchor linkConversation = new Anchor("Last Message Contents Goes Here");
+            conversationListPanel.setWidget(i, 0, linkConversation);
             
             // Add click handlers for anchors
-            linkMessageContents.addClickHandler(new ClickHandler() {
+            linkConversation.addClickHandler(new ClickHandler() {
                 public void onClick(ClickEvent event) {
-                    loadMessageContents(messageID);
+                    loadConversation(conversationID);
                 }
             });
+            
+            // TODO LUKETODO "First Name" + "Second Name" + "Third Name" should
+            // replaced by the names of the other people in the a conversation
+            // using conversationID to choose a conversation
+            Label conversationParticipants = new Label("First Name" + "Second Name" + "Third Name");
+            conversationListPanel.setWidget(i, 1, conversationParticipants);
         }
         // Add style name for CSS
-        conversationListPanel.addStyleName("gwt-message-list");
+        conversationListPanel.addStyleName("gwt-conversation-list");
     }
 
     private void myDetailsPanelSetup() {
@@ -831,11 +810,11 @@ public class frontend implements EntryPoint {
         //TODO
     }
 
-    private void loadMessageList() {
+    private void loadConversationList() {
         //TODO
     }
 
-    private void loadMessageContents(String messageID) {
+    private void loadConversation(String conversationID) {
         //TODO
     }
 
