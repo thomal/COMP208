@@ -81,7 +81,7 @@ public class frontend implements EntryPoint {
 
     // Create panels that display lists of things
     FlexTable friendsListPanel = new FlexTable();
-    FlexTable messageListPanel = new FlexTable();
+    FlexTable conversationListPanel = new FlexTable();
     FlexTable myDetailsPanel = new FlexTable();
     FlexTable myDetailsPermissionsPanel = new FlexTable();
     FlexTable friendsDetailsPanel = new FlexTable();
@@ -125,7 +125,7 @@ public class frontend implements EntryPoint {
         myWallControlPanelSetup();
         friendsWallControlPanelSetup();
         settingsPanelSetup();
-        messageListPanelSetup();
+        conversationListPanelSetup();
         myDetailsPanelSetup();
         inputPanelSetup();
         outputPanelSetup();
@@ -288,17 +288,17 @@ public class frontend implements EntryPoint {
         friendsListPanel.addStyleName("gwt-friends-list");
     }
 
-    private void messageListPanelSetup() {
+    private void conversationListPanelSetup() {
         // Column title for anchors linking to messages
         Label messageRecievedFromLabel = new Label("Message recieved from");
         messageRecievedFromLabel.getElement().getStyle().setFontWeight(FontWeight.BOLD);
         messageRecievedFromLabel.getElement().getStyle().setProperty("paddingLeft" , "100px");
-        messageListPanel.setWidget(0, 0, messageRecievedFromLabel);
+        conversationListPanel.setWidget(0, 0, messageRecievedFromLabel);
         
         // Column title for labels outputing the date a message was recieved
         Label messageRecievedOnLabel = new Label("Message recieved on");
         messageRecievedOnLabel.getElement().getStyle().setFontWeight(FontWeight.BOLD);
-        messageListPanel.setWidget(0, 1, messageRecievedOnLabel);
+        conversationListPanel.setWidget(0, 1, messageRecievedOnLabel);
         
         /*
          * The number 10 in the following for loop should be replaced with the
@@ -329,7 +329,7 @@ public class frontend implements EntryPoint {
              * returns a users name when given the ID of a user. Give it userID.
              */             
             Anchor linkMessageContents = new Anchor("Friend's Name");
-            messageListPanel.setWidget(i, 0, linkMessageContents);
+            conversationListPanel.setWidget(i, 0, linkMessageContents);
             
             /*
              * '01/01/1970' should be replaced with a call to a method that
@@ -337,7 +337,7 @@ public class frontend implements EntryPoint {
              * Give it messageID.
              */
             Label displayMessageDate = new Label("01/01/1970 @ 00:00");
-            messageListPanel.setWidget(i, 1, displayMessageDate);
+            conversationListPanel.setWidget(i, 1, displayMessageDate);
             
             // Add click handlers for anchors
             linkMessageContents.addClickHandler(new ClickHandler() {
@@ -347,7 +347,7 @@ public class frontend implements EntryPoint {
             });
         }
         // Add style name for CSS
-        messageListPanel.addStyleName("gwt-message-list");
+        conversationListPanel.addStyleName("gwt-message-list");
     }
 
     private void myDetailsPanelSetup() {
@@ -365,12 +365,13 @@ public class frontend implements EntryPoint {
             }
         });
         
-        // TODO LOUIS > ADD A LABEL TO DISPLAY ERRORS
-        
         myDetailsPanel.setWidget(0, 1, editUsername);
         
         Button saveUsername = new Button("Save Username");
         myDetailsPanel.setWidget(0, 2, saveUsername);
+        
+        final Label editUsernameLabel = new Label();
+        myDetailsPanel.setWidget(0, 3, editUsernameLabel);
         
         saveUsername.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
@@ -380,9 +381,9 @@ public class frontend implements EntryPoint {
                      }
                      public void onSuccess(String result) {
                          if (result.equals("success")) {
-                             //TODO Display success
+                             editUsernameLabel.setText("Username saved");
                          } else if (result.equals("failure")) {
-                             //TODO Username taken
+                             editUsernameLabel.setText("Username already taken");
                          }
                      }
                  });
@@ -409,6 +410,9 @@ public class frontend implements EntryPoint {
         Button saveName = new Button("Save Name");
         myDetailsPanel.setWidget(1, 2, saveName);
         
+        final Label editNameLabel = new Label();
+        myDetailsPanel.setWidget(1, 3, editNameLabel);
+        
         saveName.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
                 turtlenet.updatePDATA("RealName", editName.getText(), new AsyncCallback<String>() {
@@ -417,17 +421,14 @@ public class frontend implements EntryPoint {
                      }
                      public void onSuccess(String result) {
                          if (result.equals("success")) {
-                             //TODO Display success
+                             editNameLabel.setText("Name saved");
                          } else if (result.equals("failure")) {
-                             //TODO
+                             editNameLabel.setText("Failed to save name");
                          }
                      }
                  });
             }
-        });
-        
-        // TODO LOUIS > ADD A LABEL TO DISPLAY ERRORS        
-        
+        });        
         
         // Create widgets relating to birthday
         Label birthdayLabel = new Label("Birthday:");
@@ -447,6 +448,9 @@ public class frontend implements EntryPoint {
         Button saveBirthday = new Button("Save Birthday");
         myDetailsPanel.setWidget(2, 2, saveBirthday);
         
+        final Label editBirthdayLabel = new Label();
+        myDetailsPanel.setWidget(2, 3, editBirthdayLabel);
+        
         saveBirthday.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
                 turtlenet.updatePDATA("DOB", editBirthday.getText(), new AsyncCallback<String>() {
@@ -455,16 +459,14 @@ public class frontend implements EntryPoint {
                      }
                      public void onSuccess(String result) {
                          if (result.equals("success")) {
-                             //TODO Display success
+                             editBirthdayLabel.setText("Birthday saved");
                          } else if (result.equals("failure")) {
-                             //TODO
+                             editBirthdayLabel.setText("Failed to save birthday");
                          }
                      }
                  });
             }
         });
-
-        // TODO LOUIS > ADD A LABEL TO DISPLAY ERRORS
 
         // Create widgets relating to gender
         // Gender shouldn't be chosen from a list. The user should be able to 
@@ -487,6 +489,9 @@ public class frontend implements EntryPoint {
         Button saveGender = new Button("Save Gender");
         myDetailsPanel.setWidget(3, 2, saveGender);
         
+        final Label editGenderLabel = new Label();
+        myDetailsPanel.setWidget(3, 3, editGenderLabel);
+        
         saveGender.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
                 turtlenet.updatePDATA("Gender", editGender.getText(), new AsyncCallback<String>() {
@@ -495,19 +500,17 @@ public class frontend implements EntryPoint {
                      }
                      public void onSuccess(String result) {
                          if (result.equals("success")) {
-                             //TODO Display success
+                             editGenderLabel.setText("Gender saved");
                          } else if (result.equals("failure")) {
-                             //TODO
+                             editGenderLabel.setText("Failed to save gender");
                          }
                      }
                  });
             }
         });
         
-        // TODO LOUIS > ADD A LABEL TO DISPLAY ERRORS    
-        
         // Create widgets relating to email
-        Label emailLabel = new Label("Email:");
+        final Label emailLabel = new Label("Email:");
         myDetailsPanel.setWidget(4, 0, emailLabel);
         
         final TextBox editEmail = new TextBox();
@@ -524,6 +527,9 @@ public class frontend implements EntryPoint {
         Button saveEmail = new Button("Save Email");
         myDetailsPanel.setWidget(4, 2, saveEmail);
         
+        final Label editEmailLabel = new Label();
+        myDetailsPanel.setWidget(4, 3, editEmailLabel);
+        
         saveEmail.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
                 turtlenet.updatePDATA("Email", editEmail.getText(), new AsyncCallback<String>() {
@@ -532,18 +538,14 @@ public class frontend implements EntryPoint {
                      }
                      public void onSuccess(String result) {
                          if (result.equals("success")) {
-                             //TODO Display success
+                             editEmailLabel.setText("Email saved");
                          } else if (result.equals("failure")) {
-                             //TODO
+                            editEmailLabel.setText("Failed to save email");
                          }
                      }
                  });
             }
         });
-        
-        // TODO LOUIS > ADD A LABEL TO DISPLAY ERRORS
-        
-        // TODO LOUISTODO Add link to myDetailsPermissionsPanel
         
         // Add style name for CSS
         myDetailsPanel.addStyleName("gwt-my-details");
@@ -773,7 +775,7 @@ public class frontend implements EntryPoint {
         // Add all panels to page
         RootPanel.get().add(loginPanel);
         RootPanel.get().add(settingsPanel);
-        RootPanel.get().add(messageListPanel);
+        RootPanel.get().add(conversationListPanel);
         RootPanel.get().add(myDetailsPanel);
         RootPanel.get().add(inputPanel);
         RootPanel.get().add(outputPanel);
