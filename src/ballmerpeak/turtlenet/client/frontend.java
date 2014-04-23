@@ -725,73 +725,91 @@ public class frontend implements EntryPoint {
 
     }
     
+    //must be global because it must be referenced from callback
+    private TextArea newConvoInput = new TextArea();
     private void newConversationPanelSetup() {
         final ListBox currentFriends = new ListBox();
         currentFriends.setVisibleItemCount(11);
         currentFriends.setWidth("150px");
         newConversationPanel.setWidget(0, 0, currentFriends);
         
-        TextArea input = new TextArea();
-        input.setCharacterWidth(80);
-        input.setVisibleLines(10); 
-        newConversationPanel.setWidget(0, 1, input);
+        newConvoInput.setCharacterWidth(80);
+        newConvoInput.setVisibleLines(10); 
+        newConversationPanel.setWidget(0, 1, newConvoInput);
         
         final ListBox chooseFriend = new ListBox();
         
-        // TODO LUKETODO 10 should be replaced with the number of friends the
-        // user has
-        for (int i = 0; i < 10; i++) {
-        
-            // TODO LUKETODO "Friend's Key" should be replaced with a call to a
-            // method that returns the list of all of the users friends keys.
-            // You can then use i to select a key from the list
-            String friendKey = ("Friend's Key");
-            
-            // TODO LUKETODO "Friend's Name" should be replaced with a call to a
-            // method that returns the name of a friend when given their key.
-            // Give it friendKey.
-            chooseFriend.addItem("Friend's Name");
-            
-            chooseFriend.setValue(i, friendKey); 
-        }
-        chooseFriend.setVisibleItemCount(1);
-        
-        FlexTable subPanel = new FlexTable();
-        newConversationPanel.setWidget(1, 1, subPanel);
-        subPanel.setWidget(1, 0, new Label("Choose a friend: "));
-        subPanel.setWidget(1, 1, chooseFriend);
-        Button addFriend = new Button("Add to the conversation");
-        subPanel.setWidget(1, 2, addFriend);
-        addFriend.addClickHandler(new ClickHandler() {
-            public void onClick(ClickEvent event) {
-                currentFriends.addItem(chooseFriend.getItemText(chooseFriend.getSelectedIndex()));
+        turtlenet.getPeople(new AsyncCallback<String[][]>() {
+            String[][] result;
+            String[] memberKeys;
+            int i;
+            public void onFailure(Throwable caught) {
+                //TODO Error
+            }
+            public void onSuccess(String[][] _result) {
+                result = _result;
+                for (i = 0; i <= result.length; i++) {
+                    //fill combo box
+                    String friendKey = (result[i][1]);
+                    chooseFriend.addItem(result[i][0]);
+                    chooseFriend.setValue(i, friendKey);
+                    chooseFriend.setVisibleItemCount(1);
+                }
                 
-                currentFriends.setValue((currentFriends.getItemCount() - 1), chooseFriend.getValue(chooseFriend.getSelectedIndex()));
+                FlexTable subPanel = new FlexTable();
+                newConversationPanel.setWidget(1, 1, subPanel);
+                subPanel.setWidget(1, 0, new Label("Choose a friend: "));
+                subPanel.setWidget(1, 1, chooseFriend);
+                Button addFriend = new Button("Add to the conversation");
+                subPanel.setWidget(1, 2, addFriend);
+                addFriend.addClickHandler(new ClickHandler() {
+                    public void onClick(ClickEvent event) {
+                        currentFriends.addItem(chooseFriend.getItemText(chooseFriend.getSelectedIndex()));
+                        currentFriends.setValue((currentFriends.getItemCount() - 1), chooseFriend.getValue(chooseFriend.getSelectedIndex()));
+                    }
+                });
+                
+                Button send = new Button("Send");
+                newConversationPanel.setWidget(1, 2, send);
+                
+                memberKeys = new String[currentFriends.getItemCount()];
+                for (int i = 0; i < currentFriends.getItemCount(); i++) {
+                    memberKeys[i] = currentFriends.getValue(i);
+                }
+                
+                send.addClickHandler(new ClickHandler() {
+                    String[] createChatReturn;
+                    public void onClick(ClickEvent event) {
+                        turtlenet.createCHAT(memberKeys, new AsyncCallback<String[]>() {
+                            int i;
+                            public void onFailure(Throwable caught) {
+                                //TODO Error
+                            }
+                            public void onSuccess(String[] _ret) {
+                                createChatReturn = _ret;
+                                if (createChatReturn[0].equals("success")) {
+                                    turtlenet.addMessageToCHAT(newConvoInput.getText(), createChatReturn[1], new AsyncCallback<String>() {
+                                        public void onFailure(Throwable caught) {
+                                            //TODO Error
+                                        }
+                                        public void onSuccess(String success) {
+                                            if (success.equals("success")) {
+                                                loadConversation(createChatReturn[1]);
+                                            } else {
+                                                //TODO Error
+                                            }
+                                        }
+                                    });
+                                } else {
+                                    //TODO Error
+                                }
+                            }
+                        });
+                    }
+                });
             }
         });
         
-        Button send = new Button("Send");
-        newConversationPanel.setWidget(1, 2, send);
-        
-        send.addClickHandler(new ClickHandler() {
-            public void onClick(ClickEvent event) {
-                // TODO LUKETODO Add new conversation to database. 
-                // Use input.getText() to get the contents of the first message
-                // The following will give the keys of all of the friends the
-                // user has added to the conversation:
-                /*
-                    for (int i = 0; i < currentFriends.getItemCount; i++) {
-                        currentFriends.getValue(i);
-                    } 
-                */
-                
-                
-                // TODO LUKETODO conversationID should be replaced with the ID
-                // of the new conversation we have just created.
-                loadConversation("conversationID");
-            }
-        });
-
         // Add style name for CSS
         newConversationPanel.addStyleName("gwt-conversation");
     }

@@ -14,6 +14,7 @@ public interface TurtlenetAsync {
     void getPDATA    (String field, String pk, AsyncCallback<String> callback);
     void getMyPDATA  (String pk, AsyncCallback<String> callback);
     
+    void getPeople(AsyncCallback<String[][]> callback);
     void getCategories(AsyncCallback<String[][]> callback);
     void getCategoryMembers(String category, AsyncCallback<String[][]> callback);
     
@@ -22,5 +23,9 @@ public interface TurtlenetAsync {
     //Profile Data
     void claimUsername(String uname, AsyncCallback<String> callback);
     void updatePDATA(String field, String value, AsyncCallback<String> callback);
-    void updatePDATApermission(String category, boolean value, AsyncCallback<String> callback); 
+    void updatePDATApermission(String category, boolean value, AsyncCallback<String> callback);
+    
+    //Posting
+    void createCHAT(String[] keys, AsyncCallback<String[]> callback);
+    void addMessageToCHAT(String text, String sig, AsyncCallback<String> callback);
 }
