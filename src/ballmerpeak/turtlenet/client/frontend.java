@@ -53,6 +53,7 @@ the DB.
 package ballmerpeak.turtlenet.client;
 
 import ballmerpeak.turtlenet.shared.Message;
+import ballmerpeak.turtlenet.shared.Conversation;
 
 import com.google.gwt.core.client.*;
 import com.google.gwt.event.dom.client.*;
@@ -289,42 +290,32 @@ public class frontend implements EntryPoint {
     }
 
     private void conversationListPanelSetup() {
-        
-        /*
-         * The number 10 in the following for loop should be replaced with the
-         * return from a method that queries the database to find out how many
-         * conversations the user is a part of
-         */
-        for (int i = 1; i <= 10; i++) {
-        
-            // TODO LUKETODO "Integer.toString(i)" should be replaced a call to
-            // a method that returns all of the conversations the user is part
-            // of(hopefully as a string). You can then use i to chose a conversation
-            // from the array. 
-            final String conversationID = Integer.toString(i);
-            
-            /*
-             * "Last Message Contents Goes Here" should be replaced by the first 30 characters
-             * of the last message in the conversation. Use conversationID to select 
-             * correct conversation. This should allow you to select the first 30 characters:             *
-             * if (string.length() > 30) string = string.substring(0, 30) + "...";
-             */             
-            Anchor linkConversation = new Anchor("Last Message Contents Goes Here");
-            conversationListPanel.setWidget(i, 0, linkConversation);
-            
-            // Add click handlers for anchors
-            linkConversation.addClickHandler(new ClickHandler() {
-                public void onClick(ClickEvent event) {
-                    loadConversation(conversationID);
+        turtlenet.getConversations(new AsyncCallback<Conversation[]>() {
+            Conversation[] result;
+            int i;
+            public void onFailure(Throwable caught) {
+                //TODO Error
+            }
+            public void onSuccess(Conversation[] _result) {
+                result = _result;
+                for (i = 0; i <= result.length; i++) {
+                    final String conversationID = result[i].signature;
+                    Anchor linkConversation = new Anchor(result[i].firstMessage);
+                    conversationListPanel.setWidget(i, 0, linkConversation);
+                    
+                    // Add click handlers for anchors
+                    linkConversation.addClickHandler(new ClickHandler() {
+                        public void onClick(ClickEvent event) {
+                            loadConversation(conversationID);
+                        }
+                    });
+                    
+                    Label conversationParticipants = new Label(result[i].concatNames());
+                    conversationListPanel.setWidget(i, 1, conversationParticipants);
                 }
-            });
-            
-            // TODO LUKETODO "First Name" + "Second Name" + "Third Name" should
-            // replaced by the names of the other people in the a conversation
-            // using conversationID to choose a conversation
-            Label conversationParticipants = new Label("First Name, " + "Second Name, " + "Third Name ");
-            conversationListPanel.setWidget(i, 1, conversationParticipants);
-        }
+            }
+        });
+        
         // Add style name for CSS
         conversationListPanel.addStyleName("gwt-conversation-list");
     }
@@ -802,7 +793,11 @@ public class frontend implements EntryPoint {
     }
 
     private void loadConversationList() {
-        //TODO
+        conversationListPanelSetup();
+        
+        RootPanel.get().clear();
+        RootPanel.get().add(navigationPanel);
+        RootPanel.get().add(conversationListPanel);
     }
 
     private void loadConversation(String conversationID) {

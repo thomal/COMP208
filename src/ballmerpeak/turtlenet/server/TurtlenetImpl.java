@@ -7,6 +7,7 @@ import java.security.*;
 import ballmerpeak.turtlenet.server.TNClient;
 import ballmerpeak.turtlenet.server.MessageFactoryImpl;
 import ballmerpeak.turtlenet.shared.Message;
+import ballmerpeak.turtlenet.shared.Conversation;
 
 @SuppressWarnings("serial")
 public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
@@ -81,6 +82,25 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
             categories[0][1] = "false";
         }
         return categories;
+    }
+    
+    public Conversation[] getConversations () {
+        //TODO TurnetImpl remove this debug code
+        Conversation[] convos = c.db.getConversations();
+        
+        if (convos == null) {
+            Logger.write("INFO", "TnImpl", "Returning false getConversations results");
+            String[] users = {"aubri", "skandranon"};
+            String[] users2 = {"zhaneel", "skandranon"};
+            String[] keys = {"<falsekey1>", "<falsekey2>"};
+            String[] keys2 = {"<falsekey3>", "<falsekey2>"};
+        
+            convos = new Conversation[2];
+            convos[0] = new Conversation("<fakesig>", "<faketime>", "first message", users, keys);
+            convos[1] = new Conversation("<fakesig2>", "<faketime2>", "another message", users2, keys2);
+        }
+        
+        return convos;
     }
     
     public String[][] getCategoryMembers (String category) {

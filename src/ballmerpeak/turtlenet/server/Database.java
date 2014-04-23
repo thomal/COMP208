@@ -1,6 +1,7 @@
 package ballmerpeak.turtlenet.server;
 
 import ballmerpeak.turtlenet.shared.Message;
+import ballmerpeak.turtlenet.shared.Conversation;
 import java.security.*;
 import java.sql.*;
 import java.security.*;
@@ -106,6 +107,22 @@ public class Database {
         return null;
     }
     
+    //Return all conversations
+    public Conversation[] getConversations () {
+        //REPLACE ME
+        Logger.write("UNIMPL", "DB", "Unimplemented method Database.getConversations(...)");
+        return null;
+    }
+    
+    //Return all messages in a conversation
+    //{{username, time, msg}, {username, time, msg}, etc.}
+    //Please order it so that element 0 is the oldest message
+    public String[][] getConversation (String signature) {
+        //REPLACE ME
+        Logger.write("UNIMPL", "DB", "Unimplemented method Database.getConversation(...)");
+        return null;
+    }
+    
     public PublicKey[] getKey (String name) {
         //REPLACE ME
         Logger.write("UNIMPL", "DB", "Unimplemented method Database.getKey(...)");
@@ -113,7 +130,7 @@ public class Database {
     }
     
     //Return the name of each member and if it can see your profile info
-    //In this format: {{"friends", "false"}, {"family", "true"}}
+    //In this format: {{"friends", "false"}, {"family", "true"}, etc.}
     public String[][] getCategories () {
         Logger.write("UNIMPL", "DB", "Unimplemented method Database.getCategories()");
         return null;
