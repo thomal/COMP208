@@ -570,7 +570,7 @@ public class frontend implements EntryPoint {
             }
         });
         
-        // TODO LOUISTODO Add link to myDetailsPanel
+        // TODO LOUISTODO Add link to myDetailsPanel (maybe)
         myDetailsPermissionsPanel.addStyleName("gwt-my-details-permissions");
     }
     
@@ -781,9 +781,8 @@ public class frontend implements EntryPoint {
                     }
                 });
                 
-                //TODO send button in wrong place
                 Button send = new Button("Send");
-                newConversationPanel.setWidget(1, 2, send);
+                newConversationPanel.setWidget(0, 2, send);
                 
                 memberKeys = new String[currentFriends.getItemCount()];
                 for (int i = 0; i < currentFriends.getItemCount(); i++) {
