@@ -68,6 +68,13 @@ public class frontend implements EntryPoint {
     private final TurtlenetAsync turtlenet = GWT.create(Turtlenet.class);
     //private final TurtlenetAsync msgfactory = GWT.create(MessageFactory.class);
 
+    /*
+     * As horrible as it is all panels need to be created here so that they can
+     * be accessed by by setup methods(which setup the panel in a particular way
+     * for the current use) and load methods(which call several setup methods to
+     * place a bunch of panels on screen to create a view).
+     */
+
     // Create panels that have only one use
     FlexTable loginPanel = new FlexTable();
     HorizontalPanel settingsPanel = new HorizontalPanel();
@@ -76,6 +83,7 @@ public class frontend implements EntryPoint {
     FlexTable friendsListPanel = new FlexTable();
     FlexTable messageListPanel = new FlexTable();
     FlexTable myDetailsPanel = new FlexTable();
+    FlexTable myDetailsPermissionsPanel = new FlexTable();
     FlexTable friendsDetailsPanel = new FlexTable();
 
     // Reusable Panels
@@ -106,7 +114,12 @@ public class frontend implements EntryPoint {
         });
 
 
-        //Call methods to set up panels
+        // Call methods to set up panels
+        // THIS IS TEMPORARY > Setup methods should be called by a view constructor
+        // This just makes creating the panels easy for now. I think using setup in
+        // the names was a confusing mistake. Setup doesnt mean it should only happen
+        // once at the start. Each panel should be 'set up' appropriately each time we 
+        // want to use it
         loginPanelSetup();
         navigationPanelSetup();
         myWallControlPanelSetup();
@@ -119,6 +132,7 @@ public class frontend implements EntryPoint {
         myDetailsPanelSetup();
         messagesControlPanelSetup();
         commentsControlPanelSetup();
+        myDetailsPermissionsPanelSetup();
         /*
          * "publicKey" here should be replaced with the key of the friend's 
          * details we want to look up
@@ -126,7 +140,10 @@ public class frontend implements EntryPoint {
         friendsDetailsPanelSetup("publicKey");
 
         // Call method to load the initial login page
-        loadLogin();
+        //loadLogin();
+        
+        // Louis temp
+        loadPanelDev();
     }
 
     // #########################################################################
@@ -244,8 +261,7 @@ public class frontend implements EntryPoint {
         friendsKeyLabel.getElement().getStyle().setFontWeight(FontWeight.BOLD);
         friendsListPanel.setWidget(1, 1, friendsKeyLabel);
     
-        String currentGroup = "all"; //TODO get this value from a textbox
-        turtlenet.getCategoryMembers(currentGroup, new AsyncCallback<String[][]>() {
+        turtlenet.getCategoryMembers(currentGroupID, new AsyncCallback<String[][]>() {
             public void onFailure(Throwable caught) {
                 //TODO Error
             }
@@ -259,6 +275,7 @@ public class frontend implements EntryPoint {
                     linkFriendsWall.addClickHandler(new ClickHandler() {
                         public void onClick(ClickEvent event) {
                             //TODO loadFriendsWall(/*text in second column*/);
+                            // Do you mean result[i][1]?
                         }
                     });
                 }
@@ -345,7 +362,8 @@ public class frontend implements EntryPoint {
                 editUsername.setText(result);
             }
         });
-         
+        
+        // TODO LOUIS > ADD A LABEL TO DISPLAY ERRORS
         
         myDetailsPanel.setWidget(0, 1, editUsername);
         
@@ -368,6 +386,8 @@ public class frontend implements EntryPoint {
                  });
             }
         });
+        
+        // TODO LOUIS > ADD A LABEL TO DISPLAY ERRORS
         
         // Create widgets relating to name
         Label nameLabel = new Label("Name:");
@@ -402,7 +422,9 @@ public class frontend implements EntryPoint {
                      }
                  });
             }
-        });        
+        });
+        
+        // TODO LOUIS > ADD A LABEL TO DISPLAY ERRORS        
         
         
         // Create widgets relating to birthday
@@ -440,6 +462,7 @@ public class frontend implements EntryPoint {
             }
         });
 
+        // TODO LOUIS > ADD A LABEL TO DISPLAY ERRORS
 
         // Create widgets relating to gender
         // Gender shouldn't be chosen from a list. The user should be able to 
@@ -477,7 +500,9 @@ public class frontend implements EntryPoint {
                      }
                  });
             }
-        });    
+        });
+        
+        // TODO LOUIS > ADD A LABEL TO DISPLAY ERRORS    
         
         // Create widgets relating to email
         Label emailLabel = new Label("Email:");
@@ -514,8 +539,61 @@ public class frontend implements EntryPoint {
             }
         });
         
+        // TODO LOUIS > ADD A LABEL TO DISPLAY ERRORS
+        
+        // TODO LOUISTODO Add link to myDetailsPermissionsPanel
+        
         // Add style name for CSS
         myDetailsPanel.addStyleName("gwt-my-details");
+    }
+    
+    private void myDetailsPermissionsPanelSetup() {
+        
+        Label myDetailsPermissionsLabel = new Label("Select which groups can view your details");
+        myDetailsPermissionsLabel.getElement().getStyle().setFontWeight(FontWeight.BOLD);
+        myDetailsPermissionsPanel.setWidget(0, 0, myDetailsPermissionsLabel); 
+        
+        // TODO LUKETODO '10' should be replaced with a call to a method which
+        // returns a list of all of the users groups(hopefully as an array). You
+        // can then use the size of this array to set the length of the loop
+        for (int i = 0; i < 10; i++) {
+            
+            // TODO LUKETODO "groupName" should be replaced with a call to a method which
+            // returns a list of all of the users groups(hopefully as an array).
+            // Use i to select a group from the array. 
+            final CheckBox groupCheckBox = new CheckBox("groupName");
+            myDetailsPermissionsPanel.setWidget((i + 1), 0, groupCheckBox); 
+            
+            
+            // TODO LUKETODO 'groupHasPermission' needs to be replace with a call
+            // to a method that takes the name of a group and tells us if the user 
+            // has already granted a group permission to see their details. 
+            // Give it groupCheckBox.getText()
+            /*            
+            if(groupHasPermission = true) {
+                groupCheckBox.setValue(true);
+            } else {
+                groupCheckBox.setValue(false);
+            }
+            */
+            
+            groupCheckBox.addClickHandler(new ClickHandler() {
+                public void onClick(ClickEvent event) {
+                    
+                    // TODO LUKETODO The value returned by 'groupCheckBox.getValue();'
+                    // should be boolean. This value needs to be added to the database
+                    // to give or revoke a groups ability to view your details.
+                    // groupCheckBox.getText() can be used to find out which 
+                    // group we are dealing with and thus where to store the boolean value
+                    groupCheckBox.getValue();
+                    
+                }
+            });
+            
+            // TODO LOUISTODO Add link to myDetailsPanel
+            
+            myDetailsPermissionsPanel.addStyleName("gwt-my-details-permissions");
+        }
     }
     
     private void friendsDetailsPanelSetup(String friendsDetailsKey) {
@@ -703,7 +781,8 @@ public class frontend implements EntryPoint {
         RootPanel.get().add(friendsWallControlPanel);
         RootPanel.get().add(myDetailsPanel);
         RootPanel.get().add(messagesControlPanel);
-        loadFriendsList("All");
+        RootPanel.get().add(myDetailsPermissionsPanel);
+        RootPanel.get().add(friendsListPanel);
     }
 
     private void loadLogin() {
