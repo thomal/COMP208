@@ -371,7 +371,7 @@ public class frontend implements EntryPoint {
         Button saveUsername = new Button("Save Username");
         myDetailsPanel.setWidget(0, 2, saveUsername);
         
-        Label editUsernameLabel = new Label();
+        final Label editUsernameLabel = new Label();
         myDetailsPanel.setWidget(0, 3, editUsernameLabel);
         
         saveUsername.addClickHandler(new ClickHandler() {
@@ -411,7 +411,7 @@ public class frontend implements EntryPoint {
         Button saveName = new Button("Save Name");
         myDetailsPanel.setWidget(1, 2, saveName);
         
-        Label editNameLabel = new Label();
+        final Label editNameLabel = new Label();
         myDetailsPanel.setWidget(1, 3, editNameLabel);
         
         saveName.addClickHandler(new ClickHandler() {
@@ -449,7 +449,7 @@ public class frontend implements EntryPoint {
         Button saveBirthday = new Button("Save Birthday");
         myDetailsPanel.setWidget(2, 2, saveBirthday);
         
-        Label editBirthdayLabel = new Label();
+        final Label editBirthdayLabel = new Label();
         myDetailsPanel.setWidget(2, 3, editBirthdayLabel);
         
         saveBirthday.addClickHandler(new ClickHandler() {
@@ -490,7 +490,7 @@ public class frontend implements EntryPoint {
         Button saveGender = new Button("Save Gender");
         myDetailsPanel.setWidget(3, 2, saveGender);
         
-        Label editGenderLabel = new Label();
+        final Label editGenderLabel = new Label();
         myDetailsPanel.setWidget(3, 3, editGenderLabel);
         
         saveGender.addClickHandler(new ClickHandler() {
@@ -511,7 +511,7 @@ public class frontend implements EntryPoint {
         });
         
         // Create widgets relating to email
-        Label emailLabel = new Label("Email:");
+        final Label emailLabel = new Label("Email:");
         myDetailsPanel.setWidget(4, 0, emailLabel);
         
         final TextBox editEmail = new TextBox();
@@ -528,7 +528,7 @@ public class frontend implements EntryPoint {
         Button saveEmail = new Button("Save Email");
         myDetailsPanel.setWidget(4, 2, saveEmail);
         
-        Label editEmailLabel = new Label();
+        final Label editEmailLabel = new Label();
         myDetailsPanel.setWidget(4, 3, editEmailLabel);
         
         saveEmail.addClickHandler(new ClickHandler() {
