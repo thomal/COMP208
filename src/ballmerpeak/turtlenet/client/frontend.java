@@ -726,12 +726,16 @@ public class frontend implements EntryPoint {
     }
     
     private void newConversationPanelSetup() {
+        final ListBox currentFriends = new ListBox();
+        currentFriends.setVisibleItemCount(10);
+        newConversationPanel.setWidget(0, 0, currentFriends);
+        
         TextArea input = new TextArea();
         input.setCharacterWidth(80);
         input.setVisibleLines(10); 
         newConversationPanel.setWidget(0, 1, input);
         
-        ListBox chooseFriend = new ListBox();
+        final ListBox chooseFriend = new ListBox();
         
         // TODO LUKETODO 10 should be replaced with the number of friends the
         // user has
@@ -748,13 +752,26 @@ public class frontend implements EntryPoint {
             
             chooseFriend.setValue(i, friendKey); 
         }
-        
         chooseFriend.setVisibleItemCount(1);
-        newConversationPanel.setWidget(1, 0, chooseFriend);
-    
-        //add friend button
-        //click handler for add friend button
-        //Label for add friend
+        
+        FlexTable subPanel = new FlexTable();
+        newConversationPanel.setWidget(1, 1, subPanel);
+        subPanel.setWidget(1, 0, new Label("Choose a friend: "));
+        subPanel.setWidget(1, 1, chooseFriend);
+        Button addFriend = new Button("Add to the conversation");
+        subPanel.setWidget(1, 2, addFriend);
+        addFriend.addClickHandler(new ClickHandler() {
+            public void onClick(ClickEvent event) {
+                currentFriends.addItem(chooseFriend.getItemText(chooseFriend.getSelectedIndex()));
+                
+                // TODO LUKETODO Add friend to the conversation using:                
+                // chooseFriend.getValue(chooseFriend.getSelectedIndex());
+                // This will give you a friends key. Problem is we've not
+                // created the conversation yet so where do we store this?
+                // I can't create an array because I don't know how many friends
+                // the user is going to add to the conversation.
+            }
+        });
         
         //send
         //click handler for send
