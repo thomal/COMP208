@@ -10,7 +10,8 @@ public interface Turtlenet extends RemoteService {
   String     stopTN();
   
   //Profile Data
-  String     getUsername();
+  String     getUsername(String key);
+  String     getMyUsername();
   String     getPDATA(String field, String key);
   String     getMyPDATA(String field);
   

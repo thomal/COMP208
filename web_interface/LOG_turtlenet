@@ -1,115 +1,24 @@
-===== Turtlenet started at Tue Apr 22 23:43:42 BST 2014=====
-1398206622 UNIMPL	TNClient	Ignoring password: password1
-1398206622 INFO		NetCon	Read lastRead from file
-1398206622 INFO		DB	Connecting to database
-1398206623 INFO		NetCon	NetworkConnection started
-1398206624 VERBOSE	NetCon	Sending command to server: "get 1398206080813"
-1398206624 VERBOSE	NetCon	Sending command to server: "t"
-1398206625 VERBOSE	NetCon	Sending command to server: "get 1398206624054"
-1398206625 VERBOSE	NetCon	Sending command to server: "t"
-1398206626 VERBOSE	NetCon	Sending command to server: "get 1398206625056"
-1398206626 VERBOSE	NetCon	Sending command to server: "t"
-1398206627 VERBOSE	NetCon	Sending command to server: "get 1398206626057"
-1398206627 VERBOSE	NetCon	Sending command to server: "t"
-1398206628 VERBOSE	NetCon	Sending command to server: "get 1398206627059"
-1398206628 VERBOSE	NetCon	Sending command to server: "t"
-1398206629 VERBOSE	NetCon	Sending command to server: "get 1398206628061"
-1398206629 VERBOSE	NetCon	Sending command to server: "t"
-1398206630 VERBOSE	NetCon	Sending command to server: "get 1398206629063"
-1398206630 VERBOSE	NetCon	Sending command to server: "t"
-1398206631 VERBOSE	NetCon	Sending command to server: "get 1398206630065"
-1398206631 VERBOSE	NetCon	Sending command to server: "t"
-1398206632 VERBOSE	NetCon	Sending command to server: "get 1398206631066"
-1398206632 VERBOSE	NetCon	Sending command to server: "t"
-1398206632 VERBOSE	NetCon	Sending command to server: "t"
-1398206632 INFO		Crypto	sign()
-1398206632 VERBOSE	NetCon	Sending command to server: "c Q0xBSU1cZjFVOVJ3VjVWZEJyOHFZZjlrWll6WExUUTM4VDJYUG5WMDNoU1FlR3I5VXVKNXBjMVNJckNES1lxWWs2Vm5hL293MXl1NGdlbGdrVms1M1B1bGdmYTJ0MmFkWHVmK2FMejdaaWpVRm92YjROTFB2N0RjdzNNV3hOd1lyVzBvQlRWY2UvQ0pHQ1dEdm5pYkxBMXl6VUdsMVlzTlVyMXorZmcwZXJMZy9Ua1BBPVx6ZXJvX2Nvb2xcMTM5ODIwNjYzMjkwOA=="
-1398206632 INFO		NetCon	Claimed name: zero_cool
-1398206633 VERBOSE	NetCon	Sending command to server: "get 1398206632068"
-1398206633 VERBOSE	NetCon	Sending command to server: "t"
-1398206633 INFO		Crypto	decrypt()
-1398206633 VERBOSE	PARSE	parsing message
-1398206633 UNIMPL	DB	Unimplemented method Database.addClaim(...)
-1398206634 VERBOSE	NetCon	Sending command to server: "get 1398206633070"
-1398206634 VERBOSE	NetCon	Sending command to server: "t"
-1398206635 VERBOSE	NetCon	Sending command to server: "get 1398206634072"
-1398206635 VERBOSE	NetCon	Sending command to server: "t"
-1398206636 VERBOSE	NetCon	Sending command to server: "get 1398206635074"
-1398206636 VERBOSE	NetCon	Sending command to server: "t"
-1398206636 INFO		Crypto	sign()
-1398206636 INFO		Crypto	encrypt()
-1398206636 VERBOSE	NetCon	Sending command to server: "s S6CK4AuZsmdThsP4AMraDQ==\V+pZgdOQKIcEzACj7covL7uFKM2lZ6QgL48aNBtkh8QNpPtfaqocHCQSAqMxi7piIFpbZ5bcIkwxZgABXMgf7xuFP7rjZHPRDD9BgeQXlCDNlPGF5ALyFaVtlbM9H2zzZLrtAYaE0nRNEoMZniIUzNX29CqWmGW+K0B77LFX1ik=\tOnDho+ZldKHgO3fiYmB4ZsdAtF5kRbcJFuGZ+6LGpt9m3yU+IWwUJXSvrdUuv0ilDRUPajAYzLPWF7aacMagGrNdO+W80dDRaq7BKfRsjLS5N+w6EbceaE3JoLaEYcZSrBLFW/XLEw3Jj0SF/iUo06y9OE9tkeGUWX5BtOeyhzTRXWtA6F6wkKafQEqVJRd4PUvtNWIo8DAiMBfuRkETgyAdaa4TncnaHsaLKb+ePfVWr5OXKEGA9H3yQrsuDi17cWlvxx6N+6guWIX5kUyOdguisrdZ9wrdYhO6uwxocw="
-1398206636 INFO		NetCon	uploaded message: "PDATA\NJNbwQQqsZV2RH8HJNLMOT/563E4Rf/oqKxZfVu3dpJIZWwvPJWEAcgSXjmW9J0UO04MdtA+Y44+oZPLop+OwZ+Uxeh6ncJb1yAsnRf02erwAreO2RuGQ+Us22i4nGDov2JWGcyoZTIfTa7WOUHY4PT5IUXKZOM5rpD6JiRYhg0=\RealName:Luke Thomas;\1398206636699"
-1398206637 VERBOSE	NetCon	Sending command to server: "get 1398206636076"
-1398206637 VERBOSE	NetCon	Sending command to server: "t"
-1398206637 INFO		Crypto	decrypt()
-1398206637 VERBOSE	PARSE	parsing message
-1398206637 UNIMPL	DB	Unimplemented method Database.addPDATA(...)
-1398206638 VERBOSE	NetCon	Sending command to server: "get 1398206637078"
-1398206638 VERBOSE	NetCon	Sending command to server: "t"
-1398206639 VERBOSE	NetCon	Sending command to server: "get 1398206638082"
-1398206639 VERBOSE	NetCon	Sending command to server: "t"
-1398206640 VERBOSE	NetCon	Sending command to server: "get 1398206639084"
-1398206640 VERBOSE	NetCon	Sending command to server: "t"
-1398206641 VERBOSE	NetCon	Sending command to server: "get 1398206640085"
-1398206641 VERBOSE	NetCon	Sending command to server: "t"
-1398206642 VERBOSE	NetCon	Sending command to server: "get 1398206641087"
-1398206642 VERBOSE	NetCon	Sending command to server: "t"
-1398206643 VERBOSE	NetCon	Sending command to server: "get 1398206642089"
-1398206643 VERBOSE	NetCon	Sending command to server: "t"
-1398206644 VERBOSE	NetCon	Sending command to server: "get 1398206643091"
-1398206644 VERBOSE	NetCon	Sending command to server: "t"
-1398206644 INFO		Crypto	sign()
-1398206644 INFO		Crypto	encrypt()
-1398206644 VERBOSE	NetCon	Sending command to server: "s NRrRlifiGEkZM3GWh3ZEMw==\gqvCzzXw7vIlTvk9vHjEheaSqvesVpbdHbvMLvrDfDYNi+OYI6gQe4Krg0WhKV1J3qzqBTgNbGMg/PVsnuc3zTtEicT+/u8lLq+fx9T0uGNXIHsENyFaxr5+5PP/r5+Vtjj0KajO9JGu1iyR6CEac/IZQwi2qGIVltxTFi8cyL8=\VG8bVswZxxtbRNFiMyfgyE4txiNVBke04k+YmLDk4g3iMf34m8W/rnYyGVuXQnXhk6fQPHlR1iWAMwTmmWjzIv/GToBeQE53CoaSQJfppU4tS/LjVpBG9u2ACru4JvhEtT+qftHyTU2JkBLzR/9SYrJQxXHnP6MCj6bcC2pF+rpks8yyzonUc3rORR9SPghBlahUk2/o7PkhA7hiwir8Fu+SmU3tLENLS0byRAWs7ypHJ9S9g0fUY/KEd+Jery7IPyoEONKS3kaaVUhzJC0gmAHB3lYEo/XPAN1RUkUskL8="
-1398206644 INFO		NetCon	uploaded message: "PDATA\AkHZKSG43/5CKOvVqi5LusrNEJtYmNbpTZCgsl1qbI0x4PQoBOMACniz/0WSXVt4a6gvwhRavsdIsoDZ6HJa3QSF1bN+TnnOviQqbptFJY5itv4QbXuUtyEKP3onWBMKhvbOlwnfOUfXR39Jr8Q/70v3oBYfE0tjHzdvYx0mAGE=\DOB:14-03-2014;\1398206644633"
-1398206645 VERBOSE	NetCon	Sending command to server: "get 1398206644093"
-1398206645 VERBOSE	NetCon	Sending command to server: "t"
-1398206645 INFO		Crypto	decrypt()
-1398206645 VERBOSE	PARSE	parsing message
-1398206645 UNIMPL	DB	Unimplemented method Database.addPDATA(...)
-1398206646 VERBOSE	NetCon	Sending command to server: "get 1398206645095"
-1398206646 VERBOSE	NetCon	Sending command to server: "t"
-1398206647 VERBOSE	NetCon	Sending command to server: "get 1398206646098"
-1398206647 VERBOSE	NetCon	Sending command to server: "t"
-1398206648 VERBOSE	NetCon	Sending command to server: "get 1398206647100"
-1398206648 VERBOSE	NetCon	Sending command to server: "t"
-1398206648 INFO		Crypto	sign()
-1398206648 INFO		Crypto	encrypt()
-1398206648 VERBOSE	NetCon	Sending command to server: "s cOqnM54f9tvu3/ygyhTZJw==\X4mf3heTyskLH3ejLS+cCIPv+Nldkgnk85ZcGgHnezT7GlzBVGyFSwKyS+EkmVBfWRPx90eMKwq7Ph2iPYdCfteN4O/9GEktCSbA2cOxyucfEucj0hOFJkfVZ3sZjTE0VI3x72QiLVEL31Ol+p9CoGd4AMWufy/MQ/2mSb4sRfE=\NE4lUzSMvjOSCOvZUkqahQfWuSh8SjB8cphyURAaI0CmuLWVmLPZTDPorumjgVd8HWCIbJoSU36QpXZHuGP5uSN/3bXoQg399lgzxhnG4De23ap3j5nYh5AMOr8OI9sYxJ5sAqs3i01RyYcsrvUrOpxOVFAl39M0+2M5Y0hwQWBkXstK8FOXLp7jKsUXrUZT56ZZBXiUTHRp2pc1JSDA1Ear91nCWG6+13HExRLn/rCGxiV1BYgNvnwvHO27IvGK7UVva+PHd3knCCN2O6Pnwg=="
-1398206648 INFO		NetCon	uploaded message: "PDATA\QFGW+FsXpPuyCqg99uGbBD5gFGWF1dq4OiCY2IN5bdmVrQ+suMbn0lQv933hfu1w9cvaGeVR9F1HP7SZAo3NQzTwkNQIPotxxTfN97X3T1QOMGCANNTbbrIQVFcC0wlfvzpGVkEaBwrPLazS/N2OaI5XcV4PzGVoIRtvYfXOeH4=\Gender:Male;\1398206648986"
-1398206649 VERBOSE	NetCon	Sending command to server: "get 1398206648102"
-1398206649 VERBOSE	NetCon	Sending command to server: "t"
-1398206649 INFO		Crypto	decrypt()
-1398206649 VERBOSE	PARSE	parsing message
-1398206649 UNIMPL	DB	Unimplemented method Database.addPDATA(...)
-1398206650 VERBOSE	NetCon	Sending command to server: "get 1398206649104"
-1398206650 VERBOSE	NetCon	Sending command to server: "t"
-1398206651 VERBOSE	NetCon	Sending command to server: "get 1398206650106"
-1398206651 VERBOSE	NetCon	Sending command to server: "t"
-1398206652 VERBOSE	NetCon	Sending command to server: "get 1398206651108"
-1398206652 VERBOSE	NetCon	Sending command to server: "t"
-1398206653 VERBOSE	NetCon	Sending command to server: "get 1398206652110"
-1398206653 VERBOSE	NetCon	Sending command to server: "t"
-1398206654 VERBOSE	NetCon	Sending command to server: "get 1398206653112"
-1398206654 VERBOSE	NetCon	Sending command to server: "t"
-1398206655 VERBOSE	NetCon	Sending command to server: "get 1398206654114"
-1398206655 VERBOSE	NetCon	Sending command to server: "t"
-1398206655 INFO		Crypto	sign()
-1398206655 INFO		Crypto	encrypt()
-1398206655 VERBOSE	NetCon	Sending command to server: "s y9QKvWnYNcAcG3n/m9btCw==\Gnq1rXCcDt5hmEGNqTOF+N5KjqaJSUZbm957Xwdo89QYO4Lz9YXKq55T/BEdX/rDSltS8NmT5rV015Lu/lw+gSN6uXoGnmFQD/rHAPLmdjERTazXdOIToKns9jyXHYCqtoDN+lWGQZtdT81IhQ15QIO+5HdLGStHP7bP2PbH1rM=\C4trpDv5zTnmVA/WB849Text9gAx3mOl8AvAyDIu8vx36Jm80hLwIappxBQh/P3D7Kd5buBgFkMa0ODOQSue+cMcfdNxYKHLcIWYc6SdYUrALhhfX6hIbi9pLhjmJW/BzNQEKyqutto/i/XWJc03Gdh1gmsl5i45/2JVpXq7dVqGX1qU63xdqI5uRz+NEcJumXx3HFnjj1V/qYNZ8q7mjiukpoSVDM/jJJq+fyXRbObmLfyalHwaNXRjHbontVIOl7GdJj3aLbIPL21NPIMGIr395ai2ydHM2kxfS4hvYcg="
-1398206655 INFO		NetCon	uploaded message: "PDATA\hWmzkNJF6SBy7yYpwJArc702z8J9DTF0ByLUyGF4Q3QaRlCq9oq5hqCBq8NxG+LXu45xHsSdkSaNmJfqRBKhY4OJqZUbS1Ko+mrvY0tIR+jvppZ7RK1A7TAmZtMZpDlbG95ctkd/kv7Q3UtnEt2HACtYwfoUQVKlfZa85oNfg/A=\Email:luke@luke-thomas.net;\1398206655628"
-1398206656 VERBOSE	NetCon	Sending command to server: "get 1398206655116"
-1398206656 VERBOSE	NetCon	Sending command to server: "t"
-1398206656 INFO		Crypto	decrypt()
-1398206656 VERBOSE	PARSE	parsing message
-1398206656 UNIMPL	DB	Unimplemented method Database.addPDATA(...)
-1398206657 VERBOSE	NetCon	Sending command to server: "get 1398206656118"
-1398206657 VERBOSE	NetCon	Sending command to server: "t"
-1398206658 VERBOSE	NetCon	Sending command to server: "get 1398206657120"
-1398206658 VERBOSE	NetCon	Sending command to server: "t"
-1398206658 INFO		TNImpl	stopTN()
-1398206658 INFO		NetCon	close()
-1398206658 INFO		NetCon	Saved lastRead to disk
-1398206658 INFO		DB	Disconnecting from database
-===== Turtlenet closed  at Tue Apr 22 23:44:18 BST 2014=====
+===== Turtlenet started at Wed Apr 23 13:19:35 BST 2014=====
+1398255575 UNIMPL	TNClient	Ignoring password: vvvvvv
+1398255575 INFO		NetCon	Read lastRead from file
+1398255575 INFO		DB	Connecting to database
+1398255575 INFO		NetCon	NetworkConnection started
+1398255576 VERBOSE	NetCon	Sending command to server: "get 1398253690377"
+1398255576 VERBOSE	NetCon	Sending command to server: "t"
+1398255577 UNIMPL	DB	Unimplemented method Database.getCategoryMembers(all)
+1398255577 INFO		TnImpl	Returning false getCategoryMembers results
+1398255577 VERBOSE	NetCon	Sending command to server: "get 1398255576625"
+1398255577 VERBOSE	NetCon	Sending command to server: "t"
+1398255578 VERBOSE	NetCon	Sending command to server: "get 1398255577629"
+1398255578 VERBOSE	NetCon	Sending command to server: "t"
+1398255579 VERBOSE	NetCon	Sending command to server: "get 1398255578631"
+1398255579 VERBOSE	NetCon	Sending command to server: "t"
+1398255580 VERBOSE	NetCon	Sending command to server: "get 1398255579632"
+1398255580 VERBOSE	NetCon	Sending command to server: "t"
+1398255581 VERBOSE	NetCon	Sending command to server: "get 1398255580633"
+1398255581 VERBOSE	NetCon	Sending command to server: "t"
+1398255582 INFO		TNImpl	stopTN()
+1398255582 INFO		NetCon	close()
+1398255582 INFO		NetCon	Saved lastRead to disk
+1398255582 INFO		DB	Disconnecting from database
+===== Turtlenet closed  at Wed Apr 23 13:19:42 BST 2014=====

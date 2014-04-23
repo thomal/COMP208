@@ -31,9 +31,17 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
     }
     
     //Profile Data
-    public String getUsername() {
+    public String getMyUsername() {
         String name;
         if ((name = c.db.getName(Crypto.getPublicKey())) != null)
+            return name;
+        else
+            return "<no username>";
+    }
+    
+    public String getUsername(String key) {
+        String name;
+        if ((name = c.db.getName(Crypto.decodeKey(key))) != null)
             return name;
         else
             return "<no username>";
@@ -53,12 +61,26 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
     
     public String[][] getCategoryMembers (String category) {
         PublicKey[] keys = c.db.getCategoryMembers(category);
-        String[][] pairs = new String[keys.length][2];
-        for (int i = 0; i < keys.length; i++) {
-            pairs[i][0] = c.db.getName(keys[i]);
-            pairs[i][1] = Crypto.encodeKey(keys[i]);
+        
+        if (keys != null) {        
+            String[][] pairs = new String[keys.length][2];
+            for (int i = 0; i < keys.length; i++) {
+                pairs[i][0] = c.db.getName(keys[i]);
+                pairs[i][1] = Crypto.encodeKey(keys[i]);
+            }
+            return pairs;
+        } else {
+            //TODO TurnetImpl remove this debug code
+            Logger.write("INFO", "TnImpl", "Returning false getCategoryMembers results");
+            String[][] fakes = new String[3][2];
+            fakes[0][0] = "aubri";
+            fakes[0][1] = "<not a key>";
+            fakes[1][0] = "skandranon";
+            fakes[1][1] = "<also not a key>";
+            fakes[2][0] = "zhaneel";
+            fakes[2][1] = "<certainly not a key>";
+            return fakes;
         }
-        return pairs;
     }
     
     
