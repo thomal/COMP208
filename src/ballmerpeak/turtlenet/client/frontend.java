@@ -323,7 +323,7 @@ public class frontend implements EntryPoint {
             // TODO LUKETODO "First Name" + "Second Name" + "Third Name" should
             // replaced by the names of the other people in the a conversation
             // using conversationID to choose a conversation
-            Label conversationParticipants = new Label("First Name" + "Second Name" + "Third Name");
+            Label conversationParticipants = new Label("First Name, " + "Second Name, " + "Third Name ");
             conversationListPanel.setWidget(i, 1, conversationParticipants);
         }
         // Add style name for CSS
