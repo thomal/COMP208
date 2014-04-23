@@ -1,4 +1,4 @@
--- how to add auto-increment column in sqlite: 
+  -- how to add auto-increment column in sqlite: 
 -- http://alvinalexander.com/android/sqlite-autoincrement-serial-identity-primary-key
 
 
@@ -126,7 +126,7 @@ username VARCHAR(25),
 signature VARCHAR(45)
 );
 
-CREATE TABLE key_revoke 
+CREATE TABLE tbl_key_revoke 
 (
 revoke_id INTEGER PRIMARY KEY,
 signature VARCHAR(45),

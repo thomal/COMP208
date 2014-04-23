@@ -136,7 +136,7 @@ class DBStrings {
     };
     
     public static final String addClaim =
-        "INSERT INTO message_claim (claimID, username, signature) "+
+        "INSERT INTO message_claim (claimID, username, signature)  "+
         "VALUES ("+
         "        NULL,"+
         "        'userVar',"+
