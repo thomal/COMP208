@@ -31,9 +31,17 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
     }
     
     //Profile Data
-    public String getUsername() {
+    public String getMyUsername() {
         String name;
         if ((name = c.db.getName(Crypto.getPublicKey())) != null)
+            return name;
+        else
+            return "<no username>";
+    }
+    
+    public String getUsername(String key) {
+        String name;
+        if ((name = c.db.getName(Crypto.decodeKey(key))) != null)
             return name;
         else
             return "<no username>";

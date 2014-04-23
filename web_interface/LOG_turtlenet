@@ -1,48 +1,24 @@
-===== Turtlenet started at Wed Apr 23 12:21:27 BST 2014=====
-1398252087 UNIMPL	TNClient	Ignoring password: fds
-1398252087 INFO		NetCon	Read lastRead from file
-1398252087 INFO		DB	Connecting to database
-1398252087 INFO		NetCon	NetworkConnection started
-1398252088 VERBOSE	NetCon	Sending command to server: "get 1398251927734"
-1398252088 VERBOSE	NetCon	Sending command to server: "t"
-1398252088 UNIMPL	DB	Unimplemented method Database.getCategoryMembers(all)
-1398252088 INFO		TnImpl	Returning false getCategoryMembers results
-1398252089 VERBOSE	NetCon	Sending command to server: "get 1398252088704"
-1398252089 VERBOSE	NetCon	Sending command to server: "t"
-1398252090 VERBOSE	NetCon	Sending command to server: "get 1398252089706"
-1398252090 VERBOSE	NetCon	Sending command to server: "t"
-1398252091 VERBOSE	NetCon	Sending command to server: "get 1398252090707"
-1398252091 VERBOSE	NetCon	Sending command to server: "t"
-1398252092 VERBOSE	NetCon	Sending command to server: "get 1398252091709"
-1398252092 VERBOSE	NetCon	Sending command to server: "t"
-1398252093 VERBOSE	NetCon	Sending command to server: "get 1398252092711"
-1398252093 VERBOSE	NetCon	Sending command to server: "t"
-1398252094 VERBOSE	NetCon	Sending command to server: "get 1398252093713"
-1398252094 VERBOSE	NetCon	Sending command to server: "t"
-1398252095 VERBOSE	NetCon	Sending command to server: "get 1398252094714"
-1398252095 VERBOSE	NetCon	Sending command to server: "t"
-1398252096 VERBOSE	NetCon	Sending command to server: "get 1398252095716"
-1398252096 VERBOSE	NetCon	Sending command to server: "t"
-1398252097 VERBOSE	NetCon	Sending command to server: "get 1398252096721"
-1398252097 VERBOSE	NetCon	Sending command to server: "t"
-1398252098 VERBOSE	NetCon	Sending command to server: "get 1398252097722"
-1398252098 VERBOSE	NetCon	Sending command to server: "t"
-1398252099 VERBOSE	NetCon	Sending command to server: "get 1398252098724"
-1398252099 VERBOSE	NetCon	Sending command to server: "t"
-1398252100 VERBOSE	NetCon	Sending command to server: "get 1398252099726"
-1398252100 VERBOSE	NetCon	Sending command to server: "t"
-1398252101 VERBOSE	NetCon	Sending command to server: "get 1398252100728"
-1398252101 VERBOSE	NetCon	Sending command to server: "t"
-1398252102 VERBOSE	NetCon	Sending command to server: "get 1398252101730"
-1398252102 VERBOSE	NetCon	Sending command to server: "t"
-1398252103 VERBOSE	NetCon	Sending command to server: "get 1398252102732"
-1398252103 VERBOSE	NetCon	Sending command to server: "t"
-1398252104 VERBOSE	NetCon	Sending command to server: "get 1398252103734"
-1398252104 VERBOSE	NetCon	Sending command to server: "t"
-1398252105 VERBOSE	NetCon	Sending command to server: "get 1398252104735"
-1398252105 VERBOSE	NetCon	Sending command to server: "t"
-1398252106 INFO		TNImpl	stopTN()
-1398252106 INFO		NetCon	close()
-1398252106 INFO		NetCon	Saved lastRead to disk
-1398252106 INFO		DB	Disconnecting from database
-===== Turtlenet closed  at Wed Apr 23 12:21:46 BST 2014=====
+===== Turtlenet started at Wed Apr 23 13:19:35 BST 2014=====
+1398255575 UNIMPL	TNClient	Ignoring password: vvvvvv
+1398255575 INFO		NetCon	Read lastRead from file
+1398255575 INFO		DB	Connecting to database
+1398255575 INFO		NetCon	NetworkConnection started
+1398255576 VERBOSE	NetCon	Sending command to server: "get 1398253690377"
+1398255576 VERBOSE	NetCon	Sending command to server: "t"
+1398255577 UNIMPL	DB	Unimplemented method Database.getCategoryMembers(all)
+1398255577 INFO		TnImpl	Returning false getCategoryMembers results
+1398255577 VERBOSE	NetCon	Sending command to server: "get 1398255576625"
+1398255577 VERBOSE	NetCon	Sending command to server: "t"
+1398255578 VERBOSE	NetCon	Sending command to server: "get 1398255577629"
+1398255578 VERBOSE	NetCon	Sending command to server: "t"
+1398255579 VERBOSE	NetCon	Sending command to server: "get 1398255578631"
+1398255579 VERBOSE	NetCon	Sending command to server: "t"
+1398255580 VERBOSE	NetCon	Sending command to server: "get 1398255579632"
+1398255580 VERBOSE	NetCon	Sending command to server: "t"
+1398255581 VERBOSE	NetCon	Sending command to server: "get 1398255580633"
+1398255581 VERBOSE	NetCon	Sending command to server: "t"
+1398255582 INFO		TNImpl	stopTN()
+1398255582 INFO		NetCon	close()
+1398255582 INFO		NetCon	Saved lastRead to disk
+1398255582 INFO		DB	Disconnecting from database
+===== Turtlenet closed  at Wed Apr 23 13:19:42 BST 2014=====

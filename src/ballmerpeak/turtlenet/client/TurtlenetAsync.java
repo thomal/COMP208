@@ -8,7 +8,8 @@ public interface TurtlenetAsync {
     void stopTN(AsyncCallback<String> callback);
     
     //Profile Data
-    void getUsername (AsyncCallback<String> callback);
+    void getUsername (String key, AsyncCallback<String> callback);
+    void getMyUsername (AsyncCallback<String> callback);
     void getPDATA    (String field, String pk, AsyncCallback<String> callback);
     void getMyPDATA  (String pk, AsyncCallback<String> callback);
     
