@@ -112,6 +112,13 @@ public class Database {
         return null;
     }
     
+    //Return the name of each member and if it can see your profile info
+    //In this format: {{"friends", "false"}, {"family", "true"}}
+    public String[][] getCategories () {
+        Logger.write("UNIMPL", "DB", "Unimplemented method Database.getCategories()");
+        return null;
+    }
+    
     //Return the keys of each member of the category
     public PublicKey[] getCategoryMembers (String category) {
         Logger.write("UNIMPL", "DB", "Unimplemented method Database.getCategoryMembers(" + category + ")");
@@ -191,5 +198,15 @@ public class Database {
     public void addEvent (Message event) {
         //REPLACE ME
         Logger.write("UNIMPL", "DB", "Unimplemented method Database.addEvent(...)");
+    }
+    
+    public void updatePDATApermission (String category, boolean value) {
+        //REPLACE ME
+        Logger.write("UNIMPL", "DB", "Unimplemented method Database.updatePDATApermission(" + category + "," + value + ")");
+    }
+    
+    public void addCategory (String category, boolean value) {
+        //REPLACE ME
+        Logger.write("UNIMPL", "DB", "Unimplemented method Database.addCategory(" + category + "," + value + ")");
     }
 }

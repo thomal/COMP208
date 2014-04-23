@@ -137,7 +137,7 @@ public class frontend implements EntryPoint {
          * "publicKey" here should be replaced with the key of the friend's 
          * details we want to look up
          */
-        friendsDetailsPanelSetup("publicKey");
+        friendsDetailsPanelSetup("<falsekey2>");
 
         // Call method to load the initial login page
         loadLogin();
@@ -278,7 +278,6 @@ public class frontend implements EntryPoint {
                     linkFriendsWall.addClickHandler(new ClickHandler() {
                         public void onClick(ClickEvent event) {
                             loadFriendsWall(result[i][1]);
-
                         }
                     });
                 }
@@ -556,47 +555,37 @@ public class frontend implements EntryPoint {
         myDetailsPermissionsLabel.getElement().getStyle().setFontWeight(FontWeight.BOLD);
         myDetailsPermissionsPanel.setWidget(0, 0, myDetailsPermissionsLabel); 
         
-        // TODO LUKETODO '10' should be replaced with a call to a method which
-        // returns a list of all of the users groups(hopefully as an array). You
-        // can then use the size of this array to set the length of the loop
-        for (int i = 0; i < 10; i++) {
-            
-            // TODO LUKETODO "groupName" should be replaced with a call to a method which
-            // returns a list of all of the users groups(hopefully as an array).
-            // Use i to select a group from the array. 
-            final CheckBox groupCheckBox = new CheckBox("groupName");
-            myDetailsPermissionsPanel.setWidget((i + 1), 0, groupCheckBox); 
-            
-            
-            // TODO LUKETODO 'groupHasPermission' needs to be replace with a call
-            // to a method that takes the name of a group and tells us if the user 
-            // has already granted a group permission to see their details. 
-            // Give it groupCheckBox.getText()
-            /*            
-            if(groupHasPermission = true) {
-                groupCheckBox.setValue(true);
-            } else {
-                groupCheckBox.setValue(false);
+        turtlenet.getCategories(new AsyncCallback<String[][]>() {
+            String[][] result;
+            int i;
+            public void onFailure(Throwable caught) {
+                //TODO Error
             }
-            */
-            
-            groupCheckBox.addClickHandler(new ClickHandler() {
-                public void onClick(ClickEvent event) {
+            public void onSuccess(String[][] _result) {
+                result = _result;
+                for (i = 0; i <= result.length; i++) {
+                    final CheckBox groupCheckBox = new CheckBox(result[i][0]);
+                    groupCheckBox.setValue(result[i][1].equals("true"));
+                    myDetailsPermissionsPanel.setWidget((i + 1), 0, groupCheckBox);
                     
-                    // TODO LUKETODO The value returned by 'groupCheckBox.getValue();'
-                    // should be boolean. This value needs to be added to the database
-                    // to give or revoke a groups ability to view your details.
-                    // groupCheckBox.getText() can be used to find out which 
-                    // group we are dealing with and thus where to store the boolean value
-                    groupCheckBox.getValue();
-                    
+                    groupCheckBox.addClickHandler(new ClickHandler() {
+                        public void onClick(ClickEvent event) {
+                            turtlenet.updatePDATApermission(groupCheckBox.getText(), groupCheckBox.getValue(), new AsyncCallback<String>() {
+                                public void onFailure(Throwable caught) {
+                                    //TODO error
+                                }
+                                public void onSuccess(String result) {
+                                    //success
+                                }
+                            });
+                        }
+                    });
                 }
-            });
-            
-            // TODO LOUISTODO Add link to myDetailsPanel
-            
-            myDetailsPermissionsPanel.addStyleName("gwt-my-details-permissions");
-        }
+            }
+        });
+        
+        // TODO LOUISTODO Add link to myDetailsPanel
+        myDetailsPermissionsPanel.addStyleName("gwt-my-details-permissions");
     }
     
     private void friendsDetailsPanelSetup(String friendsDetailsKey) {
@@ -863,6 +852,9 @@ public class frontend implements EntryPoint {
     }
 
     private void loadSettings() {
+        myDetailsPanelSetup();
+        myDetailsPermissionsPanelSetup();
+        
         RootPanel.get().clear();
         RootPanel.get().add(navigationPanel);
         RootPanel.get().add(myDetailsPanel);

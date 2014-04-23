@@ -73,6 +73,16 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
             return "<no value>";
     }
     
+    public String[][] getCategories () {
+        String[][] categories = c.db.getCategories();
+        if (categories == null) {
+            categories = new String[2][2];
+            categories[0][0] = "<you have no categories yet>";
+            categories[0][1] = "false";
+        }
+        return categories;
+    }
+    
     public String[][] getCategoryMembers (String category) {
         PublicKey[] keys = c.db.getCategoryMembers(category);
         
@@ -109,6 +119,11 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
     public String updatePDATA (String field, String value) {
         c.connection.postMessage(new MessageFactoryImpl().newPDATA(field, value),
                                  Crypto.getPublicKey());
+        return "success";
+    }
+    
+    public String updatePDATApermission (String category, boolean value) {
+        c.db.updatePDATApermission(category, value);
         return "success";
     }
 }
