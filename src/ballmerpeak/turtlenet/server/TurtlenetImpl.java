@@ -165,6 +165,7 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
     }
     
     public String addMessageToCHAT (String text, String sig) {
+        Logger.write("INFO", "TnImpl", "addMessageToCHAT(" + text + "," + sig + ")");
         PublicKey[] keys = c.db.getPeopleInConvo(sig);
         Message msg = new MessageFactoryImpl().newPCHAT(sig, text);
         for (int i = 0; i < keys.length; i++)

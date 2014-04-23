@@ -781,6 +781,7 @@ public class frontend implements EntryPoint {
                     }
                 });
                 
+                //TODO send button in wrong place
                 Button send = new Button("Send");
                 newConversationPanel.setWidget(1, 2, send);
                 

@@ -1,98 +1,58 @@
-===== Turtlenet started at Wed Apr 23 23:30:58 BST 2014=====
-1398292258 UNIMPL	TNClient	Ignoring password: 
-1398292258 INFO		NetCon	Read lastRead from file
-1398292258 INFO		DB	Connecting to database
-1398292258 INFO		NetCon	NetworkConnection started
-1398292259 VERBOSE	NetCon	Sending command to server "get 1398291605580"
-1398292259 VERBOSE	NetCon	Sending command to server "t"
-1398292260 UNIMPL	DB	Unimplemented method Database.getConversations(...)
-1398292260 INFO		TnImpl	Returning false getConversations results
-1398292260 VERBOSE	NetCon	Sending command to server "get 1398292259343"
-1398292260 VERBOSE	NetCon	Sending command to server "t"
-1398292261 VERBOSE	NetCon	Sending command to server "get 1398292260345"
-1398292261 VERBOSE	NetCon	Sending command to server "t"
-1398292261 UNIMPL	DB	Unimplemented method Database.getCategoryMembers(all)
-1398292261 INFO		TnImpl	Returning false getCategoryMembers results
-1398292261 VERBOSE	TnImpl	getPeople(): returning 3 people
-1398292262 VERBOSE	NetCon	Sending command to server "get 1398292261347"
-1398292262 VERBOSE	NetCon	Sending command to server "t"
-1398292263 VERBOSE	NetCon	Sending command to server "get 1398292262349"
-1398292263 VERBOSE	NetCon	Sending command to server "t"
-1398292264 VERBOSE	NetCon	Sending command to server "get 1398292263351"
-1398292264 VERBOSE	NetCon	Sending command to server "t"
-1398292265 VERBOSE	NetCon	Sending command to server "get 1398292264353"
-1398292265 VERBOSE	NetCon	Sending command to server "t"
-1398292266 VERBOSE	NetCon	Sending command to server "get 1398292265354"
-1398292266 VERBOSE	NetCon	Sending command to server "t"
-1398292267 VERBOSE	NetCon	Sending command to server "get 1398292266356"
-1398292267 VERBOSE	NetCon	Sending command to server "t"
-1398292268 VERBOSE	NetCon	Sending command to server "get 1398292267358"
-1398292268 VERBOSE	NetCon	Sending command to server "t"
-1398292269 VERBOSE	NetCon	Sending command to server "get 1398292268360"
-1398292269 VERBOSE	NetCon	Sending command to server "t"
-1398292270 VERBOSE	NetCon	Sending command to server "get 1398292269362"
-1398292270 VERBOSE	NetCon	Sending command to server "t"
-1398292271 VERBOSE	NetCon	Sending command to server "get 1398292270363"
-1398292271 VERBOSE	NetCon	Sending command to server "t"
-1398292272 VERBOSE	NetCon	Sending command to server "get 1398292271365"
-1398292272 VERBOSE	NetCon	Sending command to server "t"
-1398292273 VERBOSE	NetCon	Sending command to server "get 1398292272367"
-1398292273 VERBOSE	NetCon	Sending command to server "t"
-1398292274 VERBOSE	NetCon	Sending command to server "get 1398292273369"
-1398292274 VERBOSE	NetCon	Sending command to server "t"
-1398292275 VERBOSE	NetCon	Sending command to server "get 1398292274371"
-1398292275 VERBOSE	NetCon	Sending command to server "t"
-1398292276 VERBOSE	NetCon	Sending command to server "get 1398292275373"
-1398292276 VERBOSE	NetCon	Sending command to server "t"
-1398292277 VERBOSE	NetCon	Sending command to server "get 1398292276375"
-1398292277 VERBOSE	NetCon	Sending command to server "t"
-1398292278 VERBOSE	NetCon	Sending command to server "get 1398292277376"
-1398292278 VERBOSE	NetCon	Sending command to server "t"
-1398292279 VERBOSE	NetCon	Sending command to server "get 1398292278378"
-1398292279 VERBOSE	NetCon	Sending command to server "t"
-1398292280 VERBOSE	NetCon	Sending command to server "get 1398292279380"
-1398292280 VERBOSE	NetCon	Sending command to server "t"
-1398292280 INFO		Crypto	sign()
-1398292280 UNIMPL	DB	Unimplemented method Database.getPeopleInConvo(...)
-1398292280 INFO		Crypto	sign()
-1398292281 VERBOSE	NetCon	Sending command to server "get 1398292280382"
-1398292281 VERBOSE	NetCon	Sending command to server "t"
-1398292282 VERBOSE	NetCon	Sending command to server "get 1398292281643"
-1398292282 VERBOSE	NetCon	Sending command to server "t"
-1398292283 VERBOSE	NetCon	Sending command to server "get 1398292282645"
-1398292283 VERBOSE	NetCon	Sending command to server "t"
-1398292284 VERBOSE	NetCon	Sending command to server "get 1398292283648"
-1398292284 VERBOSE	NetCon	Sending command to server "t"
-1398292285 VERBOSE	NetCon	Sending command to server "get 1398292284649"
-1398292285 VERBOSE	NetCon	Sending command to server "t"
-1398292286 VERBOSE	NetCon	Sending command to server "get 1398292285651"
-1398292286 VERBOSE	NetCon	Sending command to server "t"
-1398292287 VERBOSE	NetCon	Sending command to server "get 1398292286653"
-1398292287 VERBOSE	NetCon	Sending command to server "t"
-1398292288 VERBOSE	NetCon	Sending command to server "get 1398292287655"
-1398292288 VERBOSE	NetCon	Sending command to server "t"
-1398292289 VERBOSE	NetCon	Sending command to server "get 1398292288657"
-1398292289 VERBOSE	NetCon	Sending command to server "t"
-1398292289 INFO		Crypto	sign()
-1398292289 UNIMPL	DB	Unimplemented method Database.getPeopleInConvo(...)
-1398292289 INFO		Crypto	sign()
-1398292290 VERBOSE	NetCon	Sending command to server "get 1398292289659"
-1398292290 VERBOSE	NetCon	Sending command to server "t"
-1398292291 VERBOSE	NetCon	Sending command to server "get 1398292290661"
-1398292291 VERBOSE	NetCon	Sending command to server "t"
-1398292292 INFO		Crypto	sign()
-1398292292 UNIMPL	DB	Unimplemented method Database.getPeopleInConvo(...)
-1398292292 INFO		Crypto	sign()
-1398292292 VERBOSE	NetCon	Sending command to server "get 1398292291662"
-1398292292 VERBOSE	NetCon	Sending command to server "t"
-1398292293 VERBOSE	NetCon	Sending command to server "get 1398292292664"
-1398292293 VERBOSE	NetCon	Sending command to server "t"
-1398292294 VERBOSE	NetCon	Sending command to server "get 1398292293666"
-1398292294 VERBOSE	NetCon	Sending command to server "t"
-1398292295 VERBOSE	NetCon	Sending command to server "get 1398292294668"
-1398292295 VERBOSE	NetCon	Sending command to server "t"
-1398292296 INFO		TNImpl	stopTN()
-1398292296 INFO		NetCon	close()
-1398292296 INFO		NetCon	Saved lastRead to disk
-1398292296 INFO		DB	Disconnecting from database
-===== Turtlenet closed  at Wed Apr 23 23:31:36 BST 2014=====
+===== Turtlenet started at Wed Apr 23 23:37:38 BST 2014=====
+1398292658 UNIMPL	TNClient	Ignoring password: 
+1398292658 INFO		NetCon	Read lastRead from file
+1398292658 INFO		DB	Connecting to database
+1398292658 INFO		NetCon	NetworkConnection started
+1398292659 VERBOSE	NetCon	Sending command to server "get 1398292295670"
+1398292659 VERBOSE	NetCon	Sending command to server "t"
+1398292659 UNIMPL	DB	Unimplemented method Database.getConversations(...)
+1398292659 INFO		TnImpl	Returning false getConversations results
+1398292660 VERBOSE	NetCon	Sending command to server "get 1398292659787"
+1398292660 VERBOSE	NetCon	Sending command to server "t"
+1398292661 UNIMPL	DB	Unimplemented method Database.getCategoryMembers(all)
+1398292661 INFO		TnImpl	Returning false getCategoryMembers results
+1398292661 VERBOSE	TnImpl	getPeople(): returning 3 people
+1398292661 VERBOSE	NetCon	Sending command to server "get 1398292660788"
+1398292661 VERBOSE	NetCon	Sending command to server "t"
+1398292662 VERBOSE	NetCon	Sending command to server "get 1398292661790"
+1398292662 VERBOSE	NetCon	Sending command to server "t"
+1398292663 VERBOSE	NetCon	Sending command to server "get 1398292662792"
+1398292663 VERBOSE	NetCon	Sending command to server "t"
+1398292664 VERBOSE	NetCon	Sending command to server "get 1398292663794"
+1398292664 VERBOSE	NetCon	Sending command to server "t"
+1398292665 VERBOSE	NetCon	Sending command to server "get 1398292664796"
+1398292665 VERBOSE	NetCon	Sending command to server "t"
+1398292666 VERBOSE	NetCon	Sending command to server "get 1398292665798"
+1398292666 VERBOSE	NetCon	Sending command to server "t"
+1398292667 VERBOSE	NetCon	Sending command to server "get 1398292666800"
+1398292667 VERBOSE	NetCon	Sending command to server "t"
+1398292668 VERBOSE	NetCon	Sending command to server "get 1398292667801"
+1398292668 VERBOSE	NetCon	Sending command to server "t"
+1398292669 VERBOSE	NetCon	Sending command to server "get 1398292668803"
+1398292669 VERBOSE	NetCon	Sending command to server "t"
+1398292670 INFO		Crypto	sign()
+1398292670 UNIMPL	DB	Unimplemented method Database.getPeopleInConvo(...)
+1398292670 INFO		Crypto	sign()
+1398292670 VERBOSE	NetCon	Sending command to server "get 1398292669804"
+1398292670 VERBOSE	NetCon	Sending command to server "t"
+1398292671 VERBOSE	NetCon	Sending command to server "get 1398292670808"
+1398292671 VERBOSE	NetCon	Sending command to server "t"
+1398292672 VERBOSE	NetCon	Sending command to server "get 1398292671810"
+1398292672 VERBOSE	NetCon	Sending command to server "t"
+1398292673 VERBOSE	NetCon	Sending command to server "get 1398292672811"
+1398292673 VERBOSE	NetCon	Sending command to server "t"
+1398292674 VERBOSE	NetCon	Sending command to server "get 1398292673813"
+1398292674 VERBOSE	NetCon	Sending command to server "t"
+1398292675 VERBOSE	NetCon	Sending command to server "get 1398292674815"
+1398292675 VERBOSE	NetCon	Sending command to server "t"
+1398292676 VERBOSE	NetCon	Sending command to server "get 1398292675816"
+1398292678 VERBOSE	NetCon	Sending command to server "t"
+1398292679 VERBOSE	NetCon	Sending command to server "get 1398292678258"
+1398292679 VERBOSE	NetCon	Sending command to server "t"
+1398292680 VERBOSE	NetCon	Sending command to server "get 1398292679260"
+1398292680 VERBOSE	NetCon	Sending command to server "t"
+1398292680 INFO		TNImpl	stopTN()
+1398292680 INFO		NetCon	close()
+1398292680 INFO		NetCon	Saved lastRead to disk
+1398292680 INFO		DB	Disconnecting from database
+===== Turtlenet closed  at Wed Apr 23 23:38:00 BST 2014=====
