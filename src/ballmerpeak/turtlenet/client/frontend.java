@@ -127,7 +127,7 @@ public class frontend implements EntryPoint {
         inputPanelSetup();
         outputPanelSetup();
         myDetailsPanelSetup();
-        conversationPanelSetup();
+        conversationPanelSetup("conversationID");
         commentsControlPanelSetup();
         myDetailsPermissionsPanelSetup();
         newConversationPanelSetup();
@@ -727,7 +727,8 @@ public class frontend implements EntryPoint {
     
     private void newConversationPanelSetup() {
         final ListBox currentFriends = new ListBox();
-        currentFriends.setVisibleItemCount(10);
+        currentFriends.setVisibleItemCount(11);
+        currentFriends.setWidth("150px");
         newConversationPanel.setWidget(0, 0, currentFriends);
         
         TextArea input = new TextArea();
@@ -740,6 +741,7 @@ public class frontend implements EntryPoint {
         // TODO LUKETODO 10 should be replaced with the number of friends the
         // user has
         for (int i = 0; i < 10; i++) {
+        
             // TODO LUKETODO "Friend's Key" should be replaced with a call to a
             // method that returns the list of all of the users friends keys.
             // You can then use i to select a key from the list
@@ -764,23 +766,37 @@ public class frontend implements EntryPoint {
             public void onClick(ClickEvent event) {
                 currentFriends.addItem(chooseFriend.getItemText(chooseFriend.getSelectedIndex()));
                 
-                // TODO LUKETODO Add friend to the conversation using:                
-                // chooseFriend.getValue(chooseFriend.getSelectedIndex());
-                // This will give you a friends key. Problem is we've not
-                // created the conversation yet so where do we store this?
-                // I can't create an array because I don't know how many friends
-                // the user is going to add to the conversation.
+                currentFriends.setValue((currentFriends.getItemCount() - 1), chooseFriend.getValue(chooseFriend.getSelectedIndex()));
             }
         });
         
-        //send
-        //click handler for send
+        Button send = new Button("Send");
+        newConversationPanel.setWidget(1, 2, send);
+        
+        send.addClickHandler(new ClickHandler() {
+            public void onClick(ClickEvent event) {
+                // TODO LUKETODO Add new conversation to database. 
+                // Use input.getText() to get the contents of the first message
+                // The following will give the keys of all of the friends the
+                // user has added to the conversation:
+                /*
+                    for (int i = 0; i < currentFriends.getItemCount; i++) {
+                        currentFriends.getValue(i);
+                    } 
+                */
+                
+                
+                // TODO LUKETODO conversationID should be replaced with the ID
+                // of the new conversation we have just created.
+                loadConversation("conversationID");
+            }
+        });
 
         // Add style name for CSS
         newConversationPanel.addStyleName("gwt-conversation");
     }
     
-     private void conversationPanelSetup() {
+     private void conversationPanelSetup(String conversationID) {
         // Create widgets
 
         // Add widgets to panel
@@ -860,6 +876,8 @@ public class frontend implements EntryPoint {
 
     private void loadConversation(String conversationID) {
         //TODO
+        // conversationPanelSetup(conversationID);
+        RootPanel.get().clear();
     }
 
     private void loadFriendsList(String currentGroupID) {
