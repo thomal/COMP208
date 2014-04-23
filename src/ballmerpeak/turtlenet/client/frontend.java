@@ -140,10 +140,10 @@ public class frontend implements EntryPoint {
         friendsDetailsPanelSetup("publicKey");
 
         // Call method to load the initial login page
-        //loadLogin();
+        loadLogin();
         
         // Louis temp
-        loadPanelDev();
+        //loadPanelDev();
     }
 
     // #########################################################################
@@ -848,6 +848,7 @@ public class frontend implements EntryPoint {
         groupsControlPanelSetup(currentGroupID);
         
         // Add panels to page
+        friendsListPanelSetup("all");
         RootPanel.get().add(friendsListPanel);
         RootPanel.get().add(groupsControlPanel);
     }
@@ -865,6 +866,7 @@ public class frontend implements EntryPoint {
         RootPanel.get().clear();
         RootPanel.get().add(navigationPanel);
         RootPanel.get().add(myDetailsPanel);
+        RootPanel.get().add(myDetailsPermissionsPanel);
     }
 
     private void loadCreatePost() {
