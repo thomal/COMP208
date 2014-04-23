@@ -18,7 +18,9 @@ public interface TurtlenetAsync {
     void getCategories(AsyncCallback<String[][]> callback);
     void getCategoryMembers(String category, AsyncCallback<String[][]> callback);
     
+    void getConversation(String sig, AsyncCallback<Conversation> callback);
     void getConversations(AsyncCallback<Conversation[]> callback);
+    void getConversationMessages(String sig, AsyncCallback<String[][]> callback);
     
     //Profile Data
     void claimUsername(String uname, AsyncCallback<String> callback);

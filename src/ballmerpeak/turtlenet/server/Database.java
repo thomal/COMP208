@@ -133,12 +133,19 @@ public class Database {
         return null;
     }
     
+    //Reurn a conversation object
+    public Conversation getConversation (String sig) {
+        //REPLACE ME
+        Logger.write("UNIMPL", "DB", "Unimplemented method Database.getConversation(" + sig + ")");
+        return null;
+    }
+    
     //Return all messages in a conversation
     //{{username, time, msg}, {username, time, msg}, etc.}
     //Please order it so that element 0 is the oldest message
-    public String[][] getConversation (String signature) {
+    public String[][] getConversationMessages (String signature) {
         //REPLACE ME
-        Logger.write("UNIMPL", "DB", "Unimplemented method Database.getConversation(...)");
+        Logger.write("UNIMPL", "DB", "Unimplemented method Database.getConversationMessages(...)");
         return null;
     }
     

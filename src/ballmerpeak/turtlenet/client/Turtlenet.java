@@ -20,7 +20,9 @@ public interface Turtlenet extends RemoteService {
   String[][] getCategories();                     //{{"friends", "false"}, {"family", "true"}}
   String[][] getCategoryMembers(String category); //{{"name1","key1"}, {"name2","key2"}}
   
+  Conversation   getConversation(String sig);
   Conversation[] getConversations();
+  String[][]     getConversationMessages(String sig);
   
   //Profile Data
   String     claimUsername(String uname);
