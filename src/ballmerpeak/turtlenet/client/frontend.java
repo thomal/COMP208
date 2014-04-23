@@ -246,11 +246,14 @@ public class frontend implements EntryPoint {
     
         String currentGroup = "all"; //TODO get this value from a textbox
         turtlenet.getCategoryMembers(currentGroup, new AsyncCallback<String[][]>() {
+            String[][] result;
+            int i;
             public void onFailure(Throwable caught) {
                 //TODO Error
             }
-            public void onSuccess(String[][] result) {
-                for (int i = 0; i <= result.length; i++) {
+            public void onSuccess(String[][] _result) {
+                result = _result;
+                for (i = 0; i <= result.length; i++) {
                     //list names/keys
                     Anchor linkFriendsWall = new Anchor(result[i][0]);
                     friendsListPanel.setWidget((i + 1), 0, linkFriendsWall);
@@ -258,7 +261,7 @@ public class frontend implements EntryPoint {
                     //link names to walls
                     linkFriendsWall.addClickHandler(new ClickHandler() {
                         public void onClick(ClickEvent event) {
-                            //TODO loadFriendsWall(/*text in second column*/);
+                            loadFriendsWall(result[i][1]);
                         }
                     });
                 }
