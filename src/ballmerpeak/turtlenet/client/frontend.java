@@ -147,7 +147,7 @@ public class frontend implements EntryPoint {
          */
         
         // Louis temp
-        loadPanelDev();
+        //loadPanelDev();
     }
 
     // #########################################################################
@@ -301,7 +301,7 @@ public class frontend implements EntryPoint {
             }
             public void onSuccess(Conversation[] _result) {
                 result = _result;
-                for (i = 0; i <= result.length; i++) {
+                for (i = 0; i < result.length; i++) {
                     final String conversationID = result[i].signature;
                     Anchor linkConversation = new Anchor(result[i].firstMessage);
                     conversationListPanel.setWidget(i, 0, linkConversation);
@@ -757,18 +757,19 @@ public class frontend implements EntryPoint {
             }
             public void onSuccess(String[][] _result) {
                 result = _result;
-                for (i = 0; i <= result.length; i++) {
+                for (i = 0; i < result.length; i++) {
                     //fill combo box
-                    String friendKey = (result[i][1]);
                     chooseFriend.addItem(result[i][0]);
+                    String friendKey = (result[i][1]);
                     chooseFriend.setValue(i, friendKey);
-                    chooseFriend.setVisibleItemCount(1);
                 }
+                chooseFriend.setVisibleItemCount(1);
                 
                 FlexTable subPanel = new FlexTable();
                 newConversationPanel.setWidget(1, 1, subPanel);
                 subPanel.setWidget(1, 0, new Label("Choose a friend: "));
                 subPanel.setWidget(1, 1, chooseFriend);
+                
                 Button addFriend = new Button("Add to the conversation");
                 subPanel.setWidget(1, 2, addFriend);
                 addFriend.addClickHandler(new ClickHandler() {
@@ -908,6 +909,8 @@ public class frontend implements EntryPoint {
     }
     
     private void loadNewConversation() {
+        newConversationPanelSetup();
+        
         RootPanel.get().clear();
         RootPanel.get().add(navigationPanel);
         RootPanel.get().add(newConversationPanel);

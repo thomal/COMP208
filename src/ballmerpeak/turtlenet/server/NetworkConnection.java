@@ -148,7 +148,7 @@ public class NetworkConnection implements Runnable {
         Socket s;
         BufferedReader in;
         PrintWriter out;
-        Logger.write("VERBOSE", "NetCon", "Sending command to server: \"" + cmd + "\"");
+        Logger.write("VERBOSE", "NetCon", "Sending command to server \""  + cmd + "\"");
         
         //connect
         try {

@@ -85,7 +85,9 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
     }
     
     public String[][] getPeople () {
-        return getCategoryMembers("all");
+        String[][] people = getCategoryMembers("all");
+        Logger.write("VERBOSE", "TnImpl", "getPeople(): returning " + people.length + " people");
+        return people;
     }
     
     public Conversation[] getConversations () {
