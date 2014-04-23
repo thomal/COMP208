@@ -319,7 +319,7 @@ public class frontend implements EntryPoint {
             }
         });
         
-        Button newConversation = new Button("New Conversation");
+        Button newConversation = new Button("New conversation");
         newConversation.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
                 loadNewConversation();
@@ -410,7 +410,7 @@ public class frontend implements EntryPoint {
                      }
                  });
             }
-        });        
+        });   
         
         // Create widgets relating to birthday
         Label birthdayLabel = new Label("Birthday:");
@@ -528,6 +528,8 @@ public class frontend implements EntryPoint {
                  });
             }
         });
+        
+        // TODO LOUISTODO Add link to myDetailsPanelPermissions(maybe)
         
         // Add style name for CSS
         myDetailsPanel.addStyleName("gwt-my-details");
@@ -806,14 +808,46 @@ public class frontend implements EntryPoint {
     }
     
      private void conversationPanelSetup(String conversationID) {
-        // Create widgets
+        conversationPanel.setCellSpacing(10);
+        conversationPanel.setWidget(0, 0, new Label("Participants: "));
+        
+        final ListBox currentFriends = new ListBox();
+        currentFriends.setVisibleItemCount(1);
+        currentFriends.setWidth("150px");
+        conversationPanel.setWidget(0, 1, currentFriends);
+        //LIST ALL OF THE PEOPLE IN THE CONVERSATION LOOOOOP
+        
+        // TODO LUKETODO 10 should be replaced by a call to a method that returns
+        // the number of messages in the conversation when given the ID of a conversation.
+        // This method takes a string called conversationID so you can use that.
+        for(int i = 0; i < 10; i++) {
+            
+            // TODO LUKETODO "ID of Message" should be replaced with a call to a
+            // method that returns a list of messageIDs when given a conversationID.
+            // This method takes a string called conversationID so you can use that.
+            // You can then use i to choose a messageID from the list.
+            String messageID = ("ID of Message");
+        
+            // TODO LUKETODO "Username: " should be replaced with a call to a method
+            // that takes a the ID of a message and returns the username of the user
+            // who posted it. Give it messageID  
+            Label postedBy = new Label("Username: ");
+            postedBy.getElement().getStyle().setFontWeight(FontWeight.BOLD);
+            conversationPanel.setWidget((i + 1), 0, postedBy);
+            
+            // TODO LUKETODO "Lorem ipsum dolor..." should be replaced with a call to a method
+            // that takes a the ID of a message and returns the contents of that message.
+            // Give it messageID
+            Label messageContents = new Label("Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
+            conversationPanel.setWidget((i + 1), 1, messageContents);
+        }
 
-        // Add widgets to panel
+        //Add a new message at the bottom
+        //send button
+        //send click handler 
 
         // Add style name for CSS
         conversationPanel.addStyleName("gwt-conversation");
-
-        // Add click handlers for anchors
 
     }
 
