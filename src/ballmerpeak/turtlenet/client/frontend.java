@@ -319,6 +319,15 @@ public class frontend implements EntryPoint {
             }
         });
         
+        Button newConversation = new Button("New Conversation");
+        newConversation.addClickHandler(new ClickHandler() {
+            public void onClick(ClickEvent event) {
+                loadNewConversation();
+            }
+        });
+        
+        conversationListPanel.setWidget((conversationListPanel.getRowCount() + 1), 1, newConversation);
+        
         // Add style name for CSS
         conversationListPanel.addStyleName("gwt-conversation-list");
     }
@@ -878,6 +887,12 @@ public class frontend implements EntryPoint {
         //TODO
         // conversationPanelSetup(conversationID);
         RootPanel.get().clear();
+    }
+    
+    private void loadNewConversation() {
+        RootPanel.get().clear();
+        RootPanel.get().add(navigationPanel);
+        RootPanel.get().add(newConversationPanel);
     }
 
     private void loadFriendsList(String currentGroupID) {
