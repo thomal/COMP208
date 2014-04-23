@@ -84,6 +84,12 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
         return categories;
     }
     
+    public String[][] getPeople () {
+        String[][] people = getCategoryMembers("all");
+        Logger.write("VERBOSE", "TnImpl", "getPeople(): returning " + people.length + " people");
+        return people;
+    }
+    
     public Conversation[] getConversations () {
         //TODO TurnetImpl remove this debug code
         Conversation[] convos = c.db.getConversations();
@@ -144,6 +150,25 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
     
     public String updatePDATApermission (String category, boolean value) {
         c.db.updatePDATApermission(category, value);
+        return "success";
+    }
+    
+    //Posting
+    public String[] createCHAT (String[] keys) {
+        Message msg = new MessageFactoryImpl().newCHAT(keys);
+        for (int i = 0; i < keys.length; i++)
+            c.connection.postMessage(msg, Crypto.decodeKey(keys[i]));
+        String[] ret = new String[2];
+        ret[0] = "success";
+        ret[1] = msg.getSig();
+        return ret;
+    }
+    
+    public String addMessageToCHAT (String text, String sig) {
+        PublicKey[] keys = c.db.getPeopleInConvo(sig);
+        Message msg = new MessageFactoryImpl().newPCHAT(sig, text);
+        for (int i = 0; i < keys.length; i++)
+            c.connection.postMessage(msg, keys[i]);
         return "success";
     }
 }

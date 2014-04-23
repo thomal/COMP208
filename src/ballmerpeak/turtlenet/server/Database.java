@@ -1,3 +1,14 @@
+/* FOR MIKES ATTENTION:
+ * String[][] demo = {{"a", "b"}, {"c", "d"}, {"e", "f"}}
+ * is a String[3][2]
+ * An array of 3 String[2]'s
+ * Each String[2] contains two strings [0] and [1]
+ * So demo[1][1] = "d"
+ *    demo[2][0] = "e"
+ * This format is used to describe return formats. Demos can be found in
+ *    TurtlenetImpl.java in many cases.
+*/
+
 package ballmerpeak.turtlenet.server;
 
 import ballmerpeak.turtlenet.shared.Message;
@@ -115,6 +126,13 @@ public class Database {
         return null;
     }
     
+    //Get keys of all people in the given conversation
+    public PublicKey[] getPeopleInConvo (String sig) {
+        //REPLACE ME
+        Logger.write("UNIMPL", "DB", "Unimplemented method Database.getPeopleInConvo(...)");
+        return null;
+    }
+    
     //Return all messages in a conversation
     //{{username, time, msg}, {username, time, msg}, etc.}
     //Please order it so that element 0 is the oldest message
@@ -141,6 +159,8 @@ public class Database {
     }
     
     //Return the keys of each member of the category
+    //if(category.equals("all")) //remember NEVER to compare strings with ==
+    //    return every key you know about
     public PublicKey[] getCategoryMembers (String category) {
         Logger.write("UNIMPL", "DB", "Unimplemented method Database.getCategoryMembers(" + category + ")");
         return null;
@@ -173,6 +193,7 @@ public class Database {
     }
     
     //remember to store the signature
+    //if this key has already claimed a name, forget the old one
     public void addClaim (Message claim) {
         //REPLACE ME
         Logger.write("UNIMPL", "DB", "Unimplemented method Database.addClaim(...)");
