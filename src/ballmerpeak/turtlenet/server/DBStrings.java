@@ -9,9 +9,9 @@ class DBStrings {
         "CREATE TABLE tbl_user (                  " +
             "user_id    INTEGER      PRIMARY KEY, " + 
             "username   VARCHAR(25),              " +
-            "name       VARCHAR(30),              " +
+            "realname   VARCHAR(30),              " +
             "birthday   DATE,                     " + 
-            "sex        VARCHAR(1),               " + 
+            "sex        VARCHAR(30),              " + 
             "email      VARCHAR(30),              " + 
             "public_key VARCHAR(8),               " +
         ");",
@@ -168,14 +168,14 @@ class DBStrings {
     }
 
     public static final String addPData =
-        "INSERT INTO tbl_user (user_id, username, name, birthday, sex, " +
+        "INSERT INTO tbl_user (user_id, username, realname, birthday, sex, " +
         "email, public_key) " +
         "VALUES (null, 'userVar', 'nameVar', 'YYYY-MM-DD', 'genderVar', 'email@email.com', 'keyVar');" ;
 
     public static final String getPData =
         "SELECT fieldVar " +
-        "FROM tbl_key_revoke; " 
-        "WHERE public_key = keyVar;" ;    
+        "FROM tbl_user; " +
+        "WHERE public_key = 'keyVar';" ;
 
     public static final String createChat =
         "INSERT INTO tbl_private_message (message_id, user_from, content) " +
@@ -211,7 +211,7 @@ class DBStrings {
         "";
 
     public static final String getComments = 
-        "SELECT username, name, comment_content, time " +
+        "SELECT username, realname, comment_content, time " +
         "FROM tbl_user " +
         "INNER JOIN tbl_has_comment " +
         "ON tbl_user.user_id = tbl_has_comment.user_id " +
@@ -238,7 +238,7 @@ class DBStrings {
         "'1YYY-MM-DD', '2YYY-MM-DD');" ;
 
     public static final String getEvent = 
-        "SELECT tbl_user.username, tbl_user.name, tbl_events.title, " +
+        "SELECT tbl_user.username, tbl_user.realname, tbl_events.title, " +
         "tbl_events.content, tbl_events.time, tbl_events.start_date, " +
         "tbl_events.end_date, tbl_events.user_from " +
         "FROM tbl_user " +
@@ -249,7 +249,7 @@ class DBStrings {
     public static final String getEventWithInvites = 
         "SELECT tbl_events.title, tbl_events.content, tbl_events.time, " +
         "tbl_events.start_date, tbl_events.end_date, tbl_events.from, " +
-        "tbl_user.username, tbl_user.name " +
+        "tbl_user.username, tbl_user.realname " +
         "FROM tbl_events " +
         "INNER JOIN tbl_is_invited " +
         "ON tbl_events.event_id = tbl_is_invited.event_id " +
@@ -281,7 +281,7 @@ class DBStrings {
         "WHERE username = 'userVar';" ;
 
     public static final String getName = 
-        "SELECT username, name " +
+        "SELECT username, realname " +
         "FROM tbl_user " +
         "WHERE public_key = 'keyVar';" ;
 
