@@ -246,10 +246,11 @@ public class frontend implements EntryPoint {
         });
     }
 
-    private void friendsListPanelSetup(final String currentGroupID) {
-    
+
+    private Label friendLstPanel_mykeylabel;
+    private void friendsListPanelSetup(final String currentGroupID) {   
         friendsListPanel.clear();
-    
+        
         // Column title for anchors linking to messages        
         Label friendsNameLabel = new Label("Friend's Name");
         friendsNameLabel.getElement().getStyle().setFontWeight(FontWeight.BOLD);
@@ -301,22 +302,22 @@ public class frontend implements EntryPoint {
         }
         friendsListPanel.setWidget(row, 1, currentGroups);
         
-        // TODO LUKETODO 10 should be replaced with a method that returns the
-        // number of groups the user has currently created
-        for (int i = 0; i < 10; i++) {
-        
-            // TODO LUKETODO "Group Name" should be replaced with a call to a method
-            // that returns the list of all of the groups the user has created.
-            // You can then use i to choose a group from the list.
-            currentGroups.addItem("Group Name");
-        }     
-                
-        
-        currentGroups.addChangeHandler(new ChangeHandler() {
-            public void onChange(ChangeEvent event) {
-                // BUG When changing back to "All" currentGroupID should equal
-                // "All" and thus display 'Add new friend' instead of 'Add friend to group'
-                friendsListPanelSetup(currentGroups.getItemText(currentGroups.getSelectedIndex()));
+        turtlenet.getCategories(new AsyncCallback<String[][]>() {
+            String[][] result;
+            int i;
+            public void onFailure(Throwable caught) {
+                //TODO Error
+            }
+            public void onSuccess(String[][] _result) {
+                result = _result;
+                for (i = 0; i < result.length; i++) {
+                    currentGroups.addItem(result[i][0]);
+                }
+                currentGroups.addChangeHandler(new ChangeHandler() {
+                    public void onChange(ChangeEvent event) {
+                        friendsListPanelSetup(currentGroups.getItemText(currentGroups.getSelectedIndex()));
+                    }
+                });
             }
         });
         
@@ -328,12 +329,19 @@ public class frontend implements EntryPoint {
             }
         });
         
-        // TODO LUKETODO "keygoeshere" should be replaced with the users key
-        Label myKey = new Label("My Key: " + "keygoeshere");
-
-        friendsListPanel.setWidget((row - 1), 1, myKey);
         
-        if(currentGroupID == "All") {
+        turtlenet.getMyKey(new AsyncCallback<String>() {
+            public void onFailure(Throwable caught) {
+                //TODO Error
+            }
+            public void onSuccess(String result) {
+                friendLstPanel_mykeylabel = new Label("My Key: " + result);
+            }
+        });
+
+        friendsListPanel.setWidget((row - 1), 1, friendLstPanel_mykeylabel);
+        
+        if(currentGroupID.equals("All")) {
             Button addFriend = new Button("Add new friend");
             friendsListPanel.setWidget((row - 1), 2, addFriend);
             addFriend.addClickHandler(new ClickHandler() {
@@ -341,7 +349,6 @@ public class frontend implements EntryPoint {
                     addFriend();
                 }
             });
-            
         } else {
             Button addToGroup = new Button("Add friend to group");
             friendsListPanel.setWidget((row - 1), 2, addToGroup);
@@ -351,10 +358,6 @@ public class frontend implements EntryPoint {
                 }
             });
         }        
-        
-        
-        
-        
         
         // Add style name for CSS
         friendsListPanel.addStyleName("gwt-friends-list");
