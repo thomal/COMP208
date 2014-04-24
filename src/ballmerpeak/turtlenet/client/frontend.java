@@ -246,7 +246,7 @@ public class frontend implements EntryPoint {
         });
     }
 
-    private TextArea friendsListPanel_myKeyTextArea;
+    private TextBox friendsListPanel_myKeyTextBox;
     private void friendsListPanelSetup(final String currentGroupID) {   
         friendsListPanel.clear();
         
@@ -273,7 +273,9 @@ public class frontend implements EntryPoint {
                     //list names/keys
                     Anchor linkFriendsWall = new Anchor(result[i][0]);
                     friendsListPanel.setWidget((i + 2), 0, linkFriendsWall);
-                    friendsListPanel.setWidget((i + 2), 1, new Label(result[i][1]));
+                    final String resultString = result[i][1];
+                    //TODO LOUISTODO Make substring longer
+                    friendsListPanel.setWidget((i + 2), 1, new Label(resultString.substring(0, 11) + "..."));
                     //link names to walls
                     linkFriendsWall.addClickHandler(new ClickHandler() {
                         public void onClick(ClickEvent event) {
@@ -287,9 +289,8 @@ public class frontend implements EntryPoint {
         int row = friendsListPanel.getRowCount() + 2;
         
         if(!currentGroupID.equals("All")) {
-            Label currentGroupLabel = new Label("Current group: " + currentGroupID);
-            currentGroupLabel.getElement().getStyle().setProperty("paddingLeft" , "100px");
-            friendsListPanel.setWidget(row, 0, currentGroupLabel);        
+            Label currentGroupLabel = new Label(currentGroupID);
+            friendsListPanel.setWidget((row - 1), 3, currentGroupLabel);        
         }
         
         final ListBox currentGroups = new ListBox();
@@ -334,13 +335,17 @@ public class frontend implements EntryPoint {
                 //TODO Error
             }
             public void onSuccess(String result) {
-                friendsListPanel_myKeyTextArea = new TextArea();
-                friendsListPanel_myKeyTextArea.setText(result);
+                friendsListPanel_myKeyTextBox = new TextBox();
+                friendsListPanel_myKeyTextBox.setWidth("500px");
+                friendsListPanel_myKeyTextBox.setText(result);
             }
         });
-
-        friendsListPanel.setWidget((row - 1), 0, new Label("My key: "));
-        friendsListPanel.setWidget((row - 1), 1, friendsListPanel_myKeyTextArea);
+        
+        Label myKeyLabel = new Label("My key: ");
+        myKeyLabel.getElement().getStyle().setFontWeight(FontWeight.BOLD);
+        myKeyLabel.getElement().getStyle().setProperty("paddingLeft" , "100px");
+        friendsListPanel.setWidget((row - 1), 0, myKeyLabel);
+        friendsListPanel.setWidget((row - 1), 1, friendsListPanel_myKeyTextBox);
         
         if(currentGroupID.equals("All")) {
             Button addFriend = new Button("Add new friend");
@@ -352,7 +357,7 @@ public class frontend implements EntryPoint {
             });
         } else {
             Button addToGroup = new Button("Add people to category");
-            friendsListPanel.setWidget((row - 1), 2, addToGroup);
+            friendsListPanel.setWidget(1, 3, addToGroup);
             addToGroup.addClickHandler(new ClickHandler() {
                 public void onClick(ClickEvent event) {
                     addToGroup(currentGroupID);
