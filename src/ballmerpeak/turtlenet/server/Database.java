@@ -111,7 +111,7 @@ public class Database {
         String sqlStatement  = DatabaseStrings.getPData.replace("fieldVar",
                                                                field);
         sqlStatement = queryString.replace("keyVar", key); //mods SQL template
-        ResultSet results = query(queryString);
+        ResultSet results = query(sqlStatement);
 
         String value = results.getString(field) //gets current value in 'field'
 
@@ -122,7 +122,13 @@ public class Database {
     
     //Set the CMD to POST in the Message constructor
     public Message[] getPostsBy (PublicKey key) {
-        //REPLACE ME
+
+        String sqlStatement  = DatabaseStrings.getPostsBy.replace("keyVar",
+                                                               key);
+        ResultSet results = query(sqlStatement);
+
+        
+
         Logger.write("UNIMPL", "DB", "Unimplemented method Database.getPostsBy(...)");
         return null;
     }
