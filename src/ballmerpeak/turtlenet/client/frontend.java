@@ -287,7 +287,7 @@ public class frontend implements EntryPoint {
         
         int row = friendsListPanel.getRowCount() + 2;
         
-        if(currentGroupID != "All") {
+        if(!currentGroupID.equals("All")) {
             Label currentGroupLabel = new Label("Current group: " + currentGroupID);
             currentGroupLabel.getElement().getStyle().setProperty("paddingLeft" , "100px");
             friendsListPanel.setWidget(row, 0, currentGroupLabel);        
@@ -297,7 +297,7 @@ public class frontend implements EntryPoint {
         currentGroups.setVisibleItemCount(1);
         currentGroups.setWidth("150px");
         currentGroups.addItem("Choose a category");
-        if(currentGroupID != "All") {
+        if(!currentGroupID.equals("All")) {
             currentGroups.addItem("All");
         }
         friendsListPanel.setWidget(row, 1, currentGroups);
