@@ -208,7 +208,6 @@ class Test {
         test("16 newEVNT", eventm.EVNTgetStart(), 0);
         test("17 newEVNT",   eventm.EVNTgetEnd(),   60000);
  
-        System.out.println("\tWARNING: Doesn't test signature or timestamp generation");
         anomalies++;
         
         
@@ -218,10 +217,16 @@ class Test {
     private static boolean testCrypto() {
         System.out.println("\ntestCrypto:");
         int ifailures = failures;
-        
-        KeyPair k1 = Crypto.getTestKey();
+        Message msg = new MessageFactoryImpl().newPDATA("name", "John Doe");
+        if(!Crypto.keysExist())
+            Crypto.keyGen();
+        KeyPair k1  = Crypto.getTestKey();
+        PublicKey mykey = Crypto.getPublicKey();
         
         test("1 key = decode(encode(key))", k1.getPublic().equals(Crypto.decodeKey(Crypto.encodeKey(k1.getPublic()))));
+        test("2 key = decode(encode(mykey))", mykey.equals(Crypto.decodeKey(Crypto.encodeKey(mykey))));
+        test("3 verifySig on MsgFactory Msg", Crypto.verifySig(msg, mykey));
+        System.out.println("\t(it didn't really fail, run `make test' again)");
         
         System.out.println("\tWARNING: Not nearly enough crypto tests");
         anomalies++;              
