@@ -113,7 +113,7 @@ public class Database {
         sqlStatement = sqlStatement.replace("keyVar", key); //mods SQL template
         ResultSet results = query(sqlStatement);
 
-        String value = results.getString(field) //gets current value in 'field'
+        String value = results.getString(field); //gets current value in 'field'
 
         Logger.write("VERBOSE", "DB", "Called method Database.getPDATA("
                      + field + ",...)");
@@ -123,9 +123,9 @@ public class Database {
     //Set the CMD to POST in the Message constructor
     public Message[] getPostsBy (PublicKey key) {
 
-        String sqlStatement  = DatabaseStrings.getPostsBy.replace("keyVar",
-                                                               key);
-        ResultSet results = query(sqlStatement);
+        // String sqlStatement  = DatabaseStrings.getPostsBy.replace("keyVar",
+        //                                                       key);
+        //ResultSet results = query(sqlStatement);
 
         
 
@@ -136,6 +136,9 @@ public class Database {
     //Return all conversations
     public Conversation[] getConversations () {
         //REPLACE ME
+
+        
+
         Logger.write("UNIMPL", "DB", "Unimplemented method Database.getConversations(...)");
         return null;
     }
