@@ -1,88 +1,74 @@
-===== Turtlenet started at Thu Apr 24 13:24:04 BST 2014=====
-1398342244 UNIMPL	TNClient	Ignoring password: 
-1398342244 INFO		NetCon	Read lastRead from file
-1398342244 INFO		DB	Connecting to database
-1398342244 INFO		NetCon	NetworkConnection started
-1398342245 UNIMPL	DB	Unimplemented method Database.getCategoryMembers(All)
-1398342245 INFO		TnImpl	Returning false getCategoryMembers results
-1398342245 UNIMPL	DB	Unimplemented method Database.getCategories()
-1398342245 VERBOSE	NetCon	Sending command to server "get 1398342097496"
-1398342245 VERBOSE	NetCon	Sending command to server "t"
-1398342245 UNIMPL	DB	Unimplemented method Database.getKey(...)
-1398342246 VERBOSE	NetCon	Sending command to server "get 1398342245282"
-1398342246 VERBOSE	NetCon	Sending command to server "t"
-1398342247 VERBOSE	NetCon	Sending command to server "get 1398342246283"
-1398342247 VERBOSE	NetCon	Sending command to server "t"
-1398342248 UNIMPL	DB	Unimplemented method Database.getCategoryMembers(<fake category 1>)
-1398342248 INFO		TnImpl	Returning false getCategoryMembers results
-1398342248 UNIMPL	DB	Unimplemented method Database.getCategories()
-1398342248 UNIMPL	DB	Unimplemented method Database.getKey(...)
-1398342248 VERBOSE	NetCon	Sending command to server "get 1398342247284"
-1398342248 VERBOSE	NetCon	Sending command to server "t"
-1398342249 VERBOSE	NetCon	Sending command to server "get 1398342248285"
-1398342249 VERBOSE	NetCon	Sending command to server "t"
-1398342250 VERBOSE	NetCon	Sending command to server "get 1398342249287"
-1398342250 VERBOSE	NetCon	Sending command to server "t"
-1398342251 VERBOSE	NetCon	Sending command to server "get 1398342250288"
-1398342251 VERBOSE	NetCon	Sending command to server "t"
-1398342251 UNIMPL	DB	Unimplemented method Database.getCategoryMembers(<fake category 2>)
-1398342251 INFO		TnImpl	Returning false getCategoryMembers results
-1398342251 UNIMPL	DB	Unimplemented method Database.getCategories()
-1398342251 UNIMPL	DB	Unimplemented method Database.getKey(...)
-1398342252 VERBOSE	NetCon	Sending command to server "get 1398342251289"
-1398342252 VERBOSE	NetCon	Sending command to server "t"
-1398342253 VERBOSE	NetCon	Sending command to server "get 1398342252290"
-1398342253 VERBOSE	NetCon	Sending command to server "t"
-1398342254 UNIMPL	DB	Unimplemented method Database.getCategoryMembers(All)
-1398342254 INFO		TnImpl	Returning false getCategoryMembers results
-1398342254 UNIMPL	DB	Unimplemented method Database.getCategories()
-1398342254 UNIMPL	DB	Unimplemented method Database.getKey(...)
-1398342254 VERBOSE	NetCon	Sending command to server "get 1398342253292"
-1398342254 VERBOSE	NetCon	Sending command to server "t"
-1398342255 VERBOSE	NetCon	Sending command to server "get 1398342254293"
-1398342255 VERBOSE	NetCon	Sending command to server "t"
-1398342256 VERBOSE	NetCon	Sending command to server "get 1398342255295"
-1398342256 VERBOSE	NetCon	Sending command to server "t"
-1398342256 UNIMPL	DB	Unimplemented method Database.getCategoryMembers(All)
-1398342256 INFO		TnImpl	Returning false getCategoryMembers results
-1398342256 UNIMPL	DB	Unimplemented method Database.getCategories()
-1398342256 UNIMPL	DB	Unimplemented method Database.getKey(...)
-1398342257 VERBOSE	NetCon	Sending command to server "get 1398342256298"
-1398342257 VERBOSE	NetCon	Sending command to server "t"
-1398342258 VERBOSE	NetCon	Sending command to server "get 1398342257300"
-1398342258 VERBOSE	NetCon	Sending command to server "t"
-1398342259 UNIMPL	DB	Unimplemented method Database.getCategoryMembers(<fake category 1>)
-1398342259 INFO		TnImpl	Returning false getCategoryMembers results
-1398342259 UNIMPL	DB	Unimplemented method Database.getCategories()
-1398342259 UNIMPL	DB	Unimplemented method Database.getKey(...)
-1398342259 VERBOSE	NetCon	Sending command to server "get 1398342258301"
-1398342259 VERBOSE	NetCon	Sending command to server "t"
-1398342260 VERBOSE	NetCon	Sending command to server "get 1398342259302"
-1398342260 VERBOSE	NetCon	Sending command to server "t"
-1398342261 VERBOSE	NetCon	Sending command to server "get 1398342260304"
-1398342261 VERBOSE	NetCon	Sending command to server "t"
-1398342262 VERBOSE	NetCon	Sending command to server "get 1398342261305"
-1398342262 VERBOSE	NetCon	Sending command to server "t"
-1398342262 UNIMPL	DB	Unimplemented method Database.getCategoryMembers(<fake category 2>)
-1398342262 INFO		TnImpl	Returning false getCategoryMembers results
-1398342262 UNIMPL	DB	Unimplemented method Database.getCategories()
-1398342262 UNIMPL	DB	Unimplemented method Database.getKey(...)
-1398342263 VERBOSE	NetCon	Sending command to server "get 1398342262307"
-1398342263 VERBOSE	NetCon	Sending command to server "t"
-1398342264 UNIMPL	DB	Unimplemented method Database.getCategoryMembers(All)
-1398342264 INFO		TnImpl	Returning false getCategoryMembers results
-1398342264 UNIMPL	DB	Unimplemented method Database.getCategories()
-1398342264 UNIMPL	DB	Unimplemented method Database.getKey(...)
-1398342264 VERBOSE	NetCon	Sending command to server "get 1398342263308"
-1398342264 VERBOSE	NetCon	Sending command to server "t"
-1398342265 VERBOSE	NetCon	Sending command to server "get 1398342264309"
-1398342265 VERBOSE	NetCon	Sending command to server "t"
-1398342266 VERBOSE	NetCon	Sending command to server "get 1398342265311"
-1398342266 VERBOSE	NetCon	Sending command to server "t"
-1398342267 VERBOSE	NetCon	Sending command to server "get 1398342266312"
-1398342267 VERBOSE	NetCon	Sending command to server "t"
-1398342267 INFO		TNImpl	stopTN()
-1398342267 INFO		NetCon	close()
-1398342267 INFO		NetCon	Saved lastRead to disk
-1398342267 INFO		DB	Disconnecting from database
-===== Turtlenet closed  at Thu Apr 24 13:24:27 BST 2014=====
+===== Turtlenet started at Thu Apr 24 15:21:52 BST 2014=====
+1398349312 UNIMPL	TNClient	Ignoring password: 
+1398349312 INFO		NetCon	Read lastRead from file
+1398349312 INFO		DB	Connecting to database
+1398349312 INFO		NetCon	NetworkConnection started
+1398349313 VERBOSE	NetCon	Sending command to server "get 1398349081876"
+1398349313 VERBOSE	NetCon	Sending command to server "t"
+1398349313 UNIMPL	DB	Unimplemented method Database.getCategoryMembers(All)
+1398349313 INFO		TnImpl	Returning false getCategoryMembers results
+1398349314 UNIMPL	DB	Unimplemented method Database.getCategories()
+1398349314 VERBOSE	NetCon	Sending command to server "get 1398349313958"
+1398349314 VERBOSE	NetCon	Sending command to server "t"
+1398349315 VERBOSE	NetCon	Sending command to server "get 1398349314961"
+1398349315 VERBOSE	NetCon	Sending command to server "t"
+1398349316 VERBOSE	NetCon	Sending command to server "get 1398349315962"
+1398349316 VERBOSE	NetCon	Sending command to server "t"
+1398349317 VERBOSE	NetCon	Sending command to server "get 1398349316964"
+1398349317 VERBOSE	NetCon	Sending command to server "t"
+1398349318 VERBOSE	NetCon	Sending command to server "get 1398349317967"
+1398349318 VERBOSE	NetCon	Sending command to server "t"
+1398349319 VERBOSE	NetCon	Sending command to server "get 1398349318969"
+1398349319 VERBOSE	NetCon	Sending command to server "t"
+1398349320 VERBOSE	NetCon	Sending command to server "get 1398349319971"
+1398349320 VERBOSE	NetCon	Sending command to server "t"
+1398349321 VERBOSE	NetCon	Sending command to server "get 1398349320973"
+1398349321 VERBOSE	NetCon	Sending command to server "t"
+1398349322 VERBOSE	NetCon	Sending command to server "get 1398349321975"
+1398349322 VERBOSE	NetCon	Sending command to server "t"
+1398349323 VERBOSE	NetCon	Sending command to server "get 1398349322976"
+1398349323 VERBOSE	NetCon	Sending command to server "t"
+1398349324 VERBOSE	NetCon	Sending command to server "get 1398349323978"
+1398349325 VERBOSE	NetCon	Sending command to server "t"
+1398349326 VERBOSE	NetCon	Sending command to server "get 1398349325435"
+1398349326 VERBOSE	NetCon	Sending command to server "t"
+1398349327 VERBOSE	NetCon	Sending command to server "get 1398349326437"
+1398349327 VERBOSE	NetCon	Sending command to server "t"
+1398349328 VERBOSE	NetCon	Sending command to server "get 1398349327439"
+1398349328 VERBOSE	NetCon	Sending command to server "t"
+1398349329 VERBOSE	NetCon	Sending command to server "get 1398349328441"
+1398349329 VERBOSE	NetCon	Sending command to server "t"
+1398349330 VERBOSE	NetCon	Sending command to server "get 1398349329445"
+1398349330 VERBOSE	NetCon	Sending command to server "t"
+1398349331 VERBOSE	NetCon	Sending command to server "get 1398349330447"
+1398349331 VERBOSE	NetCon	Sending command to server "t"
+1398349332 UNIMPL	DB	Unimplemented method Database.getCategoryMembers(<fake category 1>)
+1398349332 INFO		TnImpl	Returning false getCategoryMembers results
+1398349332 UNIMPL	DB	Unimplemented method Database.getCategories()
+1398349332 VERBOSE	NetCon	Sending command to server "get 1398349331449"
+1398349332 VERBOSE	NetCon	Sending command to server "t"
+1398349333 VERBOSE	NetCon	Sending command to server "get 1398349332451"
+1398349333 VERBOSE	NetCon	Sending command to server "t"
+1398349334 VERBOSE	NetCon	Sending command to server "get 1398349333453"
+1398349334 VERBOSE	NetCon	Sending command to server "t"
+1398349335 VERBOSE	NetCon	Sending command to server "get 1398349334455"
+1398349335 VERBOSE	NetCon	Sending command to server "t"
+1398349336 VERBOSE	NetCon	Sending command to server "get 1398349335457"
+1398349336 VERBOSE	NetCon	Sending command to server "t"
+1398349337 VERBOSE	NetCon	Sending command to server "get 1398349336459"
+1398349337 VERBOSE	NetCon	Sending command to server "t"
+1398349338 VERBOSE	NetCon	Sending command to server "get 1398349337461"
+1398349338 VERBOSE	NetCon	Sending command to server "t"
+1398349338 UNIMPL	DB	Unimplemented method Database.getConversations(...)
+1398349338 INFO		TnImpl	Returning false getConversations results
+1398349339 VERBOSE	NetCon	Sending command to server "get 1398349338463"
+1398349339 VERBOSE	NetCon	Sending command to server "t"
+1398349340 VERBOSE	NetCon	Sending command to server "get 1398349339465"
+1398349340 VERBOSE	NetCon	Sending command to server "t"
+1398349341 VERBOSE	NetCon	Sending command to server "get 1398349340467"
+1398349341 VERBOSE	NetCon	Sending command to server "t"
+1398349341 INFO		TNImpl	stopTN()
+1398349341 INFO		NetCon	close()
+1398349341 INFO		NetCon	Saved lastRead to disk
+1398349341 INFO		DB	Disconnecting from database
+===== Turtlenet closed  at Thu Apr 24 15:22:21 BST 2014=====

@@ -32,4 +32,8 @@ public interface TurtlenetAsync {
     //Posting
     void createCHAT       (String[] keys,           AsyncCallback<String[]> callback);
     void addMessageToCHAT (String text, String sig, AsyncCallback<String> callback);
+    
+    //Friends
+    void addCategory   (String name,             AsyncCallback<String> callback);
+    void addToCategory (String name, String key, AsyncCallback<String> callback);
 }

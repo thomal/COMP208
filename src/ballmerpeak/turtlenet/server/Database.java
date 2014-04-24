@@ -267,8 +267,16 @@ public class Database {
         Logger.write("UNIMPL", "DB", "Unimplemented method Database.updatePDATApermission(" + category + "," + value + ")");
     }
     
-    public void addCategory (String category, boolean value) {
+    //no duplicate names
+    public boolean addCategory (String name, boolean can_see_private_details) {
         //REPLACE ME
-        Logger.write("UNIMPL", "DB", "Unimplemented method Database.addCategory(" + category + "," + value + ")");
+        Logger.write("UNIMPL", "DB", "Unimplemented method Database.addCategory(" + name + "," + can_see_private_details + ")");
+        return true;
+    }
+    
+    public boolean addToCategory (String category, PublicKey key) {
+        //REPLACE ME
+        Logger.write("UNIMPL", "DB", "Unimplemented method Database.addToCategory(" + category + ",...)");
+        return true;
     }
 }

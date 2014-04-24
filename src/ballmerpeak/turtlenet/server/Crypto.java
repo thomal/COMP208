@@ -205,7 +205,12 @@ public class Crypto {
     }
     
     public static String encodeKey (PublicKey key) {
-        return Base64Encode(key.getEncoded());
+        if (key != null) {
+            return Base64Encode(key.getEncoded());
+        } else {
+            Logger.write("ERROR", "Crypto","encodeKey passed null key");
+            return "--INVALID KEYSTRING--";
+        }
     }
     
     public static PublicKey decodeKey (String codedKey) {

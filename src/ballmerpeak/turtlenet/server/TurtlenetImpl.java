@@ -75,7 +75,7 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
     }
     
     public String getMyKey() {
-        return getKey(Crypto.encodeKey(Crypto.getPublicKey()));
+        return Crypto.encodeKey(Crypto.getPublicKey());
     }
     
     public String getKey(String username) {
@@ -253,5 +253,22 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
         for (int i = 0; i < keys.length; i++)
             c.connection.postMessage(msg, keys[i]);
         return "success";
+    }
+    
+    //Friends
+    public String addCategory (String name) {
+        if (c.db.addCategory(name, false))
+            return "success";
+        else
+            return "failure";
+    }
+    
+    public String addToCategory (String group, String key) {
+        Logger.write("INFO", "TnImpl", "addToCategoru(" + group + "," + key + ")");
+        
+        if (c.db.addToCategory(group, Crypto.decodeKey(key)))
+            return "success";
+        else
+            return "failure";
     }
 }

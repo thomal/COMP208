@@ -34,4 +34,8 @@ public interface Turtlenet extends RemoteService {
   //Posting
   String[]   createCHAT(String[] keys); //{"success", "<convo signature>"}
   String     addMessageToCHAT(String text, String sig);
+  
+  //Friends
+  String addCategory   (String name);
+  String addToCategory (String category, String key);
 }

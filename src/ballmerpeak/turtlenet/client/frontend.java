@@ -350,7 +350,7 @@ public class frontend implements EntryPoint {
                 }
             });
         } else {
-            Button addToGroup = new Button("Add friend to category");
+            Button addToGroup = new Button("Add people to category");
             friendsListPanel.setWidget((row - 1), 2, addToGroup);
             addToGroup.addClickHandler(new ClickHandler() {
                 public void onClick(ClickEvent event) {
@@ -620,7 +620,7 @@ public class frontend implements EntryPoint {
             }
             public void onSuccess(String[][] _result) {
                 result = _result;
-                for (i = 0; i <= result.length; i++) {
+                for (i = 0; i < result.length; i++) {
                     final CheckBox groupCheckBox = new CheckBox(result[i][0]);
                     groupCheckBox.setValue(result[i][1].equals("true"));
                     myDetailsPermissionsPanel.setWidget((i + 1), 0, groupCheckBox);
@@ -908,6 +908,7 @@ public class frontend implements EntryPoint {
         conversationPanel.addStyleName("gwt-conversation");
     }
     
+    TextBox newGroup_nameInput = new TextBox();
     private void newGroup() {
         // TODO LOUISTODO
         RootPanel.get().clear();
@@ -916,20 +917,25 @@ public class frontend implements EntryPoint {
         RootPanel.get().add(newGroupPanel);
         
         newGroupPanel.setWidget(0, 0, new Label("Category name: "));
-        TextBox groupName = new TextBox();
-        newGroupPanel.setWidget(0, 1, groupName);
+        newGroupPanel.setWidget(0, 1, newGroup_nameInput);
         
         Button createGroup = new Button("Create category");
         newGroupPanel.setWidget(0, 2, createGroup);
         
         createGroup.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                // TODO LUKETODO We need to create a new group with the name the
-                // user has just specified. Use groupName.getText()  to obtain this.
-                
-                // TODO LUKETODO "groupID" should be replaced with the ID of 
-                // the new group we just created.
-                addToGroup("groupID");
+                turtlenet.addCategory(newGroup_nameInput.getText(), new AsyncCallback<String>() {
+                    public void onFailure(Throwable caught) {
+                        //TODO error
+                    }
+                    public void onSuccess(String result) {
+                        if (result.equals("success")) {
+                            addToGroup(newGroup_nameInput.getText());
+                        } else {
+                            //TODO Error
+                        }
+                    }
+                });
             }
         });
         
@@ -948,49 +954,58 @@ public class frontend implements EntryPoint {
         currentMembers.setWidth("150px");
         addToGroupPanel.setWidget(1, 1, currentMembers);
         
-        // TODO LUKETODO 10 should be replaced with a call to a method that takes
-        // the ID of a group and returns the number of people in that group.
-        // Give it groupID.
-        for(int i = 0; i < 10; i++) {
-            // "Friend's name" should be replaced with a call to a method that takes
-            // the ID of a group and returns a list of names of the people in that group.
-            // Use i to select a friends name from the list.
-            currentMembers.addItem("Friend's Name");
-        }
-        
+        turtlenet.getCategoryMembers(groupID, new AsyncCallback<String[][]>() {
+            String[][] result;
+            int i;
+            public void onFailure(Throwable caught) {
+                //TODO Error
+            }
+            public void onSuccess(String[][] _result) {
+                result = _result;
+                for (i = 0; i < result.length; i++) {
+                    currentMembers.addItem(result[i][0]);
+                }
+            }
+        });
         
         addToGroupPanel.setWidget(2, 0, new Label("Add a friend: "));
         final ListBox allFriends = new ListBox();
         allFriends.setVisibleItemCount(1);
         allFriends.setWidth("150px");
         addToGroupPanel.setWidget(2, 1, allFriends);
-        // TODO LUKETODO 10 should be replaced with a call to a method that
-        // returns the number of all of the users friends
-        for(int i = 0; i < 10; i++) {
-            // TODO LUKETODO "Key of a friend" should be replaced with a call to
-            // a method that returns a list of all of the users friends keys.
-            // Use i to choose one from the list.  
-            String friendKey = new String("Key of a friend"); 
-            
-            // TODO LUKETODO "Friend's Name" should be replaced with a call to a
-            // method that returns a friends name when given their key. 
-            // Give it friendKey.
-            allFriends.addItem("Friend's Name");
-            
-            allFriends.setValue(i, friendKey);
-        }
+        
+        turtlenet.getPeople(new AsyncCallback<String[][]>() {
+            String[][] result;
+            int i;
+            public void onFailure(Throwable caught) {
+                //TODO Error
+            }
+            public void onSuccess(String[][] _result) {
+                result = _result;
+                for (i = 0; i < result.length; i++) {
+                    String friendKey = new String(result[i][1]);
+                    allFriends.addItem(result[i][0]);
+                    allFriends.setValue(i, friendKey);
+                }
+            }
+        });
         
         Button addFriend = new Button("Add friend");
         addToGroupPanel.setWidget(2, 2, addFriend);
         addFriend.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                // TODO LUKETODO Call a method that takes the ID of a group
-                // and a friends key and adds that friend to that group.
-                // Give it groupID.
-                // Use  allFriends.getValue(getSelectedIndex())  to get the
-                 // key of the friend the user has selected.
-                    
-                addToGroup(groupID);
+                turtlenet.addToCategory(groupID, allFriends.getValue(allFriends.getSelectedIndex()), new AsyncCallback<String>() {
+                    public void onFailure(Throwable caught) {
+                        //TODO Error
+                    }
+                    public void onSuccess(String result) {
+                        if (result.equals("success")) {
+                            addToGroup(groupID);
+                        } else {
+                            //TODO Error
+                        }
+                    }
+                });
             }
         });
         
