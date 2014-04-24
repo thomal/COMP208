@@ -74,12 +74,22 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
             return "<no value>";
     }
     
+    public String getMyKey() {
+        return getKey(Crypto.encodeKey(Crypto.getPublicKey()));
+    }
+    
+    public String getKey(String username) {
+        return Crypto.encodeKey(c.db.getKey(username));
+    }
+    
     public String[][] getCategories () {
         String[][] categories = c.db.getCategories();
         if (categories == null) {
             categories = new String[2][2];
-            categories[0][0] = "<you have no categories yet>";
+            categories[0][0] = "<fake category 1>";
             categories[0][1] = "false";
+            categories[1][0] = "<fake category 2>";
+            categories[1][1] = "true";
         }
         return categories;
     }
@@ -181,13 +191,26 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
         } else {
             //TODO TurnetImpl remove this debug code
             Logger.write("INFO", "TnImpl", "Returning false getCategoryMembers results");
-            String[][] fakes = new String[3][2];
-            fakes[0][0] = "aubri";
-            fakes[0][1] = "<falsekey1>";
-            fakes[1][0] = "skandranon";
-            fakes[1][1] = "<falsekey2>";
-            fakes[2][0] = "zhaneel";
-            fakes[2][1] = "<falsekey3>";
+            String[][] fakes = new String[0][0];
+            if (category.equals("<fake category 1>")) {
+                fakes = new String[2][2];
+                fakes[0][0] = "aubri";
+                fakes[0][1] = "<falsekey1>";
+                fakes[1][0] = "skandranon";
+                fakes[1][1] = "<falsekey2>";
+            } else if (category.equals("<fake category 2>")) {
+                fakes = new String[1][2];
+                fakes[0][0] = "zhaneel";
+                fakes[0][1] = "<falsekey3>";
+            } else if (category.toLowerCase().equals("all")) {
+                fakes = new String[3][2];
+                fakes[0][0] = "aubri";
+                fakes[0][1] = "<falsekey1>";
+                fakes[1][0] = "skandranon";
+                fakes[1][1] = "<falsekey2>";
+                fakes[2][0] = "zhaneel";
+                fakes[2][1] = "<falsekey3>";
+            }
             return fakes;
         }
     }

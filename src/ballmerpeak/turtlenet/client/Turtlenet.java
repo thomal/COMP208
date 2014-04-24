@@ -15,6 +15,8 @@ public interface Turtlenet extends RemoteService {
   String     getMyUsername();
   String     getPDATA(String field, String key);
   String     getMyPDATA(String field);
+  String     getKey(String username);
+  String     getMyKey();
   
   String[][] getPeople();                         //{{"name1","key1"}, {"name2","key2"}}
   String[][] getCategories();                     //{{"friends", "false"}, {"family", "true"}}

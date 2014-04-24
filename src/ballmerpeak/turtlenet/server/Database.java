@@ -149,10 +149,10 @@ public class Database {
         return null;
     }
     
-    //An array to deal with multiple people having the same name, shouldn't happen
-    //but might if people are evil. Alternativly feel free to return a PublicKey
-    //and "Logger.write("FATAL", "DB", "Duplicate usernames"); System.exit(1);"
-    public PublicKey[] getKey (String name) {
+    //If multiple people have the same username then:
+    //Logger.write("FATAL", "DB", "Duplicate usernames");
+    //System.exit(1);
+    public PublicKey getKey (String name) {
         //REPLACE ME
         Logger.write("UNIMPL", "DB", "Unimplemented method Database.getKey(...)");
         return null;
@@ -173,7 +173,8 @@ public class Database {
         return null;
     }
     
-    //In the case of multiple usernames return the newest one
+    //In the case of multiple usernames: return the newest one
+    //In the case of no username for the key: "return Crypto.encode(k);"
     public String getName (PublicKey k) {
         //REPLACE ME
         Logger.write("UNIMPL", "DB", "Unimplemented method Database.getName(...)");
