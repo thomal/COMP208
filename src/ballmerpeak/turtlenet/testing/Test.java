@@ -114,16 +114,16 @@ class Test {
         KeyPair k2 = Crypto.getTestKey();
         String  k1e = Crypto.encodeKey(k1.getPublic());
         String  k2e = Crypto.encodeKey(k2.getPublic());
-        Message claimm  = new Message("CLAIM",  "zero_cool",                  4224, "<sig>");
-        Message revokem = new Message("REVOKE", "2442",                       4224, "<sig>");
-        Message pdatam  = new Message("PDATA",  "name:John Doe;dob:1972;",    4224, "<sig>");
-        Message chatm   = new Message("CHAT",   k1e + ":" + k2e,              4224, "<sig>");
-        Message pchatm  = new Message("PCHAT",  "<convsig>:Hi bob.",          4224, "<sig>");
-        Message postm   = new Message("POST",   "Hello, World! \\_O_/",       4224, "<sig>");
-        Message fpostm  = new Message("FPOST",  "I'm posting on your wall",   4224, "<sig>");
-        Message cmntm   = new Message("CMNT",   "<post or comment sig>:nice", 4224, "<sig>");
-        Message likem   = new Message("LIKE",   "<post or comment sig>",      4224, "<sig>");
-        Message eventm  = new Message("EVNT",   "0:60000:bobs birthday",      4224, "<sig>");
+        Message claimm  = new Message("CLAIM",  "zero_cool",                    4224, "<sig>");
+        Message revokem = new Message("REVOKE", "2442",                         4224, "<sig>");
+        Message pdatam  = new Message("PDATA",  "name:John Doe;dob:1972;",      4224, "<sig>");
+        Message chatm   = new Message("CHAT",   k1e + ":" + k2e,                4224, "<sig>");
+        Message pchatm  = new Message("PCHAT",  "<convsig>:Hi bob.",            4224, "<sig>");
+        Message postm   = new Message("POST",   "Hello, World! \\_O_/",         4224, "<sig>");
+        Message fpostm  = new Message("FPOST",  "key:I'm posting on your wall", 4224, "<sig>");
+        Message cmntm   = new Message("CMNT",   "<post or comment sig>:nice",   4224, "<sig>");
+        Message likem   = new Message("LIKE",   "<post or comment sig>",        4224, "<sig>");
+        Message eventm  = new Message("EVNT",   "0:60000:bobs birthday",        4224, "<sig>");
         
         test("1  CLAIMgetName", claimm.CLAIMgetName(), "zero_cool");
         
@@ -143,16 +143,17 @@ class Test {
         
         test("11 POSTgetText", postm.POSTgetText(), "Hello, World! \\_O_/");
         
-        //No FPOSTgetX() methods because FPOSTs are POSTs in disguise.
+        test("12 FPOSTgetText", fpostm.FPOSTgetText(), "I'm posting on your wall");
+        test("13 FPOSTgetWall", fpostm.FPOSTgetWall(), "key");
         
-        test("12 CMNTgetText",   cmntm.CMNTgetText(),   "nice");
-        test("13 CMNTgetItemID", cmntm.CMNTgetItemID(), "<post or comment sig>");
+        test("14 CMNTgetText",   cmntm.CMNTgetText(),   "nice");
+        test("15 CMNTgetItemID", cmntm.CMNTgetItemID(), "<post or comment sig>");
         
-        test("14 LIKEgetItemID", likem.LIKEgetItemID(), "<post or comment sig>");
+        test("16 LIKEgetItemID", likem.LIKEgetItemID(), "<post or comment sig>");
         
-        test("15 EVNTgetName",  eventm.EVNTgetName(), "bobs birthday");
-        test("16 EVNTgetStart", eventm.EVNTgetStart(), 0);
-        test("17 EVNTgetEnd",   eventm.EVNTgetEnd(),   60000);
+        test("17 EVNTgetName",  eventm.EVNTgetName(), "bobs birthday");
+        test("18 EVNTgetStart", eventm.EVNTgetStart(), 0);
+        test("19 EVNTgetEnd",   eventm.EVNTgetEnd(),   60000);
         
         
         return failures == ifailures;
@@ -174,7 +175,7 @@ class Test {
         Message chatm   = f.newCHAT(keys);
         Message pchatm  = f.newPCHAT("<convsig>", "Hi bob.");
         Message postm   = f.newPOST("Hello, World! \\_O_/");
-        Message fpostm  = f.newFPOST("I'm posting on your wall");
+        Message fpostm  = f.newFPOST("I'm posting on your wall", Crypto.encodeKey(k1.getPublic()));
         Message cmntm   = f.newCMNT("<post or comment sig>", "nice");
         Message likem   = f.newLIKE("<post or comment sig>");
         Message eventm  = f.newEVNT(0, 60000, "bobs birthday");
@@ -195,16 +196,17 @@ class Test {
         
         test("9  newPOST", postm.POSTgetText(), "Hello, World! \\_O_/");
         
-        //No FPOSTgetX() methods because FPOSTs are POSTs in disguise.
+        test("10 newFPOST", fpostm.FPOSTgetText(), "I'm posting on your wall");
+        test("11 newFPOST", fpostm.FPOSTgetWall(), Crypto.encodeKey(k1.getPublic()));
         
-        test("10 newCMNT",   cmntm.CMNTgetText(),   "nice");
-        test("11 newCMNT", cmntm.CMNTgetItemID(), "<post or comment sig>");
+        test("12 newCMNT",   cmntm.CMNTgetText(),   "nice");
+        test("13 newCMNT", cmntm.CMNTgetItemID(), "<post or comment sig>");
         
-        test("12 newLIKE", likem.LIKEgetItemID(), "<post or comment sig>");
+        test("14 newLIKE", likem.LIKEgetItemID(), "<post or comment sig>");
         
-        test("13 newEVNT",  eventm.EVNTgetName(), "bobs birthday");
-        test("14 newEVNT", eventm.EVNTgetStart(), 0);
-        test("15 newEVNT",   eventm.EVNTgetEnd(),   60000);
+        test("15 newEVNT",  eventm.EVNTgetName(), "bobs birthday");
+        test("16 newEVNT", eventm.EVNTgetStart(), 0);
+        test("17 newEVNT",   eventm.EVNTgetEnd(),   60000);
  
         System.out.println("\tWARNING: Doesn't test signature or timestamp generation");
         anomalies++;

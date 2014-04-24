@@ -61,6 +61,20 @@ public class Message implements Serializable {
         return content;
     }
     
+    public String FPOSTgetText() {
+        Tokenizer st = new Tokenizer(content, ':');
+        String wall  = st.nextToken();
+        String text  = st.nextToken();
+        return text;
+    }
+    
+    public String FPOSTgetWall() {
+        Tokenizer st = new Tokenizer(content, ':');
+        String wall  = st.nextToken();
+        String text  = st.nextToken();
+        return wall;
+    }
+    
     public String CLAIMgetName() {
         return content;
     }

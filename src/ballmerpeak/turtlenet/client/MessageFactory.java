@@ -13,7 +13,7 @@ public interface MessageFactory extends RemoteService {
     public Message newCHAT(String[] keys);
     public Message newPCHAT(String convoSig, String msg);
     public Message newPOST(String msg);
-    public Message newFPOST(String msg);
+    public Message newFPOST(String msg, String key);
     public Message newCMNT(String itemSig, String comment);
     public Message newLIKE(String itemSig);
     public Message newEVNT(long start, long end, String descrip);

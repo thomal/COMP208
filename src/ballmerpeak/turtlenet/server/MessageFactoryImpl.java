@@ -58,8 +58,8 @@ public class MessageFactoryImpl extends RemoteServiceServlet implements MessageF
         return newMessage("POST", msg);
     }
     
-    public Message newFPOST(String msg) {
-        return newMessage("FPOST", msg);
+    public Message newFPOST(String msg, String wall) {
+        return newMessage("FPOST", wall+":"+msg);
     }
     
     public Message newCMNT(String itemSig, String comment) {
