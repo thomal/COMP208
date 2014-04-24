@@ -110,7 +110,7 @@ public class Database {
 
         String sqlStatement  = DatabaseStrings.getPData.replace("fieldVar",
                                                                field);
-        sqlStatement = queryString.replace("keyVar", key); //mods SQL template
+        sqlStatement = sqlStatement.replace("keyVar", key); //mods SQL template
         ResultSet results = query(sqlStatement);
 
         String value = results.getString(field) //gets current value in 'field'
