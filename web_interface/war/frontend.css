@@ -48,6 +48,14 @@ h1 {
 	color: #666666;
 }
 
+.gwt-group {
+	width: 1000px;
+	margin: 0 auto;
+	background: #E0EEEE;
+	color: #666666;
+	padding: 0 300px 0 100px;
+}
+
 .gwt-conversation-list {
 	width: 1000px;
 	margin: 0 auto;

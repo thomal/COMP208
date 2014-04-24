@@ -343,7 +343,7 @@ public class frontend implements EntryPoint {
             });
             
         } else {
-            Button addToGroup = new Button("Add friend to group");
+            Button addToGroup = new Button("Add friend to category");
             friendsListPanel.setWidget((row - 1), 2, addToGroup);
             addToGroup.addClickHandler(new ClickHandler() {
                 public void onClick(ClickEvent event) {
@@ -906,15 +906,98 @@ public class frontend implements EntryPoint {
     }
     
     private void newGroup() {
+        // TODO LOUISTODO
         RootPanel.get().clear();
+        RootPanel.get().add(navigationPanel);
+        FlexTable newGroupPanel = new FlexTable();
+        RootPanel.get().add(newGroupPanel);
+        
+        newGroupPanel.setWidget(0, 0, new Label("Category name: "));
+        TextBox groupName = new TextBox();
+        newGroupPanel.setWidget(0, 1, groupName);
+        
+        Button createGroup = new Button("Create category");
+        newGroupPanel.setWidget(0, 2, createGroup);
+        
+        createGroup.addClickHandler(new ClickHandler() {
+            public void onClick(ClickEvent event) {
+                // TODO LUKETODO We need to create a new group with the name the
+                // user has just specified. Use groupName.getText()  to obtain this.
+                
+                // TODO LUKETODO "groupID" should be replaced with the ID of 
+                // the new group we just created.
+                addToGroup("groupID");
+            }
+        });
+        
+        newGroupPanel.addStyleName("gwt-group");        
+    }
+    
+    private void addToGroup(final String groupID) {
+        RootPanel.get().clear();
+        RootPanel.get().add(navigationPanel);
+        FlexTable addToGroupPanel = new FlexTable();
+        RootPanel.get().add(addToGroupPanel);
+        
+        addToGroupPanel.setWidget(1, 0, new Label("Currently in category: "));
+        final ListBox currentMembers = new ListBox();
+        currentMembers.setVisibleItemCount(10);
+        currentMembers.setWidth("150px");
+        addToGroupPanel.setWidget(1, 1, currentMembers);
+        
+        // TODO LUKETODO 10 should be replaced with a call to a method that takes
+        // the ID of a group and returns the number of people in that group.
+        // Give it groupID.
+        for(int i = 0; i < 10; i++) {
+            // "Friend's name" should be replaced with a call to a method that takes
+            // the ID of a group and returns a list of names of the people in that group.
+            // Use i to select a friends name from the list.
+            currentMembers.addItem("Friend's Name");
+        }
+        
+        
+        addToGroupPanel.setWidget(2, 0, new Label("Add a friend: "));
+        final ListBox allFriends = new ListBox();
+        allFriends.setVisibleItemCount(1);
+        allFriends.setWidth("150px");
+        addToGroupPanel.setWidget(2, 1, allFriends);
+        // TODO LUKETODO 10 should be replaced with a call to a method that
+        // returns the number of all of the users friends
+        for(int i = 0; i < 10; i++) {
+            // TODO LUKETODO "Key of a friend" should be replaced with a call to
+            // a method that returns a list of all of the users friends keys.
+            // Use i to choose one from the list.  
+            String friendKey = new String("Key of a friend"); 
+            
+            // TODO LUKETODO "Friend's Name" should be replaced with a call to a
+            // method that returns a friends name when given their key. 
+            // Give it friendKey.
+            allFriends.addItem("Friend's Name");
+            
+            allFriends.setValue(i, friendKey);
+        }
+        
+        Button addFriend = new Button("Add friend");
+        addToGroupPanel.setWidget(2, 2, addFriend);
+        addFriend.addClickHandler(new ClickHandler() {
+            public void onClick(ClickEvent event) {
+                // TODO LUKETODO Call a method that takes the ID of a group
+                // and a friends key and adds that friend to that group.
+                // Give it groupID.
+                // Use  allFriends.getValue(getSelectedIndex())  to get the
+                 // key of the friend the user has selected.
+                    
+                addToGroup(groupID);
+            }
+        });
+        
+        addToGroupPanel.addStyleName("gwt-group");  
     }
     
     private void addFriend() {
+        // TODO LOUISTODO
         RootPanel.get().clear();
-    }
-    
-    private void addToGroup(String groupID) {
-        RootPanel.get().clear();
+       
     }
 
     // #########################################################################
