@@ -174,8 +174,8 @@ class DBStrings {
 
     public static final String getPData =
         "SELECT fieldVar " +
-        "FROM tbl_key_revoke; " 
-        "WHERE public_key = keyVar;" ;    
+        "FROM tbl_user; " +
+        "WHERE public_key = 'keyVar';" ;
 
     public static final String createChat =
         "INSERT INTO tbl_private_message (message_id, user_from, content) " +
