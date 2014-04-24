@@ -314,6 +314,8 @@ public class frontend implements EntryPoint {
         
         currentGroups.addChangeHandler(new ChangeHandler() {
             public void onChange(ChangeEvent event) {
+                // BUG When changing back to "All" currentGroupID should equal
+                // "All" and thus display 'Add new friend' instead of 'Add friend to group'
                 friendsListPanelSetup(currentGroups.getItemText(currentGroups.getSelectedIndex()));
             }
         });
