@@ -1013,6 +1013,7 @@ public class frontend implements EntryPoint {
         addToGroupPanel.addStyleName("gwt-group");  
     }
     
+    TextBox addFriend_keyInput = new TextBox();
     private void addFriend() {
         RootPanel.get().clear();
         RootPanel.get().add(navigationPanel);
@@ -1020,9 +1021,8 @@ public class frontend implements EntryPoint {
         RootPanel.get().add(addFriendPanel);
         
         addFriendPanel.setWidget(0, 0, new Label("Enter the key of the person you wish to add:"));
-        TextBox keyInput = new TextBox();
-        keyInput.setVisibleLength(100);
-        addFriendPanel.setWidget(1, 0, keyInput);
+        addFriend_keyInput.setVisibleLength(100);
+        addFriendPanel.setWidget(1, 0, addFriend_keyInput);
         FlexTable subPanel = new FlexTable();
         addFriendPanel.setWidget(2, 0, subPanel);
         
@@ -1033,10 +1033,18 @@ public class frontend implements EntryPoint {
         
         submit.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                // TODO LUKETODO Add a friends using their key.
-                // Use keyInput.getText()  to obatin the users input  
-            
-                success.setText("Key has been added");
+                turtlenet.addKey(addFriend_keyInput.getText(), new AsyncCallback<String>() {
+                    public void onFailure(Throwable caught) {
+                        success.setText("Key could not be added");
+                    }
+                    public void onSuccess(String result) {
+                        if (result.equals("success")) {
+                                success.setText("Key has been added");
+                        } else {
+                            success.setText("Key could not be added");
+                        }
+                    }
+                });
             }
         });
         

@@ -38,4 +38,5 @@ public interface Turtlenet extends RemoteService {
   //Friends
   String addCategory   (String name);
   String addToCategory (String category, String key);
+  String addKey        (String key);
 }

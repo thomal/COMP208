@@ -195,9 +195,10 @@ public class Database {
         Logger.write("UNIMPL", "DB", "Unimplemented method Database.addPost(...)");
     }
     
-    public void addKey (PublicKey k) {
+    public boolean addKey (PublicKey k) {
         //REPLACE ME
         Logger.write("UNIMPL", "DB", "Unimplemented method Database.addKey(...)");
+        return true;
     }
     
     //remember to store the signature
