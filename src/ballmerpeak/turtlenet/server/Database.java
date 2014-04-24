@@ -108,15 +108,16 @@ public class Database {
     //Get from DB
     public String getPDATA(String field, PublicKey key) {
 
-        String strKey = Crypto.encodeKey(key); //obtains encoded public key
-        String queryString  = DatabaseStrings.getPData.replace("fieldVar",
+        String sqlStatement  = DatabaseStrings.getPData.replace("fieldVar",
                                                                field);
-        queryString = queryString.replace("keyVar", strKey); //mods SQL template
-        ResultSet rows = query(queryString);
+        sqlStatement = queryString.replace("keyVar", key); //mods SQL template
+        ResultSet results = query(queryString);
+
+        String value = results.getString(field) //gets current value in 'field'
 
         Logger.write("VERBOSE", "DB", "Called method Database.getPDATA("
                      + field + ",...)");
-        return null;
+        return value;
     }
     
     //Set the CMD to POST in the Message constructor
