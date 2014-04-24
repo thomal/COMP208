@@ -246,8 +246,7 @@ public class frontend implements EntryPoint {
         });
     }
 
-
-    private Label friendLstPanel_mykeylabel;
+    private TextArea friendsListPanel_myKeyTextArea;
     private void friendsListPanelSetup(final String currentGroupID) {   
         friendsListPanel.clear();
         
@@ -300,7 +299,7 @@ public class frontend implements EntryPoint {
         if(!currentGroupID.equals("All")) {
             currentGroups.addItem("All");
         }
-        friendsListPanel.setWidget(row, 1, currentGroups);
+        friendsListPanel.setWidget(3, 3, currentGroups);
         
         turtlenet.getCategories(new AsyncCallback<String[][]>() {
             String[][] result;
@@ -322,7 +321,7 @@ public class frontend implements EntryPoint {
         });
         
         Button newGroup = new Button("Add new category");
-        friendsListPanel.setWidget(row, 2, newGroup);
+        friendsListPanel.setWidget(2, 3, newGroup);
         newGroup.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
                 newGroup();
@@ -335,15 +334,17 @@ public class frontend implements EntryPoint {
                 //TODO Error
             }
             public void onSuccess(String result) {
-                friendLstPanel_mykeylabel = new Label("My Key: " + result);
+                friendsListPanel_myKeyTextArea = new TextArea();
+                friendsListPanel_myKeyTextArea.setText(result);
             }
         });
 
-        friendsListPanel.setWidget((row - 1), 1, friendLstPanel_mykeylabel);
+        friendsListPanel.setWidget((row - 1), 0, new Label("My key: "));
+        friendsListPanel.setWidget((row - 1), 1, friendsListPanel_myKeyTextArea);
         
         if(currentGroupID.equals("All")) {
             Button addFriend = new Button("Add new friend");
-            friendsListPanel.setWidget((row - 1), 2, addFriend);
+            friendsListPanel.setWidget(1, 3, addFriend);
             addFriend.addClickHandler(new ClickHandler() {
                 public void onClick(ClickEvent event) {
                     addFriend();
