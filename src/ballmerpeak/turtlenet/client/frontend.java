@@ -454,7 +454,7 @@ public class frontend implements EntryPoint {
         myDetailsPanel.setWidget(1, 0, nameLabel);
         
         final TextBox editName = new TextBox();
-        turtlenet.getMyPDATA("RealName", new AsyncCallback<String>() {
+        turtlenet.getMyPDATA("name", new AsyncCallback<String>() {
             public void onFailure(Throwable caught) {
                 //TODO error
             }
@@ -472,7 +472,7 @@ public class frontend implements EntryPoint {
         
         saveName.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                turtlenet.updatePDATA("RealName", editName.getText(), new AsyncCallback<String>() {
+                turtlenet.updatePDATA("name", editName.getText(), new AsyncCallback<String>() {
                      public void onFailure(Throwable caught) {
                          //TODO error
                      }
@@ -492,7 +492,7 @@ public class frontend implements EntryPoint {
         myDetailsPanel.setWidget(2, 0, birthdayLabel);
         
         final TextBox editBirthday = new TextBox();
-        turtlenet.getMyPDATA("DOB", new AsyncCallback<String>() {
+        turtlenet.getMyPDATA("birthday", new AsyncCallback<String>() {
             public void onFailure(Throwable caught) {
                 //TODO error
             }
@@ -510,7 +510,7 @@ public class frontend implements EntryPoint {
         
         saveBirthday.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                turtlenet.updatePDATA("DOB", editBirthday.getText(), new AsyncCallback<String>() {
+                turtlenet.updatePDATA("birthday", editBirthday.getText(), new AsyncCallback<String>() {
                      public void onFailure(Throwable caught) {
                          //TODO error
                      }
@@ -533,7 +533,7 @@ public class frontend implements EntryPoint {
         myDetailsPanel.setWidget(3, 0, genderLabel);
         
         final TextBox editGender = new TextBox();
-        turtlenet.getMyPDATA("Gender", new AsyncCallback<String>() {
+        turtlenet.getMyPDATA("sex", new AsyncCallback<String>() {
             public void onFailure(Throwable caught) {
                 //TODO error
             }
@@ -551,7 +551,7 @@ public class frontend implements EntryPoint {
         
         saveGender.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                turtlenet.updatePDATA("Gender", editGender.getText(), new AsyncCallback<String>() {
+                turtlenet.updatePDATA("sex", editGender.getText(), new AsyncCallback<String>() {
                      public void onFailure(Throwable caught) {
                          //TODO error
                      }
@@ -571,7 +571,7 @@ public class frontend implements EntryPoint {
         myDetailsPanel.setWidget(4, 0, emailLabel);
         
         final TextBox editEmail = new TextBox();
-        turtlenet.getMyPDATA("Email", new AsyncCallback<String>() {
+        turtlenet.getMyPDATA("email", new AsyncCallback<String>() {
             public void onFailure(Throwable caught) {
                 //TODO error
             }
@@ -589,7 +589,7 @@ public class frontend implements EntryPoint {
         
         saveEmail.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                turtlenet.updatePDATA("Email", editEmail.getText(), new AsyncCallback<String>() {
+                turtlenet.updatePDATA("email", editEmail.getText(), new AsyncCallback<String>() {
                      public void onFailure(Throwable caught) {
                          //TODO error
                      }
@@ -679,7 +679,7 @@ public class frontend implements EntryPoint {
             }
         });
 
-        turtlenet.getPDATA("RealName", friendsDetailsKey, new AsyncCallback<String>() {
+        turtlenet.getPDATA("name", friendsDetailsKey, new AsyncCallback<String>() {
             public void onFailure(Throwable caught) {
                 //TODO error
             }
@@ -689,7 +689,7 @@ public class frontend implements EntryPoint {
             }
         });
         
-        turtlenet.getPDATA("DOB", friendsDetailsKey, new AsyncCallback<String>() {
+        turtlenet.getPDATA("birthday", friendsDetailsKey, new AsyncCallback<String>() {
             public void onFailure(Throwable caught) {
                 //TODO error
             }
@@ -699,7 +699,7 @@ public class frontend implements EntryPoint {
             }
         });
         
-        turtlenet.getPDATA("Gender", friendsDetailsKey, new AsyncCallback<String>() {
+        turtlenet.getPDATA("sex", friendsDetailsKey, new AsyncCallback<String>() {
             public void onFailure(Throwable caught) {
                 //TODO error
             }
@@ -709,7 +709,7 @@ public class frontend implements EntryPoint {
             }
         });
 
-        turtlenet.getPDATA("Email", friendsDetailsKey, new AsyncCallback<String>() {
+        turtlenet.getPDATA("email", friendsDetailsKey, new AsyncCallback<String>() {
             public void onFailure(Throwable caught) {
                 //TODO error
             }
