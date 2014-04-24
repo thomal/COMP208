@@ -271,4 +271,11 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
         else
             return "failure";
     }
+    
+    public String addKey (String key) {
+        if (c.db.addKey(Crypto.decodeKey(key)))
+            return "success";
+        else
+            return "failure";
+    }
 }

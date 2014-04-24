@@ -36,4 +36,5 @@ public interface TurtlenetAsync {
     //Friends
     void addCategory   (String name,             AsyncCallback<String> callback);
     void addToCategory (String name, String key, AsyncCallback<String> callback);
+    void addKey        (String key,              AsyncCallback<String> callback);
 }
