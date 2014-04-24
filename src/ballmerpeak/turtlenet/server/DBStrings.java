@@ -172,6 +172,11 @@ class DBStrings {
         "email, public_key) " +
         "VALUES (null, 'userVar', 'nameVar', 'YYYY-MM-DD', 'genderVar', 'email@email.com', 'keyVar');" ;
 
+    public static final String getPData =
+        "SELECT fieldVar " +
+        "FROM tbl_key_revoke; " 
+        "WHERE public_key = keyVar;" ;    
+
     public static final String createChat =
         "INSERT INTO tbl_private_message (message_id, user_from, content) " +
         "VALUES (null, 'userVar', 'contentVar');" ;

@@ -107,8 +107,15 @@ public class Database {
     
     //Get from DB
     public String getPDATA(String field, PublicKey key) {
-        //REPLACE ME
-        Logger.write("UNIMPL", "DB", "Unimplemented method Database.getPDATA(" + field + ",...)");
+
+        String strKey = Crypto.encodeKey(key); //obtains encoded public key
+        String queryString  = DatabaseStrings.getPData.replace("fieldVar",
+                                                               field);
+        queryString = queryString.replace("keyVar", strKey); //mods SQL template
+        ResultSet rows = query(queryString);
+
+        Logger.write("VERBOSE", "DB", "Called method Database.getPDATA("
+                     + field + ",...)");
         return null;
     }
     
