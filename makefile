@@ -99,6 +99,7 @@ clean : config
 	rm -f src/ballmerpeak/turtlenet/remoteserver/Message.java
 	ant -f web_interface/build.xml clean
 	rm web_interface/build.xml
+	rm -rf db
 	@echo "              *******"
 	@echo "              Cleaned"
 	@echo "              *******"
