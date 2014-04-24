@@ -196,7 +196,7 @@ class DBStrings {
 
     public static final String getPosts = 
         "SELECT user_from, user_to, content " +
-        "FROM wall_post " +
+        "FROM tbl_wall_post " +
         "WHERE wall_id = 'wallVar';" ;
 
     public static final String addIndependentComment = 
