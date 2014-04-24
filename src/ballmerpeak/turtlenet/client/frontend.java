@@ -120,6 +120,7 @@ public class frontend implements EntryPoint {
         conversationListPanelSetup();
         myDetailsPanelSetup();
         myDetailsPanelSetup();
+        friendsListPanelSetup("All");
 
         myDetailsPermissionsPanelSetup();
         newConversationPanelSetup();
@@ -245,7 +246,10 @@ public class frontend implements EntryPoint {
         });
     }
 
-    private void friendsListPanelSetup(String currentGroupID) {
+    private void friendsListPanelSetup(final String currentGroupID) {
+    
+        friendsListPanel.clear();
+    
         // Column title for anchors linking to messages        
         Label friendsNameLabel = new Label("Friend's Name");
         friendsNameLabel.getElement().getStyle().setFontWeight(FontWeight.BOLD);
@@ -268,8 +272,8 @@ public class frontend implements EntryPoint {
                 for (i = 0; i < result.length; i++) {
                     //list names/keys
                     Anchor linkFriendsWall = new Anchor(result[i][0]);
-                    friendsListPanel.setWidget((i + 1), 0, linkFriendsWall);
-                    friendsListPanel.setWidget((i + 1), 1, new Label(result[i][1]));
+                    friendsListPanel.setWidget((i + 2), 0, linkFriendsWall);
+                    friendsListPanel.setWidget((i + 2), 1, new Label(result[i][1]));
                     //link names to walls
                     linkFriendsWall.addClickHandler(new ClickHandler() {
                         public void onClick(ClickEvent event) {
@@ -280,9 +284,75 @@ public class frontend implements EntryPoint {
             }
         });
         
-        // TODO LOUISTODO Add friend button/ add friend to group
-        // TODO LOUISTODO Show my key
-        // Choose group: "All friends" "group 1" "group 2" "new group"
+        int row = friendsListPanel.getRowCount() + 2;
+        
+        if(currentGroupID != "All") {
+            Label currentGroupLabel = new Label("Current group: " + currentGroupID);
+            currentGroupLabel.getElement().getStyle().setProperty("paddingLeft" , "100px");
+            friendsListPanel.setWidget(row, 0, currentGroupLabel);        
+        }
+        
+        final ListBox currentGroups = new ListBox();
+        currentGroups.setVisibleItemCount(1);
+        currentGroups.setWidth("150px");
+        currentGroups.addItem("Choose a category");
+        if(currentGroupID != "All") {
+            currentGroups.addItem("All");
+        }
+        friendsListPanel.setWidget(row, 1, currentGroups);
+        
+        // TODO LUKETODO 10 should be replaced with a method that returns the
+        // number of groups the user has currently created
+        for (int i = 0; i < 10; i++) {
+        
+            // TODO LUKETODO "Group Name" should be replaced with a call to a method
+            // that returns the list of all of the groups the user has created.
+            // You can then use i to choose a group from the list.
+            currentGroups.addItem("Group Name");
+        }     
+                
+        
+        currentGroups.addChangeHandler(new ChangeHandler() {
+            public void onChange(ChangeEvent event) {
+                friendsListPanelSetup(currentGroups.getItemText(currentGroups.getSelectedIndex()));
+            }
+        });
+        
+        Button newGroup = new Button("Add new category");
+        friendsListPanel.setWidget(row, 2, newGroup);
+        newGroup.addClickHandler(new ClickHandler() {
+            public void onClick(ClickEvent event) {
+                newGroup();
+            }
+        });
+        
+        // TODO LUKETODO "keygoeshere" should be replaced with the users key
+        Label myKey = new Label("My Key: " + "keygoeshere");
+
+        friendsListPanel.setWidget((row - 1), 1, myKey);
+        
+        if(currentGroupID == "All") {
+            Button addFriend = new Button("Add new friend");
+            friendsListPanel.setWidget((row - 1), 2, addFriend);
+            addFriend.addClickHandler(new ClickHandler() {
+                public void onClick(ClickEvent event) {
+                    addFriend();
+                }
+            });
+            
+        } else {
+            Button addToGroup = new Button("Add friend to group");
+            friendsListPanel.setWidget((row - 1), 2, addToGroup);
+            addToGroup.addClickHandler(new ClickHandler() {
+                public void onClick(ClickEvent event) {
+                    addToGroup(currentGroupID);
+                }
+            });
+        }        
+        
+        
+        
+        
         
         // Add style name for CSS
         friendsListPanel.addStyleName("gwt-friends-list");
@@ -831,7 +901,18 @@ public class frontend implements EntryPoint {
 
         // Add style name for CSS
         conversationPanel.addStyleName("gwt-conversation");
-
+    }
+    
+    private void newGroup() {
+        RootPanel.get().clear();
+    }
+    
+    private void addFriend() {
+        RootPanel.get().clear();
+    }
+    
+    private void addToGroup(String groupID) {
+        RootPanel.get().clear();
     }
 
     // #########################################################################
@@ -892,7 +973,7 @@ public class frontend implements EntryPoint {
         RootPanel.get().add(navigationPanel);
         
         // Add panels to page
-        friendsListPanelSetup("all");
+        friendsListPanelSetup("All");
         RootPanel.get().add(friendsListPanel);
     }
 
