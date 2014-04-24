@@ -88,7 +88,6 @@ public class frontend implements EntryPoint {
     
     //NOT DONE
     HorizontalPanel settingsPanel = new HorizontalPanel();
-    FlowPanel wallPanel = new FlowPanel();
     
 
     public void onModuleLoad() {
@@ -115,7 +114,6 @@ public class frontend implements EntryPoint {
         // want to use it
         loginPanelSetup();
         navigationPanelSetup();
-        wallPanelSetup();
         settingsPanelSetup();
         conversationListPanelSetup();
         myDetailsPanelSetup();
@@ -728,7 +726,12 @@ public class frontend implements EntryPoint {
         friendsDetailsPanel.addStyleName("gwt-friends-details");
     }
 
-    private void wallPanelSetup() {
+    private void loadWall(String key) {
+        RootPanel.get().clear();
+        RootPanel.get().add(navigationPanel);
+        FlowPanel wallPanel = new FlowPanel();
+        RootPanel.get().add(wallPanel);
+        
         /* if wall = me then link to my details panel
            else have link to friends details panel 
          */
@@ -737,8 +740,8 @@ public class frontend implements EntryPoint {
         wallPanel.addStyleName("gwt-wall");
 
         // Add click handlers for anchors
-
     }
+
 
 
     private void settingsPanelSetup() {
@@ -1069,7 +1072,6 @@ public class frontend implements EntryPoint {
         RootPanel.get().add(conversationListPanel);
         RootPanel.get().add(myDetailsPanel);
         RootPanel.get().add(navigationPanel);
-        RootPanel.get().add(wallPanel);
         RootPanel.get().add(myDetailsPanel);
         RootPanel.get().add(conversationPanel);
         RootPanel.get().add(newConversationPanel);
@@ -1126,12 +1128,5 @@ public class frontend implements EntryPoint {
         RootPanel.get().add(navigationPanel);
         RootPanel.get().add(myDetailsPanel);
         RootPanel.get().add(myDetailsPermissionsPanel);
-    }
-    
-    private void loadWall(String key) {
-        RootPanel.get().clear();
-        RootPanel.get().add(navigationPanel);
-        
-        
     }
 }
