@@ -826,6 +826,7 @@ public class frontend implements EntryPoint {
     }
     
     private String convoPanelSetup_convosig; //needed in inner class
+    private TextArea convoPanelSetup_input = new TextArea();
     private void conversationPanelSetup(String conversationID) {
         convoPanelSetup_convosig = conversationID;
         conversationPanel.setCellSpacing(10);
@@ -866,23 +867,24 @@ public class frontend implements EntryPoint {
                             conversationPanel.setWidget((i + 1), 1, messageContents);
                         }
                         
-                        TextArea input = new TextArea();
-                        input.setCharacterWidth(80);
-                        input.setVisibleLines(10); 
+                        convoPanelSetup_input.setCharacterWidth(80);
+                        convoPanelSetup_input.setVisibleLines(10); 
                         int row = (conversationPanel.getRowCount() + 1);
-                        conversationPanel.setWidget(row, 1, input);
+                        conversationPanel.setWidget(row, 1, convoPanelSetup_input);
                         
                         Button send = new Button("Send"); 
                         conversationPanel.setWidget(row, 2, send);
                         send.addClickHandler(new ClickHandler() {
                             public void onClick(ClickEvent event) {
-                                // TODO LUKETODO Here should lie a call to a method that adds
-                                // a message to a conversation when given a conversation ID.
-                                // This current method takes a string called convoPanelSetup_convosig so you can use that.
-                                // Use input.getText(); to obtain the contents of message.
-                                
-                                //Reload the conversation after the new message has been added
-                                loadConversation(convoPanelSetup_convosig);
+                                turtlenet.addMessageToCHAT(convoPanelSetup_input.getText(), convoPanelSetup_convosig, new AsyncCallback<String>() {
+                                    public void onFailure(Throwable caught) {
+                                        //TODO Error
+                                    }
+                                    public void onSuccess(String postingSuccess) {
+                                        //Reload the conversation after the new message has been added
+                                        loadConversation(convoPanelSetup_convosig);
+                                    }
+                                });
                             }
                         }); 
                     }
