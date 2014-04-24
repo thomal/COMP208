@@ -78,9 +78,7 @@ public class frontend implements EntryPoint {
     FlexTable loginPanel = new FlexTable();
     FlexTable friendsListPanel = new FlexTable();
     FlexTable conversationListPanel = new FlexTable();
-    FlexTable myDetailsPanel = new FlexTable();
     FlexTable myDetailsPermissionsPanel = new FlexTable();
-    FlexTable friendsDetailsPanel = new FlexTable();
     FlexTable conversationPanel = new FlexTable();
     FlexTable newConversationPanel = new FlexTable();
     HorizontalPanel navigationPanel = new HorizontalPanel();
@@ -116,17 +114,10 @@ public class frontend implements EntryPoint {
         navigationPanelSetup();
         settingsPanelSetup();
         conversationListPanelSetup();
-        myDetailsPanelSetup();
-        myDetailsPanelSetup();
         friendsListPanelSetup("All");
 
         myDetailsPermissionsPanelSetup();
         newConversationPanelSetup();
-        /*
-         * "publicKey" here should be replaced with the key of the friend's 
-         * details we want to look up
-         */
-        friendsDetailsPanelSetup("<falsekey2>");
 
         // Call method to load the initial login page
         loadLogin();
@@ -407,7 +398,12 @@ public class frontend implements EntryPoint {
         conversationListPanel.addStyleName("gwt-conversation-list");
     }
 
-    private void myDetailsPanelSetup() {
+    private void myDetails() {
+        RootPanel.get().clear();
+        RootPanel.get().add(navigationPanel);
+        FlexTable myDetailsPanel = new FlexTable();
+        RootPanel.get().add(myDetailsPanel);        
+        
         // Create widgets relating to username
         Label usernameLabel = new Label("Username:");
         myDetailsPanel.setWidget(0, 0, usernameLabel);
@@ -649,7 +645,14 @@ public class frontend implements EntryPoint {
         myDetailsPermissionsPanel.addStyleName("gwt-my-details-permissions");
     }
     
-    private void friendsDetailsPanelSetup(String friendsDetailsKey) {
+    private void friendsDetails(String friendsDetailsKey) {
+        // Setup basic page
+        RootPanel.get().clear();
+        RootPanel.get().add(navigationPanel);
+        // Create main panel
+        FlexTable friendsDetailsPanel = new FlexTable();
+        RootPanel.get().add(friendsDetailsPanel);    
+    
         // Create widgets
         Label friendsDetailsUsernameTitle = new Label("Username:");
         friendsDetailsPanel.setWidget(0, 0, friendsDetailsUsernameTitle);
@@ -727,14 +730,41 @@ public class frontend implements EntryPoint {
     }
 
     private void loadWall(String key) {
+        // Setup basic page
         RootPanel.get().clear();
         RootPanel.get().add(navigationPanel);
+        // Create main panel
         FlowPanel wallPanel = new FlowPanel();
         RootPanel.get().add(wallPanel);
+        // Create a container for controls
+        HorizontalPanel wallControlPanel = new HorizontalPanel();
+        FlowPanel.add(wallControlPanel);
+        // Add widgets to container
         
-        /* if wall = me then link to my details panel
-           else have link to friends details panel 
-         */
+        // TODO LUKETODO "Name of user" should be replaced with a call to a method
+        // that returns the name of a user when given their public key.
+        // This method takes a string called key so give it that.
+        wallControlPanel.add(new Label("Name of user"));
+        
+        // TODO LUKETODO "my key" should be replaced with the users key
+        if(key.equals("my key")) {
+            Anchor myDetails = new Anchor("My details");
+            wallControlPanel.add(myDetails);
+            myDetails.addClickHandler(new ClickHandler() {
+                public void onClick(ClickEvent event) {
+                    myDetails();
+                }
+            });
+            
+        } else {
+            Anchor userDetails = new Anchor("Friend's details");
+            wallControlPanel.add(userDetails);
+            userDetails.addClickHandler(new ClickHandler() {
+                public void onClick(ClickEvent event) {
+                    friendsDetails(key);
+                }
+            });
+        }
 
         // Add style name for CSS
         wallPanel.addStyleName("gwt-wall");
@@ -1118,15 +1148,5 @@ public class frontend implements EntryPoint {
         // Add panels to page
         friendsListPanelSetup("All");
         RootPanel.get().add(friendsListPanel);
-    }
-
-    private void loadSettings() {
-        myDetailsPanelSetup();
-        myDetailsPermissionsPanelSetup();
-        
-        RootPanel.get().clear();
-        RootPanel.get().add(navigationPanel);
-        RootPanel.get().add(myDetailsPanel);
-        RootPanel.get().add(myDetailsPermissionsPanel);
     }
 }
