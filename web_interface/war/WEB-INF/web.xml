@@ -11,19 +11,9 @@
     <servlet-class>ballmerpeak.turtlenet.server.TurtlenetImpl</servlet-class>
   </servlet>
   
-  <servlet>
-    <servlet-name>messagefactoryServlet</servlet-name>
-    <servlet-class>ballmerpeak.turtlenet.server.MessageFactoryImpl</servlet-class>
-  </servlet>
-  
   <servlet-mapping>
     <servlet-name>turtlenetServlet</servlet-name>
     <url-pattern>/frontend/turtlenet</url-pattern>
-  </servlet-mapping>
-  
-  <servlet-mapping>
-    <servlet-name>messagefactoryServlet</servlet-name>
-    <url-pattern>/frontend/messagefactory</url-pattern>
   </servlet-mapping>
   
   <!-- Default page to serve -->

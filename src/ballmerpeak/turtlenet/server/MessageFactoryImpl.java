@@ -2,14 +2,12 @@
 //These methods can't be static like they should be because of GWT
 
 package ballmerpeak.turtlenet.server;
-
-
 import ballmerpeak.turtlenet.shared.Message;
 import ballmerpeak.turtlenet.server.Crypto;
 import java.security.*;
 
 
-public class MessageFactoryImpl  {
+public class MessageFactoryImpl {
     public MessageFactoryImpl(){
     }
 

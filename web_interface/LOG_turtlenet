@@ -1,15 +1,14 @@
-===== Turtlenet started at Thu Apr 24 16:17:53 BST 2014=====
-1398352673 UNIMPL	TNClient	Ignoring password: 
-1398352673 INFO		NetCon	Read lastRead from file
-1398352673 INFO		DB	Connecting to database
-1398352673 INFO		NetCon	NetworkConnection started
-1398352674 VERBOSE	NetCon	Sending command to server "get 1398350414485"
-1398352674 ERROR	NetCon	Could not connect to network: java.net.ConnectException: Connection refused
-1398352674 VERBOSE	NetCon	Sending command to server "t"
-1398352674 ERROR	NetCon	Could not connect to network: java.net.ConnectException: Connection refused
-1398352674 UNIMPL	DB	Unimplemented method Database.getConversations(...)
-1398352674 INFO		TnImpl	Returning false getConversations results
-1398352676 UNIMPL	DB	Unimplemented method Database.getCategoryMembers(All)
-1398352676 INFO		TnImpl	Returning false getCategoryMembers results
-1398352676 UNIMPL	DB	Unimplemented method Database.getCategories()
-1398352685 UNIMPL	DB	Unimplemented method Database.addKey(...)
+===== Turtlenet started at Thu Apr 24 18:56:50 BST 2014=====
+1398362210 UNIMPL	TNClient	Ignoring password: 
+1398362210 INFO		NetCon	Read lastRead from file
+1398362210 INFO		DB	Connecting to database
+1398362210 INFO		NetCon	NetworkConnection started
+1398362211 VERBOSE	NetCon	Sending command to server "get 1398362208602"
+1398362211 VERBOSE	NetCon	Sending command to server "t"
+1398362212 VERBOSE	NetCon	Sending command to server "get 1398362211598"
+1398362212 VERBOSE	NetCon	Sending command to server "t"
+1398362212 INFO		TNImpl	stopTN()
+1398362212 INFO		NetCon	close()
+1398362212 INFO		NetCon	Saved lastRead to disk
+1398362212 INFO		DB	Disconnecting from database
+===== Turtlenet closed  at Thu Apr 24 18:56:52 BST 2014=====
