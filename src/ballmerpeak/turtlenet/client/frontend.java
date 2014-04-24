@@ -988,7 +988,7 @@ public class frontend implements EntryPoint {
                 // and a friends key and adds that friend to that group.
                 // Give it groupID.
                 // Use  allFriends.getValue(getSelectedIndex())  to get the
-                 // key of the friend the user has selected.
+                // key of the friend the user has selected.
                     
                 addToGroup(groupID);
             }
@@ -998,9 +998,33 @@ public class frontend implements EntryPoint {
     }
     
     private void addFriend() {
-        // TODO LOUISTODO
         RootPanel.get().clear();
-       
+        RootPanel.get().add(navigationPanel);
+        FlexTable addFriendPanel = new FlexTable();
+        RootPanel.get().add(addFriendPanel);
+        
+        addFriendPanel.setWidget(0, 0, new Label("Enter the key of the person you wish to add:"));
+        TextBox keyInput = new TextBox();
+        keyInput.setVisibleLength(100);
+        addFriendPanel.setWidget(1, 0, keyInput);
+        FlexTable subPanel = new FlexTable();
+        addFriendPanel.setWidget(2, 0, subPanel);
+        
+        Button submit = new Button("Add key");
+        subPanel.setWidget(0, 0, submit);
+        final Label success = new Label("");
+        subPanel.setWidget(0, 1, success);
+        
+        submit.addClickHandler(new ClickHandler() {
+            public void onClick(ClickEvent event) {
+                // TODO LUKETODO Add a friends using their key.
+                // Use keyInput.getText()  to obatin the users input  
+            
+                success.setText("Key has been added");
+            }
+        });
+        
+        addFriendPanel.addStyleName("gwt-friend"); 
     }
 
     // #########################################################################
