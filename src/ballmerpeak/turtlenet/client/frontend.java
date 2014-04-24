@@ -217,7 +217,7 @@ public class frontend implements EntryPoint {
         
         linkSettings.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                    loadSettings();
+
             }
         });
         
@@ -650,7 +650,7 @@ public class frontend implements EntryPoint {
         RootPanel.get().clear();
         RootPanel.get().add(navigationPanel);
         // Create main panel
-        FlexTable friendsDetailsPanel = new FlexTable();
+        final FlexTable friendsDetailsPanel = new FlexTable();
         RootPanel.get().add(friendsDetailsPanel);    
     
         // Create widgets
@@ -729,16 +729,16 @@ public class frontend implements EntryPoint {
         friendsDetailsPanel.addStyleName("gwt-friends-details");
     }
 
-    private void loadWall(String key) {
+    private void loadWall(final String key) {
         // Setup basic page
         RootPanel.get().clear();
         RootPanel.get().add(navigationPanel);
         // Create main panel
-        FlowPanel wallPanel = new FlowPanel();
+        final FlowPanel wallPanel = new FlowPanel();
         RootPanel.get().add(wallPanel);
         // Create a container for controls
         HorizontalPanel wallControlPanel = new HorizontalPanel();
-        FlowPanel.add(wallControlPanel);
+        wallPanel.add(wallControlPanel);
         // Add widgets to container
         
         // TODO LUKETODO "Name of user" should be replaced with a call to a method
@@ -764,6 +764,57 @@ public class frontend implements EntryPoint {
                     friendsDetails(key);
                 }
             });
+        }
+        
+        Button createPost = new Button("Post here");
+        wallControlPanel.add(createPost);
+        
+        final FlowPanel createPostPanel = new FlowPanel();
+        TextArea contents = new TextArea();
+        contents.setCharacterWidth(80);
+        contents.setVisibleLines(10);
+        createPostPanel.add(contents);
+        
+        HorizontalPanel createPostControlPanel = new HorizontalPanel();
+        createPostPanel.add(createPostControlPanel);
+        Button send = new Button("Send");
+        
+        send.addClickHandler(new ClickHandler() {
+            public void onClick(ClickEvent event) {
+                // TODO LUKETODO Call a method that adds a post to the current wall.
+                // This method takes a string called key so give it that.
+                // Use contents.getText() to obtain the message contents.
+                // A way to choose who can see the post is on the way. For now can
+                // we have it default to everyone? I doubt anyone would notice in their
+                // demo anyway.
+            }
+        });
+         
+        createPostControlPanel.add(send);
+        // TODO LOUISTODO Allow user to select who can view the post 
+        // createPostControlPanel.add( SOME KIND OF DROPDOWN MENU);
+        
+        
+        createPost.addClickHandler(new ClickHandler() {
+            public void onClick(ClickEvent event) {                
+                wallPanel.insert(createPostPanel, 1);
+            }
+        });
+        
+        // TODO LUKETODO '10' should be replaced with a call to a method that 
+        // returns the number of posts on a users wall when given a public key.
+        // Give it key.
+        for(int i = 0; i < 10; i++) {
+            FlowPanel postPanel = new FlowPanel();
+            wallPanel.add(postPanel);
+            
+            HorizontalPanel postControlPanel = new HorizontalPanel();
+            postPanel.add(postControlPanel);
+            // TODO LOUISTODO Add widgets
+            
+            FlowPanel postContentsPanel = new FlowPanel();
+            postPanel.add(postContentsPanel);
+            // TODO LOUISTODO Add widgets
         }
 
         // Add style name for CSS
@@ -978,6 +1029,8 @@ public class frontend implements EntryPoint {
             }
         });
         
+        
+        
         newGroupPanel.addStyleName("gwt-group");        
     }
     
@@ -1094,20 +1147,6 @@ public class frontend implements EntryPoint {
     // ############################Load different view##########################
     // #########################################################################
     // #########################################################################
-
-    private void loadPanelDev() {
-        // Add all panels to page
-        RootPanel.get().add(loginPanel);
-        RootPanel.get().add(settingsPanel);
-        RootPanel.get().add(conversationListPanel);
-        RootPanel.get().add(myDetailsPanel);
-        RootPanel.get().add(navigationPanel);
-        RootPanel.get().add(myDetailsPanel);
-        RootPanel.get().add(conversationPanel);
-        RootPanel.get().add(newConversationPanel);
-        RootPanel.get().add(myDetailsPermissionsPanel);
-        RootPanel.get().add(friendsListPanel);
-    }
 
     private void loadLogin() {
         RootPanel.get().clear();
