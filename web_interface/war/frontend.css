@@ -56,6 +56,14 @@ h1 {
 	padding: 0 300px 0 100px;
 }
 
+.gwt-friend {
+	width: 1000px;
+	margin: 0 auto;
+	background: #E0EEEE;
+	color: #666666;
+	padding: 0 100px 0 100px;
+}
+
 .gwt-conversation-list {
 	width: 1000px;
 	margin: 0 auto;
