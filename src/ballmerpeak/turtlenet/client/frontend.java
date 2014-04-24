@@ -75,10 +75,7 @@ public class frontend implements EntryPoint {
      * for the current use) and load methods(which call several setup methods to
      * place a bunch of panels on screen to create a view).
      */
-
-
     FlexTable loginPanel = new FlexTable();
-    HorizontalPanel settingsPanel = new HorizontalPanel();
     FlexTable friendsListPanel = new FlexTable();
     FlexTable conversationListPanel = new FlexTable();
     FlexTable myDetailsPanel = new FlexTable();
@@ -86,13 +83,12 @@ public class frontend implements EntryPoint {
     FlexTable friendsDetailsPanel = new FlexTable();
     FlexTable conversationPanel = new FlexTable();
     FlexTable newConversationPanel = new FlexTable();
-    FlowPanel inputPanel = new FlowPanel();
-    FlowPanel outputPanel = new FlowPanel();
     HorizontalPanel navigationPanel = new HorizontalPanel();
-    FlowPanel commentsControlPanel = new FlowPanel();
-    FlowPanel myWallControlPanel = new FlowPanel();
-    FlowPanel friendsWallControlPanel = new FlowPanel();
-    FlowPanel groupsControlPanel = new FlowPanel();
+    
+    
+    //NOT DONE
+    HorizontalPanel settingsPanel = new HorizontalPanel();
+    FlowPanel wallPanel = new FlowPanel();
     
 
     public void onModuleLoad() {
@@ -119,15 +115,12 @@ public class frontend implements EntryPoint {
         // want to use it
         loginPanelSetup();
         navigationPanelSetup();
-        myWallControlPanelSetup();
-        friendsWallControlPanelSetup();
+        wallPanelSetup();
         settingsPanelSetup();
         conversationListPanelSetup();
         myDetailsPanelSetup();
-        inputPanelSetup();
-        outputPanelSetup();
         myDetailsPanelSetup();
-        commentsControlPanelSetup();
+
         myDetailsPermissionsPanelSetup();
         newConversationPanelSetup();
         /*
@@ -182,7 +175,7 @@ public class frontend implements EntryPoint {
                     }
                     public void onSuccess(String result) {
                         if (result.equals("success")) {
-                            loadMyWall();
+                            loadWall("me");
                         } else if (result.equals("failure")) {
                             passwordLabel.setText("Please enter your password (again): ");
                         } else {
@@ -216,7 +209,7 @@ public class frontend implements EntryPoint {
         // Add click handlers for anchors
         linkMyWall.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                    loadMyWall();
+                    loadWall("me");
             }
         });
         
@@ -280,12 +273,16 @@ public class frontend implements EntryPoint {
                     //link names to walls
                     linkFriendsWall.addClickHandler(new ClickHandler() {
                         public void onClick(ClickEvent event) {
-                            loadFriendsWall(result[i][1]);
+                            loadWall(result[i][1]);
                         }
                     });
                 }
             }
         });
+        
+        // TODO LOUISTODO Add friend button/ add friend to group
+        // TODO LOUISTODO Show my key
+        // Choose group: "All friends" "group 1" "group 2" "new group"
         
         // Add style name for CSS
         friendsListPanel.addStyleName("gwt-friends-list");
@@ -650,78 +647,18 @@ public class frontend implements EntryPoint {
         friendsDetailsPanel.addStyleName("gwt-friends-details");
     }
 
-    private void inputPanelSetup() {
-        // Create widgets
-
-        // Add widgets to panel
-
-        // Add style name for CSS
-        inputPanel.addStyleName("gwt-input");
-    }
-
-    private void outputPanelSetup() {
-        // Create widgets
-
-        // Add widgets to panel
+    private void wallPanelSetup() {
+        /* if wall = me then link to my details panel
+           else have link to friends details panel 
+         */
 
         // Add style name for CSS
-        outputPanel.addStyleName("gwt-output");
-    }
-
-    private void myWallControlPanelSetup() {
-        // Create widgets
-        Anchor linkMyDetails = new Anchor("My details");
-
-        // Add widgets to panel
-        myWallControlPanel.add(linkMyDetails);
-
-        // Add style name for CSS
-        myWallControlPanel.addStyleName("gwt-my-wall-control");
-
-        // Add click handlers for anchors
-
-    }
-    
-    private void friendsWallControlPanelSetup() {
-        // Create widgets
-
-        // Add widgets to panel
-
-        // Add style name for CSS
-        friendsWallControlPanel.addStyleName("gwt-friends-wall-control");
-
-        // Add click handlers for anchors
-    }
-
-    private void groupsControlPanelSetup(String currentGroupID) {
-        // if current group is All display 'Add new friend'
-        // else display 'Add friend to this group'
-        
-        // there should be links to each of the users groups when a link is clicked
-        // loadFriendsList(groupID);  << Group ID come froms anchor click handler
-    
-        // Create widgets
-
-        // Add widgets to panel
-
-        // Add style name for CSS
-        groupsControlPanel.addStyleName("gwt-groups-control");
+        wallPanel.addStyleName("gwt-wall");
 
         // Add click handlers for anchors
 
     }
 
-    private void commentsControlPanelSetup() {
-        // Create widgets
-
-        // Add widgets to panel
-
-        // Add style name for CSS
-        commentsControlPanel.addStyleName("gwt-comments-control");
-
-        // Add click handlers for anchors
-
-    }
 
     private void settingsPanelSetup() {
         // Create widgets
@@ -909,12 +846,8 @@ public class frontend implements EntryPoint {
         RootPanel.get().add(settingsPanel);
         RootPanel.get().add(conversationListPanel);
         RootPanel.get().add(myDetailsPanel);
-        RootPanel.get().add(inputPanel);
-        RootPanel.get().add(outputPanel);
         RootPanel.get().add(navigationPanel);
-        RootPanel.get().add(commentsControlPanel);
-        RootPanel.get().add(myWallControlPanel);
-        RootPanel.get().add(friendsWallControlPanel);
+        RootPanel.get().add(wallPanel);
         RootPanel.get().add(myDetailsPanel);
         RootPanel.get().add(conversationPanel);
         RootPanel.get().add(newConversationPanel);
@@ -927,35 +860,9 @@ public class frontend implements EntryPoint {
         RootPanel.get().add(loginPanel);
     }
 
-    private void loadMyWall() {
-        RootPanel.get().clear();
-        RootPanel.get().add(navigationPanel);
-        
-        //Gonna need some kind of loop here
-        RootPanel.get().add(outputPanel);
-        RootPanel.get().add(myWallControlPanel);
-
-        // Some kind of way of accepting other peoples posts on your wall
-        //TODO
-    }
-
-    private void loadFriendsWall(String friendKey) {
-        //TODO
-    }
-
-    private void loadMyDetails() {
-        //TODO
-    }
-
-    private void loadFriendsDetails() {
-        //TODO
-    }
-
-    private void loadComments() {
-        //TODO
-    }
-
     private void loadConversationList() {
+        conversationListPanel.clear();
+        
         conversationListPanelSetup();
         
         RootPanel.get().clear();
@@ -984,23 +891,9 @@ public class frontend implements EntryPoint {
         RootPanel.get().clear();
         RootPanel.get().add(navigationPanel);
         
-        // Prepare panels to add to page
-        friendsListPanelSetup(currentGroupID);
-        groupsControlPanelSetup(currentGroupID);
-        
         // Add panels to page
         friendsListPanelSetup("all");
         RootPanel.get().add(friendsListPanel);
-        RootPanel.get().add(groupsControlPanel);
-    }
-
-    private void loadAddKey() {
-        //TODO
-    }
-
-
-    private void loadEditGroups() {
-        //TODO
     }
 
     private void loadSettings() {
@@ -1012,16 +905,11 @@ public class frontend implements EntryPoint {
         RootPanel.get().add(myDetailsPanel);
         RootPanel.get().add(myDetailsPermissionsPanel);
     }
-
-    private void loadCreatePost() {
-        //TODO
-    }
-
-    private void loadCreateComment() {
-        //TODO
-    }
-
-    private void loadCreateMessages() {
-        //TODO
+    
+    private void loadWall(String key) {
+        RootPanel.get().clear();
+        RootPanel.get().add(navigationPanel);
+        
+        
     }
 }
