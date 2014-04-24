@@ -127,7 +127,6 @@ public class frontend implements EntryPoint {
         inputPanelSetup();
         outputPanelSetup();
         myDetailsPanelSetup();
-        conversationPanelSetup("conversationID");
         commentsControlPanelSetup();
         myDetailsPermissionsPanelSetup();
         newConversationPanelSetup();
@@ -964,6 +963,7 @@ public class frontend implements EntryPoint {
 
     private void loadConversation(String conversationID) {
         //TODO
+        conversationPanel.clear();
         conversationPanelSetup(conversationID);
         RootPanel.get().clear();
         RootPanel.get().add(navigationPanel);
