@@ -3,6 +3,7 @@ package ballmerpeak.turtlenet.shared;
 import ballmerpeak.turtlenet.shared.Tokenizer;
 import java.security.*;
 import java.io.Serializable;
+import java.util.Arrays;
 
 public class Message implements Serializable {
     //You shouldn't use this, rather use MessageFactory.newMessage(command, data)
@@ -58,21 +59,43 @@ public class Message implements Serializable {
     
     /* type specific */
     public String POSTgetText() {
-        return content;
+        Tokenizer tokenizer = new Tokenizer(content, ':');
+        String[] colonPairs = new String[tokenizer.countTokens()];
+        for (int i = 0; tokenizer.hasMoreTokens(); i++)
+            colonPairs[i] = tokenizer.nextToken();
+        return colonPairs[colonPairs.length-1];
+    }
+    
+    public String[] POSTgetVisibleTo() {
+        Tokenizer tokenizer = new Tokenizer(content, ':');
+        String[] colonPairs = new String[tokenizer.countTokens()];
+        for (int i = 0; tokenizer.hasMoreTokens(); i++)
+            colonPairs[i] = tokenizer.nextToken();
+        return Arrays.copyOfRange(colonPairs, 0, colonPairs.length-1);
     }
     
     public String FPOSTgetText() {
-        Tokenizer st = new Tokenizer(content, ':');
-        String wall  = st.nextToken();
-        String text  = st.nextToken();
-        return text;
+        Tokenizer tokenizer = new Tokenizer(content, ':');
+        String[] colonPairs = new String[tokenizer.countTokens()];
+        for (int i = 0; tokenizer.hasMoreTokens(); i++)
+            colonPairs[i] = tokenizer.nextToken();
+        return colonPairs[colonPairs.length-1];
     }
     
     public String FPOSTgetWall() {
-        Tokenizer st = new Tokenizer(content, ':');
-        String wall  = st.nextToken();
-        String text  = st.nextToken();
-        return wall;
+        Tokenizer tokenizer = new Tokenizer(content, ':');
+        String[] colonPairs = new String[tokenizer.countTokens()];
+        for (int i = 0; tokenizer.hasMoreTokens(); i++)
+            colonPairs[i] = tokenizer.nextToken();
+        return colonPairs[0];
+    }
+    
+    public String[] FPOSTgetVisibleTo() {
+        Tokenizer tokenizer = new Tokenizer(content, ':');
+        String[] colonPairs = new String[tokenizer.countTokens()];
+        for (int i = 0; tokenizer.hasMoreTokens(); i++)
+            colonPairs[i] = tokenizer.nextToken();
+        return Arrays.copyOfRange(colonPairs, 1, colonPairs.length-1);
     }
     
     public String CLAIMgetName() {

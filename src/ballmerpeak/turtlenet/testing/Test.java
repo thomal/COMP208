@@ -119,8 +119,8 @@ class Test {
         Message pdatam  = new Message("PDATA",  "name:John Doe;dob:1972;",      4224, "<sig>");
         Message chatm   = new Message("CHAT",   k1e + ":" + k2e,                4224, "<sig>");
         Message pchatm  = new Message("PCHAT",  "<convsig>:Hi bob.",            4224, "<sig>");
-        Message postm   = new Message("POST",   "Hello, World! \\_O_/",         4224, "<sig>");
-        Message fpostm  = new Message("FPOST",  "key:I'm posting on your wall", 4224, "<sig>");
+        Message postm   = new Message("POST",   "<fake1>:<fake2>:Hello, World! \\_O_/",        4224, "<sig>");
+        Message fpostm  = new Message("FPOST",  "key:<fake1>:<fake2>:I'm posting on your wall", 4224, "<sig>");
         Message cmntm   = new Message("CMNT",   "<post or comment sig>:nice",   4224, "<sig>");
         Message likem   = new Message("LIKE",   "<post or comment sig>",        4224, "<sig>");
         Message eventm  = new Message("EVNT",   "0:60000:bobs birthday",        4224, "<sig>");
@@ -141,19 +141,23 @@ class Test {
         test("9  PCHATgetText",  pchatm.PCHATgetText(),           "Hi bob.");
         test("10 PCHATgetConversationID", pchatm.PCHATgetConversationID(), "<convsig>");
         
-        test("11 POSTgetText", postm.POSTgetText(), "Hello, World! \\_O_/");
+        test("11 POSTgetText", postm.POSTgetVisibleTo()[0], "<fake1>");
+        test("12 POSTgetText", postm.POSTgetVisibleTo()[1], "<fake2>");
+        test("13 POSTgetText", postm.POSTgetText(), "Hello, World! \\_O_/");
         
-        test("12 FPOSTgetText", fpostm.FPOSTgetText(), "I'm posting on your wall");
-        test("13 FPOSTgetWall", fpostm.FPOSTgetWall(), "key");
+        test("14 FPOSTgetText", fpostm.FPOSTgetText(), "I'm posting on your wall");
+        test("15 FPOSTgetWall", fpostm.FPOSTgetWall(), "key");
+        test("16 POSTgetText",  fpostm.FPOSTgetVisibleTo()[0], "<fake1>");
+        test("17 POSTgetText",  fpostm.FPOSTgetVisibleTo()[1], "<fake2>");
         
-        test("14 CMNTgetText",   cmntm.CMNTgetText(),   "nice");
-        test("15 CMNTgetItemID", cmntm.CMNTgetItemID(), "<post or comment sig>");
+        test("18 CMNTgetText",   cmntm.CMNTgetText(),   "nice");
+        test("19 CMNTgetItemID", cmntm.CMNTgetItemID(), "<post or comment sig>");
         
-        test("16 LIKEgetItemID", likem.LIKEgetItemID(), "<post or comment sig>");
+        test("20 LIKEgetItemID", likem.LIKEgetItemID(), "<post or comment sig>");
         
-        test("17 EVNTgetName",  eventm.EVNTgetName(), "bobs birthday");
-        test("18 EVNTgetStart", eventm.EVNTgetStart(), 0);
-        test("19 EVNTgetEnd",   eventm.EVNTgetEnd(),   60000);
+        test("21 EVNTgetName",  eventm.EVNTgetName(), "bobs birthday");
+        test("22 EVNTgetStart", eventm.EVNTgetStart(), 0);
+        test("23 EVNTgetEnd",   eventm.EVNTgetEnd(),   60000);
         
         
         return failures == ifailures;
@@ -164,6 +168,7 @@ class Test {
         int ifailures = failures;
         
         MessageFactoryImpl f = new MessageFactoryImpl();
+        String[] fakekeys = {"<fakekey1>", "<fakekey2>"};
         KeyPair k1 = Crypto.getTestKey();
         KeyPair k2 = Crypto.getTestKey();
         PublicKey keys[] = {k1.getPublic(), k2.getPublic()};
@@ -174,8 +179,8 @@ class Test {
         Message pdatam  = f.newPDATA("name", "John Doe");
         Message chatm   = f.newCHAT(keys);
         Message pchatm  = f.newPCHAT("<convsig>", "Hi bob.");
-        Message postm   = f.newPOST("Hello, World! \\_O_/");
-        Message fpostm  = f.newFPOST("I'm posting on your wall", Crypto.encodeKey(k1.getPublic()));
+        Message postm   = f.newPOST("Hello, World! \\_O_/", fakekeys);
+        Message fpostm  = f.newFPOST("I'm posting on your wall", Crypto.encodeKey(k1.getPublic()), fakekeys);
         Message cmntm   = f.newCMNT("<post or comment sig>", "nice");
         Message likem   = f.newLIKE("<post or comment sig>");
         Message eventm  = f.newEVNT(0, 60000, "bobs birthday");
@@ -195,20 +200,23 @@ class Test {
         test("8  newPCHAT", pchatm.PCHATgetConversationID(), "<convsig>");
         
         test("9  newPOST", postm.POSTgetText(), "Hello, World! \\_O_/");
+        test("10 newPOST", postm.POSTgetVisibleTo()[1], "<fakekey2>");
+        test("11 newPOST", postm.POSTgetVisibleTo().length == 2);
         
-        test("10 newFPOST", fpostm.FPOSTgetText(), "I'm posting on your wall");
-        test("11 newFPOST", fpostm.FPOSTgetWall(), Crypto.encodeKey(k1.getPublic()));
+        test("12 newFPOST", fpostm.FPOSTgetText(), "I'm posting on your wall");
+        test("13 newFPOST", fpostm.FPOSTgetWall(), Crypto.encodeKey(k1.getPublic()));
+        test("14 newFPOST", fpostm.FPOSTgetVisibleTo()[1], "<fakekey2>");
+        test("15 newFPOST", fpostm.FPOSTgetVisibleTo().length == 2);
+        test("16 newFPOST", fpostm.FPOSTgetWall(), Crypto.encodeKey(k1.getPublic()));
         
-        test("12 newCMNT",   cmntm.CMNTgetText(),   "nice");
-        test("13 newCMNT", cmntm.CMNTgetItemID(), "<post or comment sig>");
+        test("17 newCMNT", cmntm.CMNTgetText(),   "nice");
+        test("18 newCMNT", cmntm.CMNTgetItemID(), "<post or comment sig>");
         
-        test("14 newLIKE", likem.LIKEgetItemID(), "<post or comment sig>");
+        test("19 newLIKE", likem.LIKEgetItemID(), "<post or comment sig>");
         
-        test("15 newEVNT",  eventm.EVNTgetName(), "bobs birthday");
-        test("16 newEVNT", eventm.EVNTgetStart(), 0);
-        test("17 newEVNT",   eventm.EVNTgetEnd(),   60000);
- 
-        anomalies++;
+        test("20 newEVNT", eventm.EVNTgetName(), "bobs birthday");
+        test("21 newEVNT", eventm.EVNTgetStart(), 0);
+        test("22 newEVNT", eventm.EVNTgetEnd(),   60000);
         
         
         return failures == ifailures;
@@ -228,7 +236,7 @@ class Test {
         test("3 verifySig on MsgFactory Msg", Crypto.verifySig(msg, mykey));
         System.out.println("\t(it didn't really fail, run `make test' again)");
         
-        System.out.println("\tWARNING: Not nearly enough crypto tests");
+        System.out.println("\tWARNING: Not enough crypto tests");
         anomalies++;              
         
         
