@@ -826,15 +826,31 @@ public class frontend implements EntryPoint {
             postContents.setText("Post contents goes here");
             postContentsPanel.add(postContents);
             
+            HorizontalPanel postContentsFooterPanel = new HorizontalPanel();
+            postContentsPanel.add(postContentsFooterPanel);
             // TODO LUKETODO "5" should be replaced with a call to a method that
             // returns a the number of comments on a post when given the ID of
             // that post.
             // Give it postID
             Anchor comments = new Anchor("Comments (" + "5" + ")");
-            postContentsPanel.add(comments);
+            postContentsFooterPanel.add(comments);
             comments.addClickHandler(new ClickHandler() {
                 public void onClick(ClickEvent event) {
                     comments(postID, postID, "Wall post");
+                }
+            }); 
+            
+            Anchor likePost = new Anchor("Like");
+            postContentsFooterPanel.add(likePost);
+            likePost.addClickHandler(new ClickHandler() {
+                public void onClick(ClickEvent event) {
+                    // TODO LUKETODO Call a method that 'Likes' a post when given
+                    // the ID of that post.
+                    // Give it postID
+                    
+                    wall(key);
+                    // TODO LOUISTODO Make the page scroll back to where it was
+                    // after page is redrawn.
                 }
             }); 
         }
