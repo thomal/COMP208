@@ -103,40 +103,23 @@ public class frontend implements EntryPoint {
             }
         });
 
-
         // Call methods to set up panels
-        // THIS IS TEMPORARY > Setup methods should be called by a view constructor
+        loginPanelSetup();
+        navigationPanelSetup();        
+        
+        // THE FOLLOWING ARE TEMPORARY > Setup methods should be called by a view constructor
         // This just makes creating the panels easy for now. I think using setup in
         // the names was a confusing mistake. Setup doesnt mean it should only happen
         // once at the start. Each panel should be 'set up' appropriately each time we 
-        // want to use it
-        loginPanelSetup();
-        navigationPanelSetup();
-        settingsPanelSetup();
+        // want to use it        
         conversationListPanelSetup();
         friendsListPanelSetup("All");
-
         myDetailsPermissionsPanelSetup();
         newConversationPanelSetup();
 
         // Call method to load the initial login page
         loadLogin();
-        
-        /* For now we can compromise and leave both of these enabled. That way
-         * the still works(or lets you enter anything as it does now) and I can
-         * see all of the panels without us contantly battling over which one
-         * is enabled
-         */
-        
-        // Louis temp
-        //loadPanelDev();
     }
-
-    // #########################################################################
-    // #########################################################################
-    // ####################Setup panels needed to create views##################
-    // #########################################################################
-    // #########################################################################
 
     private void loginPanelSetup() {
         // Create login panel widgets
@@ -824,7 +807,7 @@ public class frontend implements EntryPoint {
             // TODO LUKETODO "Key of user" should be replaced with a call to a 
             // method that returns the key of the user who created a post when
             // given the ID of that post. 
-            // Give it postID.
+            // Give it postID
             final String postedBy = new String("Key of user");
             
             // TODO LUKETODO "Name of poster" should be replaced with a call 
@@ -841,7 +824,7 @@ public class frontend implements EntryPoint {
             // TODO LUKETODO "01/01/1970" should be replaced with a call to a 
             // method that returns the date a post was created on when given 
             // the ID of that post.
-            // Give it postID.
+            // Give it postID
             // (Not sure if this is a feature but it would be nice) 
             postControlPanel.add(new Label("01/01/1970"));
             
@@ -850,13 +833,20 @@ public class frontend implements EntryPoint {
             
             TextArea postContents = new TextArea();
             postContents.setCharacterWidth(80);
-            postContents.setVisibleLines(10); 
+            postContents.setVisibleLines(10);
+            postContents.setReadOnly(true);
+                       
+            // TODO LUKETODO "Post contents goes here" should be replaced with
+            // a call to a method that takes the ID of a post and returns the 
+            // contents of that post.
+            //Give it postID
+            postContents.setText("Post contents goes here");
             postContentsPanel.add(postContents);
             
             // TODO LUKETODO "5" should be replaced with a call to a method that
             // returns a the number of comments on a post when given the ID of
             // that post.
-            // Give it postID.
+            // Give it postID
             Anchor comments = new Anchor("Comments (" + "5" + ")");
             postContentsPanel.add(comments);
             comments.addClickHandler(new ClickHandler() {
@@ -910,21 +900,23 @@ public class frontend implements EntryPoint {
             
             // TODO LUKETODO "Name of user" should be replaced with a call to a 
             // method that returns the name of the user who posted a comment when
-            // given the ID of a comment. Give it commentID.
+            // given the ID of a comment. 
+            // Give it commentID
             Anchor postedBy = new Anchor("Name of user");
+            commentsContentsPanel.add(postedBy);
+            
+            TextArea commentContents = new TextArea();
+            commentContents.setCharacterWidth(80);
+            commentContents.setVisibleLines(10);
+            commentContents.setReadOnly(true);
+            
+            // TODO LUKETODO "Contents of comment" should be replaced with a call
+            // to a method that returns the contents of a comment when given the
+            // ID of that comment.
+            // Give it commentID            
+            commentContents.setText("Contents of comment"); 
+            commentsContentsPanel.add(commentContents);
         }  
-    }
-
-    private void settingsPanelSetup() {
-        // Create widgets
-
-        // Add widgets to panel
-
-        // Add style name for CSS
-        settingsPanel.addStyleName("gwt-settings-panel");
-
-        // Add click handlers for anchors
-
     }
     
     //must be global because it must be referenced from callback
