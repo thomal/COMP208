@@ -68,26 +68,6 @@ public class frontend implements EntryPoint {
     // Create remote service proxy to talk to the server-side Turtlenet service
     private final TurtlenetAsync turtlenet = GWT.create(Turtlenet.class);
     //private final TurtlenetAsync msgfactory = GWT.create(MessageFactory.class);
-
-    /*
-     * As horrible as it is all panels need to be created here so that they can
-     * be accessed by by setup methods(which setup the panel in a particular way
-     * for the current use) and load methods(which call several setup methods to
-     * place a bunch of panels on screen to create a view).
-     */
-    FlexTable loginPanel = new FlexTable();
-    FlexTable friendsListPanel = new FlexTable();
-    FlexTable conversationListPanel = new FlexTable();
-    FlexTable myDetailsPermissionsPanel = new FlexTable();
-    FlexTable conversationPanel = new FlexTable();
-    FlexTable newConversationPanel = new FlexTable();
-    HorizontalPanel navigationPanel = new HorizontalPanel();
-    
-    
-    //NOT DONE
-    HorizontalPanel settingsPanel = new HorizontalPanel();
-    
-
     public void onModuleLoad() {
         /* Add handler for window closing */
         Window.addCloseHandler(new CloseHandler<Window>() {
@@ -101,27 +81,17 @@ public class frontend implements EntryPoint {
                     }
                 });
             }
-        });
-
-        // Call methods to set up panels
-        loginPanelSetup();
-        navigationPanelSetup();        
+        });   
         
-        // THE FOLLOWING ARE TEMPORARY > Setup methods should be called by a view constructor
-        // This just makes creating the panels easy for now. I think using setup in
-        // the names was a confusing mistake. Setup doesnt mean it should only happen
-        // once at the start. Each panel should be 'set up' appropriately each time we 
-        // want to use it        
-        conversationListPanelSetup();
-        friendsListPanelSetup("All");
-        myDetailsPermissionsPanelSetup();
-        newConversationPanelSetup();
-
         // Call method to load the initial login page
-        loadLogin();
+        login();
     }
 
-    private void loginPanelSetup() {
+    private void login() {
+        RootPanel.get().clear();
+        FlexTable loginPanel = new FlexTable();
+        RootPanel.get().add(loginPanel);
+    
         // Create login panel widgets
         final Button loginButton = new Button("Login");
         final TextBox passwordInput = new TextBox();
@@ -148,7 +118,7 @@ public class frontend implements EntryPoint {
                     }
                     public void onSuccess(String result) {
                         if (result.equals("success")) {
-                            loadWall("me");
+                            wall("me");
                         } else if (result.equals("failure")) {
                             passwordLabel.setText("Please enter your password (again): ");
                         } else {
@@ -161,19 +131,20 @@ public class frontend implements EntryPoint {
         });
     }
 
-    private void navigationPanelSetup() {
+    private void navigation() {
+        HorizontalPanel navigationPanel = new HorizontalPanel();
+        RootPanel.get().add(navigationPanel);
+        
         // Create navigation links
         Anchor linkMyWall = new Anchor("My Wall");
         Anchor linkConversations = new Anchor("Messages");
         Anchor linkFriends = new Anchor("Friends");
-        Anchor linkSettings = new Anchor("Settings");
         Anchor linkLogout = new Anchor("Logout");
 
         // Add links to navigation panel
         navigationPanel.add(linkMyWall);
         navigationPanel.add(linkConversations);
         navigationPanel.add(linkFriends);
-        navigationPanel.add(linkSettings);
         navigationPanel.add(linkLogout);
 
         // Add style name for CSS
@@ -182,25 +153,19 @@ public class frontend implements EntryPoint {
         // Add click handlers for anchors
         linkMyWall.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                    loadWall("me");
+                    wall("me");
             }
         });
         
         linkConversations.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                    loadConversationList();
+                    conversationList();
             }
         });
         
         linkFriends.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                    loadFriendsList("All");
-            }
-        });
-        
-        linkSettings.addClickHandler(new ClickHandler() {
-            public void onClick(ClickEvent event) {
-
+                    friendsList("All");
             }
         });
         
@@ -211,7 +176,7 @@ public class frontend implements EntryPoint {
                         //TODO Error
                     }
                     public void onSuccess(String result) {
-                        loadLogin();
+                        login();
                     }
                 });
             }
@@ -219,8 +184,11 @@ public class frontend implements EntryPoint {
     }
 
     private TextBox friendsListPanel_myKeyTextBox;
-    private void friendsListPanelSetup(final String currentGroupID) {   
-        friendsListPanel.clear();
+    private void friendsList(final String currentGroupID) {   
+        RootPanel.get().clear();
+        navigation();
+        final FlexTable friendsListPanel = new FlexTable();
+        RootPanel.get().add(friendsListPanel);
         
         // Column title for anchors linking to messages        
         Label friendsNameLabel = new Label("Friend's Name");
@@ -251,7 +219,7 @@ public class frontend implements EntryPoint {
                     //link names to walls
                     linkFriendsWall.addClickHandler(new ClickHandler() {
                         public void onClick(ClickEvent event) {
-                            loadWall(result[i][1]);
+                            wall(result[i][1]);
                         }
                     });
                 }
@@ -287,7 +255,7 @@ public class frontend implements EntryPoint {
                 }
                 currentGroups.addChangeHandler(new ChangeHandler() {
                     public void onChange(ChangeEvent event) {
-                        friendsListPanelSetup(currentGroups.getItemText(currentGroups.getSelectedIndex()));
+                        friendsList(currentGroups.getItemText(currentGroups.getSelectedIndex()));
                     }
                 });
             }
@@ -340,8 +308,16 @@ public class frontend implements EntryPoint {
         // Add style name for CSS
         friendsListPanel.addStyleName("gwt-friends-list");
     }
-
-    private void conversationListPanelSetup() {
+    
+    private void conversationList() {
+        //Setup basic page
+        RootPanel.get().clear();
+        navigation();
+        
+        //Create panel to contain widgets
+        final FlexTable conversationListPanel = new FlexTable();
+        RootPanel.get().add(conversationListPanel);
+        
         turtlenet.getConversations(new AsyncCallback<Conversation[]>() {
             Conversation[] result;
             int i;
@@ -358,7 +334,7 @@ public class frontend implements EntryPoint {
                     // Add click handlers for anchors
                     linkConversation.addClickHandler(new ClickHandler() {
                         public void onClick(ClickEvent event) {
-                            loadConversation(conversationID);
+                            conversation(conversationID);
                         }
                     });
                     
@@ -371,7 +347,7 @@ public class frontend implements EntryPoint {
         Button newConversation = new Button("New conversation");
         newConversation.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                loadNewConversation();
+                newConversation();
             }
         });
         
@@ -383,7 +359,7 @@ public class frontend implements EntryPoint {
 
     private void myDetails() {
         RootPanel.get().clear();
-        RootPanel.get().add(navigationPanel);
+        navigation();
         FlexTable myDetailsPanel = new FlexTable();
         RootPanel.get().add(myDetailsPanel);        
         
@@ -583,14 +559,21 @@ public class frontend implements EntryPoint {
             }
         });
         
-        // TODO LOUISTODO Add link to myDetailsPanelPermissions(maybe)
+        // TODO LOUISTODO Add link to myDetailsPermissions
         
         // Add style name for CSS
         myDetailsPanel.addStyleName("gwt-my-details");
     }
     
-    private void myDetailsPermissionsPanelSetup() {
+    private void myDetailsPermissions() {
+        // Setup basic page
+        RootPanel.get().clear();
+        navigation();
         
+        // Add panel to contain widgets
+        final FlexTable myDetailsPermissionsPanel = new FlexTable();
+        RootPanel.get().add(myDetailsPermissionsPanel);     
+
         Label myDetailsPermissionsLabel = new Label("Select which groups can view your details");
         myDetailsPermissionsLabel.getElement().getStyle().setFontWeight(FontWeight.BOLD);
         myDetailsPermissionsPanel.setWidget(0, 0, myDetailsPermissionsLabel); 
@@ -624,14 +607,14 @@ public class frontend implements EntryPoint {
             }
         });
         
-        // TODO LOUISTODO Add link to myDetailsPanel (maybe)
+        // TODO LOUISTODO Add link to myDetailsPanel
         myDetailsPermissionsPanel.addStyleName("gwt-my-details-permissions");
     }
     
     private void friendsDetails(String friendsDetailsKey) {
         // Setup basic page
         RootPanel.get().clear();
-        RootPanel.get().add(navigationPanel);
+        navigation();
         // Create main panel
         final FlexTable friendsDetailsPanel = new FlexTable();
         RootPanel.get().add(friendsDetailsPanel);    
@@ -712,10 +695,10 @@ public class frontend implements EntryPoint {
         friendsDetailsPanel.addStyleName("gwt-friends-details");
     }
 
-    private void loadWall(final String key) {
+    private void wall(final String key) {
         // Setup basic page
         RootPanel.get().clear();
-        RootPanel.get().add(navigationPanel);
+        navigation();
         // Create main panel
         final FlowPanel wallPanel = new FlowPanel();
         RootPanel.get().add(wallPanel);
@@ -770,7 +753,7 @@ public class frontend implements EntryPoint {
                 // A way to choose who can see the post is on the way. For now can
                 // we have it default to everyone?
                 
-                loadWall(key);
+                wall(key);
             }
         });
          
@@ -817,7 +800,7 @@ public class frontend implements EntryPoint {
             postControlPanel.add(linkToUser);
             linkToUser.addClickHandler(new ClickHandler() {
                 public void onClick(ClickEvent event) {
-                    loadWall(postedBy);
+                    wall(postedBy);
                 }
             });
             
@@ -851,7 +834,7 @@ public class frontend implements EntryPoint {
             postContentsPanel.add(comments);
             comments.addClickHandler(new ClickHandler() {
                 public void onClick(ClickEvent event) {
-                    loadComments(postID);
+                    comments(postID);
                 }
             }); 
         }
@@ -860,10 +843,10 @@ public class frontend implements EntryPoint {
         wallPanel.addStyleName("gwt-wall");
     }
     
-    private void loadComments(final String postID) {
+    private void comments(final String postID) {
         // Setup basic page
         RootPanel.get().clear();
-        RootPanel.get().add(navigationPanel);
+        navigation();
         // Create main panel
         final FlowPanel commentsPanel = new FlowPanel();
         RootPanel.get().add(commentsPanel);
@@ -876,7 +859,7 @@ public class frontend implements EntryPoint {
                 // a method that take the ID of a post and returns the key of the
                 // user whose wall that post was posted on.
                 // This current method takes a string called postID so give it that.
-                loadWall("Key of user");
+                wall("Key of user");
                 
                 // TODO LOUISTODO Find a way to make the page scroll to the
                 // original post on the wall
@@ -917,11 +900,19 @@ public class frontend implements EntryPoint {
             commentContents.setText("Contents of comment"); 
             commentsContentsPanel.add(commentContents);
         }  
-    }
+    }  
     
     //must be global because it must be referenced from callback
     private TextArea newConvoInput = new TextArea();
-    private void newConversationPanelSetup() {
+    private void newConversation() {
+        // Setup basic page
+        RootPanel.get().clear();
+        navigation();
+        
+        // Create panel to contain widgets
+        final FlexTable newConversationPanel = new FlexTable();
+        RootPanel.get().add(newConversationPanel);
+    
         final ListBox currentFriends = new ListBox();
         currentFriends.setVisibleItemCount(11);
         currentFriends.setWidth("150px");
@@ -989,7 +980,7 @@ public class frontend implements EntryPoint {
                                         }
                                         public void onSuccess(String success) {
                                             if (success.equals("success")) {
-                                                loadConversation(createChatReturn[1]);
+                                                conversation(createChatReturn[1]);
                                             } else {
                                                 //TODO Error
                                             }
@@ -1009,9 +1000,18 @@ public class frontend implements EntryPoint {
         newConversationPanel.addStyleName("gwt-conversation");
     }
     
+    
     private String convoPanelSetup_convosig; //needed in inner class
     private TextArea convoPanelSetup_input = new TextArea();
-    private void conversationPanelSetup(String conversationID) {
+    private void conversation(String conversationID) {
+        // Set up basic page
+        RootPanel.get().clear();
+        navigation();
+        
+        // Create panel to contain widgets
+        final FlexTable conversationPanel = new FlexTable();
+        RootPanel.get().add(conversationPanel);
+    
         convoPanelSetup_convosig = conversationID;
         conversationPanel.setCellSpacing(10);
         conversationPanel.setWidget(0, 0, new Label("Participants: "));
@@ -1066,7 +1066,7 @@ public class frontend implements EntryPoint {
                                     }
                                     public void onSuccess(String postingSuccess) {
                                         //Reload the conversation after the new message has been added
-                                        loadConversation(convoPanelSetup_convosig);
+                                        conversation(convoPanelSetup_convosig);
                                     }
                                 });
                             }
@@ -1084,7 +1084,7 @@ public class frontend implements EntryPoint {
     private void newGroup() {
         // TODO LOUISTODO
         RootPanel.get().clear();
-        RootPanel.get().add(navigationPanel);
+        navigation();
         FlexTable newGroupPanel = new FlexTable();
         RootPanel.get().add(newGroupPanel);
         
@@ -1118,7 +1118,7 @@ public class frontend implements EntryPoint {
     
     private void addToGroup(final String groupID) {
         RootPanel.get().clear();
-        RootPanel.get().add(navigationPanel);
+        navigation();
         FlexTable addToGroupPanel = new FlexTable();
         RootPanel.get().add(addToGroupPanel);
         
@@ -1189,7 +1189,7 @@ public class frontend implements EntryPoint {
     TextBox addFriend_keyInput = new TextBox();
     private void addFriend() {
         RootPanel.get().clear();
-        RootPanel.get().add(navigationPanel);
+        navigation();
         FlexTable addFriendPanel = new FlexTable();
         RootPanel.get().add(addFriendPanel);
         
@@ -1220,54 +1220,6 @@ public class frontend implements EntryPoint {
                 });
             }
         });
-        
         addFriendPanel.addStyleName("gwt-friend"); 
-    }
-
-    // #########################################################################
-    // #########################################################################
-    // ############################Load different view##########################
-    // #########################################################################
-    // #########################################################################
-
-    private void loadLogin() {
-        RootPanel.get().clear();
-        RootPanel.get().add(loginPanel);
-    }
-
-    private void loadConversationList() {
-        conversationListPanel.clear();
-        
-        conversationListPanelSetup();
-        
-        RootPanel.get().clear();
-        RootPanel.get().add(navigationPanel);
-        RootPanel.get().add(conversationListPanel);
-    }
-
-    private void loadConversation(String conversationID) {
-        //TODO
-        conversationPanel.clear();
-        conversationPanelSetup(conversationID);
-        RootPanel.get().clear();
-        RootPanel.get().add(navigationPanel);
-        RootPanel.get().add(conversationPanel);
-    }
-    
-    private void loadNewConversation() {
-        newConversationPanelSetup();
-        
-        RootPanel.get().clear();
-        RootPanel.get().add(navigationPanel);
-        RootPanel.get().add(newConversationPanel);
-    }
-
-    private void loadFriendsList(String currentGroupID) {
-        RootPanel.get().clear();
-        RootPanel.get().add(navigationPanel);
-        
-        // Add panels to page
-        friendsListPanelSetup("All");
-        RootPanel.get().add(friendsListPanel);
-    }
+    }   
 }
