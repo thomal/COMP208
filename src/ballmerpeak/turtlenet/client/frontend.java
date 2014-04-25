@@ -843,16 +843,29 @@ public class frontend implements EntryPoint {
         wallPanel.addStyleName("gwt-wall");
     }
     
+    // TODO LUKETODO This isnt a real todo, just thought I'd tell you this here
+    // rather than annoy you while you're making a new database.
+    // Not sure how useful it will be for you but comments takes a string called 
+    // parentType. If it equals 'Wall post' then it parent is a wall post.
+    // Otherwise its parent is another comment. There is probably a more elegant
+    // way of doing this but I can't think of one right now. If you have any 
+    // ideas let me know and I'll change it. As it is I need parentType when
+    // setting up interface elements.
+    
     private void comments(final String parentID, final String parentType) {
+        // Create panel to contain widgets
+        final FlowPanel commentsPanel = new FlowPanel();
+        
         if (parentType.equals("Wall post")) {
             // Setup basic page
             RootPanel.get().clear();
             navigation();
+        } else {
+            // If comment belongs to another comment it should be indented
+            commentsPanel.getElement().getStyle().setProperty("paddingLeft" , "100px");
         }
-        
-        // Create main panel
-        final FlowPanel commentsPanel = new FlowPanel();
-        commentsPanel.getElement().getStyle().setProperty("paddingLeft" , "100px");
+            
+        // Add main panel to page
         RootPanel.get().add(commentsPanel);
         
         if (parentType.equals("Wall post")) {
@@ -873,13 +886,13 @@ public class frontend implements EntryPoint {
         }        
         
         // TODO LUKETODO 10 should be replaced with a call to a method that takes
-        // the ID of a post and returns the number of comments associated with that
+        // the ID of a post/comment and returns the number of comments associated with that
         // post.
-        // This current method takes a string called postID so give it that.
+        // This current method takes a string called parentID so give it that.
         for(int i = 0; i < 10; i++) {
             // TODO LUKETODO "ID of comment" should be replaced with a call to
-            // a method that returns a list of comments when given the ID of a post.
-            // This current method takes a string called postID so give it that.
+            // a method that returns a list of comments when given the ID of their parent.
+            // This current method takes a string called parentID so give it that.
             // Specifically we want the IDs of the comments. Use i to select an
             // ID from the list. 
             final String commentID = new String("ID of comment");
@@ -906,12 +919,13 @@ public class frontend implements EntryPoint {
             commentContents.setText("Contents of comment"); 
             commentsContentsPanel.add(commentContents);
             
-            /*if("comment has comments") {
-                //show the comments
-                //.getElement().getStyle().setProperty("paddingLeft" , "100px");
+            if("Comment has comments") {
+                comments(commentID, "Comment");
             } else {
                 //show 'add comment' button
-            } */
+            }
+            
+            //show reply to thread
         }  
     }  
     
