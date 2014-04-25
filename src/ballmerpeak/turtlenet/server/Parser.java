@@ -28,8 +28,6 @@ public class Parser {
             db.addChat(msg);
         else if (msg.getCmd().equals("PCHAT"))  //add message to chat
             db.addMessageToChat(msg);
-        else if (msg.getCmd().equals("FPOST"))  //someone posting to your wall
-            db.addFPost(msg);
         else if (msg.getCmd().equals("CMNT"))   //comment
             db.addComment(msg);
         else if (msg.getCmd().equals("LIKE"))   //like
@@ -38,5 +36,8 @@ public class Parser {
             db.addEvent(msg);
         else if (msg.getCmd().equals("NULL"))
             Logger.write("VERBOSE", "PARSE", "undecryptable message"); //not for us
+        
+        if (msg.getCmd().equals("FPOST"))
+            Logger.write("WARNING", "PARSE", "FPOST is depreciated");
     }
 }

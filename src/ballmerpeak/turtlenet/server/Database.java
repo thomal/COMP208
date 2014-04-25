@@ -332,27 +332,42 @@ public class Database {
 
     }
     
-    //In the case of multiple usernames: return the newest one
     //In the case of no username for the key: "return Crypto.encode(k);"
     public String getName (PublicKey key) {
-        String queryStr = DBStrings.getName.replace("__KEY__", Crypto.encodeKey(key));
+        String name = Crypto.encodeKey(key);
+        
+        try {
+            ResultSet nameRow = query(DBStrings.getName.replace("__KEY__", Crypto.encodeKey(key)));
+            nameRow.beforeFirst();
+            name = nameRow.getString("username");
+        } catch (java.sql.SQLException e) {
+            Logger.write("ERROR", "DB", "SQLException: " + e);
+        }
 
-
-        Logger.write("UNIMPL", "DB", "Unimplemented method Database.getName(...)");
+        Logger.write("VERBOSE", "DB", "getName(...) - " + name);
         return null;
     }
     
     //"What key signed this message"
     public PublicKey getSignatory (Message m) {
-        //REPLACE ME
-        Logger.write("UNIMPL", "DB", "Unimplemented method Database.addSignatory(...)");
+        Logger.write("VERBOSE", "DB", "getSignatory(...)");
+        try {
+            ResultSet keys = query(DBStrings.getAllKeys);
+            keys.beforeFirst();
+            while (keys.next())
+                if (Crypto.verifySig(m, Crypto.decodeKey(keys.getString("key"))))
+                    return Crypto.decodeKey(keys.getString("key"));
+        } catch (java.sql.SQLException e) {
+            Logger.write("ERROR", "DB", "SQLException: " + e);
+        }
+        Logger.write("WARNING", "DB", "getSignatory() could not find signatory");
         return null;
     }
     
     //Add to DB
     //Remember to store the signautre, create table sql may need updating
     public void addPost (Message post) {
-        //REPLACE ME
+        
         Logger.write("UNIMPL", "DB", "Unimplemented method Database.addPost(...)");
     }
     
