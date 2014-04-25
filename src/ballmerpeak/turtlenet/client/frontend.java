@@ -834,7 +834,7 @@ public class frontend implements EntryPoint {
             postContentsPanel.add(comments);
             comments.addClickHandler(new ClickHandler() {
                 public void onClick(ClickEvent event) {
-                    comments(postID);
+                    comments(postID, "Wall post");
                 }
             }); 
         }
@@ -843,28 +843,34 @@ public class frontend implements EntryPoint {
         wallPanel.addStyleName("gwt-wall");
     }
     
-    private void comments(final String postID) {
-        // Setup basic page
-        RootPanel.get().clear();
-        navigation();
+    private void comments(final String parentID, final String parentType) {
+        if (parentType.equals("Wall post")) {
+            // Setup basic page
+            RootPanel.get().clear();
+            navigation();
+        }
+        
         // Create main panel
         final FlowPanel commentsPanel = new FlowPanel();
+        commentsPanel.getElement().getStyle().setProperty("paddingLeft" , "100px");
         RootPanel.get().add(commentsPanel);
         
-        Button originalPost = new Button("Back to original post");
-        commentsPanel.add(originalPost);
-        originalPost.addClickHandler(new ClickHandler() {
-            public void onClick(ClickEvent event) {
-                // TODO LUKETODO "Key of user" should be replaced with a call to
-                // a method that take the ID of a post and returns the key of the
-                // user whose wall that post was posted on.
-                // This current method takes a string called postID so give it that.
-                wall("Key of user");
-                
-                // TODO LOUISTODO Find a way to make the page scroll to the
-                // original post on the wall
-            }
-        });
+        if (parentType.equals("Wall post")) {
+            Button originalPost = new Button("Back to original post");
+            commentsPanel.add(originalPost);
+            originalPost.addClickHandler(new ClickHandler() {
+                public void onClick(ClickEvent event) {
+                    // TODO LUKETODO "Key of user" should be replaced with a call to
+                    // a method that take the ID of a post and returns the key of the
+                    // user whose wall that post was posted on.
+                    // This current method takes a string called parentID so give it that.
+                    wall("Key of user");
+                    
+                    // TODO LOUISTODO Find a way to make the page scroll to the
+                    // original post on the wall
+                }
+            });
+        }        
         
         // TODO LUKETODO 10 should be replaced with a call to a method that takes
         // the ID of a post and returns the number of comments associated with that
@@ -899,6 +905,13 @@ public class frontend implements EntryPoint {
             // Give it commentID            
             commentContents.setText("Contents of comment"); 
             commentsContentsPanel.add(commentContents);
+            
+            /*if("comment has comments") {
+                //show the comments
+                //.getElement().getStyle().setProperty("paddingLeft" , "100px");
+            } else {
+                //show 'add comment' button
+            } */
         }  
     }  
     
