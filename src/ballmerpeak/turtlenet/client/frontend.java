@@ -979,7 +979,9 @@ public class frontend implements EntryPoint {
                     // to the place we just added our new comment.
                 }
             }); 
-        }  
+        }
+        
+        commentsPanel.addStyleName("gwt-comments");  
     }  
     
     //must be global because it must be referenced from callback
