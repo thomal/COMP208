@@ -210,7 +210,6 @@ public class Database {
     //{{username, time, msg}, {username, time, msg}, etc.}
     //Please order it so that element 0 is the oldest message
     public String[][] getConversationMessages (String sig) {
-        //REPLACE ME
         ResultSet messageSet = query(DBStrings.getConversationMessages.replace("__SIG__", sig);
         messageSet.beforeStart();
 	List<String[]> messagesList = new List<String[]>();
@@ -231,31 +230,74 @@ public class Database {
     //If multiple people have the same username then:
     //Logger.write("FATAL", "DB", "Duplicate usernames");
     //System.exit(1);
-    public PublicKey getKey (String name) {
-        //REPLACE ME
-        Logger.write("UNIMPL", "DB", "Unimplemented method Database.getKey(...)");
-        return null;
+    public PublicKey getKey (String userName) {
+	int nameCount = 0;
+	String key = "<No Key>";
+	ResultSet results = query(DBStrings.getKey.replace("__USERNAME__", userName) );
+	results.beforeFirst();
+
+	while(results.next() && nameCount++) {
+            multipleNames = true;
+	    key = results.getString("key");
+	}
+	if(nameCount == 0)
+	    Logger.write("ERROR", "DB", "getKey(" +  userName + ") - No keys found for userName";
+	else if (nameCount > 1 )
+	    Logger.write("ERROR", "DB", "getKey(" + userName + ") - Multple userNames found for key; Server OPs are evil!";
+
+        Logger.write("VERBOSE", "DB", "getKey(" + userName + ")";
+        return key;
     }
     
     //Return the name of each member and if it can see your profile info
     //In this format: {{"friends", "false"}, {"family", "true"}, etc.}
     public String[][] getCategories () {
-        Logger.write("UNIMPL", "DB", "Unimplemented method Database.getCategories()");
-        return null;
+        List<String[]> catList = new List<String[]>
+	String catName;
+	String canSeePDATA;
+	ResultSet categorySet = query(DBStrings.getCategories);
+	categorySet.beforeFirst();
+
+	while(categorySet.next() ) {
+            String[] category = new String[2]();
+            category[0] = categorySet.getString("catID");
+	    category[1] = categorySet.getString("canSeePDATA") == 1 ? "true" : "false";
+	    catList.add(category);
+	}
+
+        Logger.write("VERBOSE", "DB", "getCategories() - " + catList.size() + " returned");
+        return catList.toArray();
     }
     
     //Return the keys of each member of the category
     //if(category.equals("all")) //remember NEVER to compare strings with ==
     //    return every key you know about
-    public PublicKey[] getCategoryMembers (String category) {
-        Logger.write("UNIMPL", "DB", "Unimplemented method Database.getCategoryMembers(" + category + ")");
-        return null;
+    public PublicKey[] getCategoryMembers (String catID) {
+        String queryStr = "";
+	
+	if(category.equals("all")) { 
+            queryStr = DBStrings.getAllKeys;
+        } else {
+            queryStr = DBStrings.getMemberKeys.replace("__CATNAME__", catID);
+	}
+	List<PublicKey> keyList = new List<PublicKey>();
+       	ResultSet keySet = query(queryStr);
+	keySet.beforeStart();
+
+	while(keySet.next() {
+            keyList.add(allKeys.getString("key") );
+	}
+        Logger.write("VERBOSE", "DB", "getCategoryMembers(" + catID + ") - " + keyList.size() + " members");
+        return keyList.toArray();
+
     }
     
     //In the case of multiple usernames: return the newest one
     //In the case of no username for the key: "return Crypto.encode(k);"
-    public String getName (PublicKey k) {
-        //REPLACE ME
+    public String getName (PublicKey key) {
+        String queryStr = DBStrings.getName.replace("__KEY__", key);
+
+
         Logger.write("UNIMPL", "DB", "Unimplemented method Database.getName(...)");
         return null;
     }
