@@ -877,6 +877,42 @@ public class frontend implements EntryPoint {
         // Create main panel
         final FlowPanel commentsPanel = new FlowPanel();
         RootPanel.get().add(commentsPanel);
+        
+        Button originalPost = new Button("Back to original post");
+        commentsPanel.add(originalPost);
+        originalPost.addClickHandler(new ClickHandler() {
+            public void onClick(ClickEvent event) {
+                // TODO LUKETODO "Key of user" should be replaced with a call to
+                // a method that take the ID of a post and returns the key of the
+                // user whose wall that post was posted on.
+                // This current method takes a string called postID so give it that.
+                loadWall("Key of user");
+                
+                // TODO LOUISTODO Find a way to make the page scroll to the
+                // original post on the wall
+            }
+        });
+        
+        // TODO LUKETODO 10 should be replaced with a call to a method that takes
+        // the ID of a post and returns the number of comments associated with that
+        // post.
+        // This current method takes a string called postID so give it that.
+        for(int i = 0; i < 10; i++) {
+            // TODO LUKETODO "ID of comment" should be replaced with a call to
+            // a method that returns a list of comments when given the ID of a post.
+            // This current method takes a string called postID so give it that.
+            // Specifically we want the IDs of the comments. Use i to select an
+            // ID from the list. 
+            final String commentID = new String("ID of comment");
+        
+            FlowPanel commentsContentsPanel = new FlowPanel();
+            commentsPanel.add(commentsContentsPanel);
+            
+            // TODO LUKETODO "Name of user" should be replaced with a call to a 
+            // method that returns the name of the user who posted a comment when
+            // given the ID of a comment. Give it commentID.
+            Anchor postedBy = new Anchor("Name of user");
+        }  
     }
 
     private void settingsPanelSetup() {
