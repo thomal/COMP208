@@ -100,7 +100,7 @@ class DBStrings {
     public static final String getConversationMembers  = "SELECT key FROM tConvoKeys WHERE sig = __SIG__;";
     public static final String getConversationMessages = "SELECT sendersKey, time, msgText FROM tConvoMessages WHERE sig = '__SIG__';";
     public static final String getKey           = "SELECT key FROM tUser WHERE username = '__USERNAME__';";
-    public statoc final String getCategories    = "SELECT * FROM tCategory;";
+    public static final String getCategories    = "SELECT * FROM tCategory;";
     public static final String getCategory      = "SELECT * FROM tCategory WHERE catID = '__CATNAME__';";
     public static final String getAllKeys       = "SELECT key FROM tUser;";
     public static final String getMemberKeys    = "SELECT userKey FROM tCategoryMembers WHERE catID = '__CATNAME__';";

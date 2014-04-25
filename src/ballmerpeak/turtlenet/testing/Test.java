@@ -179,7 +179,7 @@ class Test {
         Message pdatam  = f.newPDATA("name", "John Doe");
         Message chatm   = f.newCHAT(keys);
         Message pchatm  = f.newPCHAT("<convsig>", "Hi bob.");
-        Message postm   = f.newPOST("Hello, World! \\_O_/", fakekeys);
+        Message postm   = f.newPOST("Hello, World! \\_O_/", "<addressee>", fakekeys);
         Message fpostm  = f.newFPOST("I'm posting on your wall", Crypto.encodeKey(k1.getPublic()), fakekeys);
         Message cmntm   = f.newCMNT("<post or comment sig>", "nice");
         Message likem   = f.newLIKE("<post or comment sig>");

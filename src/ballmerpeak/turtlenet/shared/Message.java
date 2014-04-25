@@ -201,9 +201,9 @@ public class Message implements Serializable {
         }
     }
     
-    private String command;
-    private String content;
-    private String signature;
-    private long   timestamp;
+    public String command;
+    public String content;
+    public String signature;
+    public long timestamp;
 }
 

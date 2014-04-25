@@ -18,6 +18,7 @@ import java.sql.*;
 import java.security.*;
 import java.util.List;
 import java.io.File;
+import java.util.Vector;
 
 public class Database {
     public static String path = "./db"; //path to database directory
@@ -110,11 +111,11 @@ public class Database {
     public String getPDATA(String field, PublicKey key) {
         String strKey = Crypto.encodeKey(key);
 	String value;
-        String sqlStatement  = DatabaseStrings.getPData.replace("__FIELD__", field);
-        sqlStatement = sqlStatement.replace("__KEY__", strkey); //mods SQL template
+        String sqlStatement  = DBStrings.getPDATA.replace("__FIELD__", field);
+        sqlStatement = sqlStatement.replace("__KEY__", strKey); //mods SQL template
 
         ResultSet results = query(sqlStatement);
-        results.beforeStart();
+        results.beforeFirst();
 	if(results.next() )
             value = results.getString(field); //gets current value in 'field'
         else
@@ -127,25 +128,25 @@ public class Database {
     //Set the CMD to POST in the Message constructor
     public Message[] getWallPost (PublicKey key) {
 
-        String sqlStatement  = DatabaseStrings.getWallPostIDs.replace("__KEY__",
+        String sqlStatement  = DBStrings.getWallPostIDs.replace("__KEY__",
                                                                Crypto.encodeKey(key) );
 
         ResultSet results = query(sqlStatement);
-        List<Message> posts = new List<Message>();
+        Vector<Message> posts = new Vector<Message>();
 	results.beforeFirst();
         
         while (results.next() ) {
-	    List<String> visibleTo = new List<String>();
+	    Vector<String> visibleTo = new Vector<String>();
 
-	    ResultSet currentPost = query(DBStrings.getPost.replace("__ID__", results.getInt("postID") ) );
-            ResultSet currentPostVisibleTo = query(DBStrings.getVisibleTo.replace("__ID__", results.getInt("postID") );
+	    ResultSet currentPost = query(DBStrings.getPost.replace("__ID__", Integer.toString(results.getInt("postID") ) ) );
+            ResultSet currentPostVisibleTo = query(DBStrings.getVisibleTo.replace("__ID__", Integer.toString(results.getInt("postID"))));
             currentPostVisibleTo.beforeFirst();
             while(currentPostVisibleTo.next() ) {
-                visibleTo.add(currentPostVisibleTo.readString("key") );
+                visibleTo.add(currentPostVisibleTo.getString("key") );
 	    }
 
-            Message m = new MessageFactoryImpl().newPOST(currentPost.getString("msgText"), currentPost.getString("recieverKey"), visibleTo.toArray() );
-	    m.timestamp = currentPost.getString("time");
+            Message m = new MessageFactoryImpl().newPOST(currentPost.getString("msgText"), currentPost.getString("recieverKey"), ((String[])visibleTo.toArray()) );
+	    m.timestamp = Long.parseLong(currentPost.getString("time"));
 	    m.signature = currentPost.getString("sig");
 	    m.command = "POST";
 	    posts.add(m);
@@ -154,52 +155,58 @@ public class Database {
         
 
         Logger.write("VERBOSE", "DB", "getWallPost(...)");
-        return posts.toArray();
+        return (Message[])posts.toArray();
     }
     
     //Return all conversations
     public Conversation[] getConversations () {
-        List<Conversation> convoList = new List<Conversation>();
+        Vector<Conversation> convoList = new Vector<Conversation>();
         ResultSet convoSet = query(DBStrings.getConversations);
 
-	convoSet.beforeStart();
+	convoSet.beforeFirst();
 	while (convoSet.next())
 	    convoList.add(getConversation(convoSet.getString("convoID")));
 
         Logger.write("VERBOSE", "DB", "getConversation()");
-        return convoList.toArray();
+        return (Conversation[])convoList.toArray();
     }
     
     //Get keys of all people in the given conversation
     public PublicKey[] getPeopleInConvo (String sig) {
         //REPLACE ME
-	List<PublicKey> keys = new List<PublicKey>();
+	Vector<PublicKey> keys = new Vector<PublicKey>();
 
-	ResultSet keySet = query(DBStrings.getConversationMembers.replace("__SIG__", sig);
-	keySet.beforeStart();
+	ResultSet keySet = query(DBStrings.getConversationMembers.replace("__SIG__", sig));
+	keySet.beforeFirst();
 	while (keySet.next()) {
 	    keys.add(Crypto.decodeKey(keySet.getString("key")));
 	}
         Logger.write("VERBOSE", "DB", "getPeopleInConvo(...)");
-	return keys.toArray();
+	return (PublicKey[])keys.toArray();
     }
     
     //Reurn a conversation object
     public Conversation getConversation (String sig) {
         ResultSet convoSet = query(DBStrings.getConversation.replace("__SIG__", sig));
-	convoSet.beforeStart();
+	convoSet.beforeFirst();
 	if(convoSet.next() ) {
 	    String timestamp = convoSet.getString("timeCreated");
-	    String firstMsg = query(DBStrings.getConversationMessages.replace("__ID__", convoID)).first().getString("msgText");
+	    ResultSet messages = query(DBStrings.getConversationMessages.replace("__SIG__", sig));
+	    String firstMsg;
+	    messages.beforeFirst();
+	    if (messages.next())
+	        firstMsg = messages.getString("msgText");
+	    else
+	        firstMsg = "<no messages yet>";
 	    PublicKey[] keys = getPeopleInConvo(sig);
-	    String[] keystrings = new String[keys.size()]();
-	    String[] users = new String[keys.size()]();
-	    for (int i = 0; i < keys.size(); i++) {
+	    String[] keystrings = new String[keys.length];
+	    String[] users = new String[keys.length];
+	    for (int i = 0; i < keys.length; i++) {
 	        keystrings[i] = Crypto.encodeKey(keys[i]);
 	        users[i] = getName(keys[i]);
 	    }
             Logger.write("VERBOSE", "DB", "getConversation(...)");    
-	    return new Conversation(sig, timestamp, firstMsg, users.toArray(), keystrings.toArray());
+	    return new Conversation(sig, timestamp, firstMsg, users, keystrings);
 	} else {
 	    Logger.write("ERROR", "DB", "getConversation(...) passed invalid Signature.");    
 	    return null;
@@ -210,13 +217,13 @@ public class Database {
     //{{username, time, msg}, {username, time, msg}, etc.}
     //Please order it so that element 0 is the oldest message
     public String[][] getConversationMessages (String sig) {
-        ResultSet messageSet = query(DBStrings.getConversationMessages.replace("__SIG__", sig);
-        messageSet.beforeStart();
-	List<String[]> messagesList = new List<String[]>();
+        ResultSet messageSet = query(DBStrings.getConversationMessages.replace("__SIG__", sig));
+        messageSet.beforeFirst();
+	Vector<String[]> messagesList = new Vector<String[]>();
 
         while(messageSet.next() ) {
             String[] message = new String[3];
-	    message[0] = getName(messageSet.getString("sendersKey") );
+	    message[0] = getName(Crypto.decodeKey(messageSet.getString("sendersKey")));
 	    message[1] = messageSet.getString("time");
 	    message[2] = messageSet.getString("msgText");
 
@@ -224,7 +231,7 @@ public class Database {
         }
 
         Logger.write("VERBOSE", "DB", "getConversationMessages(...)");
-        return messagesList.toArray();
+        return (String[][])messagesList.toArray();
     }
     
     //If multiple people have the same username then:
@@ -236,37 +243,37 @@ public class Database {
 	ResultSet results = query(DBStrings.getKey.replace("__USERNAME__", userName) );
 	results.beforeFirst();
 
-	while(results.next() && nameCount++) {
-            multipleNames = true;
+	while(results.next()) {
+	    nameCount++;
 	    key = results.getString("key");
 	}
 	if(nameCount == 0)
-	    Logger.write("ERROR", "DB", "getKey(" +  userName + ") - No keys found for userName";
+	    Logger.write("ERROR", "DB", "getKey(" +  userName + ") - No keys found for userName");
 	else if (nameCount > 1 )
-	    Logger.write("ERROR", "DB", "getKey(" + userName + ") - Multple userNames found for key; Server OPs are evil!";
+	    Logger.write("ERROR", "DB", "getKey(" + userName + ") - Multple userNames found for key; Server OPs are evil!");
 
-        Logger.write("VERBOSE", "DB", "getKey(" + userName + ")";
-        return key;
+        Logger.write("VERBOSE", "DB", "getKey(" + userName + ")");
+        return Crypto.decodeKey(key);
     }
     
     //Return the name of each member and if it can see your profile info
     //In this format: {{"friends", "false"}, {"family", "true"}, etc.}
     public String[][] getCategories () {
-        List<String[]> catList = new List<String[]>
+        Vector<String[]> catList = new Vector<String[]>();
 	String catName;
 	String canSeePDATA;
 	ResultSet categorySet = query(DBStrings.getCategories);
 	categorySet.beforeFirst();
 
 	while(categorySet.next() ) {
-            String[] category = new String[2]();
+            String[] category = new String[2];
             category[0] = categorySet.getString("catID");
-	    category[1] = categorySet.getString("canSeePDATA") == 1 ? "true" : "false";
+	    category[1] = categorySet.getInt("canSeePDATA") == 1 ? "true" : "false";
 	    catList.add(category);
 	}
 
         Logger.write("VERBOSE", "DB", "getCategories() - " + catList.size() + " returned");
-        return catList.toArray();
+        return (String[][])catList.toArray();
     }
     
     //Return the keys of each member of the category
@@ -275,27 +282,27 @@ public class Database {
     public PublicKey[] getCategoryMembers (String catID) {
         String queryStr = "";
 	
-	if(category.equals("all")) { 
+	if(catID.equals("all")) { 
             queryStr = DBStrings.getAllKeys;
         } else {
             queryStr = DBStrings.getMemberKeys.replace("__CATNAME__", catID);
 	}
-	List<PublicKey> keyList = new List<PublicKey>();
+	Vector<PublicKey> keyList = new Vector<PublicKey>();
        	ResultSet keySet = query(queryStr);
-	keySet.beforeStart();
+	keySet.beforeFirst();
 
-	while(keySet.next() {
-            keyList.add(allKeys.getString("key") );
+	while(keySet.next()) {
+            keyList.add(Crypto.decodeKey(keySet.getString("key")));
 	}
         Logger.write("VERBOSE", "DB", "getCategoryMembers(" + catID + ") - " + keyList.size() + " members");
-        return keyList.toArray();
+        return (PublicKey[])keyList.toArray();
 
     }
     
     //In the case of multiple usernames: return the newest one
     //In the case of no username for the key: "return Crypto.encode(k);"
     public String getName (PublicKey key) {
-        String queryStr = DBStrings.getName.replace("__KEY__", key);
+        String queryStr = DBStrings.getName.replace("__KEY__", Crypto.encodeKey(key));
 
 
         Logger.write("UNIMPL", "DB", "Unimplemented method Database.getName(...)");
