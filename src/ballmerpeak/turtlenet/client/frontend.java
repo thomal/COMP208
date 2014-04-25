@@ -785,8 +785,9 @@ public class frontend implements EntryPoint {
                 // This method takes a string called key so give it that.
                 // Use contents.getText() to obtain the message contents.
                 // A way to choose who can see the post is on the way. For now can
-                // we have it default to everyone? I doubt anyone would notice in their
-                // demo anyway.
+                // we have it default to everyone?
+                
+                loadWall(key);
             }
         });
          
@@ -810,7 +811,34 @@ public class frontend implements EntryPoint {
             
             HorizontalPanel postControlPanel = new HorizontalPanel();
             postPanel.add(postControlPanel);
-            // TODO LOUISTODO Add widgets
+            
+            postControlPanel.add(new Label("Posted by: "));
+            // TODO LUKETODO "Key of user" should be replaced with a call to a 
+            // method that returns the keys of all the users who have posted on 
+            // a wall when given a public key(that identifies which wall we are on).
+            // This method takes a string called key so give it that.
+            // Use i to choose a key from the list.
+            final String postedBy = new String("Key of user");
+            
+            // TODO LUKETODO "Name of poster" should be replaced with a call 
+            // to a method that returns the name of a user when given their key.
+            // Give it postedBy.
+            Anchor linkToUser = new Anchor("Name of poster");
+            postControlPanel.add(linkToUser);
+            linkToUser.addClickHandler(new ClickHandler() {
+                public void onClick(ClickEvent event) {
+                    loadWall(postedBy);
+                }
+            });
+            
+            // TODO LUKETODO "01/01/1970" should be replaced with a call to a 
+            // method that returns a list of the dates that all of the posts on
+            // the current wall were posted on when given a public key(that 
+            // identifies which wall we are on).
+            // This method takes a string called key so give it that.
+            // Use i to choose a date from the list.
+            // Not sure if this is a feature but it would be nice. 
+            postControlPanel.add(new Label("01/01/1970"));
             
             FlowPanel postContentsPanel = new FlowPanel();
             postPanel.add(postContentsPanel);
@@ -819,8 +847,6 @@ public class frontend implements EntryPoint {
 
         // Add style name for CSS
         wallPanel.addStyleName("gwt-wall");
-
-        // Add click handlers for anchors
     }
 
 
