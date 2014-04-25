@@ -78,9 +78,7 @@ public class frontend implements EntryPoint {
     FlexTable loginPanel = new FlexTable();
     FlexTable friendsListPanel = new FlexTable();
     FlexTable conversationListPanel = new FlexTable();
-    FlexTable myDetailsPanel = new FlexTable();
     FlexTable myDetailsPermissionsPanel = new FlexTable();
-    FlexTable friendsDetailsPanel = new FlexTable();
     FlexTable conversationPanel = new FlexTable();
     FlexTable newConversationPanel = new FlexTable();
     HorizontalPanel navigationPanel = new HorizontalPanel();
@@ -116,17 +114,10 @@ public class frontend implements EntryPoint {
         navigationPanelSetup();
         settingsPanelSetup();
         conversationListPanelSetup();
-        myDetailsPanelSetup();
-        myDetailsPanelSetup();
         friendsListPanelSetup("All");
 
         myDetailsPermissionsPanelSetup();
         newConversationPanelSetup();
-        /*
-         * "publicKey" here should be replaced with the key of the friend's 
-         * details we want to look up
-         */
-        friendsDetailsPanelSetup("<falsekey2>");
 
         // Call method to load the initial login page
         loadLogin();
@@ -226,7 +217,7 @@ public class frontend implements EntryPoint {
         
         linkSettings.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                    loadSettings();
+
             }
         });
         
@@ -407,7 +398,12 @@ public class frontend implements EntryPoint {
         conversationListPanel.addStyleName("gwt-conversation-list");
     }
 
-    private void myDetailsPanelSetup() {
+    private void myDetails() {
+        RootPanel.get().clear();
+        RootPanel.get().add(navigationPanel);
+        FlexTable myDetailsPanel = new FlexTable();
+        RootPanel.get().add(myDetailsPanel);        
+        
         // Create widgets relating to username
         Label usernameLabel = new Label("Username:");
         myDetailsPanel.setWidget(0, 0, usernameLabel);
@@ -649,7 +645,14 @@ public class frontend implements EntryPoint {
         myDetailsPermissionsPanel.addStyleName("gwt-my-details-permissions");
     }
     
-    private void friendsDetailsPanelSetup(String friendsDetailsKey) {
+    private void friendsDetails(String friendsDetailsKey) {
+        // Setup basic page
+        RootPanel.get().clear();
+        RootPanel.get().add(navigationPanel);
+        // Create main panel
+        final FlexTable friendsDetailsPanel = new FlexTable();
+        RootPanel.get().add(friendsDetailsPanel);    
+    
         // Create widgets
         Label friendsDetailsUsernameTitle = new Label("Username:");
         friendsDetailsPanel.setWidget(0, 0, friendsDetailsUsernameTitle);
@@ -726,20 +729,124 @@ public class frontend implements EntryPoint {
         friendsDetailsPanel.addStyleName("gwt-friends-details");
     }
 
-    private void loadWall(String key) {
+    private void loadWall(final String key) {
+        // Setup basic page
         RootPanel.get().clear();
         RootPanel.get().add(navigationPanel);
-        FlowPanel wallPanel = new FlowPanel();
+        // Create main panel
+        final FlowPanel wallPanel = new FlowPanel();
         RootPanel.get().add(wallPanel);
+        // Create a container for controls
+        HorizontalPanel wallControlPanel = new HorizontalPanel();
+        wallPanel.add(wallControlPanel);
+        // Add widgets to container
         
-        /* if wall = me then link to my details panel
-           else have link to friends details panel 
-         */
+        // TODO LUKETODO "Name of user" should be replaced with a call to a method
+        // that returns the name of a user when given their public key.
+        // This method takes a string called key so give it that.
+        wallControlPanel.add(new Label("Name of user"));
+        
+        // TODO LUKETODO "my key" should be replaced with the users key
+        if(key.equals("my key")) {
+            Anchor myDetails = new Anchor("My details");
+            wallControlPanel.add(myDetails);
+            myDetails.addClickHandler(new ClickHandler() {
+                public void onClick(ClickEvent event) {
+                    myDetails();
+                }
+            });
+            
+        } else {
+            Anchor userDetails = new Anchor("Friend's details");
+            wallControlPanel.add(userDetails);
+            userDetails.addClickHandler(new ClickHandler() {
+                public void onClick(ClickEvent event) {
+                    friendsDetails(key);
+                }
+            });
+        }
+        
+        Button createPost = new Button("Post here");
+        wallControlPanel.add(createPost);
+        
+        final FlowPanel createPostPanel = new FlowPanel();
+        TextArea contents = new TextArea();
+        contents.setCharacterWidth(80);
+        contents.setVisibleLines(10);
+        createPostPanel.add(contents);
+        
+        HorizontalPanel createPostControlPanel = new HorizontalPanel();
+        createPostPanel.add(createPostControlPanel);
+        Button send = new Button("Send");
+        
+        send.addClickHandler(new ClickHandler() {
+            public void onClick(ClickEvent event) {
+                // TODO LUKETODO Call a method that adds a post to the current wall.
+                // This method takes a string called key so give it that.
+                // Use contents.getText() to obtain the message contents.
+                // A way to choose who can see the post is on the way. For now can
+                // we have it default to everyone?
+                
+                loadWall(key);
+            }
+        });
+         
+        createPostControlPanel.add(send);
+        // TODO LOUISTODO Allow user to select who can view the post 
+        // createPostControlPanel.add( SOME KIND OF DROPDOWN MENU);
+        
+        
+        createPost.addClickHandler(new ClickHandler() {
+            public void onClick(ClickEvent event) {                
+                wallPanel.insert(createPostPanel, 1);
+            }
+        });
+        
+        // TODO LUKETODO '10' should be replaced with a call to a method that 
+        // returns the number of posts on a users wall when given a public key.
+        // Give it key.
+        for(int i = 0; i < 10; i++) {
+            FlowPanel postPanel = new FlowPanel();
+            wallPanel.add(postPanel);
+            
+            HorizontalPanel postControlPanel = new HorizontalPanel();
+            postPanel.add(postControlPanel);
+            
+            postControlPanel.add(new Label("Posted by: "));
+            // TODO LUKETODO "Key of user" should be replaced with a call to a 
+            // method that returns the keys of all the users who have posted on 
+            // a wall when given a public key(that identifies which wall we are on).
+            // This method takes a string called key so give it that.
+            // Use i to choose a key from the list.
+            final String postedBy = new String("Key of user");
+            
+            // TODO LUKETODO "Name of poster" should be replaced with a call 
+            // to a method that returns the name of a user when given their key.
+            // Give it postedBy.
+            Anchor linkToUser = new Anchor("Name of poster");
+            postControlPanel.add(linkToUser);
+            linkToUser.addClickHandler(new ClickHandler() {
+                public void onClick(ClickEvent event) {
+                    loadWall(postedBy);
+                }
+            });
+            
+            // TODO LUKETODO "01/01/1970" should be replaced with a call to a 
+            // method that returns a list of the dates that all of the posts on
+            // the current wall were posted on when given a public key(that 
+            // identifies which wall we are on).
+            // This method takes a string called key so give it that.
+            // Use i to choose a date from the list.
+            // Not sure if this is a feature but it would be nice. 
+            postControlPanel.add(new Label("01/01/1970"));
+            
+            FlowPanel postContentsPanel = new FlowPanel();
+            postPanel.add(postContentsPanel);
+            // TODO LOUISTODO Add widgets
+        }
 
         // Add style name for CSS
         wallPanel.addStyleName("gwt-wall");
-
-        // Add click handlers for anchors
     }
 
 
@@ -948,6 +1055,8 @@ public class frontend implements EntryPoint {
             }
         });
         
+        
+        
         newGroupPanel.addStyleName("gwt-group");        
     }
     
@@ -1065,20 +1174,6 @@ public class frontend implements EntryPoint {
     // #########################################################################
     // #########################################################################
 
-    private void loadPanelDev() {
-        // Add all panels to page
-        RootPanel.get().add(loginPanel);
-        RootPanel.get().add(settingsPanel);
-        RootPanel.get().add(conversationListPanel);
-        RootPanel.get().add(myDetailsPanel);
-        RootPanel.get().add(navigationPanel);
-        RootPanel.get().add(myDetailsPanel);
-        RootPanel.get().add(conversationPanel);
-        RootPanel.get().add(newConversationPanel);
-        RootPanel.get().add(myDetailsPermissionsPanel);
-        RootPanel.get().add(friendsListPanel);
-    }
-
     private void loadLogin() {
         RootPanel.get().clear();
         RootPanel.get().add(loginPanel);
@@ -1118,15 +1213,5 @@ public class frontend implements EntryPoint {
         // Add panels to page
         friendsListPanelSetup("All");
         RootPanel.get().add(friendsListPanel);
-    }
-
-    private void loadSettings() {
-        myDetailsPanelSetup();
-        myDetailsPermissionsPanelSetup();
-        
-        RootPanel.get().clear();
-        RootPanel.get().add(navigationPanel);
-        RootPanel.get().add(myDetailsPanel);
-        RootPanel.get().add(myDetailsPermissionsPanel);
     }
 }
