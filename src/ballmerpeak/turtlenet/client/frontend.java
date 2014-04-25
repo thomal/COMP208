@@ -828,11 +828,18 @@ public class frontend implements EntryPoint {
             
             HorizontalPanel postContentsFooterPanel = new HorizontalPanel();
             postContentsPanel.add(postContentsFooterPanel);
+            
             // TODO LUKETODO "5" should be replaced with a call to a method that
             // returns a the number of comments on a post when given the ID of
             // that post.
             // Give it postID
-            Anchor comments = new Anchor("Comments (" + "5" + ")");
+            int commentCount = 5;
+            if(commentCount == 0) {
+                Anchor comments = new Anchor("Add a comment");
+            } else {
+                Anchor comments = new Anchor("Comments (" + Integer.toString(commentCount) + ")");
+            }
+            
             postContentsFooterPanel.add(comments);
             comments.addClickHandler(new ClickHandler() {
                 public void onClick(ClickEvent event) {
@@ -1354,3 +1361,11 @@ public class frontend implements EntryPoint {
         addFriendPanel.addStyleName("gwt-friend"); 
     }   
 }
+
+    private void friendRequests() {
+        
+    }
+    
+    private void register() {
+    
+    }
