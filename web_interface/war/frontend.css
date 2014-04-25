@@ -103,13 +103,12 @@ h1 {
 	color: #666666;
 	padding: 0 400px 0 100px;
 }
-.gwt-my-wall-control {
-	width: 1000px;
-	height: 70px;
+
+.gwt-comments {
+    width: 1000px;
 	margin: 0 auto;
-	background: #61B329;
-	text-align: center;
-	padding: 25px 0 0 0;
+	background: #E0EEEE;
+	color: #666666;
 }
 
 .gwt-Anchor {

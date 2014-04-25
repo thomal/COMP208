@@ -68,26 +68,6 @@ public class frontend implements EntryPoint {
     // Create remote service proxy to talk to the server-side Turtlenet service
     private final TurtlenetAsync turtlenet = GWT.create(Turtlenet.class);
     //private final TurtlenetAsync msgfactory = GWT.create(MessageFactory.class);
-
-    /*
-     * As horrible as it is all panels need to be created here so that they can
-     * be accessed by by setup methods(which setup the panel in a particular way
-     * for the current use) and load methods(which call several setup methods to
-     * place a bunch of panels on screen to create a view).
-     */
-    FlexTable loginPanel = new FlexTable();
-    FlexTable friendsListPanel = new FlexTable();
-    FlexTable conversationListPanel = new FlexTable();
-    FlexTable myDetailsPermissionsPanel = new FlexTable();
-    FlexTable conversationPanel = new FlexTable();
-    FlexTable newConversationPanel = new FlexTable();
-    HorizontalPanel navigationPanel = new HorizontalPanel();
-    
-    
-    //NOT DONE
-    HorizontalPanel settingsPanel = new HorizontalPanel();
-    
-
     public void onModuleLoad() {
         /* Add handler for window closing */
         Window.addCloseHandler(new CloseHandler<Window>() {
@@ -101,44 +81,17 @@ public class frontend implements EntryPoint {
                     }
                 });
             }
-        });
-
-
-        // Call methods to set up panels
-        // THIS IS TEMPORARY > Setup methods should be called by a view constructor
-        // This just makes creating the panels easy for now. I think using setup in
-        // the names was a confusing mistake. Setup doesnt mean it should only happen
-        // once at the start. Each panel should be 'set up' appropriately each time we 
-        // want to use it
-        loginPanelSetup();
-        navigationPanelSetup();
-        settingsPanelSetup();
-        conversationListPanelSetup();
-        friendsListPanelSetup("All");
-
-        myDetailsPermissionsPanelSetup();
-        newConversationPanelSetup();
-
+        });   
+        
         // Call method to load the initial login page
-        loadLogin();
-        
-        /* For now we can compromise and leave both of these enabled. That way
-         * the still works(or lets you enter anything as it does now) and I can
-         * see all of the panels without us contantly battling over which one
-         * is enabled
-         */
-        
-        // Louis temp
-        //loadPanelDev();
+        login();
     }
 
-    // #########################################################################
-    // #########################################################################
-    // ####################Setup panels needed to create views##################
-    // #########################################################################
-    // #########################################################################
-
-    private void loginPanelSetup() {
+    private void login() {
+        RootPanel.get().clear();
+        FlexTable loginPanel = new FlexTable();
+        RootPanel.get().add(loginPanel);
+    
         // Create login panel widgets
         final Button loginButton = new Button("Login");
         final TextBox passwordInput = new TextBox();
@@ -165,7 +118,7 @@ public class frontend implements EntryPoint {
                     }
                     public void onSuccess(String result) {
                         if (result.equals("success")) {
-                            loadWall("me");
+                            wall("me");
                         } else if (result.equals("failure")) {
                             passwordLabel.setText("Please enter your password (again): ");
                         } else {
@@ -178,19 +131,20 @@ public class frontend implements EntryPoint {
         });
     }
 
-    private void navigationPanelSetup() {
+    private void navigation() {
+        HorizontalPanel navigationPanel = new HorizontalPanel();
+        RootPanel.get().add(navigationPanel);
+        
         // Create navigation links
         Anchor linkMyWall = new Anchor("My Wall");
         Anchor linkConversations = new Anchor("Messages");
         Anchor linkFriends = new Anchor("Friends");
-        Anchor linkSettings = new Anchor("Settings");
         Anchor linkLogout = new Anchor("Logout");
 
         // Add links to navigation panel
         navigationPanel.add(linkMyWall);
         navigationPanel.add(linkConversations);
         navigationPanel.add(linkFriends);
-        navigationPanel.add(linkSettings);
         navigationPanel.add(linkLogout);
 
         // Add style name for CSS
@@ -199,25 +153,19 @@ public class frontend implements EntryPoint {
         // Add click handlers for anchors
         linkMyWall.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                    loadWall("me");
+                    wall("me");
             }
         });
         
         linkConversations.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                    loadConversationList();
+                    conversationList();
             }
         });
         
         linkFriends.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                    loadFriendsList("All");
-            }
-        });
-        
-        linkSettings.addClickHandler(new ClickHandler() {
-            public void onClick(ClickEvent event) {
-
+                    friendsList("All");
             }
         });
         
@@ -228,7 +176,7 @@ public class frontend implements EntryPoint {
                         //TODO Error
                     }
                     public void onSuccess(String result) {
-                        loadLogin();
+                        login();
                     }
                 });
             }
@@ -236,8 +184,11 @@ public class frontend implements EntryPoint {
     }
 
     private TextBox friendsListPanel_myKeyTextBox;
-    private void friendsListPanelSetup(final String currentGroupID) {   
-        friendsListPanel.clear();
+    private void friendsList(final String currentGroupID) {   
+        RootPanel.get().clear();
+        navigation();
+        final FlexTable friendsListPanel = new FlexTable();
+        RootPanel.get().add(friendsListPanel);
         
         // Column title for anchors linking to messages        
         Label friendsNameLabel = new Label("Friend's Name");
@@ -268,7 +219,7 @@ public class frontend implements EntryPoint {
                     //link names to walls
                     linkFriendsWall.addClickHandler(new ClickHandler() {
                         public void onClick(ClickEvent event) {
-                            loadWall(result[i][1]);
+                            wall(result[i][1]);
                         }
                     });
                 }
@@ -304,7 +255,7 @@ public class frontend implements EntryPoint {
                 }
                 currentGroups.addChangeHandler(new ChangeHandler() {
                     public void onChange(ChangeEvent event) {
-                        friendsListPanelSetup(currentGroups.getItemText(currentGroups.getSelectedIndex()));
+                        friendsList(currentGroups.getItemText(currentGroups.getSelectedIndex()));
                     }
                 });
             }
@@ -357,8 +308,16 @@ public class frontend implements EntryPoint {
         // Add style name for CSS
         friendsListPanel.addStyleName("gwt-friends-list");
     }
-
-    private void conversationListPanelSetup() {
+    
+    private void conversationList() {
+        //Setup basic page
+        RootPanel.get().clear();
+        navigation();
+        
+        //Create panel to contain widgets
+        final FlexTable conversationListPanel = new FlexTable();
+        RootPanel.get().add(conversationListPanel);
+        
         turtlenet.getConversations(new AsyncCallback<Conversation[]>() {
             Conversation[] result;
             int i;
@@ -375,7 +334,7 @@ public class frontend implements EntryPoint {
                     // Add click handlers for anchors
                     linkConversation.addClickHandler(new ClickHandler() {
                         public void onClick(ClickEvent event) {
-                            loadConversation(conversationID);
+                            conversation(conversationID);
                         }
                     });
                     
@@ -388,7 +347,7 @@ public class frontend implements EntryPoint {
         Button newConversation = new Button("New conversation");
         newConversation.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                loadNewConversation();
+                newConversation();
             }
         });
         
@@ -400,7 +359,7 @@ public class frontend implements EntryPoint {
 
     private void myDetails() {
         RootPanel.get().clear();
-        RootPanel.get().add(navigationPanel);
+        navigation();
         FlexTable myDetailsPanel = new FlexTable();
         RootPanel.get().add(myDetailsPanel);        
         
@@ -600,14 +559,21 @@ public class frontend implements EntryPoint {
             }
         });
         
-        // TODO LOUISTODO Add link to myDetailsPanelPermissions(maybe)
+        // TODO LOUISTODO Add link to myDetailsPermissions
         
         // Add style name for CSS
         myDetailsPanel.addStyleName("gwt-my-details");
     }
     
-    private void myDetailsPermissionsPanelSetup() {
+    private void myDetailsPermissions() {
+        // Setup basic page
+        RootPanel.get().clear();
+        navigation();
         
+        // Add panel to contain widgets
+        final FlexTable myDetailsPermissionsPanel = new FlexTable();
+        RootPanel.get().add(myDetailsPermissionsPanel);     
+
         Label myDetailsPermissionsLabel = new Label("Select which groups can view your details");
         myDetailsPermissionsLabel.getElement().getStyle().setFontWeight(FontWeight.BOLD);
         myDetailsPermissionsPanel.setWidget(0, 0, myDetailsPermissionsLabel); 
@@ -641,14 +607,14 @@ public class frontend implements EntryPoint {
             }
         });
         
-        // TODO LOUISTODO Add link to myDetailsPanel (maybe)
+        // TODO LOUISTODO Add link to myDetailsPanel
         myDetailsPermissionsPanel.addStyleName("gwt-my-details-permissions");
     }
     
     private void friendsDetails(String friendsDetailsKey) {
         // Setup basic page
         RootPanel.get().clear();
-        RootPanel.get().add(navigationPanel);
+        navigation();
         // Create main panel
         final FlexTable friendsDetailsPanel = new FlexTable();
         RootPanel.get().add(friendsDetailsPanel);    
@@ -729,10 +695,10 @@ public class frontend implements EntryPoint {
         friendsDetailsPanel.addStyleName("gwt-friends-details");
     }
 
-    private void loadWall(final String key) {
+    private void wall(final String key) {
         // Setup basic page
         RootPanel.get().clear();
-        RootPanel.get().add(navigationPanel);
+        navigation();
         // Create main panel
         final FlowPanel wallPanel = new FlowPanel();
         RootPanel.get().add(wallPanel);
@@ -787,7 +753,7 @@ public class frontend implements EntryPoint {
                 // A way to choose who can see the post is on the way. For now can
                 // we have it default to everyone?
                 
-                loadWall(key);
+                wall(key);
             }
         });
          
@@ -824,7 +790,7 @@ public class frontend implements EntryPoint {
             // TODO LUKETODO "Key of user" should be replaced with a call to a 
             // method that returns the key of the user who created a post when
             // given the ID of that post. 
-            // Give it postID.
+            // Give it postID
             final String postedBy = new String("Key of user");
             
             // TODO LUKETODO "Name of poster" should be replaced with a call 
@@ -834,14 +800,14 @@ public class frontend implements EntryPoint {
             postControlPanel.add(linkToUser);
             linkToUser.addClickHandler(new ClickHandler() {
                 public void onClick(ClickEvent event) {
-                    loadWall(postedBy);
+                    wall(postedBy);
                 }
             });
             
             // TODO LUKETODO "01/01/1970" should be replaced with a call to a 
             // method that returns the date a post was created on when given 
             // the ID of that post.
-            // Give it postID.
+            // Give it postID
             // (Not sure if this is a feature but it would be nice) 
             postControlPanel.add(new Label("01/01/1970"));
             
@@ -850,18 +816,25 @@ public class frontend implements EntryPoint {
             
             TextArea postContents = new TextArea();
             postContents.setCharacterWidth(80);
-            postContents.setVisibleLines(10); 
+            postContents.setVisibleLines(10);
+            postContents.setReadOnly(true);
+                       
+            // TODO LUKETODO "Post contents goes here" should be replaced with
+            // a call to a method that takes the ID of a post and returns the 
+            // contents of that post.
+            //Give it postID
+            postContents.setText("Post contents goes here");
             postContentsPanel.add(postContents);
             
             // TODO LUKETODO "5" should be replaced with a call to a method that
             // returns a the number of comments on a post when given the ID of
             // that post.
-            // Give it postID.
+            // Give it postID
             Anchor comments = new Anchor("Comments (" + "5" + ")");
             postContentsPanel.add(comments);
             comments.addClickHandler(new ClickHandler() {
                 public void onClick(ClickEvent event) {
-                    loadComments(postID);
+                    comments(postID, postID, "Wall post");
                 }
             }); 
         }
@@ -870,30 +843,158 @@ public class frontend implements EntryPoint {
         wallPanel.addStyleName("gwt-wall");
     }
     
-    private void loadComments(final String postID) {
-        // Setup basic page
-        RootPanel.get().clear();
-        RootPanel.get().add(navigationPanel);
-        // Create main panel
+    
+    // TODO LUKETODO This isnt a real todo, just thought I'd tell you this here
+    // rather than annoy you while you're making a new database.
+    // Not sure how useful it will be for you but comments takes a string called 
+    // parentType. If it equals 'Wall post' then it parent is a wall post.
+    // Otherwise its parent is another comment. There is probably a more elegant
+    // way of doing this but I can't think of one right now. If you have any 
+    // ideas let me know and I'll change it. As it is I need parentType when
+    // setting up interface elements.
+    
+    
+    // rootID always gets passed down through recursion so we can redraw the page
+    // and know where to start from. parentID is set to the ID of the immediate
+    // parent which may be a comment or a post. If we set the parentID to rootID
+    // that gets us back to the inital comment as parentID will be set to the ID
+    // of a wall post.
+    private void comments(final String parentID, final String rootID, final String parentType) {
+        // Create panel to contain widgets
         final FlowPanel commentsPanel = new FlowPanel();
+        
+        if (parentType.equals("Wall post")) {
+            // Setup basic page
+            RootPanel.get().clear();
+            navigation();
+        } else {
+            // If comment belongs to another comment it should be indented
+            String padding = new String (Integer.toString(commentsPanel.getAbsoluteLeft() + 100) + "px");
+            commentsPanel.getElement().getStyle().setProperty("paddingLeft" , padding);
+        }
+            
+        // Add main panel to page
         RootPanel.get().add(commentsPanel);
-    }
+        
+        if (parentType.equals("Wall post")) {
+            Button originalPost = new Button("Back to original post");
+            commentsPanel.add(originalPost);
+            originalPost.addClickHandler(new ClickHandler() {
+                public void onClick(ClickEvent event) {
+                    // TODO LUKETODO "Key of user" should be replaced with a call to
+                    // a method that take the ID of a post and returns the key of the
+                    // user whose wall that post was posted on.
+                    // This current method takes a string called parentID so give it that.
+                    wall("Key of user");
+                    
+                    // TODO LOUISTODO Find a way to make the page scroll to the
+                    // original post on the wall
+                }
+            });
+        }        
+        
+        // TODO LUKETODO 10 should be replaced with a call to a method that takes
+        // the ID of a post/comment and returns the number of comments associated with that
+        // post.
+        // This current method takes a string called parentID so give it that.
+        for(int i = 0; i < 10; i++) {
+            // TODO LUKETODO "ID of comment" should be replaced with a call to
+            // a method that returns a list of comments when given the ID of their parent.
+            // This current method takes a string called parentID so give it that.
+            // Specifically we want the IDs of the comments. Use i to select an
+            // ID from the list. 
+            final String commentID = new String("ID of comment");
+        
+            FlowPanel commentsContentsPanel = new FlowPanel();
+            commentsPanel.add(commentsContentsPanel);
+            
+            // TODO LUKETODO "Name of user" should be replaced with a call to a 
+            // method that returns the name of the user who posted a comment when
+            // given the ID of a comment. 
+            // Give it commentID
+            Anchor postedBy = new Anchor("Name of user");
+            commentsContentsPanel.add(postedBy);
+            
+            TextArea commentContents = new TextArea();
+            commentContents.setCharacterWidth(80);
+            commentContents.setVisibleLines(10);
+            commentContents.setReadOnly(true);
+            
+            // TODO LUKETODO "Contents of comment" should be replaced with a call
+            // to a method that returns the contents of a comment when given the
+            // ID of that comment.
+            // Give it commentID            
+            commentContents.setText("Contents of comment"); 
+            commentsContentsPanel.add(commentContents);
+            
+            // TODO LUKETODO 'parentType.equals("Comment")' is only here so I 
+            // can see if the recursion actually works. It should be replaced 
+            // with a call to a method that determines whether a comment has 
+            // any children when given the ID of a comment. 
+            // Give it commentID
+            if(parentType.equals("Wall post")) {
+                comments(commentID, rootID, "Comment");
+            } else {
+                String padding = new String (Integer.toString(commentsContentsPanel.getAbsoluteLeft() + 100) + "px");
+                
+                TextArea commentReplyContents = new TextArea();
+                commentReplyContents.setCharacterWidth(80);
+                commentReplyContents.setVisibleLines(5);
+                commentReplyContents.getElement().getStyle().setProperty("paddingLeft" , padding);
+                commentsContentsPanel.add(commentReplyContents);
+                
+                Button replyToComment = new Button("Reply to comment");
+                replyToComment.getElement().getStyle().setProperty("paddingLeft" , padding);
+                commentsContentsPanel.add(replyToComment);
+                replyToComment.addClickHandler(new ClickHandler() {
+                    public void onClick(ClickEvent event) {
+                        // TODO LUKETODO Call a method that adds a new comment.
+                        // It's parent is commentID
+                        // To get the contents use: commentReplyContents.getText();
+                        
+                        commentsPanel.clear();
+                        comments(rootID, rootID, "Wall post");
+                        // TODO LOUISTODO Make the refreshed comments page move
+                        // to the place we just added our new comment.
+                    }
+                }); 
+            }
 
-    private void settingsPanelSetup() {
-        // Create widgets
-
-        // Add widgets to panel
-
-        // Add style name for CSS
-        settingsPanel.addStyleName("gwt-settings-panel");
-
-        // Add click handlers for anchors
-
-    }
+            TextArea threadReplyContents = new TextArea();
+            threadReplyContents.setCharacterWidth(80);
+            threadReplyContents.setVisibleLines(5);
+            commentsContentsPanel.add(threadReplyContents);
+            
+            Button replyToThreads = new Button("Reply to thread");
+            commentsContentsPanel.add(replyToThreads);
+            replyToComment.addClickHandler(new ClickHandler() {
+                public void onClick(ClickEvent event) {
+                    // TODO LUKETODO Call a method that adds a new comment.
+                    // It's parent is parentID
+                    // To get the contents use: threadReplyContents.getText();
+                    
+                    commentsPanel.clear();
+                    comments(rootID, rootID, "Wall post");
+                    // TODO LOUISTODO Make the refreshed comments page move
+                    // to the place we just added our new comment.
+                }
+            }); 
+        }
+        
+        commentsPanel.addStyleName("gwt-comments");  
+    }  
     
     //must be global because it must be referenced from callback
     private TextArea newConvoInput = new TextArea();
-    private void newConversationPanelSetup() {
+    private void newConversation() {
+        // Setup basic page
+        RootPanel.get().clear();
+        navigation();
+        
+        // Create panel to contain widgets
+        final FlexTable newConversationPanel = new FlexTable();
+        RootPanel.get().add(newConversationPanel);
+    
         final ListBox currentFriends = new ListBox();
         currentFriends.setVisibleItemCount(11);
         currentFriends.setWidth("150px");
@@ -961,7 +1062,7 @@ public class frontend implements EntryPoint {
                                         }
                                         public void onSuccess(String success) {
                                             if (success.equals("success")) {
-                                                loadConversation(createChatReturn[1]);
+                                                conversation(createChatReturn[1]);
                                             } else {
                                                 //TODO Error
                                             }
@@ -981,9 +1082,18 @@ public class frontend implements EntryPoint {
         newConversationPanel.addStyleName("gwt-conversation");
     }
     
+    
     private String convoPanelSetup_convosig; //needed in inner class
     private TextArea convoPanelSetup_input = new TextArea();
-    private void conversationPanelSetup(String conversationID) {
+    private void conversation(String conversationID) {
+        // Set up basic page
+        RootPanel.get().clear();
+        navigation();
+        
+        // Create panel to contain widgets
+        final FlexTable conversationPanel = new FlexTable();
+        RootPanel.get().add(conversationPanel);
+    
         convoPanelSetup_convosig = conversationID;
         conversationPanel.setCellSpacing(10);
         conversationPanel.setWidget(0, 0, new Label("Participants: "));
@@ -1038,7 +1148,7 @@ public class frontend implements EntryPoint {
                                     }
                                     public void onSuccess(String postingSuccess) {
                                         //Reload the conversation after the new message has been added
-                                        loadConversation(convoPanelSetup_convosig);
+                                        conversation(convoPanelSetup_convosig);
                                     }
                                 });
                             }
@@ -1056,7 +1166,7 @@ public class frontend implements EntryPoint {
     private void newGroup() {
         // TODO LOUISTODO
         RootPanel.get().clear();
-        RootPanel.get().add(navigationPanel);
+        navigation();
         FlexTable newGroupPanel = new FlexTable();
         RootPanel.get().add(newGroupPanel);
         
@@ -1090,7 +1200,7 @@ public class frontend implements EntryPoint {
     
     private void addToGroup(final String groupID) {
         RootPanel.get().clear();
-        RootPanel.get().add(navigationPanel);
+        navigation();
         FlexTable addToGroupPanel = new FlexTable();
         RootPanel.get().add(addToGroupPanel);
         
@@ -1161,7 +1271,7 @@ public class frontend implements EntryPoint {
     TextBox addFriend_keyInput = new TextBox();
     private void addFriend() {
         RootPanel.get().clear();
-        RootPanel.get().add(navigationPanel);
+        navigation();
         FlexTable addFriendPanel = new FlexTable();
         RootPanel.get().add(addFriendPanel);
         
@@ -1192,54 +1302,6 @@ public class frontend implements EntryPoint {
                 });
             }
         });
-        
         addFriendPanel.addStyleName("gwt-friend"); 
-    }
-
-    // #########################################################################
-    // #########################################################################
-    // ############################Load different view##########################
-    // #########################################################################
-    // #########################################################################
-
-    private void loadLogin() {
-        RootPanel.get().clear();
-        RootPanel.get().add(loginPanel);
-    }
-
-    private void loadConversationList() {
-        conversationListPanel.clear();
-        
-        conversationListPanelSetup();
-        
-        RootPanel.get().clear();
-        RootPanel.get().add(navigationPanel);
-        RootPanel.get().add(conversationListPanel);
-    }
-
-    private void loadConversation(String conversationID) {
-        //TODO
-        conversationPanel.clear();
-        conversationPanelSetup(conversationID);
-        RootPanel.get().clear();
-        RootPanel.get().add(navigationPanel);
-        RootPanel.get().add(conversationPanel);
-    }
-    
-    private void loadNewConversation() {
-        newConversationPanelSetup();
-        
-        RootPanel.get().clear();
-        RootPanel.get().add(navigationPanel);
-        RootPanel.get().add(newConversationPanel);
-    }
-
-    private void loadFriendsList(String currentGroupID) {
-        RootPanel.get().clear();
-        RootPanel.get().add(navigationPanel);
-        
-        // Add panels to page
-        friendsListPanelSetup("All");
-        RootPanel.get().add(friendsListPanel);
-    }
+    }   
 }

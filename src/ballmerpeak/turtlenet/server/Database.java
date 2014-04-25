@@ -16,6 +16,7 @@ import ballmerpeak.turtlenet.shared.Conversation;
 import java.security.*;
 import java.sql.*;
 import java.security.*;
+import java.util.List;
 import java.io.File;
 
 public class Database {
@@ -107,93 +108,196 @@ public class Database {
     
     //Get from DB
     public String getPDATA(String field, PublicKey key) {
+        String strKey = Crypto.encodeKey(key);
+	String value;
+        String sqlStatement  = DatabaseStrings.getPData.replace("__FIELD__", field);
+        sqlStatement = sqlStatement.replace("__KEY__", strkey); //mods SQL template
 
-        String sqlStatement  = DatabaseStrings.getPData.replace("fieldVar",
-                                                               field);
-        sqlStatement = sqlStatement.replace("keyVar", key); //mods SQL template
         ResultSet results = query(sqlStatement);
-
-        String value = results.getString(field); //gets current value in 'field'
-
+        results.beforeStart();
+	if(results.next() )
+            value = results.getString(field); //gets current value in 'field'
+        else
+            value = "<No Value>";
         Logger.write("VERBOSE", "DB", "Called method Database.getPDATA("
-                     + field + ",...)");
+                      + field + ",...) = " + value); 
         return value;
     }
     
     //Set the CMD to POST in the Message constructor
-    public Message[] getPostsBy (PublicKey key) {
+    public Message[] getWallPost (PublicKey key) {
 
-        // String sqlStatement  = DatabaseStrings.getPostsBy.replace("keyVar",
-        //                                                       key);
-        //ResultSet results = query(sqlStatement);
+        String sqlStatement  = DatabaseStrings.getWallPostIDs.replace("__KEY__",
+                                                               Crypto.encodeKey(key) );
+
+        ResultSet results = query(sqlStatement);
+        List<Message> posts = new List<Message>();
+	results.beforeFirst();
+        
+        while (results.next() ) {
+	    List<String> visibleTo = new List<String>();
+
+	    ResultSet currentPost = query(DBStrings.getPost.replace("__ID__", results.getInt("postID") ) );
+            ResultSet currentPostVisibleTo = query(DBStrings.getVisibleTo.replace("__ID__", results.getInt("postID") );
+            currentPostVisibleTo.beforeFirst();
+            while(currentPostVisibleTo.next() ) {
+                visibleTo.add(currentPostVisibleTo.readString("key") );
+	    }
+
+            Message m = new MessageFactoryImpl().newPOST(currentPost.getString("msgText"), currentPost.getString("recieverKey"), visibleTo.toArray() );
+	    m.timestamp = currentPost.getString("time");
+	    m.signature = currentPost.getString("sig");
+	    m.command = "POST";
+	    posts.add(m);
+        }
 
         
 
-        Logger.write("UNIMPL", "DB", "Unimplemented method Database.getPostsBy(...)");
-        return null;
+        Logger.write("VERBOSE", "DB", "getWallPost(...)");
+        return posts.toArray();
     }
     
     //Return all conversations
     public Conversation[] getConversations () {
-        //REPLACE ME
+        List<Conversation> convoList = new List<Conversation>();
+        ResultSet convoSet = query(DBStrings.getConversations);
 
-        
+	convoSet.beforeStart();
+	while (convoSet.next())
+	    convoList.add(getConversation(convoSet.getString("convoID")));
 
-        Logger.write("UNIMPL", "DB", "Unimplemented method Database.getConversations(...)");
-        return null;
+        Logger.write("VERBOSE", "DB", "getConversation()");
+        return convoList.toArray();
     }
     
     //Get keys of all people in the given conversation
     public PublicKey[] getPeopleInConvo (String sig) {
         //REPLACE ME
-        Logger.write("UNIMPL", "DB", "Unimplemented method Database.getPeopleInConvo(...)");
-        return null;
+	List<PublicKey> keys = new List<PublicKey>();
+
+	ResultSet keySet = query(DBStrings.getConversationMembers.replace("__SIG__", sig);
+	keySet.beforeStart();
+	while (keySet.next()) {
+	    keys.add(Crypto.decodeKey(keySet.getString("key")));
+	}
+        Logger.write("VERBOSE", "DB", "getPeopleInConvo(...)");
+	return keys.toArray();
     }
     
     //Reurn a conversation object
     public Conversation getConversation (String sig) {
-        //REPLACE ME
-        Logger.write("UNIMPL", "DB", "Unimplemented method Database.getConversation(" + sig + ")");
-        return null;
+        ResultSet convoSet = query(DBStrings.getConversation.replace("__SIG__", sig));
+	convoSet.beforeStart();
+	if(convoSet.next() ) {
+	    String timestamp = convoSet.getString("timeCreated");
+	    String firstMsg = query(DBStrings.getConversationMessages.replace("__ID__", convoID)).first().getString("msgText");
+	    PublicKey[] keys = getPeopleInConvo(sig);
+	    String[] keystrings = new String[keys.size()]();
+	    String[] users = new String[keys.size()]();
+	    for (int i = 0; i < keys.size(); i++) {
+	        keystrings[i] = Crypto.encodeKey(keys[i]);
+	        users[i] = getName(keys[i]);
+	    }
+            Logger.write("VERBOSE", "DB", "getConversation(...)");    
+	    return new Conversation(sig, timestamp, firstMsg, users.toArray(), keystrings.toArray());
+	} else {
+	    Logger.write("ERROR", "DB", "getConversation(...) passed invalid Signature.");    
+	    return null;
+	}
     }
     
     //Return all messages in a conversation
     //{{username, time, msg}, {username, time, msg}, etc.}
     //Please order it so that element 0 is the oldest message
-    public String[][] getConversationMessages (String signature) {
-        //REPLACE ME
-        Logger.write("UNIMPL", "DB", "Unimplemented method Database.getConversationMessages(...)");
-        return null;
+    public String[][] getConversationMessages (String sig) {
+        ResultSet messageSet = query(DBStrings.getConversationMessages.replace("__SIG__", sig);
+        messageSet.beforeStart();
+	List<String[]> messagesList = new List<String[]>();
+
+        while(messageSet.next() ) {
+            String[] message = new String[3];
+	    message[0] = getName(messageSet.getString("sendersKey") );
+	    message[1] = messageSet.getString("time");
+	    message[2] = messageSet.getString("msgText");
+
+	    messagesList.add(message);
+        }
+
+        Logger.write("VERBOSE", "DB", "getConversationMessages(...)");
+        return messagesList.toArray();
     }
     
     //If multiple people have the same username then:
     //Logger.write("FATAL", "DB", "Duplicate usernames");
     //System.exit(1);
-    public PublicKey getKey (String name) {
-        //REPLACE ME
-        Logger.write("UNIMPL", "DB", "Unimplemented method Database.getKey(...)");
-        return null;
+    public PublicKey getKey (String userName) {
+	int nameCount = 0;
+	String key = "<No Key>";
+	ResultSet results = query(DBStrings.getKey.replace("__USERNAME__", userName) );
+	results.beforeFirst();
+
+	while(results.next() && nameCount++) {
+            multipleNames = true;
+	    key = results.getString("key");
+	}
+	if(nameCount == 0)
+	    Logger.write("ERROR", "DB", "getKey(" +  userName + ") - No keys found for userName";
+	else if (nameCount > 1 )
+	    Logger.write("ERROR", "DB", "getKey(" + userName + ") - Multple userNames found for key; Server OPs are evil!";
+
+        Logger.write("VERBOSE", "DB", "getKey(" + userName + ")";
+        return key;
     }
     
     //Return the name of each member and if it can see your profile info
     //In this format: {{"friends", "false"}, {"family", "true"}, etc.}
     public String[][] getCategories () {
-        Logger.write("UNIMPL", "DB", "Unimplemented method Database.getCategories()");
-        return null;
+        List<String[]> catList = new List<String[]>
+	String catName;
+	String canSeePDATA;
+	ResultSet categorySet = query(DBStrings.getCategories);
+	categorySet.beforeFirst();
+
+	while(categorySet.next() ) {
+            String[] category = new String[2]();
+            category[0] = categorySet.getString("catID");
+	    category[1] = categorySet.getString("canSeePDATA") == 1 ? "true" : "false";
+	    catList.add(category);
+	}
+
+        Logger.write("VERBOSE", "DB", "getCategories() - " + catList.size() + " returned");
+        return catList.toArray();
     }
     
     //Return the keys of each member of the category
     //if(category.equals("all")) //remember NEVER to compare strings with ==
     //    return every key you know about
-    public PublicKey[] getCategoryMembers (String category) {
-        Logger.write("UNIMPL", "DB", "Unimplemented method Database.getCategoryMembers(" + category + ")");
-        return null;
+    public PublicKey[] getCategoryMembers (String catID) {
+        String queryStr = "";
+	
+	if(category.equals("all")) { 
+            queryStr = DBStrings.getAllKeys;
+        } else {
+            queryStr = DBStrings.getMemberKeys.replace("__CATNAME__", catID);
+	}
+	List<PublicKey> keyList = new List<PublicKey>();
+       	ResultSet keySet = query(queryStr);
+	keySet.beforeStart();
+
+	while(keySet.next() {
+            keyList.add(allKeys.getString("key") );
+	}
+        Logger.write("VERBOSE", "DB", "getCategoryMembers(" + catID + ") - " + keyList.size() + " members");
+        return keyList.toArray();
+
     }
     
     //In the case of multiple usernames: return the newest one
     //In the case of no username for the key: "return Crypto.encode(k);"
-    public String getName (PublicKey k) {
-        //REPLACE ME
+    public String getName (PublicKey key) {
+        String queryStr = DBStrings.getName.replace("__KEY__", key);
+
+
         Logger.write("UNIMPL", "DB", "Unimplemented method Database.getName(...)");
         return null;
     }
