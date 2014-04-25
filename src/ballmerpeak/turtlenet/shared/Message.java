@@ -66,23 +66,7 @@ public class Message implements Serializable {
         return colonPairs[colonPairs.length-1];
     }
     
-    public String[] POSTgetVisibleTo() {
-        Tokenizer tokenizer = new Tokenizer(content, ':');
-        String[] colonPairs = new String[tokenizer.countTokens()];
-        for (int i = 0; tokenizer.hasMoreTokens(); i++)
-            colonPairs[i] = tokenizer.nextToken();
-        return Arrays.copyOfRange(colonPairs, 0, colonPairs.length-1);
-    }
-    
-    public String FPOSTgetText() {
-        Tokenizer tokenizer = new Tokenizer(content, ':');
-        String[] colonPairs = new String[tokenizer.countTokens()];
-        for (int i = 0; tokenizer.hasMoreTokens(); i++)
-            colonPairs[i] = tokenizer.nextToken();
-        return colonPairs[colonPairs.length-1];
-    }
-    
-    public String FPOSTgetWall() {
+    public String POSTgetWall() {
         Tokenizer tokenizer = new Tokenizer(content, ':');
         String[] colonPairs = new String[tokenizer.countTokens()];
         for (int i = 0; tokenizer.hasMoreTokens(); i++)
@@ -90,7 +74,7 @@ public class Message implements Serializable {
         return colonPairs[0];
     }
     
-    public String[] FPOSTgetVisibleTo() {
+    public String[] POSTgetVisibleTo() {
         Tokenizer tokenizer = new Tokenizer(content, ':');
         String[] colonPairs = new String[tokenizer.countTokens()];
         for (int i = 0; tokenizer.hasMoreTokens(); i++)

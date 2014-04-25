@@ -52,15 +52,7 @@ public class MessageFactoryImpl {
         return newMessage("PCHAT", convoSig + ":" + msg);
     }
     
-    public Message newPOST(String msg, String to, String[] visibleTo) {
-        String content = to + ":";
-        for (int i = 0; i < visibleTo.length; i++)
-            content += (visibleTo[i] + ":");
-        content += msg;
-        return newMessage("POST", content);
-    }
-    
-    public Message newFPOST(String msg, String wall, String[] visibleTo) {
+    public Message newPOST(String msg, String wall, String[] visibleTo) {
         String content = wall;
         for (int i = 0; i < visibleTo.length; i++)
             content += (":" + visibleTo[i]);

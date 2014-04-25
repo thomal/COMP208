@@ -337,7 +337,9 @@ public class Database {
         String name = Crypto.encodeKey(key);
         
         try {
-            name = query(DBStrings.getName.replace("__KEY__", Crypto.encodeKey(key))).beforeFirst().getString("username")
+            ResultSet nameRow = query(DBStrings.getName.replace("__KEY__", Crypto.encodeKey(key)));
+            nameRow.beforeFirst();
+            name = nameRow.getString("username");
         } catch (java.sql.SQLException e) {
             Logger.write("ERROR", "DB", "SQLException: " + e);
         }
@@ -351,7 +353,7 @@ public class Database {
         Logger.write("VERBOSE", "DB", "getSignatory(...)");
         try {
             ResultSet keys = query(DBStrings.getAllKeys);
-            keys.beforeStart();
+            keys.beforeFirst();
             while (keys.next())
                 if (Crypto.verifySig(m, Crypto.decodeKey(keys.getString("key"))))
                     return Crypto.decodeKey(keys.getString("key"));
