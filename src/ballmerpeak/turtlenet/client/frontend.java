@@ -834,7 +834,7 @@ public class frontend implements EntryPoint {
             postContentsPanel.add(comments);
             comments.addClickHandler(new ClickHandler() {
                 public void onClick(ClickEvent event) {
-                    comments(postID, "Wall post");
+                    comments(postID, postID, "Wall post");
                 }
             }); 
         }
@@ -842,6 +842,7 @@ public class frontend implements EntryPoint {
         // Add style name for CSS
         wallPanel.addStyleName("gwt-wall");
     }
+    
     
     // TODO LUKETODO This isnt a real todo, just thought I'd tell you this here
     // rather than annoy you while you're making a new database.
@@ -852,7 +853,13 @@ public class frontend implements EntryPoint {
     // ideas let me know and I'll change it. As it is I need parentType when
     // setting up interface elements.
     
-    private void comments(final String parentID, final String parentType) {
+    
+    // rootID always gets passed down through recursion so we can redraw the page
+    // and know where to start from. parentID is set to the ID of the immediate
+    // parent which may be a comment or a post. If we set the parentID to rootID
+    // that gets us back to the inital comment as parentID will be set to the ID
+    // of a wall post.
+    private void comments(final String parentID, final String rootID, final String parentType) {
         // Create panel to contain widgets
         final FlowPanel commentsPanel = new FlowPanel();
         
@@ -862,7 +869,8 @@ public class frontend implements EntryPoint {
             navigation();
         } else {
             // If comment belongs to another comment it should be indented
-            commentsPanel.getElement().getStyle().setProperty("paddingLeft" , "100px");
+            String padding = new String (Integer.toString(commentsPanel.getAbsoluteLeft() + 100) + "px");
+            commentsPanel.getElement().getStyle().setProperty("paddingLeft" , padding);
         }
             
         // Add main panel to page
@@ -919,13 +927,58 @@ public class frontend implements EntryPoint {
             commentContents.setText("Contents of comment"); 
             commentsContentsPanel.add(commentContents);
             
-            if("Comment has comments") {
-                comments(commentID, "Comment");
+            // TODO LUKETODO 'parentType.equals("Comment")' is only here so I 
+            // can see if the recursion actually works. It should be replaced 
+            // with a call to a method that determines whether a comment has 
+            // any children when given the ID of a comment. 
+            // Give it commentID
+            if(parentType.equals("Wall post")) {
+                comments(commentID, rootID, "Comment");
             } else {
-                //show 'add comment' button
+                String padding = new String (Integer.toString(commentsContentsPanel.getAbsoluteLeft() + 100) + "px");
+                
+                TextArea commentReplyContents = new TextArea();
+                commentReplyContents.setCharacterWidth(80);
+                commentReplyContents.setVisibleLines(5);
+                commentReplyContents.getElement().getStyle().setProperty("paddingLeft" , padding);
+                commentsContentsPanel.add(commentReplyContents);
+                
+                Button replyToComment = new Button("Reply to comment");
+                replyToComment.getElement().getStyle().setProperty("paddingLeft" , padding);
+                commentsContentsPanel.add(replyToComment);
+                replyToComment.addClickHandler(new ClickHandler() {
+                    public void onClick(ClickEvent event) {
+                        // TODO LUKETODO Call a method that adds a new comment.
+                        // It's parent is commentID
+                        // To get the contents use: commentReplyContents.getText();
+                        
+                        commentsPanel.clear();
+                        comments(rootID, rootID, "Wall post");
+                        // TODO LOUISTODO Make the refreshed comments page move
+                        // to the place we just added our new comment.
+                    }
+                }); 
             }
+
+            TextArea threadReplyContents = new TextArea();
+            threadReplyContents.setCharacterWidth(80);
+            threadReplyContents.setVisibleLines(5);
+            commentsContentsPanel.add(threadReplyContents);
             
-            //show reply to thread
+            Button replyToThreads = new Button("Reply to thread");
+            commentsContentsPanel.add(replyToThreads);
+            replyToComment.addClickHandler(new ClickHandler() {
+                public void onClick(ClickEvent event) {
+                    // TODO LUKETODO Call a method that adds a new comment.
+                    // It's parent is parentID
+                    // To get the contents use: threadReplyContents.getText();
+                    
+                    commentsPanel.clear();
+                    comments(rootID, rootID, "Wall post");
+                    // TODO LOUISTODO Make the refreshed comments page move
+                    // to the place we just added our new comment.
+                }
+            }); 
         }  
     }  
     
