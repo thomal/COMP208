@@ -965,9 +965,9 @@ public class frontend implements EntryPoint {
             threadReplyContents.setVisibleLines(5);
             commentsContentsPanel.add(threadReplyContents);
             
-            Button replyToThreads = new Button("Reply to thread");
-            commentsContentsPanel.add(replyToThreads);
-            replyToComment.addClickHandler(new ClickHandler() {
+            Button replyToThread = new Button("Reply to thread");
+            commentsContentsPanel.add(replyToThread);
+            replyToThread.addClickHandler(new ClickHandler() {
                 public void onClick(ClickEvent event) {
                     // TODO LUKETODO Call a method that adds a new comment.
                     // It's parent is parentID
