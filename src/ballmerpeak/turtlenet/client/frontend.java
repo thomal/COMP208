@@ -834,10 +834,12 @@ public class frontend implements EntryPoint {
             // that post.
             // Give it postID
             int commentCount = 5;
+            
+            Anchor comments;
             if(commentCount == 0) {
-                Anchor comments = new Anchor("Add a comment");
+                comments = new Anchor("Add a comment");
             } else {
-                Anchor comments = new Anchor("Comments (" + Integer.toString(commentCount) + ")");
+                comments = new Anchor("Comments (" + Integer.toString(commentCount) + ")");
             }
             
             postContentsFooterPanel.add(comments);
@@ -916,21 +918,23 @@ public class frontend implements EntryPoint {
             });
         }        
         
+        
+        // Create panel to contain the main contents of each comment
+        FlowPanel commentsContentsPanel = new FlowPanel();
+        commentsPanel.add(commentsContentsPanel);
+        
         // TODO LUKETODO 10 should be replaced with a call to a method that takes
-        // the ID of a post/comment and returns the number of comments associated with that
-        // post.
+        // the ID of a post/comment and returns the number of comments associated 
+        // with that post.
         // This current method takes a string called parentID so give it that.
-        for(int i = 0; i < 10; i++) {
+        int commentCount = 10;        
+        for(int i = 0; i < commentCount; i++) {
             // TODO LUKETODO "ID of comment" should be replaced with a call to
             // a method that returns a list of comments when given the ID of their parent.
             // This current method takes a string called parentID so give it that.
             // Specifically we want the IDs of the comments. Use i to select an
             // ID from the list. 
             final String commentID = new String("ID of comment");   
-            
-            // Create panel to contain the main contents of each comment
-            FlowPanel commentsContentsPanel = new FlowPanel();
-            commentsPanel.add(commentsContentsPanel);
             
             // Create widgets
             TextArea commentContents = new TextArea();
@@ -986,7 +990,7 @@ public class frontend implements EntryPoint {
             // TODO LUKETODO 'parentType.equals("Comment")' is only here so I 
             // can see if the recursion actually works. It should be replaced 
             // with a call to a method that determines whether a comment has 
-            // any children when given the ID of a comment. 
+            // any children when given the ID of a comment.  
             // Give it commentID
             if(parentType.equals("Wall post")) {
                 comments(commentID, rootID, "Comment");
@@ -1015,27 +1019,32 @@ public class frontend implements EntryPoint {
                     }
                 }); 
             }
-
-            TextArea threadReplyContents = new TextArea();
-            threadReplyContents.setCharacterWidth(60);
-            threadReplyContents.setVisibleLines(5);
-            commentsContentsPanel.add(threadReplyContents);
-            
-            Button replyToThread = new Button("Reply to thread");
-            commentsContentsPanel.add(replyToThread);
-            replyToThread.addClickHandler(new ClickHandler() {
-                public void onClick(ClickEvent event) {
-                    // TODO LUKETODO Call a method that adds a new comment.
-                    // It's parent is parentID
-                    // To get the contents use: threadReplyContents.getText();
-                    
-                    commentsPanel.clear();
-                    comments(rootID, rootID, "Wall post");
-                    // TODO LOUISTODO Make the refreshed comments page move
-                    // to the place we just added our new comment.
-                }
-            }); 
         }
+        
+        TextArea threadReplyContents = new TextArea();
+        threadReplyContents.setCharacterWidth(60);
+        threadReplyContents.setVisibleLines(5);
+        commentsContentsPanel.add(threadReplyContents);
+
+        Button replyToThread;
+        if(commentCount == 0) {
+            replyToThread = new Button("Post comment");
+        } else {
+            replyToThread = new Button("Reply to thread");
+        }
+        commentsContentsPanel.add(replyToThread);
+        replyToThread.addClickHandler(new ClickHandler() {
+            public void onClick(ClickEvent event) {
+                // TODO LUKETODO Call a method that adds a new comment.
+                // It's parent is parentID
+                // To get the contents use: threadReplyContents.getText();
+                    
+                commentsPanel.clear();
+                comments(rootID, rootID, "Wall post");
+                // TODO LOUISTODO Make the refreshed comments page move
+                // to the place we just added our new comment.
+            }
+        }); 
         
         commentsPanel.addStyleName("gwt-comments");  
     }  
@@ -1359,13 +1368,13 @@ public class frontend implements EntryPoint {
             }
         });
         addFriendPanel.addStyleName("gwt-friend"); 
-    }   
-}
-
+    }
+    
     private void friendRequests() {
         
     }
     
     private void register() {
     
-    }
+    }   
+}
