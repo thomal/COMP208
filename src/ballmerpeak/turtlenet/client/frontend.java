@@ -1371,7 +1371,24 @@ public class frontend implements EntryPoint {
     }
     
     private void friendRequests() {
+        RootPanel.get().clear();
+        navigation();
+        FlexTable friendRequestsPanel = new FlexTable();
+        RootPanel.get().add(friendRequestsPanel);
         
+        friendRequestsPanel.setWidget(0, 0, new Label("Current friend requests: "));
+        
+        // TODO LUKETODO 10 should be replaced with a call to a method that tells
+        // us how many friend requests the user has had.
+        for(int i = 0; i < 10; i++) {
+            // name of person
+            // accept
+            // accept click handler
+            // deny
+            // deny click handler
+        }
+        
+        friendRequestsPanel.addStyleName("gwt-friend"); 
     }
     
     private void register() {
