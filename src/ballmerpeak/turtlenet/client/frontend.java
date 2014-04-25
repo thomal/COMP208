@@ -806,6 +806,14 @@ public class frontend implements EntryPoint {
         // returns the number of posts on a users wall when given a public key.
         // Give it key.
         for(int i = 0; i < 10; i++) {
+            // TODO LUKETODO "postID" should be replaced with a call to a method 
+            // that takes a public key and returns a list of all the posts on the
+            // wall associated with that public key. Specifically we want the IDs
+            // of those posts.
+            // This method takes a string called key so give it that as the public key.
+            // Use i to choose a post from the list.
+            final String postID = new String("postID");
+        
             FlowPanel postPanel = new FlowPanel();
             wallPanel.add(postPanel);
             
@@ -814,10 +822,9 @@ public class frontend implements EntryPoint {
             
             postControlPanel.add(new Label("Posted by: "));
             // TODO LUKETODO "Key of user" should be replaced with a call to a 
-            // method that returns the keys of all the users who have posted on 
-            // a wall when given a public key(that identifies which wall we are on).
-            // This method takes a string called key so give it that.
-            // Use i to choose a key from the list.
+            // method that returns the key of the user who created a post when
+            // given the ID of that post. 
+            // Give it postID.
             final String postedBy = new String("Key of user");
             
             // TODO LUKETODO "Name of poster" should be replaced with a call 
@@ -832,24 +839,45 @@ public class frontend implements EntryPoint {
             });
             
             // TODO LUKETODO "01/01/1970" should be replaced with a call to a 
-            // method that returns a list of the dates that all of the posts on
-            // the current wall were posted on when given a public key(that 
-            // identifies which wall we are on).
-            // This method takes a string called key so give it that.
-            // Use i to choose a date from the list.
-            // Not sure if this is a feature but it would be nice. 
+            // method that returns the date a post was created on when given 
+            // the ID of that post.
+            // Give it postID.
+            // (Not sure if this is a feature but it would be nice) 
             postControlPanel.add(new Label("01/01/1970"));
             
             FlowPanel postContentsPanel = new FlowPanel();
             postPanel.add(postContentsPanel);
-            // TODO LOUISTODO Add widgets
+            
+            TextArea postContents = new TextArea();
+            postContents.setCharacterWidth(80);
+            postContents.setVisibleLines(10); 
+            postContentsPanel.add(postContents);
+            
+            // TODO LUKETODO "5" should be replaced with a call to a method that
+            // returns a the number of comments on a post when given the ID of
+            // that post.
+            // Give it postID.
+            Anchor comments = new Anchor("Comments (" + "5" + ")");
+            postContentsPanel.add(comments);
+            comments.addClickHandler(new ClickHandler() {
+                public void onClick(ClickEvent event) {
+                    loadComments(postID);
+                }
+            }); 
         }
 
         // Add style name for CSS
         wallPanel.addStyleName("gwt-wall");
     }
-
-
+    
+    private void loadComments(final String postID) {
+        // Setup basic page
+        RootPanel.get().clear();
+        RootPanel.get().add(navigationPanel);
+        // Create main panel
+        final FlowPanel commentsPanel = new FlowPanel();
+        RootPanel.get().add(commentsPanel);
+    }
 
     private void settingsPanelSetup() {
         // Create widgets
