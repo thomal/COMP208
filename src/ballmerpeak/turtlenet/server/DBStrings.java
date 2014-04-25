@@ -24,7 +24,7 @@ class DBStrings {
         "PRIMARY KEY (pk));",
         
         "CREATE TABLE tPost ("+
-        "postID INT AUTOINCREMENT,"+
+        "postID      INT AUTOINCREMENT,"+
         "text        TEXT,"+
         "time        TEXT,"+
         "sig         TEXT,"+
@@ -39,7 +39,6 @@ class DBStrings {
         "PRIMARY KEY (pk));",
         
         "CREATE TABLE tUser ("+
-        "userID   INT AUTOINCREMENT,"+
         "key      TEXT,"+
         "username TEXT,"+
         "knowName INT,"+                     //1 if we know the username for this key, 0 otherwise
@@ -47,7 +46,7 @@ class DBStrings {
         "name     TEXT,"+
         "gender   TEXT,"+
         "birthday TEXT,"+
-        "PRIMARY KEY (userID));",
+        "PRIMARY KEY (key));",
         
         "CREATE TABLE tCategory ("+
         "catID       INT AUTOINCREMENT,"+
@@ -56,15 +55,42 @@ class DBStrings {
         "PRIMARY KEY (catID));",
         
         "CREATE TABLE tCategoryMembers ("+
-        "pk     INT AUTOINCREMENT,"+
-        "catID  INT,"+
-        "userID INT,"+
+        "pk      INT AUTOINCREMENT,"+
+        "catID   INT,"+
+        "userKey TEXT,"+
         "PRIMARY KEY (pk));",
         
         "CREATE TABLE tEvent ("+
-        "pk          INT AUTOINCREMENT,"+
-        "name        TEXT,"+
-        "canSeePDATA INT,"+
+        "eventID      INT AUTOINCREMENT,"+
+        "startTime    TEXT,"+
+        "endTime      TEXT,"+
+        "creatorKey   TEXT,"+
+        "accepted     INT,"+                   //1 if category can see pdata, 0 otherwise
+        "sig          TEXT,"+
+        "name         TEXT,"+
+        "creationTime TEXT,"+
+        "PRIMARY KEY (eventID));",
+        
+        "CREATE TABLE tClaim ("+
+        "claimID   INT AUTOINCREMENT,"+
+        "sig       TEXT,"+
+        "name      TEXT,"+
+        "claimTime TEXT,"+
+        "PRIMARY KEY (claimID));",
+        
+        "CREATE TABLE tLike ("+
+        "pk       INT AUTOINCREMENT,"+
+        "likerKey TEXT,"+
+        "parent   TEXT,"+                     //sig of thing being liked
         "PRIMARY KEY (pk));",
+        
+        "CREATE TABLE tComment ("+
+        "commentID    INT AUTOINCREMENT,"+
+        "text         TEXT,"+
+        "parent       TEXT,"+                 //sig of thing being commented
+        "sig          TEXT,"+
+        "commenterKey TEXT,"+
+        "creationTime TEXT,"+
+        "PRIMARY KEY (commentID));",
     };
 }
