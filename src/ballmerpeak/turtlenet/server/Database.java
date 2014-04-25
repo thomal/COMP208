@@ -16,6 +16,7 @@ import ballmerpeak.turtlenet.shared.Conversation;
 import java.security.*;
 import java.sql.*;
 import java.security.*;
+import java.util.List;
 import java.io.File;
 
 public class Database {
@@ -107,30 +108,50 @@ public class Database {
     
     //Get from DB
     public String getPDATA(String field, PublicKey key) {
+        String strKey = Crypto.encodeKey(key);
+        String sqlStatement  = DatabaseStrings.getPData.replace("__FIELD__",
 
-        String sqlStatement  = DatabaseStrings.getPData.replace("fieldVar",
-                                                               field);
-        sqlStatement = sqlStatement.replace("keyVar", key); //mods SQL template
+        sqlStatement = sqlStatement.replace("__KEY__", strkey); //mods SQL template
         ResultSet results = query(sqlStatement);
 
         String value = results.getString(field); //gets current value in 'field'
 
         Logger.write("VERBOSE", "DB", "Called method Database.getPDATA("
-                     + field + ",...)");
+                     + field + ",...) = " + value); 
         return value;
     }
     
     //Set the CMD to POST in the Message constructor
-    public Message[] getPostsBy (PublicKey key) {
+    public Message[] getWallPost (PublicKey key) {
 
-        // String sqlStatement  = DatabaseStrings.getPostsBy.replace("keyVar",
-        //                                                       key);
-        //ResultSet results = query(sqlStatement);
+        String sqlStatement  = DatabaseStrings.getWallPostIDs.replace("__KEY__",
+                                                               Crypto.encodeKey(key) );
+
+        ResultSet results = query(sqlStatement);
+        List<Message> posts = new List<Message>;
+	results.beforeFirst();
+        
+        while (results.next() ) {
+	    List<String> visibleTo;
+
+	    ResultSet currentPost = query(DBStrings.getPost.replace("__ID__", results.getInt("postID") ) );
+            ResultSet currentPostVisibleTo = query(DBStrings.getVisibleTo.replace("__ID__", results.getInt("postID") );
+            currentPostVisibleTo.beforeFirst();
+            while(currentPostVisibleTo.next() ) {
+                visibleTo.add(currentPostVisibleTo.readString("key") );
+	    }
+
+            Message m = new MessageFactoryImpl().newPOST(currentPost.getString("msgText"), currentPost.getString("recieverKey"), visibleTo.toArray() );
+	    m.timestamp = currentPost.getString("time");
+	    m.signature = currentPost.getString("sig");
+	    m.command = "POST";
+	    posts.add(m);
+        }
 
         
 
-        Logger.write("UNIMPL", "DB", "Unimplemented method Database.getPostsBy(...)");
-        return null;
+        Logger.write("VERBOSE", "DB", "getWallPost(...)");
+        return posts.toArray();
     }
     
     //Return all conversations
