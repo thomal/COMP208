@@ -1376,16 +1376,50 @@ public class frontend implements EntryPoint {
         FlexTable friendRequestsPanel = new FlexTable();
         RootPanel.get().add(friendRequestsPanel);
         
-        friendRequestsPanel.setWidget(0, 0, new Label("Current friend requests: "));
+        Label currentRequestsLabel = new Label();
+        currentRequestsLabel.getElement().getStyle().setFontWeight(FontWeight.BOLD);
+        friendRequestsPanel.setWidget(0, 0, currentRequestsLabel);
         
         // TODO LUKETODO 10 should be replaced with a call to a method that tells
         // us how many friend requests the user has had.
         for(int i = 0; i < 10; i++) {
-            // name of person
-            // accept
-            // accept click handler
-            // deny
-            // deny click handler
+            // TODO LUKETODO "Public Key" should be replaced with a call to a 
+            // method that returns the list of all the people who have requested
+            // to be friends with the user. Specifically we want their public keys.
+            // Use i to choose one from the list.
+            String potentialFriendKey = new String("Public Key");
+            
+            // TODO LUKETODO "Person's name" should be replaced with a call to
+            // a method that takes a users public key and returns their name.
+            // Give it potentialFriendKey 
+            friendRequestsPanel.setWidget((i + 1), 0, new Label("Person's name"));
+            
+            Button accept = new Button("Accept");
+            friendRequestsPanel.setWidget((i + 1), 1, accept);
+            Button reject = new Button("Reject");
+            friendRequestsPanel.setWidget((i + 1), 2, reject);
+            final Label success = new Label("");
+            friendRequestsPanel.setWidget((i + 1), 3, success);
+            
+            accept.addClickHandler(new ClickHandler() {
+                public void onClick(ClickEvent event) {
+                    // TODO LUKETODO Call a method that accepts a friend request
+                    // from a user when given the key of that user.
+                    // Give it potentialFriendKey
+                    
+                    success.setText("Friend Accepted");
+                }
+            });
+            
+            reject.addClickHandler(new ClickHandler() {
+                public void onClick(ClickEvent event) {
+                    // TODO LUKETODO Call a method that rejects a friend request
+                    // from a user when given the key of that user.
+                    // Give it potentialFriendKey
+                    
+                    success.setText("Friend Rejected");
+                }
+            }); 
         }
         
         friendRequestsPanel.addStyleName("gwt-friend"); 
