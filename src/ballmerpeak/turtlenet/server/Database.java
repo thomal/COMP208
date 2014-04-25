@@ -109,15 +109,18 @@ public class Database {
     //Get from DB
     public String getPDATA(String field, PublicKey key) {
         String strKey = Crypto.encodeKey(key);
-        String sqlStatement  = DatabaseStrings.getPData.replace("__FIELD__",
-
+	String value;
+        String sqlStatement  = DatabaseStrings.getPData.replace("__FIELD__", field);
         sqlStatement = sqlStatement.replace("__KEY__", strkey); //mods SQL template
+
         ResultSet results = query(sqlStatement);
-
-        String value = results.getString(field); //gets current value in 'field'
-
+        results.beforeStart();
+	if(results.next() )
+            value = results.getString(field); //gets current value in 'field'
+        else
+            value = "<No Value>";
         Logger.write("VERBOSE", "DB", "Called method Database.getPDATA("
-                     + field + ",...) = " + value); 
+                      + field + ",...) = " + value); 
         return value;
     }
     
@@ -128,11 +131,11 @@ public class Database {
                                                                Crypto.encodeKey(key) );
 
         ResultSet results = query(sqlStatement);
-        List<Message> posts = new List<Message>;
+        List<Message> posts = new List<Message>();
 	results.beforeFirst();
         
         while (results.next() ) {
-	    List<String> visibleTo;
+	    List<String> visibleTo = new List<String>();
 
 	    ResultSet currentPost = query(DBStrings.getPost.replace("__ID__", results.getInt("postID") ) );
             ResultSet currentPostVisibleTo = query(DBStrings.getVisibleTo.replace("__ID__", results.getInt("postID") );
@@ -156,35 +159,73 @@ public class Database {
     
     //Return all conversations
     public Conversation[] getConversations () {
-        //REPLACE ME
+        List<Conversation> convoList = new List<Conversation>();
+        ResultSet convoSet = query(DBStrings.getConversations);
 
-        
+	convoSet.beforeStart();
+	while (convoSet.next())
+	    convoList.add(getConversation(convoSet.getString("convoID")));
 
-        Logger.write("UNIMPL", "DB", "Unimplemented method Database.getConversations(...)");
-        return null;
+        Logger.write("VERBOSE", "DB", "getConversation()");
+        return convoList.toArray();
     }
     
     //Get keys of all people in the given conversation
     public PublicKey[] getPeopleInConvo (String sig) {
         //REPLACE ME
-        Logger.write("UNIMPL", "DB", "Unimplemented method Database.getPeopleInConvo(...)");
-        return null;
+	List<PublicKey> keys = new List<PublicKey>();
+
+	ResultSet keySet = query(DBStrings.getConversationMembers.replace("__SIG__", sig);
+	keySet.beforeStart();
+	while (keySet.next()) {
+	    keys.add(Crypto.decodeKey(keySet.getString("key")));
+	}
+        Logger.write("VERBOSE", "DB", "getPeopleInConvo(...)");
+	return keys.toArray();
     }
     
     //Reurn a conversation object
     public Conversation getConversation (String sig) {
-        //REPLACE ME
-        Logger.write("UNIMPL", "DB", "Unimplemented method Database.getConversation(" + sig + ")");
-        return null;
+        ResultSet convoSet = query(DBStrings.getConversation.replace("__SIG__", sig));
+	convoSet.beforeStart();
+	if(convoSet.next() ) {
+	    String timestamp = convoSet.getString("timeCreated");
+	    String firstMsg = query(DBStrings.getConversationMessages.replace("__ID__", convoID)).first().getString("msgText");
+	    PublicKey[] keys = getPeopleInConvo(sig);
+	    String[] keystrings = new String[keys.size()]();
+	    String[] users = new String[keys.size()]();
+	    for (int i = 0; i < keys.size(); i++) {
+	        keystrings[i] = Crypto.encodeKey(keys[i]);
+	        users[i] = getName(keys[i]);
+	    }
+            Logger.write("VERBOSE", "DB", "getConversation(...)");    
+	    return new Conversation(sig, timestamp, firstMsg, users.toArray(), keystrings.toArray());
+	} else {
+	    Logger.write("ERROR", "DB", "getConversation(...) passed invalid Signature.");    
+	    return null;
+	}
     }
     
     //Return all messages in a conversation
     //{{username, time, msg}, {username, time, msg}, etc.}
     //Please order it so that element 0 is the oldest message
-    public String[][] getConversationMessages (String signature) {
+    public String[][] getConversationMessages (String sig) {
         //REPLACE ME
-        Logger.write("UNIMPL", "DB", "Unimplemented method Database.getConversationMessages(...)");
-        return null;
+        ResultSet messageSet = query(DBStrings.getConversationMessages.replace("__SIG__", sig);
+        messageSet.beforeStart();
+	List<String[]> messagesList = new List<String[]>();
+
+        while(messageSet.next() ) {
+            String[] message = new String[3];
+	    message[0] = getName(messageSet.getString("sendersKey") );
+	    message[1] = messageSet.getString("time");
+	    message[2] = messageSet.getString("msgText");
+
+	    messagesList.add(message);
+        }
+
+        Logger.write("VERBOSE", "DB", "getConversationMessages(...)");
+        return messagesList.toArray();
     }
     
     //If multiple people have the same username then:
