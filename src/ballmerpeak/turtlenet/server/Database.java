@@ -76,18 +76,22 @@ public class Database {
         }
     }
     
-    public void execute (String query) throws Exception {
-        if (query.indexOf('(') != -1)
-            Logger.write("VERBOSE", "DB", "execute(\"" + query.substring(0,query.indexOf('(')) + "...\")");
-        else
-            Logger.write("VERBOSE", "DB", "execute(\"" + query.substring(0,20) + "...\")");
+    public void execute (String query) {
+        try {
+            if (query.indexOf('(') != -1)
+                Logger.write("VERBOSE", "DB", "execute(\"" + query.substring(0,query.indexOf('(')) + "...\")");
+            else
+                Logger.write("VERBOSE", "DB", "execute(\"" + query.substring(0,20) + "...\")");
         
-        Statement statement = dbConnection.createStatement();
-        statement.setQueryTimeout(30);
-        dbConnection.setAutoCommit(false);
-        statement.executeUpdate(query);
-        dbConnection.commit();
-        dbConnection.setAutoCommit(true);
+            Statement statement = dbConnection.createStatement();
+            statement.setQueryTimeout(30);
+            dbConnection.setAutoCommit(false);
+            statement.executeUpdate(query);
+            dbConnection.commit();
+            dbConnection.setAutoCommit(true);
+        } catch (java.sql.SQLException e) {
+            Logger.write("ERROR", "DB", "SQLException: " + e);
+        }
     }
     
     public ResultSet query (String query) {
@@ -109,51 +113,52 @@ public class Database {
     
     //Get from DB
     public String getPDATA(String field, PublicKey key) {
-        String strKey = Crypto.encodeKey(key);
-	String value;
-        String sqlStatement  = DBStrings.getPDATA.replace("__FIELD__", field);
-        sqlStatement = sqlStatement.replace("__KEY__", strKey); //mods SQL template
+        String value = "EXCEPTION IN GETPDATA";
+        try {
+            String strKey = Crypto.encodeKey(key);
+            String sqlStatement  = DBStrings.getPDATA.replace("__FIELD__", field);
+            sqlStatement = sqlStatement.replace("__KEY__", strKey); //mods SQL template
 
-        ResultSet results = query(sqlStatement);
-        results.beforeFirst();
-	if(results.next() )
-            value = results.getString(field); //gets current value in 'field'
-        else
-            value = "<No Value>";
-        Logger.write("VERBOSE", "DB", "Called method Database.getPDATA("
-                      + field + ",...) = " + value); 
+            ResultSet results = query(sqlStatement);
+            results.beforeFirst();
+            if(results.next() )
+                value = results.getString(field); //gets current value in 'field'
+            else
+                value = "<No Value>";
+            Logger.write("VERBOSE", "DB", "Called method Database.getPDATA(" + field + ",...) = " + value); 
+        } catch (java.sql.SQLException e) {
+            Logger.write("ERROR", "DB", "SQLException: " + e);
+        }
+        
         return value;
     }
     
     //Set the CMD to POST in the Message constructor
     public Message[] getWallPost (PublicKey key) {
-
-        String sqlStatement  = DBStrings.getWallPostIDs.replace("__KEY__",
-                                                               Crypto.encodeKey(key) );
-
-        ResultSet results = query(sqlStatement);
         Vector<Message> posts = new Vector<Message>();
-	results.beforeFirst();
+        try {
+            String sqlStatement  = DBStrings.getWallPostIDs.replace("__KEY__", Crypto.encodeKey(key) );
+            ResultSet results = query(sqlStatement);
+            results.beforeFirst();
         
-        while (results.next() ) {
-	    Vector<String> visibleTo = new Vector<String>();
+            while (results.next() ) {
+                Vector<String> visibleTo = new Vector<String>();
+                ResultSet currentPost = query(DBStrings.getPost.replace("__ID__", Integer.toString(results.getInt("postID") ) ) );
+                ResultSet currentPostVisibleTo = query(DBStrings.getVisibleTo.replace("__ID__", Integer.toString(results.getInt("postID"))));
+                currentPostVisibleTo.beforeFirst();
+                while(currentPostVisibleTo.next())
+                    visibleTo.add(currentPostVisibleTo.getString("key") );
 
-	    ResultSet currentPost = query(DBStrings.getPost.replace("__ID__", Integer.toString(results.getInt("postID") ) ) );
-            ResultSet currentPostVisibleTo = query(DBStrings.getVisibleTo.replace("__ID__", Integer.toString(results.getInt("postID"))));
-            currentPostVisibleTo.beforeFirst();
-            while(currentPostVisibleTo.next() ) {
-                visibleTo.add(currentPostVisibleTo.getString("key") );
-	    }
-
-            Message m = new MessageFactoryImpl().newPOST(currentPost.getString("msgText"), currentPost.getString("recieverKey"), ((String[])visibleTo.toArray()) );
-	    m.timestamp = Long.parseLong(currentPost.getString("time"));
-	    m.signature = currentPost.getString("sig");
-	    m.command = "POST";
-	    posts.add(m);
+                Message m = new MessageFactoryImpl().newPOST(currentPost.getString("msgText"), currentPost.getString("recieverKey"), ((String[])visibleTo.toArray()) );
+                m.timestamp = Long.parseLong(currentPost.getString("time"));
+                m.signature = currentPost.getString("sig");
+                m.command = "POST";
+                posts.add(m);
+            }
+        } catch (java.sql.SQLException e) {
+            Logger.write("ERROR", "DB", "SQLException: " + e);
         }
-
         
-
         Logger.write("VERBOSE", "DB", "getWallPost(...)");
         return (Message[])posts.toArray();
     }
@@ -163,54 +168,65 @@ public class Database {
         Vector<Conversation> convoList = new Vector<Conversation>();
         ResultSet convoSet = query(DBStrings.getConversations);
 
-	convoSet.beforeFirst();
-	while (convoSet.next())
-	    convoList.add(getConversation(convoSet.getString("convoID")));
-
+        try {
+            convoSet.beforeFirst();
+            while (convoSet.next())
+                convoList.add(getConversation(convoSet.getString("convoID")));
+        } catch (java.sql.SQLException e) {
+            Logger.write("ERROR", "DB", "SQLException: " + e);
+        }
+        
         Logger.write("VERBOSE", "DB", "getConversation()");
         return (Conversation[])convoList.toArray();
     }
     
     //Get keys of all people in the given conversation
     public PublicKey[] getPeopleInConvo (String sig) {
-        //REPLACE ME
-	Vector<PublicKey> keys = new Vector<PublicKey>();
-
-	ResultSet keySet = query(DBStrings.getConversationMembers.replace("__SIG__", sig));
-	keySet.beforeFirst();
-	while (keySet.next()) {
-	    keys.add(Crypto.decodeKey(keySet.getString("key")));
-	}
+        Vector<PublicKey> keys = new Vector<PublicKey>();
+        ResultSet keySet = query(DBStrings.getConversationMembers.replace("__SIG__", sig));
+        
+        try {
+            keySet.beforeFirst();
+            while (keySet.next())
+                keys.add(Crypto.decodeKey(keySet.getString("key")));
+        } catch (java.sql.SQLException e) {
+            Logger.write("ERROR", "DB", "SQLException: " + e);
+        }
+        
         Logger.write("VERBOSE", "DB", "getPeopleInConvo(...)");
-	return (PublicKey[])keys.toArray();
+        return (PublicKey[])keys.toArray();
     }
     
     //Reurn a conversation object
     public Conversation getConversation (String sig) {
-        ResultSet convoSet = query(DBStrings.getConversation.replace("__SIG__", sig));
-	convoSet.beforeFirst();
-	if(convoSet.next() ) {
-	    String timestamp = convoSet.getString("timeCreated");
-	    ResultSet messages = query(DBStrings.getConversationMessages.replace("__SIG__", sig));
-	    String firstMsg;
-	    messages.beforeFirst();
-	    if (messages.next())
-	        firstMsg = messages.getString("msgText");
-	    else
-	        firstMsg = "<no messages yet>";
-	    PublicKey[] keys = getPeopleInConvo(sig);
-	    String[] keystrings = new String[keys.length];
-	    String[] users = new String[keys.length];
-	    for (int i = 0; i < keys.length; i++) {
-	        keystrings[i] = Crypto.encodeKey(keys[i]);
-	        users[i] = getName(keys[i]);
-	    }
-            Logger.write("VERBOSE", "DB", "getConversation(...)");    
-	    return new Conversation(sig, timestamp, firstMsg, users, keystrings);
-	} else {
-	    Logger.write("ERROR", "DB", "getConversation(...) passed invalid Signature.");    
-	    return null;
-	}
+        try {
+            ResultSet convoSet = query(DBStrings.getConversation.replace("__SIG__", sig));
+            convoSet.beforeFirst();
+            if(convoSet.next() ) {
+                String timestamp = convoSet.getString("timeCreated");
+                ResultSet messages = query(DBStrings.getConversationMessages.replace("__SIG__", sig));
+                String firstMsg;
+                messages.beforeFirst();
+                if (messages.next())
+                    firstMsg = messages.getString("msgText");
+                else
+                    firstMsg = "<no messages yet>";
+                PublicKey[] keys = getPeopleInConvo(sig);
+                String[] keystrings = new String[keys.length];
+                String[] users = new String[keys.length];
+                for (int i = 0; i < keys.length; i++) {
+                    keystrings[i] = Crypto.encodeKey(keys[i]);
+                    users[i] = getName(keys[i]);
+                }
+                Logger.write("VERBOSE", "DB", "getConversation(...)");    
+                return new Conversation(sig, timestamp, firstMsg, users, keystrings);
+            } else {
+                Logger.write("ERROR", "DB", "getConversation(...) passed invalid Signature.");    
+            }
+        } catch (java.sql.SQLException e) {
+            Logger.write("ERROR", "DB", "SQLException: " + e);
+        }
+        return new Conversation();
     }
     
     //Return all messages in a conversation
@@ -218,16 +234,20 @@ public class Database {
     //Please order it so that element 0 is the oldest message
     public String[][] getConversationMessages (String sig) {
         ResultSet messageSet = query(DBStrings.getConversationMessages.replace("__SIG__", sig));
-        messageSet.beforeFirst();
-	Vector<String[]> messagesList = new Vector<String[]>();
-
-        while(messageSet.next() ) {
-            String[] message = new String[3];
-	    message[0] = getName(Crypto.decodeKey(messageSet.getString("sendersKey")));
-	    message[1] = messageSet.getString("time");
-	    message[2] = messageSet.getString("msgText");
-
-	    messagesList.add(message);
+        Vector<String[]> messagesList = new Vector<String[]>();
+        
+        try {
+            messageSet.beforeFirst();
+            while(messageSet.next() ) {
+                String[] message = new String[3];
+                message[0] = getName(Crypto.decodeKey(messageSet.getString("sendersKey")));
+                message[1] = messageSet.getString("time");
+                message[2] = messageSet.getString("msgText");
+                
+                messagesList.add(message);
+            }
+        } catch (java.sql.SQLException e) {
+            Logger.write("ERROR", "DB", "SQLException: " + e);
         }
 
         Logger.write("VERBOSE", "DB", "getConversationMessages(...)");
@@ -238,19 +258,24 @@ public class Database {
     //Logger.write("FATAL", "DB", "Duplicate usernames");
     //System.exit(1);
     public PublicKey getKey (String userName) {
-	int nameCount = 0;
-	String key = "<No Key>";
-	ResultSet results = query(DBStrings.getKey.replace("__USERNAME__", userName) );
-	results.beforeFirst();
-
-	while(results.next()) {
-	    nameCount++;
-	    key = results.getString("key");
-	}
-	if(nameCount == 0)
-	    Logger.write("ERROR", "DB", "getKey(" +  userName + ") - No keys found for userName");
-	else if (nameCount > 1 )
-	    Logger.write("ERROR", "DB", "getKey(" + userName + ") - Multple userNames found for key; Server OPs are evil!");
+        int nameCount = 0;
+        String key = "<No Key>";
+        ResultSet results = query(DBStrings.getKey.replace("__USERNAME__", userName) );
+        
+        try {
+            results.beforeFirst();
+            while(results.next()) {
+                nameCount++;
+                key = results.getString("key");
+            }
+        } catch (java.sql.SQLException e) {
+            Logger.write("ERROR", "DB", "SQLException: " + e);
+        }
+        
+        if(nameCount == 0)
+            Logger.write("ERROR", "DB", "getKey(" +  userName + ") - No keys found for userName");
+        else if (nameCount > 1 )
+            Logger.write("ERROR", "DB", "getKey(" + userName + ") - Multple userNames found for key; Server OPs are evil!");
 
         Logger.write("VERBOSE", "DB", "getKey(" + userName + ")");
         return Crypto.decodeKey(key);
@@ -260,17 +285,21 @@ public class Database {
     //In this format: {{"friends", "false"}, {"family", "true"}, etc.}
     public String[][] getCategories () {
         Vector<String[]> catList = new Vector<String[]>();
-	String catName;
-	String canSeePDATA;
-	ResultSet categorySet = query(DBStrings.getCategories);
-	categorySet.beforeFirst();
-
-	while(categorySet.next() ) {
-            String[] category = new String[2];
-            category[0] = categorySet.getString("catID");
-	    category[1] = categorySet.getInt("canSeePDATA") == 1 ? "true" : "false";
-	    catList.add(category);
-	}
+        String catName;
+        String canSeePDATA;
+        ResultSet categorySet = query(DBStrings.getCategories);
+        
+        try {
+            categorySet.beforeFirst();
+            while(categorySet.next() ) {
+                String[] category = new String[2];
+                category[0] = categorySet.getString("catID");
+                category[1] = categorySet.getInt("canSeePDATA") == 1 ? "true" : "false";
+                catList.add(category);
+            }
+        } catch (java.sql.SQLException e) {
+            Logger.write("ERROR", "DB", "SQLException: " + e);
+        }
 
         Logger.write("VERBOSE", "DB", "getCategories() - " + catList.size() + " returned");
         return (String[][])catList.toArray();
@@ -281,19 +310,23 @@ public class Database {
     //    return every key you know about
     public PublicKey[] getCategoryMembers (String catID) {
         String queryStr = "";
-	
-	if(catID.equals("all")) { 
+    
+        if(catID.equals("all")) { 
             queryStr = DBStrings.getAllKeys;
         } else {
             queryStr = DBStrings.getMemberKeys.replace("__CATNAME__", catID);
-	}
-	Vector<PublicKey> keyList = new Vector<PublicKey>();
-       	ResultSet keySet = query(queryStr);
-	keySet.beforeFirst();
+        }
+        Vector<PublicKey> keyList = new Vector<PublicKey>();
+        ResultSet keySet = query(queryStr);
+        
+        try {
+            keySet.beforeFirst();
+            while(keySet.next())
+                keyList.add(Crypto.decodeKey(keySet.getString("key")));
+        } catch (java.sql.SQLException e) {
+            Logger.write("ERROR", "DB", "SQLException: " + e);
+        }
 
-	while(keySet.next()) {
-            keyList.add(Crypto.decodeKey(keySet.getString("key")));
-	}
         Logger.write("VERBOSE", "DB", "getCategoryMembers(" + catID + ") - " + keyList.size() + " members");
         return (PublicKey[])keyList.toArray();
 
