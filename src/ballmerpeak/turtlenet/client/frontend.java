@@ -903,18 +903,13 @@ public class frontend implements EntryPoint {
             // This current method takes a string called parentID so give it that.
             // Specifically we want the IDs of the comments. Use i to select an
             // ID from the list. 
-            final String commentID = new String("ID of comment");
-        
+            final String commentID = new String("ID of comment");   
+            
+            // Create panel to contain the main contents of each comment
             FlowPanel commentsContentsPanel = new FlowPanel();
             commentsPanel.add(commentsContentsPanel);
             
-            // TODO LUKETODO "Name of user" should be replaced with a call to a 
-            // method that returns the name of the user who posted a comment when
-            // given the ID of a comment. 
-            // Give it commentID
-            Anchor postedBy = new Anchor("Name of user");
-            commentsContentsPanel.add(postedBy);
-            
+            // Create widgets
             TextArea commentContents = new TextArea();
             commentContents.setCharacterWidth(80);
             commentContents.setVisibleLines(10);
@@ -927,6 +922,44 @@ public class frontend implements EntryPoint {
             commentContents.setText("Contents of comment"); 
             commentsContentsPanel.add(commentContents);
             
+            //Create panel to contain controls for each comment
+            HorizontalPanel commentsControlPanel = new HorizontalPanel();
+            commentsContentsPanel.add(commentsControlPanel);
+            
+            // TODO LUKETODO "Public key" should be replaced with a call to a 
+            // method that returns the key of the user who posted a comment when
+            // given the ID of a comment. 
+            // Give it commentID
+            final String postedByKey = new String("Public key");
+            
+            commentsControlPanel.add(new Label("Posted by: "));
+            // TODO LUKETODO "Name of user" should be replaced with a call to 
+            // a method that returns the name of a user when given their public key.
+            // Give it postedByKey
+            Anchor postedBy = new Anchor("Name of user");
+            commentsControlPanel.add(postedBy);
+            Anchor likeComment = new Anchor("Like");
+            commentsControlPanel.add(likeComment);
+            
+            postedBy.addClickHandler(new ClickHandler() {
+                public void onClick(ClickEvent event) {
+                    wall(postedByKey);
+                }
+            }); 
+            
+            likeComment.addClickHandler(new ClickHandler() {
+                public void onClick(ClickEvent event) {
+                    // TODO LUKETODO Call a method that 'Likes' a comment when
+                    // given the ID of that comment.
+                    // Give it commentID
+                    
+                    commentsPanel.clear();
+                    comments(rootID, rootID, "Wall post");
+                    // TODO LOUISTODO Make the refreshed comments page move
+                    // to the place we just added our new comment.
+                }
+            }); 
+            
             // TODO LUKETODO 'parentType.equals("Comment")' is only here so I 
             // can see if the recursion actually works. It should be replaced 
             // with a call to a method that determines whether a comment has 
@@ -938,7 +971,7 @@ public class frontend implements EntryPoint {
                 String padding = new String (Integer.toString(commentsContentsPanel.getAbsoluteLeft() + 100) + "px");
                 
                 TextArea commentReplyContents = new TextArea();
-                commentReplyContents.setCharacterWidth(80);
+                commentReplyContents.setCharacterWidth(60);
                 commentReplyContents.setVisibleLines(5);
                 commentReplyContents.getElement().getStyle().setProperty("paddingLeft" , padding);
                 commentsContentsPanel.add(commentReplyContents);
@@ -961,7 +994,7 @@ public class frontend implements EntryPoint {
             }
 
             TextArea threadReplyContents = new TextArea();
-            threadReplyContents.setCharacterWidth(80);
+            threadReplyContents.setCharacterWidth(60);
             threadReplyContents.setVisibleLines(5);
             commentsContentsPanel.add(threadReplyContents);
             
