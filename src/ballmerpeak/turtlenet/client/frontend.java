@@ -90,8 +90,7 @@ public class frontend implements EntryPoint, ClickListener {
         });   
         
         // Call method to load the initial login page
-        //login();
-        conversation("Louis test");
+        login();
     }
     
     private String location = new String("");
@@ -767,7 +766,6 @@ public class frontend implements EntryPoint, ClickListener {
         friendsDetailsPanel.addStyleName("gwt-friends-details");
     }
 
-    boolean commentsPanelToggleIsOpen;
     private void wall(final String key) {
         location = "wall";
         refreshID = key;
@@ -960,6 +958,9 @@ public class frontend implements EntryPoint, ClickListener {
             }
             postContentsFooterPanel.add(likePost);
             
+            final Label stop = new Label("");            
+            postContentsFooterPanel.add(stop);
+            
             // TODO LUKETODO "5" should be replaced with a call to a method that
             // returns a the number of comments on a post when given the ID of
             // that post.
@@ -976,7 +977,7 @@ public class frontend implements EntryPoint, ClickListener {
             postContentsFooterPanel.add(comments);
             comments.addClickHandler(new ClickHandler() {
                 public void onClick(ClickEvent event) {
-                    commentsPanelToggleIsOpen = true;
+                    stop.setText("Page auto update paused");
                     comments(postID, key, postPanel, comments); 
                 }
             }); 
@@ -1115,6 +1116,14 @@ public class frontend implements EntryPoint, ClickListener {
         threadReplyContents.setCharacterWidth(60);
         threadReplyContents.setVisibleLines(6);
         commentsReplyThreadPanel.setWidget(0, 0, threadReplyContents);
+        
+        Button cancel = new Button("Cancel");
+        commentsReplyThreadPanel.setWidget(1, 1, cancel);
+        cancel.addClickHandler(new ClickHandler() {
+            public void onClick(ClickEvent event) {                        
+                wall(wallKey);
+            }
+        });   
 
         Button replyToThread;
         if(commentCount == 0) {
