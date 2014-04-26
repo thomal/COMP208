@@ -113,6 +113,7 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
     
     //Posting
     public String[] createCHAT (String[] keys) {
+        Logger.write("INFO", "TnImpl", "createCHAT(<" + keys.length + " keys>)");
         Message msg = new MessageFactoryImpl().newCHAT(keys);
         for (int i = 0; i < keys.length; i++)
             c.connection.postMessage(msg, Crypto.decodeKey(keys[i]));
@@ -123,8 +124,24 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
     }
     
     public String addMessageToCHAT (String text, String sig) {
-        Logger.write("INFO", "TnImpl", "addMessageToCHAT(" + text + "," + sig + ")");
+        Logger.write("INFO", "TnImpl", "addMessageToCHAT(" + text + ",...)");
         PublicKey[] keys = c.db.getPeopleInConvo(sig);
+        
+        if (keys.length == 0) {
+            try {
+                Thread.sleep(5*1000); //Account for latency when creating a chat
+            } catch (Exception e) {
+                Logger.write("ERROR", "TnImpl", "addMessageToCHAT(...) Could not find convo");
+            }
+            
+            keys = c.db.getPeopleInConvo(sig);
+            if (keys.length == 0) {
+                Logger.write("INFO", "TnImpl", "addMessageToCHAT(...) convo has " + Integer.toString(keys.length) + " participants");
+                return "failure"; //Convo doesn't exist, or we don't know about it yet
+            }
+        }
+        
+        Logger.write("INFO", "TnImpl", "addMessageToCHAT(...) convo has " + Integer.toString(keys.length) + " participants");
         Message msg = new MessageFactoryImpl().newPCHAT(sig, text);
         for (int i = 0; i < keys.length; i++)
             c.connection.postMessage(msg, keys[i]);

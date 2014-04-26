@@ -1,34 +1,60 @@
-===== Turtlenet started at Sat Apr 26 20:36:05 BST 2014=====
-1398540965 UNIMPL	TNClient	Ignoring password: 
-1398540965 INFO		NetCon	Read lastRead from file
-1398540965 INFO		DB	Connecting to database
-1398540965 INFO		NetCon	NetworkConnection started
-1398540967 VERBOSE	DB	getCategoryMembers(All)
-1398540967 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398540967 VERBOSE	DB	getCategoryMembers(All) returning 1 members
-1398540967 VERBOSE	DB	getName(...)
-1398540967 VERBOSE	DB	query("SELECT username FROM tUser WHERE key = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCsVfuN2uqFyoP65B3VoiybjQAB/4ywEdnyOUhgecsYhPgoGyJQ7cCYoHJBvPOQRLTpIduw/9btDt5ZWQoSNbUEVTjJ/dqQmu3FOBS/ii7Hxxqtyy5al6DWHHkQUaeWANzEc0oc46ulhx51/hvXxWCi5LMrL/7e6s8kkULtvaH5qQIDAQAB';")
-1398540967 VERBOSE	DB	getCategories()
-1398540967 VERBOSE	DB	query("SELECT * FROM tCategory;")
-1398540967 VERBOSE	DB	getCategories() returning 1 categories
-1398540970 VERBOSE	DB	getCategoryMembers(Awesome People)
-1398540970 VERBOSE	DB	query("SELECT userKey FROM tCategoryMembers WHERE catID = 'Awesome People';")
-1398540970 VERBOSE	DB	getCategoryMembers(Awesome People) returning 1 members
-1398540970 VERBOSE	DB	getName(...)
-1398540970 VERBOSE	DB	query("SELECT username FROM tUser WHERE key = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCsVfuN2uqFyoP65B3VoiybjQAB/4ywEdnyOUhgecsYhPgoGyJQ7cCYoHJBvPOQRLTpIduw/9btDt5ZWQoSNbUEVTjJ/dqQmu3FOBS/ii7Hxxqtyy5al6DWHHkQUaeWANzEc0oc46ulhx51/hvXxWCi5LMrL/7e6s8kkULtvaH5qQIDAQAB';")
-1398540970 VERBOSE	DB	getCategories()
-1398540970 VERBOSE	DB	query("SELECT * FROM tCategory;")
-1398540970 VERBOSE	DB	getCategories() returning 1 categories
-1398540972 VERBOSE	DB	getCategoryMembers(All)
-1398540972 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398540972 VERBOSE	DB	getCategoryMembers(All) returning 1 members
-1398540972 VERBOSE	DB	getName(...)
-1398540972 VERBOSE	DB	query("SELECT username FROM tUser WHERE key = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCsVfuN2uqFyoP65B3VoiybjQAB/4ywEdnyOUhgecsYhPgoGyJQ7cCYoHJBvPOQRLTpIduw/9btDt5ZWQoSNbUEVTjJ/dqQmu3FOBS/ii7Hxxqtyy5al6DWHHkQUaeWANzEc0oc46ulhx51/hvXxWCi5LMrL/7e6s8kkULtvaH5qQIDAQAB';")
-1398540972 VERBOSE	DB	getCategories()
-1398540972 VERBOSE	DB	query("SELECT * FROM tCategory;")
-1398540972 VERBOSE	DB	getCategories() returning 1 categories
-1398540974 INFO		TNImpl	stopTN()
-1398540974 INFO		NetCon	close()
-1398540974 INFO		NetCon	Saved lastRead to disk
-1398540974 INFO		DB	Disconnecting from database
-===== Turtlenet closed  at Sat Apr 26 20:36:14 BST 2014=====
+===== Turtlenet started at Sat Apr 26 22:20:57 BST 2014=====
+1398547257 UNIMPL	TNClient	Ignoring password: 
+1398547257 INFO		NetCon	Read lastRead from file
+1398547257 INFO		DB	Connecting to database
+1398547257 INFO		NetCon	NetworkConnection started
+1398547259 VERBOSE	DB	getConversations()
+1398547259 VERBOSE	DB	query("SELECT * FROM tConvos;")
+1398547260 VERBOSE	DB	getCategoryMembers(all)
+1398547260 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398547260 VERBOSE	DB	getCategoryMembers(all) returning 1 members
+1398547260 VERBOSE	DB	getName(...)
+1398547260 VERBOSE	DB	query("SELECT username FROM tUser WHERE key = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCsVfuN2uqFyoP65B3VoiybjQAB/4ywEdnyOUhgecsYhPgoGyJQ7cCYoHJBvPOQRLTpIduw/9btDt5ZWQoSNbUEVTjJ/dqQmu3FOBS/ii7Hxxqtyy5al6DWHHkQUaeWANzEc0oc46ulhx51/hvXxWCi5LMrL/7e6s8kkULtvaH5qQIDAQAB';")
+1398547268 INFO		TnImpl	createCHAT(<1 keys>)
+1398547268 INFO		Crypto	sign()
+1398547268 INFO		Crypto	sign()
+1398547268 INFO		Crypto	encrypt()
+1398547268 INFO		NetCon	uploaded message: "CHAT\AYdbsfeFBvzLc7NYy5QaPW/g7umPq5Z1X1o9cK1ocJ6F0z52pTklc6GopzFZ20x7nsgIjGhkdt1Yu8pdcUNP1XUReLTM3pAeAAtkIozPicLlBeWn4Ba12JpaOrOKvPzMnWeZvz9sBk4694Vbi+Br6jjvgjR/c4NcVuQ+gQ2KdUc=\MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCsVfuN2uqFyoP65B3VoiybjQAB/4ywEdnyOUhgecsYhPgoGyJQ7cCYoHJBvPOQRLTpIduw/9btDt5ZWQoSNbUEVTjJ/dqQmu3FOBS/ii7Hxxqtyy5al6DWHHkQUaeWANzEc0oc46ulhx51/hvXxWCi5LMrL/7e6s8kkULtvaH5qQIDAQAB\1398547268878"
+1398547268 INFO		TnImpl	addMessageToCHAT(kek,...)
+1398547268 VERBOSE	DB	getPeopleInConvo(...)
+1398547268 VERBOSE	DB	query("SELECT key FROM tConvoKeys WHERE convoID = 'AYdbsfeFBvzLc7NYy5QaPW/g7umPq5Z1X1o9cK1ocJ6F0z52pTklc6GopzFZ20x7nsgIjGhkdt1Yu8pdcUNP1XUReLTM3pAeAAtkIozPicLlBeWn4Ba12JpaOrOKvPzMnWeZvz9sBk4694Vbi+Br6jjvgjR/c4NcVuQ+gQ2KdUc=';")
+1398547269 INFO		Crypto	decrypt()
+1398547269 VERBOSE	PARSE	parsing message
+1398547269 VERBOSE	DB	addConvo(...)
+1398547269 VERBOSE	DB	execute("INSERT INTO tConvos ...")
+1398547269 VERBOSE	DB	execute("INSERT INTO tConvoKeys ...")
+1398547273 VERBOSE	DB	getPeopleInConvo(...)
+1398547273 VERBOSE	DB	query("SELECT key FROM tConvoKeys WHERE convoID = 'AYdbsfeFBvzLc7NYy5QaPW/g7umPq5Z1X1o9cK1ocJ6F0z52pTklc6GopzFZ20x7nsgIjGhkdt1Yu8pdcUNP1XUReLTM3pAeAAtkIozPicLlBeWn4Ba12JpaOrOKvPzMnWeZvz9sBk4694Vbi+Br6jjvgjR/c4NcVuQ+gQ2KdUc=';")
+1398547273 INFO		TnImpl	addMessageToCHAT(...) convo has 1 participants
+1398547273 INFO		Crypto	sign()
+1398547273 INFO		Crypto	sign()
+1398547273 INFO		Crypto	encrypt()
+1398547274 INFO		NetCon	uploaded message: "PCHAT\HUA3eS1GCSov0svG59TuQKCLU9zqsx/lc8G/QhN2I9BKVUdkOvdt/9J0uE8dvgESsiHEIMr7uTtpzH/NjoQHsPxniNu2YeZyYxx66Y86Fmy2DHqN8BbJ8zK4KDsO0lk7Ab1r6UXIwErzlsobWmtOPEj2SU3vQ3WDAtFe1LSsoj4=\AYdbsfeFBvzLc7NYy5QaPW/g7umPq5Z1X1o9cK1ocJ6F0z52pTklc6GopzFZ20x7nsgIjGhkdt1Yu8pdcUNP1XUReLTM3pAeAAtkIozPicLlBeWn4Ba12JpaOrOKvPzMnWeZvz9sBk4694Vbi+Br6jjvgjR/c4NcVuQ+gQ2KdUc=:kek\1398547273996"
+1398547274 VERBOSE	DB	getConversation(...)
+1398547274 VERBOSE	DB	query("SELECT sendersKey, msgText, time FROM tConvoMessages WHERE convoID = 'AYdbsfeFBvzLc7NYy5QaPW/g7umPq5Z1X1o9cK1ocJ6F0z52pTklc6GopzFZ20x7nsgIjGhkdt1Yu8pdcUNP1XUReLTM3pAeAAtkIozPicLlBeWn4Ba12JpaOrOKvPzMnWeZvz9sBk4694Vbi+Br6jjvgjR/c4NcVuQ+gQ2KdUc=';")
+1398547274 ERROR	DB	getConversation(...) passed invalid Signature.
+1398547274 VERBOSE	DB	getConversationMessages(...)
+1398547274 VERBOSE	DB	query("SELECT sendersKey, time, msgText FROM tConvoMessages WHERE convoID = 'AYdbsfeFBvzLc7NYy5QaPW/g7umPq5Z1X1o9cK1ocJ6F0z52pTklc6GopzFZ20x7nsgIjGhkdt1Yu8pdcUNP1XUReLTM3pAeAAtkIozPicLlBeWn4Ba12JpaOrOKvPzMnWeZvz9sBk4694Vbi+Br6jjvgjR/c4NcVuQ+gQ2KdUc=';")
+1398547274 INFO		Crypto	decrypt()
+1398547274 VERBOSE	PARSE	parsing message
+1398547274 VERBOSE	DB	addMessageToChat(...)
+1398547274 VERBOSE	DB	getSignatory(...)
+1398547274 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398547274 INFO		Crypto	verifySig()
+1398547274 INFO		Crypto	verifySig() - TRUE
+1398547274 VERBOSE	DB	execute("INSERT INTO tConvoMessages ...")
+1398547282 VERBOSE	DB	getConversations()
+1398547282 VERBOSE	DB	query("SELECT * FROM tConvos;")
+1398547282 VERBOSE	DB	getConversation(...)
+1398547282 VERBOSE	DB	query("SELECT sendersKey, msgText, time FROM tConvoMessages WHERE convoID = 'AYdbsfeFBvzLc7NYy5QaPW/g7umPq5Z1X1o9cK1ocJ6F0z52pTklc6GopzFZ20x7nsgIjGhkdt1Yu8pdcUNP1XUReLTM3pAeAAtkIozPicLlBeWn4Ba12JpaOrOKvPzMnWeZvz9sBk4694Vbi+Br6jjvgjR/c4NcVuQ+gQ2KdUc=';")
+1398547282 ERROR	DB	SQLException: java.sql.SQLException: no such column: 'timeCreated'
+1398547289 VERBOSE	DB	getConversation(...)
+1398547289 VERBOSE	DB	query("SELECT sendersKey, msgText, time FROM tConvoMessages WHERE convoID = '<SIGNATURE NOT KNOWN>';")
+1398547289 ERROR	DB	getConversation(...) passed invalid Signature.
+1398547289 VERBOSE	DB	getConversationMessages(...)
+1398547289 VERBOSE	DB	query("SELECT sendersKey, time, msgText FROM tConvoMessages WHERE convoID = '<SIGNATURE NOT KNOWN>';")
+1398547296 INFO		TNImpl	stopTN()
+1398547296 INFO		NetCon	close()
+1398547296 INFO		NetCon	Saved lastRead to disk
+1398547296 INFO		DB	Disconnecting from database
+===== Turtlenet closed  at Sat Apr 26 22:21:36 BST 2014=====
