@@ -92,12 +92,17 @@ public class Crypto {
         return null;
     }
     
-    public static String sign (String msg) {
+    public static String sign (Message msg) {
+        Logger.write("INFO", "Crypto","sign()");
+        return sign(msg, Crypto.getPrivateKey());
+    }
+    
+    public static String sign (Message msg, PrivateKey k) {
         Logger.write("INFO", "Crypto","sign()");
         try {
             Signature signer = Signature.getInstance("SHA1withRSA");
-            signer.initSign(Crypto.getPrivateKey());
-            signer.update(msg.getBytes("UTF-8"));
+            signer.initSign(k);
+            signer.update((Long.toString(msg.timestamp) + msg.content).getBytes("UTF-8"));
             byte[] sig = signer.sign();
             return Crypto.Base64Encode(sig);
         } catch (Exception e) {
@@ -111,8 +116,7 @@ public class Crypto {
             MessageDigest hasher = MessageDigest.getInstance("SHA-256");        
             return DatatypeConverter.printHexBinary(hasher.digest(data.getBytes("UTF-8")));
         } catch (Exception e) {
-            //SHA-256 isn't supported
-            //TODO
+            Logger.write("FATAL", "DB","SHA-256 not supported by your JRE");
         }
         return "not_a_hash";
     }
@@ -122,8 +126,14 @@ public class Crypto {
         try {
             Signature sigChecker = Signature.getInstance("SHA1withRSA");
             sigChecker.initVerify(author);
-            sigChecker.update((msg.getTimestamp()+msg.getContent()).getBytes("UTF-8"));
-            return sigChecker.verify(Crypto.Base64Decode(msg.getSig()));
+            sigChecker.update((Long.toString(msg.getTimestamp())+msg.getContent()).getBytes("UTF-8"));
+            boolean valid = sigChecker.verify(Crypto.Base64Decode(msg.getSig()));
+            if (valid) {
+                Logger.write("INFO", "Crypto","verifySig() - TRUE");
+            } else {
+                Logger.write("INFO", "Crypto","verifySig() - FALSE");
+            }
+            return valid;
         } catch (Exception e) {
             Logger.write("ERROR", "Crypto", "Could not verify signature");
         }

@@ -13,7 +13,9 @@ public class MessageFactoryImpl {
 
     public  Message newMessage(String cmd, String content) {
         long timestamp = System.currentTimeMillis();
-        return new Message(cmd, content, System.currentTimeMillis(), Crypto.sign(timestamp + content));
+        Message msg = new Message(cmd, content, timestamp, "");
+        msg.signature = Crypto.sign(msg);
+        return msg;
     }
     
     public Message newCLAIM(String username) {
