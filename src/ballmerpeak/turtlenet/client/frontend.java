@@ -327,14 +327,14 @@ public class frontend implements EntryPoint, ClickListener {
             }
         });
         
+        friendsListPanel_myKeyTextBox = new TextBox();
+        friendsListPanel_myKeyTextBox.setWidth("500px");
         
         turtlenet.getMyKey(new AsyncCallback<String>() {
             public void onFailure(Throwable caught) {
                 //TODO Error
             }
             public void onSuccess(String result) {
-                friendsListPanel_myKeyTextBox = new TextBox();
-                friendsListPanel_myKeyTextBox.setWidth("500px");
                 friendsListPanel_myKeyTextBox.setText(result);
             }
         });
