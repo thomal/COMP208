@@ -335,7 +335,8 @@ public class frontend implements EntryPoint, ClickListener {
         });
         
         friendsListPanel_myKeyTextBox = new TextBox();
-        friendsListPanel_myKeyTextBox.setWidth("500px");
+        friendsListPanel_myKeyTextBox.setWidth("480px");
+        friendsListPanel_myKeyTextBox.setReadOnly(true);
         
         turtlenet.getMyKey(new AsyncCallback<String>() {
             public void onFailure(Throwable caught) {
@@ -555,9 +556,6 @@ public class frontend implements EntryPoint, ClickListener {
         });
 
         // Create widgets relating to gender
-        // Gender shouldn't be chosen from a list. The user should be able to 
-        // write whatever they want. This way people who are trans gender are
-        // satisfied(Simply having an 'Other' option is usually not enough
         Label genderLabel = new Label("Gender:");
         myDetailsPanel.setWidget(3, 0, genderLabel);
         
@@ -635,12 +633,30 @@ public class frontend implements EntryPoint, ClickListener {
             }
         });
         
-        Button permissions = new Button("Permissions");
-        permissions.setWidth("310px");
-        myDetailsPanel.setWidget(5, 1, permissions);
-        permissions.addClickHandler(new ClickHandler() {
+        Label keyRevokeLabel = new Label("Date to revoke key:");
+        myDetailsPanel.setWidget(5, 0, keyRevokeLabel);
+        
+        final TextBox editRevokeDate = new TextBox();
+        editRevokeDate.setWidth("300px");
+        
+        // TODO LUKETODO "01/01/1970" should be replaced with a call to a method
+        // that returns the date the users key is set to be revoked on.
+        editRevokeDate.setText("01/01/1970");
+        myDetailsPanel.setWidget(5, 1, editRevokeDate);        
+        
+        Button saveRevokeDate = new Button("Save date");
+        myDetailsPanel.setWidget(5, 2, saveRevokeDate);
+        
+        final Label editkeyRevokeLabel = new Label();
+        myDetailsPanel.setWidget(5, 3, editkeyRevokeLabel);
+        
+        saveEmail.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                myDetailsPermissions();
+                // TODO LUKETODO Call a method that saves the date the user
+                // has chosen to revoke their key on.
+                // Use editRevokeDate.getText()  to obtain it.
+                //Success =   editEmailLabel.setText("Date saved");
+                //Failure =   editEmailLabel.setText("Failed to save date");
             }
         });
         
@@ -653,10 +669,6 @@ public class frontend implements EntryPoint, ClickListener {
     private void myDetailsPermissions() {
         location = "myDetailsPermissions";
         refreshID = "";
-    
-        // Setup basic page isn't done intentionally, it's an addod to myDetails
-        //RootPanel.get().clear();
-        //navigation();
         
         // Add panel to contain widgets
         final FlexTable myDetailsPermissionsPanel = new FlexTable();
@@ -692,15 +704,6 @@ public class frontend implements EntryPoint, ClickListener {
                         }
                     });
                 }
-            }
-        });
-        
-        Button myDetails = new Button("My Details");
-        myDetails.setWidth("300px");
-        myDetailsPermissionsPanel.setWidget((myDetailsPermissionsPanel.getRowCount() + 1), 0, myDetails);
-        myDetails.addClickHandler(new ClickHandler() {
-            public void onClick(ClickEvent event) {
-                myDetails();
             }
         });
         
