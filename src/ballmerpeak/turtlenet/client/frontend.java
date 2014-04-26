@@ -62,6 +62,8 @@ import com.google.gwt.event.logical.shared.*;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.dom.client.Style.FontWeight;
+import com.google.gwt.dom.client.DivElement;
+import com.google.gwt.dom.client.Document;
 
 public class frontend implements EntryPoint {
 
@@ -69,6 +71,9 @@ public class frontend implements EntryPoint {
     private final TurtlenetAsync turtlenet = GWT.create(Turtlenet.class);
     //private final TurtlenetAsync msgfactory = GWT.create(MessageFactory.class);
     public void onModuleLoad() {
+        DivElement loadingIndicator = DivElement.as(Document.get().getElementById("loading"));
+        loadingIndicator.setInnerHTML("");
+        
         /* Add handler for window closing */
         Window.addCloseHandler(new CloseHandler<Window>() {
                 public void onClose(CloseEvent<Window> event) {
