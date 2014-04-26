@@ -1138,14 +1138,13 @@ public class frontend implements EntryPoint {
                 Button send = new Button("Send");
                 newConversationPanel.setWidget(0, 2, send);
                 
-                memberKeys = new String[currentFriends.getItemCount()];
-                for (int i = 0; i < currentFriends.getItemCount(); i++) {
-                    memberKeys[i] = currentFriends.getValue(i);
-                }
-                
                 send.addClickHandler(new ClickHandler() {
                     String[] createChatReturn;
                     public void onClick(ClickEvent event) {
+                        memberKeys = new String[currentFriends.getItemCount()];
+                        for (int i = 0; i < currentFriends.getItemCount(); i++) {
+                            memberKeys[i] = currentFriends.getValue(i);
+                        }
                         turtlenet.createCHAT(memberKeys, new AsyncCallback<String[]>() {
                             int i;
                             public void onFailure(Throwable caught) {

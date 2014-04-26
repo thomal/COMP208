@@ -223,7 +223,7 @@ public class Database {
                 }
                 return new Conversation(sig, timestamp, firstMsg, users, keystrings);
             } else {
-                Logger.write("ERROR", "DB", "getConversation(...) passed invalid Signature.");    
+                Logger.write("ERROR", "DB", "getConversation(...) passed invalid Signature.");
             }
         } catch (java.sql.SQLException e) {
             Logger.write("ERROR", "DB", "SQLException: " + e);

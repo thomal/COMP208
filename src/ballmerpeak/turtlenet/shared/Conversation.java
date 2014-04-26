@@ -4,11 +4,11 @@ import java.io.Serializable;
 
 public class Conversation implements Serializable {
     public Conversation () {
-        signature = null;
-        timestamp = null;
-        firstMessage = null;
-        users = null;
-        keys = null;
+        signature = "<SIGNATURE NOT KNOWN>";
+        timestamp = "0";
+        firstMessage = "<FIRST MESSAGE NOT KNOWN>";
+        users = new String[0];
+        keys = new String[0];
     }
 
     public Conversation (String sig, String time, String fmsg, String[] _users, String[] _keys) {

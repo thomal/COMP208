@@ -98,10 +98,10 @@ class DBStrings {
     public static final String getWallPostSigs  = "SELECT sig FROM tPost WHERE reciverKey = '__KEY__';";
     public static final String getPost          = "SELECT time, sig, msgText, recieversKey FROM tPost WHERE sig = '__SIG__';";
     public static final String getVisibleTo     = "SELECT key FROM tPostVisibleTo WHERE sig = '__SIG__';";
-    public static final String getConversation  = "SELECT senderKey, msgText, time FROM tConvoMessages WHERE convoID = '__SIG__';";
+    public static final String getConversation  = "SELECT sendersKey, msgText, time FROM tConvoMessages WHERE convoID = '__SIG__';";
     public static final String getConversations = "SELECT * FROM tConvos;";
-    public static final String getConversationMembers  = "SELECT key FROM tConvoKeys WHERE sig = __SIG__;";
-    public static final String getConversationMessages = "SELECT sendersKey, time, msgText FROM tConvoMessages WHERE sig = '__SIG__';";
+    public static final String getConversationMembers  = "SELECT key FROM tConvoKeys WHERE convoID = '__SIG__';";
+    public static final String getConversationMessages = "SELECT sendersKey, time, msgText FROM tConvoMessages WHERE convoID = '__SIG__';";
     public static final String getKey           = "SELECT key FROM tUser WHERE username = '__USERNAME__';";
     public static final String getCategories    = "SELECT * FROM tCategory;";
     public static final String getCategory      = "SELECT * FROM tCategory WHERE catID = '__CATNAME__';";
