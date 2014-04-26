@@ -76,7 +76,7 @@ public class Database {
         }
     }
     
-    public void execute (String query) {
+    public void execute (String query) throws java.sql.SQLException {
         try {
             if (query.indexOf('(') != -1)
                 Logger.write("VERBOSE", "DB", "execute(\"" + query.substring(0,query.indexOf('(')) + "...\")");
@@ -91,10 +91,11 @@ public class Database {
             dbConnection.setAutoCommit(true);
         } catch (java.sql.SQLException e) {
             Logger.write("ERROR", "DB", "SQLException: " + e);
+            throw e;
         }
     }
     
-    public ResultSet query (String query) {
+    public ResultSet query (String query) throws java.sql.SQLException {
         if (query.indexOf('(') != -1)
             Logger.write("VERBOSE", "DB", "execute(\"" + query.substring(0,query.indexOf('(')) + "...\")");
         else
@@ -105,9 +106,9 @@ public class Database {
             statement.setQueryTimeout(30);
             ResultSet r = statement.executeQuery(query);
             return r;
-        } catch (Exception e) {
+        } catch (java.sql.SQLException e) {
             Logger.write("RED", "DB", "Failed to query database: " + e);
-            return null;
+            throw e;
         }
     }
     
@@ -137,14 +138,14 @@ public class Database {
     public Message[] getWallPost (PublicKey key) {
         Vector<Message> posts = new Vector<Message>();
         try {
-            String sqlStatement  = DBStrings.getWallPostIDs.replace("__KEY__", Crypto.encodeKey(key) );
+            String sqlStatement  = DBStrings.getWallPostSigs.replace("__KEY__", Crypto.encodeKey(key) );
             ResultSet results = query(sqlStatement);
             results.beforeFirst();
         
             while (results.next() ) {
                 Vector<String> visibleTo = new Vector<String>();
-                ResultSet currentPost = query(DBStrings.getPost.replace("__ID__", Integer.toString(results.getInt("postID") ) ) );
-                ResultSet currentPostVisibleTo = query(DBStrings.getVisibleTo.replace("__ID__", Integer.toString(results.getInt("postID"))));
+                ResultSet currentPost = query(DBStrings.getPost.replace("__SIG__", Integer.toString(results.getInt("sig") ) ) );
+                ResultSet currentPostVisibleTo = query(DBStrings.getVisibleTo.replace("__SIG__", Integer.toString(results.getInt("sig"))));
                 currentPostVisibleTo.beforeFirst();
                 while(currentPostVisibleTo.next())
                     visibleTo.add(currentPostVisibleTo.getString("key") );
@@ -166,9 +167,9 @@ public class Database {
     //Return all conversations
     public Conversation[] getConversations () {
         Vector<Conversation> convoList = new Vector<Conversation>();
-        ResultSet convoSet = query(DBStrings.getConversations);
 
         try {
+            ResultSet convoSet = query(DBStrings.getConversations);
             convoSet.beforeFirst();
             while (convoSet.next())
                 convoList.add(getConversation(convoSet.getString("convoID")));
@@ -183,9 +184,9 @@ public class Database {
     //Get keys of all people in the given conversation
     public PublicKey[] getPeopleInConvo (String sig) {
         Vector<PublicKey> keys = new Vector<PublicKey>();
-        ResultSet keySet = query(DBStrings.getConversationMembers.replace("__SIG__", sig));
         
         try {
+            ResultSet keySet = query(DBStrings.getConversationMembers.replace("__SIG__", sig));
             keySet.beforeFirst();
             while (keySet.next())
                 keys.add(Crypto.decodeKey(keySet.getString("key")));
@@ -233,10 +234,10 @@ public class Database {
     //{{username, time, msg}, {username, time, msg}, etc.}
     //Please order it so that element 0 is the oldest message
     public String[][] getConversationMessages (String sig) {
-        ResultSet messageSet = query(DBStrings.getConversationMessages.replace("__SIG__", sig));
         Vector<String[]> messagesList = new Vector<String[]>();
         
         try {
+            ResultSet messageSet = query(DBStrings.getConversationMessages.replace("__SIG__", sig));
             messageSet.beforeFirst();
             while(messageSet.next() ) {
                 String[] message = new String[3];
@@ -260,9 +261,9 @@ public class Database {
     public PublicKey getKey (String userName) {
         int nameCount = 0;
         String key = "<No Key>";
-        ResultSet results = query(DBStrings.getKey.replace("__USERNAME__", userName) );
         
         try {
+            ResultSet results = query(DBStrings.getKey.replace("__USERNAME__", userName) );
             results.beforeFirst();
             while(results.next()) {
                 nameCount++;
@@ -287,9 +288,9 @@ public class Database {
         Vector<String[]> catList = new Vector<String[]>();
         String catName;
         String canSeePDATA;
-        ResultSet categorySet = query(DBStrings.getCategories);
         
         try {
+            ResultSet categorySet = query(DBStrings.getCategories);
             categorySet.beforeFirst();
             while(categorySet.next() ) {
                 String[] category = new String[2];
@@ -317,9 +318,9 @@ public class Database {
             queryStr = DBStrings.getMemberKeys.replace("__CATNAME__", catID);
         }
         Vector<PublicKey> keyList = new Vector<PublicKey>();
-        ResultSet keySet = query(queryStr);
         
         try {
+            ResultSet keySet = query(queryStr);
             keySet.beforeFirst();
             while(keySet.next())
                 keyList.add(Crypto.decodeKey(keySet.getString("key")));
@@ -365,95 +366,269 @@ public class Database {
     }
     
     //Add to DB
-    //Remember to store the signautre, create table sql may need updating
-    public void addPost (Message post) {
+    public boolean addPost (Message post) {
+        Logger.write("VERBOSE", "DB", "addPost(...)");
         
-        Logger.write("UNIMPL", "DB", "Unimplemented method Database.addPost(...)");
+        try {
+            execute(DBStrings.addPost.replace("__SIG__", post.getSig())
+                                     .replace("__msgText__", post.POSTgetText())
+                                     .replace("__time__", Long.toString(post.getTimestamp()))
+                                     .replace("__recieverKey__", post.POSTgetWall())
+                                     .replace("__sendersKey__", Crypto.encodeKey(getSignatory(post))));
+            String[] visibleTo = post.POSTgetVisibleTo();
+            for (int i = 0; i < visibleTo.length; i++)
+                execute(DBStrings.addPostVisibility.replace("__postSig", post.getSig()).replace("__key__", visibleTo[i]));
+            return true;
+        } catch (java.sql.SQLException e) {
+            Logger.write("ERROR", "DB", "SQLException: " + e);
+            return false;
+        }
     }
     
     public boolean addKey (PublicKey k) {
-        //REPLACE ME
-        Logger.write("UNIMPL", "DB", "Unimplemented method Database.addKey(...)");
+        Logger.write("VERBOSE", "DB", "addKey(...)");
+        
+        try {
+            execute(DBStrings.addKey.replace("__key__", Crypto.encodeKey(k)));
+            return validateClaims(k);
+        } catch (java.sql.SQLException e) {
+            Logger.write("ERROR", "DB", "SQLException: " + e);
+        }
+        
+        return false;
+    }
+    
+    //Update k's username by validating claims
+    public boolean validateClaims(PublicKey k) {
+        try {
+            ResultSet claimSet = query(DBStrings.getClaims);
+            claimSet.beforeFirst();
+            while (claimSet.next()) {
+                Message msg = new Message("CLAIM",
+                                          claimSet.getString("name"),
+                                          Long.parseLong(claimSet.getString("claimTime")),
+                                          claimSet.getString("sig"));
+                if (Crypto.verifySig(msg, k)) {
+                    execute(DBStrings.newUsername.replace("__name__", msg.CLAIMgetName()).replace("__key__", Crypto.encodeKey(k)));
+                    execute(DBStrings.removeClaim.replace("__sig__", msg.getSig()));
+                    Logger.write("INFO", "DB", "Claim for " + msg.CLAIMgetName() + " verified");
+                }
+            }
+        } catch (java.sql.SQLException e) {
+            Logger.write("ERROR", "DB", "SQLException: " + e);
+            return false;
+        }
         return true;
     }
     
-    //remember to store the signature
     //if this key has already claimed a name, forget the old one
-    public void addClaim (Message claim) {
-        //REPLACE ME
-        Logger.write("UNIMPL", "DB", "Unimplemented method Database.addClaim(...)");
+    public boolean addClaim (Message claim) {
+        Logger.write("VERBOSE", "DB", "addClaim(...)");
+        
+        try {
+            execute(DBStrings.addClaim.replace("__sig__", claim.getSig())
+                                      .replace("__name__", claim.CLAIMgetName())
+                                      .replace("__time__", Long.toString(claim.getTimestamp())));
+            
+            ResultSet everyone = query(DBStrings.getAllKeys);
+            everyone.beforeFirst();
+            while (everyone.next())
+                validateClaims(Crypto.decodeKey(everyone.getString("key")));
+        } catch (java.sql.SQLException e) {
+            Logger.write("ERROR", "DB", "SQLException: " + e);
+            return false;
+        }
+        return true;
     }
     
-    //remember to store the signature
-    public void addRevocation (Message revocation) {
-        //REPLACE ME
-        Logger.write("UNIMPL", "DB", "Unimplemented method Database.addRevocation(...)");
+    public boolean addRevocation (Message revocation) {
+        Logger.write("VERBOSE", "DB", "addRevocation(...)");
+        
+        try {
+            execute(DBStrings.addRevocation.replace("__sig__", revocation.getSig())
+                                           .replace("__time__", Long.toString(revocation.REVOKEgetTime()))
+                                           .replace("__creationTime__", Long.toString(revocation.getTimestamp())));
+            //TODO//////////////////////////////Erase revoked content in DB///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        } catch (java.sql.SQLException e) {
+            Logger.write("ERROR", "DB", "SQLException: " + e);
+            return false;
+        }
+        
+        return true;
     }
     
-    //fuck the signature
-    public void addPDATA (Message update) {
-        //REPLACE ME
-        Logger.write("UNIMPL", "DB", "Unimplemented method Database.addPDATA(...)");
+    public boolean addPDATA (Message update) {
+        Logger.write("VERBOSE", "DB", "addPDATA(...)");
+        boolean ret = true;
+        
+        String[][] updates = update.PDATAgetValues();
+        for (int i = 0; i < updates.length; i++)
+            if (!updatePDATA(updates[i][0], updates[i][1], getSignatory(update)))
+                ret = false;
+        
+        return ret;
     }
     
-    //same as method above, but without message parameter
-    public void updatePDATA (String field, String value, PublicKey k) {
-        //REPLACE ME
-        Logger.write("UNIMPL", "DB", "Unimplemented method Database.updatePDATA(...)");
+    public boolean updatePDATA (String field, String value, PublicKey k) {
+        Logger.write("VERBOSE", "DB", "updatePDATA(...)");
+        
+        try {
+            execute(DBStrings.addPDATA.replace("__field__", field)
+                                      .replace("__value__", value)
+                                      .replace("__key__", Crypto.encodeKey(k)));
+        } catch (java.sql.SQLException e) {
+            Logger.write("ERROR", "DB", "SQLException: " + e);
+            return false;
+        }
+        
+        return true;
     }
     
-    //Remember to store the signautre, create table sql may need updating
-    public void addChat (Message chat) {
-        //REPLACE ME
-        Logger.write("UNIMPL", "DB", "Unimplemented method Database.addChat(...)");
+    public boolean addConvo (Message convo) {
+        Logger.write("VERBOSE", "DB", "addConvo(...)");
+        
+        try {
+            execute(DBStrings.addConvo.replace("__sig__", convo.getSig())
+                                      .replace("__time__", Long.toString(convo.getTimestamp())));
+            String[] keys = convo.CHATgetKeys();
+            for (int i = 0; i < keys.length; i++) {
+                execute(DBStrings.addConvoParticipant.replace("__sig__", convo.getSig())
+                                                     .replace("__key__", keys[i]));
+            }
+        } catch (java.sql.SQLException e) {
+            Logger.write("ERROR", "DB", "SQLException: " + e);
+            return false;
+        }
+        
+        return true;
     }
     
-    //fuck the signature
-    public void addMessageToChat (Message msg) {
-        //REPLACE ME
-        Logger.write("UNIMPL", "DB", "Unimplemented method Database.addMessageToChat(...)");
+    public boolean addMessageToChat (Message msg) {
+        Logger.write("VERBOSE", "DB", "addMessageToChat(...)");
+        
+        try {
+            execute(DBStrings.addMessageToConvo.replace("__convoID__", msg.PCHATgetConversationID())
+                                               .replace("__sendersKey__", Crypto.encodeKey(getSignatory(msg)))
+                                               .replace("__msgText__", msg.PCHATgetText())
+                                               .replace("__time__", Long.toString(msg.getTimestamp())));
+        } catch (java.sql.SQLException e) {
+            Logger.write("ERROR", "DB", "SQLException: " + e);
+            return false;
+        }
+        
+        return true;
     }
     
-    //Remember to store the signautre, create table sql may need updating
-    /* If you can see an FPOST, it's a request to post it on your wall */
-    public void addFPost (Message fpost) {
-        //REPLACE ME
-        Logger.write("UNIMPL", "DB", "Unimplemented method Database.addFPost(...)");
+    public boolean addComment (Message comment) {
+        Logger.write("VERBOSE", "DB", "addComment(...)");
+        
+        try {
+            execute(DBStrings.addComment.replace("__sig__", comment.getSig())
+                                        .replace("__msgText__", comment.CMNTgetText())
+                                        .replace("__parent__", comment.CMNTgetItemID())
+                                        .replace("__commenterKey__", Crypto.encodeKey(getSignatory(comment)))
+                                        .replace("__creationTime__", Long.toString(comment.getTimestamp())));
+        } catch (java.sql.SQLException e) {
+            Logger.write("ERROR", "DB", "SQLException: " + e);
+            return false;
+        }
+        
+        return true;
     }
     
-    //Remember to store the signautre, create table sql may need updating
-    public void addComment (Message comment) {
-        //REPLACE ME
-        Logger.write("UNIMPL", "DB", "Unimplemented method Database.addComment(...)");
+    public boolean addLike (Message like) {
+        Logger.write("VERBOSE", "DB", "addLike(...)");
+        
+        try {
+            execute(DBStrings.addLike.replace("__likerKey__", Crypto.encodeKey(getSignatory(like)))
+                                     .replace("__parent__", like.LIKEgetItemID()));
+        } catch (java.sql.SQLException e) {
+            Logger.write("ERROR", "DB", "SQLException: " + e);
+            return false;
+        }
+        
+        return true;
     }
     
-    //fuck the signature
-    public void addLike (Message Like) {
-        //REPLACE ME
-        Logger.write("UNIMPL", "DB", "Unimplemented method Database.addLike(...)");
+    public boolean addEvent (Message event) {
+        Logger.write("VERBOSE", "DB", "addEvent(...)");
+        try {
+            execute(DBStrings.addEvent.replace("__sig__", event.getSig())
+                                      .replace("__startTime__", Long.toString(event.EVNTgetStart()))
+                                      .replace("__endTime", Long.toString(event.EVNTgetEnd()))
+                                      .replace("__creatorKey__", Crypto.encodeKey(getSignatory(event)))
+                                      .replace("__accepted__", "0")
+                                      .replace("__name__", event.EVNTgetName())
+                                      .replace("__creationTime__", Long.toString(event.getTimestamp())));
+        } catch (java.sql.SQLException e) {
+            Logger.write("ERROR", "DB", "SQLException: " + e);
+            return false;
+        }
+        
+        return true;
     }
     
-    //Remember to store the signautre, create table sql may need updating
-    public void addEvent (Message event) {
-        //REPLACE ME
-        Logger.write("UNIMPL", "DB", "Unimplemented method Database.addEvent(...)");
+    public boolean acceptEvent (String sig) {
+        Logger.write("VERBOSE", "DB", "acceptEvent(...)");
+        try {
+            execute(DBStrings.acceptEvent.replace("__sig__", sig));
+        } catch (java.sql.SQLException e) {
+            Logger.write("ERROR", "DB", "SQLException: " + e);
+            return false;
+        }
+        
+        return true;
     }
     
-    public void updatePDATApermission (String category, boolean value) {
-        //REPLACE ME
-        Logger.write("UNIMPL", "DB", "Unimplemented method Database.updatePDATApermission(" + category + "," + value + ")");
+    public boolean declineEvent (String sig) {
+        Logger.write("VERBOSE", "DB", "declineEvent(...)");
+        try {
+            execute(DBStrings.declineEvent.replace("__sig__", sig));
+        } catch (java.sql.SQLException e) {
+            Logger.write("ERROR", "DB", "SQLException: " + e);
+            return false;
+        }
+        
+        return true;
+    }
+    
+    public boolean updatePDATApermission (String category, boolean value) {
+        Logger.write("VERBOSE", "DB", "updatePDATApermission(...)");
+        try {
+            execute(DBStrings.updatePDATApermission.replace("__catID__", category)
+                                                   .replace("__bool__", value?"1":"0"));
+        } catch (java.sql.SQLException e) {
+            Logger.write("ERROR", "DB", "SQLException: " + e);
+            return false;
+        }
+        
+        return true;
     }
     
     //no duplicate names
     public boolean addCategory (String name, boolean can_see_private_details) {
-        //REPLACE ME
-        Logger.write("UNIMPL", "DB", "Unimplemented method Database.addCategory(" + name + "," + can_see_private_details + ")");
+        Logger.write("VERBOSE", "DB", "addCategory(...)");
+        try {
+            execute(DBStrings.addCategory.replace("__catID__", name)
+                                         .replace("__canSeePDATA__", can_see_private_details?"1":"0"));
+        } catch (java.sql.SQLException e) {
+            Logger.write("ERROR", "DB", "SQLException: " + e);
+            return false;
+        }
+        
         return true;
     }
     
     public boolean addToCategory (String category, PublicKey key) {
-        //REPLACE ME
-        Logger.write("UNIMPL", "DB", "Unimplemented method Database.addToCategory(" + category + ",...)");
+        Logger.write("VERBOSE", "DB", "addToCategory(...)");
+        try {
+            execute(DBStrings.addToCategory.replace("__catID__", category)
+                                           .replace("__key__", Crypto.encodeKey(key)));
+        } catch (java.sql.SQLException e) {
+            Logger.write("ERROR", "DB", "SQLException: " + e);
+            return false;
+        }
+        
         return true;
     }
 }

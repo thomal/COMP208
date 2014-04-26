@@ -25,7 +25,7 @@ public class Parser {
         else if (msg.getCmd().equals("PDATA"))  //create or update profile data
             db.addPDATA(msg);
         else if (msg.getCmd().equals("CHAT"))   //establish chat
-            db.addChat(msg);
+            db.addConvo(msg);
         else if (msg.getCmd().equals("PCHAT"))  //add message to chat
             db.addMessageToChat(msg);
         else if (msg.getCmd().equals("CMNT"))   //comment
