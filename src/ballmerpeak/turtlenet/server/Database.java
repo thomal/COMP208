@@ -207,7 +207,7 @@ public class Database {
         try {
             ResultSet convoSet = query(DBStrings.getConversation.replace("__SIG__", sig));
             if(convoSet.next() ) {
-                String timestamp = convoSet.getString("timeCreated");
+                String timestamp = convoSet.getString("time");
                 ResultSet messages = query(DBStrings.getConversationMessages.replace("__SIG__", sig));
                 String firstMsg;
                 if (messages.next())
