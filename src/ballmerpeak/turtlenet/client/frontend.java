@@ -226,10 +226,14 @@ public class frontend implements EntryPoint {
                 for (i = 0; i < result.length; i++) {
                     //list names/keys
                     Anchor linkFriendsWall = new Anchor(result[i][0]);
+                    linkFriendsWall.getElement().getStyle().setProperty("paddingLeft" , "100px");
                     friendsListPanel.setWidget((i + 2), 0, linkFriendsWall);
                     final String resultString = result[i][1];
-                    //TODO LOUISTODO Make substring longer
-                    friendsListPanel.setWidget((i + 2), 1, new Label(resultString.substring(0, 11) + "..."));
+                    TextBox friendKeyBox = new TextBox();
+                    friendKeyBox.setText(resultString);
+                    friendKeyBox.setVisibleLength(75);
+                    friendKeyBox.setReadOnly(true);
+                    friendsListPanel.setWidget((i + 2), 1, friendKeyBox);
                     //link names to walls
                     linkFriendsWall.addClickHandler(new ClickHandler() {
                         public void onClick(ClickEvent event) {
