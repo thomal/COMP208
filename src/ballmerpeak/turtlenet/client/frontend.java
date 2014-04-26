@@ -806,6 +806,9 @@ public class frontend implements EntryPoint, ClickListener {
             });
         }
         
+        final Label postStop = new Label();
+        wallControlPanel.add(postStop);
+        
         Button createPost = new Button("Post here");
         wallControlPanel.add(createPost);
         wallControlPanel.setCellWidth(createPost,"200");
@@ -835,6 +838,14 @@ public class frontend implements EntryPoint, ClickListener {
             chooseGroup.addItem("Group name");
         }
         
+        Button cancel = new Button("Cancel");
+        createPostControlPanel.add(cancel);
+        cancel.addClickHandler(new ClickHandler() {
+            public void onClick(ClickEvent event) {                        
+                wall(key);
+            }
+        });   
+        
         Button send = new Button("Send");
         send.setWidth("150px");
         createPostControlPanel.add(send);        
@@ -853,7 +864,8 @@ public class frontend implements EntryPoint, ClickListener {
         createPost.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
                 location = "createPost";
-                refreshID = "";                
+                refreshID = "";
+                postStop.setText("Page auto update paused");                
                 wallPanel.insert(createPostPanel, 1);
             }
         });
