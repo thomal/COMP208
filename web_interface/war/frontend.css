@@ -23,6 +23,13 @@ h1 {
 	color: #61B329;
 }
 
+#loading {
+    width: 1000px;
+	margin: 0 auto;
+	text-align: center;
+	font-size: 1.25em;
+}
+
 .gwt-login {
 	width: 1000px;
 	margin: 0 auto;
