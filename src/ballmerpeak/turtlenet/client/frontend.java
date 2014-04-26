@@ -90,7 +90,8 @@ public class frontend implements EntryPoint, ClickListener {
         });   
         
         // Call method to load the initial login page
-        login();
+        //login();
+        conversation("Louis test");
     }
     
     private String location = new String("");
@@ -1241,7 +1242,7 @@ public class frontend implements EntryPoint, ClickListener {
     
     private String convoPanelSetup_convosig; //needed in inner class
     private TextArea convoPanelSetup_input = new TextArea();
-    private void conversation(String conversationID) {
+    private void conversation(final String conversationID) {
         location = "conversation";
         refreshID = conversationID;
     
@@ -1250,17 +1251,17 @@ public class frontend implements EntryPoint, ClickListener {
         navigation();
         
         // Create panel to contain widgets
-        final FlexTable conversationPanel = new FlexTable();
+        final FlowPanel conversationPanel = new FlowPanel();
         RootPanel.get().add(conversationPanel);
-    
+        HorizontalPanel conversationParticipantsPanel = new HorizontalPanel();
+        conversationPanel.add(conversationParticipantsPanel);
         convoPanelSetup_convosig = conversationID;
-        conversationPanel.setCellSpacing(10);
-        conversationPanel.setWidget(0, 0, new Label("Participants: "));
+        conversationParticipantsPanel.add(new Label("Participants: "));
         
         final ListBox currentFriends = new ListBox();
         currentFriends.setVisibleItemCount(1);
         currentFriends.setWidth("150px");
-        conversationPanel.setWidget(0, 1, currentFriends);
+        conversationParticipantsPanel.add(currentFriends);
         
         turtlenet.getConversation(convoPanelSetup_convosig, new AsyncCallback<Conversation>() {
             Conversation result;
@@ -1285,20 +1286,40 @@ public class frontend implements EntryPoint, ClickListener {
                         messages = msgs;
                         
                         for (int i = 0; i < messages.length; i++) {
+                            HorizontalPanel conversationContentsPanel = new HorizontalPanel();
+                            conversationPanel.add(conversationContentsPanel);
                             Label postedBy = new Label(messages[i][0]);
                             postedBy.getElement().getStyle().setFontWeight(FontWeight.BOLD);
-                            conversationPanel.setWidget((i + 1), 0, postedBy);
+                            conversationContentsPanel.add(postedBy);
                             Label messageContents = new Label(messages[i][2]);
-                            conversationPanel.setWidget((i + 1), 1, messageContents);
+                            conversationContentsPanel.add(messageContents);
                         }
                         
+                        Button replyToConversation = new Button("Reply");
+                        replyToConversation.setWidth("500px");
+                        conversationPanel.add(replyToConversation);                     
+                        
+                        final FlowPanel conversationReplyPanel = new FlowPanel();
                         convoPanelSetup_input.setCharacterWidth(80);
                         convoPanelSetup_input.setVisibleLines(10); 
-                        int row = (conversationPanel.getRowCount() + 1);
-                        conversationPanel.setWidget(row, 1, convoPanelSetup_input);
+                        conversationReplyPanel.add(convoPanelSetup_input);
+                        
+                        HorizontalPanel conversationReplyControlsPanel = new HorizontalPanel();
+                        conversationReplyPanel.add(conversationReplyControlsPanel);
+                        
+                        Label stop = new Label("Page auto update paused");
+                        conversationReplyControlsPanel.add(stop);
+                        stop.addClickHandler(new ClickHandler() {
+                            public void onClick(ClickEvent event) {
+                                conversation(conversationID);
+                            }
+                        });    
+                        
+                        Button cancel = new Button("Cancel");
+                        conversationReplyControlsPanel.add(cancel);
                         
                         Button send = new Button("Send"); 
-                        conversationPanel.setWidget(row, 2, send);
+                        conversationReplyControlsPanel.add(send);
                         send.addClickHandler(new ClickHandler() {
                             public void onClick(ClickEvent event) {
                                 turtlenet.addMessageToCHAT(convoPanelSetup_input.getText(), convoPanelSetup_convosig, new AsyncCallback<String>() {
@@ -1311,7 +1332,16 @@ public class frontend implements EntryPoint, ClickListener {
                                     }
                                 });
                             }
-                        }); 
+                        });
+                        
+                        replyToConversation.addClickHandler(new ClickHandler() {
+                            public void onClick(ClickEvent event) {
+                                location = "replyToConversation";
+                                refreshID = "";  
+                            
+                                conversationPanel.add(conversationReplyPanel);
+                            }
+                        });    
                     }
                 });
             }
