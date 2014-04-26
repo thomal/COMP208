@@ -322,7 +322,7 @@ public class Database {
         try {
             ResultSet keySet = query(queryStr);
             while(keySet.next())
-                keyList.add(Crypto.decodeKey(keySet.getString("key")));
+                keyList.add(Crypto.decodeKey(keySet.getString("userKey")));
         } catch (java.sql.SQLException e) {
             Logger.write("ERROR", "DB", "SQLException: " + e);
         }
