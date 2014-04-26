@@ -194,6 +194,8 @@ public class frontend implements EntryPoint, ClickListener {
         // Add click handlers for anchors
         linkMyWall.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
+                // TODO LUKETODO RIGHTHERE "me" should be replaced with your own
+                // key =D
                 wall("me");
             }
         });
