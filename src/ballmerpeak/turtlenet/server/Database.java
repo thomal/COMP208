@@ -118,7 +118,7 @@ public class Database {
     //Get from DB
     public String getPDATA(String field, PublicKey key) {
         Logger.write("VERBOSE", "DB", "getPDATA(" + field + ",...)"); 
-        String value = "EXCEPTION IN GETPDATA";
+        String value = "";
         try {
             String strKey = Crypto.encodeKey(key);
             String sqlStatement  = DBStrings.getPDATA.replace("__FIELD__", field);
@@ -133,7 +133,7 @@ public class Database {
             Logger.write("ERROR", "DB", "SQLException: " + e);
         }
         
-        if (!value.equals(""))
+        if (value != null)
             return value;
         else
             return "<no value>";
@@ -400,7 +400,11 @@ public class Database {
     
     //Update k's username by validating claims
     public boolean validateClaims(PublicKey k) {
-        Logger.write("VERBOSE", "DB", "validateClaims(...)");
+        if (k == null)
+            Logger.write("ERROR", "DB", "validateClaims(...) called with null key");
+        else
+            Logger.write("VERBOSE", "DB", "validateClaims(...)");
+        
         try {
             ResultSet claimSet = query(DBStrings.getClaims);
             while (claimSet.next()) {
@@ -408,7 +412,13 @@ public class Database {
                                           claimSet.getString("name"),
                                           Long.parseLong(claimSet.getString("claimTime")),
                                           claimSet.getString("sig"));
-                if (Crypto.verifySig(msg, k)) {
+                
+                Logger.write("VERBOSE", "DB", "Considering Claim for name: \"" + claimSet.getString("name") + "\"");
+                Logger.write("VERBOSE", "DB", "                      time: \"" + Long.toString(Long.parseLong(claimSet.getString("claimTime"))) + "\"");
+                Logger.write("VERBOSE", "DB", "                       sig: \"" + claimSet.getString("sig") + "\"");
+                
+                
+                if (getSignatory(msg).equals(k)) {
                     execute(DBStrings.newUsername.replace("__name__", msg.CLAIMgetName()).replace("__key__", Crypto.encodeKey(k)));
                     execute(DBStrings.removeClaim.replace("__sig__", msg.getSig()));
                     Logger.write("INFO", "DB", "Claim for " + msg.CLAIMgetName() + " verified");

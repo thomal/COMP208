@@ -112,10 +112,14 @@ public class NetworkConnection implements Runnable {
     public Boolean claimName (String name) {
         try {
             Message claim = new Message("CLAIM", name,
-                     getTime()+Crypto.rand(0,50), Crypto.sign(name));
+                     getTime()+Crypto.rand(0,50), "");
+            claim.signature = Crypto.sign(claim);
             String cmd = "c " + Crypto.Base64Encode(claim.toString().getBytes("UTF-8"));
             if (serverCmd(cmd).get(0).equals("s")) {
                 Logger.write("INFO", "NetCon","Claimed name: " + name);
+                Logger.write("INFO", "NetCon","\tname: " + claim.CLAIMgetName());
+                Logger.write("INFO", "NetCon","\ttime: " + Long.toString(claim.getTimestamp()));
+                Logger.write("INFO", "NetCon","\t sig: " + claim.getSig());
                 return true;
             }
         } catch (Exception e) {
