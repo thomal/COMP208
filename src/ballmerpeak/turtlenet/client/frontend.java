@@ -174,6 +174,7 @@ public class frontend implements EntryPoint {
         linkConversations.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
                 conversationList();
+                                                                                                                                                                                                                                                                                                                               System.out.println("Wake up, Neo...");
             }
         });
         
@@ -870,19 +871,36 @@ public class frontend implements EntryPoint {
             postContentsFooterPanel.addStyleName("gwt-post-contents-footer");
             postContentsPanel.add(postContentsFooterPanel);  
             
-            Anchor likePost = new Anchor("Like");
-            postContentsFooterPanel.add(likePost);
-            likePost.addClickHandler(new ClickHandler() {
-                public void onClick(ClickEvent event) {
-                    // TODO LUKETODO Call a method that 'Likes' a post when given
-                    // the ID of that post.
-                    // Give it postID
+            Anchor likePost;
+            
+            // TODO LUKETODO 'true' should bereplaced with a call to a method 
+            // that takes the ID of a post and checks to see whether the user 
+            // has already liked that post.
+            // Give it postID
+            if (true) {
+                likePost = new Anchor("Unlike");
+                likePost.addClickHandler(new ClickHandler() {
+                    public void onClick(ClickEvent event) {
+                        // TODO LUKETODO Call a method that 'Unlikes' a post when given
+                        // the ID of that post.
+                        // Give it postID
                     
-                    wall(key);
-                    // TODO LOUISTODO Make the page scroll back to where it was
-                    // after page is redrawn.
-                }
-            });
+                        wall(key);
+                    }
+                });
+            } else {
+                likePost = new Anchor("Like");
+                likePost.addClickHandler(new ClickHandler() {
+                    public void onClick(ClickEvent event) {
+                        // TODO LUKETODO Call a method that 'Likes' a post when given
+                        // the ID of that post.
+                        // Give it postID
+                    
+                        wall(key);
+                    }
+                });
+            }
+            postContentsFooterPanel.add(likePost);
             
             // TODO LUKETODO "5" should be replaced with a call to a method that
             // returns a the number of comments on a post when given the ID of
@@ -919,7 +937,6 @@ public class frontend implements EntryPoint {
         openComments.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
                 commentsPanel.clear();
-                                                                                                                                                                                                                                                                                                                               System.out.println("Wake up, Neo...");
             }
         });
         
@@ -976,15 +993,46 @@ public class frontend implements EntryPoint {
             Anchor postedBy = new Anchor("Name of user");
             postedBy.getElement().getStyle().setProperty("paddingLeft" , "10px");
             commentsControlPanel.add(postedBy);
-            Anchor likeComment = new Anchor("Like");
-            likeComment.getElement().getStyle().setProperty("paddingLeft" , "140px");
-            commentsControlPanel.add(likeComment);
+           
             
             postedBy.addClickHandler(new ClickHandler() {
                 public void onClick(ClickEvent event) {
                     wall(postedByKey);
                 }
             }); 
+            
+            Anchor likeComment;
+            
+            // TODO LUKETODO 'true' should bereplaced with a call to a method 
+            // that takes the ID of a comment and checks to see whether the user 
+            // has already liked that comment.
+            // Give it commentID
+            if (true) {
+                likeComment = new Anchor("Unlike");
+                likeComment.addClickHandler(new ClickHandler() {
+                    public void onClick(ClickEvent event) {
+                        // TODO LUKETODO Call a method that 'Unlikes' a comment when given
+                        // the ID of that post.
+                        // Give it postID
+                    
+                        wall(wallKey);
+                    }
+                });
+            } else {
+                likeComment = new Anchor("Like");
+                likeComment.addClickHandler(new ClickHandler() {
+                    public void onClick(ClickEvent event) {
+                        // TODO LUKETODO Call a method that 'Likes' a comment when given
+                        // the ID of that post.
+                        // Give it postID
+                    
+                        wall(wallKey);
+                    }
+                });
+            }
+            
+            likeComment.getElement().getStyle().setProperty("paddingLeft" , "130px");
+            commentsControlPanel.add(likeComment);
             
             likeComment.addClickHandler(new ClickHandler() {
                 public void onClick(ClickEvent event) {
