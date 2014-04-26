@@ -84,7 +84,8 @@ public class frontend implements EntryPoint {
         });   
         
         // Call method to load the initial login page
-        login();
+        //login();
+        comments("postID", "postID", "Wall post", 0);
     }
 
     private void login() {
@@ -838,7 +839,7 @@ public class frontend implements EntryPoint {
             
             TextArea postContents = new TextArea();
             postContents.setCharacterWidth(80);
-            postContents.setVisibleLines(10);
+            postContents.setVisibleLines(5);
             postContents.setReadOnly(true);
                        
             // TODO LUKETODO "Post contents goes here" should be replaced with
@@ -868,7 +869,7 @@ public class frontend implements EntryPoint {
             postContentsFooterPanel.setCellWidth(comments,"540");
             comments.addClickHandler(new ClickHandler() {
                 public void onClick(ClickEvent event) {
-                    comments(postID, postID, "Wall post");
+                    comments(postID, postID, "Wall post", 0);
                 }
             }); 
             
@@ -907,7 +908,7 @@ public class frontend implements EntryPoint {
     // parent which may be a comment or a post. If we set the parentID to rootID
     // that gets us back to the inital comment as parentID will be set to the ID
     // of a wall post.
-    private void comments(final String parentID, final String rootID, final String parentType) {
+    private void comments(final String parentID, final String rootID, final String parentType, int padding) {
         // Create panel to contain widgets
         final FlowPanel commentsPanel = new FlowPanel();
         
@@ -917,8 +918,7 @@ public class frontend implements EntryPoint {
             navigation();
         } else {
             // If comment belongs to another comment it should be indented
-            String padding = new String (Integer.toString(commentsPanel.getAbsoluteLeft() + 100) + "px");
-            commentsPanel.getElement().getStyle().setProperty("paddingLeft" , padding);
+            commentsPanel.getElement().getStyle().setProperty("paddingLeft" , Integer.toString(padding + 50) + "px");
         }
             
         // Add main panel to page
@@ -941,17 +941,17 @@ public class frontend implements EntryPoint {
             });
         }        
         
-        
-        // Create panel to contain the main contents of each comment
-        FlowPanel commentsContentsPanel = new FlowPanel();
-        commentsPanel.add(commentsContentsPanel);
-        
         // TODO LUKETODO 5 should be replaced with a call to a method that takes
         // the ID of a post/comment and returns the number of comments associated 
         // with that post.
         // This current method takes a string called parentID so give it that.
-        int commentCount = 5;        
+        int commentCount = 2;        
         for(int i = 0; i < commentCount; i++) {
+            // Create panel to contain the main contents of each comment
+            FlowPanel commentsContentsPanel = new FlowPanel();
+            commentsContentsPanel.addStyleName("gwt-comments-contents");
+            commentsPanel.add(commentsContentsPanel);
+        
             // TODO LUKETODO "ID of comment" should be replaced with a call to
             // a method that returns a list of comments when given the ID of their parent.
             // This current method takes a string called parentID so give it that.
@@ -961,7 +961,7 @@ public class frontend implements EntryPoint {
             
             // Create widgets
             TextArea commentContents = new TextArea();
-            commentContents.setCharacterWidth(80);
+            commentContents.setCharacterWidth(60);
             commentContents.setVisibleLines(5);
             commentContents.setReadOnly(true);
             
@@ -969,7 +969,10 @@ public class frontend implements EntryPoint {
             // to a method that returns the contents of a comment when given the
             // ID of that comment.
             // Give it commentID            
-            commentContents.setText("Contents of comment"); 
+            //commentContents.setText("Contents of comment");
+            
+            // TODO LOUISTODO remove this
+            commentContents.setText(parentType);
             commentsContentsPanel.add(commentContents);
             
             //Create panel to contain controls for each comment
@@ -1004,7 +1007,7 @@ public class frontend implements EntryPoint {
                     // Give it commentID
                     
                     commentsPanel.clear();
-                    comments(rootID, rootID, "Wall post");
+                    comments(rootID, rootID, "Wall post", 0);
                     // TODO LOUISTODO Make the refreshed comments page move
                     // to the place we just added our new comment.
                 }
@@ -1016,19 +1019,21 @@ public class frontend implements EntryPoint {
             // any children when given the ID of a comment.  
             // Give it commentID
             if(parentType.equals("Wall post")) {
-                comments(commentID, rootID, "Comment");
-            } else {
-                String padding = new String (Integer.toString(commentsContentsPanel.getAbsoluteLeft() + 100) + "px");
+                comments(commentID, rootID, "Comment", (padding + 50));
+            } /* else {
+                
+                FlexTable commentsReplyPanel = new FlexTable();
+                commentsReplyPanel.getElement().getStyle().setProperty("paddingLeft", (Integer.toString(padding + 50) + "px"));
+                // TODO LOUISTODO Consider adding to commentsPanel instead
+                commentsContentsPanel.add(commentsReplyPanel);
                 
                 TextArea commentReplyContents = new TextArea();
                 commentReplyContents.setCharacterWidth(60);
                 commentReplyContents.setVisibleLines(5);
-                commentReplyContents.getElement().getStyle().setProperty("paddingLeft" , padding);
-                commentsContentsPanel.add(commentReplyContents);
+                commentsReplyPanel.setWidget(0, 0, commentReplyContents);
                 
                 Button replyToComment = new Button("Reply to comment");
-                replyToComment.getElement().getStyle().setProperty("paddingLeft" , padding);
-                commentsContentsPanel.add(replyToComment);
+                commentsReplyPanel.setWidget(1, 0, replyToComment);
                 replyToComment.addClickHandler(new ClickHandler() {
                     public void onClick(ClickEvent event) {
                         // TODO LUKETODO Call a method that adds a new comment.
@@ -1036,18 +1041,20 @@ public class frontend implements EntryPoint {
                         // To get the contents use: commentReplyContents.getText();
                         
                         commentsPanel.clear();
-                        comments(rootID, rootID, "Wall post");
+                        comments(rootID, rootID, "Wall post", 0);
                         // TODO LOUISTODO Make the refreshed comments page move
                         // to the place we just added our new comment.
                     }
                 }); 
-            }
+            } */
         }
-        
+        FlexTable commentsReplyThreadPanel = new FlexTable();
+        commentsPanel.add(commentsReplyThreadPanel);
+          
         TextArea threadReplyContents = new TextArea();
-        threadReplyContents.setCharacterWidth(60);
-        threadReplyContents.setVisibleLines(5);
-        commentsContentsPanel.add(threadReplyContents);
+        threadReplyContents.setCharacterWidth(40);
+        threadReplyContents.setVisibleLines(6);
+        commentsReplyThreadPanel.setWidget(0, 0, threadReplyContents);
 
         Button replyToThread;
         if(commentCount == 0) {
@@ -1055,7 +1062,7 @@ public class frontend implements EntryPoint {
         } else {
             replyToThread = new Button("Reply to thread");
         }
-        commentsContentsPanel.add(replyToThread);
+        commentsReplyThreadPanel.setWidget(1, 0, replyToThread);
         replyToThread.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
                 // TODO LUKETODO Call a method that adds a new comment.
@@ -1063,7 +1070,7 @@ public class frontend implements EntryPoint {
                 // To get the contents use: threadReplyContents.getText();
                     
                 commentsPanel.clear();
-                comments(rootID, rootID, "Wall post");
+                comments(rootID, rootID, "Wall post", 0);
                 // TODO LOUISTODO Make the refreshed comments page move
                 // to the place we just added our new comment.
             }

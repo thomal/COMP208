@@ -56,6 +56,14 @@ h1 {
 	padding: 20px 0 20px 0;
 }
 
+.gwt-comments-contents {
+	width: 1200px;
+	margin: 0 auto;
+	background: #E0EEEE;
+	color: #666666;
+	padding: 20px 0 20px 0;
+}
+
 .gwt-wall {
 	width: 900px;
 	margin: 0 auto;
