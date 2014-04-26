@@ -142,8 +142,6 @@ public class frontend implements EntryPoint {
         linkConversations.getElement().getStyle().setProperty("paddingLeft" , "100px");
         Anchor linkFriends = new Anchor("Friends");
         linkFriends.getElement().getStyle().setProperty("paddingLeft" , "100px");
-        Anchor linkFriendRequests = new Anchor("Friend Requests");
-        linkFriendRequests.getElement().getStyle().setProperty("paddingLeft" , "100px");
         Anchor linkLogout = new Anchor("Logout");
         linkLogout.getElement().getStyle().setProperty("paddingLeft" , "100px");
 
@@ -151,7 +149,6 @@ public class frontend implements EntryPoint {
         navigationPanel.add(linkMyWall);
         navigationPanel.add(linkConversations);
         navigationPanel.add(linkFriends);
-        navigationPanel.add(linkFriendRequests);
         navigationPanel.add(linkLogout);
 
         // Add style name for CSS
@@ -173,12 +170,6 @@ public class frontend implements EntryPoint {
         linkFriends.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
                 friendsList("All");
-            }
-        });
-        
-        linkFriendRequests.addClickHandler(new ClickHandler() {
-            public void onClick(ClickEvent event) {
-                friendRequests();
             }
         });
         
@@ -717,24 +708,24 @@ public class frontend implements EntryPoint {
         RootPanel.get().add(wallPanel);
         // Create a container for controls
         HorizontalPanel wallControlPanel = new HorizontalPanel();
-        wallControlPanel.setSpacing(10);
+        wallControlPanel.setSpacing(5);
         wallPanel.add(wallControlPanel);
         // Add widgets to container
         
         // TODO LUKETODO "Name of user" should be replaced with a call to a method
         // that returns the name of a user when given their public key.
         // This method takes a string called key so give it that.
-        Label nameOfUserLabel = new Label("Name of user");
-        nameOfUserLabel.getElement().getStyle().setFontWeight(FontWeight.BOLD);
-        wallControlPanel.add(nameOfUserLabel);
-        wallControlPanel.setCellWidth(nameOfUserLabel,"210");
+//        Label nameOfUserLabel = new Label("Name of user");
+//        nameOfUserLabel.getElement().getStyle().setFontWeight(FontWeight.BOLD);
+//        wallControlPanel.add(nameOfUserLabel);
+//        wallControlPanel.setCellWidth(nameOfUserLabel,"200");
         
         
         // TODO LUKETODO "my key" should be replaced with the users key
         if(key.equals("my key")) {
             Anchor myDetails = new Anchor("My details");
             wallControlPanel.add(myDetails);
-            wallControlPanel.setCellWidth(myDetails,"210");
+            wallControlPanel.setCellWidth(myDetails,"200");
             myDetails.addClickHandler(new ClickHandler() {
                 public void onClick(ClickEvent event) {
                     myDetails();
@@ -742,9 +733,12 @@ public class frontend implements EntryPoint {
             });
             
         } else {
-            Anchor userDetails = new Anchor("About");
+            // TODO LUKETODO "Name of user" should be replaced with a call to a method
+            // that returns the name of a user when given their public key.
+            // This method takes a string called key so give it that.
+            Button userDetails = new Button("About " + "Name of user");
             wallControlPanel.add(userDetails);
-            wallControlPanel.setCellWidth(userDetails,"210");
+            wallControlPanel.setCellWidth(userDetails,"425");
             userDetails.addClickHandler(new ClickHandler() {
                 public void onClick(ClickEvent event) {
                     friendsDetails(key);
@@ -754,7 +748,7 @@ public class frontend implements EntryPoint {
         
         Button createPost = new Button("Post here");
         wallControlPanel.add(createPost);
-        wallControlPanel.setCellWidth(createPost,"210");
+        wallControlPanel.setCellWidth(createPost,"200");
         
         final FlowPanel createPostPanel = new FlowPanel();
         TextArea contents = new TextArea();
@@ -803,6 +797,7 @@ public class frontend implements EntryPoint {
         
             FlowPanel postPanel = new FlowPanel();
             wallPanel.add(postPanel);
+            postPanel.addStyleName("gwt-post-panel");
             
             HorizontalPanel postControlPanel = new HorizontalPanel();
             //postControlPanel.setSpacing(5);
@@ -810,7 +805,7 @@ public class frontend implements EntryPoint {
             
             Label postedByLabel = new Label("Posted by: ");
             postControlPanel.add(postedByLabel);
-            postControlPanel.setCellWidth(postedByLabel,"125");
+            postControlPanel.setCellWidth(postedByLabel,"110");
             // TODO LUKETODO "Key of user" should be replaced with a call to a 
             // method that returns the key of the user who created a post when
             // given the ID of that post. 
@@ -822,7 +817,7 @@ public class frontend implements EntryPoint {
             // Give it postedBy.
             Anchor linkToUser = new Anchor("Name of poster");
             postControlPanel.add(linkToUser);
-            postControlPanel.setCellWidth(linkToUser,"350");
+            postControlPanel.setCellWidth(linkToUser,"375");
             linkToUser.addClickHandler(new ClickHandler() {
                 public void onClick(ClickEvent event) {
                     wall(postedBy);
@@ -870,6 +865,7 @@ public class frontend implements EntryPoint {
             }
             
             postContentsFooterPanel.add(comments);
+            postContentsFooterPanel.setCellWidth(comments,"540");
             comments.addClickHandler(new ClickHandler() {
                 public void onClick(ClickEvent event) {
                     comments(postID, postID, "Wall post");
@@ -950,11 +946,11 @@ public class frontend implements EntryPoint {
         FlowPanel commentsContentsPanel = new FlowPanel();
         commentsPanel.add(commentsContentsPanel);
         
-        // TODO LUKETODO 10 should be replaced with a call to a method that takes
+        // TODO LUKETODO 5 should be replaced with a call to a method that takes
         // the ID of a post/comment and returns the number of comments associated 
         // with that post.
         // This current method takes a string called parentID so give it that.
-        int commentCount = 10;        
+        int commentCount = 5;        
         for(int i = 0; i < commentCount; i++) {
             // TODO LUKETODO "ID of comment" should be replaced with a call to
             // a method that returns a list of comments when given the ID of their parent.
@@ -966,7 +962,7 @@ public class frontend implements EntryPoint {
             // Create widgets
             TextArea commentContents = new TextArea();
             commentContents.setCharacterWidth(80);
-            commentContents.setVisibleLines(10);
+            commentContents.setVisibleLines(5);
             commentContents.setReadOnly(true);
             
             // TODO LUKETODO "Contents of comment" should be replaced with a call
@@ -1396,69 +1392,4 @@ public class frontend implements EntryPoint {
         });
         addFriendPanel.addStyleName("gwt-friend"); 
     }
-    
-    private void friendRequests() {
-        RootPanel.get().clear();
-        navigation();
-        Grid friendRequestsPanel = new Grid(1, 4);
-        friendRequestsPanel.getColumnFormatter().setWidth(0, "25%");
-        friendRequestsPanel.getColumnFormatter().setWidth(1, "25%");
-        friendRequestsPanel.getColumnFormatter().setWidth(2, "25%");
-        friendRequestsPanel.getColumnFormatter().setWidth(3, "25%");
-        RootPanel.get().add(friendRequestsPanel);
-        
-        Label currentRequestsLabel = new Label();
-        currentRequestsLabel.getElement().getStyle().setFontWeight(FontWeight.BOLD);
-        friendRequestsPanel.setWidget(0, 0, currentRequestsLabel);
-        
-        // TODO LUKETODO 10 should be replaced with a call to a method that tells
-        // us how many friend requests the user has had.
-        for(int i = 0; i < 10; i++) {
-            friendRequestsPanel.insertRow(i + 1);
-        
-            // TODO LUKETODO "Public Key" should be replaced with a call to a 
-            // method that returns the list of all the people who have requested
-            // to be friends with the user. Specifically we want their public keys.
-            // Use i to choose one from the list.
-            String potentialFriendKey = new String("Public Key");
-            
-            // TODO LUKETODO "Person's name" should be replaced with a call to
-            // a method that takes a users public key and returns their name.
-            // Give it potentialFriendKey 
-            friendRequestsPanel.setWidget((i + 1), 0, new Label("Person's name"));
-            
-            Button accept = new Button("Accept");
-            friendRequestsPanel.setWidget((i + 1), 1, accept);
-            Button reject = new Button("Reject");
-            friendRequestsPanel.setWidget((i + 1), 2, reject);
-            final Label success = new Label("");
-            friendRequestsPanel.setWidget((i + 1), 3, success);
-            
-            accept.addClickHandler(new ClickHandler() {
-                public void onClick(ClickEvent event) {
-                    // TODO LUKETODO Call a method that accepts a friend request
-                    // from a user when given the key of that user.
-                    // Give it potentialFriendKey
-                    
-                    success.setText("Friend Accepted");
-                }
-            });
-            
-            reject.addClickHandler(new ClickHandler() {
-                public void onClick(ClickEvent event) {
-                    // TODO LUKETODO Call a method that rejects a friend request
-                    // from a user when given the key of that user.
-                    // Give it potentialFriendKey
-                    
-                    success.setText("Friend Rejected");
-                }
-            }); 
-        }
-        
-        friendRequestsPanel.addStyleName("gwt-friend"); 
-    }
-    
-    private void register() {
-    
-    }   
 }
