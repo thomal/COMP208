@@ -138,6 +138,8 @@ public class frontend implements EntryPoint {
         // Create navigation links
         Anchor linkMyWall = new Anchor("My Wall");
         linkMyWall.getElement().getStyle().setProperty("paddingLeft" , "100px");
+        Anchor linkMyDetails = new Anchor("My Details");
+        linkMyDetails.getElement().getStyle().setProperty("paddingLeft" , "100px");
         Anchor linkConversations = new Anchor("Messages");
         linkConversations.getElement().getStyle().setProperty("paddingLeft" , "100px");
         Anchor linkFriends = new Anchor("Friends");
@@ -147,6 +149,7 @@ public class frontend implements EntryPoint {
 
         // Add links to navigation panel
         navigationPanel.add(linkMyWall);
+        navigationPanel.add(linkMyDetails);
         navigationPanel.add(linkConversations);
         navigationPanel.add(linkFriends);
         navigationPanel.add(linkLogout);
@@ -158,6 +161,13 @@ public class frontend implements EntryPoint {
         linkMyWall.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
                 wall("me");
+            }
+        });
+        
+        // Add click handlers for anchors
+        linkMyDetails.addClickHandler(new ClickHandler() {
+            public void onClick(ClickEvent event) {
+                myDetails();
             }
         });
         
