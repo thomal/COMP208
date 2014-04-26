@@ -147,10 +147,7 @@ public class frontend implements EntryPoint, ClickListener {
     // the page every 5 seconds. 
     public void onClick(Widget sender) {
         Timer refresh = new Timer() {
-            public void run() {
-                System.out.println(location);
-                System.out.println(refreshID);
-            
+            public void run() {            
                 if(location.equals("wall")) {
                     System.out.println("Refresh: wall. refreshID: " + refreshID);
                     wall(refreshID);
@@ -197,6 +194,8 @@ public class frontend implements EntryPoint, ClickListener {
         // Add click handlers for anchors
         linkMyWall.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
+                // TODO LUKETODO RIGHTHERE "me" should be replaced with your own
+                // key =D
                 wall("me");
             }
         });
@@ -435,6 +434,7 @@ public class frontend implements EntryPoint, ClickListener {
         myDetailsPanel.setWidget(0, 0, usernameLabel);
         
         final TextBox editUsername = new TextBox();
+        editUsername.setWidth("300px");
         turtlenet.getMyUsername(new AsyncCallback<String>() {
             public void onFailure(Throwable caught) {
                 //TODO error
@@ -476,6 +476,7 @@ public class frontend implements EntryPoint, ClickListener {
         myDetailsPanel.setWidget(1, 0, nameLabel);
         
         final TextBox editName = new TextBox();
+        editName.setWidth("300px");
         turtlenet.getMyPDATA("name", new AsyncCallback<String>() {
             public void onFailure(Throwable caught) {
                 //TODO error
@@ -514,6 +515,7 @@ public class frontend implements EntryPoint, ClickListener {
         myDetailsPanel.setWidget(2, 0, birthdayLabel);
         
         final TextBox editBirthday = new TextBox();
+        editBirthday.setWidth("300px");
         turtlenet.getMyPDATA("birthday", new AsyncCallback<String>() {
             public void onFailure(Throwable caught) {
                 //TODO error
@@ -555,6 +557,7 @@ public class frontend implements EntryPoint, ClickListener {
         myDetailsPanel.setWidget(3, 0, genderLabel);
         
         final TextBox editGender = new TextBox();
+        editGender.setWidth("300px");
         turtlenet.getMyPDATA("gender", new AsyncCallback<String>() {
             public void onFailure(Throwable caught) {
                 //TODO error
@@ -593,6 +596,7 @@ public class frontend implements EntryPoint, ClickListener {
         myDetailsPanel.setWidget(4, 0, emailLabel);
         
         final TextBox editEmail = new TextBox();
+        editEmail.setWidth("300px");
         turtlenet.getMyPDATA("email", new AsyncCallback<String>() {
             public void onFailure(Throwable caught) {
                 //TODO error
@@ -626,7 +630,15 @@ public class frontend implements EntryPoint, ClickListener {
             }
         });
         
-        // TODO LOUISTODO Add link to myDetailsPermissions
+        Button permissions = new Button("Permissions");
+        permissions.setWidth("310px");
+        myDetailsPanel.setWidget(5, 1, permissions);
+        permissions.addClickHandler(new ClickHandler() {
+            public void onClick(ClickEvent event) {
+                myDetailsPermissions();
+            }
+        });
+        
         
         // Add style name for CSS
         myDetailsPanel.addStyleName("gwt-my-details");
@@ -674,6 +686,15 @@ public class frontend implements EntryPoint, ClickListener {
                         }
                     });
                 }
+            }
+        });
+        
+        Button myDetails = new Button("My Details");
+        myDetails.setWidth("300px");
+        myDetailsPermissionsPanel.setWidget((myDetailsPermissionsPanel.getRowCount() + 1), 0, myDetails);
+        myDetails.addClickHandler(new ClickHandler() {
+            public void onClick(ClickEvent event) {
+                myDetails();
             }
         });
         
@@ -1351,6 +1372,12 @@ public class frontend implements EntryPoint, ClickListener {
                         
                         Button cancel = new Button("Cancel");
                         conversationReplyControlsPanel.add(cancel);
+                        
+                        cancel.addClickHandler(new ClickHandler() {
+                            public void onClick(ClickEvent event) {
+                                conversation(conversationID);
+                            }
+                        });    
                         
                         Button send = new Button("Send"); 
                         conversationReplyControlsPanel.add(send);
