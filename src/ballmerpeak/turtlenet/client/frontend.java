@@ -162,7 +162,7 @@ public class frontend implements EntryPoint, ClickListener {
                 }
             }
         };
-        refresh.scheduleRepeating(5*1000);
+        refresh.scheduleRepeating(10*1000);
     }
 
     private void navigation() {    
@@ -362,7 +362,7 @@ public class frontend implements EntryPoint, ClickListener {
                 }
             });
         } else {
-            Button addToGroup = new Button("Add people to category");
+            Button addToGroup = new Button("Edit category");
             friendsListPanel.setWidget(1, 3, addToGroup);
             addToGroup.addClickHandler(new ClickHandler() {
                 public void onClick(ClickEvent event) {
@@ -1484,7 +1484,24 @@ public class frontend implements EntryPoint, ClickListener {
                 result = _result;
                 for (i = 0; i < result.length; i++) {
                     currentMembers.addItem(result[i][0]);
+                    
+                    // TODO LUKETODO "key" should be replaced with the key of
+                    // the user whose name we just called to the list.
+                    currentMembers.setValue(i, "key");
                 }
+            }
+        });
+        
+        Button removeFromGroup = new Button("Remove from group");
+        addToGroupPanel.setWidget(1, 2, removeFromGroup);
+        removeFromGroup.addClickHandler(new ClickHandler() {
+            public void onClick(ClickEvent event) {
+                // TODO LUKETODO Call a method that removes a person from a 
+                // group when given the ID of the group and the key of the person.
+                // For the ID of the group give it groupID
+                // To get the key of the user use currentMembers.getValue(currentMembers.getSelectedIndex() 
+            
+                addToGroup(groupID);    
             }
         });
         
@@ -1528,6 +1545,8 @@ public class frontend implements EntryPoint, ClickListener {
                 });
             }
         });
+        
+        
         
         addToGroupPanel.addStyleName("gwt-group");  
     }
