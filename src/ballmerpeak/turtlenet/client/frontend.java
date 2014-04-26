@@ -785,7 +785,7 @@ public class frontend implements EntryPoint {
             // Use i to choose a post from the list.
             final String postID = new String("postID");
         
-            FlowPanel postPanel = new FlowPanel();
+            final FlowPanel postPanel = new FlowPanel();
             wallPanel.add(postPanel);
             postPanel.addStyleName("gwt-post-panel");
             
@@ -839,9 +839,8 @@ public class frontend implements EntryPoint {
             postContentsPanel.add(postContents);
             
             HorizontalPanel postContentsFooterPanel = new HorizontalPanel();
+            postContentsFooterPanel.addStyleName("gwt-post-contents-footer");
             postContentsPanel.add(postContentsFooterPanel);  
-            
-           
             
             Anchor likePost = new Anchor("Like");
             postContentsFooterPanel.add(likePost);
@@ -857,7 +856,25 @@ public class frontend implements EntryPoint {
                 }
             });
             
-            comments(postID, key, postPanel); 
+            // TODO LUKETODO "5" should be replaced with a call to a method that
+            // returns a the number of comments on a post when given the ID of
+            // that post.
+            // Give it postID
+            int commentCount = 5;
+            
+            Anchor comments;
+            if(commentCount == 0) {
+                comments = new Anchor("Add a comment");
+            } else {
+                comments = new Anchor("Comments(" + Integer.toString(commentCount) + ")");
+            }
+            
+            postContentsFooterPanel.add(comments);
+            comments.addClickHandler(new ClickHandler() {
+                public void onClick(ClickEvent event) {
+                    comments(postID, key, postPanel); 
+                }
+            }); 
         }
 
         // Add style name for CSS
@@ -867,9 +884,9 @@ public class frontend implements EntryPoint {
     private void comments(final String postID, final String wallKey, FlowPanel postPanel) {
         // Create panel to contain widgets
         final FlowPanel commentsPanel = new FlowPanel();
-        commentsPanel.getElement().getStyle().setProperty("paddingLeft", "50px");
+        //commentsPanel.getElement().getStyle().setProperty("paddingLeft", "40px");
         // Add main panel to page
-        postPanel.insert(commentsPanel, 3);
+        postPanel.insert(commentsPanel, 2);
         
         // TODO LUKETODO 5 should be replaced with a call to a method that takes
         // the ID of a post and returns the number of comments associated 
@@ -937,35 +954,36 @@ public class frontend implements EntryPoint {
                     // to the place we just added our new comment.
                 }
             }); 
-            
-            FlexTable commentsReplyThreadPanel = new FlexTable();
-            commentsPanel.add(commentsReplyThreadPanel);
-              
-            TextArea threadReplyContents = new TextArea();
-            threadReplyContents.setCharacterWidth(40);
-            threadReplyContents.setVisibleLines(6);
-            commentsReplyThreadPanel.setWidget(0, 0, threadReplyContents);
-
-            Button replyToThread;
-            if(commentCount == 0) {
-                replyToThread = new Button("Post comment");
-            } else {
-                replyToThread = new Button("Reply to thread");
-            }
-            commentsReplyThreadPanel.setWidget(1, 0, replyToThread);
-            replyToThread.addClickHandler(new ClickHandler() {
-                public void onClick(ClickEvent event) {
-                    // TODO LUKETODO Call a method that adds a new comment.
-                    // It's parent is postID
-                    // To get the contents use: threadReplyContents.getText();
-                        
-                    wall(wallKey);
-                    // TODO LOUISTODO Make the refreshed comments page move
-                    // to the place we just added our new comment.
-                }
-            });   
         }
-        //commentsPanel.addStyleName("gwt-comments");
+        
+        FlexTable commentsReplyThreadPanel = new FlexTable();
+        commentsReplyThreadPanel.getElement().getStyle().setProperty("paddingLeft" , "100px");
+        commentsPanel.add(commentsReplyThreadPanel);
+              
+        TextArea threadReplyContents = new TextArea();
+        threadReplyContents.setCharacterWidth(40);
+        threadReplyContents.setVisibleLines(6);
+        commentsReplyThreadPanel.setWidget(0, 0, threadReplyContents);
+
+        Button replyToThread;
+        if(commentCount == 0) {
+            replyToThread = new Button("Post comment");
+        } else {
+            replyToThread = new Button("Reply to thread");
+        }
+        commentsReplyThreadPanel.setWidget(1, 0, replyToThread);
+        replyToThread.addClickHandler(new ClickHandler() {
+            public void onClick(ClickEvent event) {
+                // TODO LUKETODO Call a method that adds a new comment.
+                // It's parent is postID
+                // To get the contents use: threadReplyContents.getText();
+                        
+                wall(wallKey);
+                // TODO LOUISTODO Make the refreshed comments page move
+                // to the place we just added our new comment.
+            }
+        });   
+        commentsPanel.addStyleName("gwt-comments");
     }  
      
     //must be global because it must be referenced from callback
