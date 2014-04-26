@@ -226,10 +226,14 @@ public class frontend implements EntryPoint {
                 for (i = 0; i < result.length; i++) {
                     //list names/keys
                     Anchor linkFriendsWall = new Anchor(result[i][0]);
+                    linkFriendsWall.getElement().getStyle().setProperty("paddingLeft" , "100px");
                     friendsListPanel.setWidget((i + 2), 0, linkFriendsWall);
                     final String resultString = result[i][1];
-                    //TODO LOUISTODO Make substring longer
-                    friendsListPanel.setWidget((i + 2), 1, new Label(resultString.substring(0, 11) + "..."));
+                    TextBox friendKeyBox = new TextBox();
+                    friendKeyBox.setText(resultString);
+                    friendKeyBox.setVisibleLength(75);
+                    friendKeyBox.setReadOnly(true);
+                    friendsListPanel.setWidget((i + 2), 1, friendKeyBox);
                     //link names to walls
                     linkFriendsWall.addClickHandler(new ClickHandler() {
                         public void onClick(ClickEvent event) {
@@ -502,7 +506,7 @@ public class frontend implements EntryPoint {
         myDetailsPanel.setWidget(3, 0, genderLabel);
         
         final TextBox editGender = new TextBox();
-        turtlenet.getMyPDATA("sex", new AsyncCallback<String>() {
+        turtlenet.getMyPDATA("gender", new AsyncCallback<String>() {
             public void onFailure(Throwable caught) {
                 //TODO error
             }
@@ -520,7 +524,7 @@ public class frontend implements EntryPoint {
         
         saveGender.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                turtlenet.updatePDATA("sex", editGender.getText(), new AsyncCallback<String>() {
+                turtlenet.updatePDATA("gender", editGender.getText(), new AsyncCallback<String>() {
                      public void onFailure(Throwable caught) {
                          //TODO error
                      }
@@ -682,7 +686,7 @@ public class frontend implements EntryPoint {
             }
         });
         
-        turtlenet.getPDATA("sex", friendsDetailsKey, new AsyncCallback<String>() {
+        turtlenet.getPDATA("gender", friendsDetailsKey, new AsyncCallback<String>() {
             public void onFailure(Throwable caught) {
                 //TODO error
             }
@@ -709,6 +713,7 @@ public class frontend implements EntryPoint {
         friendsDetailsPanel.addStyleName("gwt-friends-details");
     }
 
+    boolean commentsPanelToggleIsOpen;
     private void wall(final String key) {
         // Setup basic page
         RootPanel.get().clear();
@@ -758,26 +763,37 @@ public class frontend implements EntryPoint {
         
         HorizontalPanel createPostControlPanel = new HorizontalPanel();
         createPostPanel.add(createPostControlPanel);
+        
+        final ListBox chooseGroup = new ListBox();
+        chooseGroup.setVisibleItemCount(1);
+        chooseGroup.setWidth("150px");
+        chooseGroup.addItem("All");
+        createPostControlPanel.add(chooseGroup);
+        createPostControlPanel.setCellWidth(chooseGroup,"430"); 
+        
+        // TODO LUKETODO 10 should be replaced with the number of groups the
+        // user has created
+        for(int i = 0; i < 10; i++) {
+            // TODO LUKETODO "Group name" should be replaced with a call to a
+            // method that returns the list of all of the groups the user has 
+            // created. Use i to select one from the list.
+            chooseGroup.addItem("Group name");
+        }
+        
         Button send = new Button("Send");
-        send.setWidth("585px");
-        
-        
+        send.setWidth("150px");
+        createPostControlPanel.add(send);        
         send.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
                 // TODO LUKETODO Call a method that adds a post to the current wall.
                 // This method takes a string called key so give it that.
                 // Use contents.getText() to obtain the message contents.
-                // A way to choose who can see the post is on the way. For now can
-                // we have it default to everyone?
+                // To obtain the group allowed to see the post use
+                // chooseGroup.getItemText(chooseFriend.getSelectedIndex())
                 
                 wall(key);
             }
         });
-         
-        createPostControlPanel.add(send);
-        // TODO LOUISTODO Allow user to select who can view the post 
-        // createPostControlPanel.add( SOME KIND OF DROPDOWN MENU);
-        
         
         createPost.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {                
@@ -874,7 +890,7 @@ public class frontend implements EntryPoint {
             // Give it postID
             int commentCount = 5;
             
-            Anchor comments;
+            final Anchor comments;
             if(commentCount == 0) {
                 comments = new Anchor("Add a comment");
             } else {
@@ -884,7 +900,8 @@ public class frontend implements EntryPoint {
             postContentsFooterPanel.add(comments);
             comments.addClickHandler(new ClickHandler() {
                 public void onClick(ClickEvent event) {
-                    comments(postID, key, postPanel); 
+                    commentsPanelToggleIsOpen = true;
+                    comments(postID, key, postPanel, comments); 
                 }
             }); 
         }
@@ -893,12 +910,22 @@ public class frontend implements EntryPoint {
         wallPanel.addStyleName("gwt-wall");
     }
     
-    private void comments(final String postID, final String wallKey, FlowPanel postPanel) {
+    private void comments(final String postID, final String wallKey, final FlowPanel postPanel, Anchor openComments) {
         // Create panel to contain widgets
         final FlowPanel commentsPanel = new FlowPanel();
+        
+        // Disables the comment anchor for the current post to prevent duplicate
+        // comment panels being created.
+        openComments.addClickHandler(new ClickHandler() {
+            public void onClick(ClickEvent event) {
+                commentsPanel.clear();
+                                                                                                                                                                                                                                                                                                                               System.out.println("Wake up, Neo...");
+            }
+        });
+        
         // Add main panel to page
         postPanel.insert(commentsPanel, 2);
-        
+
         // TODO LUKETODO 5 should be replaced with a call to a method that takes
         // the ID of a post and returns the number of comments associated 
         // with that post.
@@ -972,11 +999,11 @@ public class frontend implements EntryPoint {
         }
         
         FlexTable commentsReplyThreadPanel = new FlexTable();
-        commentsReplyThreadPanel.getElement().getStyle().setProperty("paddingLeft", "250px");
+        commentsReplyThreadPanel.getElement().getStyle().setProperty("paddingLeft", "60px");
         commentsPanel.add(commentsReplyThreadPanel);
               
         TextArea threadReplyContents = new TextArea();
-        threadReplyContents.setCharacterWidth(40);
+        threadReplyContents.setCharacterWidth(60);
         threadReplyContents.setVisibleLines(6);
         commentsReplyThreadPanel.setWidget(0, 0, threadReplyContents);
 
@@ -986,7 +1013,7 @@ public class frontend implements EntryPoint {
         } else {
             replyToThread = new Button("Reply to thread");
         }
-        replyToThread.setWidth("310px");
+        replyToThread.setWidth("450px");
         commentsReplyThreadPanel.setWidget(1, 0, replyToThread);
         replyToThread.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
