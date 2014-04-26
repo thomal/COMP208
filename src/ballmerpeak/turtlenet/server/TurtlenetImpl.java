@@ -8,6 +8,7 @@ import ballmerpeak.turtlenet.server.TNClient;
 import ballmerpeak.turtlenet.server.MessageFactoryImpl;
 import ballmerpeak.turtlenet.shared.Message;
 import ballmerpeak.turtlenet.shared.Conversation;
+import java.util.Arrays;
 
 @SuppressWarnings("serial")
 public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
@@ -141,10 +142,21 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
     public String addToCategory (String group, String key) {
         Logger.write("INFO", "TnImpl", "addToCategoru(" + group + "," + key + ")");
         
-        if (c.db.addToCategory(group, Crypto.decodeKey(key)))
-            return "success";
-        else
+        boolean alreadyMember = false;
+        PublicKey[] members = c.db.getCategoryMembers(group);
+        for (int i = 0; i < members.length; i++)
+            if (members[i].equals(Crypto.decodeKey(key)))
+                alreadyMember = true;
+        
+        if (!alreadyMember) {
+            if (c.db.addToCategory(group, Crypto.decodeKey(key)))
+                return "success";
+            else
+                return "failure";
+        } else {
+            Logger.write("WARNING", "TnImpl", "Duplicate entry to tCategoryMembers prevented");
             return "failure";
+        }
     }
     
     public String addKey (String key) {
