@@ -759,6 +759,8 @@ public class frontend implements EntryPoint {
         HorizontalPanel createPostControlPanel = new HorizontalPanel();
         createPostPanel.add(createPostControlPanel);
         Button send = new Button("Send");
+        send.setWidth("585px");
+        
         
         send.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
@@ -894,7 +896,6 @@ public class frontend implements EntryPoint {
     private void comments(final String postID, final String wallKey, FlowPanel postPanel) {
         // Create panel to contain widgets
         final FlowPanel commentsPanel = new FlowPanel();
-        //commentsPanel.getElement().getStyle().setProperty("paddingLeft", "40px");
         // Add main panel to page
         postPanel.insert(commentsPanel, 2);
         
@@ -919,7 +920,7 @@ public class frontend implements EntryPoint {
             // Create widgets
             TextArea commentContents = new TextArea();
             commentContents.setCharacterWidth(60);
-            commentContents.setVisibleLines(5);
+            commentContents.setVisibleLines(3);
             commentContents.setReadOnly(true);
             
             // TODO LUKETODO "Contents of comment" should be replaced with a call
@@ -939,13 +940,17 @@ public class frontend implements EntryPoint {
             // Give it commentID
             final String postedByKey = new String("Public key");
             
-            commentsControlPanel.add(new Label("Posted by: "));
+            Label commentPostedByLabel = new Label("Posted by: ");
+            commentPostedByLabel.getElement().getStyle().setProperty("paddingLeft" , "10px");
+            commentsControlPanel.add(commentPostedByLabel);
             // TODO LUKETODO "Name of user" should be replaced with a call to 
             // a method that returns the name of a user when given their public key.
             // Give it postedByKey
             Anchor postedBy = new Anchor("Name of user");
+            postedBy.getElement().getStyle().setProperty("paddingLeft" , "10px");
             commentsControlPanel.add(postedBy);
             Anchor likeComment = new Anchor("Like");
+            likeComment.getElement().getStyle().setProperty("paddingLeft" , "140px");
             commentsControlPanel.add(likeComment);
             
             postedBy.addClickHandler(new ClickHandler() {
@@ -967,7 +972,7 @@ public class frontend implements EntryPoint {
         }
         
         FlexTable commentsReplyThreadPanel = new FlexTable();
-        commentsReplyThreadPanel.getElement().getStyle().setProperty("paddingLeft" , "100px");
+        commentsReplyThreadPanel.getElement().getStyle().setProperty("paddingLeft", "250px");
         commentsPanel.add(commentsReplyThreadPanel);
               
         TextArea threadReplyContents = new TextArea();
@@ -981,6 +986,7 @@ public class frontend implements EntryPoint {
         } else {
             replyToThread = new Button("Reply to thread");
         }
+        replyToThread.setWidth("310px");
         commentsReplyThreadPanel.setWidget(1, 0, replyToThread);
         replyToThread.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
