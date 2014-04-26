@@ -15,49 +15,29 @@ KAWAII TURTLE~
                    -----     u              u
                    
 --------------------------------------------
-TODO (Due by next meeting)
+TODO
 --------------------------------------------
 Luke:
-    - Fill in DB calls in GWT
-
-Aishah/Mike:
-    - Update DBStrings.java to match new src/ballmerpeak/turtlenet/server/addTablesSQL.sql file
-    - Store the signature (String) for posts and comments
-    - SQL for database methods
-    - Implement database methods
+    - Fill in DB calls in GWT frontend
+    - Automatically send all messages to self
+    - Finish revocation function
+    - JAR file for remote server
+    - winstone JAR file for local server
+    - parser drop messages from revoked keys
+    - escape semicolons in parser
 
 Leon:
     - Start/Stop server via gui (leon)
 
 Peter:
-    - Website Prototype
-    - User manual (\missingfigure{})
+    - Website
+    - User manual
 
 Louis:
     - All panels
-    - Prompt user to enter username, have username in profile data section
     - Ctrl-F "//TODO" in frontend.java
-
---------------------------------------------
-Other TODO
---------------------------------------------
-Luke:
-    - Message constructor should use server time for timestamp
-    - Deal with message content containing (semi-)colons, or make explicit
-        (semi-)colons are forbidden
-    - Talk w/aishah about storing signature for comments, posts, and
-        conversations
-    - consider seperating daemon from HTTP server
-    - make JAR file for remote server
-
---------------------------------------------
-NOTES
---------------------------------------------
-- DB should use Message.XgetY methods to get message content. See Message.java
-    in: src/ballmerpeak/turtlenet/shared
-- Posts, Comments, and Conversations can be uniquely identified by the signature
-    of the message which created them. The DB doesn't, but now needs to, store
-    this.
+    - reload convos/walls/comments every few seconds so people don't have to refresh
+    - loader icon that's removed in the onModuleLoad method (HTML loads long before GWT starts)
 
 --------------------------------------------
 HOW-TO
