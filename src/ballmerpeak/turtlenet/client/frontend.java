@@ -762,26 +762,37 @@ public class frontend implements EntryPoint {
         
         HorizontalPanel createPostControlPanel = new HorizontalPanel();
         createPostPanel.add(createPostControlPanel);
+        
+        final ListBox chooseGroup = new ListBox();
+        chooseGroup.setVisibleItemCount(1);
+        chooseGroup.setWidth("150px");
+        chooseGroup.addItem("All");
+        createPostControlPanel.add(chooseGroup);
+        createPostControlPanel.setCellWidth(chooseGroup,"430"); 
+        
+        // TODO LUKETODO 10 should be replaced with the number of groups the
+        // user has created
+        for(int i = 0; i < 10; i++) {
+            // TODO LUKETODO "Group name" should be replaced with a call to a
+            // method that returns the list of all of the groups the user has 
+            // created. Use i to select one from the list.
+            chooseGroup.addItem("Group name");
+        }
+        
         Button send = new Button("Send");
-        send.setWidth("585px");
-        
-        
+        send.setWidth("150px");
+        createPostControlPanel.add(send);        
         send.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
                 // TODO LUKETODO Call a method that adds a post to the current wall.
                 // This method takes a string called key so give it that.
                 // Use contents.getText() to obtain the message contents.
-                // A way to choose who can see the post is on the way. For now can
-                // we have it default to everyone?
+                // To obtain the group allowed to see the post use
+                // chooseGroup.getItemText(chooseFriend.getSelectedIndex())
                 
                 wall(key);
             }
         });
-         
-        createPostControlPanel.add(send);
-        // TODO LOUISTODO Allow user to select who can view the post 
-        // createPostControlPanel.add( SOME KIND OF DROPDOWN MENU);
-        
         
         createPost.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {                
@@ -976,11 +987,11 @@ public class frontend implements EntryPoint {
         }
         
         FlexTable commentsReplyThreadPanel = new FlexTable();
-        commentsReplyThreadPanel.getElement().getStyle().setProperty("paddingLeft", "250px");
+        commentsReplyThreadPanel.getElement().getStyle().setProperty("paddingLeft", "60px");
         commentsPanel.add(commentsReplyThreadPanel);
               
         TextArea threadReplyContents = new TextArea();
-        threadReplyContents.setCharacterWidth(40);
+        threadReplyContents.setCharacterWidth(60);
         threadReplyContents.setVisibleLines(6);
         commentsReplyThreadPanel.setWidget(0, 0, threadReplyContents);
 
@@ -990,7 +1001,7 @@ public class frontend implements EntryPoint {
         } else {
             replyToThread = new Button("Reply to thread");
         }
-        replyToThread.setWidth("310px");
+        replyToThread.setWidth("450px");
         commentsReplyThreadPanel.setWidget(1, 0, replyToThread);
         replyToThread.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
