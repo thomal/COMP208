@@ -194,9 +194,14 @@ public class frontend implements EntryPoint, ClickListener {
         // Add click handlers for anchors
         linkMyWall.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                // TODO LUKETODO RIGHTHERE "me" should be replaced with your own
-                // key =D
-                wall("me");
+                turtlenet.getMyKey(new AsyncCallback<String>() {
+                    public void onFailure(Throwable caught) {
+                        //TODO error
+                    }
+                    public void onSuccess(String result) {
+                        wall(result);
+                    }
+                });
             }
         });
         
@@ -639,6 +644,7 @@ public class frontend implements EntryPoint, ClickListener {
             }
         });
         
+        myDetailsPermissions();
         
         // Add style name for CSS
         myDetailsPanel.addStyleName("gwt-my-details");
@@ -648,9 +654,9 @@ public class frontend implements EntryPoint, ClickListener {
         location = "myDetailsPermissions";
         refreshID = "";
     
-        // Setup basic page
-        RootPanel.get().clear();
-        navigation();
+        // Setup basic page isn't done intentionally, it's an addod to myDetails
+        //RootPanel.get().clear();
+        //navigation();
         
         // Add panel to contain widgets
         final FlexTable myDetailsPermissionsPanel = new FlexTable();
