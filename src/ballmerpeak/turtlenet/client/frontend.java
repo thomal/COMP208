@@ -276,8 +276,10 @@ public class frontend implements EntryPoint, ClickListener {
                     friendKeyBox.setReadOnly(true);
                     friendsListPanel.setWidget((i + 2), 1, friendKeyBox);
                     //link names to walls
+                    System.out.println("adding link to " + result[i][1] + "'s wall");
                     linkFriendsWall.addClickHandler(new ClickHandler() {
                         public void onClick(ClickEvent event) {
+                            System.out.println("friendsList loading " + result[i][1] + "'s wall");
                             wall(result[i][1]);
                         }
                     });
@@ -766,6 +768,7 @@ public class frontend implements EntryPoint, ClickListener {
         friendsDetailsPanel.addStyleName("gwt-friends-details");
     }
 
+    HorizontalPanel wallControlPanel;
     private void wall(final String key) {
         location = "wall";
         refreshID = key;
@@ -777,34 +780,43 @@ public class frontend implements EntryPoint, ClickListener {
         final FlowPanel wallPanel = new FlowPanel();
         RootPanel.get().add(wallPanel);
         // Create a container for controls
-        HorizontalPanel wallControlPanel = new HorizontalPanel();
+        wallControlPanel = new HorizontalPanel();
         wallControlPanel.setSpacing(5);
         wallPanel.add(wallControlPanel);        
         
-        // TODO LUKETODO "my key" should be replaced with the users key
-        if(key.equals("my key")) {
-            Anchor myDetails = new Anchor("My details");
-            wallControlPanel.add(myDetails);
-            wallControlPanel.setCellWidth(myDetails,"200");
-            myDetails.addClickHandler(new ClickHandler() {
-                public void onClick(ClickEvent event) {
-                    myDetails();
+        turtlenet.getMyKey(new AsyncCallback<String>() {
+            public void onFailure(Throwable caught) {
+                //TODO error
+            }
+            public void onSuccess(String result) {
+                if(key.equals(result)) {
+                    Anchor myDetails = new Anchor("My details");
+                    wallControlPanel.add(myDetails);
+                    wallControlPanel.setCellWidth(myDetails,"200");
+                    myDetails.addClickHandler(new ClickHandler() {
+                        public void onClick(ClickEvent event) {
+                            myDetails();
+                        }
+                    });
+                } else {
+                    turtlenet.getUsername(key, new AsyncCallback<String>() {
+                        public void onFailure(Throwable caught) {
+                            //TODO error
+                        }
+                        public void onSuccess(String result) {
+                            Button userDetails = new Button("About " + result);
+                            wallControlPanel.add(userDetails);
+                            wallControlPanel.setCellWidth(userDetails,"425");
+                            userDetails.addClickHandler(new ClickHandler() {
+                                public void onClick(ClickEvent event) {
+                                    friendsDetails(key);
+                                }
+                            });
+                        }
+                    });
                 }
-            });
-            
-        } else {
-            // TODO LUKETODO "Name of user" should be replaced with a call to a method
-            // that returns the name of a user when given their public key.
-            // This method takes a string called key so give it that.
-            Button userDetails = new Button("About " + "Name of user");
-            wallControlPanel.add(userDetails);
-            wallControlPanel.setCellWidth(userDetails,"425");
-            userDetails.addClickHandler(new ClickHandler() {
-                public void onClick(ClickEvent event) {
-                    friendsDetails(key);
-                }
-            });
-        }
+            }
+        });
         
         final Label postStop = new Label();
         wallControlPanel.add(postStop);
@@ -829,14 +841,16 @@ public class frontend implements EntryPoint, ClickListener {
         createPostControlPanel.add(chooseGroup);
         createPostControlPanel.setCellWidth(chooseGroup,"430"); 
         
-        // TODO LUKETODO 10 should be replaced with the number of groups the
-        // user has created
-        for(int i = 0; i < 10; i++) {
-            // TODO LUKETODO "Group name" should be replaced with a call to a
-            // method that returns the list of all of the groups the user has 
-            // created. Use i to select one from the list.
-            chooseGroup.addItem("Group name");
-        }
+        
+        turtlenet.getCategories(new AsyncCallback<String[][]>() {
+            public void onFailure(Throwable caught) {
+                //TODO error
+            }
+            public void onSuccess(String result[][]) {
+                for (int i = 0; i < result.length; i++)
+                    chooseGroup.addItem(result[i][0]);
+            }
+        });
         
         Button cancel = new Button("Cancel");
         createPostControlPanel.add(cancel);
