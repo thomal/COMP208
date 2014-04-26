@@ -64,8 +64,9 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.dom.client.Style.FontWeight;
 import com.google.gwt.dom.client.DivElement;
 import com.google.gwt.dom.client.Document;
+import com.google.gwt.user.client.Timer;
 
-public class frontend implements EntryPoint {
+public class frontend implements EntryPoint, ClickListener {
 
     // Create remote service proxy to talk to the server-side Turtlenet service
     private final TurtlenetAsync turtlenet = GWT.create(Turtlenet.class);
@@ -91,14 +92,20 @@ public class frontend implements EntryPoint {
         // Call method to load the initial login page
         login();
     }
+    
+    private String location = new String("");
+    private String refreshID = new String("");
 
     private void login() {
+        location = "login";
+        refreshID = "";
         RootPanel.get().clear();
         FlexTable loginPanel = new FlexTable();
         RootPanel.get().add(loginPanel);
     
         // Create login panel widgets
         final Button loginButton = new Button("Login");
+        loginButton.addClickListener(this);
         final TextBox passwordInput = new TextBox();
         final Label passwordLabel = new Label();
 
@@ -135,8 +142,33 @@ public class frontend implements EntryPoint {
             }
         });
     }
+    
+    // When the login button is clicked we start a repeating timer that refreshes
+    // the page every 5 seconds. 
+    public void onClick(Widget sender) {
+        Timer refresh = new Timer() {
+            public void run() {
+                System.out.println(location);
+                System.out.println(refreshID);
+            
+                if(location.equals("wall")) {
+                    System.out.println("Refresh: wall. refreshID: " + refreshID);
+                    wall(refreshID);
+                } else if(location.equals("conversationList")) {
+                    System.out.println("Refresh: conversationList");
+                    conversationList();
+                } else if(location.equals("conversation")) {
+                    System.out.println("Refresh: conversation. refreshID: " + refreshID);
+                    conversation(refreshID);
+                } else {
+                    //Do nothing
+                }
+            }
+        };
+        refresh.scheduleRepeating(5*1000);
+    }
 
-    private void navigation() {
+    private void navigation() {    
         HorizontalPanel navigationPanel = new HorizontalPanel();
         RootPanel.get().add(navigationPanel);
         
@@ -204,7 +236,10 @@ public class frontend implements EntryPoint {
     }
 
     private TextBox friendsListPanel_myKeyTextBox;
-    private void friendsList(final String currentGroupID) {   
+    private void friendsList(final String currentGroupID) {
+        location = "friendsList";
+        refreshID = "";
+       
         RootPanel.get().clear();
         navigation();
         final FlexTable friendsListPanel = new FlexTable();
@@ -334,6 +369,9 @@ public class frontend implements EntryPoint {
     }
     
     private void conversationList() {
+        location = "conversationList";
+        refreshID = "";
+    
         //Setup basic page
         RootPanel.get().clear();
         navigation();
@@ -382,6 +420,9 @@ public class frontend implements EntryPoint {
     }
 
     private void myDetails() {
+        location = "myDetails";
+        refreshID = "";
+    
         RootPanel.get().clear();
         navigation();
         FlexTable myDetailsPanel = new FlexTable();
@@ -590,6 +631,9 @@ public class frontend implements EntryPoint {
     }
     
     private void myDetailsPermissions() {
+        location = "myDetailsPermissions";
+        refreshID = "";
+    
         // Setup basic page
         RootPanel.get().clear();
         navigation();
@@ -636,6 +680,9 @@ public class frontend implements EntryPoint {
     }
     
     private void friendsDetails(String friendsDetailsKey) {
+        location = "friendsDetails";
+        refreshID = "";
+    
         // Setup basic page
         RootPanel.get().clear();
         navigation();
@@ -719,8 +766,10 @@ public class frontend implements EntryPoint {
         friendsDetailsPanel.addStyleName("gwt-friends-details");
     }
 
-    boolean commentsPanelToggleIsOpen;
     private void wall(final String key) {
+        location = "wall";
+        refreshID = key;
+        
         // Setup basic page
         RootPanel.get().clear();
         navigation();
@@ -802,7 +851,9 @@ public class frontend implements EntryPoint {
         });
         
         createPost.addClickHandler(new ClickHandler() {
-            public void onClick(ClickEvent event) {                
+            public void onClick(ClickEvent event) {
+                location = "createPost";
+                refreshID = "";                
                 wallPanel.insert(createPostPanel, 1);
             }
         });
@@ -907,6 +958,9 @@ public class frontend implements EntryPoint {
             }
             postContentsFooterPanel.add(likePost);
             
+            final Label stop = new Label("");            
+            postContentsFooterPanel.add(stop);
+            
             // TODO LUKETODO "5" should be replaced with a call to a method that
             // returns a the number of comments on a post when given the ID of
             // that post.
@@ -923,7 +977,7 @@ public class frontend implements EntryPoint {
             postContentsFooterPanel.add(comments);
             comments.addClickHandler(new ClickHandler() {
                 public void onClick(ClickEvent event) {
-                    commentsPanelToggleIsOpen = true;
+                    stop.setText("Page auto update paused");
                     comments(postID, key, postPanel, comments); 
                 }
             }); 
@@ -934,6 +988,9 @@ public class frontend implements EntryPoint {
     }
     
     private void comments(final String postID, final String wallKey, final FlowPanel postPanel, Anchor openComments) {
+        location = "comments";
+        refreshID = "";
+        
         // Create panel to contain widgets
         final FlowPanel commentsPanel = new FlowPanel();
         
@@ -1059,6 +1116,14 @@ public class frontend implements EntryPoint {
         threadReplyContents.setCharacterWidth(60);
         threadReplyContents.setVisibleLines(6);
         commentsReplyThreadPanel.setWidget(0, 0, threadReplyContents);
+        
+        Button cancel = new Button("Cancel");
+        commentsReplyThreadPanel.setWidget(1, 1, cancel);
+        cancel.addClickHandler(new ClickHandler() {
+            public void onClick(ClickEvent event) {                        
+                wall(wallKey);
+            }
+        });   
 
         Button replyToThread;
         if(commentCount == 0) {
@@ -1085,6 +1150,9 @@ public class frontend implements EntryPoint {
     //must be global because it must be referenced from callback
     private TextArea newConvoInput = new TextArea();
     private void newConversation() {
+        location = "newConversation";
+        refreshID = "";
+    
         // Setup basic page
         RootPanel.get().clear();
         navigation();
@@ -1182,23 +1250,26 @@ public class frontend implements EntryPoint {
     
     private String convoPanelSetup_convosig; //needed in inner class
     private TextArea convoPanelSetup_input = new TextArea();
-    private void conversation(String conversationID) {
+    private void conversation(final String conversationID) {
+        location = "conversation";
+        refreshID = conversationID;
+    
         // Set up basic page
         RootPanel.get().clear();
         navigation();
         
         // Create panel to contain widgets
-        final FlexTable conversationPanel = new FlexTable();
+        final FlowPanel conversationPanel = new FlowPanel();
         RootPanel.get().add(conversationPanel);
-    
+        HorizontalPanel conversationParticipantsPanel = new HorizontalPanel();
+        conversationPanel.add(conversationParticipantsPanel);
         convoPanelSetup_convosig = conversationID;
-        conversationPanel.setCellSpacing(10);
-        conversationPanel.setWidget(0, 0, new Label("Participants: "));
+        conversationParticipantsPanel.add(new Label("Participants: "));
         
         final ListBox currentFriends = new ListBox();
         currentFriends.setVisibleItemCount(1);
         currentFriends.setWidth("150px");
-        conversationPanel.setWidget(0, 1, currentFriends);
+        conversationParticipantsPanel.add(currentFriends);
         
         turtlenet.getConversation(convoPanelSetup_convosig, new AsyncCallback<Conversation>() {
             Conversation result;
@@ -1223,20 +1294,40 @@ public class frontend implements EntryPoint {
                         messages = msgs;
                         
                         for (int i = 0; i < messages.length; i++) {
+                            HorizontalPanel conversationContentsPanel = new HorizontalPanel();
+                            conversationPanel.add(conversationContentsPanel);
                             Label postedBy = new Label(messages[i][0]);
                             postedBy.getElement().getStyle().setFontWeight(FontWeight.BOLD);
-                            conversationPanel.setWidget((i + 1), 0, postedBy);
+                            conversationContentsPanel.add(postedBy);
                             Label messageContents = new Label(messages[i][2]);
-                            conversationPanel.setWidget((i + 1), 1, messageContents);
+                            conversationContentsPanel.add(messageContents);
                         }
                         
+                        Button replyToConversation = new Button("Reply");
+                        replyToConversation.setWidth("500px");
+                        conversationPanel.add(replyToConversation);                     
+                        
+                        final FlowPanel conversationReplyPanel = new FlowPanel();
                         convoPanelSetup_input.setCharacterWidth(80);
                         convoPanelSetup_input.setVisibleLines(10); 
-                        int row = (conversationPanel.getRowCount() + 1);
-                        conversationPanel.setWidget(row, 1, convoPanelSetup_input);
+                        conversationReplyPanel.add(convoPanelSetup_input);
+                        
+                        HorizontalPanel conversationReplyControlsPanel = new HorizontalPanel();
+                        conversationReplyPanel.add(conversationReplyControlsPanel);
+                        
+                        Label stop = new Label("Page auto update paused");
+                        conversationReplyControlsPanel.add(stop);
+                        stop.addClickHandler(new ClickHandler() {
+                            public void onClick(ClickEvent event) {
+                                conversation(conversationID);
+                            }
+                        });    
+                        
+                        Button cancel = new Button("Cancel");
+                        conversationReplyControlsPanel.add(cancel);
                         
                         Button send = new Button("Send"); 
-                        conversationPanel.setWidget(row, 2, send);
+                        conversationReplyControlsPanel.add(send);
                         send.addClickHandler(new ClickHandler() {
                             public void onClick(ClickEvent event) {
                                 turtlenet.addMessageToCHAT(convoPanelSetup_input.getText(), convoPanelSetup_convosig, new AsyncCallback<String>() {
@@ -1249,7 +1340,16 @@ public class frontend implements EntryPoint {
                                     }
                                 });
                             }
-                        }); 
+                        });
+                        
+                        replyToConversation.addClickHandler(new ClickHandler() {
+                            public void onClick(ClickEvent event) {
+                                location = "replyToConversation";
+                                refreshID = "";  
+                            
+                                conversationPanel.add(conversationReplyPanel);
+                            }
+                        });    
                     }
                 });
             }
@@ -1261,7 +1361,9 @@ public class frontend implements EntryPoint {
     
     TextBox newGroup_nameInput = new TextBox();
     private void newGroup() {
-        // TODO LOUISTODO
+        location = "newGroup";
+        refreshID = "";    
+
         RootPanel.get().clear();
         navigation();
         FlexTable newGroupPanel = new FlexTable();
@@ -1296,6 +1398,9 @@ public class frontend implements EntryPoint {
     }
     
     private void addToGroup(final String groupID) {
+        location = "addToGroup";
+        refreshID = "";
+    
         RootPanel.get().clear();
         navigation();
         FlexTable addToGroupPanel = new FlexTable();
@@ -1367,6 +1472,9 @@ public class frontend implements EntryPoint {
     
     TextBox addFriend_keyInput = new TextBox();
     private void addFriend() {
+        location = "addFriend";
+        refreshID = "";
+    
         RootPanel.get().clear();
         navigation();
         FlexTable addFriendPanel = new FlexTable();
