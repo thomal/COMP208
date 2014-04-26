@@ -312,17 +312,21 @@ public class Database {
         Logger.write("VERBOSE", "DB", "getCategoryMembers(" + catID + ")");
         String queryStr = "";
     
-        if(catID.toLowerCase().equals("all")) { 
+        if(catID.toLowerCase().equals("all"))
             queryStr = DBStrings.getAllKeys;
-        } else {
+        else
             queryStr = DBStrings.getMemberKeys.replace("__CATNAME__", catID);
-        }
+        
         Vector<PublicKey> keyList = new Vector<PublicKey>();
         
         try {
             ResultSet keySet = query(queryStr);
-            while(keySet.next())
-                keyList.add(Crypto.decodeKey(keySet.getString("key")));
+            while(keySet.next()) {
+                if(catID.toLowerCase().equals("all"))
+                    keyList.add(Crypto.decodeKey(keySet.getString("key")));
+                else
+                    keyList.add(Crypto.decodeKey(keySet.getString("userKey")));
+            }
         } catch (java.sql.SQLException e) {
             Logger.write("ERROR", "DB", "SQLException: " + e);
         }
