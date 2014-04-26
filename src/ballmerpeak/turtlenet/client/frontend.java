@@ -713,6 +713,7 @@ public class frontend implements EntryPoint {
         friendsDetailsPanel.addStyleName("gwt-friends-details");
     }
 
+    boolean commentsPanelToggleIsOpen;
     private void wall(final String key) {
         // Setup basic page
         RootPanel.get().clear();
@@ -889,7 +890,7 @@ public class frontend implements EntryPoint {
             // Give it postID
             int commentCount = 5;
             
-            Anchor comments;
+            final Anchor comments;
             if(commentCount == 0) {
                 comments = new Anchor("Add a comment");
             } else {
@@ -899,7 +900,8 @@ public class frontend implements EntryPoint {
             postContentsFooterPanel.add(comments);
             comments.addClickHandler(new ClickHandler() {
                 public void onClick(ClickEvent event) {
-                    comments(postID, key, postPanel); 
+                    commentsPanelToggleIsOpen = true;
+                    comments(postID, key, postPanel, comments); 
                 }
             }); 
         }
@@ -908,12 +910,22 @@ public class frontend implements EntryPoint {
         wallPanel.addStyleName("gwt-wall");
     }
     
-    private void comments(final String postID, final String wallKey, FlowPanel postPanel) {
+    private void comments(final String postID, final String wallKey, final FlowPanel postPanel, Anchor openComments) {
         // Create panel to contain widgets
         final FlowPanel commentsPanel = new FlowPanel();
+        
+        // Disables the comment anchor for the current post to prevent duplicate
+        // comment panels being created.
+        openComments.addClickHandler(new ClickHandler() {
+            public void onClick(ClickEvent event) {
+                commentsPanel.clear();
+                                                                                                                                                                                                                                                                                                                               System.out.println("Wake up, Neo...");
+            }
+        });
+        
         // Add main panel to page
         postPanel.insert(commentsPanel, 2);
-        
+
         // TODO LUKETODO 5 should be replaced with a call to a method that takes
         // the ID of a post and returns the number of comments associated 
         // with that post.
