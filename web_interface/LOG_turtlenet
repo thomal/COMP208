@@ -1,14 +1,128 @@
-===== Turtlenet started at Thu Apr 24 18:56:50 BST 2014=====
-1398362210 UNIMPL	TNClient	Ignoring password: 
-1398362210 INFO		NetCon	Read lastRead from file
-1398362210 INFO		DB	Connecting to database
-1398362210 INFO		NetCon	NetworkConnection started
-1398362211 VERBOSE	NetCon	Sending command to server "get 1398362208602"
-1398362211 VERBOSE	NetCon	Sending command to server "t"
-1398362212 VERBOSE	NetCon	Sending command to server "get 1398362211598"
-1398362212 VERBOSE	NetCon	Sending command to server "t"
-1398362212 INFO		TNImpl	stopTN()
-1398362212 INFO		NetCon	close()
-1398362212 INFO		NetCon	Saved lastRead to disk
-1398362212 INFO		DB	Disconnecting from database
-===== Turtlenet closed  at Thu Apr 24 18:56:52 BST 2014=====
+===== Turtlenet started at Sat Apr 26 13:15:15 BST 2014=====
+1398514515 UNIMPL	TNClient	Ignoring password: 
+1398514515 INFO		DB	Creating database
+1398514515 INFO		DB	Connecting to database
+1398514515 VERBOSE	DB	execute("CREATE TABLE tConvos ...")
+1398514515 VERBOSE	DB	execute("CREATE TABLE tConvoKeys ...")
+1398514515 VERBOSE	DB	execute("CREATE TABLE tConvoMessages ...")
+1398514516 VERBOSE	DB	execute("CREATE TABLE tPost ...")
+1398514516 VERBOSE	DB	execute("CREATE TABLE tPostVisibleTo ...")
+1398514516 VERBOSE	DB	execute("CREATE TABLE tUser ...")
+1398514516 VERBOSE	DB	execute("CREATE TABLE tCategory ...")
+1398514516 VERBOSE	DB	execute("CREATE TABLE tCategoryMembers ...")
+1398514516 VERBOSE	DB	execute("CREATE TABLE tEvent ...")
+1398514517 VERBOSE	DB	execute("CREATE TABLE tClaim ...")
+1398514517 VERBOSE	DB	execute("CREATE TABLE tLike ...")
+1398514517 VERBOSE	DB	execute("CREATE TABLE tComment ...")
+1398514517 VERBOSE	DB	execute("CREATE TABLE tRevocations ...")
+1398514517 INFO		Crypto	Generating keys
+1398514518 INFO		NetCon	NetworkConnection started
+1398514519 VERBOSE	NetCon	Sending command to server "get 0"
+1398514519 VERBOSE	NetCon	Sending command to server "t"
+1398514519 INFO		Crypto	decrypt()
+1398514519 VERBOSE	PARSE	parsing message
+1398514519 VERBOSE	PARSE	undecryptable message
+1398514519 INFO		Crypto	decrypt()
+1398514519 VERBOSE	PARSE	parsing message
+1398514519 VERBOSE	PARSE	undecryptable message
+1398514519 INFO		Crypto	decrypt()
+1398514519 VERBOSE	PARSE	parsing message
+1398514519 VERBOSE	DB	addClaim(...)
+1398514519 VERBOSE	DB	execute("INSERT INTO tClaim ...")
+1398514519 VERBOSE	DB	execute("SELECT key FROM tUse...")
+1398514519 INFO		Crypto	decrypt()
+1398514519 VERBOSE	PARSE	parsing message
+1398514519 VERBOSE	PARSE	undecryptable message
+1398514519 INFO		Crypto	decrypt()
+1398514519 VERBOSE	PARSE	parsing message
+1398514519 VERBOSE	DB	addClaim(...)
+1398514519 VERBOSE	DB	execute("INSERT INTO tClaim ...")
+1398514519 VERBOSE	DB	execute("SELECT key FROM tUse...")
+1398514519 INFO		Crypto	decrypt()
+1398514519 VERBOSE	PARSE	parsing message
+1398514519 VERBOSE	PARSE	undecryptable message
+1398514519 INFO		Crypto	decrypt()
+1398514519 VERBOSE	PARSE	parsing message
+1398514519 VERBOSE	DB	addClaim(...)
+1398514519 VERBOSE	DB	execute("INSERT INTO tClaim ...")
+1398514519 VERBOSE	DB	execute("SELECT key FROM tUse...")
+1398514519 INFO		Crypto	decrypt()
+1398514519 VERBOSE	PARSE	parsing message
+1398514519 VERBOSE	PARSE	undecryptable message
+1398514519 INFO		Crypto	decrypt()
+1398514519 VERBOSE	PARSE	parsing message
+1398514519 VERBOSE	PARSE	undecryptable message
+1398514519 INFO		Crypto	decrypt()
+1398514519 VERBOSE	PARSE	parsing message
+1398514519 VERBOSE	DB	addClaim(...)
+1398514519 VERBOSE	DB	execute("INSERT INTO tClaim ...")
+1398514519 VERBOSE	DB	execute("SELECT key FROM tUse...")
+1398514519 INFO		Crypto	decrypt()
+1398514519 VERBOSE	PARSE	parsing message
+1398514519 VERBOSE	DB	addClaim(...)
+1398514519 VERBOSE	DB	execute("INSERT INTO tClaim ...")
+1398514519 ERROR	DB	SQLException: java.sql.SQLException: column sig is not unique
+1398514519 ERROR	DB	SQLException: java.sql.SQLException: column sig is not unique
+1398514519 INFO		Crypto	decrypt()
+1398514519 VERBOSE	PARSE	parsing message
+1398514519 VERBOSE	PARSE	undecryptable message
+1398514519 INFO		Crypto	decrypt()
+1398514519 VERBOSE	PARSE	parsing message
+1398514519 VERBOSE	PARSE	undecryptable message
+1398514519 INFO		Crypto	decrypt()
+1398514519 VERBOSE	PARSE	parsing message
+1398514519 VERBOSE	PARSE	undecryptable message
+1398514519 INFO		Crypto	decrypt()
+1398514519 VERBOSE	PARSE	parsing message
+1398514519 VERBOSE	DB	addClaim(...)
+1398514519 VERBOSE	DB	execute("INSERT INTO tClaim ...")
+1398514520 VERBOSE	DB	execute("SELECT key FROM tUse...")
+1398514520 VERBOSE	NetCon	Sending command to server "get 1398514519083"
+1398514520 VERBOSE	NetCon	Sending command to server "t"
+1398514521 VERBOSE	NetCon	Sending command to server "get 1398514520085"
+1398514521 VERBOSE	NetCon	Sending command to server "t"
+1398514522 VERBOSE	NetCon	Sending command to server "get 1398514521087"
+1398514522 VERBOSE	NetCon	Sending command to server "t"
+1398514523 VERBOSE	NetCon	Sending command to server "get 1398514522089"
+1398514523 VERBOSE	NetCon	Sending command to server "t"
+1398514524 VERBOSE	NetCon	Sending command to server "get 1398514523091"
+1398514524 VERBOSE	NetCon	Sending command to server "t"
+1398514524 VERBOSE	DB	execute("SELECT userKey FROM ...")
+1398514524 VERBOSE	DB	getCategoryMembers(All) - 0 members
+1398514524 VERBOSE	DB	execute("SELECT * FROM tCateg...")
+1398514524 VERBOSE	DB	getCategories() - 0 returned
+1398514525 VERBOSE	NetCon	Sending command to server "get 1398514524092"
+1398514525 VERBOSE	NetCon	Sending command to server "t"
+1398514526 VERBOSE	NetCon	Sending command to server "get 1398514525094"
+1398514526 VERBOSE	NetCon	Sending command to server "t"
+1398514527 VERBOSE	NetCon	Sending command to server "get 1398514526096"
+1398514527 VERBOSE	NetCon	Sending command to server "t"
+1398514527 VERBOSE	DB	execute("SELECT * FROM tConvo...")
+1398514527 VERBOSE	DB	getConversation()
+1398514528 VERBOSE	NetCon	Sending command to server "get 1398514527097"
+1398514528 VERBOSE	NetCon	Sending command to server "t"
+1398514528 VERBOSE	DB	execute("SELECT userKey FROM ...")
+1398514528 VERBOSE	DB	getCategoryMembers(All) - 0 members
+1398514528 VERBOSE	DB	execute("SELECT * FROM tCateg...")
+1398514528 VERBOSE	DB	getCategories() - 0 returned
+1398514529 VERBOSE	NetCon	Sending command to server "get 1398514528099"
+1398514529 VERBOSE	NetCon	Sending command to server "t"
+1398514530 VERBOSE	NetCon	Sending command to server "get 1398514529101"
+1398514530 VERBOSE	NetCon	Sending command to server "t"
+1398514531 VERBOSE	NetCon	Sending command to server "get 1398514530103"
+1398514531 VERBOSE	NetCon	Sending command to server "t"
+1398514532 VERBOSE	NetCon	Sending command to server "get 1398514531104"
+1398514532 VERBOSE	NetCon	Sending command to server "t"
+1398514533 VERBOSE	NetCon	Sending command to server "get 1398514532106"
+1398514533 VERBOSE	NetCon	Sending command to server "t"
+1398514534 VERBOSE	NetCon	Sending command to server "get 1398514533108"
+1398514534 VERBOSE	NetCon	Sending command to server "t"
+1398514535 VERBOSE	NetCon	Sending command to server "get 1398514534110"
+1398514535 VERBOSE	NetCon	Sending command to server "t"
+1398514536 VERBOSE	NetCon	Sending command to server "get 1398514535112"
+1398514536 VERBOSE	NetCon	Sending command to server "t"
+1398514536 INFO		TNImpl	stopTN()
+1398514536 INFO		NetCon	close()
+1398514536 INFO		NetCon	Saved lastRead to disk
+1398514536 INFO		DB	Disconnecting from database
+===== Turtlenet closed  at Sat Apr 26 13:15:36 BST 2014=====

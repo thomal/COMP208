@@ -10,17 +10,17 @@ class DBStrings {
         
         "CREATE TABLE tConvoKeys ("+
         "pk      INTEGER PRIMARY KEY AUTOINCREMENT,"+
-        "convoID INT,"+
-        "key     TEXT,"+
-        "PRIMARY KEY (pk));",
+        "convoID TEXT,"+
+        "key     TEXT"+
+        ");",
         
         "CREATE TABLE tConvoMessages ("+
         "pk         INTEGER PRIMARY KEY AUTOINCREMENT,"+
         "convoID    INT,"+
         "sendersKey TEXT,"+
         "msgText    TEXT,"+
-        "time       TEXT,"+
-        "PRIMARY KEY (pk));",
+        "time       TEXT"+
+        ");",
         
         "CREATE TABLE tPost ("+
         "sig         TEXT,"+
@@ -33,8 +33,8 @@ class DBStrings {
         "CREATE TABLE tPostVisibleTo ("+
         "pk      INTEGER PRIMARY KEY AUTOINCREMENT,"+
         "postSig INT,"+
-        "key     TEXT,"+
-        "PRIMARY KEY (pk));",
+        "key     TEXT"+
+        ");",
         
         "CREATE TABLE tUser ("+
         "key      TEXT,"+
@@ -54,15 +54,15 @@ class DBStrings {
         "CREATE TABLE tCategoryMembers ("+
         "pk      INTEGER PRIMARY KEY AUTOINCREMENT,"+
         "catID   TEXT,"+
-        "userKey TEXT,"+
-        "PRIMARY KEY (pk));",
+        "userKey TEXT"+
+        ");",
         
         "CREATE TABLE tEvent ("+
         "sig          TEXT,"+
         "startTime    TEXT,"+
         "endTime      TEXT,"+
         "creatorKey   TEXT,"+
-        "accepted     INT,"+                   //1 if category can see pdata, 0 otherwise
+        "accepted     INT,"+                 //1 if category can see pdata, 0 otherwise
         "name         TEXT,"+
         "creationTime TEXT,"+
         "PRIMARY KEY (sig));",
@@ -76,13 +76,13 @@ class DBStrings {
         "CREATE TABLE tLike ("+
         "pk       INTEGER PRIMARY KEY AUTOINCREMENT,"+
         "likerKey TEXT,"+
-        "parent   TEXT,"+                     //sig of thing being liked
-        "PRIMARY KEY (pk));",
+        "parent   TEXT"+                     //sig of thing being liked
+        ");",
         
         "CREATE TABLE tComment ("+
         "sig          TEXT,"+
         "msgText      TEXT,"+
-        "parent       TEXT,"+                 //sig of thing being commented
+        "parent       TEXT,"+                //sig of thing being commented
         "commenterKey TEXT,"+
         "creationTime TEXT,"+
         "PRIMARY KEY (sig));",
