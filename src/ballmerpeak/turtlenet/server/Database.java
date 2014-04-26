@@ -96,10 +96,13 @@ public class Database {
     }
     
     public ResultSet query (String query) throws java.sql.SQLException {
+        /*
         if (query.indexOf('(') != -1)
             Logger.write("VERBOSE", "DB", "query(\"" + query.substring(0,query.indexOf('(')) + "...\")");
         else
             Logger.write("VERBOSE", "DB", "query(\"" + query.substring(0,20) + "...\")");
+        */
+        Logger.write("VERBOSE", "DB", "query(\"" + query + "\")");
         
         try {
             Statement statement = dbConnection.createStatement();
@@ -122,7 +125,7 @@ public class Database {
             sqlStatement = sqlStatement.replace("__KEY__", strKey); //mods SQL template
 
             ResultSet results = query(sqlStatement);
-            if(results.next() )
+            if(results.next())
                 value = results.getString(field); //gets current value in 'field'
             else
                 value = "<No Value>";
@@ -130,7 +133,10 @@ public class Database {
             Logger.write("ERROR", "DB", "SQLException: " + e);
         }
         
-        return value;
+        if (!value.equals(""))
+            return value;
+        else
+            return "<no value>";
     }
     
     //Set the CMD to POST in the Message constructor
@@ -148,17 +154,19 @@ public class Database {
                 while(currentPostVisibleTo.next())
                     visibleTo.add(currentPostVisibleTo.getString("key") );
 
-                Message m = new MessageFactoryImpl().newPOST(currentPost.getString("msgText"), currentPost.getString("recieverKey"), ((String[])visibleTo.toArray()) );
-                m.timestamp = Long.parseLong(currentPost.getString("time"));
-                m.signature = currentPost.getString("sig");
-                m.command = "POST";
-                posts.add(m);
+                if(currentPost.next()) {
+                    Message m = new MessageFactoryImpl().newPOST(currentPost.getString("msgText"), currentPost.getString("recieverKey"), (visibleTo.toArray(new String[0])) );
+                    m.timestamp = Long.parseLong(currentPost.getString("time"));
+                    m.signature = currentPost.getString("sig");
+                    m.command = "POST";
+                    posts.add(m);
+                }
             }
         } catch (java.sql.SQLException e) {
             Logger.write("ERROR", "DB", "SQLException: " + e);
         }
         
-        return (Message[])posts.toArray();
+        return posts.toArray(new Message[0]);
     }
     
     //Return all conversations
@@ -174,7 +182,7 @@ public class Database {
             Logger.write("ERROR", "DB", "SQLException: " + e);
         }
         
-        return (Conversation[])convoList.toArray();
+        return convoList.toArray(new Conversation[0]);
     }
     
     //Get keys of all people in the given conversation
@@ -190,7 +198,7 @@ public class Database {
             Logger.write("ERROR", "DB", "SQLException: " + e);
         }
         
-        return (PublicKey[])keys.toArray();
+        return keys.toArray(new PublicKey[0]);
     }
     
     //Reurn a conversation object
@@ -244,7 +252,7 @@ public class Database {
             Logger.write("ERROR", "DB", "SQLException: " + e);
         }
 
-        return (String[][])messagesList.toArray();
+        return messagesList.toArray(new String[0][0]);
     }
     
     //If multiple people have the same username then:
@@ -292,8 +300,9 @@ public class Database {
         } catch (java.sql.SQLException e) {
             Logger.write("ERROR", "DB", "SQLException: " + e);
         }
-
-        return (String[][])catList.toArray();
+        
+        Logger.write("VERBOSE", "DB", "getCategories() returning " + catList.toArray().length + " categories");
+        return catList.toArray(new String[0][0]);
     }
     
     //Return the keys of each member of the category
@@ -303,7 +312,7 @@ public class Database {
         Logger.write("VERBOSE", "DB", "getCategoryMembers(" + catID + ")");
         String queryStr = "";
     
-        if(catID.equals("all")) { 
+        if(catID.toLowerCase().equals("all")) { 
             queryStr = DBStrings.getAllKeys;
         } else {
             queryStr = DBStrings.getMemberKeys.replace("__CATNAME__", catID);
@@ -318,23 +327,27 @@ public class Database {
             Logger.write("ERROR", "DB", "SQLException: " + e);
         }
 
-        return (PublicKey[])keyList.toArray();
-
+        Logger.write("VERBOSE", "DB", "getCategoryMembers(" + catID + ") returning " + keyList.toArray().length + " members");
+        return keyList.toArray(new PublicKey[0]);
     }
     
     //In the case of no username for the key: "return Crypto.encode(k);"
     public String getName (PublicKey key) {
         Logger.write("VERBOSE", "DB", "getName(...)");
-        String name = Crypto.encodeKey(key);
+        String name = "";
         
         try {
             ResultSet nameRow = query(DBStrings.getName.replace("__KEY__", Crypto.encodeKey(key)));
-            name = nameRow.getString("username");
+            if (nameRow.next())
+                name = nameRow.getString("username");
         } catch (java.sql.SQLException e) {
             Logger.write("ERROR", "DB", "SQLException: " + e);
         }
 
-        return null;
+        if (name != null)
+            return name;
+        else
+            return "<no username>";
     }
     
     //"What key signed this message"
@@ -410,7 +423,7 @@ public class Database {
     
     //if this key has already claimed a name, forget the old one
     public boolean addClaim (Message claim) {
-        Logger.write("VERBOSE", "DB", "addClaim(...)");
+        Logger.write("VERBOSE", "DB", "addClaim("+ claim.CLAIMgetName() +")");
         
         try {
             execute(DBStrings.addClaim.replace("__sig__", claim.getSig())

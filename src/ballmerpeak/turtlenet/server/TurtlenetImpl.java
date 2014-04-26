@@ -33,26 +33,13 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
     
     //Profile Data
     public String getMyUsername() {
-        String name;
-        if ((name = c.db.getName(Crypto.getPublicKey())) != null)
-            return name;
-        else
-            return "<no username>";
+        return c.db.getName(Crypto.getPublicKey());
     }
     
     public String getUsername(String key) {
-        //TODO TurnetImpl remove this debug code
-        String name;
-        if ((name = c.db.getName(Crypto.decodeKey(key))) != null)
-            return name;
-        else if (key.equals("falsekey1"))
-            return "aubri";
-        else if (key.equals("falsekey2"))
-            return "skandranon";
-        else if (key.equals("falsekey3"))
-            return "zhaneel";
-        else
-            return "<no username>";
+        String name = c.db.getName(Crypto.decodeKey(key));
+        Logger.write("VERBOSE", "TNImpl","getUsername returning \"" + name + "\"");
+        return name;
     }
     
     public String getMyPDATA(String field) {
@@ -60,18 +47,7 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
     }
     
     public String getPDATA(String field, String key) {
-        //TODO TurnetImpl remove this debug code
-        String value;
-        if ((value = c.db.getPDATA(field, Crypto.decodeKey(key))) != null)
-            return value;
-        else if (key.equals("falsekey1"))
-            return "aubri's " + field;
-        else if (key.equals("falsekey2"))
-            return "skandranon's " + field;
-        else if (key.equals("falsekey3"))
-            return "zhaneels's " + field;
-        else
-            return "<no value>";
+        return c.db.getPDATA(field, Crypto.decodeKey(key));
     }
     
     public String getMyKey() {
@@ -83,136 +59,35 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
     }
     
     public String[][] getCategories () {
-        String[][] categories = c.db.getCategories();
-        if (categories == null) {
-            categories = new String[2][2];
-            categories[0][0] = "<fake category 1>";
-            categories[0][1] = "false";
-            categories[1][0] = "<fake category 2>";
-            categories[1][1] = "true";
-        }
-        return categories;
+        return c.db.getCategories();
     }
     
     public String[][] getPeople () {
-        String[][] people = getCategoryMembers("all");
-        Logger.write("VERBOSE", "TnImpl", "getPeople(): returning " + people.length + " people");
-        return people;
+        return getCategoryMembers("all");
     }
     
     public Conversation[] getConversations () {
-        //TODO TurnetImpl remove this debug code
-        Conversation[] convos = c.db.getConversations();
-        
-        if (convos == null) {
-            Logger.write("INFO", "TnImpl", "Returning false getConversations results");
-            String[] users = {"aubri", "skandranon"};
-            String[] users2 = {"zhaneel", "skandranon"};
-            String[] keys = {"<falsekey1>", "<falsekey2>"};
-            String[] keys2 = {"<falsekey3>", "<falsekey2>"};
-        
-            convos = new Conversation[2];
-            convos[0] = new Conversation("<fakesig>", "<faketime>", "first message", users, keys);
-            convos[1] = new Conversation("<fakesig2>", "<faketime2>", "another message", users2, keys2);
-        }
-        
-        return convos;
+        return c.db.getConversations();
     }
     
     public Conversation getConversation (String sig) {
-        Conversation convo = c.db.getConversation(sig);
-        
-        if (convo == null) {
-            Logger.write("INFO", "TnImpl", "Returning false getConversation result");
-            String[] users = {"aubri", "skandranon"};
-            String[] users2 = {"zhaneel", "skandranon"};
-            String[] keys = {"<falsekey1>", "<falsekey2>"};
-            String[] keys2 = {"<falsekey3>", "<falsekey2>"};
-            
-            Conversation[] convos = new Conversation[2];
-            convos[0] = new Conversation("<fakesig>", "<faketime>", "first message", users, keys);
-            convos[1] = new Conversation("<fakesig2>", "<faketime2>", "another message", users2, keys2);
-                
-            if (sig.equals("<fakesig>")) {
-                    convo = convos[0];
-            } else if (sig.equals("<fakesig2>")) {
-                    convo = convos[1];
-            }
-        }
-        
-        return convo;
+        return c.db.getConversation(sig);
     }
     
     public String[][] getConversationMessages (String sig) {
-        String[][] convo = c.db.getConversationMessages(sig);
-        
-        if (convo == null) {
-            convo = new String[3][3];
-            if (sig.equals("<fakesig>")) {
-                convo[0][0] = "aubri";
-                convo[0][1] = "2310";
-                convo[0][2] = "hi skan";
-                
-                convo[1][0] = "skan";
-                convo[1][1] = "2311";
-                convo[1][2] = "hey, aubri!";
-                
-                convo[2][0] = "aubri";
-                convo[2][1] = "2311";
-                convo[2][2] = "where's zhaneel?";
-            } else if (sig.equals("<fakesig2>")) {
-                convo[0][0] = "skan";
-                convo[0][1] = "2312";
-                convo[0][2] = "yo, zhaneel, you here?";
-                
-                convo[1][0] = "zhaneel";
-                convo[1][1] = "2312";
-                convo[1][2] = "sup skan?";
-                
-                convo[2][0] = "skan";
-                convo[2][1] = "2313";
-                convo[2][2] = "aubri wants you";
-            }
-        }
-        
-        return convo;
+        return c.db.getConversationMessages(sig);
     }
     
     public String[][] getCategoryMembers (String category) {
-        PublicKey[] keys = c.db.getCategoryMembers(category);
+        PublicKey[] keys = c.db.getCategoryMembers(category);        
+        String[][] pairs = new String[keys.length][2];
         
-        if (keys != null) {        
-            String[][] pairs = new String[keys.length][2];
-            for (int i = 0; i < keys.length; i++) {
-                pairs[i][0] = c.db.getName(keys[i]);
-                pairs[i][1] = Crypto.encodeKey(keys[i]);
-            }
-            return pairs;
-        } else {
-            //TODO TurnetImpl remove this debug code
-            Logger.write("INFO", "TnImpl", "Returning false getCategoryMembers results");
-            String[][] fakes = new String[0][0];
-            if (category.equals("<fake category 1>")) {
-                fakes = new String[2][2];
-                fakes[0][0] = "aubri";
-                fakes[0][1] = "<falsekey1>";
-                fakes[1][0] = "skandranon";
-                fakes[1][1] = "<falsekey2>";
-            } else if (category.equals("<fake category 2>")) {
-                fakes = new String[1][2];
-                fakes[0][0] = "zhaneel";
-                fakes[0][1] = "<falsekey3>";
-            } else if (category.toLowerCase().equals("all")) {
-                fakes = new String[3][2];
-                fakes[0][0] = "aubri";
-                fakes[0][1] = "<falsekey1>";
-                fakes[1][0] = "skandranon";
-                fakes[1][1] = "<falsekey2>";
-                fakes[2][0] = "zhaneel";
-                fakes[2][1] = "<falsekey3>";
-            }
-            return fakes;
+        for (int i = 0; i < keys.length; i++) {
+            pairs[i][0] = c.db.getName(keys[i]);
+            pairs[i][1] = Crypto.encodeKey(keys[i]);
         }
+        
+        return pairs;
     }
     
     

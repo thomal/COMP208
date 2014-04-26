@@ -148,7 +148,11 @@ public class NetworkConnection implements Runnable {
         Socket s;
         BufferedReader in;
         PrintWriter out;
-        Logger.write("VERBOSE", "NetCon", "Sending command to server \""  + cmd + "\"");
+        if (!cmd.equals("t") && !cmd.substring(0,4).equals("get ")) {
+            Logger.write("VERBOSE", "NetCon", "Sending command to server \""  + cmd + "\"");
+        } else {
+            //Logger.write("VERBOSE", "NetCon", "."); //suppress 'get' and 't'
+        }
         
         //connect
         try {

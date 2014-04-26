@@ -210,7 +210,9 @@ class Session implements Runnable
                     String[] tokens = new String[2];
                     StringTokenizer tokenizer = new StringTokenizer(fname, "_", false);
                     tokens[0] = tokenizer.nextToken();
-                    tokens[1] = tokenizer.nextToken();
+                    tokens[1] = "";
+                    while (tokenizer.hasMoreTokens())
+                        tokens[1] += tokenizer.nextToken();
                     if (tokens[1].equals(name))
                         return true;
                 }
