@@ -15,7 +15,7 @@ h1 {
 }
 
 #header {
-	width: 1200px;
+	width: 1000px;
 	height: 120px;
 	margin: 0 auto;
 	background: #E0EEEE;
@@ -24,7 +24,7 @@ h1 {
 }
 
 .gwt-login {
-	width: 1200px;
+	width: 1000px;
 	margin: 0 auto;
 	background: #61B329;
 	text-align: center;
@@ -33,7 +33,7 @@ h1 {
 }
 
 .gwt-navigation {
-	width: 1200px;
+	width: 1000px;
 	height: 70px;
 	margin: 0 auto;
 	background: #61B329;
@@ -42,30 +42,53 @@ h1 {
 }
 
 .gwt-friends-list {
-	width: 1200px;
+	width: 1000px;
 	margin: 0 auto;
 	background: #E0EEEE;
 	color: #666666;
 }
 
 .gwt-post-panel {
-	width: 900px;
+	width: 700px;
 	margin: 0 auto;
 	background: #E0EEEE;
 	color: #666666;
-	padding: 20px 0 20px 0;
+	padding: 20px 100px 20px 0;
+}
+
+.gwt-comments-contents {
+	width: 675px;
+	margin: 0 auto;
+	background: #E0EEEE;
+	color: #666666;
+	padding: 10px 0 10px 125px;
+}
+
+.gwt-comments {
+    width: 700px;
+	margin: 0 auto;
+	background: #E0EEEE;
+	color: #666666;
 }
 
 .gwt-wall {
-	width: 900px;
+	width: 800px;
 	margin: 0 auto;
 	background: #E0EEEE;
 	color: #666666;
-	padding: 0 0 0 300px;
+	padding: 0 0 0 200px;
+}
+
+.gwt-post-contents-footer {
+    width: 700px;
+	margin: 0 auto;
+	background: #E0EEEE;
+	color: #666666;
+	padding: 0 0 0 10px;
 }
 
 .gwt-group {
-	width: 1200px;
+	width: 1000px;
 	margin: 0 auto;
 	background: #E0EEEE;
 	color: #666666;
@@ -73,7 +96,7 @@ h1 {
 }
 
 .gwt-friend {
-	width: 1200px;
+	width: 1000px;
 	margin: 0 auto;
 	background: #E0EEEE;
 	color: #666666;
@@ -81,7 +104,7 @@ h1 {
 }
 
 .gwt-conversation-list {
-	width: 1200px;
+	width: 1000px;
 	margin: 0 auto;
 	background: #E0EEEE;
 	color: #666666;
@@ -89,7 +112,7 @@ h1 {
 }
 
 .gwt-conversation {
-	width: 1200px;
+	width: 1000px;
 	margin: 0 auto;
 	background: #E0EEEE;
 	color: #666666;
@@ -97,7 +120,7 @@ h1 {
 }
 
 .gwt-my-details {
-	width: 1200px;
+	width: 1000px;
 	margin: 0 auto;
 	background: #E0EEEE;
 	color: #666666;
@@ -105,7 +128,7 @@ h1 {
 }
 
 .gwt-my-details-permissions {
-	width: 1200px;
+	width: 1000px;
 	margin: 0 auto;
 	background: #E0EEEE;
 	color: #666666;
@@ -113,18 +136,11 @@ h1 {
 }
 
 .gwt-friends-details {
-	width: 1200px;
+	width: 1000px;
 	margin: 0 auto;
 	background: #E0EEEE;
 	color: #666666;
 	padding: 0 400px 0 100px;
-}
-
-.gwt-comments {
-    width: 1200px;
-	margin: 0 auto;
-	background: #E0EEEE;
-	color: #666666;
 }
 
 .gwt-Anchor {
@@ -143,4 +159,8 @@ h1 {
 
 .gwt-Button {
 	width: 150px;
+}
+
+.gwt-TextArea-readonly {
+   background-color: #EEEEEE;
 }

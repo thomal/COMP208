@@ -138,6 +138,8 @@ public class frontend implements EntryPoint {
         // Create navigation links
         Anchor linkMyWall = new Anchor("My Wall");
         linkMyWall.getElement().getStyle().setProperty("paddingLeft" , "100px");
+        Anchor linkMyDetails = new Anchor("My Details");
+        linkMyDetails.getElement().getStyle().setProperty("paddingLeft" , "100px");
         Anchor linkConversations = new Anchor("Messages");
         linkConversations.getElement().getStyle().setProperty("paddingLeft" , "100px");
         Anchor linkFriends = new Anchor("Friends");
@@ -147,6 +149,7 @@ public class frontend implements EntryPoint {
 
         // Add links to navigation panel
         navigationPanel.add(linkMyWall);
+        navigationPanel.add(linkMyDetails);
         navigationPanel.add(linkConversations);
         navigationPanel.add(linkFriends);
         navigationPanel.add(linkLogout);
@@ -158,6 +161,13 @@ public class frontend implements EntryPoint {
         linkMyWall.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
                 wall("me");
+            }
+        });
+        
+        // Add click handlers for anchors
+        linkMyDetails.addClickHandler(new ClickHandler() {
+            public void onClick(ClickEvent event) {
+                myDetails();
             }
         });
         
@@ -709,17 +719,7 @@ public class frontend implements EntryPoint {
         // Create a container for controls
         HorizontalPanel wallControlPanel = new HorizontalPanel();
         wallControlPanel.setSpacing(5);
-        wallPanel.add(wallControlPanel);
-        // Add widgets to container
-        
-        // TODO LUKETODO "Name of user" should be replaced with a call to a method
-        // that returns the name of a user when given their public key.
-        // This method takes a string called key so give it that.
-//        Label nameOfUserLabel = new Label("Name of user");
-//        nameOfUserLabel.getElement().getStyle().setFontWeight(FontWeight.BOLD);
-//        wallControlPanel.add(nameOfUserLabel);
-//        wallControlPanel.setCellWidth(nameOfUserLabel,"200");
-        
+        wallPanel.add(wallControlPanel);        
         
         // TODO LUKETODO "my key" should be replaced with the users key
         if(key.equals("my key")) {
@@ -759,6 +759,8 @@ public class frontend implements EntryPoint {
         HorizontalPanel createPostControlPanel = new HorizontalPanel();
         createPostPanel.add(createPostControlPanel);
         Button send = new Button("Send");
+        send.setWidth("585px");
+        
         
         send.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
@@ -795,7 +797,7 @@ public class frontend implements EntryPoint {
             // Use i to choose a post from the list.
             final String postID = new String("postID");
         
-            FlowPanel postPanel = new FlowPanel();
+            final FlowPanel postPanel = new FlowPanel();
             wallPanel.add(postPanel);
             postPanel.addStyleName("gwt-post-panel");
             
@@ -838,7 +840,7 @@ public class frontend implements EntryPoint {
             
             TextArea postContents = new TextArea();
             postContents.setCharacterWidth(80);
-            postContents.setVisibleLines(10);
+            postContents.setVisibleLines(5);
             postContents.setReadOnly(true);
                        
             // TODO LUKETODO "Post contents goes here" should be replaced with
@@ -849,7 +851,22 @@ public class frontend implements EntryPoint {
             postContentsPanel.add(postContents);
             
             HorizontalPanel postContentsFooterPanel = new HorizontalPanel();
-            postContentsPanel.add(postContentsFooterPanel);
+            postContentsFooterPanel.addStyleName("gwt-post-contents-footer");
+            postContentsPanel.add(postContentsFooterPanel);  
+            
+            Anchor likePost = new Anchor("Like");
+            postContentsFooterPanel.add(likePost);
+            likePost.addClickHandler(new ClickHandler() {
+                public void onClick(ClickEvent event) {
+                    // TODO LUKETODO Call a method that 'Likes' a post when given
+                    // the ID of that post.
+                    // Give it postID
+                    
+                    wall(key);
+                    // TODO LOUISTODO Make the page scroll back to where it was
+                    // after page is redrawn.
+                }
+            });
             
             // TODO LUKETODO "5" should be replaced with a call to a method that
             // returns a the number of comments on a post when given the ID of
@@ -865,24 +882,9 @@ public class frontend implements EntryPoint {
             }
             
             postContentsFooterPanel.add(comments);
-            postContentsFooterPanel.setCellWidth(comments,"540");
             comments.addClickHandler(new ClickHandler() {
                 public void onClick(ClickEvent event) {
-                    comments(postID, postID, "Wall post");
-                }
-            }); 
-            
-            Anchor likePost = new Anchor("Like");
-            postContentsFooterPanel.add(likePost);
-            likePost.addClickHandler(new ClickHandler() {
-                public void onClick(ClickEvent event) {
-                    // TODO LUKETODO Call a method that 'Likes' a post when given
-                    // the ID of that post.
-                    // Give it postID
-                    
-                    wall(key);
-                    // TODO LOUISTODO Make the page scroll back to where it was
-                    // after page is redrawn.
+                    comments(postID, key, postPanel); 
                 }
             }); 
         }
@@ -891,85 +893,41 @@ public class frontend implements EntryPoint {
         wallPanel.addStyleName("gwt-wall");
     }
     
-    
-    // TODO LUKETODO This isnt a real todo, just thought I'd tell you this here
-    // rather than annoy you while you're making a new database.
-    // Not sure how useful it will be for you but comments takes a string called 
-    // parentType. If it equals 'Wall post' then it parent is a wall post.
-    // Otherwise its parent is another comment. There is probably a more elegant
-    // way of doing this but I can't think of one right now. If you have any 
-    // ideas let me know and I'll change it. As it is I need parentType when
-    // setting up interface elements.
-    
-    
-    // rootID always gets passed down through recursion so we can redraw the page
-    // and know where to start from. parentID is set to the ID of the immediate
-    // parent which may be a comment or a post. If we set the parentID to rootID
-    // that gets us back to the inital comment as parentID will be set to the ID
-    // of a wall post.
-    private void comments(final String parentID, final String rootID, final String parentType) {
+    private void comments(final String postID, final String wallKey, FlowPanel postPanel) {
         // Create panel to contain widgets
         final FlowPanel commentsPanel = new FlowPanel();
-        
-        if (parentType.equals("Wall post")) {
-            // Setup basic page
-            RootPanel.get().clear();
-            navigation();
-        } else {
-            // If comment belongs to another comment it should be indented
-            String padding = new String (Integer.toString(commentsPanel.getAbsoluteLeft() + 100) + "px");
-            commentsPanel.getElement().getStyle().setProperty("paddingLeft" , padding);
-        }
-            
         // Add main panel to page
-        RootPanel.get().add(commentsPanel);
-        
-        if (parentType.equals("Wall post")) {
-            Button originalPost = new Button("Back to original post");
-            commentsPanel.add(originalPost);
-            originalPost.addClickHandler(new ClickHandler() {
-                public void onClick(ClickEvent event) {
-                    // TODO LUKETODO "Key of user" should be replaced with a call to
-                    // a method that take the ID of a post and returns the key of the
-                    // user whose wall that post was posted on.
-                    // This current method takes a string called parentID so give it that.
-                    wall("Key of user");
-                    
-                    // TODO LOUISTODO Find a way to make the page scroll to the
-                    // original post on the wall
-                }
-            });
-        }        
-        
-        
-        // Create panel to contain the main contents of each comment
-        FlowPanel commentsContentsPanel = new FlowPanel();
-        commentsPanel.add(commentsContentsPanel);
+        postPanel.insert(commentsPanel, 2);
         
         // TODO LUKETODO 5 should be replaced with a call to a method that takes
-        // the ID of a post/comment and returns the number of comments associated 
+        // the ID of a post and returns the number of comments associated 
         // with that post.
-        // This current method takes a string called parentID so give it that.
-        int commentCount = 5;        
+        // This current method takes a string called postID so give it that.
+        int commentCount = 2;        
         for(int i = 0; i < commentCount; i++) {
+            // Create panel to contain the main contents of each comment
+            FlowPanel commentsContentsPanel = new FlowPanel();
+            commentsContentsPanel.addStyleName("gwt-comments-contents");
+            commentsPanel.add(commentsContentsPanel);
+        
             // TODO LUKETODO "ID of comment" should be replaced with a call to
             // a method that returns a list of comments when given the ID of their parent.
-            // This current method takes a string called parentID so give it that.
+            // This current method takes a string called postID so give it that.
             // Specifically we want the IDs of the comments. Use i to select an
             // ID from the list. 
             final String commentID = new String("ID of comment");   
             
             // Create widgets
             TextArea commentContents = new TextArea();
-            commentContents.setCharacterWidth(80);
-            commentContents.setVisibleLines(5);
+            commentContents.setCharacterWidth(60);
+            commentContents.setVisibleLines(3);
             commentContents.setReadOnly(true);
             
             // TODO LUKETODO "Contents of comment" should be replaced with a call
             // to a method that returns the contents of a comment when given the
             // ID of that comment.
             // Give it commentID            
-            commentContents.setText("Contents of comment"); 
+            commentContents.setText("Contents of comment");
             commentsContentsPanel.add(commentContents);
             
             //Create panel to contain controls for each comment
@@ -982,13 +940,17 @@ public class frontend implements EntryPoint {
             // Give it commentID
             final String postedByKey = new String("Public key");
             
-            commentsControlPanel.add(new Label("Posted by: "));
+            Label commentPostedByLabel = new Label("Posted by: ");
+            commentPostedByLabel.getElement().getStyle().setProperty("paddingLeft" , "10px");
+            commentsControlPanel.add(commentPostedByLabel);
             // TODO LUKETODO "Name of user" should be replaced with a call to 
             // a method that returns the name of a user when given their public key.
             // Give it postedByKey
             Anchor postedBy = new Anchor("Name of user");
+            postedBy.getElement().getStyle().setProperty("paddingLeft" , "10px");
             commentsControlPanel.add(postedBy);
             Anchor likeComment = new Anchor("Like");
+            likeComment.getElement().getStyle().setProperty("paddingLeft" , "140px");
             commentsControlPanel.add(likeComment);
             
             postedBy.addClickHandler(new ClickHandler() {
@@ -1002,52 +964,21 @@ public class frontend implements EntryPoint {
                     // TODO LUKETODO Call a method that 'Likes' a comment when
                     // given the ID of that comment.
                     // Give it commentID
-                    
-                    commentsPanel.clear();
-                    comments(rootID, rootID, "Wall post");
+                    wall(wallKey);
                     // TODO LOUISTODO Make the refreshed comments page move
                     // to the place we just added our new comment.
                 }
             }); 
-            
-            // TODO LUKETODO 'parentType.equals("Comment")' is only here so I 
-            // can see if the recursion actually works. It should be replaced 
-            // with a call to a method that determines whether a comment has 
-            // any children when given the ID of a comment.  
-            // Give it commentID
-            if(parentType.equals("Wall post")) {
-                comments(commentID, rootID, "Comment");
-            } else {
-                String padding = new String (Integer.toString(commentsContentsPanel.getAbsoluteLeft() + 100) + "px");
-                
-                TextArea commentReplyContents = new TextArea();
-                commentReplyContents.setCharacterWidth(60);
-                commentReplyContents.setVisibleLines(5);
-                commentReplyContents.getElement().getStyle().setProperty("paddingLeft" , padding);
-                commentsContentsPanel.add(commentReplyContents);
-                
-                Button replyToComment = new Button("Reply to comment");
-                replyToComment.getElement().getStyle().setProperty("paddingLeft" , padding);
-                commentsContentsPanel.add(replyToComment);
-                replyToComment.addClickHandler(new ClickHandler() {
-                    public void onClick(ClickEvent event) {
-                        // TODO LUKETODO Call a method that adds a new comment.
-                        // It's parent is commentID
-                        // To get the contents use: commentReplyContents.getText();
-                        
-                        commentsPanel.clear();
-                        comments(rootID, rootID, "Wall post");
-                        // TODO LOUISTODO Make the refreshed comments page move
-                        // to the place we just added our new comment.
-                    }
-                }); 
-            }
         }
         
+        FlexTable commentsReplyThreadPanel = new FlexTable();
+        commentsReplyThreadPanel.getElement().getStyle().setProperty("paddingLeft", "250px");
+        commentsPanel.add(commentsReplyThreadPanel);
+              
         TextArea threadReplyContents = new TextArea();
-        threadReplyContents.setCharacterWidth(60);
-        threadReplyContents.setVisibleLines(5);
-        commentsContentsPanel.add(threadReplyContents);
+        threadReplyContents.setCharacterWidth(40);
+        threadReplyContents.setVisibleLines(6);
+        commentsReplyThreadPanel.setWidget(0, 0, threadReplyContents);
 
         Button replyToThread;
         if(commentCount == 0) {
@@ -1055,23 +986,22 @@ public class frontend implements EntryPoint {
         } else {
             replyToThread = new Button("Reply to thread");
         }
-        commentsContentsPanel.add(replyToThread);
+        replyToThread.setWidth("310px");
+        commentsReplyThreadPanel.setWidget(1, 0, replyToThread);
         replyToThread.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
                 // TODO LUKETODO Call a method that adds a new comment.
-                // It's parent is parentID
+                // It's parent is postID
                 // To get the contents use: threadReplyContents.getText();
-                    
-                commentsPanel.clear();
-                comments(rootID, rootID, "Wall post");
+                        
+                wall(wallKey);
                 // TODO LOUISTODO Make the refreshed comments page move
                 // to the place we just added our new comment.
             }
-        }); 
-        
-        commentsPanel.addStyleName("gwt-comments");  
+        });   
+        commentsPanel.addStyleName("gwt-comments");
     }  
-    
+     
     //must be global because it must be referenced from callback
     private TextArea newConvoInput = new TextArea();
     private void newConversation() {
