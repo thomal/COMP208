@@ -137,14 +137,21 @@ public class frontend implements EntryPoint {
         
         // Create navigation links
         Anchor linkMyWall = new Anchor("My Wall");
+        linkMyWall.getElement().getStyle().setProperty("paddingLeft" , "100px");
         Anchor linkConversations = new Anchor("Messages");
+        linkConversations.getElement().getStyle().setProperty("paddingLeft" , "100px");
         Anchor linkFriends = new Anchor("Friends");
+        linkFriends.getElement().getStyle().setProperty("paddingLeft" , "100px");
+        Anchor linkFriendRequests = new Anchor("Friend Requests");
+        linkFriendRequests.getElement().getStyle().setProperty("paddingLeft" , "100px");
         Anchor linkLogout = new Anchor("Logout");
+        linkLogout.getElement().getStyle().setProperty("paddingLeft" , "100px");
 
         // Add links to navigation panel
         navigationPanel.add(linkMyWall);
         navigationPanel.add(linkConversations);
         navigationPanel.add(linkFriends);
+        navigationPanel.add(linkFriendRequests);
         navigationPanel.add(linkLogout);
 
         // Add style name for CSS
@@ -153,19 +160,25 @@ public class frontend implements EntryPoint {
         // Add click handlers for anchors
         linkMyWall.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                    wall("me");
+                wall("me");
             }
         });
         
         linkConversations.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                    conversationList();
+                conversationList();
             }
         });
         
         linkFriends.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                    friendsList("All");
+                friendsList("All");
+            }
+        });
+        
+        linkFriendRequests.addClickHandler(new ClickHandler() {
+            public void onClick(ClickEvent event) {
+                friendRequests();
             }
         });
         
@@ -704,18 +717,24 @@ public class frontend implements EntryPoint {
         RootPanel.get().add(wallPanel);
         // Create a container for controls
         HorizontalPanel wallControlPanel = new HorizontalPanel();
+        wallControlPanel.setSpacing(10);
         wallPanel.add(wallControlPanel);
         // Add widgets to container
         
         // TODO LUKETODO "Name of user" should be replaced with a call to a method
         // that returns the name of a user when given their public key.
         // This method takes a string called key so give it that.
-        wallControlPanel.add(new Label("Name of user"));
+        Label nameOfUserLabel = new Label("Name of user");
+        nameOfUserLabel.getElement().getStyle().setFontWeight(FontWeight.BOLD);
+        wallControlPanel.add(nameOfUserLabel);
+        wallControlPanel.setCellWidth(nameOfUserLabel,"210");
+        
         
         // TODO LUKETODO "my key" should be replaced with the users key
         if(key.equals("my key")) {
             Anchor myDetails = new Anchor("My details");
             wallControlPanel.add(myDetails);
+            wallControlPanel.setCellWidth(myDetails,"210");
             myDetails.addClickHandler(new ClickHandler() {
                 public void onClick(ClickEvent event) {
                     myDetails();
@@ -723,8 +742,9 @@ public class frontend implements EntryPoint {
             });
             
         } else {
-            Anchor userDetails = new Anchor("Friend's details");
+            Anchor userDetails = new Anchor("About");
             wallControlPanel.add(userDetails);
+            wallControlPanel.setCellWidth(userDetails,"210");
             userDetails.addClickHandler(new ClickHandler() {
                 public void onClick(ClickEvent event) {
                     friendsDetails(key);
@@ -734,6 +754,7 @@ public class frontend implements EntryPoint {
         
         Button createPost = new Button("Post here");
         wallControlPanel.add(createPost);
+        wallControlPanel.setCellWidth(createPost,"210");
         
         final FlowPanel createPostPanel = new FlowPanel();
         TextArea contents = new TextArea();
@@ -784,9 +805,12 @@ public class frontend implements EntryPoint {
             wallPanel.add(postPanel);
             
             HorizontalPanel postControlPanel = new HorizontalPanel();
+            //postControlPanel.setSpacing(5);
             postPanel.add(postControlPanel);
             
-            postControlPanel.add(new Label("Posted by: "));
+            Label postedByLabel = new Label("Posted by: ");
+            postControlPanel.add(postedByLabel);
+            postControlPanel.setCellWidth(postedByLabel,"125");
             // TODO LUKETODO "Key of user" should be replaced with a call to a 
             // method that returns the key of the user who created a post when
             // given the ID of that post. 
@@ -798,6 +822,7 @@ public class frontend implements EntryPoint {
             // Give it postedBy.
             Anchor linkToUser = new Anchor("Name of poster");
             postControlPanel.add(linkToUser);
+            postControlPanel.setCellWidth(linkToUser,"350");
             linkToUser.addClickHandler(new ClickHandler() {
                 public void onClick(ClickEvent event) {
                     wall(postedBy);
@@ -809,7 +834,9 @@ public class frontend implements EntryPoint {
             // the ID of that post.
             // Give it postID
             // (Not sure if this is a feature but it would be nice) 
-            postControlPanel.add(new Label("01/01/1970"));
+            Label dateLabel = new Label("01/01/1970");
+            postControlPanel.add(dateLabel);
+            postControlPanel.setCellWidth(dateLabel,"210");
             
             FlowPanel postContentsPanel = new FlowPanel();
             postPanel.add(postContentsPanel);
@@ -839,7 +866,7 @@ public class frontend implements EntryPoint {
             if(commentCount == 0) {
                 comments = new Anchor("Add a comment");
             } else {
-                comments = new Anchor("Comments (" + Integer.toString(commentCount) + ")");
+                comments = new Anchor("Comments(" + Integer.toString(commentCount) + ")");
             }
             
             postContentsFooterPanel.add(comments);
@@ -1373,7 +1400,11 @@ public class frontend implements EntryPoint {
     private void friendRequests() {
         RootPanel.get().clear();
         navigation();
-        FlexTable friendRequestsPanel = new FlexTable();
+        Grid friendRequestsPanel = new Grid(1, 4);
+        friendRequestsPanel.getColumnFormatter().setWidth(0, "25%");
+        friendRequestsPanel.getColumnFormatter().setWidth(1, "25%");
+        friendRequestsPanel.getColumnFormatter().setWidth(2, "25%");
+        friendRequestsPanel.getColumnFormatter().setWidth(3, "25%");
         RootPanel.get().add(friendRequestsPanel);
         
         Label currentRequestsLabel = new Label();
@@ -1383,6 +1414,8 @@ public class frontend implements EntryPoint {
         // TODO LUKETODO 10 should be replaced with a call to a method that tells
         // us how many friend requests the user has had.
         for(int i = 0; i < 10; i++) {
+            friendRequestsPanel.insertRow(i + 1);
+        
             // TODO LUKETODO "Public Key" should be replaced with a call to a 
             // method that returns the list of all the people who have requested
             // to be friends with the user. Specifically we want their public keys.
