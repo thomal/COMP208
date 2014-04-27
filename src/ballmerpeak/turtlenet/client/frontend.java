@@ -421,20 +421,30 @@ public class frontend implements EntryPoint, ClickListener {
             }
             public void onSuccess(Conversation[] _result) {
                 result = _result;
-                for (i = 0; i < result.length; i++) {
-                    final String conversationID = result[i].signature;
-                    Anchor linkConversation = new Anchor(result[i].firstMessage);
-                    conversationListPanel.setWidget(i, 0, linkConversation);
+                // TODO LUKETODO Please can you check my logic here. It makes 
+                // sense in my head but it might be horribly wrong.
+                
+                // Go from the highest result to the lowest. Take one from result
+                // length and go down to 0 so we get an index value. 
+                for (i = (result.length - 1); i >= 0; i--) {
+                    // Count up from 0 so we can add interface elements top to
+                    // bottom. This way we get the last result at the top of the
+                    // screen which should mean that the newest conversation 
+                    // appears at the top.
+                    for(int j = 0; j < result.length; j++) {
+                        final String conversationID = result[i].signature;
+                        Anchor linkConversation = new Anchor(result[i].firstMessage);
+                        conversationListPanel.setWidget(j, 0, linkConversation);
                     
-                    // Add click handlers for anchors
-                    linkConversation.addClickHandler(new ClickHandler() {
-                        public void onClick(ClickEvent event) {
-                            conversation(conversationID);
-                        }
-                    });
-                    
-                    Label conversationParticipants = new Label(result[i].concatNames());
-                    conversationListPanel.setWidget(i, 1, conversationParticipants);
+                        // Add click handlers for anchors
+                        linkConversation.addClickHandler(new ClickHandler() {
+                            public void onClick(ClickEvent event) {
+                                conversation(conversationID);
+                            }
+                        });
+                        Label conversationParticipants = new Label(result[i].concatNames());
+                        conversationListPanel.setWidget(j, 1, conversationParticipants);
+                    }
                 }
             }
         });
@@ -848,6 +858,7 @@ public class frontend implements EntryPoint, ClickListener {
                 //TODO error
             }
             public void onSuccess(String result) {
+                // TODO LOUISTODO Remove the ! before key
                 if(key.equals(result)) {
                     Anchor myDetails = new Anchor("My details");
                     wallControlPanel.add(myDetails);
@@ -953,7 +964,9 @@ public class frontend implements EntryPoint, ClickListener {
                 wallPostDetails = result;
                 for (wallCurrentPost = 0; wallCurrentPost < wallPostDetails.length; wallCurrentPost++) {
                     final FlowPanel postPanel = new FlowPanel();
-                    wallPanel.add(postPanel);
+                    // TODO LOUISTODO The 4 may need to be a 3 or a 5. Not sure.
+                    // Test when there is data in there
+                    wallPanel.insert(postPanel, 4);
                     postPanel.addStyleName("gwt-post-panel");
                     
                     HorizontalPanel postControlPanel = new HorizontalPanel();
