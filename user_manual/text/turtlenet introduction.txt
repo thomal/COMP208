@@ -5,8 +5,11 @@ introduction
 - allow only those you want to view you posts
 - instant messaging
 
-
 aims
 - data protection is a legal right
+- ensure full privacy of data
+- only those you trust can see your personal data
 
 target audience
+- businesses
+- those who are concerned regarding the security of their data
