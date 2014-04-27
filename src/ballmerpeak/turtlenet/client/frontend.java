@@ -138,7 +138,7 @@ public class frontend implements EntryPoint, ClickListener {
                                     //TODO error
                                 }
                                 public void onSuccess(String result) {
-                                    wall(result);
+                                    wall(result, false);
                                 }
                             });
                         } else if (result.equals("failure")) {
@@ -154,9 +154,9 @@ public class frontend implements EntryPoint, ClickListener {
     }
     
     // Used to track the most recent wall post to be displayed
-    Long wallLastTimeStamp = 0L;
+    Long wallLastTimeStamp;
     // When the login button is clicked we start a repeating timer that refreshes
-    // the page every 10 seconds. 
+    // the page every 15 seconds. 
     public void onClick(Widget sender) {
         Timer refresh = new Timer() {
             public void run() {            
@@ -165,9 +165,9 @@ public class frontend implements EntryPoint, ClickListener {
                     // call to a method that takes the key of a user and returns
                     // the timestamp of the most recent message on their wall.
                     // Give it refreshID
-                    if(0 != wallLastTimeStamp) {
+                    if(0 > wallLastTimeStamp) {
                         System.out.println("Refresh: wall. refreshID: " + refreshID);
-                        wall(refreshID);
+                        wall(refreshID, true);
                     }
                 } else if(location.equals("conversationList")) {
                     System.out.println("Refresh: conversationList");
@@ -180,7 +180,7 @@ public class frontend implements EntryPoint, ClickListener {
                 }
             }
         };
-        refresh.scheduleRepeating(10*1000);
+        refresh.scheduleRepeating(15*1000);
     }
 
     private void navigation() {    
@@ -217,7 +217,7 @@ public class frontend implements EntryPoint, ClickListener {
                         //TODO error
                     }
                     public void onSuccess(String result) {
-                        wall(result);
+                        wall(result, false);
                     }
                 });
             }
@@ -302,7 +302,7 @@ public class frontend implements EntryPoint, ClickListener {
                     final String fkey = result[i][1];
                     linkFriendsWall.addClickHandler(new ClickHandler() {
                         public void onClick(ClickEvent event) {
-                            wall(fkey);
+                            wall(fkey, false);
                         }
                     });
                 }
@@ -750,7 +750,7 @@ public class frontend implements EntryPoint, ClickListener {
     private void friendsDetails(final String friendsDetailsKey, FlowPanel wallPanel, Button userDetails) {
         userDetails.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                wall(friendsDetailsKey);
+                wall(friendsDetailsKey, false);
             }
         });
     
@@ -856,124 +856,126 @@ public class frontend implements EntryPoint, ClickListener {
     TextArea postText;
     PostDetails[] wallPostDetails;
     int wallCurrentPost;
-    private void wall(final String key) {
+    private void wall(final String key, final boolean refresh) {
         location = "wall";
         refreshID = key;
         
-        // Setup basic page
-        RootPanel.get().clear();
-        navigation();
-        // Create main panel
         final FlowPanel wallPanel = new FlowPanel();
-        RootPanel.get().add(wallPanel);
-        // Create a container for controls
-        wallControlPanel = new HorizontalPanel();
-        wallControlPanel.setSpacing(5);
-        wallPanel.add(wallControlPanel);        
         
-        turtlenet.getMyKey(new AsyncCallback<String>() {
-            public void onFailure(Throwable caught) {
-                //TODO error
-            }
-            public void onSuccess(String result) {
-            
-                // TODO LOUISTODO Remove the ! before key
-                if(!key.equals(result)) {
-                    final Button myDetails = new Button("About Me");
-                    wallControlPanel.add(myDetails);
-                    wallControlPanel.setCellWidth(myDetails,"200");
-                    myDetails.addClickHandler(new ClickHandler() {
-                        public void onClick(ClickEvent event) {
-                            friendsDetails(key, wallPanel, myDetails);
-                        }
-                    });
-                } else {
-                    turtlenet.getUsername(key, new AsyncCallback<String>() {
-                        public void onFailure(Throwable caught) {
-                            //TODO error
-                        }
-                        public void onSuccess(String result) {
-                            final Button userDetails = new Button("About " + result);
-                            wallControlPanel.add(userDetails);
-                            wallControlPanel.setCellWidth(userDetails,"200");
-                            userDetails.addClickHandler(new ClickHandler() {
-                                public void onClick(ClickEvent event) {
-                                    friendsDetails(key, wallPanel, userDetails);
-                                }
-                            });
-                        }
-                    });
+        if(!refresh) {
+            // Setup basic page
+            RootPanel.get().clear();
+            navigation();            
+            RootPanel.get().add(wallPanel);
+            // Create a container for controls
+            wallControlPanel = new HorizontalPanel();
+            wallControlPanel.setSpacing(5);
+            wallPanel.add(wallControlPanel);        
+                
+            turtlenet.getMyKey(new AsyncCallback<String>() {
+                public void onFailure(Throwable caught) {
+                    //TODO error
                 }
-            }
-        });
-        
-        Button createPost = new Button("Post here");
-        wallControlPanel.add(createPost);
-        wallControlPanel.setCellWidth(createPost,"200");
-        
-        final Label postStop = new Label();
-        wallControlPanel.add(postStop);
-        
-        final FlowPanel createPostPanel = new FlowPanel();
-        postText = new TextArea();
-        postText.setCharacterWidth(80);
-        postText.setVisibleLines(10);
-        createPostPanel.add(postText);
-        
-        HorizontalPanel createPostControlPanel = new HorizontalPanel();
-        createPostPanel.add(createPostControlPanel);
-        
-        final ListBox chooseGroup = new ListBox();
-        chooseGroup.setVisibleItemCount(1);
-        chooseGroup.setWidth("150px");
-        chooseGroup.addItem("All");
-        createPostControlPanel.add(chooseGroup);
-        createPostControlPanel.setCellWidth(chooseGroup,"430"); 
-        
-        
-        turtlenet.getCategories(new AsyncCallback<String[][]>() {
-            public void onFailure(Throwable caught) {
-                //TODO error
-            }
-            public void onSuccess(String result[][]) {
-                for (int i = 0; i < result.length; i++)
-                    chooseGroup.addItem(result[i][0]);
-            }
-        });
-        
-        Button cancel = new Button("Cancel");
-        createPostControlPanel.add(cancel);
-        cancel.addClickHandler(new ClickHandler() {
-            public void onClick(ClickEvent event) {                        
-                wall(key);
-            }
-        });   
-        
-        Button send = new Button("Send");
-        send.setWidth("150px");
-        createPostControlPanel.add(send);        
-        send.addClickHandler(new ClickHandler() {
-            public void onClick(ClickEvent event) {
-                turtlenet.addPost(key, chooseGroup.getItemText(chooseGroup.getSelectedIndex()), postText.getText(), new AsyncCallback<String>() {
+                public void onSuccess(String result) {
+                    if(key.equals(result)) {
+                        final Button myDetails = new Button("About Me");
+                        wallControlPanel.add(myDetails);
+                        wallControlPanel.setCellWidth(myDetails,"200");
+                        myDetails.addClickHandler(new ClickHandler() {
+                            public void onClick(ClickEvent event) {
+                                friendsDetails(key, wallPanel, myDetails);
+                            }
+                        });
+                    } else {
+                        turtlenet.getUsername(key, new AsyncCallback<String>() {
+                            public void onFailure(Throwable caught) {
+                                //TODO error
+                            }
+                            public void onSuccess(String result) {
+                                final Button userDetails = new Button("About " + result);
+                                wallControlPanel.add(userDetails);
+                                wallControlPanel.setCellWidth(userDetails,"200");
+                                userDetails.addClickHandler(new ClickHandler() {
+                                    public void onClick(ClickEvent event) {
+                                        friendsDetails(key, wallPanel, userDetails);
+                                    }
+                                });
+                            }
+                        });
+                    }
+                }
+            });
+            
+            Button createPost = new Button("Post here");
+            wallControlPanel.add(createPost);
+            wallControlPanel.setCellWidth(createPost,"200");
+            
+            final Label postStop = new Label();
+            wallControlPanel.add(postStop);
+            
+            final FlowPanel createPostPanel = new FlowPanel();
+            postText = new TextArea();
+            postText.setCharacterWidth(80);
+            postText.setVisibleLines(10);
+            createPostPanel.add(postText);
+            
+            HorizontalPanel createPostControlPanel = new HorizontalPanel();
+            createPostPanel.add(createPostControlPanel);
+                
+            final ListBox chooseGroup = new ListBox();
+            chooseGroup.setVisibleItemCount(1);
+            chooseGroup.setWidth("150px");
+            chooseGroup.addItem("All");
+            createPostControlPanel.add(chooseGroup);
+            createPostControlPanel.setCellWidth(chooseGroup,"430"); 
+                
+                
+                turtlenet.getCategories(new AsyncCallback<String[][]>() {
                     public void onFailure(Throwable caught) {
                         //TODO error
                     }
-                    public void onSuccess(String result) {
-                        wall(key);
+                    public void onSuccess(String result[][]) {
+                        for (int i = 0; i < result.length; i++)
+                            chooseGroup.addItem(result[i][0]);
                     }
                 });
-            }
-        });
+                
+                Button cancel = new Button("Cancel");
+                createPostControlPanel.add(cancel);
+                cancel.addClickHandler(new ClickHandler() {
+                    public void onClick(ClickEvent event) {                        
+                        wall(key, false);
+                    }
+                });   
+                
+                Button send = new Button("Send");
+                send.setWidth("150px");
+                createPostControlPanel.add(send);        
+                send.addClickHandler(new ClickHandler() {
+                    public void onClick(ClickEvent event) {
+                        turtlenet.addPost(key, chooseGroup.getItemText(chooseGroup.getSelectedIndex()), postText.getText(), new AsyncCallback<String>() {
+                            public void onFailure(Throwable caught) {
+                                //TODO error
+                            }
+                            public void onSuccess(String result) {
+                                wall(key, false);
+                            }
+                        });
+                    }
+                });
+                
+                createPost.addClickHandler(new ClickHandler() {
+                    public void onClick(ClickEvent event) {
+                        location = "createPost";
+                        refreshID = "";
+                        postStop.setText("Page auto update paused");
+                        postStop.getElement().getStyle().setProperty("color" , "#FF0000");                
+                        wallPanel.insert(createPostPanel, 1);
+                    }
+                });
+        }
         
-        createPost.addClickHandler(new ClickHandler() {
-            public void onClick(ClickEvent event) {
-                location = "createPost";
-                refreshID = "";
-                postStop.setText("Page auto update paused");
-                postStop.getElement().getStyle().setProperty("color" , "#FF0000");                
-                wallPanel.insert(createPostPanel, 1);
-            }
-        });
+        
         
         turtlenet.getWallPosts(key, new AsyncCallback<PostDetails[]>() {
             public void onFailure(Throwable caught) {
@@ -982,115 +984,120 @@ public class frontend implements EntryPoint, ClickListener {
             public void onSuccess(PostDetails[] result) {
                 wallPostDetails = result;
                 for (wallCurrentPost = 0; wallCurrentPost < wallPostDetails.length; wallCurrentPost++) {
-                    final FlowPanel postPanel = new FlowPanel();
-                    // TODO LOUISTODO The 4 may need to be a 3 or a 5. Not sure.
-                    // Test when there is data in there
-                    wallPanel.insert(postPanel, 4);
-                    postPanel.addStyleName("gwt-post-panel");
                     
-                    HorizontalPanel postControlPanel = new HorizontalPanel();
-                    //postControlPanel.setSpacing(5);
-                    postPanel.add(postControlPanel);
-                    
-                    //Name
-                    Label postedByLabel = new Label("Posted by: ");
-                    postControlPanel.add(postedByLabel);
-                    postControlPanel.setCellWidth(postedByLabel,"110");
-                    
-                    Anchor linkToUser = new Anchor(wallPostDetails[wallCurrentPost].posterUsername);
-                    postControlPanel.add(linkToUser);
-                    postControlPanel.setCellWidth(linkToUser,"375");
-                    linkToUser.addClickHandler(new ClickHandler() {
-                        public void onClick(ClickEvent event) {
-                            wall(wallPostDetails[wallCurrentPost].posterKey);
-                        }
-                    });
-                    
-                    //Date
-                    wallLastTimeStamp = wallPostDetails[wallCurrentPost].timestamp;
-                    Label dateLabel = new Label(new Date(wallPostDetails[wallCurrentPost].timestamp).toString());
-                    postControlPanel.add(dateLabel);
-                    postControlPanel.setCellWidth(dateLabel,"210");
-                    
-                    FlowPanel postContentsPanel = new FlowPanel();
-                    postPanel.add(postContentsPanel);
-                    
-                    TextArea postContents = new TextArea();
-                    postContents.setCharacterWidth(80);
-                    postContents.setVisibleLines(5);
-                    postContents.setReadOnly(true);
-                    
-                    //Text
-                    postContents.setText(wallPostDetails[wallCurrentPost].text);
-                    postContentsPanel.add(postContents);
-                    
-                    HorizontalPanel postContentsFooterPanel = new HorizontalPanel();
-                    postContentsFooterPanel.addStyleName("gwt-post-contents-footer");
-                    postContentsPanel.add(postContentsFooterPanel);
-                    
-                    //Like
-                    Anchor likePost;
-                    
-                    if (wallPostDetails[wallCurrentPost].liked) {
-                        likePost = new Anchor("Unlike");
-                        likePost.addClickHandler(new ClickHandler() {
+                    if(!refresh || wallPostDetails[wallCurrentPost].timestamp > wallLastTimeStamp) {
+                        final FlowPanel postPanel = new FlowPanel();
+                        // Test when there is data in there
+                        wallPanel.insert(postPanel, 1);
+                        //wallPanel.add(postPanel);
+                        postPanel.addStyleName("gwt-post-panel");
+                        
+                        HorizontalPanel postControlPanel = new HorizontalPanel();
+                        //postControlPanel.setSpacing(5);
+                        postPanel.add(postControlPanel);
+                        
+                        //Name
+                        Label postedByLabel = new Label("Posted by: ");
+                        postControlPanel.add(postedByLabel);
+                        postControlPanel.setCellWidth(postedByLabel,"110");
+                        
+                        // TODO LUKETODO Fix this so that the anchor is displayed.
+                        // It shows up if you put a static name in.
+                        Anchor linkToUser = new Anchor(wallPostDetails[wallCurrentPost].posterUsername);
+                        postControlPanel.add(linkToUser);
+                        postControlPanel.setCellWidth(linkToUser,"375");
+                        linkToUser.addClickHandler(new ClickHandler() {
                             public void onClick(ClickEvent event) {
-                                turtlenet.unlike(wallPostDetails[wallCurrentPost].sig, new AsyncCallback<String>() {
-                                    public void onFailure(Throwable caught) {
-                                        //TODO error
-                                    }
-                                    public void onSuccess(String _result) {
-                                        if (_result.equals("success")) {
-                                            wall(key);
-                                        } else {
-                                            //TODO Error
-                                        }
-                                    }
-                                });
+                                wall(wallPostDetails[wallCurrentPost].posterKey, false);
                             }
                         });
-                    } else {
-                        likePost = new Anchor("Like");
-                        likePost.addClickHandler(new ClickHandler() {
-                            public void onClick(ClickEvent event) {
-                                turtlenet.like(wallPostDetails[wallCurrentPost].sig, new AsyncCallback<String>() {
-                                    public void onFailure(Throwable caught) {
-                                        //TODO error
-                                    }
-                                    public void onSuccess(String _result) {
-                                        if (_result.equals("success")) {
-                                            wall(key);
-                                        } else {
-                                            //TODO Error
+                        
+                        //Date
+                        wallLastTimeStamp = wallPostDetails[wallCurrentPost].timestamp;
+                        Label dateLabel = new Label(new Date(wallPostDetails[wallCurrentPost].timestamp).toString());
+                        postControlPanel.add(dateLabel);
+                        postControlPanel.setCellWidth(dateLabel,"210");
+                        
+                        FlowPanel postContentsPanel = new FlowPanel();
+                        postPanel.add(postContentsPanel);
+                        
+                        TextArea postContents = new TextArea();
+                        postContents.setCharacterWidth(80);
+                        postContents.setVisibleLines(5);
+                        postContents.setReadOnly(true);
+                        
+                        //Text
+                        postContents.setText(wallPostDetails[wallCurrentPost].text);
+                        postContentsPanel.add(postContents);
+                        
+                        HorizontalPanel postContentsFooterPanel = new HorizontalPanel();
+                        postContentsFooterPanel.addStyleName("gwt-post-contents-footer");
+                        postContentsPanel.add(postContentsFooterPanel);
+                        
+                        //Like
+                        Anchor likePost;
+                        
+                        if (wallPostDetails[wallCurrentPost].liked) {
+                            likePost = new Anchor("Unlike");
+                            likePost.addClickHandler(new ClickHandler() {
+                                public void onClick(ClickEvent event) {
+                                    turtlenet.unlike(wallPostDetails[wallCurrentPost].sig, new AsyncCallback<String>() {
+                                        public void onFailure(Throwable caught) {
+                                            //TODO error
                                         }
-                                    }
-                                });
-                            }
-                        });
-                    }
-                    postContentsFooterPanel.add(likePost);
-                    
-                    final Label stop = new Label("");            
-                    postContentsFooterPanel.add(stop);
-                    
-                    //Comments
-                    int commentCount = wallPostDetails[wallCurrentPost].commentCount;
-                    final Anchor comments;
-                    if(commentCount == 0) {
-                        comments = new Anchor("Add a comment");
-                    } else {
-                        comments = new Anchor("Comments(" + Integer.toString(commentCount) + ")");
-                    }
-                    
-                    postContentsFooterPanel.add(comments);
-                    final PostDetails details = wallPostDetails[wallCurrentPost];
-                    comments.addClickHandler(new ClickHandler() {
-                        public void onClick(ClickEvent event) {
-                            stop.setText("Page auto update paused");
-                            stop.getElement().getStyle().setProperty("color" , "#FF0000");  
-                            comments(details.sig, key, postPanel, comments); 
+                                        public void onSuccess(String _result) {
+                                            if (_result.equals("success")) {
+                                                wall(key, false);
+                                            } else {
+                                                //TODO Error
+                                            }
+                                        }
+                                    });
+                                }
+                            });
+                        } else {
+                            likePost = new Anchor("Like");
+                            likePost.addClickHandler(new ClickHandler() {
+                                public void onClick(ClickEvent event) {
+                                    turtlenet.like(wallPostDetails[wallCurrentPost].sig, new AsyncCallback<String>() {
+                                        public void onFailure(Throwable caught) {
+                                            //TODO error
+                                        }
+                                        public void onSuccess(String _result) {
+                                            if (_result.equals("success")) {
+                                                wall(key, false);
+                                            } else {
+                                                //TODO Error
+                                            }
+                                        }
+                                    });
+                                }
+                            });
                         }
-                    }); 
+                        postContentsFooterPanel.add(likePost);
+                        
+                        final Label stop = new Label("");            
+                        postContentsFooterPanel.add(stop);
+                        
+                        //Comments
+                        int commentCount = wallPostDetails[wallCurrentPost].commentCount;
+                        final Anchor comments;
+                        if(commentCount == 0) {
+                            comments = new Anchor("Add a comment");
+                        } else {
+                            comments = new Anchor("Comments(" + Integer.toString(commentCount) + ")");
+                        }
+                        
+                        postContentsFooterPanel.add(comments);
+                        final PostDetails details = wallPostDetails[wallCurrentPost];
+                        comments.addClickHandler(new ClickHandler() {
+                            public void onClick(ClickEvent event) {
+                                stop.setText("Page auto update paused");
+                                stop.getElement().getStyle().setProperty("color" , "#FF0000");  
+                                comments(details.sig, key, postPanel, comments); 
+                            }
+                        }); 
+                    }
                 }
             }
         });
@@ -1171,7 +1178,7 @@ public class frontend implements EntryPoint, ClickListener {
             
             postedBy.addClickHandler(new ClickHandler() {
                 public void onClick(ClickEvent event) {
-                    wall(postedByKey);
+                    wall(postedByKey, false);
                 }
             }); 
             
@@ -1189,7 +1196,7 @@ public class frontend implements EntryPoint, ClickListener {
                         // the ID of that post.
                         // Give it postID
                     
-                        wall(wallKey);
+                        wall(wallKey, false);
                     }
                 });
             } else {
@@ -1200,7 +1207,7 @@ public class frontend implements EntryPoint, ClickListener {
                         // the ID of that post.
                         // Give it postID
                     
-                        wall(wallKey);
+                        wall(wallKey, false);
                     }
                 });
             }
@@ -1213,7 +1220,7 @@ public class frontend implements EntryPoint, ClickListener {
                     // TODO LUKETODO Call a method that 'Likes' a comment when
                     // given the ID of that comment.
                     // Give it commentID
-                    wall(wallKey);
+                    wall(wallKey, false);
                     // TODO LOUISTODO Make the refreshed comments page move
                     // to the place we just added our new comment.
                 }
@@ -1233,7 +1240,7 @@ public class frontend implements EntryPoint, ClickListener {
         commentsReplyThreadPanel.setWidget(1, 1, cancel);
         cancel.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {                        
-                wall(wallKey);
+                wall(wallKey, false);
             }
         });   
 
@@ -1251,7 +1258,7 @@ public class frontend implements EntryPoint, ClickListener {
                 // It's parent is postID
                 // To get the contents use: threadReplyContents.getText();
                         
-                wall(wallKey);
+                wall(wallKey, false);
                 // TODO LOUISTODO Make the refreshed comments page move
                 // to the place we just added our new comment.
             }
