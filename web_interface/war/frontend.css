@@ -60,7 +60,7 @@ h1 {
 	margin: 0 auto;
 	background: #E0EEEE;
 	color: #666666;
-	padding: 20px 100px 20px 0;
+	padding: 20px 100px 20px 200px;
 }
 
 .gwt-comments-contents {
@@ -85,12 +85,28 @@ h1 {
 	color: #666666;
 }
 
+.gwt-wall-control {
+	width: 1000px;
+	margin: 0 auto;
+	background: #E0EEEE;
+	color: #666666;
+	padding: 0 0 0 200px;
+}
+
+.gwt-create-post {
+	width: 800px;
+	margin: 0 auto;
+	background: #E0EEEE;
+	color: #666666;
+	padding: 0 0 0 200px;
+}
+
 .gwt-post-contents-footer {
     width: 700px;
 	margin: 0 auto;
 	background: #E0EEEE;
 	color: #666666;
-	padding: 0 0 0 10px;
+	padding: 0 100px 0 10px;
 }
 
 .gwt-group {
@@ -106,7 +122,7 @@ h1 {
 	margin: 0 auto;
 	background: #E0EEEE;
 	color: #666666;
-	padding: 0 200px 0 200px;
+    padding: 0 0 0 200px;
 }
 
 .gwt-conversation-list {
@@ -114,11 +130,11 @@ h1 {
 	margin: 0 auto;
 	background: #E0EEEE;
 	color: #666666;
-	padding: 0 0 0 0;
+	padding: 0 200px 0 50px;
 }
 
 .gwt-conversation {
-	width: 1000px;
+	width: 900px;
 	margin: 0 auto;
 	background: #E0EEEE;
 	color: #666666;
@@ -146,7 +162,7 @@ h1 {
 	margin: 0 auto;
 	background: #E0EEEE;
 	color: #666666;
-	padding: 0 0 10px 100px;
+	padding: 0 0 10px 200px;
 }
 
 .gwt-Anchor {
@@ -168,5 +184,9 @@ h1 {
 }
 
 .gwt-TextArea-readonly {
+   background-color: #EEEEEE;
+}
+
+.gwt-TextBox-readonly {
    background-color: #EEEEEE;
 }

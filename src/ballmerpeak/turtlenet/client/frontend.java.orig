@@ -961,12 +961,19 @@ public class frontend implements EntryPoint, ClickListener {
                         //postControlPanel.setSpacing(5);
                         postPanel.add(postControlPanel);
                         
+<<<<<<< HEAD
                         //Name
                         Label postedByLabel = new Label("Posted by: ");
                         postControlPanel.add(postedByLabel);
                         postControlPanel.setCellWidth(postedByLabel,"110");
                         
                         Anchor linkToUser = new Anchor(wallPostDetails[wallCurrentPost].posterUsername);
+=======
+                        // TODO LUKETODO Fix this so that the anchor is displayed.
+                        // It shows up if you put a static name in.
+                        //Anchor linkToUser = new Anchor(wallPostDetails[wallCurrentPost].posterUsername);
+                        Anchor linkToUser = new Anchor("Temporary Static String");
+>>>>>>> a6277c5289ab183131db6ad3f20cd6a5f51b7bb7
                         postControlPanel.add(linkToUser);
                         postControlPanel.setCellWidth(linkToUser,"300");
                         linkToUser.addClickHandler(new ClickHandler() {
