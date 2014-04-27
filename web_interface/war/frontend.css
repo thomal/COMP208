@@ -106,7 +106,7 @@ h1 {
 	margin: 0 auto;
 	background: #E0EEEE;
 	color: #666666;
-	padding: 0 0 0 10px;
+	padding: 0 100px 0 10px;
 }
 
 .gwt-group {
@@ -130,11 +130,11 @@ h1 {
 	margin: 0 auto;
 	background: #E0EEEE;
 	color: #666666;
-	padding: 0 0 0 0;
+	padding: 0 200px 0 50px;
 }
 
 .gwt-conversation {
-	width: 1000px;
+	width: 900px;
 	margin: 0 auto;
 	background: #E0EEEE;
 	color: #666666;

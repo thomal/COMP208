@@ -382,7 +382,19 @@ public class frontend implements EntryPoint, ClickListener {
                     // appears at the top.
                     for(int j = 0; j < result.length; j++) {
                         final String conversationID = result[i].signature;
-                        Anchor linkConversation = new Anchor(result[i].firstMessage);
+                        
+                        // Substrings dont work if we set the end point so its
+                        // bigger than our string. If the length is less than 40
+                        // we output the full string. If the string is 40 or 
+                        // about we take the first 40 characters and add ...
+                        String linkText = new String("");
+                        if ((result[i].firstMessage).length() < 40) {
+                            linkText = (result[i].firstMessage);
+                        } else {
+                            linkText = (result[i].firstMessage).substring(1, 40) + "...";
+                        }
+                        System.out.println(linkText);
+                        Anchor linkConversation = new Anchor(linkText);
                         conversationListPanel.setWidget(j, 0, linkConversation);
                     
                         // Add click handlers for anchors
@@ -399,13 +411,14 @@ public class frontend implements EntryPoint, ClickListener {
         });
         
         Button newConversation = new Button("New conversation");
+        newConversation.setWidth("400px");
         newConversation.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
                 newConversation();
             }
         });
         
-        conversationListPanel.setWidget((conversationListPanel.getRowCount() + 1), 1, newConversation);
+        conversationListPanel.setWidget((conversationListPanel.getRowCount() + 1), 0, newConversation);
         
         // Add style name for CSS
         conversationListPanel.addStyleName("gwt-conversation-list");
@@ -828,6 +841,8 @@ public class frontend implements EntryPoint, ClickListener {
                     if(key.equals(result)) {
                         final Button myDetails = new Button("About Me");
                         wallControlPanel.add(myDetails);
+                        myDetails.getElement().getStyle().setProperty("marginLeft" , "280px");
+                        myDetails.getElement().getStyle().setProperty("marginRight" , "200px");
                         myDetails.addClickHandler(new ClickHandler() {
                             public void onClick(ClickEvent event) {
                                 friendsDetails(key, wallPanel, myDetails);
@@ -852,7 +867,7 @@ public class frontend implements EntryPoint, ClickListener {
                 }
             });
         
-            Button createPost = new Button("Write a post");
+            final Button createPost = new Button("Write a post");
             wallControlPanel.add(createPost);
             
             final Label postStop = new Label();
@@ -873,7 +888,7 @@ public class frontend implements EntryPoint, ClickListener {
             chooseGroup.setWidth("150px");
             chooseGroup.addItem("All");
             createPostControlPanel.add(chooseGroup);
-            createPostControlPanel.setCellWidth(chooseGroup,"430"); 
+            createPostControlPanel.setCellWidth(chooseGroup,"217px"); 
             
             
             turtlenet.getCategories(new AsyncCallback<String[][]>() {
@@ -888,6 +903,7 @@ public class frontend implements EntryPoint, ClickListener {
             
             Button cancel = new Button("Cancel");
             createPostControlPanel.add(cancel);
+            createPostControlPanel.setCellWidth(cancel,"217px"); 
             cancel.addClickHandler(new ClickHandler() {
                 public void onClick(ClickEvent event) {                        
                     wall(key, false);
@@ -918,7 +934,8 @@ public class frontend implements EntryPoint, ClickListener {
                 public void onClick(ClickEvent event) {
                     location = "createPost";
                     refreshID = "";
-                    postStop.setText("Page auto update paused");
+                    wallControlPanel.remove(createPost);
+                    postStop.setText("Updates paused");
                     postStop.getElement().getStyle().setProperty("color" , "#FF0000");                
                     wallPanel.insert(createPostPanel, 1);
                 }
@@ -945,16 +962,12 @@ public class frontend implements EntryPoint, ClickListener {
                         //postControlPanel.setSpacing(5);
                         postPanel.add(postControlPanel);
                         
-                        //Name
-                        Label postedByLabel = new Label("Posted by: ");
-                        postControlPanel.add(postedByLabel);
-                        postControlPanel.setCellWidth(postedByLabel,"110");
-                        
                         // TODO LUKETODO Fix this so that the anchor is displayed.
                         // It shows up if you put a static name in.
-                        Anchor linkToUser = new Anchor(wallPostDetails[wallCurrentPost].posterUsername);
+                        //Anchor linkToUser = new Anchor(wallPostDetails[wallCurrentPost].posterUsername);
+                        Anchor linkToUser = new Anchor("Temporary Static String");
                         postControlPanel.add(linkToUser);
-                        postControlPanel.setCellWidth(linkToUser,"375");
+                        postControlPanel.setCellWidth(linkToUser,"300");
                         linkToUser.addClickHandler(new ClickHandler() {
                             public void onClick(ClickEvent event) {
                                 wall(wallPostDetails[wallCurrentPost].posterKey, false);
@@ -965,7 +978,6 @@ public class frontend implements EntryPoint, ClickListener {
                         wallLastTimeStamp = wallPostDetails[wallCurrentPost].timestamp;
                         Label dateLabel = new Label(new Date(wallPostDetails[wallCurrentPost].timestamp).toString());
                         postControlPanel.add(dateLabel);
-                        postControlPanel.setCellWidth(dateLabel,"210");
                         
                         FlowPanel postContentsPanel = new FlowPanel();
                         postPanel.add(postContentsPanel);
@@ -979,7 +991,7 @@ public class frontend implements EntryPoint, ClickListener {
                         postContents.setText(wallPostDetails[wallCurrentPost].text);
                         postContentsPanel.add(postContents);
                         
-                        HorizontalPanel postContentsFooterPanel = new HorizontalPanel();
+                        final HorizontalPanel postContentsFooterPanel = new HorizontalPanel();
                         postContentsFooterPanel.addStyleName("gwt-post-contents-footer");
                         postContentsPanel.add(postContentsFooterPanel);
                         
@@ -1024,9 +1036,7 @@ public class frontend implements EntryPoint, ClickListener {
                             });
                         }
                         postContentsFooterPanel.add(likePost);
-                        
                         final Label stop = new Label("");            
-                        postContentsFooterPanel.add(stop);
                         
                         //Comments
                         int commentCount = wallPostDetails[wallCurrentPost].commentCount;
@@ -1040,13 +1050,15 @@ public class frontend implements EntryPoint, ClickListener {
                         postContentsFooterPanel.add(comments);
                         comments.addClickHandler(new ClickHandler() {
                             public void onClick(ClickEvent event) {
+                                postContentsFooterPanel.remove(comments);
                                 stop.setText("Page auto update paused");
                                 stop.getElement().getStyle().setProperty("color" , "#FF0000");  
                                 comments(details.sig, key, postPanel, comments); 
                             }
                         }); 
-                    
+                        postContentsFooterPanel.add(stop);
                         postContentsFooterPanel.add(likePost);
+                        likePost.getElement().getStyle().setProperty("paddingLeft" , "300px");
                     }
                 }
             }
@@ -1176,7 +1188,8 @@ public class frontend implements EntryPoint, ClickListener {
         commentsReplyThreadPanel.setWidget(0, 0, threadReplyContents);
         
         Button cancel = new Button("Cancel");
-        commentsReplyThreadPanel.setWidget(1, 1, cancel);
+        cancel.setWidth("450px");
+        commentsReplyThreadPanel.setWidget(1, 0, cancel);
         cancel.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {                        
                 wall(wallKey, false);
@@ -1190,7 +1203,7 @@ public class frontend implements EntryPoint, ClickListener {
             replyToThread = new Button("Reply to thread");
         }
         replyToThread.setWidth("450px");
-        commentsReplyThreadPanel.setWidget(1, 0, replyToThread);
+        commentsReplyThreadPanel.setWidget(2, 0, replyToThread);
         
         replyToThread.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) { 
