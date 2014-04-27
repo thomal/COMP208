@@ -868,12 +868,12 @@ public class frontend implements EntryPoint, ClickListener {
             }
         });
         
-        final Label postStop = new Label();
-        wallControlPanel.add(postStop);
-        
         Button createPost = new Button("Post here");
         wallControlPanel.add(createPost);
         wallControlPanel.setCellWidth(createPost,"200");
+        
+        final Label postStop = new Label();
+        wallControlPanel.add(postStop);
         
         final FlowPanel createPostPanel = new FlowPanel();
         postText = new TextArea();
@@ -930,7 +930,8 @@ public class frontend implements EntryPoint, ClickListener {
             public void onClick(ClickEvent event) {
                 location = "createPost";
                 refreshID = "";
-                postStop.setText("Page auto update paused");                
+                postStop.setText("Page auto update paused");
+                postStop.getElement().getStyle().setProperty("color" , "#FF0000");                
                 wallPanel.insert(createPostPanel, 1);
             }
         });
@@ -1043,6 +1044,7 @@ public class frontend implements EntryPoint, ClickListener {
                     comments.addClickHandler(new ClickHandler() {
                         public void onClick(ClickEvent event) {
                             stop.setText("Page auto update paused");
+                            stop.getElement().getStyle().setProperty("color" , "#FF0000");  
                             comments(wallPostDetails[wallCurrentPost].sig, key, postPanel, comments); 
                         }
                     }); 
@@ -1383,6 +1385,7 @@ public class frontend implements EntryPoint, ClickListener {
                         conversationReplyPanel.add(conversationReplyControlsPanel);
                         
                         Label stop = new Label("Page auto update paused");
+                        stop.getElement().getStyle().setProperty("color" , "#FF0000");  
                         conversationReplyControlsPanel.add(stop);
                         stop.addClickHandler(new ClickHandler() {
                             public void onClick(ClickEvent event) {
