@@ -877,7 +877,6 @@ public class frontend implements EntryPoint, ClickListener {
                 public void onFailure(Throwable caught) {
                     //TODO error
                 }
-<<<<<<< HEAD
             }
         });
         
@@ -929,7 +928,6 @@ public class frontend implements EntryPoint, ClickListener {
         send.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
                 turtlenet.addPost(key, chooseGroup.getItemText(chooseGroup.getSelectedIndex()), postText.getText(), new AsyncCallback<String>() {
-=======
                 public void onSuccess(String result) {
                     if(key.equals(result)) {
                         final Button myDetails = new Button("About Me");
@@ -959,75 +957,16 @@ public class frontend implements EntryPoint, ClickListener {
                     }
                 }
             });
-            
-            Button createPost = new Button("Post here");
-            wallControlPanel.add(createPost);
-            wallControlPanel.setCellWidth(createPost,"200");
-            
-            final Label postStop = new Label();
-            wallControlPanel.add(postStop);
-            
-            final FlowPanel createPostPanel = new FlowPanel();
-            postText = new TextArea();
-            postText.setCharacterWidth(80);
-            postText.setVisibleLines(10);
-            createPostPanel.add(postText);
-            
-            HorizontalPanel createPostControlPanel = new HorizontalPanel();
-            createPostPanel.add(createPostControlPanel);
                 
-            final ListBox chooseGroup = new ListBox();
-            chooseGroup.setVisibleItemCount(1);
-            chooseGroup.setWidth("150px");
-            chooseGroup.addItem("All");
-            createPostControlPanel.add(chooseGroup);
-            createPostControlPanel.setCellWidth(chooseGroup,"430"); 
-                
-                
-                turtlenet.getCategories(new AsyncCallback<String[][]>() {
->>>>>>> 4a74eab4a7d81d7fb45638852e736b5197b357ff
-                    public void onFailure(Throwable caught) {
-                        //TODO error
-                    }
-                    public void onSuccess(String result[][]) {
-                        for (int i = 0; i < result.length; i++)
-                            chooseGroup.addItem(result[i][0]);
-                    }
-                });
-                
-                Button cancel = new Button("Cancel");
-                createPostControlPanel.add(cancel);
-                cancel.addClickHandler(new ClickHandler() {
-                    public void onClick(ClickEvent event) {                        
-                        wall(key, false);
-                    }
-                });   
-                
-                Button send = new Button("Send");
-                send.setWidth("150px");
-                createPostControlPanel.add(send);        
-                send.addClickHandler(new ClickHandler() {
-                    public void onClick(ClickEvent event) {
-                        turtlenet.addPost(key, chooseGroup.getItemText(chooseGroup.getSelectedIndex()), postText.getText(), new AsyncCallback<String>() {
-                            public void onFailure(Throwable caught) {
-                                //TODO error
-                            }
-                            public void onSuccess(String result) {
-                                wall(key, false);
-                            }
-                        });
-                    }
-                });
-                
-                createPost.addClickHandler(new ClickHandler() {
-                    public void onClick(ClickEvent event) {
-                        location = "createPost";
-                        refreshID = "";
-                        postStop.setText("Page auto update paused");
-                        postStop.getElement().getStyle().setProperty("color" , "#FF0000");                
-                        wallPanel.insert(createPostPanel, 1);
-                    }
-                });
+            createPost.addClickHandler(new ClickHandler() {
+                public void onClick(ClickEvent event) {
+                    location = "createPost";
+                    refreshID = "";
+                    postStop.setText("Page auto update paused");
+                    postStop.getElement().getStyle().setProperty("color" , "#FF0000");                
+                    wallPanel.insert(createPostPanel, 1);
+                }
+            });
         }
         
         
