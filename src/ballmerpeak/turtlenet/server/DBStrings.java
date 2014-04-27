@@ -126,8 +126,8 @@ class DBStrings {
     public static final String addConvoParticipant = "INSERT INTO tConvoKeys (convoID, key) VALUES ('__sig__', '__key__');";
     public static final String addMessageToConvo = "INSERT INTO tConvoMessages (convoID, sendersKey, msgText, time)"+
                                                        "VALUES ('__convoID__', '__sendersKey__', '__msgText__', '__time__');";
-    public static final String addComment        = "INSERT INTO tComment (sig, msgText, parent, commenterKey, creationTime)"+
-                                                       "VALUES ('__sig__', '__msgText__', '__parent__', '__commenterKey__', '__creationTime__');";
+    public static final String addComment        = "INSERT INTO tComment (sig, msgText, parent, creationTime)"+
+                                                       "VALUES ('__sig__', '__msgText__', '__parent__', '__creationTime__');";
     public static final String addLike           = "INSERT INTO tLike (likerKey, parent) VALUES ('__likerKey__', '__parent__');";
     public static final String removeLike        = "DELETE FROM tLike WHERE likerKey = '__likerKey__' AND parent = '__parent__';";
     public static final String addEvent          = "INSERT INTO tEvent (sig, startTime, endTime, creatorKey, accepted, name, creationTime)"+
