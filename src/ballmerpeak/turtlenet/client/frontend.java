@@ -877,7 +877,59 @@ public class frontend implements EntryPoint, ClickListener {
                 public void onFailure(Throwable caught) {
                     //TODO error
                 }
-
+<<<<<<< HEAD
+            }
+        });
+        
+        Button createPost = new Button("Write a post");
+        wallControlPanel.add(createPost);
+        wallControlPanel.setCellWidth(createPost,"200");
+        
+        final Label postStop = new Label();
+        wallControlPanel.add(postStop);
+        
+        final FlowPanel createPostPanel = new FlowPanel();
+        postText = new TextArea();
+        postText.setCharacterWidth(80);
+        postText.setVisibleLines(10);
+        createPostPanel.add(postText);
+        
+        HorizontalPanel createPostControlPanel = new HorizontalPanel();
+        createPostPanel.add(createPostControlPanel);
+        
+        final ListBox chooseGroup = new ListBox();
+        chooseGroup.setVisibleItemCount(1);
+        chooseGroup.setWidth("150px");
+        chooseGroup.addItem("All");
+        createPostControlPanel.add(chooseGroup);
+        createPostControlPanel.setCellWidth(chooseGroup,"430"); 
+        
+        
+        turtlenet.getCategories(new AsyncCallback<String[][]>() {
+            public void onFailure(Throwable caught) {
+                //TODO error
+            }
+            public void onSuccess(String result[][]) {
+                for (int i = 0; i < result.length; i++)
+                    chooseGroup.addItem(result[i][0]);
+            }
+        });
+        
+        Button cancel = new Button("Cancel");
+        createPostControlPanel.add(cancel);
+        cancel.addClickHandler(new ClickHandler() {
+            public void onClick(ClickEvent event) {                        
+                wall(key);
+            }
+        });   
+        
+        Button send = new Button("Send");
+        send.setWidth("150px");
+        createPostControlPanel.add(send);        
+        send.addClickHandler(new ClickHandler() {
+            public void onClick(ClickEvent event) {
+                turtlenet.addPost(key, chooseGroup.getItemText(chooseGroup.getSelectedIndex()), postText.getText(), new AsyncCallback<String>() {
+=======
                 public void onSuccess(String result) {
                     if(key.equals(result)) {
                         final Button myDetails = new Button("About Me");
@@ -933,6 +985,7 @@ public class frontend implements EntryPoint, ClickListener {
                 
                 
                 turtlenet.getCategories(new AsyncCallback<String[][]>() {
+>>>>>>> 4a74eab4a7d81d7fb45638852e736b5197b357ff
                     public void onFailure(Throwable caught) {
                         //TODO error
                     }
@@ -986,6 +1039,88 @@ public class frontend implements EntryPoint, ClickListener {
             public void onSuccess(PostDetails[] result) {
                 wallPostDetails = result;
                 for (wallCurrentPost = 0; wallCurrentPost < wallPostDetails.length; wallCurrentPost++) {
+<<<<<<< HEAD
+                    final PostDetails details = wallPostDetails[wallCurrentPost];
+                    final FlowPanel postPanel = new FlowPanel();
+                    wallPanel.add(postPanel);
+                    postPanel.addStyleName("gwt-post-panel");
+                    
+                    HorizontalPanel postControlPanel = new HorizontalPanel();
+                    //postControlPanel.setSpacing(5);
+                    postPanel.add(postControlPanel);
+                    
+                    //Name
+                    Label postedByLabel = new Label("Posted by: ");
+                    postControlPanel.add(postedByLabel);
+                    postControlPanel.setCellWidth(postedByLabel,"110");
+                    
+                    Anchor linkToUser = new Anchor(wallPostDetails[wallCurrentPost].posterUsername);
+                    postControlPanel.add(linkToUser);
+                    postControlPanel.setCellWidth(linkToUser,"375");
+                    linkToUser.addClickHandler(new ClickHandler() {
+                        public void onClick(ClickEvent event) {
+                            wall(details.posterKey);
+                        }
+                    });
+                    
+                    //Date
+                    wallLastTimeStamp = wallPostDetails[wallCurrentPost].timestamp;
+                    Label dateLabel = new Label(new Date(wallPostDetails[wallCurrentPost].timestamp).toString());
+                    postControlPanel.add(dateLabel);
+                    postControlPanel.setCellWidth(dateLabel,"210");
+                    
+                    FlowPanel postContentsPanel = new FlowPanel();
+                    postPanel.add(postContentsPanel);
+                    
+                    TextArea postContents = new TextArea();
+                    postContents.setCharacterWidth(80);
+                    postContents.setVisibleLines(5);
+                    postContents.setReadOnly(true);
+                    
+                    //Text
+                    postContents.setText(wallPostDetails[wallCurrentPost].text);
+                    postContentsPanel.add(postContents);
+                    
+                    HorizontalPanel postContentsFooterPanel = new HorizontalPanel();
+                    postContentsFooterPanel.addStyleName("gwt-post-contents-footer");
+                    postContentsPanel.add(postContentsFooterPanel);
+                    
+                    //Like
+                    Anchor likePost;
+                    
+                    if (wallPostDetails[wallCurrentPost].liked) {
+                        likePost = new Anchor("Unlike");
+                        likePost.addClickHandler(new ClickHandler() {
+                            public void onClick(ClickEvent event) {
+                                turtlenet.unlike(details.sig, new AsyncCallback<String>() {
+                                    public void onFailure(Throwable caught) {
+                                        //TODO error
+                                    }
+                                    public void onSuccess(String _result) {
+                                        if (_result.equals("success")) {
+                                            wall(key);
+                                        } else {
+                                            //TODO Error
+                                        }
+                                    }
+                                });
+                            }
+                        });
+                    } else {
+                        likePost = new Anchor("Like");
+                        likePost.addClickHandler(new ClickHandler() {
+                            public void onClick(ClickEvent event) {
+                                turtlenet.like(details.sig, new AsyncCallback<String>() {
+                                    public void onFailure(Throwable caught) {
+                                        //TODO error
+                                    }
+                                    public void onSuccess(String _result) {
+                                        if (_result.equals("success")) {
+                                            wall(key);
+                                        } else {
+                                            //TODO Error
+=======
+                    
                     if(!refresh || wallPostDetails[wallCurrentPost].timestamp > wallLastTimeStamp) {
                         final FlowPanel postPanel = new FlowPanel();
                         // Test when there is data in there
@@ -1045,6 +1180,7 @@ public class frontend implements EntryPoint, ClickListener {
                                     turtlenet.unlike(wallPostDetails[wallCurrentPost].sig, new AsyncCallback<String>() {
                                         public void onFailure(Throwable caught) {
                                             //TODO error
+>>>>>>> 4a74eab4a7d81d7fb45638852e736b5197b357ff
                                         }
                                         public void onSuccess(String _result) {
                                             if (_result.equals("success")) {
@@ -1099,6 +1235,7 @@ public class frontend implements EntryPoint, ClickListener {
                             }
                         }); 
                     }
+                    
                     postContentsFooterPanel.add(likePost);
                     
                     final Label stop = new Label("");            
@@ -1191,7 +1328,9 @@ public class frontend implements EntryPoint, ClickListener {
                         public void onClick(ClickEvent event) {
                             wall(details.posterKey);
                         }
-                    }); 
+                    });
+            
+                    Anchor likeComment;
                     
                     if (result[i].liked) {
                         likeComment = new Anchor("Unlike");
@@ -1234,6 +1373,7 @@ public class frontend implements EntryPoint, ClickListener {
                     likeComment.getElement().getStyle().setProperty("paddingLeft" , "130px");
                     commentsControlPanel.add(likeComment);
                     
+                    //This has -nothing- to do with the merge
                     //I think this can be safely deleted, looks like a copy/paste mistake
                     /*likeComment.addClickHandler(new ClickHandler() {////////////////////////////////////////////////////////////////
                         public void onClick(ClickEvent event) {///////////////////////////////////////////////////////////////////////
