@@ -868,7 +868,7 @@ public class frontend implements EntryPoint, ClickListener {
             }
         });
         
-        Button createPost = new Button("Post here");
+        Button createPost = new Button("Write a post");
         wallControlPanel.add(createPost);
         wallControlPanel.setCellWidth(createPost,"200");
         
@@ -943,6 +943,7 @@ public class frontend implements EntryPoint, ClickListener {
             public void onSuccess(PostDetails[] result) {
                 wallPostDetails = result;
                 for (wallCurrentPost = 0; wallCurrentPost < wallPostDetails.length; wallCurrentPost++) {
+                    final PostDetails details = wallPostDetails[wallCurrentPost];
                     final FlowPanel postPanel = new FlowPanel();
                     wallPanel.add(postPanel);
                     postPanel.addStyleName("gwt-post-panel");
@@ -961,7 +962,7 @@ public class frontend implements EntryPoint, ClickListener {
                     postControlPanel.setCellWidth(linkToUser,"375");
                     linkToUser.addClickHandler(new ClickHandler() {
                         public void onClick(ClickEvent event) {
-                            wall(wallPostDetails[wallCurrentPost].posterKey);
+                            wall(details.posterKey);
                         }
                     });
                     
@@ -993,7 +994,7 @@ public class frontend implements EntryPoint, ClickListener {
                         likePost = new Anchor("Unlike");
                         likePost.addClickHandler(new ClickHandler() {
                             public void onClick(ClickEvent event) {
-                                turtlenet.unlike(wallPostDetails[wallCurrentPost].sig, new AsyncCallback<String>() {
+                                turtlenet.unlike(details.sig, new AsyncCallback<String>() {
                                     public void onFailure(Throwable caught) {
                                         //TODO error
                                     }
@@ -1011,7 +1012,7 @@ public class frontend implements EntryPoint, ClickListener {
                         likePost = new Anchor("Like");
                         likePost.addClickHandler(new ClickHandler() {
                             public void onClick(ClickEvent event) {
-                                turtlenet.like(wallPostDetails[wallCurrentPost].sig, new AsyncCallback<String>() {
+                                turtlenet.like(details.sig, new AsyncCallback<String>() {
                                     public void onFailure(Throwable caught) {
                                         //TODO error
                                     }
@@ -1041,7 +1042,6 @@ public class frontend implements EntryPoint, ClickListener {
                     }
                     
                     postContentsFooterPanel.add(comments);
-                    final PostDetails details = wallPostDetails[wallCurrentPost];
                     comments.addClickHandler(new ClickHandler() {
                         public void onClick(ClickEvent event) {
                             stop.setText("Page auto update paused");
