@@ -977,89 +977,7 @@ public class frontend implements EntryPoint, ClickListener {
             }
             public void onSuccess(PostDetails[] result) {
                 wallPostDetails = result;
-                for (wallCurrentPost = 0; wallCurrentPost < wallPostDetails.length; wallCurrentPost++) {
-<<<<<<< HEAD
-                    final PostDetails details = wallPostDetails[wallCurrentPost];
-                    final FlowPanel postPanel = new FlowPanel();
-                    wallPanel.add(postPanel);
-                    postPanel.addStyleName("gwt-post-panel");
-                    
-                    HorizontalPanel postControlPanel = new HorizontalPanel();
-                    //postControlPanel.setSpacing(5);
-                    postPanel.add(postControlPanel);
-                    
-                    //Name
-                    Label postedByLabel = new Label("Posted by: ");
-                    postControlPanel.add(postedByLabel);
-                    postControlPanel.setCellWidth(postedByLabel,"110");
-                    
-                    Anchor linkToUser = new Anchor(wallPostDetails[wallCurrentPost].posterUsername);
-                    postControlPanel.add(linkToUser);
-                    postControlPanel.setCellWidth(linkToUser,"375");
-                    linkToUser.addClickHandler(new ClickHandler() {
-                        public void onClick(ClickEvent event) {
-                            wall(details.posterKey);
-                        }
-                    });
-                    
-                    //Date
-                    wallLastTimeStamp = wallPostDetails[wallCurrentPost].timestamp;
-                    Label dateLabel = new Label(new Date(wallPostDetails[wallCurrentPost].timestamp).toString());
-                    postControlPanel.add(dateLabel);
-                    postControlPanel.setCellWidth(dateLabel,"210");
-                    
-                    FlowPanel postContentsPanel = new FlowPanel();
-                    postPanel.add(postContentsPanel);
-                    
-                    TextArea postContents = new TextArea();
-                    postContents.setCharacterWidth(80);
-                    postContents.setVisibleLines(5);
-                    postContents.setReadOnly(true);
-                    
-                    //Text
-                    postContents.setText(wallPostDetails[wallCurrentPost].text);
-                    postContentsPanel.add(postContents);
-                    
-                    HorizontalPanel postContentsFooterPanel = new HorizontalPanel();
-                    postContentsFooterPanel.addStyleName("gwt-post-contents-footer");
-                    postContentsPanel.add(postContentsFooterPanel);
-                    
-                    //Like
-                    Anchor likePost;
-                    
-                    if (wallPostDetails[wallCurrentPost].liked) {
-                        likePost = new Anchor("Unlike");
-                        likePost.addClickHandler(new ClickHandler() {
-                            public void onClick(ClickEvent event) {
-                                turtlenet.unlike(details.sig, new AsyncCallback<String>() {
-                                    public void onFailure(Throwable caught) {
-                                        //TODO error
-                                    }
-                                    public void onSuccess(String _result) {
-                                        if (_result.equals("success")) {
-                                            wall(key);
-                                        } else {
-                                            //TODO Error
-                                        }
-                                    }
-                                });
-                            }
-                        });
-                    } else {
-                        likePost = new Anchor("Like");
-                        likePost.addClickHandler(new ClickHandler() {
-                            public void onClick(ClickEvent event) {
-                                turtlenet.like(details.sig, new AsyncCallback<String>() {
-                                    public void onFailure(Throwable caught) {
-                                        //TODO error
-                                    }
-                                    public void onSuccess(String _result) {
-                                        if (_result.equals("success")) {
-                                            wall(key);
-                                        } else {
-                                            //TODO Error
-=======
-                    
+                for (wallCurrentPost = 0; wallCurrentPost < wallPostDetails.length; wallCurrentPost++) {                    
                     if(!refresh || wallPostDetails[wallCurrentPost].timestamp > wallLastTimeStamp) {
                         final FlowPanel postPanel = new FlowPanel();
                         // Test when there is data in there
@@ -1119,7 +1037,6 @@ public class frontend implements EntryPoint, ClickListener {
                                     turtlenet.unlike(wallPostDetails[wallCurrentPost].sig, new AsyncCallback<String>() {
                                         public void onFailure(Throwable caught) {
                                             //TODO error
->>>>>>> 4a74eab4a7d81d7fb45638852e736b5197b357ff
                                         }
                                         public void onSuccess(String _result) {
                                             if (_result.equals("success")) {
