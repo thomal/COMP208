@@ -177,7 +177,7 @@ public class Database {
         Logger.write("VERBOSE", "DB", "getComments(...)");
     
         try {
-            ResultSet commentSet = query(DBStrings.getComments.replace("__SIG__", sig));
+            ResultSet commentSet = query(DBStrings.getComments.replace("__PARENT__", sig));
             while (commentSet.next()) {
                 Message cmnt = new MessageFactoryImpl().newCMNT(sig, commentSet.getString("msgText"));
                 cmnt.timestamp = Long.parseLong(commentSet.getString("creationTime"));
