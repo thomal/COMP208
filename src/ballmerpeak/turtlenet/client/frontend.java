@@ -52,6 +52,7 @@ the DB.
 
 package ballmerpeak.turtlenet.client;
 
+import ballmerpeak.turtlenet.shared.PostDetails;
 import ballmerpeak.turtlenet.shared.Message;
 import ballmerpeak.turtlenet.shared.Conversation;
 
@@ -65,6 +66,7 @@ import com.google.gwt.dom.client.Style.FontWeight;
 import com.google.gwt.dom.client.DivElement;
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.user.client.Timer;
+import java.util.Date;
 
 public class frontend implements EntryPoint, ClickListener {
 
@@ -130,7 +132,14 @@ public class frontend implements EntryPoint, ClickListener {
                     }
                     public void onSuccess(String result) {
                         if (result.equals("success")) {
-                            wall("me");
+                            turtlenet.getMyKey(new AsyncCallback<String>() {
+                                public void onFailure(Throwable caught) {
+                                    //TODO error
+                                }
+                                public void onSuccess(String result) {
+                                    wall(result);
+                                }
+                            });
                         } else if (result.equals("failure")) {
                             passwordLabel.setText("Please enter your password (again): ");
                         } else {
@@ -796,6 +805,9 @@ public class frontend implements EntryPoint, ClickListener {
     }
 
     HorizontalPanel wallControlPanel;
+    TextArea postText;
+    PostDetails[] wallPostDetails;
+    int wallCurrentPost;
     private void wall(final String key) {
         location = "wall";
         refreshID = key;
@@ -853,10 +865,10 @@ public class frontend implements EntryPoint, ClickListener {
         wallControlPanel.setCellWidth(createPost,"200");
         
         final FlowPanel createPostPanel = new FlowPanel();
-        TextArea contents = new TextArea();
-        contents.setCharacterWidth(80);
-        contents.setVisibleLines(10);
-        createPostPanel.add(contents);
+        postText = new TextArea();
+        postText.setCharacterWidth(80);
+        postText.setVisibleLines(10);
+        createPostPanel.add(postText);
         
         HorizontalPanel createPostControlPanel = new HorizontalPanel();
         createPostPanel.add(createPostControlPanel);
@@ -892,13 +904,14 @@ public class frontend implements EntryPoint, ClickListener {
         createPostControlPanel.add(send);        
         send.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                // TODO LUKETODO Call a method that adds a post to the current wall.
-                // This method takes a string called key so give it that.
-                // Use contents.getText() to obtain the message contents.
-                // To obtain the group allowed to see the post use
-                // chooseGroup.getItemText(chooseFriend.getSelectedIndex())
-                
-                wall(key);
+                turtlenet.addPost(key, chooseGroup.getItemText(chooseGroup.getSelectedIndex()), postText.getText(), new AsyncCallback<String>() {
+                    public void onFailure(Throwable caught) {
+                        //TODO error
+                    }
+                    public void onSuccess(String result) {
+                        wall(key);
+                    }
+                });
             }
         });
         
@@ -911,130 +924,120 @@ public class frontend implements EntryPoint, ClickListener {
             }
         });
         
-        // TODO LUKETODO '10' should be replaced with a call to a method that 
-        // returns the number of posts on a users wall when given a public key.
-        // Give it key.
-        for(int i = 0; i < 10; i++) {
-            // TODO LUKETODO "postID" should be replaced with a call to a method 
-            // that takes a public key and returns a list of all the posts on the
-            // wall associated with that public key. Specifically we want the IDs
-            // of those posts.
-            // This method takes a string called key so give it that as the public key.
-            // Use i to choose a post from the list.
-            final String postID = new String("postID");
-        
-            final FlowPanel postPanel = new FlowPanel();
-            wallPanel.add(postPanel);
-            postPanel.addStyleName("gwt-post-panel");
-            
-            HorizontalPanel postControlPanel = new HorizontalPanel();
-            //postControlPanel.setSpacing(5);
-            postPanel.add(postControlPanel);
-            
-            Label postedByLabel = new Label("Posted by: ");
-            postControlPanel.add(postedByLabel);
-            postControlPanel.setCellWidth(postedByLabel,"110");
-            // TODO LUKETODO "Key of user" should be replaced with a call to a 
-            // method that returns the key of the user who created a post when
-            // given the ID of that post. 
-            // Give it postID
-            final String postedBy = new String("Key of user");
-            
-            // TODO LUKETODO "Name of poster" should be replaced with a call 
-            // to a method that returns the name of a user when given their key.
-            // Give it postedBy.
-            Anchor linkToUser = new Anchor("Name of poster");
-            postControlPanel.add(linkToUser);
-            postControlPanel.setCellWidth(linkToUser,"375");
-            linkToUser.addClickHandler(new ClickHandler() {
-                public void onClick(ClickEvent event) {
-                    wall(postedBy);
-                }
-            });
-            
-            // TODO LUKETODO "01/01/1970" should be replaced with a call to a 
-            // method that returns the date a post was created on when given 
-            // the ID of that post.
-            // Give it postID
-            // (Not sure if this is a feature but it would be nice) 
-            Label dateLabel = new Label("01/01/1970");
-            postControlPanel.add(dateLabel);
-            postControlPanel.setCellWidth(dateLabel,"210");
-            
-            FlowPanel postContentsPanel = new FlowPanel();
-            postPanel.add(postContentsPanel);
-            
-            TextArea postContents = new TextArea();
-            postContents.setCharacterWidth(80);
-            postContents.setVisibleLines(5);
-            postContents.setReadOnly(true);
-                       
-            // TODO LUKETODO "Post contents goes here" should be replaced with
-            // a call to a method that takes the ID of a post and returns the 
-            // contents of that post.
-            //Give it postID
-            postContents.setText("Post contents goes here");
-            postContentsPanel.add(postContents);
-            
-            HorizontalPanel postContentsFooterPanel = new HorizontalPanel();
-            postContentsFooterPanel.addStyleName("gwt-post-contents-footer");
-            postContentsPanel.add(postContentsFooterPanel);  
-            
-            Anchor likePost;
-            
-            // TODO LUKETODO 'true' should bereplaced with a call to a method 
-            // that takes the ID of a post and checks to see whether the user 
-            // has already liked that post.
-            // Give it postID
-            if (true) {
-                likePost = new Anchor("Unlike");
-                likePost.addClickHandler(new ClickHandler() {
-                    public void onClick(ClickEvent event) {
-                        // TODO LUKETODO Call a method that 'Unlikes' a post when given
-                        // the ID of that post.
-                        // Give it postID
-                    
-                        wall(key);
-                    }
-                });
-            } else {
-                likePost = new Anchor("Like");
-                likePost.addClickHandler(new ClickHandler() {
-                    public void onClick(ClickEvent event) {
-                        // TODO LUKETODO Call a method that 'Likes' a post when given
-                        // the ID of that post.
-                        // Give it postID
-                    
-                        wall(key);
-                    }
-                });
+        turtlenet.getWallPosts(key, new AsyncCallback<PostDetails[]>() {
+            public void onFailure(Throwable caught) {
+                //TODO error
             }
-            postContentsFooterPanel.add(likePost);
-            
-            final Label stop = new Label("");            
-            postContentsFooterPanel.add(stop);
-            
-            // TODO LUKETODO "5" should be replaced with a call to a method that
-            // returns a the number of comments on a post when given the ID of
-            // that post.
-            // Give it postID
-            int commentCount = 5;
-            
-            final Anchor comments;
-            if(commentCount == 0) {
-                comments = new Anchor("Add a comment");
-            } else {
-                comments = new Anchor("Comments(" + Integer.toString(commentCount) + ")");
-            }
-            
-            postContentsFooterPanel.add(comments);
-            comments.addClickHandler(new ClickHandler() {
-                public void onClick(ClickEvent event) {
-                    stop.setText("Page auto update paused");
-                    comments(postID, key, postPanel, comments); 
+            public void onSuccess(PostDetails[] result) {
+                wallPostDetails = result;
+                for (wallCurrentPost = 0; wallCurrentPost < wallPostDetails.length; wallCurrentPost++) {
+                    final FlowPanel postPanel = new FlowPanel();
+                    wallPanel.add(postPanel);
+                    postPanel.addStyleName("gwt-post-panel");
+                    
+                    HorizontalPanel postControlPanel = new HorizontalPanel();
+                    //postControlPanel.setSpacing(5);
+                    postPanel.add(postControlPanel);
+                    
+                    //Name
+                    Label postedByLabel = new Label("Posted by: ");
+                    postControlPanel.add(postedByLabel);
+                    postControlPanel.setCellWidth(postedByLabel,"110");
+                    
+                    Anchor linkToUser = new Anchor(wallPostDetails[wallCurrentPost].posterUsername);
+                    postControlPanel.add(linkToUser);
+                    postControlPanel.setCellWidth(linkToUser,"375");
+                    linkToUser.addClickHandler(new ClickHandler() {
+                        public void onClick(ClickEvent event) {
+                            wall(wallPostDetails[wallCurrentPost].posterKey);
+                        }
+                    });
+                    
+                    //Date
+                    Label dateLabel = new Label(new Date(wallPostDetails[wallCurrentPost].timestamp).toString());
+                    postControlPanel.add(dateLabel);
+                    postControlPanel.setCellWidth(dateLabel,"210");
+                    
+                    FlowPanel postContentsPanel = new FlowPanel();
+                    postPanel.add(postContentsPanel);
+                    
+                    TextArea postContents = new TextArea();
+                    postContents.setCharacterWidth(80);
+                    postContents.setVisibleLines(5);
+                    postContents.setReadOnly(true);
+                    
+                    //Text
+                    postContents.setText(wallPostDetails[wallCurrentPost].text);
+                    postContentsPanel.add(postContents);
+                    
+                    HorizontalPanel postContentsFooterPanel = new HorizontalPanel();
+                    postContentsFooterPanel.addStyleName("gwt-post-contents-footer");
+                    postContentsPanel.add(postContentsFooterPanel);
+                    
+                    //Like
+                    Anchor likePost;
+                    
+                    if (wallPostDetails[wallCurrentPost].liked) {
+                        likePost = new Anchor("Unlike");
+                        likePost.addClickHandler(new ClickHandler() {
+                            public void onClick(ClickEvent event) {
+                                turtlenet.unlike(wallPostDetails[wallCurrentPost].sig, new AsyncCallback<String>() {
+                                    public void onFailure(Throwable caught) {
+                                        //TODO error
+                                    }
+                                    public void onSuccess(String _result) {
+                                        if (_result.equals("success")) {
+                                            wall(key);
+                                        } else {
+                                            //TODO Error
+                                        }
+                                    }
+                                });
+                            }
+                        });
+                    } else {
+                        likePost = new Anchor("Like");
+                        likePost.addClickHandler(new ClickHandler() {
+                            public void onClick(ClickEvent event) {
+                                turtlenet.like(wallPostDetails[wallCurrentPost].sig, new AsyncCallback<String>() {
+                                    public void onFailure(Throwable caught) {
+                                        //TODO error
+                                    }
+                                    public void onSuccess(String _result) {
+                                        if (_result.equals("success")) {
+                                            wall(key);
+                                        } else {
+                                            //TODO Error
+                                        }
+                                    }
+                                });
+                            }
+                        });
+                    }
+                    postContentsFooterPanel.add(likePost);
+                    
+                    final Label stop = new Label("");            
+                    postContentsFooterPanel.add(stop);
+                    
+                    //Comments
+                    int commentCount = wallPostDetails[wallCurrentPost].commentCount;
+                    final Anchor comments;
+                    if(commentCount == 0) {
+                        comments = new Anchor("Add a comment");
+                    } else {
+                        comments = new Anchor("Comments(" + Integer.toString(commentCount) + ")");
+                    }
+                    
+                    postContentsFooterPanel.add(comments);
+                    comments.addClickHandler(new ClickHandler() {
+                        public void onClick(ClickEvent event) {
+                            stop.setText("Page auto update paused");
+                            comments(wallPostDetails[wallCurrentPost].sig, key, postPanel, comments); 
+                        }
+                    }); 
                 }
-            }); 
-        }
+            }
+        });
 
         // Add style name for CSS
         wallPanel.addStyleName("gwt-wall");

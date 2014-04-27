@@ -169,6 +169,39 @@ public class Database {
         return posts.toArray(new Message[0]);
     }
     
+    public Message[] getComments (String sig) {
+        Vector<Message> comments = new Vector<Message>();
+        Logger.write("VERBOSE", "DB", "getComments(...)");
+    
+        try {
+            ResultSet commentSet = query(DBStrings.getComments.replace("__SIG__", sig));
+            while (commentSet.next()) {
+                Message cmnt = new MessageFactoryImpl().newCMNT(sig, commentSet.getString("msgText"));
+                cmnt.timestamp = Long.parseLong(commentSet.getString("creationTime"));
+                cmnt.signature = commentSet.getString("sig");
+                comments.add(cmnt);
+            }
+        } catch (java.sql.SQLException e) {
+            Logger.write("ERROR", "DB", "SQLException: " + e);
+        }
+        
+        return comments.toArray(new Message[0]); 
+    }
+    
+    public boolean isLiked (String sig) {
+        Logger.write("VERBOSE", "DB", "isLiked(...)");
+        int ret = 0;
+
+        try {
+            ResultSet row = query(DBStrings.getLike.replace("__SIG__", sig));
+            return row.next();
+        } catch (java.sql.SQLException e) {
+            Logger.write("ERROR", "DB", "SQLException: " + e);
+        }
+        
+        return false;
+    }
+    
     //Return all conversations
     public Conversation[] getConversations () {
         Vector<Conversation> convoList = new Vector<Conversation>();
@@ -637,6 +670,32 @@ public class Database {
         try {
             execute(DBStrings.addToCategory.replace("__catID__", category)
                                            .replace("__key__", Crypto.encodeKey(key)));
+        } catch (java.sql.SQLException e) {
+            Logger.write("ERROR", "DB", "SQLException: " + e);
+            return false;
+        }
+        
+        return true;
+    }
+    
+    public boolean like (String sig) {
+        Logger.write("VERBOSE", "DB", "like(...)");
+        try {
+            execute(DBStrings.addLike.replace("__parent__", sig)
+                                     .replace("__likerKey__", Crypto.encodeKey(Crypto.getPublicKey())));
+        } catch (java.sql.SQLException e) {
+            Logger.write("ERROR", "DB", "SQLException: " + e);
+            return false;
+        }
+        
+        return true;
+    }
+    
+    public boolean unlike (String sig) {
+        Logger.write("VERBOSE", "DB", "like(...)");
+        try {
+            execute(DBStrings.removeLike.replace("__parent__", sig)
+                                     .replace("__likerKey__", Crypto.encodeKey(Crypto.getPublicKey())));
         } catch (java.sql.SQLException e) {
             Logger.write("ERROR", "DB", "SQLException: " + e);
             return false;

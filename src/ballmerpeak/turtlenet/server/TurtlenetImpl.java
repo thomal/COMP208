@@ -8,7 +8,7 @@ import ballmerpeak.turtlenet.server.TNClient;
 import ballmerpeak.turtlenet.server.MessageFactoryImpl;
 import ballmerpeak.turtlenet.shared.Message;
 import ballmerpeak.turtlenet.shared.Conversation;
-import java.util.Arrays;
+import ballmerpeak.turtlenet.shared.PostDetails;
 
 @SuppressWarnings("serial")
 public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
@@ -91,6 +91,22 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
         return pairs;
     }
     
+    public PostDetails[] getWallPosts (String key) {
+        Message[] msgs = c.db.getWallPost(Crypto.decodeKey(key));
+        PostDetails[] posts = new PostDetails[msgs.length];
+        for (int i = 0; i < msgs.length; i++) {
+            String sig = msgs[i].getSig();
+            boolean liked = c.db.isLiked(sig);
+            int commentCount = c.db.getComments(sig).length;
+            Long time = msgs[i].getTimestamp();
+            String username = c.db.getName(c.db.getSignatory(msgs[i]));
+            String text = msgs[i].POSTgetText();
+            
+            posts[i] = new PostDetails(sig, liked, commentCount, time, username, text, Crypto.encodeKey(c.db.getSignatory(msgs[i])));
+        }
+        return posts;
+    }
+    
     
     //Profile Data
     public String claimUsername (String uname) {
@@ -148,6 +164,14 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
         return "success";
     }
     
+    public String like (String sig) {
+        return c.db.like(sig)?"success":"failure";
+    }
+    
+    public String unlike (String sig) {
+        return c.db.unlike(sig)?"success":"failure";
+    }
+    
     //Friends
     public String addCategory (String name) {
         if (c.db.addCategory(name, false))
@@ -181,5 +205,19 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
             return "success";
         else
             return "failure";
+    }
+    
+    public String addPost (String wallKey, String categoryVisibleTo, String msg) {
+        PublicKey[] visibleTo = c.db.getCategoryMembers(categoryVisibleTo);
+        String[] visibleToStr = new String[visibleTo.length];
+        
+        for (int i = 0; i < visibleTo.length; i++)
+            visibleToStr[i] = Crypto.encodeKey(visibleTo[i]);
+        Message message = new MessageFactoryImpl().newPOST(msg, wallKey, visibleToStr);
+        
+        for (int i = 0; i < visibleTo.length; i++)
+            c.connection.postMessage(message, visibleTo[i]);
+            
+        return "success";
     }
 }

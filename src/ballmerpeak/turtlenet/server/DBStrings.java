@@ -109,6 +109,8 @@ class DBStrings {
     public static final String getMemberKeys    = "SELECT userKey FROM tCategoryMembers WHERE catID = '__CATNAME__';";
     public static final String getName          = "SELECT username FROM tUser WHERE key = '__KEY__';";
     public static final String getClaims        = "SELECT * FROM tClaim;";
+    public static final String getLike          = "SELECT * FROM tLike WHERE parent = '__SIG__';";
+    public static final String getComments      = "SELECT * FROM tComment WHERE parent = '__SIG__';";
     
     //add post without it being visible to anyone
     public static final String addPost           = "INSERT INTO tPost (sig, msgText, time, recieverKey, sendersKey)" +
@@ -128,6 +130,7 @@ class DBStrings {
     public static final String addComment        = "INSERT INTO tComment (sig, msgText, parent, commenterKey, creationTime)"+
                                                        "VALUES ('__sig__', '__msgText__', '__parent__', '__commenterKey__', '__creationTime__');";
     public static final String addLike           = "INSERT INTO tLike (likerKey, parent) VALUES ('__likerKey__', '__parent__');";
+    public static final String removeLike        = "DELETE FROM tLike WHERE likerKey = '__likerKey__' AND parent = '__parent__';";
     public static final String addEvent          = "INSERT INTO tEvent (sig, startTime, endTime, creatorKey, accepted, name, creationTime)"+
                                                        "VALUES ('__sig__', '__startTime__', '__endTime__', '__creatorKey__', '__accepted__', '__name__', '__creationTime__');";
     public static final String acceptEvent       = "UPDATE tEvent SET accepted = 1 WHERE sig = '__sig__';";

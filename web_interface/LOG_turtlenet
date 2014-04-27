@@ -1,25 +1,75 @@
-===== Turtlenet started at Sat Apr 26 23:28:23 BST 2014=====
-1398551303 UNIMPL	TNClient	Ignoring password: 
-1398551303 INFO		NetCon	Read lastRead from file
-1398551303 INFO		DB	Connecting to database
-1398551304 INFO		NetCon	NetworkConnection started
-1398551304 VERBOSE	DB	getCategories()
-1398551304 VERBOSE	DB	query("SELECT * FROM tCategory;")
-1398551304 VERBOSE	DB	getCategories() returning 2 categories
-1398551304 VERBOSE	DB	getName(...)
-1398551304 ERROR	Crypto	encodeKey passed null key
-1398551304 VERBOSE	DB	query("SELECT username FROM tUser WHERE key = '--INVALID KEYSTRING--';")
-1398551304 VERBOSE	TNImpl	getUsername returning ""
-1398551306 VERBOSE	DB	getName(...)
-1398551306 VERBOSE	DB	query("SELECT username FROM tUser WHERE key = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCsVfuN2uqFyoP65B3VoiybjQAB/4ywEdnyOUhgecsYhPgoGyJQ7cCYoHJBvPOQRLTpIduw/9btDt5ZWQoSNbUEVTjJ/dqQmu3FOBS/ii7Hxxqtyy5al6DWHHkQUaeWANzEc0oc46ulhx51/hvXxWCi5LMrL/7e6s8kkULtvaH5qQIDAQAB';")
-1398551306 VERBOSE	DB	getPDATA(name,...)
-1398551306 VERBOSE	DB	query("SELECT name FROM tUser WHERE key = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCsVfuN2uqFyoP65B3VoiybjQAB/4ywEdnyOUhgecsYhPgoGyJQ7cCYoHJBvPOQRLTpIduw/9btDt5ZWQoSNbUEVTjJ/dqQmu3FOBS/ii7Hxxqtyy5al6DWHHkQUaeWANzEc0oc46ulhx51/hvXxWCi5LMrL/7e6s8kkULtvaH5qQIDAQAB';")
-1398551306 VERBOSE	DB	getPDATA(birthday,...)
-1398551306 VERBOSE	DB	query("SELECT birthday FROM tUser WHERE key = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCsVfuN2uqFyoP65B3VoiybjQAB/4ywEdnyOUhgecsYhPgoGyJQ7cCYoHJBvPOQRLTpIduw/9btDt5ZWQoSNbUEVTjJ/dqQmu3FOBS/ii7Hxxqtyy5al6DWHHkQUaeWANzEc0oc46ulhx51/hvXxWCi5LMrL/7e6s8kkULtvaH5qQIDAQAB';")
-1398551306 VERBOSE	DB	getPDATA(gender,...)
-1398551306 VERBOSE	DB	query("SELECT gender FROM tUser WHERE key = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCsVfuN2uqFyoP65B3VoiybjQAB/4ywEdnyOUhgecsYhPgoGyJQ7cCYoHJBvPOQRLTpIduw/9btDt5ZWQoSNbUEVTjJ/dqQmu3FOBS/ii7Hxxqtyy5al6DWHHkQUaeWANzEc0oc46ulhx51/hvXxWCi5LMrL/7e6s8kkULtvaH5qQIDAQAB';")
-1398551306 VERBOSE	DB	getPDATA(email,...)
-1398551306 VERBOSE	DB	query("SELECT email FROM tUser WHERE key = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCsVfuN2uqFyoP65B3VoiybjQAB/4ywEdnyOUhgecsYhPgoGyJQ7cCYoHJBvPOQRLTpIduw/9btDt5ZWQoSNbUEVTjJ/dqQmu3FOBS/ii7Hxxqtyy5al6DWHHkQUaeWANzEc0oc46ulhx51/hvXxWCi5LMrL/7e6s8kkULtvaH5qQIDAQAB';")
-1398551306 VERBOSE	DB	getCategories()
-1398551306 VERBOSE	DB	query("SELECT * FROM tCategory;")
-1398551306 VERBOSE	DB	getCategories() returning 2 categories
+===== Turtlenet started at Sun Apr 27 01:52:27 BST 2014=====
+1398559947 UNIMPL	TNClient	Ignoring password: 
+1398559947 INFO		NetCon	Read lastRead from file
+1398559947 INFO		DB	Connecting to database
+1398559948 INFO		NetCon	NetworkConnection started
+1398559949 INFO		Crypto	decrypt()
+1398559949 VERBOSE	PARSE	parsing message
+1398559949 WARNING	PARSE	FPOST is depreciated
+1398559951 VERBOSE	DB	getCategories()
+1398559951 VERBOSE	DB	query("SELECT * FROM tCategory;")
+1398559951 VERBOSE	DB	getCategories() returning 2 categories
+1398559951 VERBOSE	DB	getWallPost(...)
+1398559951 VERBOSE	DB	query("SELECT sig FROM tPost WHERE reciverKey = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCsVfuN2uqFyoP65B3VoiybjQAB/4ywEdnyOUhgecsYhPgoGyJQ7cCYoHJBvPOQRLTpIduw/9btDt5ZWQoSNbUEVTjJ/dqQmu3FOBS/ii7Hxxqtyy5al6DWHHkQUaeWANzEc0oc46ulhx51/hvXxWCi5LMrL/7e6s8kkULtvaH5qQIDAQAB';")
+1398559951 RED		DB	Failed to query database: java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (no such column: reciverKey)
+1398559951 ERROR	DB	SQLException: java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (no such column: reciverKey)
+1398559958 VERBOSE	DB	getCategoryMembers(Awesome People)
+1398559958 VERBOSE	DB	query("SELECT userKey FROM tCategoryMembers WHERE catID = 'Awesome People';")
+1398559958 VERBOSE	DB	getCategoryMembers(Awesome People) returning 1 members
+1398559958 INFO		Crypto	sign()
+1398559958 INFO		Crypto	sign()
+1398559958 INFO		Crypto	encrypt()
+1398559958 INFO		NetCon	uploaded message: "FPOST\UOO49Lk2Tb3rx0giBIiGerCg9B7HPyCMnR1Ea4nQ1G9rNAivfrU/q+T4OAGGzNfQke63QaqqCHEHu0uetIGKaKu6O9IphKw99MAUX3dREPWuTWBj/V2ArvKy47t7N68pW0FWCPxmCvXbdeOz5kW8W6/yiTkACbuxNqAPaCXkP98=\MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCsVfuN2uqFyoP65B3VoiybjQAB/4ywEdnyOUhgecsYhPgoGyJQ7cCYoHJBvPOQRLTpIduw/9btDt5ZWQoSNbUEVTjJ/dqQmu3FOBS/ii7Hxxqtyy5al6DWHHkQUaeWANzEc0oc46ulhx51/hvXxWCi5LMrL/7e6s8kkULtvaH5qQIDAQAB:MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCsVfuN2uqFyoP65B3VoiybjQAB/4ywEdnyOUhgecsYhPgoGyJQ7cCYoHJBvPOQRLTpIduw/9btDt5ZWQoSNbUEVTjJ/dqQmu3FOBS/ii7Hxxqtyy5al6DWHHkQUaeWANzEc0oc46ulhx51/hvXxWCi5LMrL/7e6s8kkULtvaH5qQIDAQAB:ccccccc\1398559958952"
+1398559959 VERBOSE	DB	getCategories()
+1398559959 VERBOSE	DB	query("SELECT * FROM tCategory;")
+1398559959 VERBOSE	DB	getCategories() returning 2 categories
+1398559959 VERBOSE	DB	getWallPost(...)
+1398559959 VERBOSE	DB	query("SELECT sig FROM tPost WHERE reciverKey = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCsVfuN2uqFyoP65B3VoiybjQAB/4ywEdnyOUhgecsYhPgoGyJQ7cCYoHJBvPOQRLTpIduw/9btDt5ZWQoSNbUEVTjJ/dqQmu3FOBS/ii7Hxxqtyy5al6DWHHkQUaeWANzEc0oc46ulhx51/hvXxWCi5LMrL/7e6s8kkULtvaH5qQIDAQAB';")
+1398559959 RED		DB	Failed to query database: java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (no such column: reciverKey)
+1398559959 ERROR	DB	SQLException: java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (no such column: reciverKey)
+1398559959 INFO		Crypto	decrypt()
+1398559959 VERBOSE	PARSE	parsing message
+1398559959 WARNING	PARSE	FPOST is depreciated
+1398559967 VERBOSE	DB	getCategoryMembers(All)
+1398559967 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398559967 VERBOSE	DB	getCategoryMembers(All) returning 1 members
+1398559967 INFO		Crypto	sign()
+1398559967 INFO		Crypto	sign()
+1398559967 INFO		Crypto	encrypt()
+1398559967 INFO		NetCon	uploaded message: "FPOST\Q4zPtaZWh/Kw4PGtuvAqkVN9YdhLy4cSzPIsYYgTuUq/4JDZgfm8TGpyKIaXRHeVNCuH1ksvTZn784lM3LuJsUHsHg2Csz96+cqqQv+I1nmTRCiFpL6lEMIIyq437yrIHRjLgGBvewA8flzkMAq+TsvrXlOuT+ozemA7cN6AOVg=\MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCsVfuN2uqFyoP65B3VoiybjQAB/4ywEdnyOUhgecsYhPgoGyJQ7cCYoHJBvPOQRLTpIduw/9btDt5ZWQoSNbUEVTjJ/dqQmu3FOBS/ii7Hxxqtyy5al6DWHHkQUaeWANzEc0oc46ulhx51/hvXxWCi5LMrL/7e6s8kkULtvaH5qQIDAQAB:MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCsVfuN2uqFyoP65B3VoiybjQAB/4ywEdnyOUhgecsYhPgoGyJQ7cCYoHJBvPOQRLTpIduw/9btDt5ZWQoSNbUEVTjJ/dqQmu3FOBS/ii7Hxxqtyy5al6DWHHkQUaeWANzEc0oc46ulhx51/hvXxWCi5LMrL/7e6s8kkULtvaH5qQIDAQAB:vvvvvvvv\1398559967459"
+1398559967 INFO		Crypto	decrypt()
+1398559967 VERBOSE	PARSE	parsing message
+1398559967 WARNING	PARSE	FPOST is depreciated
+1398559967 VERBOSE	DB	getCategories()
+1398559967 VERBOSE	DB	query("SELECT * FROM tCategory;")
+1398559967 VERBOSE	DB	getCategories() returning 2 categories
+1398559967 VERBOSE	DB	getWallPost(...)
+1398559967 VERBOSE	DB	query("SELECT sig FROM tPost WHERE reciverKey = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCsVfuN2uqFyoP65B3VoiybjQAB/4ywEdnyOUhgecsYhPgoGyJQ7cCYoHJBvPOQRLTpIduw/9btDt5ZWQoSNbUEVTjJ/dqQmu3FOBS/ii7Hxxqtyy5al6DWHHkQUaeWANzEc0oc46ulhx51/hvXxWCi5LMrL/7e6s8kkULtvaH5qQIDAQAB';")
+1398559967 RED		DB	Failed to query database: java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (no such column: reciverKey)
+1398559967 ERROR	DB	SQLException: java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (no such column: reciverKey)
+1398559968 VERBOSE	DB	getCategories()
+1398559968 VERBOSE	DB	query("SELECT * FROM tCategory;")
+1398559968 VERBOSE	DB	getCategories() returning 2 categories
+1398559968 VERBOSE	DB	getWallPost(...)
+1398559968 VERBOSE	DB	query("SELECT sig FROM tPost WHERE reciverKey = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCsVfuN2uqFyoP65B3VoiybjQAB/4ywEdnyOUhgecsYhPgoGyJQ7cCYoHJBvPOQRLTpIduw/9btDt5ZWQoSNbUEVTjJ/dqQmu3FOBS/ii7Hxxqtyy5al6DWHHkQUaeWANzEc0oc46ulhx51/hvXxWCi5LMrL/7e6s8kkULtvaH5qQIDAQAB';")
+1398559968 RED		DB	Failed to query database: java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (no such column: reciverKey)
+1398559968 ERROR	DB	SQLException: java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (no such column: reciverKey)
+1398559971 VERBOSE	DB	getCategories()
+1398559971 VERBOSE	DB	query("SELECT * FROM tCategory;")
+1398559971 VERBOSE	DB	getCategories() returning 2 categories
+1398559971 VERBOSE	DB	getWallPost(...)
+1398559971 VERBOSE	DB	query("SELECT sig FROM tPost WHERE reciverKey = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCsVfuN2uqFyoP65B3VoiybjQAB/4ywEdnyOUhgecsYhPgoGyJQ7cCYoHJBvPOQRLTpIduw/9btDt5ZWQoSNbUEVTjJ/dqQmu3FOBS/ii7Hxxqtyy5al6DWHHkQUaeWANzEc0oc46ulhx51/hvXxWCi5LMrL/7e6s8kkULtvaH5qQIDAQAB';")
+1398559971 RED		DB	Failed to query database: java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (no such column: reciverKey)
+1398559971 ERROR	DB	SQLException: java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (no such column: reciverKey)
+1398559973 VERBOSE	DB	getCategories()
+1398559973 VERBOSE	DB	query("SELECT * FROM tCategory;")
+1398559973 VERBOSE	DB	getCategories() returning 2 categories
+1398559973 VERBOSE	DB	getWallPost(...)
+1398559973 VERBOSE	DB	query("SELECT sig FROM tPost WHERE reciverKey = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCsVfuN2uqFyoP65B3VoiybjQAB/4ywEdnyOUhgecsYhPgoGyJQ7cCYoHJBvPOQRLTpIduw/9btDt5ZWQoSNbUEVTjJ/dqQmu3FOBS/ii7Hxxqtyy5al6DWHHkQUaeWANzEc0oc46ulhx51/hvXxWCi5LMrL/7e6s8kkULtvaH5qQIDAQAB';")
+1398559973 RED		DB	Failed to query database: java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (no such column: reciverKey)
+1398559973 ERROR	DB	SQLException: java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (no such column: reciverKey)
+1398559976 INFO		TNImpl	stopTN()
+1398559976 INFO		NetCon	close()
+1398559976 INFO		NetCon	Saved lastRead to disk
+1398559976 INFO		DB	Disconnecting from database
+===== Turtlenet closed  at Sun Apr 27 01:52:56 BST 2014=====

@@ -1,5 +1,6 @@
 package ballmerpeak.turtlenet.client;
 
+import ballmerpeak.turtlenet.shared.PostDetails;
 import ballmerpeak.turtlenet.shared.Conversation;
 import ballmerpeak.turtlenet.shared.Message;
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -23,6 +24,7 @@ public interface TurtlenetAsync {
     void getConversation         (String sig, AsyncCallback<Conversation> callback);
     void getConversations                    (AsyncCallback<Conversation[]> callback);
     void getConversationMessages (String sig, AsyncCallback<String[][]> callback);
+    void getWallPosts            (String key, AsyncCallback<PostDetails[]> callback);
     
     //Profile Data
     void claimUsername         (String uname,                   AsyncCallback<String> callback);
@@ -32,9 +34,12 @@ public interface TurtlenetAsync {
     //Posting
     void createCHAT       (String[] keys,           AsyncCallback<String[]> callback);
     void addMessageToCHAT (String text, String sig, AsyncCallback<String> callback);
+    void like             (String sig,              AsyncCallback<String> callback);
+    void unlike           (String sig,              AsyncCallback<String> callback);
     
     //Friends
     void addCategory   (String name,             AsyncCallback<String> callback);
     void addToCategory (String name, String key, AsyncCallback<String> callback);
     void addKey        (String key,              AsyncCallback<String> callback);
+    void addPost       (String key, String categoryVisibleTo, String msg, AsyncCallback<String> callback);
 }
