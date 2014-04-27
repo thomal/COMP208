@@ -1,537 +1,165 @@
-===== Turtlenet started at Sun Apr 27 21:14:00 BST 2014=====
-1398629640 UNIMPL	TNClient	Ignoring password: 
-1398629640 INFO		NetCon	Read lastRead from file
-1398629640 INFO		DB	Connecting to database
-1398629641 INFO		NetCon	NetworkConnection started
-1398629641 VERBOSE	DB	getCategories()
-1398629641 VERBOSE	DB	query("SELECT * FROM tCategory;")
-1398629641 VERBOSE	DB	getCategories() returning 0 categories
-1398629641 VERBOSE	DB	getWallPost(...)
-1398629641 VERBOSE	DB	query("SELECT sig FROM tPost WHERE recieverKey = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCQlO6SlKctzJBlIGseMw7bJS9YIxxnhLKFbSAiRXH+Wqem9LfZj6q1Htz8q5L8LN1sjw9ynbzlzxKia82rOvKCzazhOKwwulaqw/PXgAP8RjyfXKM6C5eMeWAxOniQoiC3sldwb9WE3zpvftcgXnuc7bH9bvMNZgcs1Qd3swqqcwIDAQAB';")
-1398629641 VERBOSE	DB	query("SELECT time, sig, msgText, recieverKey FROM tPost WHERE sig = 'Q34Srr3oPNnCMNPUPKvzg4gzeLs5uUvTGjY4Ue7UPsJ0vLd7eH+do93IQqsf9qWI2haxYWVVyZi958/7jxWTUhsx0bsXPP7p3ZJMRjjCZAPU+za2djG5eJmYYxktuXjdYgIVAeoO01rYMTkG4xIOO5OpA0Dw2Thn1DcJOXNJcgQ=';")
-1398629641 VERBOSE	DB	query("SELECT key FROM tPostVisibleTo WHERE postSig = '0';")
-1398629641 INFO		Crypto	sign()
-1398629641 INFO		Crypto	sign()
-1398629641 VERBOSE	DB	query("SELECT time, sig, msgText, recieverKey FROM tPost WHERE sig = 'GjLVkPSUt1NjFGGJ1ph9L2yPm7zgcj+RciDfQSxCtOtEibIzFJ3Q933inOaHAeYhNMnJwOXt8sIV/pqpQw6q43IIhBeejOfULNjcA20WmnLWgbszJWR+BEhjB5tmEFv9jtAQvxvFWhL+d2nSXcYAr6gEjECNrOQxV62ZCGt3scU=';")
-1398629641 VERBOSE	DB	query("SELECT key FROM tPostVisibleTo WHERE postSig = '0';")
-1398629641 INFO		Crypto	sign()
-1398629641 INFO		Crypto	sign()
-1398629641 VERBOSE	DB	isLiked(...)
-1398629641 VERBOSE	DB	query("SELECT * FROM tLike WHERE parent = 'Q34Srr3oPNnCMNPUPKvzg4gzeLs5uUvTGjY4Ue7UPsJ0vLd7eH+do93IQqsf9qWI2haxYWVVyZi958/7jxWTUhsx0bsXPP7p3ZJMRjjCZAPU+za2djG5eJmYYxktuXjdYgIVAeoO01rYMTkG4xIOO5OpA0Dw2Thn1DcJOXNJcgQ=';")
-1398629641 VERBOSE	DB	getComments(...)
-1398629641 VERBOSE	DB	query("SELECT * FROM tComment WHERE parent = 'Q34Srr3oPNnCMNPUPKvzg4gzeLs5uUvTGjY4Ue7UPsJ0vLd7eH+do93IQqsf9qWI2haxYWVVyZi958/7jxWTUhsx0bsXPP7p3ZJMRjjCZAPU+za2djG5eJmYYxktuXjdYgIVAeoO01rYMTkG4xIOO5OpA0Dw2Thn1DcJOXNJcgQ=';")
-1398629641 VERBOSE	DB	getSignatory(...)
-1398629641 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398629641 INFO		Crypto	verifySig()
-1398629641 INFO		Crypto	verifySig() - FALSE
-1398629641 WARNING	DB	getSignatory() could not find signatory
-1398629641 VERBOSE	DB	getName(...)
-1398629641 ERROR	Crypto	encodeKey passed null key
-1398629641 VERBOSE	DB	query("SELECT username FROM tUser WHERE key = '--INVALID KEYSTRING--';")
-1398629641 VERBOSE	DB	getSignatory(...)
-1398629641 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398629641 INFO		Crypto	verifySig()
-1398629641 INFO		Crypto	verifySig() - FALSE
-1398629641 WARNING	DB	getSignatory() could not find signatory
-1398629641 ERROR	Crypto	encodeKey passed null key
-1398629641 VERBOSE	DB	isLiked(...)
-1398629641 VERBOSE	DB	query("SELECT * FROM tLike WHERE parent = 'GjLVkPSUt1NjFGGJ1ph9L2yPm7zgcj+RciDfQSxCtOtEibIzFJ3Q933inOaHAeYhNMnJwOXt8sIV/pqpQw6q43IIhBeejOfULNjcA20WmnLWgbszJWR+BEhjB5tmEFv9jtAQvxvFWhL+d2nSXcYAr6gEjECNrOQxV62ZCGt3scU=';")
-1398629641 VERBOSE	DB	getComments(...)
-1398629641 VERBOSE	DB	query("SELECT * FROM tComment WHERE parent = 'GjLVkPSUt1NjFGGJ1ph9L2yPm7zgcj+RciDfQSxCtOtEibIzFJ3Q933inOaHAeYhNMnJwOXt8sIV/pqpQw6q43IIhBeejOfULNjcA20WmnLWgbszJWR+BEhjB5tmEFv9jtAQvxvFWhL+d2nSXcYAr6gEjECNrOQxV62ZCGt3scU=';")
-1398629641 VERBOSE	DB	getSignatory(...)
-1398629641 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398629641 INFO		Crypto	verifySig()
-1398629641 INFO		Crypto	verifySig() - FALSE
-1398629641 WARNING	DB	getSignatory() could not find signatory
-1398629641 VERBOSE	DB	getName(...)
-1398629641 ERROR	Crypto	encodeKey passed null key
-1398629641 VERBOSE	DB	query("SELECT username FROM tUser WHERE key = '--INVALID KEYSTRING--';")
-1398629641 VERBOSE	DB	getSignatory(...)
-1398629641 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398629641 INFO		Crypto	verifySig()
-1398629641 INFO		Crypto	verifySig() - FALSE
-1398629641 WARNING	DB	getSignatory() could not find signatory
-1398629641 ERROR	Crypto	encodeKey passed null key
-1398629643 VERBOSE	DB	getComments(...)
-1398629643 VERBOSE	DB	query("SELECT * FROM tComment WHERE parent = 'GjLVkPSUt1NjFGGJ1ph9L2yPm7zgcj+RciDfQSxCtOtEibIzFJ3Q933inOaHAeYhNMnJwOXt8sIV/pqpQw6q43IIhBeejOfULNjcA20WmnLWgbszJWR+BEhjB5tmEFv9jtAQvxvFWhL+d2nSXcYAr6gEjECNrOQxV62ZCGt3scU=';")
-1398629648 VERBOSE	DB	getVisibilityOfParent(...)
-1398629648 VERBOSE	DB	query("SELECT time, sig, msgText, recieverKey FROM tPost WHERE sig = 'GjLVkPSUt1NjFGGJ1ph9L2yPm7zgcj+RciDfQSxCtOtEibIzFJ3Q933inOaHAeYhNMnJwOXt8sIV/pqpQw6q43IIhBeejOfULNjcA20WmnLWgbszJWR+BEhjB5tmEFv9jtAQvxvFWhL+d2nSXcYAr6gEjECNrOQxV62ZCGt3scU=';")
-1398629648 VERBOSE	DB	getVisibleTo(...)
-1398629648 VERBOSE	DB	query("SELECT key FROM tPostVisibleTo WHERE postSig = 'GjLVkPSUt1NjFGGJ1ph9L2yPm7zgcj+RciDfQSxCtOtEibIzFJ3Q933inOaHAeYhNMnJwOXt8sIV/pqpQw6q43IIhBeejOfULNjcA20WmnLWgbszJWR+BEhjB5tmEFv9jtAQvxvFWhL+d2nSXcYAr6gEjECNrOQxV62ZCGt3scU=';")
-1398629648 INFO		Crypto	sign()
-1398629648 INFO		Crypto	sign()
-1398629648 INFO		Crypto	encrypt()
-1398629648 INFO		NetCon	uploaded message: "CMNT\OTPj0ElALiTd6imwb9bETKEFHqiHNDyyEtDodGjD1GL9z83ItYiootp+b4c4uXj2AoCONWjNXD+v3KNrGoTpv2445gDrlqnaYpYVJydIupVOBhjJpM2xk/bhCWryhqPKNia/2bWwz4IAX7tTeKIwnSkqOz4dTvik3Wpn8vFMhog=\GjLVkPSUt1NjFGGJ1ph9L2yPm7zgcj+RciDfQSxCtOtEibIzFJ3Q933inOaHAeYhNMnJwOXt8sIV/pqpQw6q43IIhBeejOfULNjcA20WmnLWgbszJWR+BEhjB5tmEFv9jtAQvxvFWhL+d2nSXcYAr6gEjECNrOQxV62ZCGt3scU=:Testing comments...\1398629648612"
-1398629648 VERBOSE	DB	getCategories()
-1398629648 VERBOSE	DB	query("SELECT * FROM tCategory;")
-1398629648 VERBOSE	DB	getCategories() returning 0 categories
-1398629648 VERBOSE	DB	getWallPost(...)
-1398629648 VERBOSE	DB	query("SELECT sig FROM tPost WHERE recieverKey = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCQlO6SlKctzJBlIGseMw7bJS9YIxxnhLKFbSAiRXH+Wqem9LfZj6q1Htz8q5L8LN1sjw9ynbzlzxKia82rOvKCzazhOKwwulaqw/PXgAP8RjyfXKM6C5eMeWAxOniQoiC3sldwb9WE3zpvftcgXnuc7bH9bvMNZgcs1Qd3swqqcwIDAQAB';")
-1398629648 VERBOSE	DB	query("SELECT time, sig, msgText, recieverKey FROM tPost WHERE sig = 'Q34Srr3oPNnCMNPUPKvzg4gzeLs5uUvTGjY4Ue7UPsJ0vLd7eH+do93IQqsf9qWI2haxYWVVyZi958/7jxWTUhsx0bsXPP7p3ZJMRjjCZAPU+za2djG5eJmYYxktuXjdYgIVAeoO01rYMTkG4xIOO5OpA0Dw2Thn1DcJOXNJcgQ=';")
-1398629648 VERBOSE	DB	query("SELECT key FROM tPostVisibleTo WHERE postSig = '0';")
-1398629648 INFO		Crypto	sign()
-1398629648 INFO		Crypto	sign()
-1398629648 VERBOSE	DB	query("SELECT time, sig, msgText, recieverKey FROM tPost WHERE sig = 'GjLVkPSUt1NjFGGJ1ph9L2yPm7zgcj+RciDfQSxCtOtEibIzFJ3Q933inOaHAeYhNMnJwOXt8sIV/pqpQw6q43IIhBeejOfULNjcA20WmnLWgbszJWR+BEhjB5tmEFv9jtAQvxvFWhL+d2nSXcYAr6gEjECNrOQxV62ZCGt3scU=';")
-1398629648 VERBOSE	DB	query("SELECT key FROM tPostVisibleTo WHERE postSig = '0';")
-1398629648 INFO		Crypto	sign()
-1398629648 INFO		Crypto	sign()
-1398629648 VERBOSE	DB	isLiked(...)
-1398629648 VERBOSE	DB	query("SELECT * FROM tLike WHERE parent = 'Q34Srr3oPNnCMNPUPKvzg4gzeLs5uUvTGjY4Ue7UPsJ0vLd7eH+do93IQqsf9qWI2haxYWVVyZi958/7jxWTUhsx0bsXPP7p3ZJMRjjCZAPU+za2djG5eJmYYxktuXjdYgIVAeoO01rYMTkG4xIOO5OpA0Dw2Thn1DcJOXNJcgQ=';")
-1398629648 VERBOSE	DB	getComments(...)
-1398629648 VERBOSE	DB	query("SELECT * FROM tComment WHERE parent = 'Q34Srr3oPNnCMNPUPKvzg4gzeLs5uUvTGjY4Ue7UPsJ0vLd7eH+do93IQqsf9qWI2haxYWVVyZi958/7jxWTUhsx0bsXPP7p3ZJMRjjCZAPU+za2djG5eJmYYxktuXjdYgIVAeoO01rYMTkG4xIOO5OpA0Dw2Thn1DcJOXNJcgQ=';")
-1398629648 VERBOSE	DB	getSignatory(...)
-1398629648 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398629648 INFO		Crypto	verifySig()
-1398629648 INFO		Crypto	verifySig() - FALSE
-1398629648 WARNING	DB	getSignatory() could not find signatory
-1398629648 VERBOSE	DB	getName(...)
-1398629648 ERROR	Crypto	encodeKey passed null key
-1398629648 VERBOSE	DB	query("SELECT username FROM tUser WHERE key = '--INVALID KEYSTRING--';")
-1398629648 VERBOSE	DB	getSignatory(...)
-1398629648 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398629648 INFO		Crypto	verifySig()
-1398629648 INFO		Crypto	verifySig() - FALSE
-1398629648 WARNING	DB	getSignatory() could not find signatory
-1398629648 ERROR	Crypto	encodeKey passed null key
-1398629648 VERBOSE	DB	isLiked(...)
-1398629648 VERBOSE	DB	query("SELECT * FROM tLike WHERE parent = 'GjLVkPSUt1NjFGGJ1ph9L2yPm7zgcj+RciDfQSxCtOtEibIzFJ3Q933inOaHAeYhNMnJwOXt8sIV/pqpQw6q43IIhBeejOfULNjcA20WmnLWgbszJWR+BEhjB5tmEFv9jtAQvxvFWhL+d2nSXcYAr6gEjECNrOQxV62ZCGt3scU=';")
-1398629648 VERBOSE	DB	getComments(...)
-1398629648 VERBOSE	DB	query("SELECT * FROM tComment WHERE parent = 'GjLVkPSUt1NjFGGJ1ph9L2yPm7zgcj+RciDfQSxCtOtEibIzFJ3Q933inOaHAeYhNMnJwOXt8sIV/pqpQw6q43IIhBeejOfULNjcA20WmnLWgbszJWR+BEhjB5tmEFv9jtAQvxvFWhL+d2nSXcYAr6gEjECNrOQxV62ZCGt3scU=';")
-1398629648 VERBOSE	DB	getSignatory(...)
-1398629648 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398629648 INFO		Crypto	verifySig()
-1398629648 INFO		Crypto	verifySig() - FALSE
-1398629648 WARNING	DB	getSignatory() could not find signatory
-1398629648 VERBOSE	DB	getName(...)
-1398629648 ERROR	Crypto	encodeKey passed null key
-1398629648 VERBOSE	DB	query("SELECT username FROM tUser WHERE key = '--INVALID KEYSTRING--';")
-1398629648 VERBOSE	DB	getSignatory(...)
-1398629648 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398629648 INFO		Crypto	verifySig()
-1398629648 INFO		Crypto	verifySig() - FALSE
-1398629648 WARNING	DB	getSignatory() could not find signatory
-1398629648 ERROR	Crypto	encodeKey passed null key
-1398629649 INFO		Crypto	decrypt()
-1398629649 VERBOSE	PARSE	parsing message
-1398629649 VERBOSE	DB	addComment(...)
-1398629649 VERBOSE	DB	getSignatory(...)
-1398629649 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398629649 INFO		Crypto	verifySig()
-1398629649 INFO		Crypto	verifySig() - TRUE
-1398629649 VERBOSE	DB	execute("INSERT INTO tComment (sig, msgText, parent, creationTime)VALUES ('OTPj0ElALiTd6imwb9bETKEFHqiHNDyyEtDodGjD1GL9z83ItYiootp+b4c4uXj2AoCONWjNXD+v3KNrGoTpv2445gDrlqnaYpYVJydIupVOBhjJpM2xk/bhCWryhqPKNia/2bWwz4IAX7tTeKIwnSkqOz4dTvik3Wpn8vFMhog=', 'Testing comments...', 'GjLVkPSUt1NjFGGJ1ph9L2yPm7zgcj+RciDfQSxCtOtEibIzFJ3Q933inOaHAeYhNMnJwOXt8sIV/pqpQw6q43IIhBeejOfULNjcA20WmnLWgbszJWR+BEhjB5tmEFv9jtAQvxvFWhL+d2nSXcYAr6gEjECNrOQxV62ZCGt3scU=', '1398629648612');")
-1398629699 VERBOSE	DB	getCategories()
-1398629699 VERBOSE	DB	query("SELECT * FROM tCategory;")
-1398629699 VERBOSE	DB	getCategories() returning 0 categories
-1398629699 VERBOSE	DB	getWallPost(...)
-1398629699 VERBOSE	DB	query("SELECT sig FROM tPost WHERE recieverKey = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCQlO6SlKctzJBlIGseMw7bJS9YIxxnhLKFbSAiRXH+Wqem9LfZj6q1Htz8q5L8LN1sjw9ynbzlzxKia82rOvKCzazhOKwwulaqw/PXgAP8RjyfXKM6C5eMeWAxOniQoiC3sldwb9WE3zpvftcgXnuc7bH9bvMNZgcs1Qd3swqqcwIDAQAB';")
-1398629699 VERBOSE	DB	query("SELECT time, sig, msgText, recieverKey FROM tPost WHERE sig = 'Q34Srr3oPNnCMNPUPKvzg4gzeLs5uUvTGjY4Ue7UPsJ0vLd7eH+do93IQqsf9qWI2haxYWVVyZi958/7jxWTUhsx0bsXPP7p3ZJMRjjCZAPU+za2djG5eJmYYxktuXjdYgIVAeoO01rYMTkG4xIOO5OpA0Dw2Thn1DcJOXNJcgQ=';")
-1398629699 VERBOSE	DB	query("SELECT key FROM tPostVisibleTo WHERE postSig = '0';")
-1398629699 INFO		Crypto	sign()
-1398629699 INFO		Crypto	sign()
-1398629699 VERBOSE	DB	query("SELECT time, sig, msgText, recieverKey FROM tPost WHERE sig = 'GjLVkPSUt1NjFGGJ1ph9L2yPm7zgcj+RciDfQSxCtOtEibIzFJ3Q933inOaHAeYhNMnJwOXt8sIV/pqpQw6q43IIhBeejOfULNjcA20WmnLWgbszJWR+BEhjB5tmEFv9jtAQvxvFWhL+d2nSXcYAr6gEjECNrOQxV62ZCGt3scU=';")
-1398629699 VERBOSE	DB	query("SELECT key FROM tPostVisibleTo WHERE postSig = '0';")
-1398629699 INFO		Crypto	sign()
-1398629699 INFO		Crypto	sign()
-1398629699 VERBOSE	DB	isLiked(...)
-1398629699 VERBOSE	DB	query("SELECT * FROM tLike WHERE parent = 'Q34Srr3oPNnCMNPUPKvzg4gzeLs5uUvTGjY4Ue7UPsJ0vLd7eH+do93IQqsf9qWI2haxYWVVyZi958/7jxWTUhsx0bsXPP7p3ZJMRjjCZAPU+za2djG5eJmYYxktuXjdYgIVAeoO01rYMTkG4xIOO5OpA0Dw2Thn1DcJOXNJcgQ=';")
-1398629699 VERBOSE	DB	getComments(...)
-1398629699 VERBOSE	DB	query("SELECT * FROM tComment WHERE parent = 'Q34Srr3oPNnCMNPUPKvzg4gzeLs5uUvTGjY4Ue7UPsJ0vLd7eH+do93IQqsf9qWI2haxYWVVyZi958/7jxWTUhsx0bsXPP7p3ZJMRjjCZAPU+za2djG5eJmYYxktuXjdYgIVAeoO01rYMTkG4xIOO5OpA0Dw2Thn1DcJOXNJcgQ=';")
-1398629699 VERBOSE	DB	getSignatory(...)
-1398629699 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398629699 INFO		Crypto	verifySig()
-1398629699 INFO		Crypto	verifySig() - FALSE
-1398629699 WARNING	DB	getSignatory() could not find signatory
-1398629699 VERBOSE	DB	getName(...)
-1398629699 ERROR	Crypto	encodeKey passed null key
-1398629699 VERBOSE	DB	query("SELECT username FROM tUser WHERE key = '--INVALID KEYSTRING--';")
-1398629699 VERBOSE	DB	getSignatory(...)
-1398629699 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398629699 INFO		Crypto	verifySig()
-1398629699 INFO		Crypto	verifySig() - FALSE
-1398629699 WARNING	DB	getSignatory() could not find signatory
-1398629699 ERROR	Crypto	encodeKey passed null key
-1398629699 VERBOSE	DB	isLiked(...)
-1398629699 VERBOSE	DB	query("SELECT * FROM tLike WHERE parent = 'GjLVkPSUt1NjFGGJ1ph9L2yPm7zgcj+RciDfQSxCtOtEibIzFJ3Q933inOaHAeYhNMnJwOXt8sIV/pqpQw6q43IIhBeejOfULNjcA20WmnLWgbszJWR+BEhjB5tmEFv9jtAQvxvFWhL+d2nSXcYAr6gEjECNrOQxV62ZCGt3scU=';")
-1398629699 VERBOSE	DB	getComments(...)
-1398629699 VERBOSE	DB	query("SELECT * FROM tComment WHERE parent = 'GjLVkPSUt1NjFGGJ1ph9L2yPm7zgcj+RciDfQSxCtOtEibIzFJ3Q933inOaHAeYhNMnJwOXt8sIV/pqpQw6q43IIhBeejOfULNjcA20WmnLWgbszJWR+BEhjB5tmEFv9jtAQvxvFWhL+d2nSXcYAr6gEjECNrOQxV62ZCGt3scU=';")
-1398629699 INFO		Crypto	sign()
-1398629699 INFO		Crypto	sign()
-1398629699 VERBOSE	DB	getSignatory(...)
-1398629699 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398629699 INFO		Crypto	verifySig()
-1398629699 INFO		Crypto	verifySig() - FALSE
-1398629699 WARNING	DB	getSignatory() could not find signatory
-1398629699 VERBOSE	DB	getName(...)
-1398629699 ERROR	Crypto	encodeKey passed null key
-1398629699 VERBOSE	DB	query("SELECT username FROM tUser WHERE key = '--INVALID KEYSTRING--';")
-1398629699 VERBOSE	DB	getSignatory(...)
-1398629699 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398629699 INFO		Crypto	verifySig()
-1398629699 INFO		Crypto	verifySig() - FALSE
-1398629699 WARNING	DB	getSignatory() could not find signatory
-1398629699 ERROR	Crypto	encodeKey passed null key
-1398629700 VERBOSE	DB	getComments(...)
-1398629700 VERBOSE	DB	query("SELECT * FROM tComment WHERE parent = 'GjLVkPSUt1NjFGGJ1ph9L2yPm7zgcj+RciDfQSxCtOtEibIzFJ3Q933inOaHAeYhNMnJwOXt8sIV/pqpQw6q43IIhBeejOfULNjcA20WmnLWgbszJWR+BEhjB5tmEFv9jtAQvxvFWhL+d2nSXcYAr6gEjECNrOQxV62ZCGt3scU=';")
-1398629700 INFO		Crypto	sign()
-1398629700 INFO		Crypto	sign()
-1398629700 VERBOSE	DB	getSignatory(...)
-1398629700 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398629700 INFO		Crypto	verifySig()
-1398629700 INFO		Crypto	verifySig() - TRUE
-1398629700 VERBOSE	DB	getName(...)
-1398629700 VERBOSE	DB	query("SELECT username FROM tUser WHERE key = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCQlO6SlKctzJBlIGseMw7bJS9YIxxnhLKFbSAiRXH+Wqem9LfZj6q1Htz8q5L8LN1sjw9ynbzlzxKia82rOvKCzazhOKwwulaqw/PXgAP8RjyfXKM6C5eMeWAxOniQoiC3sldwb9WE3zpvftcgXnuc7bH9bvMNZgcs1Qd3swqqcwIDAQAB';")
-1398629700 VERBOSE	DB	isLiked(...)
-1398629700 VERBOSE	DB	query("SELECT * FROM tLike WHERE parent = 'GjLVkPSUt1NjFGGJ1ph9L2yPm7zgcj+RciDfQSxCtOtEibIzFJ3Q933inOaHAeYhNMnJwOXt8sIV/pqpQw6q43IIhBeejOfULNjcA20WmnLWgbszJWR+BEhjB5tmEFv9jtAQvxvFWhL+d2nSXcYAr6gEjECNrOQxV62ZCGt3scU=';")
-1398629706 VERBOSE	DB	getVisibilityOfParent(...)
-1398629706 VERBOSE	DB	query("SELECT time, sig, msgText, recieverKey FROM tPost WHERE sig = 'OTPj0ElALiTd6imwb9bETKEFHqiHNDyyEtDodGjD1GL9z83ItYiootp+b4c4uXj2AoCONWjNXD+v3KNrGoTpv2445gDrlqnaYpYVJydIupVOBhjJpM2xk/bhCWryhqPKNia/2bWwz4IAX7tTeKIwnSkqOz4dTvik3Wpn8vFMhog=';")
-1398629706 VERBOSE	DB	query("SELECT * FROM tComment WHERE sig = 'OTPj0ElALiTd6imwb9bETKEFHqiHNDyyEtDodGjD1GL9z83ItYiootp+b4c4uXj2AoCONWjNXD+v3KNrGoTpv2445gDrlqnaYpYVJydIupVOBhjJpM2xk/bhCWryhqPKNia/2bWwz4IAX7tTeKIwnSkqOz4dTvik3Wpn8vFMhog=';")
-1398629706 VERBOSE	DB	getVisibilityOfParent(...)
-1398629706 VERBOSE	DB	query("SELECT time, sig, msgText, recieverKey FROM tPost WHERE sig = 'GjLVkPSUt1NjFGGJ1ph9L2yPm7zgcj+RciDfQSxCtOtEibIzFJ3Q933inOaHAeYhNMnJwOXt8sIV/pqpQw6q43IIhBeejOfULNjcA20WmnLWgbszJWR+BEhjB5tmEFv9jtAQvxvFWhL+d2nSXcYAr6gEjECNrOQxV62ZCGt3scU=';")
-1398629706 VERBOSE	DB	getVisibleTo(...)
-1398629706 VERBOSE	DB	query("SELECT key FROM tPostVisibleTo WHERE postSig = 'GjLVkPSUt1NjFGGJ1ph9L2yPm7zgcj+RciDfQSxCtOtEibIzFJ3Q933inOaHAeYhNMnJwOXt8sIV/pqpQw6q43IIhBeejOfULNjcA20WmnLWgbszJWR+BEhjB5tmEFv9jtAQvxvFWhL+d2nSXcYAr6gEjECNrOQxV62ZCGt3scU=';")
-1398629706 INFO		Crypto	sign()
-1398629706 INFO		Crypto	sign()
-1398629706 INFO		Crypto	encrypt()
-1398629706 INFO		NetCon	uploaded message: "UNLIKE\N+sjthMAjO6Ohc1p8ET4eXzlFKuGiSPDJ3OZn6lbpMpurZ23sF8cyvYqIIIgtXByKZb2PgXmeuSH0AJIFbRBukqxojaTzs+dZLa4M05/femS2BOw1c/VmHElJKleiB3pviDeg/Otf2eSXJifUhwauODfIzzVI3JDKExs4nDee1g=\OTPj0ElALiTd6imwb9bETKEFHqiHNDyyEtDodGjD1GL9z83ItYiootp+b4c4uXj2AoCONWjNXD+v3KNrGoTpv2445gDrlqnaYpYVJydIupVOBhjJpM2xk/bhCWryhqPKNia/2bWwz4IAX7tTeKIwnSkqOz4dTvik3Wpn8vFMhog=\1398629706187"
-1398629706 INFO		Crypto	decrypt()
-1398629706 VERBOSE	PARSE	parsing message
-1398629706 VERBOSE	DB	like(...)
-1398629706 VERBOSE	DB	execute("DELETE FROM tLike WHERE likerKey = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCQlO6SlKctzJBlIGseMw7bJS9YIxxnhLKFbSAiRXH+Wqem9LfZj6q1Htz8q5L8LN1sjw9ynbzlzxKia82rOvKCzazhOKwwulaqw/PXgAP8RjyfXKM6C5eMeWAxOniQoiC3sldwb9WE3zpvftcgXnuc7bH9bvMNZgcs1Qd3swqqcwIDAQAB' AND parent = 'OTPj0ElALiTd6imwb9bETKEFHqiHNDyyEtDodGjD1GL9z83ItYiootp+b4c4uXj2AoCONWjNXD+v3KNrGoTpv2445gDrlqnaYpYVJydIupVOBhjJpM2xk/bhCWryhqPKNia/2bWwz4IAX7tTeKIwnSkqOz4dTvik3Wpn8vFMhog=';")
-1398629706 VERBOSE	DB	getCategories()
-1398629706 VERBOSE	DB	query("SELECT * FROM tCategory;")
-1398629706 VERBOSE	DB	getCategories() returning 0 categories
-1398629706 VERBOSE	DB	getWallPost(...)
-1398629706 VERBOSE	DB	query("SELECT sig FROM tPost WHERE recieverKey = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCQlO6SlKctzJBlIGseMw7bJS9YIxxnhLKFbSAiRXH+Wqem9LfZj6q1Htz8q5L8LN1sjw9ynbzlzxKia82rOvKCzazhOKwwulaqw/PXgAP8RjyfXKM6C5eMeWAxOniQoiC3sldwb9WE3zpvftcgXnuc7bH9bvMNZgcs1Qd3swqqcwIDAQAB';")
-1398629706 VERBOSE	DB	query("SELECT time, sig, msgText, recieverKey FROM tPost WHERE sig = 'Q34Srr3oPNnCMNPUPKvzg4gzeLs5uUvTGjY4Ue7UPsJ0vLd7eH+do93IQqsf9qWI2haxYWVVyZi958/7jxWTUhsx0bsXPP7p3ZJMRjjCZAPU+za2djG5eJmYYxktuXjdYgIVAeoO01rYMTkG4xIOO5OpA0Dw2Thn1DcJOXNJcgQ=';")
-1398629706 VERBOSE	DB	query("SELECT key FROM tPostVisibleTo WHERE postSig = '0';")
-1398629706 INFO		Crypto	sign()
-1398629706 INFO		Crypto	sign()
-1398629706 VERBOSE	DB	query("SELECT time, sig, msgText, recieverKey FROM tPost WHERE sig = 'GjLVkPSUt1NjFGGJ1ph9L2yPm7zgcj+RciDfQSxCtOtEibIzFJ3Q933inOaHAeYhNMnJwOXt8sIV/pqpQw6q43IIhBeejOfULNjcA20WmnLWgbszJWR+BEhjB5tmEFv9jtAQvxvFWhL+d2nSXcYAr6gEjECNrOQxV62ZCGt3scU=';")
-1398629706 VERBOSE	DB	query("SELECT key FROM tPostVisibleTo WHERE postSig = '0';")
-1398629706 INFO		Crypto	sign()
-1398629706 INFO		Crypto	sign()
-1398629706 VERBOSE	DB	isLiked(...)
-1398629706 VERBOSE	DB	query("SELECT * FROM tLike WHERE parent = 'Q34Srr3oPNnCMNPUPKvzg4gzeLs5uUvTGjY4Ue7UPsJ0vLd7eH+do93IQqsf9qWI2haxYWVVyZi958/7jxWTUhsx0bsXPP7p3ZJMRjjCZAPU+za2djG5eJmYYxktuXjdYgIVAeoO01rYMTkG4xIOO5OpA0Dw2Thn1DcJOXNJcgQ=';")
-1398629706 VERBOSE	DB	getComments(...)
-1398629706 VERBOSE	DB	query("SELECT * FROM tComment WHERE parent = 'Q34Srr3oPNnCMNPUPKvzg4gzeLs5uUvTGjY4Ue7UPsJ0vLd7eH+do93IQqsf9qWI2haxYWVVyZi958/7jxWTUhsx0bsXPP7p3ZJMRjjCZAPU+za2djG5eJmYYxktuXjdYgIVAeoO01rYMTkG4xIOO5OpA0Dw2Thn1DcJOXNJcgQ=';")
-1398629706 VERBOSE	DB	getSignatory(...)
-1398629706 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398629706 INFO		Crypto	verifySig()
-1398629706 INFO		Crypto	verifySig() - FALSE
-1398629706 WARNING	DB	getSignatory() could not find signatory
-1398629706 VERBOSE	DB	getName(...)
-1398629706 ERROR	Crypto	encodeKey passed null key
-1398629706 VERBOSE	DB	query("SELECT username FROM tUser WHERE key = '--INVALID KEYSTRING--';")
-1398629706 VERBOSE	DB	getSignatory(...)
-1398629706 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398629706 INFO		Crypto	verifySig()
-1398629706 INFO		Crypto	verifySig() - FALSE
-1398629706 WARNING	DB	getSignatory() could not find signatory
-1398629706 ERROR	Crypto	encodeKey passed null key
-1398629706 VERBOSE	DB	isLiked(...)
-1398629706 VERBOSE	DB	query("SELECT * FROM tLike WHERE parent = 'GjLVkPSUt1NjFGGJ1ph9L2yPm7zgcj+RciDfQSxCtOtEibIzFJ3Q933inOaHAeYhNMnJwOXt8sIV/pqpQw6q43IIhBeejOfULNjcA20WmnLWgbszJWR+BEhjB5tmEFv9jtAQvxvFWhL+d2nSXcYAr6gEjECNrOQxV62ZCGt3scU=';")
-1398629706 VERBOSE	DB	getComments(...)
-1398629706 VERBOSE	DB	query("SELECT * FROM tComment WHERE parent = 'GjLVkPSUt1NjFGGJ1ph9L2yPm7zgcj+RciDfQSxCtOtEibIzFJ3Q933inOaHAeYhNMnJwOXt8sIV/pqpQw6q43IIhBeejOfULNjcA20WmnLWgbszJWR+BEhjB5tmEFv9jtAQvxvFWhL+d2nSXcYAr6gEjECNrOQxV62ZCGt3scU=';")
-1398629706 INFO		Crypto	sign()
-1398629706 INFO		Crypto	sign()
-1398629706 VERBOSE	DB	getSignatory(...)
-1398629706 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398629706 INFO		Crypto	verifySig()
-1398629706 INFO		Crypto	verifySig() - FALSE
-1398629706 WARNING	DB	getSignatory() could not find signatory
-1398629706 VERBOSE	DB	getName(...)
-1398629706 ERROR	Crypto	encodeKey passed null key
-1398629706 VERBOSE	DB	query("SELECT username FROM tUser WHERE key = '--INVALID KEYSTRING--';")
-1398629706 VERBOSE	DB	getSignatory(...)
-1398629706 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398629706 INFO		Crypto	verifySig()
-1398629706 INFO		Crypto	verifySig() - FALSE
-1398629706 WARNING	DB	getSignatory() could not find signatory
-1398629706 ERROR	Crypto	encodeKey passed null key
-1398629707 VERBOSE	DB	getComments(...)
-1398629707 VERBOSE	DB	query("SELECT * FROM tComment WHERE parent = 'GjLVkPSUt1NjFGGJ1ph9L2yPm7zgcj+RciDfQSxCtOtEibIzFJ3Q933inOaHAeYhNMnJwOXt8sIV/pqpQw6q43IIhBeejOfULNjcA20WmnLWgbszJWR+BEhjB5tmEFv9jtAQvxvFWhL+d2nSXcYAr6gEjECNrOQxV62ZCGt3scU=';")
-1398629707 INFO		Crypto	sign()
-1398629707 INFO		Crypto	sign()
-1398629707 VERBOSE	DB	getSignatory(...)
-1398629707 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398629707 INFO		Crypto	verifySig()
-1398629707 INFO		Crypto	verifySig() - TRUE
-1398629707 VERBOSE	DB	getName(...)
-1398629707 VERBOSE	DB	query("SELECT username FROM tUser WHERE key = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCQlO6SlKctzJBlIGseMw7bJS9YIxxnhLKFbSAiRXH+Wqem9LfZj6q1Htz8q5L8LN1sjw9ynbzlzxKia82rOvKCzazhOKwwulaqw/PXgAP8RjyfXKM6C5eMeWAxOniQoiC3sldwb9WE3zpvftcgXnuc7bH9bvMNZgcs1Qd3swqqcwIDAQAB';")
-1398629707 VERBOSE	DB	isLiked(...)
-1398629707 VERBOSE	DB	query("SELECT * FROM tLike WHERE parent = 'GjLVkPSUt1NjFGGJ1ph9L2yPm7zgcj+RciDfQSxCtOtEibIzFJ3Q933inOaHAeYhNMnJwOXt8sIV/pqpQw6q43IIhBeejOfULNjcA20WmnLWgbszJWR+BEhjB5tmEFv9jtAQvxvFWhL+d2nSXcYAr6gEjECNrOQxV62ZCGt3scU=';")
-1398629710 VERBOSE	DB	getCategories()
-1398629710 VERBOSE	DB	query("SELECT * FROM tCategory;")
-1398629710 VERBOSE	DB	getCategories() returning 0 categories
-1398629710 VERBOSE	DB	getWallPost(...)
-1398629710 VERBOSE	DB	query("SELECT sig FROM tPost WHERE recieverKey = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCQlO6SlKctzJBlIGseMw7bJS9YIxxnhLKFbSAiRXH+Wqem9LfZj6q1Htz8q5L8LN1sjw9ynbzlzxKia82rOvKCzazhOKwwulaqw/PXgAP8RjyfXKM6C5eMeWAxOniQoiC3sldwb9WE3zpvftcgXnuc7bH9bvMNZgcs1Qd3swqqcwIDAQAB';")
-1398629710 VERBOSE	DB	query("SELECT time, sig, msgText, recieverKey FROM tPost WHERE sig = 'Q34Srr3oPNnCMNPUPKvzg4gzeLs5uUvTGjY4Ue7UPsJ0vLd7eH+do93IQqsf9qWI2haxYWVVyZi958/7jxWTUhsx0bsXPP7p3ZJMRjjCZAPU+za2djG5eJmYYxktuXjdYgIVAeoO01rYMTkG4xIOO5OpA0Dw2Thn1DcJOXNJcgQ=';")
-1398629710 VERBOSE	DB	query("SELECT key FROM tPostVisibleTo WHERE postSig = '0';")
-1398629710 INFO		Crypto	sign()
-1398629710 INFO		Crypto	sign()
-1398629710 VERBOSE	DB	query("SELECT time, sig, msgText, recieverKey FROM tPost WHERE sig = 'GjLVkPSUt1NjFGGJ1ph9L2yPm7zgcj+RciDfQSxCtOtEibIzFJ3Q933inOaHAeYhNMnJwOXt8sIV/pqpQw6q43IIhBeejOfULNjcA20WmnLWgbszJWR+BEhjB5tmEFv9jtAQvxvFWhL+d2nSXcYAr6gEjECNrOQxV62ZCGt3scU=';")
-1398629710 VERBOSE	DB	query("SELECT key FROM tPostVisibleTo WHERE postSig = '0';")
-1398629710 INFO		Crypto	sign()
-1398629710 INFO		Crypto	sign()
-1398629710 VERBOSE	DB	isLiked(...)
-1398629710 VERBOSE	DB	query("SELECT * FROM tLike WHERE parent = 'Q34Srr3oPNnCMNPUPKvzg4gzeLs5uUvTGjY4Ue7UPsJ0vLd7eH+do93IQqsf9qWI2haxYWVVyZi958/7jxWTUhsx0bsXPP7p3ZJMRjjCZAPU+za2djG5eJmYYxktuXjdYgIVAeoO01rYMTkG4xIOO5OpA0Dw2Thn1DcJOXNJcgQ=';")
-1398629710 VERBOSE	DB	getComments(...)
-1398629710 VERBOSE	DB	query("SELECT * FROM tComment WHERE parent = 'Q34Srr3oPNnCMNPUPKvzg4gzeLs5uUvTGjY4Ue7UPsJ0vLd7eH+do93IQqsf9qWI2haxYWVVyZi958/7jxWTUhsx0bsXPP7p3ZJMRjjCZAPU+za2djG5eJmYYxktuXjdYgIVAeoO01rYMTkG4xIOO5OpA0Dw2Thn1DcJOXNJcgQ=';")
-1398629710 VERBOSE	DB	getSignatory(...)
-1398629710 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398629710 INFO		Crypto	verifySig()
-1398629710 INFO		Crypto	verifySig() - FALSE
-1398629710 WARNING	DB	getSignatory() could not find signatory
-1398629710 VERBOSE	DB	getName(...)
-1398629710 ERROR	Crypto	encodeKey passed null key
-1398629710 VERBOSE	DB	query("SELECT username FROM tUser WHERE key = '--INVALID KEYSTRING--';")
-1398629710 VERBOSE	DB	getSignatory(...)
-1398629710 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398629710 INFO		Crypto	verifySig()
-1398629710 INFO		Crypto	verifySig() - FALSE
-1398629710 WARNING	DB	getSignatory() could not find signatory
-1398629710 ERROR	Crypto	encodeKey passed null key
-1398629710 VERBOSE	DB	isLiked(...)
-1398629710 VERBOSE	DB	query("SELECT * FROM tLike WHERE parent = 'GjLVkPSUt1NjFGGJ1ph9L2yPm7zgcj+RciDfQSxCtOtEibIzFJ3Q933inOaHAeYhNMnJwOXt8sIV/pqpQw6q43IIhBeejOfULNjcA20WmnLWgbszJWR+BEhjB5tmEFv9jtAQvxvFWhL+d2nSXcYAr6gEjECNrOQxV62ZCGt3scU=';")
-1398629710 VERBOSE	DB	getComments(...)
-1398629710 VERBOSE	DB	query("SELECT * FROM tComment WHERE parent = 'GjLVkPSUt1NjFGGJ1ph9L2yPm7zgcj+RciDfQSxCtOtEibIzFJ3Q933inOaHAeYhNMnJwOXt8sIV/pqpQw6q43IIhBeejOfULNjcA20WmnLWgbszJWR+BEhjB5tmEFv9jtAQvxvFWhL+d2nSXcYAr6gEjECNrOQxV62ZCGt3scU=';")
-1398629710 INFO		Crypto	sign()
-1398629710 INFO		Crypto	sign()
-1398629710 VERBOSE	DB	getSignatory(...)
-1398629710 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398629710 INFO		Crypto	verifySig()
-1398629710 INFO		Crypto	verifySig() - FALSE
-1398629710 WARNING	DB	getSignatory() could not find signatory
-1398629710 VERBOSE	DB	getName(...)
-1398629710 ERROR	Crypto	encodeKey passed null key
-1398629710 VERBOSE	DB	query("SELECT username FROM tUser WHERE key = '--INVALID KEYSTRING--';")
-1398629710 VERBOSE	DB	getSignatory(...)
-1398629710 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398629710 INFO		Crypto	verifySig()
-1398629710 INFO		Crypto	verifySig() - FALSE
-1398629710 WARNING	DB	getSignatory() could not find signatory
-1398629710 ERROR	Crypto	encodeKey passed null key
-1398629712 VERBOSE	DB	getComments(...)
-1398629712 VERBOSE	DB	query("SELECT * FROM tComment WHERE parent = 'GjLVkPSUt1NjFGGJ1ph9L2yPm7zgcj+RciDfQSxCtOtEibIzFJ3Q933inOaHAeYhNMnJwOXt8sIV/pqpQw6q43IIhBeejOfULNjcA20WmnLWgbszJWR+BEhjB5tmEFv9jtAQvxvFWhL+d2nSXcYAr6gEjECNrOQxV62ZCGt3scU=';")
-1398629712 INFO		Crypto	sign()
-1398629712 INFO		Crypto	sign()
-1398629712 VERBOSE	DB	getSignatory(...)
-1398629712 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398629712 INFO		Crypto	verifySig()
-1398629712 INFO		Crypto	verifySig() - TRUE
-1398629712 VERBOSE	DB	getName(...)
-1398629712 VERBOSE	DB	query("SELECT username FROM tUser WHERE key = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCQlO6SlKctzJBlIGseMw7bJS9YIxxnhLKFbSAiRXH+Wqem9LfZj6q1Htz8q5L8LN1sjw9ynbzlzxKia82rOvKCzazhOKwwulaqw/PXgAP8RjyfXKM6C5eMeWAxOniQoiC3sldwb9WE3zpvftcgXnuc7bH9bvMNZgcs1Qd3swqqcwIDAQAB';")
-1398629712 VERBOSE	DB	isLiked(...)
-1398629712 VERBOSE	DB	query("SELECT * FROM tLike WHERE parent = 'GjLVkPSUt1NjFGGJ1ph9L2yPm7zgcj+RciDfQSxCtOtEibIzFJ3Q933inOaHAeYhNMnJwOXt8sIV/pqpQw6q43IIhBeejOfULNjcA20WmnLWgbszJWR+BEhjB5tmEFv9jtAQvxvFWhL+d2nSXcYAr6gEjECNrOQxV62ZCGt3scU=';")
-1398629718 VERBOSE	DB	getCategories()
-1398629718 VERBOSE	DB	query("SELECT * FROM tCategory;")
-1398629718 VERBOSE	DB	getCategories() returning 0 categories
-1398629718 VERBOSE	DB	getWallPost(...)
-1398629718 VERBOSE	DB	query("SELECT sig FROM tPost WHERE recieverKey = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCQlO6SlKctzJBlIGseMw7bJS9YIxxnhLKFbSAiRXH+Wqem9LfZj6q1Htz8q5L8LN1sjw9ynbzlzxKia82rOvKCzazhOKwwulaqw/PXgAP8RjyfXKM6C5eMeWAxOniQoiC3sldwb9WE3zpvftcgXnuc7bH9bvMNZgcs1Qd3swqqcwIDAQAB';")
-1398629718 VERBOSE	DB	query("SELECT time, sig, msgText, recieverKey FROM tPost WHERE sig = 'Q34Srr3oPNnCMNPUPKvzg4gzeLs5uUvTGjY4Ue7UPsJ0vLd7eH+do93IQqsf9qWI2haxYWVVyZi958/7jxWTUhsx0bsXPP7p3ZJMRjjCZAPU+za2djG5eJmYYxktuXjdYgIVAeoO01rYMTkG4xIOO5OpA0Dw2Thn1DcJOXNJcgQ=';")
-1398629718 VERBOSE	DB	query("SELECT key FROM tPostVisibleTo WHERE postSig = '0';")
-1398629718 INFO		Crypto	sign()
-1398629718 INFO		Crypto	sign()
-1398629718 VERBOSE	DB	query("SELECT time, sig, msgText, recieverKey FROM tPost WHERE sig = 'GjLVkPSUt1NjFGGJ1ph9L2yPm7zgcj+RciDfQSxCtOtEibIzFJ3Q933inOaHAeYhNMnJwOXt8sIV/pqpQw6q43IIhBeejOfULNjcA20WmnLWgbszJWR+BEhjB5tmEFv9jtAQvxvFWhL+d2nSXcYAr6gEjECNrOQxV62ZCGt3scU=';")
-1398629718 VERBOSE	DB	query("SELECT key FROM tPostVisibleTo WHERE postSig = '0';")
-1398629718 INFO		Crypto	sign()
-1398629718 INFO		Crypto	sign()
-1398629718 VERBOSE	DB	isLiked(...)
-1398629718 VERBOSE	DB	query("SELECT * FROM tLike WHERE parent = 'Q34Srr3oPNnCMNPUPKvzg4gzeLs5uUvTGjY4Ue7UPsJ0vLd7eH+do93IQqsf9qWI2haxYWVVyZi958/7jxWTUhsx0bsXPP7p3ZJMRjjCZAPU+za2djG5eJmYYxktuXjdYgIVAeoO01rYMTkG4xIOO5OpA0Dw2Thn1DcJOXNJcgQ=';")
-1398629718 VERBOSE	DB	getComments(...)
-1398629718 VERBOSE	DB	query("SELECT * FROM tComment WHERE parent = 'Q34Srr3oPNnCMNPUPKvzg4gzeLs5uUvTGjY4Ue7UPsJ0vLd7eH+do93IQqsf9qWI2haxYWVVyZi958/7jxWTUhsx0bsXPP7p3ZJMRjjCZAPU+za2djG5eJmYYxktuXjdYgIVAeoO01rYMTkG4xIOO5OpA0Dw2Thn1DcJOXNJcgQ=';")
-1398629718 VERBOSE	DB	getSignatory(...)
-1398629718 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398629718 INFO		Crypto	verifySig()
-1398629718 INFO		Crypto	verifySig() - FALSE
-1398629718 WARNING	DB	getSignatory() could not find signatory
-1398629718 VERBOSE	DB	getName(...)
-1398629718 ERROR	Crypto	encodeKey passed null key
-1398629718 VERBOSE	DB	query("SELECT username FROM tUser WHERE key = '--INVALID KEYSTRING--';")
-1398629718 VERBOSE	DB	getSignatory(...)
-1398629718 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398629718 INFO		Crypto	verifySig()
-1398629718 INFO		Crypto	verifySig() - FALSE
-1398629718 WARNING	DB	getSignatory() could not find signatory
-1398629718 ERROR	Crypto	encodeKey passed null key
-1398629718 VERBOSE	DB	isLiked(...)
-1398629718 VERBOSE	DB	query("SELECT * FROM tLike WHERE parent = 'GjLVkPSUt1NjFGGJ1ph9L2yPm7zgcj+RciDfQSxCtOtEibIzFJ3Q933inOaHAeYhNMnJwOXt8sIV/pqpQw6q43IIhBeejOfULNjcA20WmnLWgbszJWR+BEhjB5tmEFv9jtAQvxvFWhL+d2nSXcYAr6gEjECNrOQxV62ZCGt3scU=';")
-1398629718 VERBOSE	DB	getComments(...)
-1398629718 VERBOSE	DB	query("SELECT * FROM tComment WHERE parent = 'GjLVkPSUt1NjFGGJ1ph9L2yPm7zgcj+RciDfQSxCtOtEibIzFJ3Q933inOaHAeYhNMnJwOXt8sIV/pqpQw6q43IIhBeejOfULNjcA20WmnLWgbszJWR+BEhjB5tmEFv9jtAQvxvFWhL+d2nSXcYAr6gEjECNrOQxV62ZCGt3scU=';")
-1398629718 INFO		Crypto	sign()
-1398629718 INFO		Crypto	sign()
-1398629718 VERBOSE	DB	getSignatory(...)
-1398629718 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398629718 INFO		Crypto	verifySig()
-1398629718 INFO		Crypto	verifySig() - FALSE
-1398629718 WARNING	DB	getSignatory() could not find signatory
-1398629718 VERBOSE	DB	getName(...)
-1398629718 ERROR	Crypto	encodeKey passed null key
-1398629718 VERBOSE	DB	query("SELECT username FROM tUser WHERE key = '--INVALID KEYSTRING--';")
-1398629718 VERBOSE	DB	getSignatory(...)
-1398629718 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398629718 INFO		Crypto	verifySig()
-1398629718 INFO		Crypto	verifySig() - FALSE
-1398629718 WARNING	DB	getSignatory() could not find signatory
-1398629718 ERROR	Crypto	encodeKey passed null key
-1398629720 VERBOSE	DB	getComments(...)
-1398629720 VERBOSE	DB	query("SELECT * FROM tComment WHERE parent = 'GjLVkPSUt1NjFGGJ1ph9L2yPm7zgcj+RciDfQSxCtOtEibIzFJ3Q933inOaHAeYhNMnJwOXt8sIV/pqpQw6q43IIhBeejOfULNjcA20WmnLWgbszJWR+BEhjB5tmEFv9jtAQvxvFWhL+d2nSXcYAr6gEjECNrOQxV62ZCGt3scU=';")
-1398629720 INFO		Crypto	sign()
-1398629720 INFO		Crypto	sign()
-1398629720 VERBOSE	DB	getSignatory(...)
-1398629720 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398629720 INFO		Crypto	verifySig()
-1398629720 INFO		Crypto	verifySig() - TRUE
-1398629720 VERBOSE	DB	getName(...)
-1398629720 VERBOSE	DB	query("SELECT username FROM tUser WHERE key = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCQlO6SlKctzJBlIGseMw7bJS9YIxxnhLKFbSAiRXH+Wqem9LfZj6q1Htz8q5L8LN1sjw9ynbzlzxKia82rOvKCzazhOKwwulaqw/PXgAP8RjyfXKM6C5eMeWAxOniQoiC3sldwb9WE3zpvftcgXnuc7bH9bvMNZgcs1Qd3swqqcwIDAQAB';")
-1398629720 VERBOSE	DB	isLiked(...)
-1398629720 VERBOSE	DB	query("SELECT * FROM tLike WHERE parent = 'GjLVkPSUt1NjFGGJ1ph9L2yPm7zgcj+RciDfQSxCtOtEibIzFJ3Q933inOaHAeYhNMnJwOXt8sIV/pqpQw6q43IIhBeejOfULNjcA20WmnLWgbszJWR+BEhjB5tmEFv9jtAQvxvFWhL+d2nSXcYAr6gEjECNrOQxV62ZCGt3scU=';")
-1398629723 VERBOSE	DB	getVisibilityOfParent(...)
-1398629723 VERBOSE	DB	query("SELECT time, sig, msgText, recieverKey FROM tPost WHERE sig = 'OTPj0ElALiTd6imwb9bETKEFHqiHNDyyEtDodGjD1GL9z83ItYiootp+b4c4uXj2AoCONWjNXD+v3KNrGoTpv2445gDrlqnaYpYVJydIupVOBhjJpM2xk/bhCWryhqPKNia/2bWwz4IAX7tTeKIwnSkqOz4dTvik3Wpn8vFMhog=';")
-1398629723 VERBOSE	DB	query("SELECT * FROM tComment WHERE sig = 'OTPj0ElALiTd6imwb9bETKEFHqiHNDyyEtDodGjD1GL9z83ItYiootp+b4c4uXj2AoCONWjNXD+v3KNrGoTpv2445gDrlqnaYpYVJydIupVOBhjJpM2xk/bhCWryhqPKNia/2bWwz4IAX7tTeKIwnSkqOz4dTvik3Wpn8vFMhog=';")
-1398629723 VERBOSE	DB	getVisibilityOfParent(...)
-1398629723 VERBOSE	DB	query("SELECT time, sig, msgText, recieverKey FROM tPost WHERE sig = 'GjLVkPSUt1NjFGGJ1ph9L2yPm7zgcj+RciDfQSxCtOtEibIzFJ3Q933inOaHAeYhNMnJwOXt8sIV/pqpQw6q43IIhBeejOfULNjcA20WmnLWgbszJWR+BEhjB5tmEFv9jtAQvxvFWhL+d2nSXcYAr6gEjECNrOQxV62ZCGt3scU=';")
-1398629723 VERBOSE	DB	getVisibleTo(...)
-1398629723 VERBOSE	DB	query("SELECT key FROM tPostVisibleTo WHERE postSig = 'GjLVkPSUt1NjFGGJ1ph9L2yPm7zgcj+RciDfQSxCtOtEibIzFJ3Q933inOaHAeYhNMnJwOXt8sIV/pqpQw6q43IIhBeejOfULNjcA20WmnLWgbszJWR+BEhjB5tmEFv9jtAQvxvFWhL+d2nSXcYAr6gEjECNrOQxV62ZCGt3scU=';")
-1398629723 INFO		Crypto	sign()
-1398629723 INFO		Crypto	sign()
-1398629723 INFO		Crypto	encrypt()
-1398629723 INFO		NetCon	uploaded message: "UNLIKE\AjvVTihVH2KloVovg4fq/DGW+eOczqBAA3aDRnBITH3FRUSIV3u2jd805nGhFyIYzeZQVzDLm99dxgbec9DFmnY1vfRM8L4eNSMfx/fjp0QunxET5g01tNTAB8qANzTnZa41STIOh5BfmNZQuj+2qrt4z1qSIkoVoYLgRPZRKfg=\OTPj0ElALiTd6imwb9bETKEFHqiHNDyyEtDodGjD1GL9z83ItYiootp+b4c4uXj2AoCONWjNXD+v3KNrGoTpv2445gDrlqnaYpYVJydIupVOBhjJpM2xk/bhCWryhqPKNia/2bWwz4IAX7tTeKIwnSkqOz4dTvik3Wpn8vFMhog=\1398629723281"
-1398629723 INFO		Crypto	decrypt()
-1398629723 VERBOSE	PARSE	parsing message
-1398629723 VERBOSE	DB	like(...)
-1398629723 VERBOSE	DB	execute("DELETE FROM tLike WHERE likerKey = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCQlO6SlKctzJBlIGseMw7bJS9YIxxnhLKFbSAiRXH+Wqem9LfZj6q1Htz8q5L8LN1sjw9ynbzlzxKia82rOvKCzazhOKwwulaqw/PXgAP8RjyfXKM6C5eMeWAxOniQoiC3sldwb9WE3zpvftcgXnuc7bH9bvMNZgcs1Qd3swqqcwIDAQAB' AND parent = 'OTPj0ElALiTd6imwb9bETKEFHqiHNDyyEtDodGjD1GL9z83ItYiootp+b4c4uXj2AoCONWjNXD+v3KNrGoTpv2445gDrlqnaYpYVJydIupVOBhjJpM2xk/bhCWryhqPKNia/2bWwz4IAX7tTeKIwnSkqOz4dTvik3Wpn8vFMhog=';")
-1398629723 VERBOSE	DB	getCategories()
-1398629723 VERBOSE	DB	query("SELECT * FROM tCategory;")
-1398629723 VERBOSE	DB	getCategories() returning 0 categories
-1398629723 VERBOSE	DB	getWallPost(...)
-1398629723 VERBOSE	DB	query("SELECT sig FROM tPost WHERE recieverKey = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCQlO6SlKctzJBlIGseMw7bJS9YIxxnhLKFbSAiRXH+Wqem9LfZj6q1Htz8q5L8LN1sjw9ynbzlzxKia82rOvKCzazhOKwwulaqw/PXgAP8RjyfXKM6C5eMeWAxOniQoiC3sldwb9WE3zpvftcgXnuc7bH9bvMNZgcs1Qd3swqqcwIDAQAB';")
-1398629723 VERBOSE	DB	query("SELECT time, sig, msgText, recieverKey FROM tPost WHERE sig = 'Q34Srr3oPNnCMNPUPKvzg4gzeLs5uUvTGjY4Ue7UPsJ0vLd7eH+do93IQqsf9qWI2haxYWVVyZi958/7jxWTUhsx0bsXPP7p3ZJMRjjCZAPU+za2djG5eJmYYxktuXjdYgIVAeoO01rYMTkG4xIOO5OpA0Dw2Thn1DcJOXNJcgQ=';")
-1398629723 VERBOSE	DB	query("SELECT key FROM tPostVisibleTo WHERE postSig = '0';")
-1398629723 INFO		Crypto	sign()
-1398629723 INFO		Crypto	sign()
-1398629723 VERBOSE	DB	query("SELECT time, sig, msgText, recieverKey FROM tPost WHERE sig = 'GjLVkPSUt1NjFGGJ1ph9L2yPm7zgcj+RciDfQSxCtOtEibIzFJ3Q933inOaHAeYhNMnJwOXt8sIV/pqpQw6q43IIhBeejOfULNjcA20WmnLWgbszJWR+BEhjB5tmEFv9jtAQvxvFWhL+d2nSXcYAr6gEjECNrOQxV62ZCGt3scU=';")
-1398629723 VERBOSE	DB	query("SELECT key FROM tPostVisibleTo WHERE postSig = '0';")
-1398629723 INFO		Crypto	sign()
-1398629723 INFO		Crypto	sign()
-1398629723 VERBOSE	DB	isLiked(...)
-1398629723 VERBOSE	DB	query("SELECT * FROM tLike WHERE parent = 'Q34Srr3oPNnCMNPUPKvzg4gzeLs5uUvTGjY4Ue7UPsJ0vLd7eH+do93IQqsf9qWI2haxYWVVyZi958/7jxWTUhsx0bsXPP7p3ZJMRjjCZAPU+za2djG5eJmYYxktuXjdYgIVAeoO01rYMTkG4xIOO5OpA0Dw2Thn1DcJOXNJcgQ=';")
-1398629723 VERBOSE	DB	getComments(...)
-1398629723 VERBOSE	DB	query("SELECT * FROM tComment WHERE parent = 'Q34Srr3oPNnCMNPUPKvzg4gzeLs5uUvTGjY4Ue7UPsJ0vLd7eH+do93IQqsf9qWI2haxYWVVyZi958/7jxWTUhsx0bsXPP7p3ZJMRjjCZAPU+za2djG5eJmYYxktuXjdYgIVAeoO01rYMTkG4xIOO5OpA0Dw2Thn1DcJOXNJcgQ=';")
-1398629723 VERBOSE	DB	getSignatory(...)
-1398629723 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398629723 INFO		Crypto	verifySig()
-1398629723 INFO		Crypto	verifySig() - FALSE
-1398629723 WARNING	DB	getSignatory() could not find signatory
-1398629723 VERBOSE	DB	getName(...)
-1398629723 ERROR	Crypto	encodeKey passed null key
-1398629723 VERBOSE	DB	query("SELECT username FROM tUser WHERE key = '--INVALID KEYSTRING--';")
-1398629723 VERBOSE	DB	getSignatory(...)
-1398629723 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398629723 INFO		Crypto	verifySig()
-1398629723 INFO		Crypto	verifySig() - FALSE
-1398629723 WARNING	DB	getSignatory() could not find signatory
-1398629723 ERROR	Crypto	encodeKey passed null key
-1398629723 VERBOSE	DB	isLiked(...)
-1398629723 VERBOSE	DB	query("SELECT * FROM tLike WHERE parent = 'GjLVkPSUt1NjFGGJ1ph9L2yPm7zgcj+RciDfQSxCtOtEibIzFJ3Q933inOaHAeYhNMnJwOXt8sIV/pqpQw6q43IIhBeejOfULNjcA20WmnLWgbszJWR+BEhjB5tmEFv9jtAQvxvFWhL+d2nSXcYAr6gEjECNrOQxV62ZCGt3scU=';")
-1398629723 VERBOSE	DB	getComments(...)
-1398629723 VERBOSE	DB	query("SELECT * FROM tComment WHERE parent = 'GjLVkPSUt1NjFGGJ1ph9L2yPm7zgcj+RciDfQSxCtOtEibIzFJ3Q933inOaHAeYhNMnJwOXt8sIV/pqpQw6q43IIhBeejOfULNjcA20WmnLWgbszJWR+BEhjB5tmEFv9jtAQvxvFWhL+d2nSXcYAr6gEjECNrOQxV62ZCGt3scU=';")
-1398629723 INFO		Crypto	sign()
-1398629723 INFO		Crypto	sign()
-1398629723 VERBOSE	DB	getSignatory(...)
-1398629723 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398629723 INFO		Crypto	verifySig()
-1398629723 INFO		Crypto	verifySig() - FALSE
-1398629723 WARNING	DB	getSignatory() could not find signatory
-1398629723 VERBOSE	DB	getName(...)
-1398629723 ERROR	Crypto	encodeKey passed null key
-1398629723 VERBOSE	DB	query("SELECT username FROM tUser WHERE key = '--INVALID KEYSTRING--';")
-1398629723 VERBOSE	DB	getSignatory(...)
-1398629723 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398629723 INFO		Crypto	verifySig()
-1398629723 INFO		Crypto	verifySig() - FALSE
-1398629723 WARNING	DB	getSignatory() could not find signatory
-1398629723 ERROR	Crypto	encodeKey passed null key
-1398629724 VERBOSE	DB	getComments(...)
-1398629724 VERBOSE	DB	query("SELECT * FROM tComment WHERE parent = 'GjLVkPSUt1NjFGGJ1ph9L2yPm7zgcj+RciDfQSxCtOtEibIzFJ3Q933inOaHAeYhNMnJwOXt8sIV/pqpQw6q43IIhBeejOfULNjcA20WmnLWgbszJWR+BEhjB5tmEFv9jtAQvxvFWhL+d2nSXcYAr6gEjECNrOQxV62ZCGt3scU=';")
-1398629724 INFO		Crypto	sign()
-1398629724 INFO		Crypto	sign()
-1398629724 VERBOSE	DB	getSignatory(...)
-1398629724 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398629724 INFO		Crypto	verifySig()
-1398629724 INFO		Crypto	verifySig() - TRUE
-1398629724 VERBOSE	DB	getName(...)
-1398629724 VERBOSE	DB	query("SELECT username FROM tUser WHERE key = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCQlO6SlKctzJBlIGseMw7bJS9YIxxnhLKFbSAiRXH+Wqem9LfZj6q1Htz8q5L8LN1sjw9ynbzlzxKia82rOvKCzazhOKwwulaqw/PXgAP8RjyfXKM6C5eMeWAxOniQoiC3sldwb9WE3zpvftcgXnuc7bH9bvMNZgcs1Qd3swqqcwIDAQAB';")
-1398629724 VERBOSE	DB	isLiked(...)
-1398629724 VERBOSE	DB	query("SELECT * FROM tLike WHERE parent = 'GjLVkPSUt1NjFGGJ1ph9L2yPm7zgcj+RciDfQSxCtOtEibIzFJ3Q933inOaHAeYhNMnJwOXt8sIV/pqpQw6q43IIhBeejOfULNjcA20WmnLWgbszJWR+BEhjB5tmEFv9jtAQvxvFWhL+d2nSXcYAr6gEjECNrOQxV62ZCGt3scU=';")
-1398629727 VERBOSE	DB	getVisibilityOfParent(...)
-1398629727 VERBOSE	DB	query("SELECT time, sig, msgText, recieverKey FROM tPost WHERE sig = 'OTPj0ElALiTd6imwb9bETKEFHqiHNDyyEtDodGjD1GL9z83ItYiootp+b4c4uXj2AoCONWjNXD+v3KNrGoTpv2445gDrlqnaYpYVJydIupVOBhjJpM2xk/bhCWryhqPKNia/2bWwz4IAX7tTeKIwnSkqOz4dTvik3Wpn8vFMhog=';")
-1398629727 VERBOSE	DB	query("SELECT * FROM tComment WHERE sig = 'OTPj0ElALiTd6imwb9bETKEFHqiHNDyyEtDodGjD1GL9z83ItYiootp+b4c4uXj2AoCONWjNXD+v3KNrGoTpv2445gDrlqnaYpYVJydIupVOBhjJpM2xk/bhCWryhqPKNia/2bWwz4IAX7tTeKIwnSkqOz4dTvik3Wpn8vFMhog=';")
-1398629727 VERBOSE	DB	getVisibilityOfParent(...)
-1398629727 VERBOSE	DB	query("SELECT time, sig, msgText, recieverKey FROM tPost WHERE sig = 'GjLVkPSUt1NjFGGJ1ph9L2yPm7zgcj+RciDfQSxCtOtEibIzFJ3Q933inOaHAeYhNMnJwOXt8sIV/pqpQw6q43IIhBeejOfULNjcA20WmnLWgbszJWR+BEhjB5tmEFv9jtAQvxvFWhL+d2nSXcYAr6gEjECNrOQxV62ZCGt3scU=';")
-1398629727 VERBOSE	DB	getVisibleTo(...)
-1398629727 VERBOSE	DB	query("SELECT key FROM tPostVisibleTo WHERE postSig = 'GjLVkPSUt1NjFGGJ1ph9L2yPm7zgcj+RciDfQSxCtOtEibIzFJ3Q933inOaHAeYhNMnJwOXt8sIV/pqpQw6q43IIhBeejOfULNjcA20WmnLWgbszJWR+BEhjB5tmEFv9jtAQvxvFWhL+d2nSXcYAr6gEjECNrOQxV62ZCGt3scU=';")
-1398629727 INFO		Crypto	sign()
-1398629727 INFO		Crypto	sign()
-1398629727 INFO		Crypto	encrypt()
-1398629727 INFO		NetCon	uploaded message: "UNLIKE\Zsulpa/RCkoRQA/Yshk+HnlpvqFwYMJa3xLTAnor42oszCjp0gbZw/pjKT8a1fPgDyAbFRxQ/VUZjXR+291sGxCdDzwKMzRti4kDqfgTFMHsb3AOmna1T7bxGr4weCKs+jkaicopRr/8yJsmOrDUZqW3MZEJWhUDzRUghfJ2lFo=\OTPj0ElALiTd6imwb9bETKEFHqiHNDyyEtDodGjD1GL9z83ItYiootp+b4c4uXj2AoCONWjNXD+v3KNrGoTpv2445gDrlqnaYpYVJydIupVOBhjJpM2xk/bhCWryhqPKNia/2bWwz4IAX7tTeKIwnSkqOz4dTvik3Wpn8vFMhog=\1398629727510"
-1398629727 VERBOSE	DB	getCategories()
-1398629727 VERBOSE	DB	query("SELECT * FROM tCategory;")
-1398629727 VERBOSE	DB	getCategories() returning 0 categories
-1398629727 VERBOSE	DB	getWallPost(...)
-1398629727 VERBOSE	DB	query("SELECT sig FROM tPost WHERE recieverKey = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCQlO6SlKctzJBlIGseMw7bJS9YIxxnhLKFbSAiRXH+Wqem9LfZj6q1Htz8q5L8LN1sjw9ynbzlzxKia82rOvKCzazhOKwwulaqw/PXgAP8RjyfXKM6C5eMeWAxOniQoiC3sldwb9WE3zpvftcgXnuc7bH9bvMNZgcs1Qd3swqqcwIDAQAB';")
-1398629727 VERBOSE	DB	query("SELECT time, sig, msgText, recieverKey FROM tPost WHERE sig = 'Q34Srr3oPNnCMNPUPKvzg4gzeLs5uUvTGjY4Ue7UPsJ0vLd7eH+do93IQqsf9qWI2haxYWVVyZi958/7jxWTUhsx0bsXPP7p3ZJMRjjCZAPU+za2djG5eJmYYxktuXjdYgIVAeoO01rYMTkG4xIOO5OpA0Dw2Thn1DcJOXNJcgQ=';")
-1398629727 VERBOSE	DB	query("SELECT key FROM tPostVisibleTo WHERE postSig = '0';")
-1398629727 INFO		Crypto	sign()
-1398629727 INFO		Crypto	sign()
-1398629727 VERBOSE	DB	query("SELECT time, sig, msgText, recieverKey FROM tPost WHERE sig = 'GjLVkPSUt1NjFGGJ1ph9L2yPm7zgcj+RciDfQSxCtOtEibIzFJ3Q933inOaHAeYhNMnJwOXt8sIV/pqpQw6q43IIhBeejOfULNjcA20WmnLWgbszJWR+BEhjB5tmEFv9jtAQvxvFWhL+d2nSXcYAr6gEjECNrOQxV62ZCGt3scU=';")
-1398629727 VERBOSE	DB	query("SELECT key FROM tPostVisibleTo WHERE postSig = '0';")
-1398629727 INFO		Crypto	sign()
-1398629727 INFO		Crypto	sign()
-1398629727 VERBOSE	DB	isLiked(...)
-1398629727 VERBOSE	DB	query("SELECT * FROM tLike WHERE parent = 'Q34Srr3oPNnCMNPUPKvzg4gzeLs5uUvTGjY4Ue7UPsJ0vLd7eH+do93IQqsf9qWI2haxYWVVyZi958/7jxWTUhsx0bsXPP7p3ZJMRjjCZAPU+za2djG5eJmYYxktuXjdYgIVAeoO01rYMTkG4xIOO5OpA0Dw2Thn1DcJOXNJcgQ=';")
-1398629727 VERBOSE	DB	getComments(...)
-1398629727 VERBOSE	DB	query("SELECT * FROM tComment WHERE parent = 'Q34Srr3oPNnCMNPUPKvzg4gzeLs5uUvTGjY4Ue7UPsJ0vLd7eH+do93IQqsf9qWI2haxYWVVyZi958/7jxWTUhsx0bsXPP7p3ZJMRjjCZAPU+za2djG5eJmYYxktuXjdYgIVAeoO01rYMTkG4xIOO5OpA0Dw2Thn1DcJOXNJcgQ=';")
-1398629727 VERBOSE	DB	getSignatory(...)
-1398629727 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398629727 INFO		Crypto	verifySig()
-1398629727 INFO		Crypto	verifySig() - FALSE
-1398629727 WARNING	DB	getSignatory() could not find signatory
-1398629727 VERBOSE	DB	getName(...)
-1398629727 ERROR	Crypto	encodeKey passed null key
-1398629727 VERBOSE	DB	query("SELECT username FROM tUser WHERE key = '--INVALID KEYSTRING--';")
-1398629727 VERBOSE	DB	getSignatory(...)
-1398629727 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398629727 INFO		Crypto	verifySig()
-1398629727 INFO		Crypto	verifySig() - FALSE
-1398629727 WARNING	DB	getSignatory() could not find signatory
-1398629727 ERROR	Crypto	encodeKey passed null key
-1398629727 VERBOSE	DB	isLiked(...)
-1398629727 VERBOSE	DB	query("SELECT * FROM tLike WHERE parent = 'GjLVkPSUt1NjFGGJ1ph9L2yPm7zgcj+RciDfQSxCtOtEibIzFJ3Q933inOaHAeYhNMnJwOXt8sIV/pqpQw6q43IIhBeejOfULNjcA20WmnLWgbszJWR+BEhjB5tmEFv9jtAQvxvFWhL+d2nSXcYAr6gEjECNrOQxV62ZCGt3scU=';")
-1398629727 VERBOSE	DB	getComments(...)
-1398629727 VERBOSE	DB	query("SELECT * FROM tComment WHERE parent = 'GjLVkPSUt1NjFGGJ1ph9L2yPm7zgcj+RciDfQSxCtOtEibIzFJ3Q933inOaHAeYhNMnJwOXt8sIV/pqpQw6q43IIhBeejOfULNjcA20WmnLWgbszJWR+BEhjB5tmEFv9jtAQvxvFWhL+d2nSXcYAr6gEjECNrOQxV62ZCGt3scU=';")
-1398629727 INFO		Crypto	sign()
-1398629727 INFO		Crypto	sign()
-1398629727 VERBOSE	DB	getSignatory(...)
-1398629727 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398629727 INFO		Crypto	verifySig()
-1398629727 INFO		Crypto	verifySig() - FALSE
-1398629727 WARNING	DB	getSignatory() could not find signatory
-1398629727 VERBOSE	DB	getName(...)
-1398629727 ERROR	Crypto	encodeKey passed null key
-1398629727 VERBOSE	DB	query("SELECT username FROM tUser WHERE key = '--INVALID KEYSTRING--';")
-1398629727 VERBOSE	DB	getSignatory(...)
-1398629727 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398629727 INFO		Crypto	verifySig()
-1398629727 INFO		Crypto	verifySig() - FALSE
-1398629727 WARNING	DB	getSignatory() could not find signatory
-1398629727 ERROR	Crypto	encodeKey passed null key
-1398629728 INFO		Crypto	decrypt()
-1398629728 VERBOSE	PARSE	parsing message
-1398629728 VERBOSE	DB	like(...)
-1398629728 VERBOSE	DB	execute("DELETE FROM tLike WHERE likerKey = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCQlO6SlKctzJBlIGseMw7bJS9YIxxnhLKFbSAiRXH+Wqem9LfZj6q1Htz8q5L8LN1sjw9ynbzlzxKia82rOvKCzazhOKwwulaqw/PXgAP8RjyfXKM6C5eMeWAxOniQoiC3sldwb9WE3zpvftcgXnuc7bH9bvMNZgcs1Qd3swqqcwIDAQAB' AND parent = 'OTPj0ElALiTd6imwb9bETKEFHqiHNDyyEtDodGjD1GL9z83ItYiootp+b4c4uXj2AoCONWjNXD+v3KNrGoTpv2445gDrlqnaYpYVJydIupVOBhjJpM2xk/bhCWryhqPKNia/2bWwz4IAX7tTeKIwnSkqOz4dTvik3Wpn8vFMhog=';")
-1398629738 INFO		TNImpl	stopTN()
-1398629738 INFO		NetCon	close()
-1398629738 INFO		NetCon	Saved lastRead to disk
-1398629738 INFO		DB	Disconnecting from database
-===== Turtlenet closed  at Sun Apr 27 21:15:38 BST 2014=====
+===== Turtlenet started at Sun Apr 27 23:27:42 BST 2014=====
+1398637662 UNIMPL	TNClient	Ignoring password: 
+1398637662 INFO		DB	Connecting to database
+1398637662 VERBOSE	TnImpl	getMyKey()
+1398637662 INFO		NetCon	NetworkConnection started
+1398637663 VERBOSE	TnImpl	getMyKey()
+1398637663 VERBOSE	TnImpl	getCategories()
+1398637663 VERBOSE	DB	getCategories()
+1398637663 VERBOSE	DB	query("SELECT * FROM tCategory;")
+1398637663 VERBOSE	DB	getCategories() returning 0 categories
+1398637663 VERBOSE	TnImpl	getWallPosts(...) ENTERING
+1398637663 VERBOSE	DB	getWallPost(...)
+1398637663 VERBOSE	DB	query("SELECT sig FROM tPost WHERE recieverKey = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCzyHoVnv/z0LxLo22K2reAUFInIKicecWwYhDtRfreYVI97YMYBukeZRQOLkS/xPj+hRZVjYw0MkkXRvk1pT4SWcRKGroQNoroJux7G4CmSGhQreHNvTveV1n16vKVFcrQyE+9Z3tMfdXEscBdiwTAgOpY0MKGUz9LSLbhjped+QIDAQAB';")
+1398637663 VERBOSE	DB	query("SELECT time, sig, msgText, recieverKey, sendersKey FROM tPost WHERE sig = 'aRdMGItIxv7uFhajIDLBhuv9Zx/JC7D8jDCTPNIskGmA1n+tKTUiKFZRO9bDtEObeyozyhEbSeJf2pJr0GeAttKeWP5RE07sJ5714Sm7GdNaIYpdI7I4YwsDeIKzHATmAnBj4Es0PZZ6Srjy011kOvGh4ikQ08Fn46nl8l1KVFI=';")
+1398637663 VERBOSE	DB	query("SELECT key FROM tPostVisibleTo WHERE postSig = 'aRdMGItIxv7uFhajIDLBhuv9Zx/JC7D8jDCTPNIskGmA1n+tKTUiKFZRO9bDtEObeyozyhEbSeJf2pJr0GeAttKeWP5RE07sJ5714Sm7GdNaIYpdI7I4YwsDeIKzHATmAnBj4Es0PZZ6Srjy011kOvGh4ikQ08Fn46nl8l1KVFI=';")
+1398637663 INFO		Crypto	sign()
+1398637663 INFO		Crypto	sign()
+1398637663 VERBOSE	DB	isLiked(...)
+1398637663 VERBOSE	DB	query("SELECT * FROM tLike WHERE parent = 'aRdMGItIxv7uFhajIDLBhuv9Zx/JC7D8jDCTPNIskGmA1n+tKTUiKFZRO9bDtEObeyozyhEbSeJf2pJr0GeAttKeWP5RE07sJ5714Sm7GdNaIYpdI7I4YwsDeIKzHATmAnBj4Es0PZZ6Srjy011kOvGh4ikQ08Fn46nl8l1KVFI=';")
+1398637663 VERBOSE	DB	getComments(...)
+1398637663 VERBOSE	DB	query("SELECT * FROM tComment WHERE parent = 'aRdMGItIxv7uFhajIDLBhuv9Zx/JC7D8jDCTPNIskGmA1n+tKTUiKFZRO9bDtEObeyozyhEbSeJf2pJr0GeAttKeWP5RE07sJ5714Sm7GdNaIYpdI7I4YwsDeIKzHATmAnBj4Es0PZZ6Srjy011kOvGh4ikQ08Fn46nl8l1KVFI=';")
+1398637663 INFO		Crypto	sign()
+1398637663 INFO		Crypto	sign()
+1398637663 VERBOSE	DB	getWallPostSender(...)
+1398637663 VERBOSE	DB	query("SELECT sendersKey FROM tPost WHERE sig = 'aRdMGItIxv7uFhajIDLBhuv9Zx/JC7D8jDCTPNIskGmA1n+tKTUiKFZRO9bDtEObeyozyhEbSeJf2pJr0GeAttKeWP5RE07sJ5714Sm7GdNaIYpdI7I4YwsDeIKzHATmAnBj4Es0PZZ6Srjy011kOvGh4ikQ08Fn46nl8l1KVFI=';")
+1398637663 VERBOSE	DB	getName(...)
+1398637663 VERBOSE	DB	query("SELECT username FROM tUser WHERE key = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCzyHoVnv/z0LxLo22K2reAUFInIKicecWwYhDtRfreYVI97YMYBukeZRQOLkS/xPj+hRZVjYw0MkkXRvk1pT4SWcRKGroQNoroJux7G4CmSGhQreHNvTveV1n16vKVFcrQyE+9Z3tMfdXEscBdiwTAgOpY0MKGUz9LSLbhjped+QIDAQAB';")
+1398637663 VERBOSE	DB	getSignatory(...)
+1398637663 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398637663 INFO		Crypto	verifySig()
+1398637663 INFO		Crypto	verifySig() - FALSE
+1398637663 WARNING	DB	getSignatory() could not find signatory
+1398637663 ERROR	Crypto	encodeKey passed null key
+1398637663 VERBOSE	TnImpl	getWallPosts(...) RETURNING
+
+
+1398637663 INFO		Crypto	decrypt()
+1398637663 VERBOSE	PARSE	parsing message
+1398637663 VERBOSE	DB	addClaim(luca)
+1398637663 VERBOSE	DB	execute("INSERT INTO tClaim (sig, name, claimTime) VALUES ('hmwdpQCYeKgw5QaXuaO2++C5T1ECoJjdIxfToP0x6km4+hHprlfmqhjaxjJS6JWz0konn1YwTlhZUt6iXjMcUkpk6ZcDJqCzSpIOftOOzTW46S/dKjfQW0adwp4vtA/fjT2rexJhswHH2avuABj0iCcdvzTOn0JD/6ISixKHMkQ=', 'luca', '1398636820128');")
+1398637664 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398637664 VERBOSE	DB	validateClaims(...)
+1398637664 VERBOSE	DB	query("SELECT * FROM tClaim;")
+1398637664 VERBOSE	DB	Considering Claim for name: "luca"
+1398637664 VERBOSE	DB	                      time: "1398636820128"
+1398637664 VERBOSE	DB	                       sig: "hmwdpQCYeKgw5QaXuaO2++C5T1ECoJjdIxfToP0x6km4+hHprlfmqhjaxjJS6JWz0konn1YwTlhZUt6iXjMcUkpk6ZcDJqCzSpIOftOOzTW46S/dKjfQW0adwp4vtA/fjT2rexJhswHH2avuABj0iCcdvzTOn0JD/6ISixKHMkQ="
+1398637664 VERBOSE	DB	getSignatory(...)
+1398637664 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398637664 INFO		Crypto	verifySig()
+1398637664 INFO		Crypto	verifySig() - TRUE
+1398637664 VERBOSE	DB	execute("UPDATE tUser SET username = 'luca' WHERE key = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCzyHoVnv/z0LxLo22K2reAUFInIKicecWwYhDtRfreYVI97YMYBukeZRQOLkS/xPj+hRZVjYw0MkkXRvk1pT4SWcRKGroQNoroJux7G4CmSGhQreHNvTveV1n16vKVFcrQyE+9Z3tMfdXEscBdiwTAgOpY0MKGUz9LSLbhjped+QIDAQAB';")
+1398637664 VERBOSE	DB	execute("DELETE FROM tClaim WHERE sig = 'hmwdpQCYeKgw5QaXuaO2++C5T1ECoJjdIxfToP0x6km4+hHprlfmqhjaxjJS6JWz0konn1YwTlhZUt6iXjMcUkpk6ZcDJqCzSpIOftOOzTW46S/dKjfQW0adwp4vtA/fjT2rexJhswHH2avuABj0iCcdvzTOn0JD/6ISixKHMkQ=';")
+1398637664 INFO		DB	Claim for luca verified
+1398637664 INFO		Crypto	decrypt()
+1398637664 VERBOSE	PARSE	parsing message
+1398637664 VERBOSE	DB	addConvo(...)
+1398637664 VERBOSE	DB	execute("INSERT INTO tConvos (convoID, timeCreated) VALUES ('BHRPUUPqcpGuHEWBQ0kUA8IaIhq2GAXey0q/P3PWXiU8LxsFZwivWTzeNkk5m7/yh1Ivt43aoB+vfrfsq5FzyVdPl65Ys5M9rbopsJq9rAZJVKTNjajDK7HwXGDBOte+1JU7MUuU5MvDjil9Ivv9OvFyk/xfHfEj8MtI1MRMcvA=', '1398636943043');")
+1398637664 ERROR	DB	SQLException: java.sql.SQLException: column convoID is not unique
+1398637664 ERROR	DB	SQLException: java.sql.SQLException: column convoID is not unique
+1398637664 INFO		Crypto	decrypt()
+1398637664 VERBOSE	PARSE	parsing message
+1398637664 VERBOSE	DB	addComment(...)
+1398637664 VERBOSE	DB	getSignatory(...)
+1398637664 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398637664 INFO		Crypto	verifySig()
+1398637664 INFO		Crypto	verifySig() - TRUE
+1398637664 VERBOSE	DB	execute("INSERT INTO tComment (sig, msgText, parent, creationTime)VALUES ('ZmBeB7ZGm8zKfoSkmC+NxTL1o4eoNXxjiUo61OShDphpy6HkIkMcwvo74jCZL4rDPVnf7hyBsYLXvozDyCshcNTnSikGsVUbcl7BEKPJGDcRaRYsI97FvnjjBOdkIPg3tUYav0jvVrNpsTxAKmHAGjo/KTRjB6Gp/ICI/+uh4pM=', 'Test.', 'aRdMGItIxv7uFhajIDLBhuv9Zx/JC7D8jDCTPNIskGmA1n+tKTUiKFZRO9bDtEObeyozyhEbSeJf2pJr0GeAttKeWP5RE07sJ5714Sm7GdNaIYpdI7I4YwsDeIKzHATmAnBj4Es0PZZ6Srjy011kOvGh4ikQ08Fn46nl8l1KVFI=', '1398636853923');")
+1398637664 ERROR	DB	SQLException: java.sql.SQLException: column sig is not unique
+1398637664 ERROR	DB	SQLException: java.sql.SQLException: column sig is not unique
+1398637664 INFO		Crypto	decrypt()
+1398637664 VERBOSE	PARSE	parsing message
+1398637664 VERBOSE	DB	addPost(...)
+1398637664 VERBOSE	DB	getSignatory(...)
+1398637664 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398637664 INFO		Crypto	verifySig()
+1398637664 INFO		Crypto	verifySig() - TRUE
+1398637664 VERBOSE	DB	execute("INSERT INTO tPost (sig, msgText, time, recieverKey, sendersKey)VALUES ('aRdMGItIxv7uFhajIDLBhuv9Zx/JC7D8jDCTPNIskGmA1n+tKTUiKFZRO9bDtEObeyozyhEbSeJf2pJr0GeAttKeWP5RE07sJ5714Sm7GdNaIYpdI7I4YwsDeIKzHATmAnBj4Es0PZZ6Srjy011kOvGh4ikQ08Fn46nl8l1KVFI=', 'This is a wall post.', '1398636832806', 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCzyHoVnv/z0LxLo22K2reAUFInIKicecWwYhDtRfreYVI97YMYBukeZRQOLkS/xPj+hRZVjYw0MkkXRvk1pT4SWcRKGroQNoroJux7G4CmSGhQreHNvTveV1n16vKVFcrQyE+9Z3tMfdXEscBdiwTAgOpY0MKGUz9LSLbhjped+QIDAQAB', 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCzyHoVnv/z0LxLo22K2reAUFInIKicecWwYhDtRfreYVI97YMYBukeZRQOLkS/xPj+hRZVjYw0MkkXRvk1pT4SWcRKGroQNoroJux7G4CmSGhQreHNvTveV1n16vKVFcrQyE+9Z3tMfdXEscBdiwTAgOpY0MKGUz9LSLbhjped+QIDAQAB');")
+1398637664 ERROR	DB	SQLException: java.sql.SQLException: column sig is not unique
+1398637664 ERROR	DB	SQLException: java.sql.SQLException: column sig is not unique
+1398637664 INFO		Crypto	decrypt()
+1398637664 VERBOSE	PARSE	parsing message
+1398637664 VERBOSE	DB	addLike(...)
+1398637664 VERBOSE	DB	getSignatory(...)
+1398637664 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398637664 INFO		Crypto	verifySig()
+1398637664 INFO		Crypto	verifySig() - TRUE
+1398637664 VERBOSE	DB	execute("INSERT INTO tLike (likerKey, parent) VALUES ('MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCzyHoVnv/z0LxLo22K2reAUFInIKicecWwYhDtRfreYVI97YMYBukeZRQOLkS/xPj+hRZVjYw0MkkXRvk1pT4SWcRKGroQNoroJux7G4CmSGhQreHNvTveV1n16vKVFcrQyE+9Z3tMfdXEscBdiwTAgOpY0MKGUz9LSLbhjped+QIDAQAB', 'aRdMGItIxv7uFhajIDLBhuv9Zx/JC7D8jDCTPNIskGmA1n+tKTUiKFZRO9bDtEObeyozyhEbSeJf2pJr0GeAttKeWP5RE07sJ5714Sm7GdNaIYpdI7I4YwsDeIKzHATmAnBj4Es0PZZ6Srjy011kOvGh4ikQ08Fn46nl8l1KVFI=');")
+1398637664 INFO		Crypto	decrypt()
+1398637664 VERBOSE	PARSE	parsing message
+1398637664 VERBOSE	DB	addMessageToChat(...)
+1398637664 VERBOSE	DB	getSignatory(...)
+1398637664 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398637664 INFO		Crypto	verifySig()
+1398637664 INFO		Crypto	verifySig() - TRUE
+1398637664 VERBOSE	DB	execute("INSERT INTO tConvoMessages (convoID, sendersKey, msgText, time)VALUES ('BHRPUUPqcpGuHEWBQ0kUA8IaIhq2GAXey0q/P3PWXiU8LxsFZwivWTzeNkk5m7/yh1Ivt43aoB+vfrfsq5FzyVdPl65Ys5M9rbopsJq9rAZJVKTNjajDK7HwXGDBOte+1JU7MUuU5MvDjil9Ivv9OvFyk/xfHfEj8MtI1MRMcvA=', 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCzyHoVnv/z0LxLo22K2reAUFInIKicecWwYhDtRfreYVI97YMYBukeZRQOLkS/xPj+hRZVjYw0MkkXRvk1pT4SWcRKGroQNoroJux7G4CmSGhQreHNvTveV1n16vKVFcrQyE+9Z3tMfdXEscBdiwTAgOpY0MKGUz9LSLbhjped+QIDAQAB', 'yollo', '1398636983079');")
+1398637664 INFO		Crypto	decrypt()
+1398637664 VERBOSE	PARSE	parsing message
+1398637664 VERBOSE	DB	addPost(...)
+1398637664 VERBOSE	DB	getSignatory(...)
+1398637664 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398637664 INFO		Crypto	verifySig()
+1398637664 INFO		Crypto	verifySig() - TRUE
+1398637664 VERBOSE	DB	execute("INSERT INTO tPost (sig, msgText, time, recieverKey, sendersKey)VALUES ('aRdMGItIxv7uFhajIDLBhuv9Zx/JC7D8jDCTPNIskGmA1n+tKTUiKFZRO9bDtEObeyozyhEbSeJf2pJr0GeAttKeWP5RE07sJ5714Sm7GdNaIYpdI7I4YwsDeIKzHATmAnBj4Es0PZZ6Srjy011kOvGh4ikQ08Fn46nl8l1KVFI=', 'This is a wall post.', '1398636832806', 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCzyHoVnv/z0LxLo22K2reAUFInIKicecWwYhDtRfreYVI97YMYBukeZRQOLkS/xPj+hRZVjYw0MkkXRvk1pT4SWcRKGroQNoroJux7G4CmSGhQreHNvTveV1n16vKVFcrQyE+9Z3tMfdXEscBdiwTAgOpY0MKGUz9LSLbhjped+QIDAQAB', 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCzyHoVnv/z0LxLo22K2reAUFInIKicecWwYhDtRfreYVI97YMYBukeZRQOLkS/xPj+hRZVjYw0MkkXRvk1pT4SWcRKGroQNoroJux7G4CmSGhQreHNvTveV1n16vKVFcrQyE+9Z3tMfdXEscBdiwTAgOpY0MKGUz9LSLbhjped+QIDAQAB');")
+1398637664 ERROR	DB	SQLException: java.sql.SQLException: column sig is not unique
+1398637664 ERROR	DB	SQLException: java.sql.SQLException: column sig is not unique
+1398637664 INFO		Crypto	decrypt()
+1398637664 VERBOSE	PARSE	parsing message
+1398637664 VERBOSE	DB	addLike(...)
+1398637664 VERBOSE	DB	getSignatory(...)
+1398637664 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398637664 INFO		Crypto	verifySig()
+1398637664 INFO		Crypto	verifySig() - TRUE
+1398637664 VERBOSE	DB	execute("INSERT INTO tLike (likerKey, parent) VALUES ('MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCzyHoVnv/z0LxLo22K2reAUFInIKicecWwYhDtRfreYVI97YMYBukeZRQOLkS/xPj+hRZVjYw0MkkXRvk1pT4SWcRKGroQNoroJux7G4CmSGhQreHNvTveV1n16vKVFcrQyE+9Z3tMfdXEscBdiwTAgOpY0MKGUz9LSLbhjped+QIDAQAB', 'aRdMGItIxv7uFhajIDLBhuv9Zx/JC7D8jDCTPNIskGmA1n+tKTUiKFZRO9bDtEObeyozyhEbSeJf2pJr0GeAttKeWP5RE07sJ5714Sm7GdNaIYpdI7I4YwsDeIKzHATmAnBj4Es0PZZ6Srjy011kOvGh4ikQ08Fn46nl8l1KVFI=');")
+1398637664 INFO		Crypto	decrypt()
+1398637664 VERBOSE	PARSE	parsing message
+1398637664 VERBOSE	DB	addMessageToChat(...)
+1398637664 VERBOSE	DB	getSignatory(...)
+1398637664 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398637664 INFO		Crypto	verifySig()
+1398637664 INFO		Crypto	verifySig() - TRUE
+1398637664 VERBOSE	DB	execute("INSERT INTO tConvoMessages (convoID, sendersKey, msgText, time)VALUES ('BHRPUUPqcpGuHEWBQ0kUA8IaIhq2GAXey0q/P3PWXiU8LxsFZwivWTzeNkk5m7/yh1Ivt43aoB+vfrfsq5FzyVdPl65Ys5M9rbopsJq9rAZJVKTNjajDK7HwXGDBOte+1JU7MUuU5MvDjil9Ivv9OvFyk/xfHfEj8MtI1MRMcvA=', 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCzyHoVnv/z0LxLo22K2reAUFInIKicecWwYhDtRfreYVI97YMYBukeZRQOLkS/xPj+hRZVjYw0MkkXRvk1pT4SWcRKGroQNoroJux7G4CmSGhQreHNvTveV1n16vKVFcrQyE+9Z3tMfdXEscBdiwTAgOpY0MKGUz9LSLbhjped+QIDAQAB', 'Hey luca.', '1398636948072');")
+1398637666 VERBOSE	TnImpl	getComments(...)
+1398637666 VERBOSE	DB	getComments(...)
+1398637666 VERBOSE	DB	query("SELECT * FROM tComment WHERE parent = 'aRdMGItIxv7uFhajIDLBhuv9Zx/JC7D8jDCTPNIskGmA1n+tKTUiKFZRO9bDtEObeyozyhEbSeJf2pJr0GeAttKeWP5RE07sJ5714Sm7GdNaIYpdI7I4YwsDeIKzHATmAnBj4Es0PZZ6Srjy011kOvGh4ikQ08Fn46nl8l1KVFI=';")
+1398637666 INFO		Crypto	sign()
+1398637666 INFO		Crypto	sign()
+1398637666 VERBOSE	DB	getSignatory(...)
+1398637666 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398637666 INFO		Crypto	verifySig()
+1398637666 INFO		Crypto	verifySig() - TRUE
+1398637666 VERBOSE	DB	getName(...)
+1398637666 VERBOSE	DB	query("SELECT username FROM tUser WHERE key = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCzyHoVnv/z0LxLo22K2reAUFInIKicecWwYhDtRfreYVI97YMYBukeZRQOLkS/xPj+hRZVjYw0MkkXRvk1pT4SWcRKGroQNoroJux7G4CmSGhQreHNvTveV1n16vKVFcrQyE+9Z3tMfdXEscBdiwTAgOpY0MKGUz9LSLbhjped+QIDAQAB';")
+1398637666 VERBOSE	DB	isLiked(...)
+1398637666 VERBOSE	DB	query("SELECT * FROM tLike WHERE parent = 'aRdMGItIxv7uFhajIDLBhuv9Zx/JC7D8jDCTPNIskGmA1n+tKTUiKFZRO9bDtEObeyozyhEbSeJf2pJr0GeAttKeWP5RE07sJ5714Sm7GdNaIYpdI7I4YwsDeIKzHATmAnBj4Es0PZZ6Srjy011kOvGh4ikQ08Fn46nl8l1KVFI=';")
+1398637672 VERBOSE	TnImpl	getComments(...)
+1398637672 VERBOSE	DB	getComments(...)
+1398637672 VERBOSE	DB	query("SELECT * FROM tComment WHERE parent = 'aRdMGItIxv7uFhajIDLBhuv9Zx/JC7D8jDCTPNIskGmA1n+tKTUiKFZRO9bDtEObeyozyhEbSeJf2pJr0GeAttKeWP5RE07sJ5714Sm7GdNaIYpdI7I4YwsDeIKzHATmAnBj4Es0PZZ6Srjy011kOvGh4ikQ08Fn46nl8l1KVFI=';")
+1398637672 INFO		Crypto	sign()
+1398637672 INFO		Crypto	sign()
+1398637672 VERBOSE	DB	getSignatory(...)
+1398637672 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398637672 INFO		Crypto	verifySig()
+1398637672 INFO		Crypto	verifySig() - TRUE
+1398637672 VERBOSE	DB	getName(...)
+1398637672 VERBOSE	DB	query("SELECT username FROM tUser WHERE key = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCzyHoVnv/z0LxLo22K2reAUFInIKicecWwYhDtRfreYVI97YMYBukeZRQOLkS/xPj+hRZVjYw0MkkXRvk1pT4SWcRKGroQNoroJux7G4CmSGhQreHNvTveV1n16vKVFcrQyE+9Z3tMfdXEscBdiwTAgOpY0MKGUz9LSLbhjped+QIDAQAB';")
+1398637672 VERBOSE	DB	isLiked(...)
+1398637672 VERBOSE	DB	query("SELECT * FROM tLike WHERE parent = 'aRdMGItIxv7uFhajIDLBhuv9Zx/JC7D8jDCTPNIskGmA1n+tKTUiKFZRO9bDtEObeyozyhEbSeJf2pJr0GeAttKeWP5RE07sJ5714Sm7GdNaIYpdI7I4YwsDeIKzHATmAnBj4Es0PZZ6Srjy011kOvGh4ikQ08Fn46nl8l1KVFI=';")
+1398637673 VERBOSE	TnImpl	getComments(...)
+1398637673 VERBOSE	DB	getComments(...)
+1398637673 VERBOSE	DB	query("SELECT * FROM tComment WHERE parent = 'aRdMGItIxv7uFhajIDLBhuv9Zx/JC7D8jDCTPNIskGmA1n+tKTUiKFZRO9bDtEObeyozyhEbSeJf2pJr0GeAttKeWP5RE07sJ5714Sm7GdNaIYpdI7I4YwsDeIKzHATmAnBj4Es0PZZ6Srjy011kOvGh4ikQ08Fn46nl8l1KVFI=';")
+1398637673 INFO		Crypto	sign()
+1398637673 INFO		Crypto	sign()
+1398637673 VERBOSE	DB	getSignatory(...)
+1398637673 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398637673 INFO		Crypto	verifySig()
+1398637673 INFO		Crypto	verifySig() - TRUE
+1398637673 VERBOSE	DB	getName(...)
+1398637673 VERBOSE	DB	query("SELECT username FROM tUser WHERE key = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCzyHoVnv/z0LxLo22K2reAUFInIKicecWwYhDtRfreYVI97YMYBukeZRQOLkS/xPj+hRZVjYw0MkkXRvk1pT4SWcRKGroQNoroJux7G4CmSGhQreHNvTveV1n16vKVFcrQyE+9Z3tMfdXEscBdiwTAgOpY0MKGUz9LSLbhjped+QIDAQAB';")
+1398637673 VERBOSE	DB	isLiked(...)
+1398637673 VERBOSE	DB	query("SELECT * FROM tLike WHERE parent = 'aRdMGItIxv7uFhajIDLBhuv9Zx/JC7D8jDCTPNIskGmA1n+tKTUiKFZRO9bDtEObeyozyhEbSeJf2pJr0GeAttKeWP5RE07sJ5714Sm7GdNaIYpdI7I4YwsDeIKzHATmAnBj4Es0PZZ6Srjy011kOvGh4ikQ08Fn46nl8l1KVFI=';")
+1398637679 INFO		TNImpl	stopTN()
+1398637679 INFO		NetCon	close()
+1398637679 INFO		NetCon	Saved lastRead to disk
+1398637679 INFO		DB	Disconnecting from database
+===== Turtlenet closed  at Sun Apr 27 23:27:59 BST 2014=====

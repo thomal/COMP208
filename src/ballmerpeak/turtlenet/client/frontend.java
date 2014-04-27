@@ -1005,8 +1005,6 @@ public class frontend implements EntryPoint, ClickListener {
                         postControlPanel.add(postedByLabel);
                         postControlPanel.setCellWidth(postedByLabel,"110");
                         
-                        // TODO LUKETODO Fix this so that the anchor is displayed.
-                        // It shows up if you put a static name in.
                         Anchor linkToUser = new Anchor(wallPostDetails[wallCurrentPost].posterUsername);
                         postControlPanel.add(linkToUser);
                         postControlPanel.setCellWidth(linkToUser,"375");
@@ -1217,19 +1215,6 @@ public class frontend implements EntryPoint, ClickListener {
                     
                     likeComment.getElement().getStyle().setProperty("paddingLeft" , "130px");
                     commentsControlPanel.add(likeComment);
-                    
-                    //This has -nothing- to do with the merge
-                    //I think this can be safely deleted, looks like a copy/paste mistake
-                    /*likeComment.addClickHandler(new ClickHandler() {////////////////////////////////////////////////////////////////
-                        public void onClick(ClickEvent event) {///////////////////////////////////////////////////////////////////////
-                            // TODO LUKETODO Call a method that 'Likes' a comment when////////////////////////////////////////////////
-                            // given the ID of that comment.//////////////////////////////////////////////////////////////////////////
-                            // Give it commentID//////////////////////////////////////////////////////////////////////////////////////
-                            wall(wallKey);////////////////////////////////////////////////////////////////////////////////////////////
-                            // TODO LOUISTODO Make the refreshed comments page move///////////////////////////////////////////////////
-                            // to the place we just added our new comment.////////////////////////////////////////////////////////////
-                        }
-                    }); */
                 }
             }
         });
