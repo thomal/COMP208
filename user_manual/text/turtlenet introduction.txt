@@ -12,4 +12,5 @@ aims
 
 target audience
 - businesses
+- government bodies? 
 - those who are concerned regarding the security of their data
