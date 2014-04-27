@@ -78,10 +78,13 @@ public class Database {
     
     public void execute (String query) throws java.sql.SQLException {
         try {
+            /*
             if (query.indexOf('(') != -1)
                 Logger.write("VERBOSE", "DB", "execute(\"" + query.substring(0,query.indexOf('(')) + "...\")");
             else
                 Logger.write("VERBOSE", "DB", "execute(\"" + query.substring(0,20) + "...\")");
+            */
+            Logger.write("VERBOSE", "DB", "execute(\"" + query + "\")");
         
             Statement statement = dbConnection.createStatement();
             statement.setQueryTimeout(30);
@@ -144,12 +147,12 @@ public class Database {
         Logger.write("VERBOSE", "DB", "getWallPost(...)");
         Vector<Message> posts = new Vector<Message>();
         try {
-            String sqlStatement  = DBStrings.getWallPostSigs.replace("__KEY__", Crypto.encodeKey(key) );
+            String sqlStatement = DBStrings.getWallPostSigs.replace("__KEY__", Crypto.encodeKey(key) );
             ResultSet results = query(sqlStatement);
         
-            while (results.next() ) {
+            while (results.next()) {
                 Vector<String> visibleTo = new Vector<String>();
-                ResultSet currentPost = query(DBStrings.getPost.replace("__SIG__", Integer.toString(results.getInt("sig") ) ) );
+                ResultSet currentPost = query(DBStrings.getPost.replace("__SIG__", results.getString("sig")));
                 ResultSet currentPostVisibleTo = query(DBStrings.getVisibleTo.replace("__SIG__", Integer.toString(results.getInt("sig"))));
                 while(currentPostVisibleTo.next())
                     visibleTo.add(currentPostVisibleTo.getString("key") );

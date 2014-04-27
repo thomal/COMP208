@@ -59,7 +59,7 @@ public class MessageFactoryImpl {
         for (int i = 0; i < visibleTo.length; i++)
             content += (":" + visibleTo[i]);
         content += (":" + msg);
-        return newMessage("FPOST", content);
+        return newMessage("POST", content);
     }
     
     public Message newCMNT(String itemSig, String comment) {

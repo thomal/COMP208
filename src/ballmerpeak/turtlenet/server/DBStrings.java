@@ -16,7 +16,7 @@ class DBStrings {
         
         "CREATE TABLE tConvoMessages ("+
         "pk         INTEGER PRIMARY KEY AUTOINCREMENT,"+
-        "convoID    INT,"+
+        "convoID    TEXT,"+
         "sendersKey TEXT,"+
         "msgText    TEXT,"+
         "time       TEXT"+
@@ -32,7 +32,7 @@ class DBStrings {
         
         "CREATE TABLE tPostVisibleTo ("+
         "pk      INTEGER PRIMARY KEY AUTOINCREMENT,"+
-        "postSig INT,"+
+        "postSig TEXT,"+
         "key     TEXT"+
         ");",
         
@@ -95,9 +95,9 @@ class DBStrings {
     };
     
     public static final String getPDATA         = "SELECT __FIELD__ FROM tUser WHERE key = '__KEY__';";
-    public static final String getWallPostSigs  = "SELECT sig FROM tPost WHERE reciverKey = '__KEY__';";
-    public static final String getPost          = "SELECT time, sig, msgText, recieversKey FROM tPost WHERE sig = '__SIG__';";
-    public static final String getVisibleTo     = "SELECT key FROM tPostVisibleTo WHERE sig = '__SIG__';";
+    public static final String getWallPostSigs  = "SELECT sig FROM tPost WHERE recieverKey = '__KEY__';";
+    public static final String getPost          = "SELECT time, sig, msgText, recieverKey FROM tPost WHERE sig = '__SIG__';";
+    public static final String getVisibleTo     = "SELECT key FROM tPostVisibleTo WHERE postSig = '__SIG__';";
     public static final String getConversation  = "SELECT sendersKey, msgText, time FROM tConvoMessages WHERE convoID = '__SIG__';";
     public static final String getConversations = "SELECT * FROM tConvos;";
     public static final String getConversationMembers  = "SELECT key FROM tConvoKeys WHERE convoID = '__SIG__';";
@@ -112,7 +112,6 @@ class DBStrings {
     public static final String getLike          = "SELECT * FROM tLike WHERE parent = '__SIG__';";
     public static final String getComments      = "SELECT * FROM tComment WHERE parent = '__SIG__';";
     
-    //add post without it being visible to anyone
     public static final String addPost           = "INSERT INTO tPost (sig, msgText, time, recieverKey, sendersKey)" +
                                                        "VALUES ('__SIG__', '__msgText__', '__time__', '__recieverKey__', '__sendersKey__');";
     public static final String addPostVisibility = "INSERT INTO tPostVisibleTo (postSig, key)"+
