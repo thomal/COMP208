@@ -1289,37 +1289,43 @@ public class frontend implements EntryPoint, ClickListener {
                 send.addClickHandler(new ClickHandler() {
                     String[] createChatReturn;
                     public void onClick(ClickEvent event) {
-                        memberKeys = new String[currentFriends.getItemCount()];
+                        memberKeys = new String[currentFriends.getItemCount()+1];
                         for (int i = 0; i < currentFriends.getItemCount(); i++) {
                             memberKeys[i] = currentFriends.getValue(i);
                         }
                         
-                        // TODO LUKETODO "users key" should be replaced with a 
-                        // call to a method that returns the current users key.
-                        memberKeys[currentFriends.getItemCount()] = "users key";
-                        turtlenet.createCHAT(memberKeys, new AsyncCallback<String[]>() {
-                            int i;
+                        turtlenet.getMyKey(new AsyncCallback<String>() {
+                            
                             public void onFailure(Throwable caught) {
                                 //TODO Error
                             }
-                            public void onSuccess(String[] _ret) {
-                                createChatReturn = _ret;
-                                if (createChatReturn[0].equals("success")) {
-                                    turtlenet.addMessageToCHAT(newConvoInput.getText(), createChatReturn[1], new AsyncCallback<String>() {
-                                        public void onFailure(Throwable caught) {
+                            public void onSuccess(String userkey) {
+                                memberKeys[memberKeys.length-1] = userkey;
+                                turtlenet.createCHAT(memberKeys, new AsyncCallback<String[]>() {
+                                    int i;
+                                    public void onFailure(Throwable caught) {
+                                        //TODO Error
+                                    }
+                                    public void onSuccess(String[] _ret) {
+                                        createChatReturn = _ret;
+                                        if (createChatReturn[0].equals("success")) {
+                                            turtlenet.addMessageToCHAT(newConvoInput.getText(), createChatReturn[1], new AsyncCallback<String>() {
+                                                public void onFailure(Throwable caught) {
+                                                    //TODO Error
+                                                }
+                                                public void onSuccess(String success) {
+                                                    if (success.equals("success")) {
+                                                        conversation(createChatReturn[1]);
+                                                    } else {
+                                                        //TODO Error
+                                                    }
+                                                }
+                                            });
+                                        } else {
                                             //TODO Error
                                         }
-                                        public void onSuccess(String success) {
-                                            if (success.equals("success")) {
-                                                conversation(createChatReturn[1]);
-                                            } else {
-                                                //TODO Error
-                                            }
-                                        }
-                                    });
-                                } else {
-                                    //TODO Error
-                                }
+                                    }
+                                });
                             }
                         });
                     }
