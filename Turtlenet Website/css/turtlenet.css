@@ -1,4 +1,13 @@
 @charset "utf-8";
 
-/* ------- Main ----------------------------------------------------------------------------------------------------------- */
-.main {  }
+/*---------------------------------------------------------------------------------------*/
+
+.main { padding: 5px; }
+
+.images-left { float: left; }
+
+.image { width: 420px; height: 236px; overflow: hidden; border-radius: 6px; box-shadow: 2px 2px 8px #888888; }
+
+.image-space { padding-bottom: 20px; }
+
+.text-right { float: right; width: 540px; text-align: justify; }
