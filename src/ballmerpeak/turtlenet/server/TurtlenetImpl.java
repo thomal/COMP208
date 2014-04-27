@@ -35,52 +35,64 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
     
     //Profile Data
     public String getMyUsername() {
+        Logger.write("VERBOSE", "TnImpl", "getMyUsername()");
         return c.db.getName(Crypto.getPublicKey());
     }
     
     public String getUsername(String key) {
+        Logger.write("VERBOSE", "TnImpl", "getUsername(" + key + ")");
         String name = c.db.getName(Crypto.decodeKey(key));
         Logger.write("VERBOSE", "TNImpl","getUsername returning \"" + name + "\"");
         return name;
     }
     
     public String getMyPDATA(String field) {
+        Logger.write("VERBOSE", "TnImpl", "getMyPDATA(" + field + ")");
         return getPDATA(field, Crypto.encodeKey(Crypto.getPublicKey()));
     }
     
     public String getPDATA(String field, String key) {
+        Logger.write("VERBOSE", "TnImpl", "getPDATA("+ field + ", ...)");
         return c.db.getPDATA(field, Crypto.decodeKey(key));
     }
     
     public String getMyKey() {
+        Logger.write("VERBOSE", "TnImpl", "getMyKey()");
         return Crypto.encodeKey(Crypto.getPublicKey());
     }
     
     public String getKey(String username) {
+        Logger.write("VERBOSE", "TnImpl", "getKey(" + username + ")");
         return Crypto.encodeKey(c.db.getKey(username));
     }
     
     public String[][] getCategories () {
+        Logger.write("VERBOSE", "TnImpl", "getCategories()");
         return c.db.getCategories();
     }
     
     public String[][] getPeople () {
+        Logger.write("VERBOSE", "TnImpl", "getPeople()");
         return getCategoryMembers("all");
     }
     
     public Conversation[] getConversations () {
+        Logger.write("VERBOSE", "TnImpl", "getConversations()");
         return c.db.getConversations();
     }
     
     public Conversation getConversation (String sig) {
+        Logger.write("VERBOSE", "TnImpl", "getConversation(...)");
         return c.db.getConversation(sig);
     }
     
     public String[][] getConversationMessages (String sig) {
+        Logger.write("VERBOSE", "TnImpl", "getConversationMessages(...)");
         return c.db.getConversationMessages(sig);
     }
     
     public String[][] getCategoryMembers (String category) {
+        Logger.write("VERBOSE", "TnImpl", "getCategoryMembers(" + category + ")");
         PublicKey[] keys = c.db.getCategoryMembers(category);        
         String[][] pairs = new String[keys.length][2];
         
@@ -93,6 +105,7 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
     }
     
     public PostDetails[] getWallPosts (String key) {
+        Logger.write("VERBOSE", "TnImpl", "getWallPosts(...)");
         Message[] msgs = c.db.getWallPost(Crypto.decodeKey(key));
         PostDetails[] posts = new PostDetails[msgs.length];
         for (int i = 0; i < msgs.length; i++) {
@@ -109,6 +122,7 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
     }
     
     public CommentDetails[] getComments (String parent) {
+        Logger.write("VERBOSE", "TnImpl", "getComments(...)");
         Message[] commentMsgs = c.db.getComments(parent);
         CommentDetails[] details = new CommentDetails[commentMsgs.length];
         
@@ -127,6 +141,7 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
     
     //Profile Data
     public String claimUsername (String uname) {
+        Logger.write("VERBOSE", "TnImpl", "claimUsername(" + uname + ")");
         if(c.connection.claimName(uname))
             return "success";
         else
@@ -134,12 +149,14 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
     }
     
     public String updatePDATA (String field, String value) {
+        Logger.write("VERBOSE", "TnImpl", "updatePDATA(" + field + ", " + value + ")");
         c.connection.postMessage(new MessageFactoryImpl().newPDATA(field, value),
                                  Crypto.getPublicKey());
         return "success";
     }
     
     public String updatePDATApermission (String category, boolean value) {
+        Logger.write("VERBOSE", "TnImpl", "updatePDATApermission(" + category + ", " + value + ")");
         c.db.updatePDATApermission(category, value);
         return "success";
     }
@@ -182,27 +199,32 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
     }
     
     public String like (String sig) {
+        Logger.write("VERBOSE", "TnImpl", "like(...)");
         PublicKey[] visibleTo = c.db.getVisibilityOfParent(sig);
         Message message = new MessageFactoryImpl().newLIKE(sig);
         
         for (int i = 0; i < visibleTo.length; i++)
             c.connection.postMessage(message, visibleTo[i]);
+        c.connection.postMessage(message, Crypto.getPublicKey());
             
         return "success";
     }
     
     public String unlike (String sig) {
+        Logger.write("VERBOSE", "TnImpl", "unlike(...)");
         PublicKey[] visibleTo = c.db.getVisibilityOfParent(sig);
         Message message = new MessageFactoryImpl().newUNLIKE(sig);
         
         for (int i = 0; i < visibleTo.length; i++)
             c.connection.postMessage(message, visibleTo[i]);
+        c.connection.postMessage(message, Crypto.getPublicKey());
             
         return "success";
     }
     
     //Friends
     public String addCategory (String name) {
+        Logger.write("VERBOSE", "TnImpl", "addCategory(" + name + ")");
         if (c.db.addCategory(name, false))
             return "success";
         else
@@ -210,7 +232,7 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
     }
     
     public String addToCategory (String group, String key) {
-        Logger.write("INFO", "TnImpl", "addToCategoru(" + group + "," + key + ")");
+        Logger.write("VERBOSE", "TnImpl", "addToCategory(" + group + ",...)");
         
         boolean alreadyMember = false;
         PublicKey[] members = c.db.getCategoryMembers(group);
@@ -230,6 +252,7 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
     }
     
     public String addKey (String key) {
+        Logger.write("VERBOSE", "TnImpl", "addKey(...)");
         if (c.db.addKey(Crypto.decodeKey(key)))
             return "success";
         else
@@ -237,6 +260,7 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
     }
     
     public String addPost (String wallKey, String categoryVisibleTo, String msg) {
+        Logger.write("VERBOSE", "TnImpl", "addPost(..., " + msg + ")");
         PublicKey[] visibleTo = c.db.getCategoryMembers(categoryVisibleTo);
         String[] visibleToStr = new String[visibleTo.length];
         
@@ -252,11 +276,13 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
     }
     
     public String addComment (String parent, String text) {
+        Logger.write("VERBOSE", "TnImpl", "addComment(..., " + text + ")");
         PublicKey[] visibleTo = c.db.getVisibilityOfParent(parent);
         Message message = new MessageFactoryImpl().newCMNT(parent, text);
         
         for (int i = 0; i < visibleTo.length; i++)
             c.connection.postMessage(message, visibleTo[i]);
+        c.connection.postMessage(message, Crypto.getPublicKey());
             
         return "success";
     }
