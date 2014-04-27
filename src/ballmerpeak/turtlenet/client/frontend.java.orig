@@ -628,21 +628,32 @@ public class frontend implements EntryPoint, ClickListener {
                      }
                  });
             }
-        });  
+        });
         
-        Button revoke = new Button("Revoke Key");
-        myDetailsPanel.setWidget(5, 1, revoke);
-        revoke.getElement().getStyle().setProperty("color", "#FF0000");
-        revoke.setWidth("310px");
+        Label keyRevokeLabel = new Label("Date to revoke key:");
+        myDetailsPanel.setWidget(5, 0, keyRevokeLabel);
+        
+        final TextBox editRevokeDate = new TextBox();
+        editRevokeDate.setWidth("300px");
+        
+        // TODO LUKETODO "01/01/1970" should be replaced with a call to a method
+        // that returns the date the users key is set to be revoked on.
+        editRevokeDate.setText("01/01/1970");
+        myDetailsPanel.setWidget(5, 1, editRevokeDate);        
+        
+        Button saveRevokeDate = new Button("Save date");
+        myDetailsPanel.setWidget(5, 2, saveRevokeDate);
         
         final Label editkeyRevokeLabel = new Label();
         myDetailsPanel.setWidget(5, 3, editkeyRevokeLabel);
         
-        revoke.addClickHandler(new ClickHandler() {
+        saveEmail.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                // TODO LUKETODO Call a method that revokes the users key.
-                // Success =   editEmailLabel.setText("Key revoked"); login();
-                // Failure =   editEmailLabel.setText("Failed to revoke key");
+                // TODO LUKETODO Call a method that saves the date the user
+                // has chosen to revoke their key on.
+                // Use editRevokeDate.getText()  to obtain it.
+                //Success =   editEmailLabel.setText("Date saved");
+                //Failure =   editEmailLabel.setText("Failed to save date");
             }
         });
         
@@ -658,15 +669,11 @@ public class frontend implements EntryPoint, ClickListener {
         
         // Add panel to contain widgets
         final FlexTable myDetailsPermissionsPanel = new FlexTable();
-        RootPanel.get().add(myDetailsPermissionsPanel); 
-        
-        Label keyRevokeLabel = new Label("If you revoke your key your account will be deleted!");
-        keyRevokeLabel.getElement().getStyle().setProperty("color", "#FF0000");
-        myDetailsPermissionsPanel.setWidget(0, 0, keyRevokeLabel);        
+        RootPanel.get().add(myDetailsPermissionsPanel);     
 
-        Label myDetailsPermissionsLabel = new Label("Select which groups can view your details:");
+        Label myDetailsPermissionsLabel = new Label("Select which groups can view your details");
         myDetailsPermissionsLabel.getElement().getStyle().setFontWeight(FontWeight.BOLD);
-        myDetailsPermissionsPanel.setWidget(1, 0, myDetailsPermissionsLabel); 
+        myDetailsPermissionsPanel.setWidget(0, 0, myDetailsPermissionsLabel); 
         
         turtlenet.getCategories(new AsyncCallback<String[][]>() {
             String[][] result;
@@ -954,12 +961,19 @@ public class frontend implements EntryPoint, ClickListener {
                         //postControlPanel.setSpacing(5);
                         postPanel.add(postControlPanel);
                         
+<<<<<<< HEAD
                         //Name
                         Label postedByLabel = new Label("Posted by: ");
                         postControlPanel.add(postedByLabel);
                         postControlPanel.setCellWidth(postedByLabel,"110");
                         
                         Anchor linkToUser = new Anchor(wallPostDetails[wallCurrentPost].posterUsername);
+=======
+                        // TODO LUKETODO Fix this so that the anchor is displayed.
+                        // It shows up if you put a static name in.
+                        //Anchor linkToUser = new Anchor(wallPostDetails[wallCurrentPost].posterUsername);
+                        Anchor linkToUser = new Anchor("Temporary Static String");
+>>>>>>> a6277c5289ab183131db6ad3f20cd6a5f51b7bb7
                         postControlPanel.add(linkToUser);
                         postControlPanel.setCellWidth(linkToUser,"300");
                         linkToUser.addClickHandler(new ClickHandler() {
@@ -1282,43 +1296,37 @@ public class frontend implements EntryPoint, ClickListener {
                 send.addClickHandler(new ClickHandler() {
                     String[] createChatReturn;
                     public void onClick(ClickEvent event) {
-                        memberKeys = new String[currentFriends.getItemCount()+1];
+                        memberKeys = new String[currentFriends.getItemCount()];
                         for (int i = 0; i < currentFriends.getItemCount(); i++) {
                             memberKeys[i] = currentFriends.getValue(i);
                         }
                         
-                        turtlenet.getMyKey(new AsyncCallback<String>() {
-                            
+                        // TODO LUKETODO "users key" should be replaced with a 
+                        // call to a method that returns the current users key.
+                        memberKeys[currentFriends.getItemCount()] = "users key";
+                        turtlenet.createCHAT(memberKeys, new AsyncCallback<String[]>() {
+                            int i;
                             public void onFailure(Throwable caught) {
                                 //TODO Error
                             }
-                            public void onSuccess(String userkey) {
-                                memberKeys[memberKeys.length-1] = userkey;
-                                turtlenet.createCHAT(memberKeys, new AsyncCallback<String[]>() {
-                                    int i;
-                                    public void onFailure(Throwable caught) {
-                                        //TODO Error
-                                    }
-                                    public void onSuccess(String[] _ret) {
-                                        createChatReturn = _ret;
-                                        if (createChatReturn[0].equals("success")) {
-                                            turtlenet.addMessageToCHAT(newConvoInput.getText(), createChatReturn[1], new AsyncCallback<String>() {
-                                                public void onFailure(Throwable caught) {
-                                                    //TODO Error
-                                                }
-                                                public void onSuccess(String success) {
-                                                    if (success.equals("success")) {
-                                                        conversation(createChatReturn[1]);
-                                                    } else {
-                                                        //TODO Error
-                                                    }
-                                                }
-                                            });
-                                        } else {
+                            public void onSuccess(String[] _ret) {
+                                createChatReturn = _ret;
+                                if (createChatReturn[0].equals("success")) {
+                                    turtlenet.addMessageToCHAT(newConvoInput.getText(), createChatReturn[1], new AsyncCallback<String>() {
+                                        public void onFailure(Throwable caught) {
                                             //TODO Error
                                         }
-                                    }
-                                });
+                                        public void onSuccess(String success) {
+                                            if (success.equals("success")) {
+                                                conversation(createChatReturn[1]);
+                                            } else {
+                                                //TODO Error
+                                            }
+                                        }
+                                    });
+                                } else {
+                                    //TODO Error
+                                }
                             }
                         });
                     }

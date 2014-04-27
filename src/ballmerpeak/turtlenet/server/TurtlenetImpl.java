@@ -105,7 +105,7 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
     }
     
     public PostDetails[] getWallPosts (String key) {
-        Logger.write("VERBOSE", "TnImpl", "getWallPosts(...)");
+        Logger.write("VERBOSE", "TnImpl", "getWallPosts(...) ENTERING");
         Message[] msgs = c.db.getWallPost(Crypto.decodeKey(key));
         PostDetails[] posts = new PostDetails[msgs.length];
         for (int i = 0; i < msgs.length; i++) {
@@ -113,11 +113,12 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
             boolean liked = c.db.isLiked(sig);
             int commentCount = c.db.getComments(sig).length;
             Long time = msgs[i].getTimestamp();
-            String username = c.db.getName(c.db.getSignatory(msgs[i]));
+            String username = c.db.getName(Crypto.decodeKey(c.db.getWallPostSender(msgs[i].getSig())));
             String text = msgs[i].POSTgetText();
             
             posts[i] = new PostDetails(sig, liked, commentCount, time, username, text, Crypto.encodeKey(c.db.getSignatory(msgs[i])));
         }
+        Logger.write("VERBOSE", "TnImpl", "getWallPosts(...) RETURNING\n\n");
         return posts;
     }
     

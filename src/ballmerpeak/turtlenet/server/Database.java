@@ -153,7 +153,7 @@ public class Database {
             while (results.next()) {
                 Vector<String> visibleTo = new Vector<String>();
                 ResultSet currentPost = query(DBStrings.getPost.replace("__SIG__", results.getString("sig")));
-                ResultSet currentPostVisibleTo = query(DBStrings.getVisibleTo.replace("__SIG__", Integer.toString(results.getInt("sig"))));
+                ResultSet currentPostVisibleTo = query(DBStrings.getVisibleTo.replace("__SIG__", results.getString("sig")));
                 while(currentPostVisibleTo.next())
                     visibleTo.add(currentPostVisibleTo.getString("key") );
 
@@ -170,6 +170,20 @@ public class Database {
         }
         
         return posts.toArray(new Message[0]);
+    }
+    
+    public String getWallPostSender (String sig) {
+        Logger.write("VERBOSE", "DB", "getWallPostSender(...)");
+        try {
+            ResultSet sendersKey = query(DBStrings.getPostSender.replace("__SIG__", sig));
+            if (sendersKey.next())
+                return sendersKey.getString("sendersKey");
+            else
+                return "<POST DOESN'T EXIST>";
+        } catch (java.sql.SQLException e) {
+            Logger.write("ERROR", "DB", "SQLException: " + e);
+            return "ERROR";
+        }
     }
     
     public Message[] getComments (String sig) {
