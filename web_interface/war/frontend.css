@@ -134,11 +134,11 @@ h1 {
 }
 
 .gwt-conversation {
-	width: 900px;
+	width: 950px;
 	margin: 0 auto;
 	background: #E0EEEE;
 	color: #666666;
-	padding: 0 0 0 100px;
+	padding: 0 0 0 50px;
 }
 
 .gwt-my-details {

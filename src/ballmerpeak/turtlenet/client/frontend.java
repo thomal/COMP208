@@ -417,7 +417,7 @@ public class frontend implements EntryPoint, ClickListener {
             }
         });
         
-        conversationListPanel.setWidget((conversationListPanel.getRowCount() + 1), 0, newConversation);
+        conversationListPanel.setWidget((conversationListPanel.getRowCount() + 2), 0, newConversation);
         
         // Add style name for CSS
         conversationListPanel.addStyleName("gwt-conversation-list");
@@ -1347,7 +1347,9 @@ public class frontend implements EntryPoint, ClickListener {
         HorizontalPanel conversationParticipantsPanel = new HorizontalPanel();
         conversationPanel.add(conversationParticipantsPanel);
         convoPanelSetup_convosig = conversationID;
-        conversationParticipantsPanel.add(new Label("Participants: "));
+        Label participantsLabel = new Label("Participants: ");
+        participantsLabel.getElement().getStyle().setProperty("marginRight" , "20px");
+        conversationParticipantsPanel.add(participantsLabel);
         
         final ListBox currentFriends = new ListBox();
         currentFriends.setVisibleItemCount(1);
@@ -1380,6 +1382,7 @@ public class frontend implements EntryPoint, ClickListener {
                             HorizontalPanel conversationContentsPanel = new HorizontalPanel();
                             conversationPanel.add(conversationContentsPanel);
                             Label postedBy = new Label(messages[i][0]);
+                            postedBy.getElement().getStyle().setProperty("marginRight" , "110px");
                             postedBy.getElement().getStyle().setFontWeight(FontWeight.BOLD);
                             conversationContentsPanel.add(postedBy);
                             Label messageContents = new Label(messages[i][2]);
