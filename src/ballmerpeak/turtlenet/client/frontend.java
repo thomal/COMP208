@@ -628,32 +628,21 @@ public class frontend implements EntryPoint, ClickListener {
                      }
                  });
             }
-        });
+        });  
         
-        Label keyRevokeLabel = new Label("Date to revoke key:");
-        myDetailsPanel.setWidget(5, 0, keyRevokeLabel);
-        
-        final TextBox editRevokeDate = new TextBox();
-        editRevokeDate.setWidth("300px");
-        
-        // TODO LUKETODO "01/01/1970" should be replaced with a call to a method
-        // that returns the date the users key is set to be revoked on.
-        editRevokeDate.setText("01/01/1970");
-        myDetailsPanel.setWidget(5, 1, editRevokeDate);        
-        
-        Button saveRevokeDate = new Button("Save date");
-        myDetailsPanel.setWidget(5, 2, saveRevokeDate);
+        Button revoke = new Button("Revoke Key");
+        myDetailsPanel.setWidget(5, 1, revoke);
+        revoke.getElement().getStyle().setProperty("color", "#FF0000");
+        revoke.setWidth("310px");
         
         final Label editkeyRevokeLabel = new Label();
         myDetailsPanel.setWidget(5, 3, editkeyRevokeLabel);
         
-        saveEmail.addClickHandler(new ClickHandler() {
+        revoke.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                // TODO LUKETODO Call a method that saves the date the user
-                // has chosen to revoke their key on.
-                // Use editRevokeDate.getText()  to obtain it.
-                //Success =   editEmailLabel.setText("Date saved");
-                //Failure =   editEmailLabel.setText("Failed to save date");
+                // TODO LUKETODO Call a method that revokes the users key.
+                // Success =   editEmailLabel.setText("Key revoked"); login();
+                // Failure =   editEmailLabel.setText("Failed to revoke key");
             }
         });
         
@@ -669,11 +658,15 @@ public class frontend implements EntryPoint, ClickListener {
         
         // Add panel to contain widgets
         final FlexTable myDetailsPermissionsPanel = new FlexTable();
-        RootPanel.get().add(myDetailsPermissionsPanel);     
+        RootPanel.get().add(myDetailsPermissionsPanel); 
+        
+        Label keyRevokeLabel = new Label("If you revoke your key your account will be deleted!");
+        keyRevokeLabel.getElement().getStyle().setProperty("color", "#FF0000");
+        myDetailsPermissionsPanel.setWidget(0, 0, keyRevokeLabel);        
 
-        Label myDetailsPermissionsLabel = new Label("Select which groups can view your details");
+        Label myDetailsPermissionsLabel = new Label("Select which groups can view your details:");
         myDetailsPermissionsLabel.getElement().getStyle().setFontWeight(FontWeight.BOLD);
-        myDetailsPermissionsPanel.setWidget(0, 0, myDetailsPermissionsLabel); 
+        myDetailsPermissionsPanel.setWidget(1, 0, myDetailsPermissionsLabel); 
         
         turtlenet.getCategories(new AsyncCallback<String[][]>() {
             String[][] result;
