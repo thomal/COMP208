@@ -747,16 +747,20 @@ public class frontend implements EntryPoint, ClickListener {
         myDetailsPermissionsPanel.addStyleName("gwt-my-details-permissions");
     }
     
-    private void friendsDetails(String friendsDetailsKey) {
+    private void friendsDetails(final String friendsDetailsKey, FlowPanel wallPanel, Button userDetails) {
+        userDetails.addClickHandler(new ClickHandler() {
+            public void onClick(ClickEvent event) {
+                wall(friendsDetailsKey);
+            }
+        });
+    
         location = "friendsDetails";
         refreshID = "";
     
-        // Setup basic page
-        RootPanel.get().clear();
-        navigation();
         // Create main panel
         final FlexTable friendsDetailsPanel = new FlexTable();
-        RootPanel.get().add(friendsDetailsPanel);    
+        wallPanel.insert(friendsDetailsPanel, 1);
+        friendsDetailsPanel.clear();    
     
         // Create widgets
         Label friendsDetailsUsernameTitle = new Label("Username:");
@@ -827,8 +831,22 @@ public class frontend implements EntryPoint, ClickListener {
             }
         });
 
-        Label friendsDetailsKeyLabel = new Label(friendsDetailsKey);
-        friendsDetailsPanel.setWidget(5, 1, friendsDetailsKeyLabel);
+        TextBox friendsDetailsKeyBox = new TextBox();
+        friendsDetailsKeyBox.setReadOnly(true);
+        friendsDetailsKeyBox.setWidth("800px");
+        friendsDetailsKeyBox.setText(friendsDetailsKey);
+        friendsDetailsPanel.setWidget(5, 1, friendsDetailsKeyBox);
+        
+        // TODO LUKETODO "my key" should be replaced with the users key
+        if(friendsDetailsKey.equals("my key")) {
+            Button edit = new Button("Edit my details");
+            friendsDetailsPanel.setWidget(6, 1, edit);
+            edit.addClickHandler(new ClickHandler () {
+                public void onClick(ClickEvent event) {
+                    myDetails();
+                }
+            });
+        }
 
         // Add style name for CSS
         friendsDetailsPanel.addStyleName("gwt-friends-details");
@@ -858,14 +876,15 @@ public class frontend implements EntryPoint, ClickListener {
                 //TODO error
             }
             public void onSuccess(String result) {
+            
                 // TODO LOUISTODO Remove the ! before key
-                if(key.equals(result)) {
-                    Anchor myDetails = new Anchor("My details");
+                if(!key.equals(result)) {
+                    final Button myDetails = new Button("About Me");
                     wallControlPanel.add(myDetails);
                     wallControlPanel.setCellWidth(myDetails,"200");
                     myDetails.addClickHandler(new ClickHandler() {
                         public void onClick(ClickEvent event) {
-                            myDetails();
+                            friendsDetails(key, wallPanel, myDetails);
                         }
                     });
                 } else {
@@ -874,12 +893,12 @@ public class frontend implements EntryPoint, ClickListener {
                             //TODO error
                         }
                         public void onSuccess(String result) {
-                            Button userDetails = new Button("About " + result);
+                            final Button userDetails = new Button("About " + result);
                             wallControlPanel.add(userDetails);
-                            wallControlPanel.setCellWidth(userDetails,"425");
+                            wallControlPanel.setCellWidth(userDetails,"200");
                             userDetails.addClickHandler(new ClickHandler() {
                                 public void onClick(ClickEvent event) {
-                                    friendsDetails(key);
+                                    friendsDetails(key, wallPanel, userDetails);
                                 }
                             });
                         }
