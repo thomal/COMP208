@@ -877,57 +877,6 @@ public class frontend implements EntryPoint, ClickListener {
                 public void onFailure(Throwable caught) {
                     //TODO error
                 }
-            }
-        });
-        
-        Button createPost = new Button("Write a post");
-        wallControlPanel.add(createPost);
-        wallControlPanel.setCellWidth(createPost,"200");
-        
-        final Label postStop = new Label();
-        wallControlPanel.add(postStop);
-        
-        final FlowPanel createPostPanel = new FlowPanel();
-        postText = new TextArea();
-        postText.setCharacterWidth(80);
-        postText.setVisibleLines(10);
-        createPostPanel.add(postText);
-        
-        HorizontalPanel createPostControlPanel = new HorizontalPanel();
-        createPostPanel.add(createPostControlPanel);
-        
-        final ListBox chooseGroup = new ListBox();
-        chooseGroup.setVisibleItemCount(1);
-        chooseGroup.setWidth("150px");
-        chooseGroup.addItem("All");
-        createPostControlPanel.add(chooseGroup);
-        createPostControlPanel.setCellWidth(chooseGroup,"430"); 
-        
-        
-        turtlenet.getCategories(new AsyncCallback<String[][]>() {
-            public void onFailure(Throwable caught) {
-                //TODO error
-            }
-            public void onSuccess(String result[][]) {
-                for (int i = 0; i < result.length; i++)
-                    chooseGroup.addItem(result[i][0]);
-            }
-        });
-        
-        Button cancel = new Button("Cancel");
-        createPostControlPanel.add(cancel);
-        cancel.addClickHandler(new ClickHandler() {
-            public void onClick(ClickEvent event) {                        
-                wall(key);
-            }
-        });   
-        
-        Button send = new Button("Send");
-        send.setWidth("150px");
-        createPostControlPanel.add(send);        
-        send.addClickHandler(new ClickHandler() {
-            public void onClick(ClickEvent event) {
-                turtlenet.addPost(key, chooseGroup.getItemText(chooseGroup.getSelectedIndex()), postText.getText(), new AsyncCallback<String>() {
                 public void onSuccess(String result) {
                     if(key.equals(result)) {
                         final Button myDetails = new Button("About Me");
@@ -957,7 +906,69 @@ public class frontend implements EntryPoint, ClickListener {
                     }
                 }
             });
-                
+        
+            Button createPost = new Button("Write a post");
+            wallControlPanel.add(createPost);
+            wallControlPanel.setCellWidth(createPost,"200");
+            
+            final Label postStop = new Label();
+            wallControlPanel.add(postStop);
+            
+            final FlowPanel createPostPanel = new FlowPanel();
+            postText = new TextArea();
+            postText.setCharacterWidth(80);
+            postText.setVisibleLines(10);
+            createPostPanel.add(postText);
+            
+            HorizontalPanel createPostControlPanel = new HorizontalPanel();
+            createPostPanel.add(createPostControlPanel);
+            
+            final ListBox chooseGroup = new ListBox();
+            chooseGroup.setVisibleItemCount(1);
+            chooseGroup.setWidth("150px");
+            chooseGroup.addItem("All");
+            createPostControlPanel.add(chooseGroup);
+            createPostControlPanel.setCellWidth(chooseGroup,"430"); 
+            
+            
+            turtlenet.getCategories(new AsyncCallback<String[][]>() {
+                public void onFailure(Throwable caught) {
+                    //TODO error
+                }
+                public void onSuccess(String result[][]) {
+                    for (int i = 0; i < result.length; i++)
+                        chooseGroup.addItem(result[i][0]);
+                }
+            });
+            
+            Button cancel = new Button("Cancel");
+            createPostControlPanel.add(cancel);
+            cancel.addClickHandler(new ClickHandler() {
+                public void onClick(ClickEvent event) {                        
+                    wall(key, false);
+                }
+            });   
+            
+            Button send = new Button("Send");
+            send.setWidth("150px");
+            createPostControlPanel.add(send);        
+            send.addClickHandler(new ClickHandler() {
+                public void onClick(ClickEvent event) {
+                    turtlenet.addPost(key, chooseGroup.getItemText(chooseGroup.getSelectedIndex()), postText.getText(), new AsyncCallback<String>() {
+                        public void onFailure(Throwable caught) {
+                            //TODO Error
+                        }
+                        public void onSuccess(String result) {
+                            if (result.equals("success")) {
+                                wall(key, false);
+                            } else {
+                                //TODO Error
+                            }
+                        }
+                    });
+                }
+            });
+            
             createPost.addClickHandler(new ClickHandler() {
                 public void onClick(ClickEvent event) {
                     location = "createPost";
@@ -968,8 +979,6 @@ public class frontend implements EntryPoint, ClickListener {
                 }
             });
         }
-        
-        
         
         turtlenet.getWallPosts(key, new AsyncCallback<PostDetails[]>() {
             public void onFailure(Throwable caught) {
@@ -1090,30 +1099,9 @@ public class frontend implements EntryPoint, ClickListener {
                                 comments(details.sig, key, postPanel, comments); 
                             }
                         }); 
+                    
+                        postContentsFooterPanel.add(likePost);
                     }
-                    
-                    postContentsFooterPanel.add(likePost);
-                    
-                    final Label stop = new Label("");            
-                    postContentsFooterPanel.add(stop);
-                    
-                    //Comments
-                    int commentCount = wallPostDetails[wallCurrentPost].commentCount;
-                    final Anchor comments;
-                    if(commentCount == 0) {
-                        comments = new Anchor("Add a comment");
-                    } else {
-                        comments = new Anchor("Comments(" + Integer.toString(commentCount) + ")");
-                    }
-                    
-                    postContentsFooterPanel.add(comments);
-                    comments.addClickHandler(new ClickHandler() {
-                        public void onClick(ClickEvent event) {
-                            stop.setText("Page auto update paused");
-                            stop.getElement().getStyle().setProperty("color" , "#FF0000");  
-                            comments(details.sig, key, postPanel, comments); 
-                        }
-                    }); 
                 }
             }
         });
@@ -1182,7 +1170,7 @@ public class frontend implements EntryPoint, ClickListener {
                     
                     postedBy.addClickHandler(new ClickHandler() {
                         public void onClick(ClickEvent event) {
-                            wall(details.posterKey);
+                            wall(details.posterKey, false);
                         }
                     });
             
@@ -1198,7 +1186,7 @@ public class frontend implements EntryPoint, ClickListener {
                                     }
                                     public void onSuccess(String _result) {
                                         if (_result.equals("success")) {
-                                            wall(wallKey);
+                                            wall(wallKey, false);
                                         } else {
                                             //TODO Error
                                         }
@@ -1279,7 +1267,7 @@ public class frontend implements EntryPoint, ClickListener {
                     }
                     public void onSuccess(String result) {
                         if (result.equals("success")) {
-                            wall(wallKey);
+                            wall(wallKey, false);
                             // TODO LOUISTODO Make the refreshed comments page move
                             // to the place we just added our new comment.
                         } else {
