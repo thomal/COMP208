@@ -548,7 +548,27 @@ public class Database {
             execute(DBStrings.addRevocation.replace("__sig__", revocation.getSig())
                                            .replace("__time__", Long.toString(revocation.REVOKEgetTime()))
                                            .replace("__creationTime__", Long.toString(revocation.getTimestamp())));
-            //TODO//////////////////////////////Erase revoked content in DB///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            return eraseContentFrom(getSignatory(revocation));
+        } catch (java.sql.SQLException e) {
+            Logger.write("ERROR", "DB", "SQLException: " + e);
+            return false;
+        }
+    }
+    
+    public boolean eraseContentFrom(PublicKey key) {
+        Logger.write("VERBOSE", "DB", "eraseContentFrom(...)");
+        String keyStr = Crypto.encodeKey(key);
+        
+        try {
+            execute(DBStrings.removeMessageAccess.replace("__KEY__", keyStr));
+            execute(DBStrings.removeMessages.replace("__KEY__", keyStr));
+            execute(DBStrings.removePosts.replace("__KEY__", keyStr));
+            execute(DBStrings.removePostVisibility.replace("__KEY__", keyStr));
+            execute(DBStrings.removeUser.replace("__KEY__", keyStr));
+            execute(DBStrings.removeFromCategories.replace("__KEY__", keyStr));
+            execute(DBStrings.removeLikes.replace("__KEY__", keyStr));
+            execute(DBStrings.removeComments.replace("__KEY__", keyStr));
+            execute(DBStrings.removeEvents.replace("__KEY__", keyStr));
         } catch (java.sql.SQLException e) {
             Logger.write("ERROR", "DB", "SQLException: " + e);
             return false;
@@ -627,6 +647,7 @@ public class Database {
                                         .replace("__msgText__", comment.CMNTgetText())
                                         .replace("__parent__", comment.CMNTgetItemID())
                                         .replace("__commenterKey__", Crypto.encodeKey(getSignatory(comment)))
+                                        .replace("__senderKey__", getSignatory(comment)
                                         .replace("__creationTime__", Long.toString(comment.getTimestamp())));
         } catch (java.sql.SQLException e) {
             Logger.write("ERROR", "DB", "SQLException: " + e);
