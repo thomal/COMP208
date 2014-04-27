@@ -1,5 +1,6 @@
 package ballmerpeak.turtlenet.client;
 
+import ballmerpeak.turtlenet.shared.CommentDetails;
 import ballmerpeak.turtlenet.shared.PostDetails;
 import ballmerpeak.turtlenet.shared.Conversation;
 import ballmerpeak.turtlenet.shared.Message;
@@ -21,10 +22,11 @@ public interface TurtlenetAsync {
     void getCategories                       (AsyncCallback<String[][]> callback);
     void getCategoryMembers (String category, AsyncCallback<String[][]> callback);
     
-    void getConversation         (String sig, AsyncCallback<Conversation> callback);
-    void getConversations                    (AsyncCallback<Conversation[]> callback);
-    void getConversationMessages (String sig, AsyncCallback<String[][]> callback);
-    void getWallPosts            (String key, AsyncCallback<PostDetails[]> callback);
+    void getConversation         (String sig,    AsyncCallback<Conversation> callback);
+    void getConversations                       (AsyncCallback<Conversation[]> callback);
+    void getConversationMessages (String sig,    AsyncCallback<String[][]> callback);
+    void getWallPosts            (String key,    AsyncCallback<PostDetails[]> callback);
+    void getComments             (String parent, AsyncCallback<CommentDetails[]> callback);
     
     //Profile Data
     void claimUsername         (String uname,                   AsyncCallback<String> callback);
@@ -42,4 +44,5 @@ public interface TurtlenetAsync {
     void addToCategory (String name, String key, AsyncCallback<String> callback);
     void addKey        (String key,              AsyncCallback<String> callback);
     void addPost       (String key, String categoryVisibleTo, String msg, AsyncCallback<String> callback);
+    void addComment    (String parent, String text, AsyncCallback<String> callback);
 }

@@ -9,6 +9,7 @@ import ballmerpeak.turtlenet.server.MessageFactoryImpl;
 import ballmerpeak.turtlenet.shared.Message;
 import ballmerpeak.turtlenet.shared.Conversation;
 import ballmerpeak.turtlenet.shared.PostDetails;
+import ballmerpeak.turtlenet.shared.CommentDetails;
 
 @SuppressWarnings("serial")
 public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
@@ -107,6 +108,22 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
         return posts;
     }
     
+    public CommentDetails[] getComments (String parent) {
+        Message[] commentMsgs = c.db.getComments(parent);
+        CommentDetails[] details = new CommentDetails[commentMsgs.length];
+        
+        for (int i = 0; i < commentMsgs.length; i++) {
+            CommentDetails thisCmnt = new CommentDetails();
+            thisCmnt.posterKey = Crypto.encodeKey(c.db.getSignatory(commentMsgs[i]));
+            thisCmnt.posterName = c.db.getName(Crypto.decodeKey(thisCmnt.posterKey));
+            thisCmnt.sig = commentMsgs[i].getSig();
+            thisCmnt.text = commentMsgs[i].CMNTgetText();
+            thisCmnt.liked = c.db.isLiked(parent);
+            details[i] = thisCmnt;
+        }
+        return details;
+    }
+    
     
     //Profile Data
     public String claimUsername (String uname) {
@@ -165,11 +182,23 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
     }
     
     public String like (String sig) {
-        return c.db.like(sig)?"success":"failure";
+        PublicKey[] visibleTo = c.db.getVisibilityOfParent(sig);
+        Message message = new MessageFactoryImpl().newLIKE(sig);
+        
+        for (int i = 0; i < visibleTo.length; i++)
+            c.connection.postMessage(message, visibleTo[i]);
+            
+        return "success";
     }
     
     public String unlike (String sig) {
-        return c.db.unlike(sig)?"success":"failure";
+        PublicKey[] visibleTo = c.db.getVisibilityOfParent(sig);
+        Message message = new MessageFactoryImpl().newUNLIKE(sig);
+        
+        for (int i = 0; i < visibleTo.length; i++)
+            c.connection.postMessage(message, visibleTo[i]);
+            
+        return "success";
     }
     
     //Friends
@@ -214,6 +243,17 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
         for (int i = 0; i < visibleTo.length; i++)
             visibleToStr[i] = Crypto.encodeKey(visibleTo[i]);
         Message message = new MessageFactoryImpl().newPOST(msg, wallKey, visibleToStr);
+        
+        for (int i = 0; i < visibleTo.length; i++)
+            c.connection.postMessage(message, visibleTo[i]);
+        c.connection.postMessage(message, Crypto.getPublicKey());
+            
+        return "success";
+    }
+    
+    public String addComment (String parent, String text) {
+        PublicKey[] visibleTo = c.db.getVisibilityOfParent(parent);
+        Message message = new MessageFactoryImpl().newCMNT(parent, text);
         
         for (int i = 0; i < visibleTo.length; i++)
             c.connection.postMessage(message, visibleTo[i]);

@@ -70,6 +70,10 @@ public class MessageFactoryImpl {
         return newMessage("LIKE", itemSig);
     }
     
+    public Message newUNLIKE(String itemSig) {
+        return newMessage("UNLIKE", itemSig);
+    }
+    
     public Message newEVNT(long start, long end, String descrip) {
         return newMessage("EVNT", start + ":" + end + ":" + descrip);
     }
