@@ -40,9 +40,12 @@ public interface TurtlenetAsync {
     void unlike           (String sig,              AsyncCallback<String> callback);
     
     //Friends
-    void addCategory   (String name,             AsyncCallback<String> callback);
-    void addToCategory (String name, String key, AsyncCallback<String> callback);
-    void addKey        (String key,              AsyncCallback<String> callback);
+    void addCategory   (String name,                                      AsyncCallback<String> callback);
+    void addToCategory (String name, String key,                          AsyncCallback<String> callback);
+    void addKey        (String key,                                       AsyncCallback<String> callback);
     void addPost       (String key, String categoryVisibleTo, String msg, AsyncCallback<String> callback);
-    void addComment    (String parent, String text, AsyncCallback<String> callback);
+    void addComment    (String parent, String text,                       AsyncCallback<String> callback);
+    
+    //Bad stuff
+    void revokeMyKey (AsyncCallback<String> callback);
 }

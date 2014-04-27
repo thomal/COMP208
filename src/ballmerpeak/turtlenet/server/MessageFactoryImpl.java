@@ -23,7 +23,7 @@ public class MessageFactoryImpl {
     }
     
     public Message newREVOKE(long time) {
-        return newMessage("REVKOE", ""+time);
+        return newMessage("REVOKE", ""+time);
     }
     
     public Message newPDATA(String field, String value) {

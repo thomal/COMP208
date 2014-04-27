@@ -640,9 +640,19 @@ public class frontend implements EntryPoint, ClickListener {
         
         revoke.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                // TODO LUKETODO Call a method that revokes the users key.
-                // Success =   editEmailLabel.setText("Key revoked"); login();
-                // Failure =   editEmailLabel.setText("Failed to revoke key");
+                turtlenet.revokeMyKey(new AsyncCallback<String>() {
+                     public void onFailure(Throwable caught) {
+                         //TODO error
+                     }
+                     public void onSuccess(String result) {
+                         if (result.equals("success")) {
+                             editEmailLabel.setText("Key revoked");
+                             login();
+                         } else if (result.equals("failure")) {
+                             editEmailLabel.setText("Failed to revoke key");
+                         }
+                     }
+                 });
             }
         });
         

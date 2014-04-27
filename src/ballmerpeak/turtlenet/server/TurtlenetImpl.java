@@ -287,4 +287,20 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
             
         return "success";
     }
+    
+    //Bad stuff
+    public String revokeMyKey () {
+        Logger.write("VERBOSE", "TnImpl", "-------revokeMyKey()-------");
+        PublicKey[] keys = c.db.getCategoryMembers("all");
+        for (int i = 0; i < keys.length; i++)
+            c.connection.postMessage(new MessageFactoryImpl().newREVOKE(0), keys[i]); //Can't be sent in cleartext, serverops could suppress it
+        
+        //erase db and keypair
+        new File(Database.path + "/lastread").delete();
+        new File(Database.path + "/public.key").delete();
+        new File(Database.path + "/private.key").delete();
+        new File(Database.path + "/turtlenet.db").delete();
+        
+        return "success";
+    }
 }

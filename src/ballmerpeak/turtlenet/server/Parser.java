@@ -40,6 +40,8 @@ public class Parser {
             db.addEvent(msg);
         else if (msg.getCmd().equals("NULL"))
             Logger.write("VERBOSE", "PARSE", "undecryptable message"); //not for us
+        else if (!msg.getCmd().equals("FPOST"))
+            Logger.write("ERROR", "PARSE", "Unknown message type: \"" + msg.getCmd() + "\"");
         
         if (msg.getCmd().equals("FPOST"))
             Logger.write("WARNING", "PARSE", "FPOST is depreciated");

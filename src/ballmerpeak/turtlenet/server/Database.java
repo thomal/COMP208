@@ -542,7 +542,7 @@ public class Database {
     }
     
     public boolean addRevocation (Message revocation) {
-        Logger.write("VERBOSE", "DB", "addRevocation(...)");
+        Logger.write("VERBOSE", "DB", "-------addRevocation(...)-------");
         
         try {
             execute(DBStrings.addRevocation.replace("__sig__", revocation.getSig())
@@ -556,7 +556,7 @@ public class Database {
     }
     
     public boolean eraseContentFrom(PublicKey key) {
-        Logger.write("VERBOSE", "DB", "eraseContentFrom(...)");
+        Logger.write("VERBOSE", "DB", "-------eraseContentFrom(...)-------");
         String keyStr = Crypto.encodeKey(key);
         
         try {
@@ -647,7 +647,7 @@ public class Database {
                                         .replace("__msgText__", comment.CMNTgetText())
                                         .replace("__parent__", comment.CMNTgetItemID())
                                         .replace("__commenterKey__", Crypto.encodeKey(getSignatory(comment)))
-                                        .replace("__senderKey__", getSignatory(comment)
+                                        .replace("__senderKey__", Crypto.encodeKey(getSignatory(comment)))
                                         .replace("__creationTime__", Long.toString(comment.getTimestamp())));
         } catch (java.sql.SQLException e) {
             Logger.write("ERROR", "DB", "SQLException: " + e);
