@@ -15,6 +15,8 @@ public class Parser {
     
         Logger.write("VERBOSE", "PARSE", "parsing message");
         
+        escape(msg);
+        
         
         if (msg.getCmd().equals("POST"))        //post to own wall
             db.addPost(msg);
@@ -39,5 +41,9 @@ public class Parser {
         
         if (msg.getCmd().equals("FPOST"))
             Logger.write("WARNING", "PARSE", "FPOST is depreciated");
+    }
+    
+    private static void escape (Message m) {
+        m.content = m.content.replace("'", "''");
     }
 }

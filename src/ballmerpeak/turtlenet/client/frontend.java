@@ -299,10 +299,10 @@ public class frontend implements EntryPoint, ClickListener {
                     friendsListPanel.setWidget((i + 2), 1, friendKeyBox);
                     //link names to walls
                     System.out.println("adding link to " + result[i][1] + "'s wall");
+                    final String fkey = result[i][1];
                     linkFriendsWall.addClickHandler(new ClickHandler() {
                         public void onClick(ClickEvent event) {
-                            System.out.println("friendsList loading " + result[i][1] + "'s wall");
-                            wall(result[i][1]);
+                            wall(fkey);
                         }
                     });
                 }
@@ -1051,11 +1051,12 @@ public class frontend implements EntryPoint, ClickListener {
                     }
                     
                     postContentsFooterPanel.add(comments);
+                    final PostDetails details = wallPostDetails[wallCurrentPost];
                     comments.addClickHandler(new ClickHandler() {
                         public void onClick(ClickEvent event) {
                             stop.setText("Page auto update paused");
                             stop.getElement().getStyle().setProperty("color" , "#FF0000");  
-                            comments(wallPostDetails[wallCurrentPost].sig, key, postPanel, comments); 
+                            comments(details.sig, key, postPanel, comments); 
                         }
                     }); 
                 }
