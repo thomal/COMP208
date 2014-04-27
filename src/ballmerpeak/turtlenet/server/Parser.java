@@ -34,6 +34,8 @@ public class Parser {
             db.addComment(msg);
         else if (msg.getCmd().equals("LIKE"))   //like
             db.addLike(msg);
+        else if (msg.getCmd().equals("UNLIKE")) //like
+            db.unlike(msg.UNLIKEgetItemID());
         else if (msg.getCmd().equals("EVNT"))   //event
             db.addEvent(msg);
         else if (msg.getCmd().equals("NULL"))

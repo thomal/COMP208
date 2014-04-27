@@ -150,6 +150,10 @@ public class Message implements Serializable {
         return content;
     }
     
+    public String UNLIKEgetItemID() {
+        return content;
+    }
+    
     public String EVNTgetName() {
         Tokenizer st = new Tokenizer(content, ':');
         long start  = Long.parseLong(st.nextToken());

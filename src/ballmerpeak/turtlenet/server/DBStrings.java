@@ -83,7 +83,6 @@ class DBStrings {
         "sig          TEXT,"+
         "msgText      TEXT,"+
         "parent       TEXT,"+                //sig of thing being commented
-        "commenterKey TEXT,"+
         "creationTime TEXT,"+
         "PRIMARY KEY (sig));",
         
@@ -110,7 +109,8 @@ class DBStrings {
     public static final String getName          = "SELECT username FROM tUser WHERE key = '__KEY__';";
     public static final String getClaims        = "SELECT * FROM tClaim;";
     public static final String getLike          = "SELECT * FROM tLike WHERE parent = '__SIG__';";
-    public static final String getComments      = "SELECT * FROM tComment WHERE parent = '__SIG__';";
+    public static final String getComments      = "SELECT * FROM tComment WHERE parent = '__PARENT__';";
+    public static final String getComment       = "SELECT * FROM tComment WHERE sig = '__SIG__';";
     
     public static final String addPost           = "INSERT INTO tPost (sig, msgText, time, recieverKey, sendersKey)" +
                                                        "VALUES ('__SIG__', '__msgText__', '__time__', '__recieverKey__', '__sendersKey__');";

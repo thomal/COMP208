@@ -52,6 +52,7 @@ the DB.
 
 package ballmerpeak.turtlenet.client;
 
+import ballmerpeak.turtlenet.shared.CommentDetails;
 import ballmerpeak.turtlenet.shared.PostDetails;
 import ballmerpeak.turtlenet.shared.Message;
 import ballmerpeak.turtlenet.shared.Conversation;
@@ -1067,6 +1068,8 @@ public class frontend implements EntryPoint, ClickListener {
         wallPanel.addStyleName("gwt-wall");
     }
     
+    int commentCount;
+    TextArea threadReplyContents;
     private void comments(final String postID, final String wallKey, final FlowPanel postPanel, Anchor openComments) {
         location = "comments";
         refreshID = "";
@@ -1084,115 +1087,114 @@ public class frontend implements EntryPoint, ClickListener {
         
         // Add main panel to page
         postPanel.insert(commentsPanel, 2);
-
-        // TODO LUKETODO 5 should be replaced with a call to a method that takes
-        // the ID of a post and returns the number of comments associated 
-        // with that post.
-        // This current method takes a string called postID so give it that.
-        int commentCount = 2;        
-        for(int i = 0; i < commentCount; i++) {
-            // Create panel to contain the main contents of each comment
-            FlowPanel commentsContentsPanel = new FlowPanel();
-            commentsContentsPanel.addStyleName("gwt-comments-contents");
-            commentsPanel.add(commentsContentsPanel);
         
-            // TODO LUKETODO "ID of comment" should be replaced with a call to
-            // a method that returns a list of comments when given the ID of their parent.
-            // This current method takes a string called postID so give it that.
-            // Specifically we want the IDs of the comments. Use i to select an
-            // ID from the list. 
-            final String commentID = new String("ID of comment");   
-            
-            // Create widgets
-            TextArea commentContents = new TextArea();
-            commentContents.setCharacterWidth(60);
-            commentContents.setVisibleLines(3);
-            commentContents.setReadOnly(true);
-            
-            // TODO LUKETODO "Contents of comment" should be replaced with a call
-            // to a method that returns the contents of a comment when given the
-            // ID of that comment.
-            // Give it commentID            
-            commentContents.setText("Contents of comment");
-            commentsContentsPanel.add(commentContents);
-            
-            //Create panel to contain controls for each comment
-            HorizontalPanel commentsControlPanel = new HorizontalPanel();
-            commentsContentsPanel.add(commentsControlPanel);
-            
-            // TODO LUKETODO "Public key" should be replaced with a call to a 
-            // method that returns the key of the user who posted a comment when
-            // given the ID of a comment. 
-            // Give it commentID
-            final String postedByKey = new String("Public key");
-            
-            Label commentPostedByLabel = new Label("Posted by: ");
-            commentPostedByLabel.getElement().getStyle().setProperty("paddingLeft" , "10px");
-            commentsControlPanel.add(commentPostedByLabel);
-            // TODO LUKETODO "Name of user" should be replaced with a call to 
-            // a method that returns the name of a user when given their public key.
-            // Give it postedByKey
-            Anchor postedBy = new Anchor("Name of user");
-            postedBy.getElement().getStyle().setProperty("paddingLeft" , "10px");
-            commentsControlPanel.add(postedBy);
-           
-            
-            postedBy.addClickHandler(new ClickHandler() {
-                public void onClick(ClickEvent event) {
-                    wall(postedByKey);
-                }
-            }); 
-            
-            Anchor likeComment;
-            
-            // TODO LUKETODO 'true' should bereplaced with a call to a method 
-            // that takes the ID of a comment and checks to see whether the user 
-            // has already liked that comment.
-            // Give it commentID
-            if (true) {
-                likeComment = new Anchor("Unlike");
-                likeComment.addClickHandler(new ClickHandler() {
-                    public void onClick(ClickEvent event) {
-                        // TODO LUKETODO Call a method that 'Unlikes' a comment when given
-                        // the ID of that post.
-                        // Give it postID
-                    
-                        wall(wallKey);
-                    }
-                });
-            } else {
-                likeComment = new Anchor("Like");
-                likeComment.addClickHandler(new ClickHandler() {
-                    public void onClick(ClickEvent event) {
-                        // TODO LUKETODO Call a method that 'Likes' a comment when given
-                        // the ID of that post.
-                        // Give it postID
-                    
-                        wall(wallKey);
-                    }
-                });
+        turtlenet.getComments(postID, new AsyncCallback<CommentDetails[]>() {
+            public void onFailure(Throwable caught) {
+                //TODO error
             }
+            public void onSuccess(CommentDetails[] result) {
+                commentCount = result.length;
+                for (int i = 0; i < result.length; i++) {
+                    final CommentDetails details = result[i];
+                    // Create panel to contain the main contents of each comment
+                    FlowPanel commentsContentsPanel = new FlowPanel();
+                    commentsContentsPanel.addStyleName("gwt-comments-contents");
+                    commentsPanel.add(commentsContentsPanel);
+                    
+                    final String commentID = result[i].sig;
+                    // Create widgets
+                    TextArea commentContents = new TextArea();
+                    commentContents.setCharacterWidth(60);
+                    commentContents.setVisibleLines(3);
+                    commentContents.setReadOnly(true);
+                    
+                    //Text
+                    commentContents.setText(result[i].text);
+                    commentsContentsPanel.add(commentContents);
+                    
+                    //Create panel to contain controls for each comment
+                    HorizontalPanel commentsControlPanel = new HorizontalPanel();
+                    commentsContentsPanel.add(commentsControlPanel);
+                    
+                    final String postedByKey = result[i].posterKey;
+                    
+                    Label commentPostedByLabel = new Label("Posted by: ");
+                    commentPostedByLabel.getElement().getStyle().setProperty("paddingLeft" , "10px");
+                    commentsControlPanel.add(commentPostedByLabel);
+                    
+                    Anchor postedBy = new Anchor(result[i].posterName);
+                    postedBy.getElement().getStyle().setProperty("paddingLeft" , "10px");
+                    commentsControlPanel.add(postedBy);
+                    
+                    postedBy.addClickHandler(new ClickHandler() {
+                        public void onClick(ClickEvent event) {
+                            wall(details.posterKey);
+                        }
+                    }); 
             
-            likeComment.getElement().getStyle().setProperty("paddingLeft" , "130px");
-            commentsControlPanel.add(likeComment);
-            
-            likeComment.addClickHandler(new ClickHandler() {
-                public void onClick(ClickEvent event) {
-                    // TODO LUKETODO Call a method that 'Likes' a comment when
-                    // given the ID of that comment.
-                    // Give it commentID
-                    wall(wallKey);
-                    // TODO LOUISTODO Make the refreshed comments page move
-                    // to the place we just added our new comment.
+                    Anchor likeComment;
+                    
+                    if (result[i].liked) {
+                        likeComment = new Anchor("Unlike");
+                        likeComment.addClickHandler(new ClickHandler() {
+                            public void onClick(ClickEvent event) {
+                                turtlenet.unlike(details.sig, new AsyncCallback<String>() {
+                                    public void onFailure(Throwable caught) {
+                                        //TODO error
+                                    }
+                                    public void onSuccess(String _result) {
+                                        if (_result.equals("success")) {
+                                            wall(wallKey);
+                                        } else {
+                                            //TODO Error
+                                        }
+                                    }
+                                });
+                            }
+                        });
+                    } else {
+                        likeComment = new Anchor("Like");
+                        likeComment.addClickHandler(new ClickHandler() {
+                            public void onClick(ClickEvent event) {
+                                turtlenet.unlike(details.sig, new AsyncCallback<String>() {
+                                    public void onFailure(Throwable caught) {
+                                        //TODO error
+                                    }
+                                    public void onSuccess(String _result) {
+                                        if (_result.equals("success")) {
+                                            wall(wallKey);
+                                        } else {
+                                            //TODO Error
+                                        }
+                                    }
+                                });
+                            }
+                        });
+                    }
+                    
+                    likeComment.getElement().getStyle().setProperty("paddingLeft" , "130px");
+                    commentsControlPanel.add(likeComment);
+                    
+                    //I think this can be safely deleted, looks like a copy/paste mistake
+                    /*likeComment.addClickHandler(new ClickHandler() {////////////////////////////////////////////////////////////////
+                        public void onClick(ClickEvent event) {///////////////////////////////////////////////////////////////////////
+                            // TODO LUKETODO Call a method that 'Likes' a comment when////////////////////////////////////////////////
+                            // given the ID of that comment.//////////////////////////////////////////////////////////////////////////
+                            // Give it commentID//////////////////////////////////////////////////////////////////////////////////////
+                            wall(wallKey);////////////////////////////////////////////////////////////////////////////////////////////
+                            // TODO LOUISTODO Make the refreshed comments page move///////////////////////////////////////////////////
+                            // to the place we just added our new comment.////////////////////////////////////////////////////////////
+                        }
+                    }); */
                 }
-            }); 
-        }
+            }
+        });
         
         FlexTable commentsReplyThreadPanel = new FlexTable();
         commentsReplyThreadPanel.getElement().getStyle().setProperty("paddingLeft", "60px");
         commentsPanel.add(commentsReplyThreadPanel);
-              
-        TextArea threadReplyContents = new TextArea();
+        
+        threadReplyContents = new TextArea();
         threadReplyContents.setCharacterWidth(60);
         threadReplyContents.setVisibleLines(6);
         commentsReplyThreadPanel.setWidget(0, 0, threadReplyContents);
@@ -1203,8 +1205,8 @@ public class frontend implements EntryPoint, ClickListener {
             public void onClick(ClickEvent event) {                        
                 wall(wallKey);
             }
-        });   
-
+        });
+                
         Button replyToThread;
         if(commentCount == 0) {
             replyToThread = new Button("Post comment");
@@ -1213,17 +1215,25 @@ public class frontend implements EntryPoint, ClickListener {
         }
         replyToThread.setWidth("450px");
         commentsReplyThreadPanel.setWidget(1, 0, replyToThread);
+        
         replyToThread.addClickHandler(new ClickHandler() {
-            public void onClick(ClickEvent event) {
-                // TODO LUKETODO Call a method that adds a new comment.
-                // It's parent is postID
-                // To get the contents use: threadReplyContents.getText();
-                        
-                wall(wallKey);
-                // TODO LOUISTODO Make the refreshed comments page move
-                // to the place we just added our new comment.
+            public void onClick(ClickEvent event) { 
+                turtlenet.addComment(postID, threadReplyContents.getText(), new AsyncCallback<String>() {
+                    public void onFailure(Throwable caught) {
+                        //TODO error
+                    }
+                    public void onSuccess(String result) {
+                        if (result.equals("success")) {
+                            wall(wallKey);
+                            // TODO LOUISTODO Make the refreshed comments page move
+                            // to the place we just added our new comment.
+                        } else {
+                            //TODO Error
+                        }
+                    }
+                });
             }
-        });   
+        });
         commentsPanel.addStyleName("gwt-comments");
     }  
      

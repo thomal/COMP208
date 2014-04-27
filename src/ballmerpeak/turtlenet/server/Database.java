@@ -371,6 +371,43 @@ public class Database {
         return keyList.toArray(new PublicKey[0]);
     }
     
+    //Given the sig of a post or comment return the keys which can see it
+    public PublicKey[] getVisibilityOfParent(String sig) {
+        Logger.write("VERBOSE", "DB", "getVisibilityOfParent(...)");
+        
+        try {
+            ResultSet postWithSig = query(DBStrings.getPost.replace("__SIG__", sig));
+            if (postWithSig.next()) { //sig is a post
+                return getPostVisibleTo(sig);
+            } else { //sig is a comment
+                ResultSet commentWithSig = query(DBStrings.getComment.replace("__SIG__", sig));
+                if (commentWithSig.next())
+                    return getVisibilityOfParent(commentWithSig.getString("parent"));
+                else
+                    Logger.write("ERROR", "DB", "getVisibilityOfParent has no root");
+            }
+        } catch (java.sql.SQLException e) {
+            Logger.write("ERROR", "DB", "SQLException: " + e);
+        }
+        
+        return null;
+    }
+    
+    public PublicKey[] getPostVisibleTo (String sig) {
+        Logger.write("VERBOSE", "DB", "getVisibleTo(...)");
+        Vector<PublicKey> keyList = new Vector<PublicKey>();
+        
+        try {
+            ResultSet keyRows = query(DBStrings.getVisibleTo.replace("__SIG__", sig));
+            while(keyRows.next())
+                keyList.add(Crypto.decodeKey(keyRows.getString("key")));
+        } catch (java.sql.SQLException e) {
+            Logger.write("ERROR", "DB", "SQLException: " + e);
+        }
+        
+        return keyList.toArray(new PublicKey[0]);
+    }
+    
     //In the case of no username for the key: "return Crypto.encode(k);"
     public String getName (PublicKey key) {
         Logger.write("VERBOSE", "DB", "getName(...)");
