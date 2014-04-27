@@ -171,7 +171,7 @@ public class frontend implements EntryPoint, ClickListener {
                 }
             }
         };
-        refresh.scheduleRepeating(5*1000);
+        refresh.scheduleRepeating(10*1000);
     }
 
     private void navigation() {    
@@ -310,10 +310,7 @@ public class frontend implements EntryPoint, ClickListener {
         final ListBox currentGroups = new ListBox();
         currentGroups.setVisibleItemCount(1);
         currentGroups.setWidth("150px");
-        currentGroups.addItem("Choose a category");
-        if(!currentGroupID.equals("All")) {
-            currentGroups.addItem("All");
-        }
+        currentGroups.addItem("All");
         friendsListPanel.setWidget(3, 3, currentGroups);
         
         turtlenet.getCategories(new AsyncCallback<String[][]>() {
@@ -322,11 +319,22 @@ public class frontend implements EntryPoint, ClickListener {
             public void onFailure(Throwable caught) {
                 //TODO Error
             }
+            int selected;
             public void onSuccess(String[][] _result) {
                 result = _result;
                 for (i = 0; i < result.length; i++) {
                     currentGroups.addItem(result[i][0]);
+                    // Check if the group we've just added is the current group
+                    // If it is note the index using selected. We need to add
+                    // 1 to selected as "All" always appears first in the list.
+                    if(result[i][0].equals(currentGroupID)) {
+                        selected = (i + 1);
+                    }
                 }
+                // Use selected to set the selected item in the listbox to the
+                // current group
+                currentGroups.setSelectedIndex(selected);
+                
                 currentGroups.addChangeHandler(new ChangeHandler() {
                     public void onChange(ChangeEvent event) {
                         friendsList(currentGroups.getItemText(currentGroups.getSelectedIndex()));
@@ -344,7 +352,8 @@ public class frontend implements EntryPoint, ClickListener {
         });
         
         friendsListPanel_myKeyTextBox = new TextBox();
-        friendsListPanel_myKeyTextBox.setWidth("500px");
+        friendsListPanel_myKeyTextBox.setWidth("480px");
+        friendsListPanel_myKeyTextBox.setReadOnly(true);
         
         turtlenet.getMyKey(new AsyncCallback<String>() {
             public void onFailure(Throwable caught) {
@@ -370,11 +379,11 @@ public class frontend implements EntryPoint, ClickListener {
                 }
             });
         } else {
-            Button addToGroup = new Button("Add people to category");
-            friendsListPanel.setWidget(1, 3, addToGroup);
-            addToGroup.addClickHandler(new ClickHandler() {
+            Button editGroup = new Button("Edit category");
+            friendsListPanel.setWidget(1, 3, editGroup);
+            editGroup.addClickHandler(new ClickHandler() {
                 public void onClick(ClickEvent event) {
-                    addToGroup(currentGroupID);
+                    editGroup(currentGroupID);
                 }
             });
         }        
@@ -564,9 +573,6 @@ public class frontend implements EntryPoint, ClickListener {
         });
 
         // Create widgets relating to gender
-        // Gender shouldn't be chosen from a list. The user should be able to 
-        // write whatever they want. This way people who are trans gender are
-        // satisfied(Simply having an 'Other' option is usually not enough
         Label genderLabel = new Label("Gender:");
         myDetailsPanel.setWidget(3, 0, genderLabel);
         
@@ -644,12 +650,30 @@ public class frontend implements EntryPoint, ClickListener {
             }
         });
         
-        Button permissions = new Button("Permissions");
-        permissions.setWidth("310px");
-        myDetailsPanel.setWidget(5, 1, permissions);
-        permissions.addClickHandler(new ClickHandler() {
+        Label keyRevokeLabel = new Label("Date to revoke key:");
+        myDetailsPanel.setWidget(5, 0, keyRevokeLabel);
+        
+        final TextBox editRevokeDate = new TextBox();
+        editRevokeDate.setWidth("300px");
+        
+        // TODO LUKETODO "01/01/1970" should be replaced with a call to a method
+        // that returns the date the users key is set to be revoked on.
+        editRevokeDate.setText("01/01/1970");
+        myDetailsPanel.setWidget(5, 1, editRevokeDate);        
+        
+        Button saveRevokeDate = new Button("Save date");
+        myDetailsPanel.setWidget(5, 2, saveRevokeDate);
+        
+        final Label editkeyRevokeLabel = new Label();
+        myDetailsPanel.setWidget(5, 3, editkeyRevokeLabel);
+        
+        saveEmail.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                myDetailsPermissions();
+                // TODO LUKETODO Call a method that saves the date the user
+                // has chosen to revoke their key on.
+                // Use editRevokeDate.getText()  to obtain it.
+                //Success =   editEmailLabel.setText("Date saved");
+                //Failure =   editEmailLabel.setText("Failed to save date");
             }
         });
         
@@ -662,10 +686,6 @@ public class frontend implements EntryPoint, ClickListener {
     private void myDetailsPermissions() {
         location = "myDetailsPermissions";
         refreshID = "";
-    
-        // Setup basic page isn't done intentionally, it's an addod to myDetails
-        //RootPanel.get().clear();
-        //navigation();
         
         // Add panel to contain widgets
         final FlexTable myDetailsPermissionsPanel = new FlexTable();
@@ -701,15 +721,6 @@ public class frontend implements EntryPoint, ClickListener {
                         }
                     });
                 }
-            }
-        });
-        
-        Button myDetails = new Button("My Details");
-        myDetails.setWidth("300px");
-        myDetailsPermissionsPanel.setWidget((myDetailsPermissionsPanel.getRowCount() + 1), 0, myDetails);
-        myDetails.addClickHandler(new ClickHandler() {
-            public void onClick(ClickEvent event) {
-                myDetails();
             }
         });
         
@@ -1445,7 +1456,7 @@ public class frontend implements EntryPoint, ClickListener {
                     }
                     public void onSuccess(String result) {
                         if (result.equals("success")) {
-                            addToGroup(newGroup_nameInput.getText());
+                            editGroup(newGroup_nameInput.getText());
                         } else {
                             //TODO Error
                         }
@@ -1459,20 +1470,19 @@ public class frontend implements EntryPoint, ClickListener {
         newGroupPanel.addStyleName("gwt-group");        
     }
     
-    private void addToGroup(final String groupID) {
-        location = "addToGroup";
+    private void editGroup(final String groupID) {
+        location = "editGroup";
         refreshID = "";
     
-        RootPanel.get().clear();
-        navigation();
-        FlexTable addToGroupPanel = new FlexTable();
-        RootPanel.get().add(addToGroupPanel);
+        FlexTable editGroupPanel = new FlexTable();
+        editGroupPanel.clear();
+        RootPanel.get().add(editGroupPanel);
         
-        addToGroupPanel.setWidget(1, 0, new Label("Currently in category: "));
+        editGroupPanel.setWidget(1, 0, new Label("Currently in category: "));
         final ListBox currentMembers = new ListBox();
         currentMembers.setVisibleItemCount(10);
         currentMembers.setWidth("150px");
-        addToGroupPanel.setWidget(1, 1, currentMembers);
+        editGroupPanel.setWidget(1, 1, currentMembers);
         
         turtlenet.getCategoryMembers(groupID, new AsyncCallback<String[][]>() {
             String[][] result;
@@ -1484,15 +1494,32 @@ public class frontend implements EntryPoint, ClickListener {
                 result = _result;
                 for (i = 0; i < result.length; i++) {
                     currentMembers.addItem(result[i][0]);
+                    
+                    // TODO LUKETODO "key" should be replaced with the key of
+                    // the user whose name we just called to the list.
+                    currentMembers.setValue(i, "key");
                 }
             }
         });
         
-        addToGroupPanel.setWidget(2, 0, new Label("Add a friend: "));
+        Button removeFromGroup = new Button("Remove from group");
+        editGroupPanel.setWidget(1, 2, removeFromGroup);
+        removeFromGroup.addClickHandler(new ClickHandler() {
+            public void onClick(ClickEvent event) {
+                // TODO LUKETODO Call a method that removes a person from a 
+                // group when given the ID of the group and the key of the person.
+                // For the ID of the group give it groupID
+                // To get the key of the user use currentMembers.getValue(currentMembers.getSelectedIndex() 
+            
+                friendsList(groupID);    
+            }
+        });
+        
+        editGroupPanel.setWidget(2, 0, new Label("Add a friend: "));
         final ListBox allFriends = new ListBox();
         allFriends.setVisibleItemCount(1);
         allFriends.setWidth("150px");
-        addToGroupPanel.setWidget(2, 1, allFriends);
+        editGroupPanel.setWidget(2, 1, allFriends);
         
         turtlenet.getPeople(new AsyncCallback<String[][]>() {
             String[][] result;
@@ -1511,7 +1538,7 @@ public class frontend implements EntryPoint, ClickListener {
         });
         
         Button addFriend = new Button("Add friend");
-        addToGroupPanel.setWidget(2, 2, addFriend);
+        editGroupPanel.setWidget(2, 2, addFriend);
         addFriend.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
                 turtlenet.addToCategory(groupID, allFriends.getValue(allFriends.getSelectedIndex()), new AsyncCallback<String>() {
@@ -1520,7 +1547,7 @@ public class frontend implements EntryPoint, ClickListener {
                     }
                     public void onSuccess(String result) {
                         if (result.equals("success")) {
-                            addToGroup(groupID);
+                            friendsList(groupID);   
                         } else {
                             //TODO Error
                         }
@@ -1529,7 +1556,9 @@ public class frontend implements EntryPoint, ClickListener {
             }
         });
         
-        addToGroupPanel.addStyleName("gwt-group");  
+        
+        
+        editGroupPanel.addStyleName("gwt-group");  
     }
     
     TextBox addFriend_keyInput = new TextBox();
