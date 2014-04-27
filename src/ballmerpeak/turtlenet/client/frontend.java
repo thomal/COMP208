@@ -115,14 +115,14 @@ public class frontend implements EntryPoint, ClickListener {
                     // the timestamp of the most recent message on their wall.
                     // Give it refreshID
                     if(0 > wallLastTimeStamp) {
-                        System.out.println("Refresh: wall. refreshID: " + refreshID);
+                        System.out.println("Location: wall. refreshID: " + refreshID);
                         wall(refreshID, true);
                     }
                 } else if(location.equals("conversationList")) {
-                    System.out.println("Refresh: conversationList");
+                    System.out.println("Location: conversationList");
                     conversationList();
                 } else if(location.equals("conversation")) {
-                    System.out.println("Refresh: conversation. refreshID: " + refreshID);
+                    System.out.println("Location: conversation. refreshID: " + refreshID);
                     conversation(refreshID);
                 } else {
                     //Do nothing
@@ -393,7 +393,6 @@ public class frontend implements EntryPoint, ClickListener {
                         } else {
                             linkText = (result[i].firstMessage).substring(1, 40) + "...";
                         }
-                        System.out.println(linkText);
                         Anchor linkConversation = new Anchor(linkText);
                         conversationListPanel.setWidget(j, 0, linkConversation);
                     
@@ -1292,6 +1291,10 @@ public class frontend implements EntryPoint, ClickListener {
                         for (int i = 0; i < currentFriends.getItemCount(); i++) {
                             memberKeys[i] = currentFriends.getValue(i);
                         }
+                        
+                        // TODO LUKETODO "users key" should be replaced with a 
+                        // call to a method that returns the current users key.
+                        memberKeys[currentFriends.getItemCount()] = "users key";
                         turtlenet.createCHAT(memberKeys, new AsyncCallback<String[]>() {
                             int i;
                             public void onFailure(Throwable caught) {
@@ -1587,13 +1590,12 @@ public class frontend implements EntryPoint, ClickListener {
         addFriendPanel.setWidget(0, 0, new Label("Enter the key of the person you wish to add:"));
         addFriend_keyInput.setVisibleLength(100);
         addFriendPanel.setWidget(1, 0, addFriend_keyInput);
-        FlexTable subPanel = new FlexTable();
-        addFriendPanel.setWidget(2, 0, subPanel);
         
         Button submit = new Button("Add key");
-        subPanel.setWidget(0, 0, submit);
+        submit.setWidth("640px");
+        addFriendPanel.setWidget(2, 0, submit);
         final Label success = new Label("");
-        subPanel.setWidget(0, 1, success);
+        addFriendPanel.setWidget(3, 0, success);
         
         submit.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
