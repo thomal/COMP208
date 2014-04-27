@@ -182,11 +182,13 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
     }
     
     public String like (String sig) {
+        Logger.write("VERBOSE", "TnImpl", "like(" + sig + ")\n");
         PublicKey[] visibleTo = c.db.getVisibilityOfParent(sig);
         Message message = new MessageFactoryImpl().newLIKE(sig);
         
         for (int i = 0; i < visibleTo.length; i++)
             c.connection.postMessage(message, visibleTo[i]);
+        c.connection.postMessage(message, Crypto.getPublicKey());
             
         return "success";
     }
@@ -197,6 +199,7 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
         
         for (int i = 0; i < visibleTo.length; i++)
             c.connection.postMessage(message, visibleTo[i]);
+        c.connection.postMessage(message, Crypto.getPublicKey());
             
         return "success";
     }
@@ -257,6 +260,7 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
         
         for (int i = 0; i < visibleTo.length; i++)
             c.connection.postMessage(message, visibleTo[i]);
+        c.connection.postMessage(message, Crypto.getPublicKey());
             
         return "success";
     }
