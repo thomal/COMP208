@@ -74,6 +74,7 @@ public class frontend implements EntryPoint, ClickListener {
     private final TurtlenetAsync turtlenet = GWT.create(Turtlenet.class);
     //private final TurtlenetAsync msgfactory = GWT.create(MessageFactory.class);
     public void onModuleLoad() {
+        // Remove loading indicatior from frontend.html
         DivElement loadingIndicator = DivElement.as(Document.get().getElementById("loading"));
         loadingIndicator.setInnerHTML("");
         
@@ -152,14 +153,22 @@ public class frontend implements EntryPoint, ClickListener {
         });
     }
     
+    // Used to track the most recent wall post to be displayed
+    Long wallLastTimeStamp = 0L;
     // When the login button is clicked we start a repeating timer that refreshes
-    // the page every 5 seconds. 
+    // the page every 10 seconds. 
     public void onClick(Widget sender) {
         Timer refresh = new Timer() {
             public void run() {            
                 if(location.equals("wall")) {
-                    System.out.println("Refresh: wall. refreshID: " + refreshID);
-                    wall(refreshID);
+                    // TODO LUKETODO '0' should be replaced with a
+                    // call to a method that takes the key of a user and returns
+                    // the timestamp of the most recent message on their wall.
+                    // Give it refreshID
+                    if(0 != wallLastTimeStamp) {
+                        System.out.println("Refresh: wall. refreshID: " + refreshID);
+                        wall(refreshID);
+                    }
                 } else if(location.equals("conversationList")) {
                     System.out.println("Refresh: conversationList");
                     conversationList();
@@ -966,6 +975,7 @@ public class frontend implements EntryPoint, ClickListener {
                     });
                     
                     //Date
+                    wallLastTimeStamp = wallPostDetails[wallCurrentPost].timestamp;
                     Label dateLabel = new Label(new Date(wallPostDetails[wallCurrentPost].timestamp).toString());
                     postControlPanel.add(dateLabel);
                     postControlPanel.setCellWidth(dateLabel,"210");
