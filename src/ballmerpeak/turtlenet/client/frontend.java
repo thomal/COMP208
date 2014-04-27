@@ -780,7 +780,7 @@ public class frontend implements EntryPoint, ClickListener {
 
         TextBox friendsDetailsKeyBox = new TextBox();
         friendsDetailsKeyBox.setReadOnly(true);
-        friendsDetailsKeyBox.setWidth("800px");
+        friendsDetailsKeyBox.setWidth("400px");
         friendsDetailsKeyBox.setText(friendsDetailsKey);
         friendsDetailsPanel.setWidget(5, 1, friendsDetailsKeyBox);
         
@@ -816,6 +816,7 @@ public class frontend implements EntryPoint, ClickListener {
             RootPanel.get().add(wallPanel);
             // Create a container for controls
             wallControlPanel = new HorizontalPanel();
+            wallControlPanel.addStyleName("gwt-wall-control");
             wallControlPanel.setSpacing(5);
             wallPanel.add(wallControlPanel);        
                 
@@ -827,7 +828,6 @@ public class frontend implements EntryPoint, ClickListener {
                     if(key.equals(result)) {
                         final Button myDetails = new Button("About Me");
                         wallControlPanel.add(myDetails);
-                        wallControlPanel.setCellWidth(myDetails,"200");
                         myDetails.addClickHandler(new ClickHandler() {
                             public void onClick(ClickEvent event) {
                                 friendsDetails(key, wallPanel, myDetails);
@@ -841,7 +841,6 @@ public class frontend implements EntryPoint, ClickListener {
                             public void onSuccess(String result) {
                                 final Button userDetails = new Button("About " + result);
                                 wallControlPanel.add(userDetails);
-                                wallControlPanel.setCellWidth(userDetails,"200");
                                 userDetails.addClickHandler(new ClickHandler() {
                                     public void onClick(ClickEvent event) {
                                         friendsDetails(key, wallPanel, userDetails);
@@ -855,12 +854,12 @@ public class frontend implements EntryPoint, ClickListener {
         
             Button createPost = new Button("Write a post");
             wallControlPanel.add(createPost);
-            wallControlPanel.setCellWidth(createPost,"200");
             
             final Label postStop = new Label();
             wallControlPanel.add(postStop);
             
             final FlowPanel createPostPanel = new FlowPanel();
+            createPostPanel.addStyleName("gwt-create-post");
             postText = new TextArea();
             postText.setCharacterWidth(80);
             postText.setVisibleLines(10);
