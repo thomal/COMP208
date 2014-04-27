@@ -82,6 +82,7 @@ class DBStrings {
         "CREATE TABLE tComment ("+
         "sig          TEXT,"+
         "msgText      TEXT,"+
+        "senderKey    TEXT,"+
         "parent       TEXT,"+                //sig of thing being commented
         "creationTime TEXT,"+
         "PRIMARY KEY (sig));",
@@ -127,8 +128,8 @@ class DBStrings {
     public static final String addConvoParticipant = "INSERT INTO tConvoKeys (convoID, key) VALUES ('__sig__', '__key__');";
     public static final String addMessageToConvo = "INSERT INTO tConvoMessages (convoID, sendersKey, msgText, time)"+
                                                        "VALUES ('__convoID__', '__sendersKey__', '__msgText__', '__time__');";
-    public static final String addComment        = "INSERT INTO tComment (sig, msgText, parent, creationTime)"+
-                                                       "VALUES ('__sig__', '__msgText__', '__parent__', '__creationTime__');";
+    public static final String addComment        = "INSERT INTO tComment (sig, msgText, senderKey, parent, creationTime)"+
+                                                       "VALUES ('__sig__', '__msgText__', '__senderKey__', '__parent__', '__creationTime__');";
     public static final String addLike           = "INSERT INTO tLike (likerKey, parent) VALUES ('__likerKey__', '__parent__');";
     public static final String removeLike        = "DELETE FROM tLike WHERE likerKey = '__likerKey__' AND parent = '__parent__';";
     public static final String addEvent          = "INSERT INTO tEvent (sig, startTime, endTime, creatorKey, accepted, name, creationTime)"+
@@ -138,4 +139,15 @@ class DBStrings {
     public static final String updatePDATApermission = "UPDATE tCategory SET canSeePDATA = __bool__ WHERE catID = '__catID__'";
     public static final String addCategory       = "INSERT INTO tCategory (catID, canSeePDATA) VALUES ('__catID__', __canSeePDATA__);";
     public static final String addToCategory     = "INSERT INTO tCategoryMembers (catID, userKey) VALUES ('__catID__', '__key__');";
+    
+    //revocation stuff
+    public static final String removeMessageAccess  = "DELETE FROM tConvoKeys WHERE key = '__KEY__';";
+    public static final String removeMessages       = "DELETE FROM tConvoMessages WHERE sendersKey = '__KEY__';";
+    public static final String removePosts          = "DELETE FROM tPost WHERE sendersKey = '__KEY__';";
+    public static final String removePostVisibility = "DELETE FROM tPostVisibleTo WHERE key = '__KEY__';";
+    public static final String removeUser           = "DELETE FROM tUser WHERE key = '__KEY__';";
+    public static final String removeFromCategories = "DELETE FROM tCategoryMembers WHERE userKey = '__KEY__';";
+    public static final String removeLikes          = "DELETE FROM tLike WHERE likerKey = '__KEY__';";
+    public static final String removeComments       = "DELETE FROM tComment WHERE senderKey = '__KEY__';";
+    public static final String removeEvents         = "DELETE FROM tEvent WHERE creatorKey = '__KEY__';";
 }
