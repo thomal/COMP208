@@ -1,55 +1,3 @@
-//TO-DO
-//Ctrl-F TODO
-//Add an option to choose which groups may see your profile data, right now only
-//  you can see your own profile info
-
-/* Louis:
-I've added one method and a new interface. The first is an example of how to
-call Database functions and returns all posts by the user "john_doe", the new
-new interface constructs Messages with a correct timestamp and hash. This second
-one will be useful, the first one is meant to serve as a demonstration. Be aware
-that if you want to use a class it has to be purged of all non-GWT-compatible
-code. Because of this it's better to just add more methods to the interface than
-call them directly. Below is how you would actually call the demo database
-method:
-
-turtlenet.demoDBCall(new AsyncCallback<String>() {
-    public void onFailure(Throwable caught) {
-        //code to execute on failure
-    }
-
-    public void onSuccess(Message[] results) {
-        //code to execute on success
-        //update the interface with new data or something here
-    }
-});
-
-Because these are asynchronous they don't block, i.e. the next line of code
-immediatly executes before the call is finished. For this reason I would
-reccomend having the onSuccess method in the callback do the real work of
-modifying the interface, and have the click event only trigger the asyncronous
-function. You can add to the DB by calling c.db.addX methods, just like
-demoDBCall.
-
-You also can't use the PublicKey class. The TurtlenetImpl class can use anything
-it likes, so you should return Crypto.encodeKey(key) instead of trying to return
-the keys the DB gives you. Similarly for functions adding to the DB, you should
-pass them a string (you don't have any other choice actually) and pass
-Crypto.decodeKey(key) to the DB function.
-
-Crypto.decodeKey :: String -> PublicKey
-Crypto.encodeKey :: PublicKey -> String
-
-You can't make an interface for the Database class directly, so you have to be
-like the example above and have loads of one-line functions that just call the
-corresponding DB function. This sucks, but I can't see a way around it because
-the DB cannot be purged of GWT-incompatible code.
-
-Oh, and conversations/posts/comments are identified by their signature. So when
-you like something then you pass the signature from whatever you're liking to
-the DB.
-*/
-
 package ballmerpeak.turtlenet.client;
 
 import ballmerpeak.turtlenet.shared.CommentDetails;
@@ -743,8 +691,6 @@ public class frontend implements EntryPoint, ClickListener {
                 }
             }
         });
-        
-        // TODO LOUISTODO Add link to myDetailsPanel
         myDetailsPermissionsPanel.addStyleName("gwt-my-details-permissions");
     }
     
@@ -1216,19 +1162,6 @@ public class frontend implements EntryPoint, ClickListener {
                     
                     likeComment.getElement().getStyle().setProperty("paddingLeft" , "130px");
                     commentsControlPanel.add(likeComment);
-                    
-                    //This has -nothing- to do with the merge
-                    //I think this can be safely deleted, looks like a copy/paste mistake
-                    /*likeComment.addClickHandler(new ClickHandler() {////////////////////////////////////////////////////////////////
-                        public void onClick(ClickEvent event) {///////////////////////////////////////////////////////////////////////
-                            // TODO LUKETODO Call a method that 'Likes' a comment when////////////////////////////////////////////////
-                            // given the ID of that comment.//////////////////////////////////////////////////////////////////////////
-                            // Give it commentID//////////////////////////////////////////////////////////////////////////////////////
-                            wall(wallKey);////////////////////////////////////////////////////////////////////////////////////////////
-                            // TODO LOUISTODO Make the refreshed comments page move///////////////////////////////////////////////////
-                            // to the place we just added our new comment.////////////////////////////////////////////////////////////
-                        }
-                    }); */
                 }
             }
         });
