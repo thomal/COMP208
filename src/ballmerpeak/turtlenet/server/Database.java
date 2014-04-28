@@ -741,10 +741,23 @@ public class Database {
     }
     
     public boolean addToCategory (String category, PublicKey key) {
-        Logger.write("VERBOSE", "DB", "addToCategory(...)");
+        Logger.write("VERBOSE", "DB", "addToCategory(" + category + ", ...)");
         try {
             execute(DBStrings.addToCategory.replace("__catID__", category)
                                            .replace("__key__", Crypto.encodeKey(key)));
+        } catch (java.sql.SQLException e) {
+            Logger.write("ERROR", "DB", "SQLException: " + e);
+            return false;
+        }
+        
+        return true;
+    }
+    
+    public boolean removeFromCategory (String category, PublicKey key) {
+        Logger.write("VERBOSE", "DB", "removeFromCategory(" + category + ", ...)");
+        try {
+            execute(DBStrings.removeFromCategory.replace("__catID__", category)
+                                                .replace("__key__", Crypto.encodeKey(key)));
         } catch (java.sql.SQLException e) {
             Logger.write("ERROR", "DB", "SQLException: " + e);
             return false;

@@ -1524,10 +1524,7 @@ public class frontend implements EntryPoint, ClickListener {
                 result = _result;
                 for (i = 0; i < result.length; i++) {
                     currentMembers.addItem(result[i][0]);
-                    
-                    // TODO LUKETODO "key" should be replaced with the key of
-                    // the user whose name we just called to the list.
-                    currentMembers.setValue(i, "key");
+                    currentMembers.setValue(i, result[i][1]); //their key
                 }
             }
         });
@@ -1536,12 +1533,14 @@ public class frontend implements EntryPoint, ClickListener {
         editGroupPanel.setWidget(1, 2, removeFromGroup);
         removeFromGroup.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                // TODO LUKETODO Call a method that removes a person from a 
-                // group when given the ID of the group and the key of the person.
-                // For the ID of the group give it groupID
-                // To get the key of the user use currentMembers.getValue(currentMembers.getSelectedIndex() 
-            
-                friendsList(groupID);    
+                turtlenet.removeFromCategory(groupID, currentMembers.getValue(currentMembers.getSelectedIndex()), new AsyncCallback<String>() {
+                    public void onFailure(Throwable caught) {
+                        //TODO Error
+                    }
+                    public void onSuccess(String result) {
+                        friendsList(groupID);
+                    }
+                });
             }
         });
         

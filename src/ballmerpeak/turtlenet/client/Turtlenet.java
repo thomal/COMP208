@@ -42,6 +42,7 @@ public interface Turtlenet extends RemoteService {
   String           addKey                  (String key);
   String           addPost                 (String wallKey, String categoryVisibleTo, String msg);
   String           addComment              (String parent, String text);
+  String           removeFromCategory      (String group, String key);
   //Bad stuff
   String           revokeMyKey             ();
 }

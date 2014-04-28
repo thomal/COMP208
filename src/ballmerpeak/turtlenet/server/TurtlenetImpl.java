@@ -252,6 +252,11 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
         }
     }
     
+    public String removeFromCategory (String group, String key) {
+        Logger.write("VERBOSE", "TnImpl", "removeFromCategory(" + group + ",...)");
+        return c.db.removeFromCategory(group, Crypto.decodeKey(key))?"success":"failure";
+    }
+    
     public String addKey (String key) {
         Logger.write("VERBOSE", "TnImpl", "addKey(...)");
         if (c.db.addKey(Crypto.decodeKey(key)))
@@ -300,6 +305,7 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
         new File(Database.path + "/public.key").delete();
         new File(Database.path + "/private.key").delete();
         new File(Database.path + "/turtlenet.db").delete();
+        new File(Database.path).delete();
         
         return "success";
     }

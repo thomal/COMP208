@@ -1,168 +1,97 @@
-===== Turtlenet started at Mon Apr 28 00:44:01 BST 2014=====
-1398642241 UNIMPL	TNClient	Ignoring password: 
-1398642241 INFO		NetCon	Read lastRead from file
-1398642241 INFO		DB	Connecting to database
-1398642241 VERBOSE	TnImpl	getMyKey()
-1398642241 INFO		NetCon	NetworkConnection started
-1398642242 VERBOSE	TnImpl	getMyKey()
-1398642242 VERBOSE	TnImpl	getCategories()
-1398642242 VERBOSE	DB	getCategories()
-1398642242 VERBOSE	DB	query("SELECT * FROM tCategory;")
-1398642242 VERBOSE	DB	getCategories() returning 0 categories
-1398642242 VERBOSE	TnImpl	getWallPosts(...) ENTERING
-1398642242 VERBOSE	DB	getWallPost(...)
-1398642242 VERBOSE	DB	query("SELECT sig FROM tPost WHERE recieverKey = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCDXunadaT9HUKBPGqsF60ZzBw0YHaScZwkZXnwWwK9dLJkIumOw3ov4+9wA9buWEeiZjKH9ZJQ6u0C0zkwXO8fAkCE/Fpont8QXYB12BzRWsX+lsHRHGGG3pK4u+15yRr4LnlLrVuWk628oIeoqjlPr2m+uTPU76Q7YSwjDhytewIDAQAB';")
-1398642242 VERBOSE	TnImpl	getWallPosts(...) RETURNING
+===== Turtlenet started at Mon Apr 28 01:11:21 BST 2014=====
+1398643881 UNIMPL	TNClient	Ignoring password: 
+1398643881 INFO		NetCon	Read lastRead from file
+1398643881 INFO		DB	Connecting to database
+1398643881 VERBOSE	TnImpl	getMyKey()
+1398643881 VERBOSE	TnImpl	getMyKey()
+1398643882 VERBOSE	TnImpl	getCategories()
+1398643882 INFO		NetCon	NetworkConnection started
+1398643882 VERBOSE	TnImpl	getWallPosts(...) ENTERING
+1398643882 VERBOSE	DB	getWallPost(...)
+1398643882 VERBOSE	DB	query("SELECT sig FROM tPost WHERE recieverKey = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCCOTLEfgANYq4kH/QEdYWVuSS61w1riYg8Ig97OfRRTQj5s4aQTKxOlCuy4PcAa0m+p7dOV5YNPnhiy/Zv8yNx/4ZIU+B8dBzUojxoN2z74S9YwC7uVCY7zL8j/Ejx9QWBvncfvFpTqyVTN4FllBxkZV4ho1GpgaSo2eWwTAwSywIDAQAB';")
+1398643882 VERBOSE	TnImpl	getWallPosts(...) RETURNING
 
 
-1398642242 INFO		Crypto	decrypt()
-1398642243 VERBOSE	PARSE	parsing message
-1398642243 VERBOSE	DB	addComment(...)
-1398642243 VERBOSE	DB	getSignatory(...)
-1398642243 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398642243 WARNING	DB	getSignatory() could not find signatory
-1398642243 ERROR	Crypto	encodeKey passed null key
-1398642243 VERBOSE	DB	getSignatory(...)
-1398642243 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398642243 WARNING	DB	getSignatory() could not find signatory
-1398642243 ERROR	Crypto	encodeKey passed null key
-1398642243 VERBOSE	DB	execute("INSERT INTO tComment (sig, msgText, senderKey, parent, creationTime)VALUES ('YtsjiNAVICUSHLRxJkhlA76+CsKo9xfEvjhS/qUJz6vRPXLj+bGK1xslV7SMpv30Pg4WMVKm/Z0Km960QauClZNMX/tQJONdlCcMsrVAdzE51YX+p4OnqI+YGMuriGpB88irIZHGW4qWguLhzPrFoche2UV0e7oXCRv4ULzMGzI=', 'nnnn', '--INVALID KEYSTRING--', 'V2TzcdeyNd2K914+ZkhtayC/wFZBfy1Y8hLXPD7uOYiMzWZedhururoiHcqfXCY3Fjvv0diTiaIJmWB9pnWcnDfd0+OHjDg+x3yLa6TwMWBkXegFFmAnlthJ0xt7sFnKZ1KhuuuZl2HtRmhEeFSkEKCF4PJeZgddDcJDXLDvRNQ=', '1398641882060');")
-1398642243 ERROR	DB	SQLException: java.sql.SQLException: table tComment has no column named senderKey
-1398642243 ERROR	DB	SQLException: java.sql.SQLException: table tComment has no column named senderKey
-1398642243 INFO		Crypto	decrypt()
-1398642243 VERBOSE	PARSE	parsing message
-1398642243 VERBOSE	DB	addComment(...)
-1398642243 VERBOSE	DB	getSignatory(...)
-1398642243 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398642243 WARNING	DB	getSignatory() could not find signatory
-1398642243 ERROR	Crypto	encodeKey passed null key
-1398642243 VERBOSE	DB	getSignatory(...)
-1398642243 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398642243 WARNING	DB	getSignatory() could not find signatory
-1398642243 ERROR	Crypto	encodeKey passed null key
-1398642243 VERBOSE	DB	execute("INSERT INTO tComment (sig, msgText, senderKey, parent, creationTime)VALUES ('Tqw/MXiRQ+KI4975dHRxDEIpYi0vcwUQlqQ5H4VJkMAToTd1BkPDqTyRG3pz4Un97Tq0c6Dk4tSnyfvose4DntZVlggMM+Ja0l4GCMcq+CTmTvz1kq7lhQrI6qXjWcv9GW7yVRk85xdpgE2+my5Y7XaXEKGRKZpHKgtVTIA1DGo=', 'bllah, commenting again', '--INVALID KEYSTRING--', 'TLGR32GA9/mpX0AUHfmkkPS/AEt9fAYUGTR9oHwt7kff30g3sq0D6DSU07ENTilJ0GhIufkY/VZxxmgIRQjGrRD2lzH5YMfliLSXfAJ04bMTHsyQp8Pqcs5u3fqhu7PrBOIwcjlKCNuoYq3zJ7POP2R816AlZhzi/XcdDOFtHIg=', '1398641459281');")
-1398642243 ERROR	DB	SQLException: java.sql.SQLException: table tComment has no column named senderKey
-1398642243 ERROR	DB	SQLException: java.sql.SQLException: table tComment has no column named senderKey
-1398642243 INFO		Crypto	decrypt()
-1398642243 VERBOSE	PARSE	parsing message
-1398642243 VERBOSE	DB	-------addRevocation(...)-------
-1398642243 VERBOSE	DB	execute("INSERT INTO tRevocations (sig, timeOfLeak, creationTime) VALUES ('UPozgruYKqLtJJLr5gUNW0EBSpaXa580gvdFeixRXHsJyn5JD6fz4vJIwaJaNM2YHilTW87QeJX20F7gH4r4IDDOFl5k2ivGrglN8ZDPjmCyeZcHsuyU/nszgDHoi7G5nWKQswiJYTjgCUf/jDpotlxVGS8IZ1CNH5wd6OMZ7u8=', '0', '1398641923914');")
-1398642243 ERROR	DB	SQLException: java.sql.SQLException: column sig is not unique
-1398642243 ERROR	DB	SQLException: java.sql.SQLException: column sig is not unique
-1398642243 INFO		Crypto	decrypt()
-1398642243 VERBOSE	PARSE	parsing message
-1398642243 VERBOSE	DB	addComment(...)
-1398642243 VERBOSE	DB	getSignatory(...)
-1398642243 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398642243 WARNING	DB	getSignatory() could not find signatory
-1398642243 ERROR	Crypto	encodeKey passed null key
-1398642243 VERBOSE	DB	getSignatory(...)
-1398642243 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398642243 WARNING	DB	getSignatory() could not find signatory
-1398642243 ERROR	Crypto	encodeKey passed null key
-1398642243 VERBOSE	DB	execute("INSERT INTO tComment (sig, msgText, senderKey, parent, creationTime)VALUES ('SfL93MqbbFP0eCcttdfPgE9EJ+n1z1xVoaNjQf6KCrw4azMGqVVO/sOB+BNkXEqzQXzEw+A50CUO+MLf7qLVAplX1ztF3Xm7pDB8VE+MmVHZfIHZ1pb8Ykr/qy/lnvYypSu7/5T//Wv02uG7L0MAQfBRNOUnEtKWK2Nf2i1F8Nc=', 'blah comment', '--INVALID KEYSTRING--', 'TLGR32GA9/mpX0AUHfmkkPS/AEt9fAYUGTR9oHwt7kff30g3sq0D6DSU07ENTilJ0GhIufkY/VZxxmgIRQjGrRD2lzH5YMfliLSXfAJ04bMTHsyQp8Pqcs5u3fqhu7PrBOIwcjlKCNuoYq3zJ7POP2R816AlZhzi/XcdDOFtHIg=', '1398641444080');")
-1398642243 ERROR	DB	SQLException: java.sql.SQLException: table tComment has no column named senderKey
-1398642243 ERROR	DB	SQLException: java.sql.SQLException: table tComment has no column named senderKey
-1398642243 INFO		Crypto	decrypt()
-1398642243 VERBOSE	PARSE	parsing message
-1398642243 ERROR	PARSE	Unknown message type: "REVKOE"
-1398642243 INFO		Crypto	decrypt()
-1398642243 VERBOSE	PARSE	parsing message
-1398642243 VERBOSE	DB	addPost(...)
-1398642243 VERBOSE	DB	getSignatory(...)
-1398642243 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398642243 WARNING	DB	getSignatory() could not find signatory
-1398642243 ERROR	Crypto	encodeKey passed null key
-1398642243 VERBOSE	DB	execute("INSERT INTO tPost (sig, msgText, time, recieverKey, sendersKey)VALUES ('V2TzcdeyNd2K914+ZkhtayC/wFZBfy1Y8hLXPD7uOYiMzWZedhururoiHcqfXCY3Fjvv0diTiaIJmWB9pnWcnDfd0+OHjDg+x3yLa6TwMWBkXegFFmAnlthJ0xt7sFnKZ1KhuuuZl2HtRmhEeFSkEKCF4PJeZgddDcJDXLDvRNQ=', 'b', '1398641504392', 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCDXunadaT9HUKBPGqsF60ZzBw0YHaScZwkZXnwWwK9dLJkIumOw3ov4+9wA9buWEeiZjKH9ZJQ6u0C0zkwXO8fAkCE/Fpont8QXYB12BzRWsX+lsHRHGGG3pK4u+15yRr4LnlLrVuWk628oIeoqjlPr2m+uTPU76Q7YSwjDhytewIDAQAB', '--INVALID KEYSTRING--');")
-1398642243 VERBOSE	DB	execute("INSERT INTO tPostVisibleTo (postSig, key)VALUES ('V2TzcdeyNd2K914+ZkhtayC/wFZBfy1Y8hLXPD7uOYiMzWZedhururoiHcqfXCY3Fjvv0diTiaIJmWB9pnWcnDfd0+OHjDg+x3yLa6TwMWBkXegFFmAnlthJ0xt7sFnKZ1KhuuuZl2HtRmhEeFSkEKCF4PJeZgddDcJDXLDvRNQ=__', 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCDXunadaT9HUKBPGqsF60ZzBw0YHaScZwkZXnwWwK9dLJkIumOw3ov4+9wA9buWEeiZjKH9ZJQ6u0C0zkwXO8fAkCE/Fpont8QXYB12BzRWsX+lsHRHGGG3pK4u+15yRr4LnlLrVuWk628oIeoqjlPr2m+uTPU76Q7YSwjDhytewIDAQAB');")
-1398642243 INFO		Crypto	decrypt()
-1398642243 VERBOSE	PARSE	parsing message
-1398642243 VERBOSE	DB	addPost(...)
-1398642243 VERBOSE	DB	getSignatory(...)
-1398642243 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398642243 WARNING	DB	getSignatory() could not find signatory
-1398642243 ERROR	Crypto	encodeKey passed null key
-1398642243 VERBOSE	DB	execute("INSERT INTO tPost (sig, msgText, time, recieverKey, sendersKey)VALUES ('V2TzcdeyNd2K914+ZkhtayC/wFZBfy1Y8hLXPD7uOYiMzWZedhururoiHcqfXCY3Fjvv0diTiaIJmWB9pnWcnDfd0+OHjDg+x3yLa6TwMWBkXegFFmAnlthJ0xt7sFnKZ1KhuuuZl2HtRmhEeFSkEKCF4PJeZgddDcJDXLDvRNQ=', 'b', '1398641504392', 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCDXunadaT9HUKBPGqsF60ZzBw0YHaScZwkZXnwWwK9dLJkIumOw3ov4+9wA9buWEeiZjKH9ZJQ6u0C0zkwXO8fAkCE/Fpont8QXYB12BzRWsX+lsHRHGGG3pK4u+15yRr4LnlLrVuWk628oIeoqjlPr2m+uTPU76Q7YSwjDhytewIDAQAB', '--INVALID KEYSTRING--');")
-1398642243 ERROR	DB	SQLException: java.sql.SQLException: column sig is not unique
-1398642243 ERROR	DB	SQLException: java.sql.SQLException: column sig is not unique
-1398642243 INFO		Crypto	decrypt()
-1398642243 VERBOSE	PARSE	parsing message
-1398642243 VERBOSE	DB	addPost(...)
-1398642243 VERBOSE	DB	getSignatory(...)
-1398642243 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398642243 WARNING	DB	getSignatory() could not find signatory
-1398642243 ERROR	Crypto	encodeKey passed null key
-1398642243 VERBOSE	DB	execute("INSERT INTO tPost (sig, msgText, time, recieverKey, sendersKey)VALUES ('TLGR32GA9/mpX0AUHfmkkPS/AEt9fAYUGTR9oHwt7kff30g3sq0D6DSU07ENTilJ0GhIufkY/VZxxmgIRQjGrRD2lzH5YMfliLSXfAJ04bMTHsyQp8Pqcs5u3fqhu7PrBOIwcjlKCNuoYq3zJ7POP2R816AlZhzi/XcdDOFtHIg=', 'Testpost', '1398641435739', 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCDXunadaT9HUKBPGqsF60ZzBw0YHaScZwkZXnwWwK9dLJkIumOw3ov4+9wA9buWEeiZjKH9ZJQ6u0C0zkwXO8fAkCE/Fpont8QXYB12BzRWsX+lsHRHGGG3pK4u+15yRr4LnlLrVuWk628oIeoqjlPr2m+uTPU76Q7YSwjDhytewIDAQAB', '--INVALID KEYSTRING--');")
-1398642243 VERBOSE	DB	execute("INSERT INTO tPostVisibleTo (postSig, key)VALUES ('TLGR32GA9/mpX0AUHfmkkPS/AEt9fAYUGTR9oHwt7kff30g3sq0D6DSU07ENTilJ0GhIufkY/VZxxmgIRQjGrRD2lzH5YMfliLSXfAJ04bMTHsyQp8Pqcs5u3fqhu7PrBOIwcjlKCNuoYq3zJ7POP2R816AlZhzi/XcdDOFtHIg=__', 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCDXunadaT9HUKBPGqsF60ZzBw0YHaScZwkZXnwWwK9dLJkIumOw3ov4+9wA9buWEeiZjKH9ZJQ6u0C0zkwXO8fAkCE/Fpont8QXYB12BzRWsX+lsHRHGGG3pK4u+15yRr4LnlLrVuWk628oIeoqjlPr2m+uTPU76Q7YSwjDhytewIDAQAB');")
-1398642243 INFO		Crypto	decrypt()
-1398642243 VERBOSE	PARSE	parsing message
-1398642243 ERROR	PARSE	Unknown message type: "REVKOE"
-1398642243 INFO		Crypto	decrypt()
-1398642243 VERBOSE	PARSE	parsing message
-1398642243 VERBOSE	DB	addPost(...)
-1398642243 VERBOSE	DB	getSignatory(...)
-1398642243 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398642243 WARNING	DB	getSignatory() could not find signatory
-1398642243 ERROR	Crypto	encodeKey passed null key
-1398642243 VERBOSE	DB	execute("INSERT INTO tPost (sig, msgText, time, recieverKey, sendersKey)VALUES ('TLGR32GA9/mpX0AUHfmkkPS/AEt9fAYUGTR9oHwt7kff30g3sq0D6DSU07ENTilJ0GhIufkY/VZxxmgIRQjGrRD2lzH5YMfliLSXfAJ04bMTHsyQp8Pqcs5u3fqhu7PrBOIwcjlKCNuoYq3zJ7POP2R816AlZhzi/XcdDOFtHIg=', 'Testpost', '1398641435739', 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCDXunadaT9HUKBPGqsF60ZzBw0YHaScZwkZXnwWwK9dLJkIumOw3ov4+9wA9buWEeiZjKH9ZJQ6u0C0zkwXO8fAkCE/Fpont8QXYB12BzRWsX+lsHRHGGG3pK4u+15yRr4LnlLrVuWk628oIeoqjlPr2m+uTPU76Q7YSwjDhytewIDAQAB', '--INVALID KEYSTRING--');")
-1398642243 ERROR	DB	SQLException: java.sql.SQLException: column sig is not unique
-1398642243 ERROR	DB	SQLException: java.sql.SQLException: column sig is not unique
-1398642243 INFO		Crypto	decrypt()
-1398642243 VERBOSE	PARSE	parsing message
-1398642243 VERBOSE	DB	addComment(...)
-1398642243 VERBOSE	DB	getSignatory(...)
-1398642243 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398642243 WARNING	DB	getSignatory() could not find signatory
-1398642243 ERROR	Crypto	encodeKey passed null key
-1398642243 VERBOSE	DB	getSignatory(...)
-1398642243 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398642243 WARNING	DB	getSignatory() could not find signatory
-1398642243 ERROR	Crypto	encodeKey passed null key
-1398642243 VERBOSE	DB	execute("INSERT INTO tComment (sig, msgText, senderKey, parent, creationTime)VALUES ('Uc46G50kxOPx+9Y1YfmJZhoXSaqN7P+EOifxtoSffav86DgFmYYOsCMnepmN8KOq0vggnnsRvaLneGD1zkZZ03cFcEFKQx9ue0XoeSfjKWbPo1rNiVMZM5HdYYEI2XfK0etOAhPImhrzIQn9/xkkHQErEwUI0/w2n404XQyXDDE=', 'eeee', '--INVALID KEYSTRING--', 'V2TzcdeyNd2K914+ZkhtayC/wFZBfy1Y8hLXPD7uOYiMzWZedhururoiHcqfXCY3Fjvv0diTiaIJmWB9pnWcnDfd0+OHjDg+x3yLa6TwMWBkXegFFmAnlthJ0xt7sFnKZ1KhuuuZl2HtRmhEeFSkEKCF4PJeZgddDcJDXLDvRNQ=', '1398641515705');")
-1398642243 ERROR	DB	SQLException: java.sql.SQLException: table tComment has no column named senderKey
-1398642243 ERROR	DB	SQLException: java.sql.SQLException: table tComment has no column named senderKey
-1398642243 INFO		Crypto	decrypt()
-1398642243 VERBOSE	PARSE	parsing message
-1398642243 ERROR	PARSE	Unknown message type: "REVKOE"
-1398642243 INFO		Crypto	decrypt()
-1398642243 VERBOSE	PARSE	parsing message
-1398642243 ERROR	PARSE	Unknown message type: "REVKOE"
-1398642243 INFO		Crypto	decrypt()
-1398642243 VERBOSE	PARSE	parsing message
-1398642243 ERROR	PARSE	Unknown message type: "REVKOE"
-1398642244 VERBOSE	TnImpl	getCategoryMembers(All)
-1398642244 VERBOSE	DB	getCategoryMembers(All)
-1398642244 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398642244 VERBOSE	DB	getCategoryMembers(All) returning 0 members
-1398642244 VERBOSE	TnImpl	getCategories()
-1398642244 VERBOSE	DB	getCategories()
-1398642244 VERBOSE	DB	query("SELECT * FROM tCategory;")
-1398642244 VERBOSE	DB	getCategories() returning 0 categories
-1398642244 VERBOSE	TnImpl	getMyKey()
-1398642246 VERBOSE	TnImpl	getMyUsername()
-1398642246 VERBOSE	DB	getName(...)
-1398642246 VERBOSE	DB	query("SELECT username FROM tUser WHERE key = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCDXunadaT9HUKBPGqsF60ZzBw0YHaScZwkZXnwWwK9dLJkIumOw3ov4+9wA9buWEeiZjKH9ZJQ6u0C0zkwXO8fAkCE/Fpont8QXYB12BzRWsX+lsHRHGGG3pK4u+15yRr4LnlLrVuWk628oIeoqjlPr2m+uTPU76Q7YSwjDhytewIDAQAB';")
-1398642246 VERBOSE	TnImpl	getMyPDATA(name)
-1398642246 VERBOSE	TnImpl	getPDATA(name, ...)
-1398642246 VERBOSE	DB	getPDATA(name,...)
-1398642246 VERBOSE	DB	query("SELECT name FROM tUser WHERE key = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCDXunadaT9HUKBPGqsF60ZzBw0YHaScZwkZXnwWwK9dLJkIumOw3ov4+9wA9buWEeiZjKH9ZJQ6u0C0zkwXO8fAkCE/Fpont8QXYB12BzRWsX+lsHRHGGG3pK4u+15yRr4LnlLrVuWk628oIeoqjlPr2m+uTPU76Q7YSwjDhytewIDAQAB';")
-1398642246 VERBOSE	TnImpl	getMyPDATA(birthday)
-1398642246 VERBOSE	TnImpl	getPDATA(birthday, ...)
-1398642246 VERBOSE	DB	getPDATA(birthday,...)
-1398642246 VERBOSE	DB	query("SELECT birthday FROM tUser WHERE key = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCDXunadaT9HUKBPGqsF60ZzBw0YHaScZwkZXnwWwK9dLJkIumOw3ov4+9wA9buWEeiZjKH9ZJQ6u0C0zkwXO8fAkCE/Fpont8QXYB12BzRWsX+lsHRHGGG3pK4u+15yRr4LnlLrVuWk628oIeoqjlPr2m+uTPU76Q7YSwjDhytewIDAQAB';")
-1398642246 VERBOSE	TnImpl	getMyPDATA(gender)
-1398642246 VERBOSE	TnImpl	getPDATA(gender, ...)
-1398642246 VERBOSE	DB	getPDATA(gender,...)
-1398642246 VERBOSE	DB	query("SELECT gender FROM tUser WHERE key = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCDXunadaT9HUKBPGqsF60ZzBw0YHaScZwkZXnwWwK9dLJkIumOw3ov4+9wA9buWEeiZjKH9ZJQ6u0C0zkwXO8fAkCE/Fpont8QXYB12BzRWsX+lsHRHGGG3pK4u+15yRr4LnlLrVuWk628oIeoqjlPr2m+uTPU76Q7YSwjDhytewIDAQAB';")
-1398642246 VERBOSE	TnImpl	getMyPDATA(email)
-1398642246 VERBOSE	TnImpl	getPDATA(email, ...)
-1398642246 VERBOSE	DB	getPDATA(email,...)
-1398642246 VERBOSE	DB	query("SELECT email FROM tUser WHERE key = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCDXunadaT9HUKBPGqsF60ZzBw0YHaScZwkZXnwWwK9dLJkIumOw3ov4+9wA9buWEeiZjKH9ZJQ6u0C0zkwXO8fAkCE/Fpont8QXYB12BzRWsX+lsHRHGGG3pK4u+15yRr4LnlLrVuWk628oIeoqjlPr2m+uTPU76Q7YSwjDhytewIDAQAB';")
-1398642246 VERBOSE	TnImpl	getCategories()
-1398642246 VERBOSE	DB	getCategories()
-1398642246 VERBOSE	DB	query("SELECT * FROM tCategory;")
-1398642246 VERBOSE	DB	getCategories() returning 0 categories
-1398642247 VERBOSE	TnImpl	-------revokeMyKey()-------
-1398642247 VERBOSE	DB	getCategoryMembers(all)
-1398642247 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398642247 VERBOSE	DB	getCategoryMembers(all) returning 0 members
+1398643883 VERBOSE	TnImpl	getCategoryMembers(All)
+1398643883 VERBOSE	DB	getCategoryMembers(All)
+1398643883 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398643883 VERBOSE	DB	getCategoryMembers(All) returning 1 members
+1398643883 VERBOSE	DB	getName(...)
+1398643883 VERBOSE	DB	query("SELECT username FROM tUser WHERE key = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCCOTLEfgANYq4kH/QEdYWVuSS61w1riYg8Ig97OfRRTQj5s4aQTKxOlCuy4PcAa0m+p7dOV5YNPnhiy/Zv8yNx/4ZIU+B8dBzUojxoN2z74S9YwC7uVCY7zL8j/Ejx9QWBvncfvFpTqyVTN4FllBxkZV4ho1GpgaSo2eWwTAwSywIDAQAB';")
+1398643883 VERBOSE	TnImpl	getCategories()
+1398643883 VERBOSE	DB	getCategories()
+1398643883 VERBOSE	DB	query("SELECT * FROM tCategory;")
+1398643883 VERBOSE	DB	getCategories() returning 1 categories
+1398643883 VERBOSE	TnImpl	getMyKey()
+1398643885 VERBOSE	TnImpl	getCategoryMembers(Tits)
+1398643885 VERBOSE	DB	getCategoryMembers(Tits)
+1398643885 VERBOSE	DB	query("SELECT userKey FROM tCategoryMembers WHERE catID = 'Tits';")
+1398643885 VERBOSE	DB	getCategoryMembers(Tits) returning 1 members
+1398643885 VERBOSE	DB	getName(...)
+1398643885 VERBOSE	DB	query("SELECT username FROM tUser WHERE key = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCCOTLEfgANYq4kH/QEdYWVuSS61w1riYg8Ig97OfRRTQj5s4aQTKxOlCuy4PcAa0m+p7dOV5YNPnhiy/Zv8yNx/4ZIU+B8dBzUojxoN2z74S9YwC7uVCY7zL8j/Ejx9QWBvncfvFpTqyVTN4FllBxkZV4ho1GpgaSo2eWwTAwSywIDAQAB';")
+1398643885 VERBOSE	TnImpl	getCategories()
+1398643885 VERBOSE	DB	getCategories()
+1398643885 VERBOSE	DB	query("SELECT * FROM tCategory;")
+1398643885 VERBOSE	DB	getCategories() returning 1 categories
+1398643885 VERBOSE	TnImpl	getMyKey()
+1398643886 VERBOSE	TnImpl	getCategoryMembers(Tits)
+1398643886 VERBOSE	DB	getCategoryMembers(Tits)
+1398643886 VERBOSE	DB	query("SELECT userKey FROM tCategoryMembers WHERE catID = 'Tits';")
+1398643886 VERBOSE	DB	getCategoryMembers(Tits) returning 1 members
+1398643886 VERBOSE	DB	getName(...)
+1398643886 VERBOSE	DB	query("SELECT username FROM tUser WHERE key = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCCOTLEfgANYq4kH/QEdYWVuSS61w1riYg8Ig97OfRRTQj5s4aQTKxOlCuy4PcAa0m+p7dOV5YNPnhiy/Zv8yNx/4ZIU+B8dBzUojxoN2z74S9YwC7uVCY7zL8j/Ejx9QWBvncfvFpTqyVTN4FllBxkZV4ho1GpgaSo2eWwTAwSywIDAQAB';")
+1398643886 VERBOSE	TnImpl	getPeople()
+1398643886 VERBOSE	TnImpl	getCategoryMembers(all)
+1398643886 VERBOSE	DB	getCategoryMembers(all)
+1398643886 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398643886 VERBOSE	DB	getCategoryMembers(all) returning 1 members
+1398643886 VERBOSE	DB	getName(...)
+1398643886 VERBOSE	DB	query("SELECT username FROM tUser WHERE key = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCCOTLEfgANYq4kH/QEdYWVuSS61w1riYg8Ig97OfRRTQj5s4aQTKxOlCuy4PcAa0m+p7dOV5YNPnhiy/Zv8yNx/4ZIU+B8dBzUojxoN2z74S9YwC7uVCY7zL8j/Ejx9QWBvncfvFpTqyVTN4FllBxkZV4ho1GpgaSo2eWwTAwSywIDAQAB';")
+1398643889 VERBOSE	TnImpl	removeFromCategory(Tits,...)
+1398643889 VERBOSE	DB	removeFromCategory(Tits, ...)
+1398643889 VERBOSE	DB	execute("DELETE FROM tCategoryMembers WHERE catId = 'Tits' AND userKey = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCCOTLEfgANYq4kH/QEdYWVuSS61w1riYg8Ig97OfRRTQj5s4aQTKxOlCuy4PcAa0m+p7dOV5YNPnhiy/Zv8yNx/4ZIU+B8dBzUojxoN2z74S9YwC7uVCY7zL8j/Ejx9QWBvncfvFpTqyVTN4FllBxkZV4ho1GpgaSo2eWwTAwSywIDAQAB';")
+1398643889 VERBOSE	TnImpl	getCategoryMembers(Tits)
+1398643889 VERBOSE	DB	getCategoryMembers(Tits)
+1398643889 VERBOSE	DB	query("SELECT userKey FROM tCategoryMembers WHERE catID = 'Tits';")
+1398643889 VERBOSE	DB	getCategoryMembers(Tits) returning 0 members
+1398643889 VERBOSE	TnImpl	getCategories()
+1398643889 VERBOSE	DB	getCategories()
+1398643889 VERBOSE	DB	query("SELECT * FROM tCategory;")
+1398643889 VERBOSE	DB	getCategories() returning 1 categories
+1398643889 VERBOSE	TnImpl	getMyKey()
+1398643892 VERBOSE	TnImpl	getCategoryMembers(All)
+1398643892 VERBOSE	DB	getCategoryMembers(All)
+1398643892 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398643892 VERBOSE	DB	getCategoryMembers(All) returning 1 members
+1398643892 VERBOSE	DB	getName(...)
+1398643892 VERBOSE	DB	query("SELECT username FROM tUser WHERE key = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCCOTLEfgANYq4kH/QEdYWVuSS61w1riYg8Ig97OfRRTQj5s4aQTKxOlCuy4PcAa0m+p7dOV5YNPnhiy/Zv8yNx/4ZIU+B8dBzUojxoN2z74S9YwC7uVCY7zL8j/Ejx9QWBvncfvFpTqyVTN4FllBxkZV4ho1GpgaSo2eWwTAwSywIDAQAB';")
+1398643892 VERBOSE	TnImpl	getCategories()
+1398643892 VERBOSE	DB	getCategories()
+1398643892 VERBOSE	DB	query("SELECT * FROM tCategory;")
+1398643892 VERBOSE	DB	getCategories() returning 1 categories
+1398643892 VERBOSE	TnImpl	getMyKey()
+1398643894 VERBOSE	TnImpl	getCategoryMembers(Tits)
+1398643894 VERBOSE	DB	getCategoryMembers(Tits)
+1398643894 VERBOSE	DB	query("SELECT userKey FROM tCategoryMembers WHERE catID = 'Tits';")
+1398643894 VERBOSE	DB	getCategoryMembers(Tits) returning 0 members
+1398643894 VERBOSE	TnImpl	getCategories()
+1398643894 VERBOSE	DB	getCategories()
+1398643894 VERBOSE	DB	query("SELECT * FROM tCategory;")
+1398643894 VERBOSE	DB	getCategories() returning 1 categories
+1398643894 VERBOSE	TnImpl	getMyKey()
+1398643896 VERBOSE	TnImpl	getCategoryMembers(All)
+1398643896 VERBOSE	DB	getCategoryMembers(All)
+1398643896 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398643896 VERBOSE	DB	getCategoryMembers(All) returning 1 members
+1398643896 VERBOSE	DB	getName(...)
+1398643896 VERBOSE	DB	query("SELECT username FROM tUser WHERE key = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCCOTLEfgANYq4kH/QEdYWVuSS61w1riYg8Ig97OfRRTQj5s4aQTKxOlCuy4PcAa0m+p7dOV5YNPnhiy/Zv8yNx/4ZIU+B8dBzUojxoN2z74S9YwC7uVCY7zL8j/Ejx9QWBvncfvFpTqyVTN4FllBxkZV4ho1GpgaSo2eWwTAwSywIDAQAB';")
+1398643896 VERBOSE	TnImpl	getCategories()
+1398643896 VERBOSE	DB	getCategories()
+1398643896 VERBOSE	DB	query("SELECT * FROM tCategory;")
+1398643896 VERBOSE	DB	getCategories() returning 1 categories
+1398643896 VERBOSE	TnImpl	getMyKey()
+1398643897 INFO		TNImpl	stopTN()
+1398643897 INFO		NetCon	close()
+1398643897 INFO		NetCon	Saved lastRead to disk
+1398643897 INFO		DB	Disconnecting from database
+===== Turtlenet closed  at Mon Apr 28 01:11:37 BST 2014=====
