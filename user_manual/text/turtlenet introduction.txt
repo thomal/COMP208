@@ -11,6 +11,8 @@ aims
 - only those you trust can see your personal data
 
 target audience
-- businesses
-- government bodies? 
-- those who are concerned regarding the security of their data
+- businesses who require secure internal communications
+- government bodies (16 CIA opratives doing extrordinary rendidtion (kidnap and torture) in italy were caught because of cell network communications graphs, TN could protect them)
+- dissidents
+- those who are concerned regarding their privacy
+- turrists

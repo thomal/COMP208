@@ -1355,6 +1355,7 @@ public class frontend implements EntryPoint, ClickListener {
         final FlowPanel conversationPanel = new FlowPanel();
         RootPanel.get().add(conversationPanel);
         HorizontalPanel conversationParticipantsPanel = new HorizontalPanel();
+        conversationParticipantsPanel.setSpacing(5);
         conversationPanel.add(conversationParticipantsPanel);
         convoPanelSetup_convosig = conversationID;
         Label participantsLabel = new Label("Participants: ");
@@ -1390,6 +1391,7 @@ public class frontend implements EntryPoint, ClickListener {
                         
                         for (int i = 0; i < messages.length; i++) {
                             HorizontalPanel conversationContentsPanel = new HorizontalPanel();
+                            conversationContentsPanel.setSpacing(5);
                             conversationPanel.add(conversationContentsPanel);
                             Label postedBy = new Label(messages[i][0]);
                             postedBy.getElement().getStyle().setProperty("marginRight" , "110px");
@@ -1400,7 +1402,7 @@ public class frontend implements EntryPoint, ClickListener {
                         }
                         
                         Button replyToConversation = new Button("Reply");
-                        replyToConversation.setWidth("500px");
+                        replyToConversation.setWidth("590px");
                         conversationPanel.add(replyToConversation);                     
                         
                         final FlowPanel conversationReplyPanel = new FlowPanel();
@@ -1412,7 +1414,8 @@ public class frontend implements EntryPoint, ClickListener {
                         conversationReplyPanel.add(conversationReplyControlsPanel);
                         
                         Label stop = new Label("Page auto update paused");
-                        stop.getElement().getStyle().setProperty("color" , "#FF0000");  
+                        stop.getElement().getStyle().setProperty("color" , "#FF0000");
+                        stop.getElement().getStyle().setProperty("paddingRight" , "55px");  
                         conversationReplyControlsPanel.add(stop);
                         stop.addClickHandler(new ClickHandler() {
                             public void onClick(ClickEvent event) {
