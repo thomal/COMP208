@@ -17,16 +17,15 @@ public interface TurtlenetAsync {
     void getMyPDATA    (String pk,               AsyncCallback<String> callback);
     void getKey        (String username,         AsyncCallback<String> callback);
     void getMyKey                               (AsyncCallback<String> callback);
-    
-    void getPeople                           (AsyncCallback<String[][]> callback);
-    void getCategories                       (AsyncCallback<String[][]> callback);
-    void getCategoryMembers (String category, AsyncCallback<String[][]> callback);
-    
+    void getPeople                              (AsyncCallback<String[][]> callback);
+    void getCategories                          (AsyncCallback<String[][]> callback);
+    void getCategoryMembers (String category,    AsyncCallback<String[][]> callback);
     void getConversation         (String sig,    AsyncCallback<Conversation> callback);
     void getConversations                       (AsyncCallback<Conversation[]> callback);
     void getConversationMessages (String sig,    AsyncCallback<String[][]> callback);
     void getWallPosts            (String key,    AsyncCallback<PostDetails[]> callback);
     void getComments             (String parent, AsyncCallback<CommentDetails[]> callback);
+    void timeMostRecentWallPost  (String key,    AsyncCallback<Long> callback);
     
     //Profile Data
     void claimUsername         (String uname,                   AsyncCallback<String> callback);

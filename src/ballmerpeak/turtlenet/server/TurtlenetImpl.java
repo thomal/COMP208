@@ -139,6 +139,10 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
         return details;
     }
     
+    public Long timeMostRecentWallPost (String key) {
+        return c.db.timeMostRecentWallPost(Crypto.decodeKey(key));
+    }
+    
     
     //Profile Data
     public String claimUsername (String uname) {

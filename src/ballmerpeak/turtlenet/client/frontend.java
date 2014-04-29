@@ -110,14 +110,17 @@ public class frontend implements EntryPoint, ClickListener {
         Timer refresh = new Timer() {
             public void run() {            
                 if(location.equals("wall")) {
-                    // TODO LUKETODO '0' should be replaced with a
-                    // call to a method that takes the key of a user and returns
-                    // the timestamp of the most recent message on their wall.
-                    // Give it refreshID
-                    if(0 > wallLastTimeStamp) {
-                        System.out.println("Location: wall. refreshID: " + refreshID);
-                        wall(refreshID, true);
-                    }
+                    turtlenet.timeMostRecentWallPost(refreshID, new AsyncCallback<Long>() {
+                        public void onFailure(Throwable caught) {
+                            //TODO Error
+                        }
+                        public void onSuccess(Long result) {
+                            if(result > wallLastTimeStamp) {
+                                System.out.println("Location: wall. refreshID: " + refreshID);
+                                wall(refreshID, true);
+                            }
+                        }
+                    });
                 } else if(location.equals("conversationList")) {
                     System.out.println("Location: conversationList");
                     conversationList();

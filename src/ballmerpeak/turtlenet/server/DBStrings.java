@@ -113,6 +113,11 @@ class DBStrings {
     public static final String getLike               = "SELECT * FROM tLike WHERE parent = '__SIG__';";
     public static final String getComments           = "SELECT * FROM tComment WHERE parent = '__PARENT__';";
     public static final String getComment            = "SELECT * FROM tComment WHERE sig = '__SIG__';";
+    public static final String mostRecentWallPost    = "SELECT maxtime FROM tPost " +
+                                                       "INNER JOIN " +
+                                                           "(SELECT MAX(time) maxtime, recieverKey FROM tPost GROUP BY recieverKey) AS temp "+
+                                                       "ON tPost.recieverKey = temp.recieverKey AND tPost.time = temp.maxtime "+
+                                                       "WHERE tPost.recieverKey = '__KEY__';";
     
     public static final String addPost               = "INSERT INTO tPost (sig, msgText, time, recieverKey, sendersKey)" +
                                                            "VALUES ('__SIG__', '__msgText__', '__time__', '__recieverKey__', '__sendersKey__');";

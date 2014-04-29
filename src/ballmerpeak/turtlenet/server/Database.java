@@ -205,6 +205,18 @@ public class Database {
         return comments.toArray(new Message[0]); 
     }
     
+    public Long timeMostRecentWallPost (PublicKey key) {
+        Logger.write("VERBOSE", "DB", "timeMostRecentWallPost(...)");
+        try {
+            ResultSet mostRecent = query(DBStrings.mostRecentWallPost.replace("__KEY__", Crypto.encodeKey(key)));
+            if (mostRecent.next())
+                return Long.parseLong(mostRecent.getString("maxtime"));
+        } catch (java.sql.SQLException e) {
+            Logger.write("ERROR", "DB", "SQLException: " + e);
+        }
+        return 0L;
+    }
+    
     public boolean isLiked (String sig) {
         Logger.write("VERBOSE", "DB", "isLiked(...)");
         int ret = 0;
