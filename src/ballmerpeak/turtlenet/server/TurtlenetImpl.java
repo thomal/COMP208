@@ -13,9 +13,10 @@ import ballmerpeak.turtlenet.shared.CommentDetails;
 
 @SuppressWarnings("serial")
 public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
-    TNClient c;
+    TNClient c = null;
     
     public String startTN(String password) {
+        Logger.init("LOG_turtlenet");
         Logger.write("INFO", "TNImpl","startTN()");
         c = new TNClient(password);
         if (c != null) {
@@ -31,6 +32,32 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
         Logger.write("INFO", "TNImpl","stopTN()");
         c.running = false;
         return "success";
+    }
+    
+    public String isFirstTime() {
+        return !Database.DBExists() ? "true" : "false"; //GWT can only return objects
+    }
+    
+    public String register(String username, String password) {
+        Logger.init("LOG_turtlenet");
+        Logger.write("INFO", "TnImpl", "Registering \"" + username + "\" with PW \"" + password + "\"");
+        
+        if (startTN(password).equals("success")) {
+            try {
+                Thread.sleep(3000);
+            } catch (Exception e) {}
+            
+            Logger.write("INFO", "TnImpl", "Started TN...continuing registration");
+            if(claimUsername(username).equals("success"))
+                if(addKey(Crypto.encodeKey(Crypto.getPublicKey())).equals("success"))
+                    return "success";
+                else
+                    return "failure";
+            else
+                return "taken";
+        } else {
+            return "failure";
+        }
     }
     
     //Profile Data

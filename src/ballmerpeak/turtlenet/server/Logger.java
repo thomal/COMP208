@@ -20,15 +20,17 @@ public class Logger {
     static PrintWriter log;
     
     public static void init (String logfile) {
-        started = true;
-        path = logfile;
+        if (!started) {
+            started = true;
+            path = logfile;
         
-        try {
-            log = new PrintWriter(new BufferedWriter(new FileWriter(path)));
-            log.println("===== Turtlenet started at " + new Date() + "=====");
-            log.flush();
-        } catch (Exception e) {
-            throw new RuntimeException("ERROR: Unable to open log: " + e);
+            try {
+                log = new PrintWriter(new BufferedWriter(new FileWriter(path)));
+                log.println("===== Turtlenet started at " + new Date() + "=====");
+                log.flush();
+            } catch (Exception e) {
+                throw new RuntimeException("ERROR: Unable to open log: " + e);
+            }
         }
     }
     
