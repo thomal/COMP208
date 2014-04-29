@@ -11,6 +11,7 @@ import java.util.Vector;
 
 public class Database {
     public static String path = "./db"; //path to database directory
+    public boolean created = false;
     private Connection dbConnection;
 
     public Database () {
@@ -41,6 +42,7 @@ public class Database {
             dbConnect();
             for (int i = 0; i < DBStrings.createDB.length; i++)
                 execute(DBStrings.createDB[i]);
+            created = true;
         } catch (Exception e) {
             Logger.write("FATAL", "DB", "Failed to create databse: " + e);
         }
@@ -587,7 +589,7 @@ public class Database {
             
             ResultSet everyone = query(DBStrings.getAllKeys);
             while (everyone.next())
-                validateClaims(Crypto.decodeKey(everyone.getString("key")));
+                    validateClaims(Crypto.decodeKey(everyone.getString("key")));
         } catch (java.sql.SQLException e) {
             Logger.write("ERROR", "DB", "SQLException: " + e);
             return false;

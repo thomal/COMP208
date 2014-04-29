@@ -48,11 +48,12 @@ public class frontend implements EntryPoint, ClickListener {
     private String location = new String("");
     private String refreshID = new String("");
 
+    FlexTable loginPanel;
     private void login() {
         location = "login";
         refreshID = "";
         RootPanel.get().clear();
-        FlexTable loginPanel = new FlexTable();
+        loginPanel = new FlexTable();
         RootPanel.get().add(loginPanel);
     
         // Create login panel widgets
@@ -61,93 +62,107 @@ public class frontend implements EntryPoint, ClickListener {
         final PasswordTextBox passwordInput = new PasswordTextBox();
         final Label passwordLabel = new Label();
 
-        // TODO LUKETODO "first time".equals("first time") should be replaced
-        // with a call to a method that determines if the user has logged in
-        // before or not.
-        if("first time".equals("first time")) {
-            passwordLabel.setText("Please choose a password:");
-            final PasswordTextBox passwordConfirmInput = new PasswordTextBox();
-            final Label passwordConfirmLabel = new Label("");
-            passwordConfirmLabel.setText("Confirm your password:");
-            final TextBox usernameInput = new TextBox();
-            final Label usernameLabel = new Label("");
-            usernameLabel.setText("Please choose a username:");
-            
-            // Add widgets to login panel
-            loginPanel.setWidget(1, 1, usernameLabel);
-            loginPanel.setWidget(2, 1, usernameInput);
-            loginPanel.setWidget(3, 1, passwordLabel);
-            loginPanel.setWidget(4, 1, passwordInput);
-            loginPanel.setWidget(5, 1, passwordConfirmLabel);
-            loginPanel.setWidget(6, 1, passwordConfirmInput);
-            loginPanel.setWidget(7, 1, loginButton);
-            
-            // Add click handler for button
-            loginButton.addClickHandler(new ClickHandler() {
-                public void onClick(ClickEvent event) {
-                    passwordLabel.setText("Please choose a password:");
-                    passwordConfirmLabel.setText("Confirm your password");
-                    usernameLabel.setText("Please choose a username:");
-                                    
-                    if(passwordInput.getText().equals(passwordConfirmInput.getText())) {
-                        // TODO LUKETODO call a method that sets the users username and password
-                        // Use usernameInput.getText() to get the username 
-                        // User passwordInput.getText() to get the password
-                        // If the username is already taken usernameLabel.setText("Username already taken. Try again:")
-                        // If the password is invalid passwordLabel.setText("Choose a different password:")
-                        
-                        // TODO LUKETODO "users key" should be replaced with a call
-                        // to a method that returns the users public key.
-                        // wall should only be called on successful registration
-                        wall("users key", false);
-                    } else {
-                        passwordLabel.setText("Passwords do not match. Try again:");
-                        passwordConfirmInput.setText("");
-                        passwordInput.setText("");
-                    }
+
+        turtlenet.isFirstTime(new AsyncCallback<String>() {
+                public void onFailure(Throwable caught) {
+                    //TODO Error
                 }
-            });
-        
-        } else {
-            passwordLabel.setText("Please enter your password:");
-
-            // Add widgets to login panel
-            loginPanel.setWidget(1, 1, passwordLabel);
-            loginPanel.setWidget(2, 1, passwordInput);
-            loginPanel.setWidget(3, 1, loginButton);
-
-            
-
-            // Add click handler for button
-            loginButton.addClickHandler(new ClickHandler() {
-                public void onClick(ClickEvent event) {
-                    passwordLabel.setText("Please enter your password:");
-                    
-                    turtlenet.startTN(passwordInput.getText(), new AsyncCallback<String>() {
-                        public void onFailure(Throwable caught) {
-                            //TODO error
-                        }
-                        public void onSuccess(String result) {
-                            if (result.equals("success")) {
-                                turtlenet.getMyKey(new AsyncCallback<String>() {
+                public void onSuccess(String result) {
+                    if(result.equals("true")) { //GWT can only return objects
+                        passwordLabel.setText("Please choose a password:");
+                        final PasswordTextBox passwordConfirmInput = new PasswordTextBox();
+                        final Label passwordConfirmLabel = new Label("");
+                        passwordConfirmLabel.setText("Confirm your password:");
+                        final TextBox usernameInput = new TextBox();
+                        final Label usernameLabel = new Label("");
+                        usernameLabel.setText("Please choose a username:");
+                        
+                        // Add widgets to login panel
+                        loginPanel.setWidget(1, 1, usernameLabel);
+                        loginPanel.setWidget(2, 1, usernameInput);
+                        loginPanel.setWidget(3, 1, passwordLabel);
+                        loginPanel.setWidget(4, 1, passwordInput);
+                        loginPanel.setWidget(5, 1, passwordConfirmLabel);
+                        loginPanel.setWidget(6, 1, passwordConfirmInput);
+                        loginPanel.setWidget(7, 1, loginButton);
+                        
+                        // Add click handler for button
+                        loginButton.addClickHandler(new ClickHandler() {
+                        public void onClick(ClickEvent event) {
+                            passwordLabel.setText("Please choose a password:");
+                            passwordConfirmLabel.setText("Confirm your password");
+                            usernameLabel.setText("Please choose a username:");
+                            
+                            if(passwordInput.getText().equals(passwordConfirmInput.getText())) {
+                                turtlenet.register(usernameInput.getText(), passwordInput.getText(), new AsyncCallback<String>() {
                                     public void onFailure(Throwable caught) {
-                                        //TODO error
+                                        //TODO Error
                                     }
                                     public void onSuccess(String result) {
-                                        wall(result, false);
+                                        if (result.equals("success")) {
+                                            turtlenet.getMyKey(new AsyncCallback<String>() {
+                                                public void onFailure(Throwable caught) {
+                                                    //TODO Error
+                                                }
+                                                public void onSuccess(String result) {
+                                                    wall(result, false);
+                                                }
+                                            });
+                                        } else if (result.equals("taken")) { 
+                                            usernameLabel.setText("Username already taken. Try again:");
+                                        } else {
+                                            //TODO Error
+                                        }
                                     }
                                 });
-                            } else if (result.equals("failure")) {
-                                passwordLabel.setText("Password incorrect. Try again: ");
                             } else {
-                                //TODO error, this ought NEVER happen
-                                passwordLabel.setText("INVALID RESPONSE FROM TNClient");
+                                passwordLabel.setText("Passwords do not match. Try again:");
+                                passwordConfirmInput.setText("");
+                                passwordInput.setText("");
                             }
+                        }
+                        });
+                
+                    } else {
+                        passwordLabel.setText("Please enter your password:");
+        
+                        // Add widgets to login panel
+                        loginPanel.setWidget(1, 1, passwordLabel);
+                        loginPanel.setWidget(2, 1, passwordInput);
+                        loginPanel.setWidget(3, 1, loginButton);
+        
+                        // Add click handler for button
+                        loginButton.addClickHandler(new ClickHandler() {
+                        public void onClick(ClickEvent event) {
+                            passwordLabel.setText("Please enter your password:");
+                            
+                            turtlenet.startTN(passwordInput.getText(), new AsyncCallback<String>() {
+                                public void onFailure(Throwable caught) {
+                                    //TODO error
+                                }
+                                public void onSuccess(String result) {
+                                    if (result.equals("success")) {
+                                        turtlenet.getMyKey(new AsyncCallback<String>() {
+                                            public void onFailure(Throwable caught) {
+                                                //TODO error
+                                            }
+                                            public void onSuccess(String result) {
+                                                wall(result, false);
+                                            }
+                                        });
+                                    } else if (result.equals("failure")) {
+                                        passwordLabel.setText("Password incorrect. Try again: ");
+                                    } else {
+                                        //TODO error, this ought NEVER happen
+                                        passwordLabel.setText("INVALID RESPONSE FROM TNClient");
+                                    }
+                                }
+                            });
                         }
                     });
                 }
-            });
-        }
+            }
+        });
         
         // Add style name for CSS
         loginPanel.addStyleName("gwt-login");

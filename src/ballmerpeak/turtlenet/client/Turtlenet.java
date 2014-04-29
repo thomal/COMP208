@@ -9,10 +9,11 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
 @RemoteServiceRelativePath("turtlenet")
 public interface Turtlenet extends RemoteService {
-  String     startTN(String password);
-  String     stopTN();
+  String           startTN                 (String password);
+  String           stopTN                  ();
+  String           isFirstTime             (); //GWT requires an object
+  String           register                (String username, String password);
   
-  //Profile Data
   String           getUsername             (String key);
   String           getMyUsername           ();
   String           getPDATA                (String field, String key);
@@ -28,22 +29,19 @@ public interface Turtlenet extends RemoteService {
   PostDetails[]    getWallPosts            (String key);
   CommentDetails[] getComments             (String parent);
   Long             timeMostRecentWallPost  (String key);
-  //Profile Data
+  
   String           claimUsername           (String uname);
   String           updatePDATA             (String field, String newValue);
   String           updatePDATApermission   (String category, boolean value);
-  //Posting
   String[]         createCHAT              (String[] keys); //{"success", "<convo signature>"}
   String           addMessageToCHAT        (String text, String sig);
   String           like                    (String sig);
   String           unlike                  (String sig);
-  //Friends
   String           addCategory             (String name);
   String           addToCategory           (String category, String key);
   String           addKey                  (String key);
   String           addPost                 (String wallKey, String categoryVisibleTo, String msg);
   String           addComment              (String parent, String text);
   String           removeFromCategory      (String group, String key);
-  //Bad stuff
   String           revokeMyKey             ();
 }
