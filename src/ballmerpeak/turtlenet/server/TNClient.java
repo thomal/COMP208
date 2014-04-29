@@ -32,12 +32,14 @@ public class TNClient implements Runnable {
     public void run () {
         Logger.init("LOG_turtlenet");
         Logger.write("UNIMPL", "TNClient", "Ignoring password: " + password);
+        
+        if (!Crypto.keysExist())
+            Crypto.keyGen();
+        
         connection    = new NetworkConnection("127.0.0.1");
         networkThread = new Thread(connection);
         db            = new Database();
         
-        if (!Crypto.keysExist()) //move into GUI
-            Crypto.keyGen();
         networkThread.start();
         
         while (running)
