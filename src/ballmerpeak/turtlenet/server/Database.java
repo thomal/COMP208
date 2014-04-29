@@ -1,14 +1,3 @@
-/* FOR MIKES ATTENTION:
- * String[][] demo = {{"a", "b"}, {"c", "d"}, {"e", "f"}}
- * is a String[3][2]
- * An array of 3 String[2]'s
- * Each String[2] contains two strings [0] and [1]
- * So demo[1][1] = "d"
- *    demo[2][0] = "e"
- * This format is used to describe return formats. Demos can be found in
- *    TurtlenetImpl.java in many cases.
-*/
-
 package ballmerpeak.turtlenet.server;
 
 import ballmerpeak.turtlenet.shared.Message;
@@ -26,13 +15,17 @@ public class Database {
 
     public Database () {
         dbConnection = null;
-        File db = new File(path);
-        if (db.exists()) dbConnect(); else dbCreate();
+        if (DBExists()) dbConnect(); else dbCreate();
     }
     
     public static boolean DBDirExists() {
         File dir = new File(path);
         return dir.exists();
+    }
+    
+    public static boolean DBExists() {
+        File db = new File(path + "/turtlenet.db");
+        return db.exists();
     }
     
     public static boolean createDBDir() {

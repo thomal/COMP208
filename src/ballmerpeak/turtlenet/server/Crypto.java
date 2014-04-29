@@ -19,8 +19,6 @@ public class Crypto {
                                                .getBytes());
 
     public static Boolean keysExist() {
-        if (!Database.DBDirExists())
-            return false;
         File publicKey  = new File(Database.path + "/public.key");
         File privateKey = new File(Database.path + "/private.key");
         return publicKey.exists() && privateKey.exists();
