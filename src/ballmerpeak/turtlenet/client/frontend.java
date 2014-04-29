@@ -651,7 +651,7 @@ public class frontend implements EntryPoint, ClickListener {
         editEmail.setWidth("300px");
         turtlenet.getMyPDATA("email", new AsyncCallback<String>() {
             public void onFailure(Throwable caught) {
-                //TODO error
+                System.out.println("turtlenet.getMyPDATA email failed");
             }
             public void onSuccess(String result) {
                 editEmail.setText(result);
@@ -669,7 +669,7 @@ public class frontend implements EntryPoint, ClickListener {
             public void onClick(ClickEvent event) {
                 turtlenet.updatePDATA("email", editEmail.getText(), new AsyncCallback<String>() {
                      public void onFailure(Throwable caught) {
-                         //TODO error
+                         System.out.println("turtlenet.updatePDATA email failed");
                      }
                      public void onSuccess(String result) {
                          if (result.equals("success")) {
@@ -694,7 +694,7 @@ public class frontend implements EntryPoint, ClickListener {
             public void onClick(ClickEvent event) {
                 turtlenet.revokeMyKey(new AsyncCallback<String>() {
                      public void onFailure(Throwable caught) {
-                         //TODO error
+                         System.out.println("turtlenet.revokeMyKey failed");
                      }
                      public void onSuccess(String result) {
                          if (result.equals("success")) {
@@ -734,7 +734,7 @@ public class frontend implements EntryPoint, ClickListener {
             String[][] result;
             int i;
             public void onFailure(Throwable caught) {
-                //TODO Error
+                System.out.println("turtlenet.getCategories failed");
             }
             public void onSuccess(String[][] _result) {
                 result = _result;
@@ -747,7 +747,7 @@ public class frontend implements EntryPoint, ClickListener {
                         public void onClick(ClickEvent event) {
                             turtlenet.updatePDATApermission(groupCheckBox.getText(), groupCheckBox.getValue(), new AsyncCallback<String>() {
                                 public void onFailure(Throwable caught) {
-                                    //TODO error
+                                    System.out.println("updatePDATApermission failed");
                                 }
                                 public void onSuccess(String result) {
                                     //success
@@ -797,7 +797,7 @@ public class frontend implements EntryPoint, ClickListener {
 
         turtlenet.getUsername(friendsDetailsKey, new AsyncCallback<String>() {
             public void onFailure(Throwable caught) {
-                //TODO error
+                System.out.println("turtlenet.getUsername failed");
             }
             public void onSuccess(String result) {
                 Label friendsDetailsUsernameLabel = new Label(result);
@@ -807,7 +807,7 @@ public class frontend implements EntryPoint, ClickListener {
 
         turtlenet.getPDATA("name", friendsDetailsKey, new AsyncCallback<String>() {
             public void onFailure(Throwable caught) {
-                //TODO error
+                System.out.println("turtlenet.getPDATA name failed");
             }
             public void onSuccess(String result) {
                 Label friendsDetailsNameLabel = new Label(result);
@@ -817,7 +817,7 @@ public class frontend implements EntryPoint, ClickListener {
         
         turtlenet.getPDATA("birthday", friendsDetailsKey, new AsyncCallback<String>() {
             public void onFailure(Throwable caught) {
-                //TODO error
+                System.out.println("turtlenet.getPDATA birthday failed");
             }
             public void onSuccess(String result) {
                 Label friendsDetailsBirthdayLabel = new Label(result);
@@ -827,7 +827,7 @@ public class frontend implements EntryPoint, ClickListener {
         
         turtlenet.getPDATA("gender", friendsDetailsKey, new AsyncCallback<String>() {
             public void onFailure(Throwable caught) {
-                //TODO error
+                System.out.println("turtlenet.getPDATA gender failed");
             }
             public void onSuccess(String result) {
                 Label friendsDetailsGenderLabel = new Label(result);
@@ -837,7 +837,7 @@ public class frontend implements EntryPoint, ClickListener {
 
         turtlenet.getPDATA("email", friendsDetailsKey, new AsyncCallback<String>() {
             public void onFailure(Throwable caught) {
-                //TODO error
+                System.out.println("turtlenet.getPDATA email failed");
             }
             public void onSuccess(String result) {
                 Label friendsDetailsEmailLabel = new Label(result);
@@ -889,7 +889,7 @@ public class frontend implements EntryPoint, ClickListener {
                 
             turtlenet.getMyKey(new AsyncCallback<String>() {
                 public void onFailure(Throwable caught) {
-                    //TODO error
+                    System.out.println("turtlenet.getMyKey failed");
                 }
                 public void onSuccess(String result) {
                     if(key.equals(result)) {
@@ -905,7 +905,7 @@ public class frontend implements EntryPoint, ClickListener {
                     } else {
                         turtlenet.getUsername(key, new AsyncCallback<String>() {
                             public void onFailure(Throwable caught) {
-                                //TODO error
+                                System.out.println("turtlenet.getUsername failed");
                             }
                             public void onSuccess(String result) {
                                 final Button userDetails = new Button("About " + result);
@@ -947,7 +947,7 @@ public class frontend implements EntryPoint, ClickListener {
             
             turtlenet.getCategories(new AsyncCallback<String[][]>() {
                 public void onFailure(Throwable caught) {
-                    //TODO error
+                    System.out.println("turtlenet.getCategories failed");
                 }
                 public void onSuccess(String result[][]) {
                     for (int i = 0; i < result.length; i++)
@@ -971,13 +971,13 @@ public class frontend implements EntryPoint, ClickListener {
                 public void onClick(ClickEvent event) {
                     turtlenet.addPost(key, chooseGroup.getItemText(chooseGroup.getSelectedIndex()), postText.getText(), new AsyncCallback<String>() {
                         public void onFailure(Throwable caught) {
-                            //TODO Error
+                            System.out.println("turtlenet.addPost failed");
                         }
                         public void onSuccess(String result) {
                             if (result.equals("success")) {
                                 wall(key, false);
                             } else {
-                                //TODO Error
+                                System.out.println("turtlenet.addPost result string did not equal success");
                             }
                         }
                     });
@@ -998,7 +998,7 @@ public class frontend implements EntryPoint, ClickListener {
         
         turtlenet.getWallPosts(key, new AsyncCallback<PostDetails[]>() {
             public void onFailure(Throwable caught) {
-                //TODO error
+                System.out.println("turtlenet.getWallPosts failed");
             }
             public void onSuccess(PostDetails[] result) {
                 wallPostDetails = result;
@@ -1060,13 +1060,13 @@ public class frontend implements EntryPoint, ClickListener {
                                 public void onClick(ClickEvent event) {
                                     turtlenet.unlike(details.sig, new AsyncCallback<String>() {
                                         public void onFailure(Throwable caught) {
-                                            //TODO error
+                                            System.out.println("turtlenet.unlike failed");
                                         }
                                         public void onSuccess(String _result) {
                                             if (_result.equals("success")) {
                                                 wall(key, false);
                                             } else {
-                                                //TODO Error
+                                                System.out.println("turtlenet.addPost string _result did not equal success");
                                             }
                                         }
                                     });
