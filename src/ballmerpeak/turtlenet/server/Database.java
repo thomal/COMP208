@@ -508,7 +508,10 @@ public class Database {
         
         try {
             execute(DBStrings.addKey.replace("__key__", Crypto.encodeKey(k)));
-            return validateClaims(k);
+            boolean ret = validateClaims(k);
+            if (!calcRevocationKeys(k))
+                ret = false;
+            return ret;
         } catch (java.sql.SQLException e) {
             Logger.write("ERROR", "DB", "SQLException: " + e);
         }
@@ -518,10 +521,12 @@ public class Database {
     
     //Update k's username by validating claims
     public boolean validateClaims(PublicKey k) {
-        if (k == null)
+        if (k == null) {
             Logger.write("ERROR", "DB", "validateClaims(...) called with null key");
-        else
-            Logger.write("VERBOSE", "DB", "validateClaims(...)");
+            return false;
+        }
+        
+        Logger.write("VERBOSE", "DB", "validateClaims(...)");
         
         try {
             ResultSet claimSet = query(DBStrings.getClaims);
@@ -540,6 +545,35 @@ public class Database {
                     execute(DBStrings.newUsername.replace("__name__", msg.CLAIMgetName()).replace("__key__", Crypto.encodeKey(k)));
                     execute(DBStrings.removeClaim.replace("__sig__", msg.getSig()));
                     Logger.write("INFO", "DB", "Claim for " + msg.CLAIMgetName() + " verified");
+                }
+            }
+        } catch (java.sql.SQLException e) {
+            Logger.write("ERROR", "DB", "SQLException: " + e);
+            return false;
+        }
+        return true;
+    }
+    
+    //update keys column in revocations
+    public boolean calcRevocationKeys (PublicKey k) {
+        if (k == null) {
+            Logger.write("ERROR", "DB", "calcRevocationKeys(...) called with null key");
+            return false;
+        }
+        
+        Logger.write("VERBOSE", "DB", "calcRevocationKeys(...)");
+        
+        try {
+            ResultSet revocationSet = query(DBStrings.getRevocations);
+            while (revocationSet.next()) {
+                Message msg = new Message("REVOKE",
+                                          revocationSet.getString("timeOfLeak"),
+                                          Long.parseLong(revocationSet.getString("creationTime")),
+                                          revocationSet.getString("sig")); 
+                PublicKey signer = getSignatory(msg);
+                if (signer != null && signer.equals(k)) {
+                    execute(DBStrings.updateRevocationKey.replace("__KEY__", Crypto.encodeKey(k))
+                                                         .replace("__SIG__", revocationSet.getString("sig")));
                 }
             }
         } catch (java.sql.SQLException e) {

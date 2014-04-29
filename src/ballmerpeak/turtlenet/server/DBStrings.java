@@ -115,6 +115,7 @@ class DBStrings {
     public static final String getLike               = "SELECT * FROM tLike WHERE parent = '__SIG__';";
     public static final String getComments           = "SELECT * FROM tComment WHERE parent = '__PARENT__';";
     public static final String getComment            = "SELECT * FROM tComment WHERE sig = '__SIG__';";
+    public static final String getRevocations        = "SELECT * FROM tRevocations;";
     public static final String isRevoked             = "SELECT key FROM tRevocations WHERE key = '__KEY__';";
     public static final String mostRecentWallPost    = "SELECT maxtime FROM tPost " +
                                                        "INNER JOIN " +
@@ -131,6 +132,7 @@ class DBStrings {
     public static final String removeClaim           = "DELETE FROM tClaim WHERE sig = '__sig__';";
     public static final String addClaim              = "INSERT INTO tClaim (sig, name, claimTime) VALUES ('__sig__', '__name__', '__time__');";
     public static final String addRevocation         = "INSERT INTO tRevocations (key, sig, timeOfLeak, creationTime) VALUES ('__key__', '__sig__', '__time__', '__creationTime__');";
+    public static final String updateRevocationKey   = "UPDATE tRevocations SET key = '__KEY__' WHERE sig = '__SIG__';";
     public static final String addPDATA              = "UPDATE tUser SET __field__ = '__value__' WHERE key = '__key__';";
     public static final String addConvo              = "INSERT INTO tConvos (convoID, timeCreated) VALUES ('__sig__', '__time__');";
     public static final String addConvoParticipant   = "INSERT INTO tConvoKeys (convoID, key) VALUES ('__sig__', '__key__');";
