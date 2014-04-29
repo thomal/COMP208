@@ -154,16 +154,31 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
     }
     
     public String updatePDATA (String field, String value) {
+        String ret = "success";
         Logger.write("VERBOSE", "TnImpl", "updatePDATA(" + field + ", " + value + ")");
-        return c.connection.postMessage(new MessageFactory().newPDATA(field, value),
-                                        Crypto.getPublicKey())
-               ? "success" : "failure";
+        PublicKey[] keys = c.db.keysCanSeePDATA();
+        for (int i = 0; i < keys.length; i++)
+            if (!c.connection.postMessage(new MessageFactory().newPDATA(field, value), keys[i]))
+                ret = "failure";
+        if (!c.connection.postMessage(new MessageFactory().newPDATA(field, value), Crypto.getPublicKey()))
+            ret = "failure";
+        return ret;
     }
     
     public String updatePDATApermission (String category, boolean value) {
         Logger.write("VERBOSE", "TnImpl", "updatePDATApermission(" + category + ", " + value + ")");
-        c.db.updatePDATApermission(category, value);
-        return "success";
+        String ret = "success";
+        
+        ret = c.db.updatePDATApermission(category, value) ? "success" : "failure";
+        if (value) {
+            PublicKey[] keys = c.db.getCategoryMembers(category);
+            for (int i = 0; i < keys.length; i++) {
+                if(!sendPDATA(Crypto.encodeKey(keys[i])).equals("success"))
+                    ret = "failure";
+            }
+        }
+        
+        return ret;
     }
     
     //Posting

@@ -799,6 +799,26 @@ public class Database {
         return true;
     }
     
+    public PublicKey[] keysCanSeePDATA () {
+        Logger.write("VERBOSE", "DB", "keysCanSeePDATA()");
+        Vector<PublicKey> keys = new Vector<PublicKey>();
+        
+        try {
+            ResultSet categories = query(DBStrings.categoriesCanSeePDATA);
+            while (categories.next()) {
+                String catname = categories.getString("catID");
+                PublicKey[] memberKeys = getCategoryMembers(catname);
+                for (int i = 0; i < memberKeys.length; i++)
+                    if (!keys.contains(memberKeys[i]))
+                        keys.add(memberKeys[i]);
+            }
+        } catch (java.sql.SQLException e) {
+            Logger.write("ERROR", "DB", "SQLException: " + e);
+        }
+        
+        return keys.toArray(new PublicKey[0]);
+    }
+    
     //no duplicate names
     public boolean addCategory (String name, boolean can_see_private_details) {
         Logger.write("VERBOSE", "DB", "addCategory(...)");
