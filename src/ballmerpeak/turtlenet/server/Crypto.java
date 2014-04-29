@@ -228,8 +228,7 @@ public class Crypto {
             return KeyFactory.getInstance("RSA").generatePublic(
                                 new X509EncodedKeySpec(Base64Decode(codedKey)));
         } catch (Exception e) {
-            //no client side logger :(
-            //TODO
+            Logger.write("ERROR", "Crypto", "decodeKey(" + codedKey + ") passed invalid keystring");
         }
         return null;
     }

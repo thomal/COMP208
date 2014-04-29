@@ -572,10 +572,22 @@ public class Database {
         Logger.write("VERBOSE", "DB", "-------addRevocation(...)-------");
         
         try {
-            execute(DBStrings.addRevocation.replace("__sig__", revocation.getSig())
+            execute(DBStrings.addRevocation.replace("__key__", Crypto.encodeKey(getSignatory(revocation)))
+                                           .replace("__sig__", revocation.getSig())
                                            .replace("__time__", Long.toString(revocation.REVOKEgetTime()))
                                            .replace("__creationTime__", Long.toString(revocation.getTimestamp())));
             return eraseContentFrom(getSignatory(revocation));
+        } catch (java.sql.SQLException e) {
+            Logger.write("ERROR", "DB", "SQLException: " + e);
+            return false;
+        }
+    }
+    
+    public boolean isRevoked (PublicKey key) {
+        Logger.write("VERBOSE", "DB", "isRevoked(...)");
+        
+        try {
+            return query(DBStrings.isRevoked.replace("__KEY__", Crypto.encodeKey(key))).next();
         } catch (java.sql.SQLException e) {
             Logger.write("ERROR", "DB", "SQLException: " + e);
             return false;

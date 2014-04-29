@@ -17,8 +17,9 @@ public class Parser {
         
         escape(msg);
         
-        
-        if (msg.getCmd().equals("POST"))        //post to own wall
+        if (db.isRevoked(db.getSignatory(msg)))
+            Logger.write("WARNING", "PARSE", "Revoked key in use, message dropped");
+        else if (msg.getCmd().equals("POST"))        //post to own wall
             db.addPost(msg);
         else if (msg.getCmd().equals("CLAIM"))  //claim a username
             db.addClaim(msg);
