@@ -72,15 +72,7 @@ testing : config
 	@echo "              --------------"
 	@echo "              Building Tests"
 	@echo "              --------------"
-	mv src/ballmerpeak/turtlenet/server/MessageFactoryImpl.java mfi.java
-	sed -e 's:import ballmerpeak.turtlenet.client.MessageFactory;::g' mfi.java > mfi2.java
-	sed -e 's:import com.google.gwt.user.server.rpc.RemoteServiceServlet;::g' mfi2.java > mfi3.java
-	sed -e 's:extends RemoteServiceServlet implements MessageFactory::g' mfi3.java > src/ballmerpeak/turtlenet/server/MessageFactoryImpl.java
 	javac -cp $(CLASSPATH) src/ballmerpeak/turtlenet/testing/*.java
-	rm src/ballmerpeak/turtlenet/server/MessageFactoryImpl.java
-	mv mfi.java src/ballmerpeak/turtlenet/server/MessageFactoryImpl.java
-	rm mfi2.java
-	rm mfi3.java
 	@echo "              ***********************"
 	@echo "              successfuly built tests"
 	@echo "              ***********************"
@@ -100,6 +92,8 @@ clean : config
 	ant -f web_interface/build.xml clean
 	rm web_interface/build.xml
 	rm -rf db
+	rm -rf web_interface/db
+	rm -rf data
 	@echo "              *******"
 	@echo "              Cleaned"
 	@echo "              *******"
