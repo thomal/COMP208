@@ -1040,7 +1040,7 @@ public class frontend implements EntryPoint, ClickListener {
                         
                         Anchor linkToUser = new Anchor(wallPostDetails[wallCurrentPost].posterUsername);
                         postControlPanel.add(linkToUser);
-                        postControlPanel.setCellWidth(linkToUser,"300");
+                        postControlPanel.setCellWidth(linkToUser,"200");
                         linkToUser.addClickHandler(new ClickHandler() {
                             public void onClick(ClickEvent event) {
                                 wall(wallPostDetails[wallCurrentPost].posterKey, false);
@@ -1077,13 +1077,13 @@ public class frontend implements EntryPoint, ClickListener {
                                 public void onClick(ClickEvent event) {
                                     turtlenet.unlike(details.sig, new AsyncCallback<String>() {
                                         public void onFailure(Throwable caught) {
-                                            System.out.println("turtlenet.unlike failed");
+                                            System.out.println("turtlenet.unlike (post) failed");
                                         }
                                         public void onSuccess(String _result) {
                                             if (_result.equals("success")) {
                                                 wall(key, false);
                                             } else {
-                                                System.out.println("turtlenet.unlike onSuccess String _result did not equal success");
+                                                System.out.println("turtlenet.unlike (post) onSuccess String _result did not equal success");
                                             }
                                         }
                                     });
@@ -1095,13 +1095,13 @@ public class frontend implements EntryPoint, ClickListener {
                                 public void onClick(ClickEvent event) {
                                     turtlenet.like(details.sig, new AsyncCallback<String>() {
                                         public void onFailure(Throwable caught) {
-                                            System.out.println("turtlenet.like failed");
+                                            System.out.println("turtlenet.like (post) failed");
                                         }
                                         public void onSuccess(String _result) {
                                             if (_result.equals("success")) {
                                                 wall(key, false);
                                             } else {
-                                                System.out.println("turtlenet.like onSuccess String _result did not equal success");
+                                                System.out.println("turtlenet.like (post) onSuccess String _result did not equal success");
                                             }
                                         }
                                     });
@@ -1161,96 +1161,6 @@ public class frontend implements EntryPoint, ClickListener {
         // Add main panel to page
         postPanel.insert(commentsPanel, 2);
         
-        turtlenet.getComments(postID, new AsyncCallback<CommentDetails[]>() {
-            public void onFailure(Throwable caught) {
-                System.out.println("turtlenet.getComments failed");
-            }
-            public void onSuccess(CommentDetails[] result) {
-                commentCount = result.length;
-                for (int i = 0; i < result.length; i++) {
-                    final CommentDetails details = result[i];
-                    // Create panel to contain the main contents of each comment
-                    FlowPanel commentsContentsPanel = new FlowPanel();
-                    commentsContentsPanel.addStyleName("gwt-comments-contents");
-                    commentsPanel.add(commentsContentsPanel);
-                    
-                    final String commentID = result[i].sig;
-                    // Create widgets
-                    TextArea commentContents = new TextArea();
-                    commentContents.setCharacterWidth(60);
-                    commentContents.setVisibleLines(3);
-                    commentContents.setReadOnly(true);
-                    
-                    //Text
-                    commentContents.setText(result[i].text);
-                    commentsContentsPanel.add(commentContents);
-                    
-                    //Create panel to contain controls for each comment
-                    HorizontalPanel commentsControlPanel = new HorizontalPanel();
-                    commentsContentsPanel.add(commentsControlPanel);
-                    
-                    final String postedByKey = result[i].posterKey;
-                    
-                    Label commentPostedByLabel = new Label("Posted by: ");
-                    commentPostedByLabel.getElement().getStyle().setProperty("paddingLeft" , "10px");
-                    commentsControlPanel.add(commentPostedByLabel);
-                    
-                    Anchor postedBy = new Anchor(result[i].posterName);
-                    postedBy.getElement().getStyle().setProperty("paddingLeft" , "10px");
-                    commentsControlPanel.add(postedBy);
-                    
-                    postedBy.addClickHandler(new ClickHandler() {
-                        public void onClick(ClickEvent event) {
-                            wall(details.posterKey, false);
-                        }
-                    });
-            
-                    Anchor likeComment;
-                    
-                    if (result[i].liked) {
-                        likeComment = new Anchor("Unlike");
-                        likeComment.addClickHandler(new ClickHandler() {
-                            public void onClick(ClickEvent event) {
-                                turtlenet.unlike(details.sig, new AsyncCallback<String>() {
-                                    public void onFailure(Throwable caught) {
-                                        System.out.println("turtlenet.unlike failed");
-                                    }
-                                    public void onSuccess(String _result) {
-                                        if (_result.equals("success")) {
-                                            wall(wallKey, false);
-                                        } else {
-                                            System.out.println("turtlenet.unlike onSuccess String _result did not equal success");
-                                        }
-                                    }
-                                });
-                            }
-                        });
-                    } else {
-                        likeComment = new Anchor("Like");
-                        likeComment.addClickHandler(new ClickHandler() {
-                            public void onClick(ClickEvent event) {
-                                turtlenet.like(details.sig, new AsyncCallback<String>() {
-                                    public void onFailure(Throwable caught) {
-                                        System.out.println("turtlenet.like failed");
-                                    }
-                                    public void onSuccess(String _result) {
-                                        if (_result.equals("success")) {
-                                            wall(wallKey, false);
-                                        } else {
-                                            System.out.println("turtlenet.like onSuccess String _result did not equal success");
-                                        }
-                                    }
-                                });
-                            }
-                        });
-                    }
-                    
-                    likeComment.getElement().getStyle().setProperty("paddingLeft" , "130px");
-                    commentsControlPanel.add(likeComment);
-                }
-            }
-        });
-        
         FlexTable commentsReplyThreadPanel = new FlexTable();
         commentsReplyThreadPanel.getElement().getStyle().setProperty("paddingLeft", "60px");
         commentsPanel.add(commentsReplyThreadPanel);
@@ -1292,6 +1202,96 @@ public class frontend implements EntryPoint, ClickListener {
                         }
                     }
                 });
+            }
+        });
+        
+        turtlenet.getComments(postID, new AsyncCallback<CommentDetails[]>() {
+            public void onFailure(Throwable caught) {
+                System.out.println("turtlenet.getComments failed");
+            }
+            public void onSuccess(CommentDetails[] result) {
+                commentCount = result.length;
+                for (int i = 0; i < result.length; i++) {
+                    final CommentDetails details = result[i];
+                    // Create panel to contain the main contents of each comment
+                    FlowPanel commentsContentsPanel = new FlowPanel();
+                    commentsContentsPanel.addStyleName("gwt-comments-contents");
+                    commentsPanel.insert(commentsContentsPanel, commentsPanel.getWidgetCount() - 1);
+                    
+                    final String commentID = result[i].sig;
+                    // Create widgets
+                    TextArea commentContents = new TextArea();
+                    commentContents.setCharacterWidth(60);
+                    commentContents.setVisibleLines(3);
+                    commentContents.setReadOnly(true);
+                    
+                    //Text
+                    commentContents.setText(result[i].text);
+                    commentsContentsPanel.add(commentContents);
+                    
+                    //Create panel to contain controls for each comment
+                    HorizontalPanel commentsControlPanel = new HorizontalPanel();
+                    commentsContentsPanel.add(commentsControlPanel);
+                    
+                    final String postedByKey = result[i].posterKey;
+                    
+                    Label commentPostedByLabel = new Label("Posted by: ");
+                    commentPostedByLabel.getElement().getStyle().setProperty("paddingLeft" , "10px");
+                    commentsControlPanel.add(commentPostedByLabel);
+                    
+                    Anchor postedBy = new Anchor(result[i].posterName);
+                    postedBy.getElement().getStyle().setProperty("paddingLeft" , "10px");
+                    commentsControlPanel.add(postedBy);
+                    
+                    postedBy.addClickHandler(new ClickHandler() {
+                        public void onClick(ClickEvent event) {
+                            wall(details.posterKey, false);
+                        }
+                    });
+            
+                    Anchor likeComment;
+                    
+                    if (result[i].liked) {
+                        likeComment = new Anchor("Unlike");
+                        likeComment.addClickHandler(new ClickHandler() {
+                            public void onClick(ClickEvent event) {
+                                turtlenet.unlike(details.sig, new AsyncCallback<String>() {
+                                    public void onFailure(Throwable caught) {
+                                        System.out.println("turtlenet.unlike (comment) failed");
+                                    }
+                                    public void onSuccess(String _result) {
+                                        if (_result.equals("success")) {
+                                            wall(wallKey, false);
+                                        } else {
+                                            System.out.println("turtlenet.unlike (comment) onSuccess String _result did not equal success");
+                                        }
+                                    }
+                                });
+                            }
+                        });
+                    } else {
+                        likeComment = new Anchor("Like");
+                        likeComment.addClickHandler(new ClickHandler() {
+                            public void onClick(ClickEvent event) {
+                                turtlenet.like(details.sig, new AsyncCallback<String>() {
+                                    public void onFailure(Throwable caught) {
+                                        System.out.println("turtlenet.like (comment) failed");
+                                    }
+                                    public void onSuccess(String _result) {
+                                        if (_result.equals("success")) {
+                                            wall(wallKey, false);
+                                        } else {
+                                            System.out.println("turtlenet.like (comment) onSuccess String _result did not equal success");
+                                        }
+                                    }
+                                });
+                            }
+                        });
+                    }
+                    
+                    likeComment.getElement().getStyle().setProperty("paddingLeft" , "130px");
+                    commentsControlPanel.add(likeComment);
+                }
             }
         });
         commentsPanel.addStyleName("gwt-comments");
@@ -1565,9 +1565,7 @@ public class frontend implements EntryPoint, ClickListener {
             }
         });
         
-        
-        
-        newGroupPanel.addStyleName("gwt-group");        
+        newGroupPanel.addStyleName("gwt-new-group");        
     }
     
     private void editGroup(final String groupID) {
@@ -1655,9 +1653,7 @@ public class frontend implements EntryPoint, ClickListener {
             }
         });
         
-        
-        
-        editGroupPanel.addStyleName("gwt-group");  
+        editGroupPanel.addStyleName("gwt-edit-group");  
     }
     
     TextBox addFriend_keyInput = new TextBox();
