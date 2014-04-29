@@ -972,7 +972,7 @@ public class frontend implements EntryPoint, ClickListener {
                             if (result.equals("success")) {
                                 wall(key, false);
                             } else {
-                                System.out.println("turtlenet.addPost onSuccess result string did not equal success");
+                                System.out.println("turtlenet.addPost onSuccess String result did not equal success");
                             }
                         }
                     });
@@ -1061,7 +1061,7 @@ public class frontend implements EntryPoint, ClickListener {
                                             if (_result.equals("success")) {
                                                 wall(key, false);
                                             } else {
-                                                System.out.println("turtlenet.unlike onSuccess string _result did not equal success");
+                                                System.out.println("turtlenet.unlike onSuccess String _result did not equal success");
                                             }
                                         }
                                     });
@@ -1079,7 +1079,7 @@ public class frontend implements EntryPoint, ClickListener {
                                             if (_result.equals("success")) {
                                                 wall(key, false);
                                             } else {
-                                                System.out.println("turtlenet.like onSuccess string _result did not equal success");
+                                                System.out.println("turtlenet.like onSuccess String _result did not equal success");
                                             }
                                         }
                                     });
@@ -1197,7 +1197,7 @@ public class frontend implements EntryPoint, ClickListener {
                                         if (_result.equals("success")) {
                                             wall(wallKey, false);
                                         } else {
-                                            System.out.println("turtlenet.unlike onSuccess _result string did not equal success");
+                                            System.out.println("turtlenet.unlike onSuccess String _result did not equal success");
                                         }
                                     }
                                 });
@@ -1215,7 +1215,7 @@ public class frontend implements EntryPoint, ClickListener {
                                         if (_result.equals("success")) {
                                             wall(wallKey, false);
                                         } else {
-                                            System.out.println("turtlenet.like onSuccess _result string did not equal success");
+                                            System.out.println("turtlenet.like onSuccess String _result did not equal success");
                                         }
                                     }
                                 });
@@ -1266,7 +1266,7 @@ public class frontend implements EntryPoint, ClickListener {
                         if (result.equals("success")) {
                             wall(wallKey, false);
                         } else {
-                            System.out.println("turtlenet.addComment onSuccess result string did not equal success");
+                            System.out.println("turtlenet.addComment onSuccess String result did not equal success");
                         }
                     }
                 });
@@ -1365,12 +1365,12 @@ public class frontend implements EntryPoint, ClickListener {
                                                     if (success.equals("success")) {
                                                         conversation(createChatReturn[1]);
                                                     } else {
-                                                        System.out.println("turtlenet.addMessageToCHAT onSuccess string success did not equal success");
+                                                        System.out.println("turtlenet.addMessageToCHAT onSuccess String success did not equal success");
                                                     }
                                                 }
                                             });
                                         } else {
-                                            System.out.println("turtlenet.createCHAT onSuccess createChatReturn[0] did not equal success");
+                                            System.out.println("turtlenet.createCHAT onSuccess String createChatReturn[0] did not equal success");
                                         }
                                     }
                                 });
@@ -1536,7 +1536,7 @@ public class frontend implements EntryPoint, ClickListener {
                         if (result.equals("success")) {
                             editGroup(newGroup_nameInput.getText());
                         } else {
-                            System.out.println("turtlenet.addCategory onSuccess string result did not equal success");
+                            System.out.println("turtlenet.addCategory onSuccess String result did not equal success");
                         }
                     }
                 });
@@ -1626,7 +1626,7 @@ public class frontend implements EntryPoint, ClickListener {
                         if (result.equals("success")) {
                             friendsList(groupID);   
                         } else {
-                            System.out.println("turtlenet.getCategoryMembers onSuccess result string did not equal success");
+                            System.out.println("turtlenet.getCategoryMembers onSuccess String result did not equal success");
                         }
                     }
                 });

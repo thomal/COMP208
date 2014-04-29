@@ -185,8 +185,10 @@ h1 {
 
 .gwt-TextArea-readonly {
    background-color: #EEEEEE;
+   color: #555555;
 }
 
 .gwt-TextBox-readonly {
    background-color: #EEEEEE;
+   color: #555555;
 }
