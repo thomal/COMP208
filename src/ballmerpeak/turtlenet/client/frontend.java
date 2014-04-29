@@ -137,13 +137,13 @@ public class frontend implements EntryPoint, ClickListener {
                             
                             turtlenet.startTN(passwordInput.getText(), new AsyncCallback<String>() {
                                 public void onFailure(Throwable caught) {
-                                    //TODO error
+                                    System.out.println("turtlenet.startTN failed");
                                 }
                                 public void onSuccess(String result) {
                                     if (result.equals("success")) {
                                         turtlenet.getMyKey(new AsyncCallback<String>() {
                                             public void onFailure(Throwable caught) {
-                                                //TODO error
+                                                System.out.println("turtlenet.getMyKey failed");
                                             }
                                             public void onSuccess(String result) {
                                                 wall(result, false);
@@ -153,6 +153,7 @@ public class frontend implements EntryPoint, ClickListener {
                                         passwordLabel.setText("Password incorrect. Try again: ");
                                     } else {
                                         //TODO error, this ought NEVER happen
+                                        System.out.println("turtlenet.startTN onSuccess String does not equal success or failure");
                                         passwordLabel.setText("INVALID RESPONSE FROM TNClient");
                                     }
                                 }
@@ -304,24 +305,31 @@ public class frontend implements EntryPoint, ClickListener {
             public void onSuccess(String[][] _result) {
                 result = _result;
                 for (i = 0; i < result.length; i++) {
-                    //list names/keys
-                    Anchor linkFriendsWall = new Anchor(result[i][0]);
-                    linkFriendsWall.getElement().getStyle().setProperty("paddingLeft" , "100px");
-                    friendsListPanel.setWidget((i + 2), 0, linkFriendsWall);
-                    final String resultString = result[i][1];
-                    TextBox friendKeyBox = new TextBox();
-                    friendKeyBox.setText(resultString);
-                    friendKeyBox.setVisibleLength(75);
-                    friendKeyBox.setReadOnly(true);
-                    friendsListPanel.setWidget((i + 2), 1, friendKeyBox);
-                    //link names to walls
-                    System.out.println("adding link to " + result[i][1] + "'s wall");
-                    final String fkey = result[i][1];
-                    linkFriendsWall.addClickHandler(new ClickHandler() {
-                        public void onClick(ClickEvent event) {
-                            wall(fkey, false);
-                        }
-                    });
+                    // Dont add a result to the page if that result is the
+                    // current user. We already have the current users key
+                    // below the list of their friends.
+                    
+                    // LUKETODO "my key" should be replaced with the current user's key
+                    if(!result[i][0].equals("my key")) {
+                        //list names/keys
+                        Anchor linkFriendsWall = new Anchor(result[i][0]);
+                        linkFriendsWall.getElement().getStyle().setProperty("paddingLeft" , "100px");
+                        friendsListPanel.setWidget((i + 2), 0, linkFriendsWall);
+                        final String resultString = result[i][1];
+                        TextBox friendKeyBox = new TextBox();
+                        friendKeyBox.setText(resultString);
+                        friendKeyBox.setVisibleLength(75);
+                        friendKeyBox.setReadOnly(true);
+                        friendsListPanel.setWidget((i + 2), 1, friendKeyBox);
+                        //link names to walls
+                        System.out.println("adding link to " + result[i][1] + "'s wall");
+                        final String fkey = result[i][1];
+                        linkFriendsWall.addClickHandler(new ClickHandler() {
+                            public void onClick(ClickEvent event) {
+                                wall(fkey, false);
+                            }
+                        });
+                    }
                 }
             }
         });
