@@ -62,7 +62,6 @@ public class frontend implements EntryPoint, ClickListener {
         final PasswordTextBox passwordInput = new PasswordTextBox();
         final Label passwordLabel = new Label();
 
-
         turtlenet.isFirstTime(new AsyncCallback<String>() {
                 public void onFailure(Throwable caught) {
                     //TODO Error
@@ -178,7 +177,7 @@ public class frontend implements EntryPoint, ClickListener {
                 if(location.equals("wall")) {
                     turtlenet.timeMostRecentWallPost(refreshID, new AsyncCallback<Long>() {
                         public void onFailure(Throwable caught) {
-                            //TODO Error
+                            System.out.println("turtlenet.timeMostRecentWallPost failed");
                         }
                         public void onSuccess(Long result) {
                             if(result > wallLastTimeStamp) {
@@ -439,11 +438,6 @@ public class frontend implements EntryPoint, ClickListener {
             }
             public void onSuccess(Conversation[] _result) {
                 result = _result;
-                // TODO LUKETODO Please can you check my logic here. It makes 
-                // sense in my head but it might be horribly wrong.
-                
-                // Go from the highest result to the lowest. Take one from result
-                // length and go down to 0 so we get an index value. 
                 for (i = (result.length - 1); i >= 0; i--) {
                     // Count up from 0 so we can add interface elements top to
                     // bottom. This way we get the last result at the top of the
@@ -866,7 +860,7 @@ public class frontend implements EntryPoint, ClickListener {
         friendsDetailsKeyBox.setText(friendsDetailsKey);
         friendsDetailsPanel.setWidget(5, 1, friendsDetailsKeyBox);
         
-        // TODO LUKETODO "my key" should be replaced with the users key
+        // LUKETODO "my key" should be replaced with the users key
         if(friendsDetailsKey.equals("my key")) {
             Button edit = new Button("Edit my details");
             friendsDetailsPanel.setWidget(6, 1, edit);
@@ -992,7 +986,7 @@ public class frontend implements EntryPoint, ClickListener {
                             if (result.equals("success")) {
                                 wall(key, false);
                             } else {
-                                System.out.println("turtlenet.addPost result string did not equal success");
+                                System.out.println("turtlenet.addPost onSuccess result string did not equal success");
                             }
                         }
                     });
@@ -1081,7 +1075,7 @@ public class frontend implements EntryPoint, ClickListener {
                                             if (_result.equals("success")) {
                                                 wall(key, false);
                                             } else {
-                                                System.out.println("turtlenet.addPost string _result did not equal success");
+                                                System.out.println("turtlenet.unlike onSuccess string _result did not equal success");
                                             }
                                         }
                                     });
@@ -1093,13 +1087,13 @@ public class frontend implements EntryPoint, ClickListener {
                                 public void onClick(ClickEvent event) {
                                     turtlenet.like(details.sig, new AsyncCallback<String>() {
                                         public void onFailure(Throwable caught) {
-                                            //TODO error
+                                            System.out.println("turtlenet.like failed");
                                         }
                                         public void onSuccess(String _result) {
                                             if (_result.equals("success")) {
                                                 wall(key, false);
                                             } else {
-                                                //TODO Error
+                                                System.out.println("turtlenet.like onSuccess string _result did not equal success");
                                             }
                                         }
                                     });
@@ -1161,7 +1155,7 @@ public class frontend implements EntryPoint, ClickListener {
         
         turtlenet.getComments(postID, new AsyncCallback<CommentDetails[]>() {
             public void onFailure(Throwable caught) {
-                //TODO error
+                System.out.println("turtlenet.getComments failed");
             }
             public void onSuccess(CommentDetails[] result) {
                 commentCount = result.length;
@@ -1211,13 +1205,13 @@ public class frontend implements EntryPoint, ClickListener {
                             public void onClick(ClickEvent event) {
                                 turtlenet.unlike(details.sig, new AsyncCallback<String>() {
                                     public void onFailure(Throwable caught) {
-                                        //TODO error
+                                        System.out.println("turtlenet.unlike failed");
                                     }
                                     public void onSuccess(String _result) {
                                         if (_result.equals("success")) {
                                             wall(wallKey, false);
                                         } else {
-                                            //TODO Error
+                                            System.out.println("turtlenet.unlike onSuccess _result string did not equal success");
                                         }
                                     }
                                 });
@@ -1227,15 +1221,15 @@ public class frontend implements EntryPoint, ClickListener {
                         likeComment = new Anchor("Like");
                         likeComment.addClickHandler(new ClickHandler() {
                             public void onClick(ClickEvent event) {
-                                turtlenet.unlike(details.sig, new AsyncCallback<String>() {
+                                turtlenet.like(details.sig, new AsyncCallback<String>() {
                                     public void onFailure(Throwable caught) {
-                                        //TODO error
+                                        System.out.println("turtlenet.like failed");
                                     }
                                     public void onSuccess(String _result) {
                                         if (_result.equals("success")) {
                                             wall(wallKey, false);
                                         } else {
-                                            //TODO Error
+                                            System.out.println("turtlenet.like onSuccess _result string did not equal success");
                                         }
                                     }
                                 });
@@ -1280,15 +1274,13 @@ public class frontend implements EntryPoint, ClickListener {
             public void onClick(ClickEvent event) { 
                 turtlenet.addComment(postID, threadReplyContents.getText(), new AsyncCallback<String>() {
                     public void onFailure(Throwable caught) {
-                        //TODO error
+                        System.out.println("turtlenet.addComment failed");
                     }
                     public void onSuccess(String result) {
                         if (result.equals("success")) {
                             wall(wallKey, false);
-                            // TODO LOUISTODO Make the refreshed comments page move
-                            // to the place we just added our new comment.
                         } else {
-                            //TODO Error
+                            System.out.println("turtlenet.addComment onSuccess result string did not equal success");
                         }
                     }
                 });
@@ -1327,7 +1319,7 @@ public class frontend implements EntryPoint, ClickListener {
             String[] memberKeys;
             int i;
             public void onFailure(Throwable caught) {
-                //TODO Error
+                System.out.println("turtlenet.getPeople failed");
             }
             public void onSuccess(String[][] _result) {
                 result = _result;
@@ -1367,32 +1359,32 @@ public class frontend implements EntryPoint, ClickListener {
                         turtlenet.getMyKey(new AsyncCallback<String>() {
                             
                             public void onFailure(Throwable caught) {
-                                //TODO Error
+                                System.out.println("turtlenet.getMyKey failed");
                             }
                             public void onSuccess(String userkey) {
                                 memberKeys[memberKeys.length-1] = userkey;
                                 turtlenet.createCHAT(memberKeys, new AsyncCallback<String[]>() {
                                     int i;
                                     public void onFailure(Throwable caught) {
-                                        //TODO Error
+                                        System.out.println("createCHAT failed");
                                     }
                                     public void onSuccess(String[] _ret) {
                                         createChatReturn = _ret;
                                         if (createChatReturn[0].equals("success")) {
                                             turtlenet.addMessageToCHAT(newConvoInput.getText(), createChatReturn[1], new AsyncCallback<String>() {
                                                 public void onFailure(Throwable caught) {
-                                                    //TODO Error
+                                                    System.out.println("turtlenet.addMessageToCHAT failed");
                                                 }
                                                 public void onSuccess(String success) {
                                                     if (success.equals("success")) {
                                                         conversation(createChatReturn[1]);
                                                     } else {
-                                                        //TODO Error
+                                                        System.out.println("turtlenet.addMessageToCHAT onSuccess string success did not equal success");
                                                     }
                                                 }
                                             });
                                         } else {
-                                            //TODO Error
+                                            System.out.println("turtlenet.createCHAT onSuccess createChatReturn[0] did not equal success");
                                         }
                                     }
                                 });
@@ -1438,7 +1430,7 @@ public class frontend implements EntryPoint, ClickListener {
             Conversation result;
             int i;
             public void onFailure(Throwable caught) {
-                //TODO Error
+                System.out.println("turtlenet.getConversation failed");
             }
             public void onSuccess(Conversation _result) {
                 result = _result;
@@ -1451,7 +1443,7 @@ public class frontend implements EntryPoint, ClickListener {
                     String[][] messages;
                     int i;
                     public void onFailure(Throwable caught) {
-                        //TODO Error
+                        System.out.println("turtlenet.getConversationMessages failed");
                     }
                     public void onSuccess(String[][] msgs) {
                         messages = msgs;
@@ -1505,7 +1497,7 @@ public class frontend implements EntryPoint, ClickListener {
                             public void onClick(ClickEvent event) {
                                 turtlenet.addMessageToCHAT(convoPanelSetup_input.getText(), convoPanelSetup_convosig, new AsyncCallback<String>() {
                                     public void onFailure(Throwable caught) {
-                                        //TODO Error
+                                        System.out.println("turtlenet.addMessageToCHAT failed");
                                     }
                                     public void onSuccess(String postingSuccess) {
                                         //Reload the conversation after the new message has been added
@@ -1552,13 +1544,13 @@ public class frontend implements EntryPoint, ClickListener {
             public void onClick(ClickEvent event) {
                 turtlenet.addCategory(newGroup_nameInput.getText(), new AsyncCallback<String>() {
                     public void onFailure(Throwable caught) {
-                        //TODO error
+                        System.out.println("turtlenet.addCategory failed");
                     }
                     public void onSuccess(String result) {
                         if (result.equals("success")) {
                             editGroup(newGroup_nameInput.getText());
                         } else {
-                            //TODO Error
+                            System.out.println("turtlenet.addCategory onSuccess string result did not equal success");
                         }
                     }
                 });
@@ -1588,7 +1580,7 @@ public class frontend implements EntryPoint, ClickListener {
             String[][] result;
             int i;
             public void onFailure(Throwable caught) {
-                //TODO Error
+                System.out.println("turtlenet.getCategoryMembers failed");
             }
             public void onSuccess(String[][] _result) {
                 result = _result;
@@ -1605,7 +1597,7 @@ public class frontend implements EntryPoint, ClickListener {
             public void onClick(ClickEvent event) {
                 turtlenet.removeFromCategory(groupID, currentMembers.getValue(currentMembers.getSelectedIndex()), new AsyncCallback<String>() {
                     public void onFailure(Throwable caught) {
-                        //TODO Error
+                        System.out.println("turtlenet.removeFromCategory failed");
                     }
                     public void onSuccess(String result) {
                         friendsList(groupID);
@@ -1624,7 +1616,7 @@ public class frontend implements EntryPoint, ClickListener {
             String[][] result;
             int i;
             public void onFailure(Throwable caught) {
-                //TODO Error
+                System.out.println("turtlenet.getPeople failed");
             }
             public void onSuccess(String[][] _result) {
                 result = _result;
@@ -1642,13 +1634,13 @@ public class frontend implements EntryPoint, ClickListener {
             public void onClick(ClickEvent event) {
                 turtlenet.addToCategory(groupID, allFriends.getValue(allFriends.getSelectedIndex()), new AsyncCallback<String>() {
                     public void onFailure(Throwable caught) {
-                        //TODO Error
+                        System.out.println("turtlenet.addToCategory failed");
                     }
                     public void onSuccess(String result) {
                         if (result.equals("success")) {
                             friendsList(groupID);   
                         } else {
-                            //TODO Error
+                            System.out.println("turtlenet.getCategoryMembers onSuccess result string did not equal success");
                         }
                     }
                 });
