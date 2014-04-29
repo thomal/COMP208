@@ -64,7 +64,7 @@ public class frontend implements EntryPoint, ClickListener {
 
         turtlenet.isFirstTime(new AsyncCallback<String>() {
                 public void onFailure(Throwable caught) {
-                    //TODO Error
+                    System.out.println("turtlenet.isFirstTime failed");
                 }
                 public void onSuccess(String result) {
                     if(result.equals("true")) { //GWT can only return objects
@@ -95,13 +95,13 @@ public class frontend implements EntryPoint, ClickListener {
                             if(passwordInput.getText().equals(passwordConfirmInput.getText())) {
                                 turtlenet.register(usernameInput.getText(), passwordInput.getText(), new AsyncCallback<String>() {
                                     public void onFailure(Throwable caught) {
-                                        //TODO Error
+                                        System.out.println("turtlenet.register failed");
                                     }
                                     public void onSuccess(String result) {
                                         if (result.equals("success")) {
                                             turtlenet.getMyKey(new AsyncCallback<String>() {
                                                 public void onFailure(Throwable caught) {
-                                                    //TODO Error
+                                                    System.out.println("turtlenet.getMyKey failed");
                                                 }
                                                 public void onSuccess(String result) {
                                                     wall(result, false);
@@ -110,7 +110,7 @@ public class frontend implements EntryPoint, ClickListener {
                                         } else if (result.equals("taken")) { 
                                             usernameLabel.setText("Username already taken. Try again:");
                                         } else {
-                                            //TODO Error
+                                            System.out.println("turtlenet.register onSucess String result did not equal success or taken");
                                         }
                                     }
                                 });
@@ -1640,7 +1640,7 @@ public class frontend implements EntryPoint, ClickListener {
                         if (result.equals("success")) {
                             friendsList(groupID);   
                         } else {
-                            System.out.println("turtlenet.getCategoryMembers onSuccess String result did not equal success");
+                            System.out.println("turtlenet.addToCategory onSuccess String result did not equal success");
                         }
                     }
                 });
