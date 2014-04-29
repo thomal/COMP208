@@ -305,6 +305,10 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
                 } else {
                     return "success";
                 }
+                
+                //We do not retroactivly send people posts/comments/likes because
+                //  people will forget what they've posted in the past and accidently
+                //  share it with new contacts.
             } else {
                 return "failure";
             }

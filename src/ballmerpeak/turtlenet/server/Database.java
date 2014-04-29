@@ -429,7 +429,7 @@ public class Database {
         return null;
     }
     
-    public PublicKey[] getPostVisibleTo (String sig) {
+    public PublicKey[] getPostsVisibleTo (String sig) {
         Logger.write("VERBOSE", "DB", "getVisibleTo(...)");
         Vector<PublicKey> keyList = new Vector<PublicKey>();
         
