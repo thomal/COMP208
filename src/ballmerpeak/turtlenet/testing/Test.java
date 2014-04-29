@@ -1,7 +1,7 @@
 package ballmerpeak.turtlenet.testing;
 
 import ballmerpeak.turtlenet.shared.Message;
-import ballmerpeak.turtlenet.server.MessageFactoryImpl;
+import ballmerpeak.turtlenet.server.MessageFactory;
 import ballmerpeak.turtlenet.server.Crypto;
 import java.security.*;
 
@@ -162,7 +162,7 @@ class Test {
         System.out.println("\ntestMessageFactory:");
         int ifailures = failures;
         
-        MessageFactoryImpl f = new MessageFactoryImpl();
+        MessageFactory f = new MessageFactory();
         String[] fakekeys = {"<fakekey1>", "<fakekey2>"};
         KeyPair k1 = Crypto.getTestKey();
         KeyPair k2 = Crypto.getTestKey();
@@ -217,7 +217,7 @@ class Test {
         int ifailures = failures;
         if(!Crypto.keysExist())
             Crypto.keyGen();
-        Message msg = new MessageFactoryImpl().newPDATA("name", "John Doe");
+        Message msg = new MessageFactory().newPDATA("name", "John Doe");
         KeyPair k1  = Crypto.getTestKey();
         PublicKey mykey = Crypto.getPublicKey();
         

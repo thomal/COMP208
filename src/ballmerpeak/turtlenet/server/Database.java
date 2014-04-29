@@ -158,7 +158,7 @@ public class Database {
                     visibleTo.add(currentPostVisibleTo.getString("key") );
 
                 if(currentPost.next()) {
-                    Message m = new MessageFactoryImpl().newPOST(currentPost.getString("msgText"), currentPost.getString("recieverKey"), (visibleTo.toArray(new String[0])) );
+                    Message m = new MessageFactory().newPOST(currentPost.getString("msgText"), currentPost.getString("recieverKey"), (visibleTo.toArray(new String[0])) );
                     m.timestamp = Long.parseLong(currentPost.getString("time"));
                     m.signature = currentPost.getString("sig");
                     m.command = "POST";
@@ -193,7 +193,7 @@ public class Database {
         try {
             ResultSet commentSet = query(DBStrings.getComments.replace("__PARENT__", sig));
             while (commentSet.next()) {
-                Message cmnt = new MessageFactoryImpl().newCMNT(sig, commentSet.getString("msgText"));
+                Message cmnt = new MessageFactory().newCMNT(sig, commentSet.getString("msgText"));
                 cmnt.timestamp = Long.parseLong(commentSet.getString("creationTime"));
                 cmnt.signature = commentSet.getString("sig");
                 comments.add(cmnt);
@@ -341,6 +341,21 @@ public class Database {
             Logger.write("ERROR", "DB", "getKey(" + userName + ") - Multple userNames found for key; Server OPs are evil!");
 
         return Crypto.decodeKey(key);
+    }
+    
+    public boolean canSeePDATA (String category) {
+        Logger.write("VERBOSE", "DB", "canSeePDATA()");
+        
+        try {
+            ResultSet categorySet = query(DBStrings.canSeePDATA.replace("__CATID__", category));
+            if (categorySet.next()) {
+                return categorySet.getInt("canSeePDATA") == 1 ? true : false;
+            }
+        } catch (java.sql.SQLException e) {
+            Logger.write("ERROR", "DB", "SQLException: " + e);
+        }
+        
+        return false;
     }
     
     //Return the name of each member and if it can see your profile info

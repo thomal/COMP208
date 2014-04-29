@@ -100,12 +100,15 @@ public class NetworkConnection implements Runnable {
         return 0;
     }
     
-    public void postMessage (Message msg, PublicKey recipient) {
+    public boolean postMessage (Message msg, PublicKey recipient) {
             String ciphertext = Crypto.encrypt(msg, recipient, this);
-            if (!serverCmd("s " + ciphertext).get(0).equals("s"))
+            if (!serverCmd("s " + ciphertext).get(0).equals("s")) {
                 Logger.write("RED", "NetCon", "server reported failure uploading message");
-            else
+                return true;
+            } else {
                 Logger.write("INFO", "NetCon", "uploaded message: \"" + msg + "\"");
+                return false;
+            }
     }
     
     //The only time unencrypted data is sent

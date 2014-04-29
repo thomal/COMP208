@@ -7,8 +7,8 @@ import ballmerpeak.turtlenet.server.Crypto;
 import java.security.*;
 
 
-public class MessageFactoryImpl {
-    public MessageFactoryImpl(){
+public class MessageFactory {
+    public MessageFactory(){
     }
 
     public  Message newMessage(String cmd, String content) {
@@ -28,6 +28,13 @@ public class MessageFactoryImpl {
     
     public Message newPDATA(String field, String value) {
         return newMessage("PDATA", field + ":" + value + ";");
+    }
+    
+    public Message newPDATA(String[] fields, String[] values) {
+        String content = "";
+        for (int i = 0; i < fields.length; i++)
+            content += fields[i] + ":" + values[i] + ";";
+        return newMessage("PDATA", content);
     }
     
     public Message newCHAT(PublicKey[] keys) {

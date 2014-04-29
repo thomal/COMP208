@@ -106,6 +106,7 @@ class DBStrings {
     public static final String getKey                = "SELECT key FROM tUser WHERE username = '__USERNAME__';";
     public static final String getCategories         = "SELECT * FROM tCategory;";
     public static final String getCategory           = "SELECT * FROM tCategory WHERE catID = '__CATNAME__';";
+    public static final String canSeePDATA           = "SELECT canSeePDATA FROM tCategory WHERE catID = '__CATID__';";
     public static final String getAllKeys            = "SELECT key FROM tUser;";
     public static final String getMemberKeys         = "SELECT userKey FROM tCategoryMembers WHERE catID = '__CATNAME__';";
     public static final String getName               = "SELECT username FROM tUser WHERE key = '__KEY__';";
