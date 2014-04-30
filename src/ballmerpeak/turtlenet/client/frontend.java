@@ -880,7 +880,8 @@ public class frontend implements EntryPoint, ClickListener {
             }
             public void onSuccess(String myKey) {
                 if(friendsDetailsKey.equals(myKey)) {
-                    Button edit = new Button("Edit my detail");
+                    Button edit = new Button("Edit my details");
+                    edit.setWidth("410px");
                     friendsDetailsPanel.setWidget(6, 1, edit);
                     edit.addClickHandler(new ClickHandler () {
                         public void onClick(ClickEvent event) {
@@ -895,14 +896,19 @@ public class frontend implements EntryPoint, ClickListener {
         friendsDetailsPanel.addStyleName("gwt-friends-details");
     }
 
+    // Global stuff for wall
     HorizontalPanel wallControlPanel;
     TextArea postText;
     PostDetails[] wallPostDetails;
     int wallCurrentPost;
-    FlowPanel wallPanel = new FlowPanel();
+    FlowPanel wallPanel;
+    Button wallControlPanelUserDetailsButton;
+    
     private void wall(final String key, final boolean refresh) {
         location = "wall";
         refreshID = key;
+        
+        wallPanel = new FlowPanel();
         
         if(!refresh) {
             // Setup basic page
@@ -913,36 +919,31 @@ public class frontend implements EntryPoint, ClickListener {
             wallControlPanel = new HorizontalPanel();
             wallControlPanel.addStyleName("gwt-wall-control");
             wallControlPanel.setSpacing(5);
-            wallPanel.add(wallControlPanel);        
-                
+            wallPanel.insert(wallControlPanel, 	0);
+            
+            wallControlPanelUserDetailsButton = new Button("About");
+            wallControlPanel.add(wallControlPanelUserDetailsButton);
+            wallControlPanelUserDetailsButton.getElement().getStyle().setProperty("marginRight" , "150px");
+            wallControlPanelUserDetailsButton.addClickHandler(new ClickHandler() {
+                public void onClick(ClickEvent event) {
+                    friendsDetails(key, wallPanel, wallControlPanelUserDetailsButton);
+                }
+            });
+                  
             turtlenet.getMyKey(new AsyncCallback<String>() {
                 public void onFailure(Throwable caught) {
                     System.out.println("turtlenet.getMyKey failed: " + caught);
                 }
                 public void onSuccess(String result) {
                     if(key.equals(result)) {
-                        final Button myDetails = new Button("About Me");
-                        wallControlPanel.add(myDetails);
-                        myDetails.getElement().getStyle().setProperty("marginLeft" , "280px");
-                        myDetails.getElement().getStyle().setProperty("marginRight" , "200px");
-                        myDetails.addClickHandler(new ClickHandler() {
-                            public void onClick(ClickEvent event) {
-                                friendsDetails(key, wallPanel, myDetails);
-                            }
-                        });
+                        wallControlPanelUserDetailsButton.setText("About Me");
                     } else {
                         turtlenet.getUsername(key, new AsyncCallback<String>() {
                             public void onFailure(Throwable caught) {
                                 System.out.println("turtlenet.getUsername failed: " + caught);
                             }
                             public void onSuccess(String result) {
-                                final Button userDetails = new Button("About " + result);
-                                wallControlPanel.add(userDetails);
-                                userDetails.addClickHandler(new ClickHandler() {
-                                    public void onClick(ClickEvent event) {
-                                        friendsDetails(key, wallPanel, userDetails);
-                                    }
-                                });
+                                wallControlPanelUserDetailsButton.setText("About " + result);
                             }
                         });
                     }
@@ -950,10 +951,8 @@ public class frontend implements EntryPoint, ClickListener {
             });
         
             final Button createPost = new Button("Write a post");
+            createPost.getElement().getStyle().setProperty("color" , "#000000");
             wallControlPanel.add(createPost);
-            
-            final Label postStop = new Label();
-            wallControlPanel.add(postStop);
             
             final FlowPanel createPostPanel = new FlowPanel();
             createPostPanel.addStyleName("gwt-create-post");
@@ -987,7 +986,9 @@ public class frontend implements EntryPoint, ClickListener {
             createPostControlPanel.add(cancel);
             createPostControlPanel.setCellWidth(cancel,"217px"); 
             cancel.addClickHandler(new ClickHandler() {
-                public void onClick(ClickEvent event) {                        
+                public void onClick(ClickEvent event) {
+                    wallPanel.remove(wallControlPanel);
+                    wallPanel.remove(createPostPanel);                        
                     wall(key, false);
                 }
             });   
@@ -1005,9 +1006,17 @@ public class frontend implements EntryPoint, ClickListener {
                             // LOUISTODO remove this
                             wall(key, false);
                             if (result.equals("success")) {
+                                wallPanel.remove(wallControlPanel);
+                                wallPanel.remove(createPostPanel); 
                                 wall(key, false);
                             } else {
                                 System.out.println("turtlenet.addPost onSuccess String result did not equal success");
+                                
+                                // LUKETODO LOUISTODO These are temporary while 
+                                // the return from String result is fixed
+                                wallPanel.remove(wallControlPanel);
+                                wallPanel.remove(createPostPanel); 
+                                wall(key, false); 
                             }
                         }
                     });
@@ -1017,10 +1026,9 @@ public class frontend implements EntryPoint, ClickListener {
             createPost.addClickHandler(new ClickHandler() {
                 public void onClick(ClickEvent event) {
                     location = "createPost";
-                    refreshID = "";
-                    wallControlPanel.remove(createPost);
-                    postStop.setText("Updates paused");
-                    postStop.getElement().getStyle().setProperty("color" , "#FF0000");                
+                    refreshID = "";             
+                    createPost.setText("Updates paused");
+                    createPost.getElement().getStyle().setProperty("color" , "#FF0000");
                     wallPanel.insert(createPostPanel, 1);
                 }
             });
@@ -1338,6 +1346,7 @@ public class frontend implements EntryPoint, ClickListener {
         newConversationPanel.setWidget(0, 1, newConvoInput);
         
         final ListBox chooseFriend = new ListBox();
+        chooseFriend.setWidth("150px");
         
         turtlenet.getPeople(new AsyncCallback<String[][]>() {
             String[][] result;

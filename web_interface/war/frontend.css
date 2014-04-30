@@ -90,7 +90,7 @@ h1 {
 	margin: 0 auto;
 	background: #E0EEEE;
 	color: #666666;
-	padding: 0 0 0 200px;
+	padding: 0 150px 0 200px;
 }
 
 .gwt-create-post {
@@ -142,7 +142,7 @@ h1 {
 }
 
 .gwt-conversation {
-	width: 950px;
+	width: 1000px;
 	margin: 0 auto;
 	background: #E0EEEE;
 	color: #666666;
