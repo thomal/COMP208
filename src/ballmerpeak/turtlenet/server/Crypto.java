@@ -1,11 +1,14 @@
 //All methods ought to be static
 package ballmerpeak.turtlenet.server;
 
+import ballmerpeak.turtlenet.server.FIO;
 import ballmerpeak.turtlenet.shared.Message;
 import java.io.*;
 import java.security.*;
-import java.security.spec.X509EncodedKeySpec;
 import javax.crypto.Cipher;
+import javax.crypto.KeyGenerator;
+import javax.crypto.SecretKey;
+import java.security.spec.X509EncodedKeySpec;
 import javax.crypto.spec.SecretKeySpec;
 import javax.crypto.spec.IvParameterSpec;
 import javax.xml.bind.DatatypeConverter;
@@ -52,6 +55,44 @@ public class Crypto {
         } catch (Exception e) {
             Logger.write("ERROR", "Crypto", "Could not generate keypair");
         }
+    }
+    
+    //encrypt all files in db folder, rename to <filename>.aes
+    public static boolean encryptDB(String password) {
+        Logger.write("VERBOSE", "Crypto", "encryptDB(" + password + ")");
+        try {
+            FIO.writeFileBytes(encryptBytes(FIO.readFileBytes(Database.path + "/turtlenet.db"), password), Database.path + "/turtlenet.db.aes");
+            FIO.writeFileBytes(encryptBytes(FIO.readFileBytes(Database.path + "/public.key"), password), Database.path + "/public.key.aes");
+            FIO.writeFileBytes(encryptBytes(FIO.readFileBytes(Database.path + "/private.key"), password), Database.path + "/private.key.aes");
+            FIO.writeFileBytes(encryptBytes(FIO.readFileBytes(Database.path + "/lastread"), password), Database.path + "/lastread.aes");
+            new File(Database.path + "/turtlenet.db").delete();
+            new File(Database.path + "/public.key").delete();
+            new File(Database.path + "/private.key").delete();
+            new File(Database.path + "/lastread").delete();
+        } catch (Exception e) {
+            Logger.write("FATAL", "Crypto", "Unable to encrypt files: " + e);
+            return false;
+        }
+        return true;
+    }
+    
+    //decrypt all files <filename>.aes in db folder, rename to <filename>
+    public static boolean decryptDB(String password) {
+        Logger.write("VERBOSE", "Crypto", "decryptDB(" + password + ")");
+        try {
+            FIO.writeFileBytes(decryptBytes(FIO.readFileBytes(Database.path + "/turtlenet.db.aes"), password), Database.path + "/turtlenet.db");
+            FIO.writeFileBytes(decryptBytes(FIO.readFileBytes(Database.path + "/public.key.aes"), password), Database.path + "/public.key");
+            FIO.writeFileBytes(decryptBytes(FIO.readFileBytes(Database.path + "/private.key.aes"), password), Database.path + "/private.key");
+            FIO.writeFileBytes(decryptBytes(FIO.readFileBytes(Database.path + "/lastread.aes"), password), Database.path + "/lastread");
+            new File(Database.path + "/turtlenet.db.aes").delete();
+            new File(Database.path + "/public.key.aes").delete();
+            new File(Database.path + "/private.key.aes").delete();
+            new File(Database.path + "/lastread.aes").delete();
+        } catch (Exception e) {
+            Logger.write("FATAL", "Crypto", "Unable to decrypt files: " + e);
+            return false;
+        }
+        return false;
     }
     
     public static KeyPair getTestKey() {
@@ -242,5 +283,44 @@ public class Crypto {
     public static int rand (int min, int max) {
         int range = max - min;
         return (int)(Math.random() * (range + 1)) + min;
+    }
+    
+    public static byte[] encryptBytes (byte[] data, String key) {
+        try {
+            SecretKeySpec spec = new SecretKeySpec(getAESKey(key), "AES");
+            Cipher cipher = Cipher.getInstance("AES");
+            cipher.init(Cipher.ENCRYPT_MODE, spec);
+            return cipher.doFinal(data);
+        } catch (Exception e) {
+            Logger.write("FATAL", "Crypto", "Could not encrypt bytes: " + e);
+            return null;
+        }
+    }
+    
+    public static byte[] decryptBytes (byte[] data, String key) {
+        try {
+            SecretKeySpec spec = new SecretKeySpec(getAESKey(key), "AES");
+            Cipher cipher = Cipher.getInstance("AES");
+            cipher.init(Cipher.DECRYPT_MODE, spec);
+            return cipher.doFinal(data);
+        } catch (Exception e) {
+            Logger.write("FATAL", "Crypto", "Could not decrypt bytes: " + e);
+            return null;
+        }
+    }
+    
+    private static byte[] getAESKey(String password) {
+        try {
+            byte[] pwBytes = password.getBytes("UTF-8");
+            KeyGenerator gen = KeyGenerator.getInstance("AES");
+            SecureRandom srandAES = SecureRandom.getInstance("SHA1PRNG");
+            srandAES.setSeed(pwBytes);
+            gen.init(128, srandAES);
+            SecretKey key = gen.generateKey();
+            return key.getEncoded();
+        } catch (Exception e) {
+            Logger.write("FATAL", "Crypto", "Could not get AES key: " + e);
+            return null;
+        }
     }
 }

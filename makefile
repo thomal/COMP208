@@ -94,6 +94,7 @@ clean : config
 	rm -rf db
 	rm -rf web_interface/db
 	rm -rf data
+	rm -rf testfile
 	@echo "              *******"
 	@echo "              Cleaned"
 	@echo "              *******"

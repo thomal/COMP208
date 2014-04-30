@@ -17,7 +17,7 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
     
     public String startTN(String password) {
         Logger.init("LOG_turtlenet");
-        Logger.write("INFO", "TNImpl","startTN()");
+        Logger.write("INFO", "TNImpl","startTN(" + password + ")");
         c = new TNClient(password);
         if (c != null) {
             Thread t = new Thread(c);
@@ -44,18 +44,23 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
         
         if (startTN(password).equals("success")) {
             try {
-                Thread.sleep(3000);
+                Thread.sleep(5000); //TODO remove this goddamn race condition, use a semaphore
             } catch (Exception e) {}
             
             Logger.write("INFO", "TnImpl", "Started TN...continuing registration");
-            if(claimUsername(username).equals("success"))
-                if(addKey(Crypto.encodeKey(Crypto.getPublicKey())).equals("success"))
+            if(claimUsername(username).equals("success")) {
+                if(addKey(Crypto.encodeKey(Crypto.getPublicKey())).equals("success")) {
                     return "success";
-                else
+                } else {
+                    Logger.write("ERROR", "TnImpl", "Could not add key");
                     return "failure";
-            else
+                }
+            } else {
+                Logger.write("INFO", "TnImpl", "Username taken");
                 return "taken";
+            }
         } else {
+            Logger.write("ERROR", "TnImpl", "Could not start Turtlenet");
             return "failure";
         }
     }
@@ -145,7 +150,7 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
             
             posts[i] = new PostDetails(sig, liked, commentCount, time, username, text, Crypto.encodeKey(c.db.getSignatory(msgs[i])));
         }
-        Logger.write("VERBOSE", "TnImpl", "getWallPosts(...) RETURNING\n\n");
+        Logger.write("VERBOSE", "TnImpl", "getWallPosts(...) RETURNING");
         return posts;
     }
     
@@ -305,6 +310,10 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
                 } else {
                     return "success";
                 }
+                
+                //We do not retroactivly send people posts/comments/likes because
+                //  people will forget what they've posted in the past and accidently
+                //  share it with new contacts.
             } else {
                 return "failure";
             }
