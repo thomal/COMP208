@@ -15,6 +15,7 @@ import com.google.gwt.dom.client.Style.FontWeight;
 import com.google.gwt.dom.client.DivElement;
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.user.client.Timer;
+import com.google.gwt.user.client.Window;
 import java.util.Date;
 
 public class frontend implements EntryPoint, ClickListener {
@@ -198,7 +199,7 @@ public class frontend implements EntryPoint, ClickListener {
                 }
             }
         };
-        refresh.scheduleRepeating(15*1000);
+        refresh.scheduleRepeating(5*1000);
     }
 
     private void navigation() {    
@@ -990,13 +991,12 @@ public class frontend implements EntryPoint, ClickListener {
                             System.out.println("turtlenet.addPost failed");
                         }
                         public void onSuccess(String result) {
+                            // LOUISTODO remove this
+                            wall(key, false);
                             if (result.equals("success")) {
                                 wall(key, false);
                             } else {
                                 System.out.println("turtlenet.addPost onSuccess String result did not equal success");
-                                
-                                // LOUISTODO remove this
-                                wall(key, false);
                             }
                         }
                     });
@@ -1027,9 +1027,7 @@ public class frontend implements EntryPoint, ClickListener {
                     if(!refresh || wallPostDetails[wallCurrentPost].timestamp > wallLastTimeStamp) {
 
                         final FlowPanel postPanel = new FlowPanel();
-                        // TODO LOUISTODO Uncomment
-                        //wallPanel.insert(postPanel, 1);
-                        wallPanel.add(postPanel);
+                        wallPanel.insert(postPanel, 1);
                         postPanel.addStyleName("gwt-post-panel");
                         
                         HorizontalPanel postControlPanel = new HorizontalPanel();
@@ -1135,6 +1133,11 @@ public class frontend implements EntryPoint, ClickListener {
                         postContentsFooterPanel.add(likePost);
                         likePost.getElement().getStyle().setProperty("paddingLeft" , "300px");
                          
+                    }
+                    
+                    if(refresh) {
+                        // TODO LOUISTODO use this
+                        //Window.scrollTo(0, (Window.getScrollTop() + 200));
                     }
                 }
             }
