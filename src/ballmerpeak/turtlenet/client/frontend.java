@@ -178,7 +178,7 @@ public class frontend implements EntryPoint, ClickListener {
                 if(location.equals("wall")) {
                     turtlenet.timeMostRecentWallPost(refreshID, new AsyncCallback<Long>() {
                         public void onFailure(Throwable caught) {
-                            System.out.println("turtlenet.timeMostRecentWallPost failed");
+                            System.out.println("turtlenet.timeMostRecentWallPost failed: " + caught);
                         }
                         public void onSuccess(Long result) {
                             if(result > wallLastTimeStamp) {
@@ -198,7 +198,7 @@ public class frontend implements EntryPoint, ClickListener {
                 }
             }
         };
-        refresh.scheduleRepeating(5*1000);
+        refresh.scheduleRepeating(15*1000);
     }
 
     private void navigation() {    
@@ -887,11 +887,10 @@ public class frontend implements EntryPoint, ClickListener {
     TextArea postText;
     PostDetails[] wallPostDetails;
     int wallCurrentPost;
+    FlowPanel wallPanel = new FlowPanel();
     private void wall(final String key, final boolean refresh) {
         location = "wall";
         refreshID = key;
-        
-        final FlowPanel wallPanel = new FlowPanel();
         
         if(!refresh) {
             // Setup basic page
@@ -995,6 +994,9 @@ public class frontend implements EntryPoint, ClickListener {
                                 wall(key, false);
                             } else {
                                 System.out.println("turtlenet.addPost onSuccess String result did not equal success");
+                                
+                                // LOUISTODO remove this
+                                wall(key, false);
                             }
                         }
                     });
@@ -1023,14 +1025,14 @@ public class frontend implements EntryPoint, ClickListener {
                     final PostDetails details = wallPostDetails[wallCurrentPost];
                     
                     if(!refresh || wallPostDetails[wallCurrentPost].timestamp > wallLastTimeStamp) {
+
                         final FlowPanel postPanel = new FlowPanel();
-                        // Test when there is data in there
-                        wallPanel.insert(postPanel, 1);
-                        //wallPanel.add(postPanel);
+                        // TODO LOUISTODO Uncomment
+                        //wallPanel.insert(postPanel, 1);
+                        wallPanel.add(postPanel);
                         postPanel.addStyleName("gwt-post-panel");
                         
                         HorizontalPanel postControlPanel = new HorizontalPanel();
-                        //postControlPanel.setSpacing(5);
                         postPanel.add(postControlPanel);
                         
                         //Name
@@ -1132,6 +1134,7 @@ public class frontend implements EntryPoint, ClickListener {
                         postContentsFooterPanel.add(stop);
                         postContentsFooterPanel.add(likePost);
                         likePost.getElement().getStyle().setProperty("paddingLeft" , "300px");
+                         
                     }
                 }
             }
