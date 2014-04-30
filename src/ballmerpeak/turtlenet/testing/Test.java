@@ -3,6 +3,7 @@ package ballmerpeak.turtlenet.testing;
 import ballmerpeak.turtlenet.shared.Message;
 import ballmerpeak.turtlenet.server.MessageFactory;
 import ballmerpeak.turtlenet.server.Crypto;
+import ballmerpeak.turtlenet.server.FIO;
 import java.security.*;
 
 class Test {
@@ -17,6 +18,7 @@ class Test {
         testMessageAccessors();
         testMessageFactory();
         testCrypto();
+        testFileIO();
         System.out.println("===========================================================================");
         System.out.println("Pass: " + passes + " Failures: " + failures + " Anomalies: " + anomalies);
         System.out.println("===========================================================================");
@@ -225,8 +227,34 @@ class Test {
         test("2 key = decode(encode(mykey))", mykey.equals(Crypto.decodeKey(Crypto.encodeKey(mykey))));
         test("3 verifySig on MsgFactory Msg", Crypto.verifySig(msg, mykey));
         
+        try {
+            String plaintext          = "hello, world";
+            String password           = "password";
+            byte[] data               = plaintext.getBytes("UTF-8");
+            byte[] ciphertext         = Crypto.encryptBytes(data, password);
+            byte[] recoveredPlaintext = Crypto.decryptBytes(ciphertext, password);
+            test("4 decByts(encByts(hello world))", new String(recoveredPlaintext), plaintext);
+        } catch (Exception e) {
+            System.out.println("Error testing Crypto: " + e);
+            anomalies++;
+        }
+        
         System.out.println("\tWARNING: Not enough crypto tests");
-        anomalies++;              
+        
+        return failures == ifailures;
+    }
+    
+    public static boolean testFileIO() {
+        System.out.println("\ntestF[ile]IO:");
+        int ifailures = failures;
+        
+        try {
+            FIO.writeFileBytes(new String("hello, world").getBytes("UTF-8"), "testfile");
+            test("1 read(write(\"hello, world\"))", new String(FIO.readFileBytes("testfile")), "hello, world");
+        } catch (Exception e) {
+            System.out.println("Error testing F[ile]IO: " + e);
+            anomalies++;
+        }
         
         
         return failures == ifailures;

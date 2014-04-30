@@ -1,112 +1,99 @@
-===== Turtlenet started at Tue Apr 29 20:14:33 BST 2014=====
-1398798873 INFO		TnImpl	Registering "bobbin" with PW "asdf"
-1398798873 INFO		TNImpl	startTN()
-1398798873 UNIMPL	TNClient	Ignoring password: asdf
-1398798873 INFO		Crypto	Generating keys
-1398798873 INFO		DB	Creating database
-1398798873 INFO		DB	Connecting to database
-1398798873 VERBOSE	DB	execute("CREATE TABLE tConvos (convoID     TEXT,timeCreated TEXT,PRIMARY KEY (convoID));")
-1398798873 VERBOSE	DB	execute("CREATE TABLE tConvoKeys (pk      INTEGER PRIMARY KEY AUTOINCREMENT,convoID TEXT,key     TEXT);")
-1398798874 VERBOSE	DB	execute("CREATE TABLE tConvoMessages (pk         INTEGER PRIMARY KEY AUTOINCREMENT,convoID    TEXT,sendersKey TEXT,msgText    TEXT,time       TEXT);")
-1398798874 VERBOSE	DB	execute("CREATE TABLE tPost (sig         TEXT,msgText     TEXT,time        TEXT,recieverKey TEXT,sendersKey  TEXT,PRIMARY KEY (sig));")
-1398798874 VERBOSE	DB	execute("CREATE TABLE tPostVisibleTo (pk      INTEGER PRIMARY KEY AUTOINCREMENT,postSig TEXT,key     TEXT);")
-1398798874 VERBOSE	DB	execute("CREATE TABLE tUser (key      TEXT,username TEXT,knowName INT,email    TEXT,name     TEXT,gender   TEXT,birthday TEXT,PRIMARY KEY (key));")
-1398798874 VERBOSE	DB	execute("CREATE TABLE tCategory (catID       TEXT,canSeePDATA INT,PRIMARY KEY (catID));")
-1398798874 VERBOSE	DB	execute("CREATE TABLE tCategoryMembers (pk      INTEGER PRIMARY KEY AUTOINCREMENT,catID   TEXT,userKey TEXT);")
-1398798875 VERBOSE	DB	execute("CREATE TABLE tEvent (sig          TEXT,startTime    TEXT,endTime      TEXT,creatorKey   TEXT,accepted     INT,name         TEXT,creationTime TEXT,PRIMARY KEY (sig));")
-1398798875 VERBOSE	DB	execute("CREATE TABLE tClaim (sig       TEXT,name      TEXT,claimTime TEXT,PRIMARY KEY (sig));")
-1398798875 VERBOSE	DB	execute("CREATE TABLE tLike (pk       INTEGER PRIMARY KEY AUTOINCREMENT,likerKey TEXT,parent   TEXT);")
-1398798875 VERBOSE	DB	execute("CREATE TABLE tComment (sig          TEXT,msgText      TEXT,senderKey    TEXT,parent       TEXT,creationTime TEXT,PRIMARY KEY (sig));")
-1398798875 VERBOSE	DB	execute("CREATE TABLE tRevocations (key          TEXT,sig          TEXT,timeOfLeak   TEXT,creationTime TEXT,PRIMARY KEY (sig));")
-1398798875 INFO		NetCon	NetworkConnection started
-1398798876 INFO		TnImpl	Started TN...continuing registration
-1398798876 VERBOSE	TnImpl	claimUsername(bobbin)
-1398798876 INFO		Crypto	sign()
-1398798876 INFO		Crypto	sign()
-1398798876 INFO		NetCon	Claimed name: bobbin
-1398798876 INFO		NetCon		name: bobbin
-1398798876 INFO		NetCon		time: 1398798876555
-1398798876 INFO		NetCon		 sig: gkYKfU0RomOrXyW6PAaVn7fSliar8fNqi4112QNWkZodW4OM7A9zhLN2tMIvFNL7JVV5BwbgtrIoLuXSOG8bCWY9qqlivzU3TfinwW0q2TGPyYvS2OQq4LacFOvw1NNZbux+Ye41Lh7zKJD4B1Eox46RuxP73qcMkOku6Ij6sLA=
-1398798876 VERBOSE	TnImpl	addKey(...)
-1398798876 VERBOSE	DB	addKey(...)
-1398798876 VERBOSE	DB	execute("INSERT INTO tUser (key) VALUES ('MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC1kXomazaf6pmjFC9lTGun+x4pfe9czhJdjcsLcaCCuAbdPYZCnoCROEElpWDdjHbvVQanxIXhboyiKG0pw6rAqFwMel1dnzS9KHaviVPHS5m2Rw/z6wlQML/tgXz3LCJGnWJZiPVFZj+Gue/sRpDQVyB2sQ2n/OrWbds7GabAGwIDAQAB');")
-1398798876 VERBOSE	DB	validateClaims(...)
-1398798876 VERBOSE	DB	query("SELECT * FROM tClaim;")
-1398798876 VERBOSE	DB	calcRevocationKeys(...)
-1398798876 VERBOSE	DB	query("SELECT * FROM tRevocations;")
-1398798876 VERBOSE	TnImpl	getMyKey()
-1398798876 VERBOSE	TnImpl	getMyKey()
-1398798876 VERBOSE	TnImpl	getCategories()
-1398798876 VERBOSE	DB	getCategories()
-1398798876 VERBOSE	DB	query("SELECT * FROM tCategory;")
-1398798876 VERBOSE	DB	getCategories() returning 0 categories
-1398798876 VERBOSE	TnImpl	getWallPosts(...) ENTERING
-1398798876 VERBOSE	DB	getWallPost(...)
-1398798876 VERBOSE	DB	query("SELECT sig FROM tPost WHERE recieverKey = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC1kXomazaf6pmjFC9lTGun+x4pfe9czhJdjcsLcaCCuAbdPYZCnoCROEElpWDdjHbvVQanxIXhboyiKG0pw6rAqFwMel1dnzS9KHaviVPHS5m2Rw/z6wlQML/tgXz3LCJGnWJZiPVFZj+Gue/sRpDQVyB2sQ2n/OrWbds7GabAGwIDAQAB';")
-1398798876 VERBOSE	TnImpl	getWallPosts(...) RETURNING
+===== Turtlenet started at Wed Apr 30 01:22:20 BST 2014=====
+1398817340 INFO		TnImpl	Registering "queldor" with PW "qwer"
+1398817340 INFO		TNImpl	startTN(qwer)
+1398817340 INFO		Crypto	Generating keys
+1398817340 INFO		DB	Creating database
+1398817340 INFO		DB	Connecting to database
+1398817340 VERBOSE	DB	execute("CREATE TABLE tConvos (convoID     TEXT,timeCreated TEXT,PRIMARY KEY (convoID));")
+1398817340 VERBOSE	DB	execute("CREATE TABLE tConvoKeys (pk      INTEGER PRIMARY KEY AUTOINCREMENT,convoID TEXT,key     TEXT);")
+1398817341 VERBOSE	DB	execute("CREATE TABLE tConvoMessages (pk         INTEGER PRIMARY KEY AUTOINCREMENT,convoID    TEXT,sendersKey TEXT,msgText    TEXT,time       TEXT);")
+1398817341 VERBOSE	DB	execute("CREATE TABLE tPost (sig         TEXT,msgText     TEXT,time        TEXT,recieverKey TEXT,sendersKey  TEXT,PRIMARY KEY (sig));")
+1398817341 VERBOSE	DB	execute("CREATE TABLE tPostVisibleTo (pk      INTEGER PRIMARY KEY AUTOINCREMENT,postSig TEXT,key     TEXT);")
+1398817342 VERBOSE	DB	execute("CREATE TABLE tUser (key      TEXT,username TEXT,knowName INT,email    TEXT,name     TEXT,gender   TEXT,birthday TEXT,PRIMARY KEY (key));")
+1398817342 VERBOSE	DB	execute("CREATE TABLE tCategory (catID       TEXT,canSeePDATA INT,PRIMARY KEY (catID));")
+1398817342 VERBOSE	DB	execute("CREATE TABLE tCategoryMembers (pk      INTEGER PRIMARY KEY AUTOINCREMENT,catID   TEXT,userKey TEXT);")
+1398817342 VERBOSE	DB	execute("CREATE TABLE tEvent (sig          TEXT,startTime    TEXT,endTime      TEXT,creatorKey   TEXT,accepted     INT,name         TEXT,creationTime TEXT,PRIMARY KEY (sig));")
+1398817342 VERBOSE	DB	execute("CREATE TABLE tClaim (sig       TEXT,name      TEXT,claimTime TEXT,PRIMARY KEY (sig));")
+1398817343 VERBOSE	DB	execute("CREATE TABLE tLike (pk       INTEGER PRIMARY KEY AUTOINCREMENT,likerKey TEXT,parent   TEXT);")
+1398817343 VERBOSE	DB	execute("CREATE TABLE tComment (sig          TEXT,msgText      TEXT,senderKey    TEXT,parent       TEXT,creationTime TEXT,PRIMARY KEY (sig));")
+1398817343 VERBOSE	DB	execute("CREATE TABLE tRevocations (key          TEXT,sig          TEXT,timeOfLeak   TEXT,creationTime TEXT,PRIMARY KEY (sig));")
+1398817343 INFO		NetCon	NetworkConnection started
+1398817345 INFO		TnImpl	Started TN...continuing registration
+1398817345 VERBOSE	TnImpl	claimUsername(queldor)
+1398817345 INFO		Crypto	sign()
+1398817345 INFO		Crypto	sign()
+1398817345 INFO		NetCon	Claimed name: queldor
+1398817345 INFO		NetCon		name: queldor
+1398817345 INFO		NetCon		time: 1398817345342
+1398817345 INFO		NetCon		 sig: VZloRN4KnIZgYfWsblNgOeaW23Wz6KOfMDET3tUxtdVFg5RlAkKVpr4E75LRSPe6BfMDa/GTpb/ufNXVj233G0ZEl00B6j7RbkitELREZhU52R/raiRySRocWmYrZ2IfheJA4wUVQ5oJiSB9Mfguc6ux6+UD3mQAxGhlFvN+WZc=
+1398817345 VERBOSE	TnImpl	addKey(...)
+1398817345 VERBOSE	DB	addKey(...)
+1398817345 VERBOSE	DB	execute("INSERT INTO tUser (key) VALUES ('MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQClwgpFFm3eQqWzAEfmbyc0foBcHosD958DKP4gZZD57qVGOOPt5I6fT/zNYJ2Hs1gkQE+VwaAzjq2xDD+s5N1pgZMYldkEDQNnbRWqAVds/AKrpMqqwsuQ7Bw0mMVObkTdh8JI57meF3kVk70Vhkv0BIHOIlkENfxnSzG/JQ9afwIDAQAB');")
+1398817345 VERBOSE	DB	validateClaims(...)
+1398817345 VERBOSE	DB	query("SELECT * FROM tClaim;")
+1398817345 VERBOSE	DB	calcRevocationKeys(...)
+1398817345 VERBOSE	DB	query("SELECT * FROM tRevocations;")
+1398817345 VERBOSE	TnImpl	getMyKey()
+1398817345 VERBOSE	TnImpl	getMyKey()
+1398817345 VERBOSE	TnImpl	getCategories()
+1398817345 VERBOSE	DB	getCategories()
+1398817345 VERBOSE	DB	query("SELECT * FROM tCategory;")
+1398817345 VERBOSE	DB	getCategories() returning 0 categories
+1398817345 VERBOSE	TnImpl	getWallPosts(...) ENTERING
+1398817345 VERBOSE	DB	getWallPost(...)
+1398817345 VERBOSE	DB	query("SELECT sig FROM tPost WHERE recieverKey = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQClwgpFFm3eQqWzAEfmbyc0foBcHosD958DKP4gZZD57qVGOOPt5I6fT/zNYJ2Hs1gkQE+VwaAzjq2xDD+s5N1pgZMYldkEDQNnbRWqAVds/AKrpMqqwsuQ7Bw0mMVObkTdh8JI57meF3kVk70Vhkv0BIHOIlkENfxnSzG/JQ9afwIDAQAB';")
+1398817345 VERBOSE	TnImpl	getWallPosts(...) RETURNING
 
 
-1398798876 INFO		Crypto	decrypt()
-1398798876 VERBOSE	PARSE	parsing message
-1398798876 VERBOSE	DB	getSignatory(...)
-1398798876 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398798876 INFO		Crypto	verifySig()
-1398798876 INFO		Crypto	verifySig() - TRUE
-1398798876 VERBOSE	DB	isRevoked(...)
-1398798876 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC1kXomazaf6pmjFC9lTGun+x4pfe9czhJdjcsLcaCCuAbdPYZCnoCROEElpWDdjHbvVQanxIXhboyiKG0pw6rAqFwMel1dnzS9KHaviVPHS5m2Rw/z6wlQML/tgXz3LCJGnWJZiPVFZj+Gue/sRpDQVyB2sQ2n/OrWbds7GabAGwIDAQAB';")
-1398798876 VERBOSE	DB	addClaim(bobbin)
-1398798876 VERBOSE	DB	execute("INSERT INTO tClaim (sig, name, claimTime) VALUES ('gkYKfU0RomOrXyW6PAaVn7fSliar8fNqi4112QNWkZodW4OM7A9zhLN2tMIvFNL7JVV5BwbgtrIoLuXSOG8bCWY9qqlivzU3TfinwW0q2TGPyYvS2OQq4LacFOvw1NNZbux+Ye41Lh7zKJD4B1Eox46RuxP73qcMkOku6Ij6sLA=', 'bobbin', '1398798876555');")
-1398798877 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398798877 VERBOSE	DB	validateClaims(...)
-1398798877 VERBOSE	DB	query("SELECT * FROM tClaim;")
-1398798877 VERBOSE	DB	Considering Claim for name: "bobbin"
-1398798877 VERBOSE	DB	                      time: "1398798876555"
-1398798877 VERBOSE	DB	                       sig: "gkYKfU0RomOrXyW6PAaVn7fSliar8fNqi4112QNWkZodW4OM7A9zhLN2tMIvFNL7JVV5BwbgtrIoLuXSOG8bCWY9qqlivzU3TfinwW0q2TGPyYvS2OQq4LacFOvw1NNZbux+Ye41Lh7zKJD4B1Eox46RuxP73qcMkOku6Ij6sLA="
-1398798877 VERBOSE	DB	getSignatory(...)
-1398798877 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398798877 INFO		Crypto	verifySig()
-1398798877 INFO		Crypto	verifySig() - TRUE
-1398798877 VERBOSE	DB	execute("UPDATE tUser SET username = 'bobbin' WHERE key = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC1kXomazaf6pmjFC9lTGun+x4pfe9czhJdjcsLcaCCuAbdPYZCnoCROEElpWDdjHbvVQanxIXhboyiKG0pw6rAqFwMel1dnzS9KHaviVPHS5m2Rw/z6wlQML/tgXz3LCJGnWJZiPVFZj+Gue/sRpDQVyB2sQ2n/OrWbds7GabAGwIDAQAB';")
-1398798877 VERBOSE	DB	execute("DELETE FROM tClaim WHERE sig = 'gkYKfU0RomOrXyW6PAaVn7fSliar8fNqi4112QNWkZodW4OM7A9zhLN2tMIvFNL7JVV5BwbgtrIoLuXSOG8bCWY9qqlivzU3TfinwW0q2TGPyYvS2OQq4LacFOvw1NNZbux+Ye41Lh7zKJD4B1Eox46RuxP73qcMkOku6Ij6sLA=';")
-1398798877 INFO		DB	Claim for bobbin verified
-1398798878 VERBOSE	DB	timeMostRecentWallPost(...)
-1398798878 VERBOSE	DB	query("SELECT maxtime FROM tPost INNER JOIN (SELECT MAX(time) maxtime, recieverKey FROM tPost GROUP BY recieverKey) AS temp ON tPost.recieverKey = temp.recieverKey AND tPost.time = temp.maxtime WHERE tPost.recieverKey = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC1kXomazaf6pmjFC9lTGun+x4pfe9czhJdjcsLcaCCuAbdPYZCnoCROEElpWDdjHbvVQanxIXhboyiKG0pw6rAqFwMel1dnzS9KHaviVPHS5m2Rw/z6wlQML/tgXz3LCJGnWJZiPVFZj+Gue/sRpDQVyB2sQ2n/OrWbds7GabAGwIDAQAB';")
-1398798879 VERBOSE	TnImpl	getMyUsername()
-1398798879 VERBOSE	DB	getName(...)
-1398798879 VERBOSE	DB	query("SELECT username FROM tUser WHERE key = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC1kXomazaf6pmjFC9lTGun+x4pfe9czhJdjcsLcaCCuAbdPYZCnoCROEElpWDdjHbvVQanxIXhboyiKG0pw6rAqFwMel1dnzS9KHaviVPHS5m2Rw/z6wlQML/tgXz3LCJGnWJZiPVFZj+Gue/sRpDQVyB2sQ2n/OrWbds7GabAGwIDAQAB';")
-1398798879 VERBOSE	TnImpl	getMyPDATA(name)
-1398798879 VERBOSE	TnImpl	getPDATA(name, ...)
-1398798879 VERBOSE	DB	getPDATA(name,...)
-1398798879 VERBOSE	DB	query("SELECT name FROM tUser WHERE key = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC1kXomazaf6pmjFC9lTGun+x4pfe9czhJdjcsLcaCCuAbdPYZCnoCROEElpWDdjHbvVQanxIXhboyiKG0pw6rAqFwMel1dnzS9KHaviVPHS5m2Rw/z6wlQML/tgXz3LCJGnWJZiPVFZj+Gue/sRpDQVyB2sQ2n/OrWbds7GabAGwIDAQAB';")
-1398798879 VERBOSE	TnImpl	getMyPDATA(birthday)
-1398798879 VERBOSE	TnImpl	getPDATA(birthday, ...)
-1398798879 VERBOSE	DB	getPDATA(birthday,...)
-1398798879 VERBOSE	DB	query("SELECT birthday FROM tUser WHERE key = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC1kXomazaf6pmjFC9lTGun+x4pfe9czhJdjcsLcaCCuAbdPYZCnoCROEElpWDdjHbvVQanxIXhboyiKG0pw6rAqFwMel1dnzS9KHaviVPHS5m2Rw/z6wlQML/tgXz3LCJGnWJZiPVFZj+Gue/sRpDQVyB2sQ2n/OrWbds7GabAGwIDAQAB';")
-1398798880 VERBOSE	TnImpl	getMyPDATA(gender)
-1398798880 VERBOSE	TnImpl	getPDATA(gender, ...)
-1398798880 VERBOSE	DB	getPDATA(gender,...)
-1398798880 VERBOSE	DB	query("SELECT gender FROM tUser WHERE key = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC1kXomazaf6pmjFC9lTGun+x4pfe9czhJdjcsLcaCCuAbdPYZCnoCROEElpWDdjHbvVQanxIXhboyiKG0pw6rAqFwMel1dnzS9KHaviVPHS5m2Rw/z6wlQML/tgXz3LCJGnWJZiPVFZj+Gue/sRpDQVyB2sQ2n/OrWbds7GabAGwIDAQAB';")
-1398798880 VERBOSE	TnImpl	getMyPDATA(email)
-1398798880 VERBOSE	TnImpl	getPDATA(email, ...)
-1398798880 VERBOSE	DB	getPDATA(email,...)
-1398798880 VERBOSE	DB	query("SELECT email FROM tUser WHERE key = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC1kXomazaf6pmjFC9lTGun+x4pfe9czhJdjcsLcaCCuAbdPYZCnoCROEElpWDdjHbvVQanxIXhboyiKG0pw6rAqFwMel1dnzS9KHaviVPHS5m2Rw/z6wlQML/tgXz3LCJGnWJZiPVFZj+Gue/sRpDQVyB2sQ2n/OrWbds7GabAGwIDAQAB';")
-1398798880 VERBOSE	TnImpl	getCategories()
-1398798880 VERBOSE	DB	getCategories()
-1398798880 VERBOSE	DB	query("SELECT * FROM tCategory;")
-1398798880 VERBOSE	DB	getCategories() returning 0 categories
-1398798882 VERBOSE	TnImpl	getCategoryMembers(All)
-1398798882 VERBOSE	DB	getCategoryMembers(All)
-1398798882 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398798882 VERBOSE	DB	getCategoryMembers(All) returning 1 members
-1398798882 VERBOSE	DB	getName(...)
-1398798882 VERBOSE	DB	query("SELECT username FROM tUser WHERE key = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC1kXomazaf6pmjFC9lTGun+x4pfe9czhJdjcsLcaCCuAbdPYZCnoCROEElpWDdjHbvVQanxIXhboyiKG0pw6rAqFwMel1dnzS9KHaviVPHS5m2Rw/z6wlQML/tgXz3LCJGnWJZiPVFZj+Gue/sRpDQVyB2sQ2n/OrWbds7GabAGwIDAQAB';")
-1398798882 VERBOSE	TnImpl	getCategories()
-1398798882 VERBOSE	DB	getCategories()
-1398798882 VERBOSE	DB	query("SELECT * FROM tCategory;")
-1398798882 VERBOSE	DB	getCategories() returning 0 categories
-1398798882 VERBOSE	TnImpl	getMyKey()
-1398798883 INFO		TNImpl	stopTN()
-1398798883 INFO		NetCon	close()
-1398798883 INFO		NetCon	Saved lastRead to disk
-1398798883 INFO		DB	Disconnecting from database
-===== Turtlenet closed  at Tue Apr 29 20:14:43 BST 2014=====
+1398817345 INFO		Crypto	decrypt()
+1398817345 VERBOSE	PARSE	parsing message
+1398817345 VERBOSE	DB	getSignatory(...)
+1398817345 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398817345 INFO		Crypto	verifySig()
+1398817345 INFO		Crypto	verifySig() - TRUE
+1398817345 VERBOSE	DB	isRevoked(...)
+1398817345 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQClwgpFFm3eQqWzAEfmbyc0foBcHosD958DKP4gZZD57qVGOOPt5I6fT/zNYJ2Hs1gkQE+VwaAzjq2xDD+s5N1pgZMYldkEDQNnbRWqAVds/AKrpMqqwsuQ7Bw0mMVObkTdh8JI57meF3kVk70Vhkv0BIHOIlkENfxnSzG/JQ9afwIDAQAB';")
+1398817345 VERBOSE	DB	addClaim(queldor)
+1398817345 VERBOSE	DB	execute("INSERT INTO tClaim (sig, name, claimTime) VALUES ('VZloRN4KnIZgYfWsblNgOeaW23Wz6KOfMDET3tUxtdVFg5RlAkKVpr4E75LRSPe6BfMDa/GTpb/ufNXVj233G0ZEl00B6j7RbkitELREZhU52R/raiRySRocWmYrZ2IfheJA4wUVQ5oJiSB9Mfguc6ux6+UD3mQAxGhlFvN+WZc=', 'queldor', '1398817345342');")
+1398817346 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398817346 VERBOSE	DB	validateClaims(...)
+1398817346 VERBOSE	DB	query("SELECT * FROM tClaim;")
+1398817346 VERBOSE	DB	Considering Claim for name: "queldor"
+1398817346 VERBOSE	DB	                      time: "1398817345342"
+1398817346 VERBOSE	DB	                       sig: "VZloRN4KnIZgYfWsblNgOeaW23Wz6KOfMDET3tUxtdVFg5RlAkKVpr4E75LRSPe6BfMDa/GTpb/ufNXVj233G0ZEl00B6j7RbkitELREZhU52R/raiRySRocWmYrZ2IfheJA4wUVQ5oJiSB9Mfguc6ux6+UD3mQAxGhlFvN+WZc="
+1398817346 VERBOSE	DB	getSignatory(...)
+1398817346 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398817346 INFO		Crypto	verifySig()
+1398817346 INFO		Crypto	verifySig() - TRUE
+1398817346 VERBOSE	DB	execute("UPDATE tUser SET username = 'queldor' WHERE key = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQClwgpFFm3eQqWzAEfmbyc0foBcHosD958DKP4gZZD57qVGOOPt5I6fT/zNYJ2Hs1gkQE+VwaAzjq2xDD+s5N1pgZMYldkEDQNnbRWqAVds/AKrpMqqwsuQ7Bw0mMVObkTdh8JI57meF3kVk70Vhkv0BIHOIlkENfxnSzG/JQ9afwIDAQAB';")
+1398817346 VERBOSE	DB	execute("DELETE FROM tClaim WHERE sig = 'VZloRN4KnIZgYfWsblNgOeaW23Wz6KOfMDET3tUxtdVFg5RlAkKVpr4E75LRSPe6BfMDa/GTpb/ufNXVj233G0ZEl00B6j7RbkitELREZhU52R/raiRySRocWmYrZ2IfheJA4wUVQ5oJiSB9Mfguc6ux6+UD3mQAxGhlFvN+WZc=';")
+1398817346 INFO		DB	Claim for queldor verified
+1398817348 VERBOSE	TnImpl	getMyUsername()
+1398817348 VERBOSE	DB	getName(...)
+1398817348 VERBOSE	DB	query("SELECT username FROM tUser WHERE key = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQClwgpFFm3eQqWzAEfmbyc0foBcHosD958DKP4gZZD57qVGOOPt5I6fT/zNYJ2Hs1gkQE+VwaAzjq2xDD+s5N1pgZMYldkEDQNnbRWqAVds/AKrpMqqwsuQ7Bw0mMVObkTdh8JI57meF3kVk70Vhkv0BIHOIlkENfxnSzG/JQ9afwIDAQAB';")
+1398817348 VERBOSE	TnImpl	getMyPDATA(name)
+1398817348 VERBOSE	TnImpl	getPDATA(name, ...)
+1398817348 VERBOSE	DB	getPDATA(name,...)
+1398817348 VERBOSE	DB	query("SELECT name FROM tUser WHERE key = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQClwgpFFm3eQqWzAEfmbyc0foBcHosD958DKP4gZZD57qVGOOPt5I6fT/zNYJ2Hs1gkQE+VwaAzjq2xDD+s5N1pgZMYldkEDQNnbRWqAVds/AKrpMqqwsuQ7Bw0mMVObkTdh8JI57meF3kVk70Vhkv0BIHOIlkENfxnSzG/JQ9afwIDAQAB';")
+1398817348 VERBOSE	TnImpl	getMyPDATA(birthday)
+1398817348 VERBOSE	TnImpl	getPDATA(birthday, ...)
+1398817348 VERBOSE	DB	getPDATA(birthday,...)
+1398817348 VERBOSE	DB	query("SELECT birthday FROM tUser WHERE key = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQClwgpFFm3eQqWzAEfmbyc0foBcHosD958DKP4gZZD57qVGOOPt5I6fT/zNYJ2Hs1gkQE+VwaAzjq2xDD+s5N1pgZMYldkEDQNnbRWqAVds/AKrpMqqwsuQ7Bw0mMVObkTdh8JI57meF3kVk70Vhkv0BIHOIlkENfxnSzG/JQ9afwIDAQAB';")
+1398817348 VERBOSE	TnImpl	getMyPDATA(gender)
+1398817348 VERBOSE	TnImpl	getPDATA(gender, ...)
+1398817348 VERBOSE	DB	getPDATA(gender,...)
+1398817348 VERBOSE	DB	query("SELECT gender FROM tUser WHERE key = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQClwgpFFm3eQqWzAEfmbyc0foBcHosD958DKP4gZZD57qVGOOPt5I6fT/zNYJ2Hs1gkQE+VwaAzjq2xDD+s5N1pgZMYldkEDQNnbRWqAVds/AKrpMqqwsuQ7Bw0mMVObkTdh8JI57meF3kVk70Vhkv0BIHOIlkENfxnSzG/JQ9afwIDAQAB';")
+1398817348 VERBOSE	TnImpl	getMyPDATA(email)
+1398817348 VERBOSE	TnImpl	getPDATA(email, ...)
+1398817348 VERBOSE	DB	getPDATA(email,...)
+1398817348 VERBOSE	DB	query("SELECT email FROM tUser WHERE key = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQClwgpFFm3eQqWzAEfmbyc0foBcHosD958DKP4gZZD57qVGOOPt5I6fT/zNYJ2Hs1gkQE+VwaAzjq2xDD+s5N1pgZMYldkEDQNnbRWqAVds/AKrpMqqwsuQ7Bw0mMVObkTdh8JI57meF3kVk70Vhkv0BIHOIlkENfxnSzG/JQ9afwIDAQAB';")
+1398817348 VERBOSE	TnImpl	getCategories()
+1398817348 VERBOSE	DB	getCategories()
+1398817348 VERBOSE	DB	query("SELECT * FROM tCategory;")
+1398817348 VERBOSE	DB	getCategories() returning 0 categories
+1398817349 INFO		TNImpl	stopTN()
+1398817349 INFO		NetCon	close()
+1398817349 INFO		NetCon	Saved lastRead to disk
+1398817349 INFO		DB	Disconnecting from database
+1398817349 VERBOSE	Crypto	encryptDB(qwer)
+===== Turtlenet closed  at Wed Apr 30 01:22:29 BST 2014=====

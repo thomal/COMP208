@@ -11,12 +11,13 @@ import java.util.Vector;
 
 public class Database {
     public static String path = "./db"; //path to database directory
-    public boolean created = false;
     private Connection dbConnection;
+    private String password = "UNSET";
 
-    public Database () {
+    public Database (String pw) {
+        password = pw;
         dbConnection = null;
-        if (DBExists()) dbConnect(); else dbCreate();
+        if (DBExists()) dbConnect(true); else dbCreate();
     }
     
     public static boolean DBDirExists() {
@@ -25,7 +26,7 @@ public class Database {
     }
     
     public static boolean DBExists() {
-        File db = new File(path + "/turtlenet.db");
+        File db = new File(path + "/turtlenet.db.aes");
         return db.exists();
     }
     
@@ -39,17 +40,20 @@ public class Database {
         try {
             if (!Database.DBDirExists())
                 Database.createDBDir();
-            dbConnect();
+            dbConnect(false);
             for (int i = 0; i < DBStrings.createDB.length; i++)
                 execute(DBStrings.createDB[i]);
-            created = true;
         } catch (Exception e) {
             Logger.write("FATAL", "DB", "Failed to create databse: " + e);
         }
     }
 
     //Connects to a pre-defined database
-    public boolean dbConnect() {
+    public boolean dbConnect(boolean dbexists) {
+        if (dbexists)
+            if (!Crypto.decryptDB(password))
+                Logger.write("FATAL", "DB", "failed to decrypt database");
+        
         Logger.write("INFO", "DB", "Connecting to database");
         try {
             Class.forName("org.sqlite.JDBC");
@@ -69,6 +73,9 @@ public class Database {
         } catch(Exception e) { //Exception logged to disk, program allowed to continue
             Logger.write("FATAL", "DB", "Could not disconnect: " + e.getClass().getName() + ": " + e.getMessage() );
         }
+        
+        if (!Crypto.encryptDB(password))
+            Logger.write("FATAL", "DB", "failed to encrypt database");
     }
     
     public void execute (String query) throws java.sql.SQLException {
@@ -429,7 +436,7 @@ public class Database {
         return null;
     }
     
-    public PublicKey[] getPostsVisibleTo (String sig) {
+    public PublicKey[] getPostVisibleTo (String sig) {
         Logger.write("VERBOSE", "DB", "getVisibleTo(...)");
         Vector<PublicKey> keyList = new Vector<PublicKey>();
         

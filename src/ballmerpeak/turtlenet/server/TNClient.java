@@ -8,21 +8,19 @@ public class TNClient implements Runnable {
     public NetworkConnection connection;
     public Thread networkThread;
     public Database db = null;
-    public String password;
+    public String password = "NOT SET";
     
     public TNClient (String pw) {
         password = pw;
     }
     
     public void run () {
-        Logger.write("UNIMPL", "TNClient", "Ignoring password: " + password);
-        
         if (!Crypto.keysExist())
             Crypto.keyGen();
         
         connection    = new NetworkConnection("127.0.0.1");
         networkThread = new Thread(connection);
-        db            = new Database();
+        db            = new Database(password);
         
         networkThread.start();
         
