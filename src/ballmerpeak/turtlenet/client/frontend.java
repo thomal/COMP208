@@ -185,6 +185,7 @@ public class frontend implements EntryPoint, ClickListener {
     // Used to track the most recent wall post to be displayed
     Long wallLastTimeStamp = 0L;
     Long conversationLastTimeStamp = 0L;
+    Long commentsLastTimeStamp = 0L;
     
     // When the login button is clicked we start a repeating timer that refreshes
     // the page every 5 seconds. 
@@ -198,22 +199,32 @@ public class frontend implements EntryPoint, ClickListener {
                         }
                         public void onSuccess(Long result) {
                             if(result > wallLastTimeStamp) {
-                                System.out.println("Refreshing: wall. refreshID: " + refreshID);
+                                System.out.println("Refreshing wall. refreshID: " + refreshID);
                                 wall(refreshID, true);
                             }
                         }
                     });
                 } else if(location.equals("conversationList")) {
-                    System.out.println("Refreshing: conversationList");
+                    System.out.println("Refreshing conversationList");
                     conversationList();
                 } else if(location.equals("conversation")) {
+                    
                     // LUKETODO '0' should be replaced with a call to a method that takes the ID of a conversation
                     // and returns the time stamp of the most recent message in that conversation.
                     // Give it refreshID 
                     if(0 > conversationLastTimeStamp) {
-                        System.out.println("Refreshing: conversation. refreshID: " + refreshID);
+                        System.out.println("Refreshing conversation. refreshID: " + refreshID);
                         conversation(refreshID, true);
-                    }
+                    } 
+                } else if(location.equals("comments")) {
+                    
+                    // LUKETODO '0' should be replaced with a call to a method that takes the ID of a wall post
+                    // and returns the time stamp of the most recent comment associated with that wall post. 
+                    // Give it refreshID 
+                    if(0 > commentsLastTimeStamp) {
+                        System.out.println("Refreshing comments. refreshID: " + refreshID);
+                        comments(refreshID, keyOfWallCommentsAreOn, true);
+                    } 
                 } else {
                     //Do nothing
                 }
@@ -921,12 +932,14 @@ public class frontend implements EntryPoint, ClickListener {
     }
 
     // Global stuff for wall
-    HorizontalPanel wallControlPanel;
-    TextArea postText;
+    private HorizontalPanel wallControlPanel;
+    private TextArea postText;
     PostDetails[] wallPostDetails;
     int wallCurrentPost;
-    FlowPanel wallPanel;
-    Button wallControlPanelUserDetailsButton;
+    private FlowPanel wallPanel;
+    private Button wallControlPanelUserDetailsButton;
+    private FlowPanel postPanel = new FlowPanel();
+    private Anchor linkToComments;
     
     private void wall(final String key, final boolean refresh) {
         location = "wall";
@@ -1038,7 +1051,8 @@ public class frontend implements EntryPoint, ClickListener {
                                 System.out.println("turtlenet.addPost onSuccess String result did not equal success");
                                 
                                 // LUKETODO LOUISTODO These are temporary while 
-                                // the return from String result is fixed
+                                // the return from String result is fixed.
+                                // Remove them.
                                 wallPanel.remove(wallControlPanel);
                                 wallPanel.remove(createPostPanel); 
                                 wall(key, false); 
@@ -1070,7 +1084,6 @@ public class frontend implements EntryPoint, ClickListener {
                     
                     if(!refresh || wallPostDetails[wallCurrentPost].timestamp > wallLastTimeStamp) {
 
-                        final FlowPanel postPanel = new FlowPanel();
                         wallPanel.insert(postPanel, 1);
                         postPanel.addStyleName("gwt-post-panel");
                         
@@ -1157,20 +1170,20 @@ public class frontend implements EntryPoint, ClickListener {
                         
                         //Comments
                         int commentCount = wallPostDetails[wallCurrentPost].commentCount;
-                        final Anchor comments;
                         if(commentCount == 0) {
-                            comments = new Anchor("Add a comment");
+                            linkToComments = new Anchor("Add a comment");
                         } else {
-                            comments = new Anchor("Comments(" + Integer.toString(commentCount) + ")");
+                            linkToComments = new Anchor("Comments(" + Integer.toString(commentCount) + ")");
                         }
                         
-                        postContentsFooterPanel.add(comments);
-                        comments.addClickHandler(new ClickHandler() {
+                        linkToComments.getElement().getStyle().setProperty("paddingRight" , "100px");
+                        postContentsFooterPanel.add(linkToComments);
+                        linkToComments.addClickHandler(new ClickHandler() {
                             public void onClick(ClickEvent event) {
-                                postContentsFooterPanel.remove(comments);
+                                postContentsFooterPanel.remove(linkToComments);
                                 stop.setText("Page auto update paused");
                                 stop.getElement().getStyle().setProperty("color" , "#FF0000");  
-                                comments(details.sig, key, postPanel, comments); 
+                                comments(details.sig, key, false); 
                             }
                         }); 
                         postContentsFooterPanel.add(stop);
@@ -1191,69 +1204,78 @@ public class frontend implements EntryPoint, ClickListener {
         wallPanel.addStyleName("gwt-wall");
     }
     
-    int commentCount;
-    TextArea threadReplyContents;
-    private void comments(final String postID, final String wallKey, final FlowPanel postPanel, Anchor openComments) {
+    // Global stuff for comments
+    private int commentCount;
+    private TextArea threadReplyContents;
+    private FlowPanel commentsPanel = new FlowPanel();
+    private String keyOfWallCommentsAreOn = new String("");
+    
+    private void comments(final String postID, final String wallKey, final boolean refresh) {
         location = "comments";
-        refreshID = "";
+        refreshID = postID;
+        keyOfWallCommentsAreOn = wallKey;
         
-        // Create panel to contain widgets
-        final FlowPanel commentsPanel = new FlowPanel();
-        
-        // Disables the comment anchor for the current post to prevent duplicate
-        // comment panels being created.
-        openComments.addClickHandler(new ClickHandler() {
-            public void onClick(ClickEvent event) {
-                commentsPanel.clear();
+        if(!refresh) {
+            // Disables the comment anchor for the current post to prevent duplicate
+            // comment panels being created.
+            linkToComments.addClickHandler(new ClickHandler() {
+                public void onClick(ClickEvent event) {
+                    commentsPanel.clear();
+                }
+            });
+            
+            // Add main panel to page
+            postPanel.insert(commentsPanel, 2);
+            FlexTable commentsReplyThreadPanel = new FlexTable();
+            commentsReplyThreadPanel.getElement().getStyle().setProperty("paddingLeft", "60px");
+            commentsPanel.add(commentsReplyThreadPanel);
+            
+            threadReplyContents = new TextArea();
+            threadReplyContents.setCharacterWidth(60);
+            threadReplyContents.setVisibleLines(6);
+            commentsReplyThreadPanel.setWidget(0, 0, threadReplyContents);
+            
+            Button cancel = new Button("Cancel");
+            cancel.setWidth("450px");
+            commentsReplyThreadPanel.setWidget(1, 0, cancel);
+            cancel.addClickHandler(new ClickHandler() {
+                public void onClick(ClickEvent event) {                        
+                    wall(wallKey, false);
+                }
+            });
+                    
+            Button replyToThread;
+            if(commentCount == 0) {
+                replyToThread = new Button("Post comment");
+            } else {
+                replyToThread = new Button("Reply to thread");
             }
-        });
-        
-        // Add main panel to page
-        postPanel.insert(commentsPanel, 2);
-        
-        FlexTable commentsReplyThreadPanel = new FlexTable();
-        commentsReplyThreadPanel.getElement().getStyle().setProperty("paddingLeft", "60px");
-        commentsPanel.add(commentsReplyThreadPanel);
-        
-        threadReplyContents = new TextArea();
-        threadReplyContents.setCharacterWidth(60);
-        threadReplyContents.setVisibleLines(6);
-        commentsReplyThreadPanel.setWidget(0, 0, threadReplyContents);
-        
-        Button cancel = new Button("Cancel");
-        cancel.setWidth("450px");
-        commentsReplyThreadPanel.setWidget(1, 0, cancel);
-        cancel.addClickHandler(new ClickHandler() {
-            public void onClick(ClickEvent event) {                        
-                wall(wallKey, false);
-            }
-        });
-                
-        Button replyToThread;
-        if(commentCount == 0) {
-            replyToThread = new Button("Post comment");
-        } else {
-            replyToThread = new Button("Reply to thread");
-        }
-        replyToThread.setWidth("450px");
-        commentsReplyThreadPanel.setWidget(2, 0, replyToThread);
-        
-        replyToThread.addClickHandler(new ClickHandler() {
-            public void onClick(ClickEvent event) { 
-                turtlenet.addComment(postID, threadReplyContents.getText(), new AsyncCallback<String>() {
-                    public void onFailure(Throwable caught) {
-                        System.out.println("turtlenet.addComment failed: " + caught);
-                    }
-                    public void onSuccess(String result) {
-                        if (result.equals("success")) {
-                            wall(wallKey, false);
-                        } else {
-                            System.out.println("turtlenet.addComment onSuccess String result did not equal success");
+            replyToThread.setWidth("450px");
+            commentsReplyThreadPanel.setWidget(2, 0, replyToThread);
+            
+            replyToThread.addClickHandler(new ClickHandler() {
+                public void onClick(ClickEvent event) { 
+                    turtlenet.addComment(postID, threadReplyContents.getText(), new AsyncCallback<String>() {
+                        public void onFailure(Throwable caught) {
+                            System.out.println("turtlenet.addComment failed: " + caught);
                         }
-                    }
-                });
-            }
-        });
+                        public void onSuccess(String result) {
+                            if (result.equals("success")) {
+                                wall(wallKey, false);
+                            } else {
+                                System.out.println("turtlenet.addComment onSuccess String result did not equal success");
+                                
+                                // LOUISTODO LUKETODO These are temporary while addComment doesnt return success.
+                                // Remove them.
+                                /* wallPanel.remove(wallControlPanel);
+                                wallPanel.remove(createPostPanel); */
+                                wall(wallKey, false);
+                            }
+                        }
+                    });
+                }
+            });
+        }
         
         turtlenet.getComments(postID, new AsyncCallback<CommentDetails[]>() {
             public void onFailure(Throwable caught) {
@@ -1262,85 +1284,90 @@ public class frontend implements EntryPoint, ClickListener {
             public void onSuccess(CommentDetails[] result) {
                 commentCount = result.length;
                 for (int i = 0; i < result.length; i++) {
-                    final CommentDetails details = result[i];
-                    // Create panel to contain the main contents of each comment
-                    FlowPanel commentsContentsPanel = new FlowPanel();
-                    commentsContentsPanel.addStyleName("gwt-comments-contents");
-                    commentsPanel.insert(commentsContentsPanel, commentsPanel.getWidgetCount() - 1);
-                    
-                    final String commentID = result[i].sig;
-                    // Create widgets
-                    TextArea commentContents = new TextArea();
-                    commentContents.setCharacterWidth(60);
-                    commentContents.setVisibleLines(3);
-                    commentContents.setReadOnly(true);
-                    
-                    //Text
-                    commentContents.setText(result[i].text);
-                    commentsContentsPanel.add(commentContents);
-                    
-                    //Create panel to contain controls for each comment
-                    HorizontalPanel commentsControlPanel = new HorizontalPanel();
-                    commentsContentsPanel.add(commentsControlPanel);
-                    
-                    final String postedByKey = result[i].posterKey;
-                    
-                    Label commentPostedByLabel = new Label("Posted by: ");
-                    commentPostedByLabel.getElement().getStyle().setProperty("paddingLeft" , "10px");
-                    commentsControlPanel.add(commentPostedByLabel);
-                    
-                    Anchor postedBy = new Anchor(result[i].posterName);
-                    postedBy.getElement().getStyle().setProperty("paddingLeft" , "10px");
-                    commentsControlPanel.add(postedBy);
-                    
-                    postedBy.addClickHandler(new ClickHandler() {
-                        public void onClick(ClickEvent event) {
-                            wall(details.posterKey, false);
+                
+                    // TODO LUKETODO '0' should be replaced with the timestamp of result[i]
+                    // (the comment we are currently adding to the screen)
+                    if(!refresh || 0 > commentsLastTimeStamp) {
+                        final CommentDetails details = result[i];
+                        // Create panel to contain the main contents of each comment
+                        FlowPanel commentsContentsPanel = new FlowPanel();
+                        commentsContentsPanel.addStyleName("gwt-comments-contents");
+                        commentsPanel.insert(commentsContentsPanel, commentsPanel.getWidgetCount() - 1);
+                        
+                        final String commentID = result[i].sig;
+                        // Create widgets
+                        TextArea commentContents = new TextArea();
+                        commentContents.setCharacterWidth(60);
+                        commentContents.setVisibleLines(3);
+                        commentContents.setReadOnly(true);
+                        
+                        //Text
+                        commentContents.setText(result[i].text);
+                        commentsContentsPanel.add(commentContents);
+                        
+                        //Create panel to contain controls for each comment
+                        HorizontalPanel commentsControlPanel = new HorizontalPanel();
+                        commentsContentsPanel.add(commentsControlPanel);
+                        
+                        final String postedByKey = result[i].posterKey;
+                        
+                        Label commentPostedByLabel = new Label("Posted by: ");
+                        commentPostedByLabel.getElement().getStyle().setProperty("paddingLeft" , "10px");
+                        commentsControlPanel.add(commentPostedByLabel);
+                        
+                        Anchor postedBy = new Anchor(result[i].posterName);
+                        postedBy.getElement().getStyle().setProperty("paddingLeft" , "10px");
+                        commentsControlPanel.add(postedBy);
+                        
+                        postedBy.addClickHandler(new ClickHandler() {
+                            public void onClick(ClickEvent event) {
+                                wall(details.posterKey, false);
+                            }
+                        });
+                
+                        Anchor likeComment;
+                        
+                        if (result[i].liked) {
+                            likeComment = new Anchor("Unlike");
+                            likeComment.addClickHandler(new ClickHandler() {
+                                public void onClick(ClickEvent event) {
+                                    turtlenet.unlike(details.sig, new AsyncCallback<String>() {
+                                        public void onFailure(Throwable caught) {
+                                            System.out.println("turtlenet.unlike (comment) failed: " + caught);
+                                        }
+                                        public void onSuccess(String _result) {
+                                            if (_result.equals("success")) {
+                                                wall(wallKey, false);
+                                            } else {
+                                                System.out.println("turtlenet.unlike (comment) onSuccess String _result did not equal success");
+                                            }
+                                        }
+                                    });
+                                }
+                            });
+                        } else {
+                            likeComment = new Anchor("Like");
+                            likeComment.addClickHandler(new ClickHandler() {
+                                public void onClick(ClickEvent event) {
+                                    turtlenet.like(details.sig, new AsyncCallback<String>() {
+                                        public void onFailure(Throwable caught) {
+                                            System.out.println("turtlenet.like (comment) failed: " + caught);
+                                        }
+                                        public void onSuccess(String _result) {
+                                            if (_result.equals("success")) {
+                                                wall(wallKey, false);
+                                            } else {
+                                                System.out.println("turtlenet.like (comment) onSuccess String _result did not equal success");
+                                            }
+                                        }
+                                    });
+                                }
+                            });
                         }
-                    });
-            
-                    Anchor likeComment;
-                    
-                    if (result[i].liked) {
-                        likeComment = new Anchor("Unlike");
-                        likeComment.addClickHandler(new ClickHandler() {
-                            public void onClick(ClickEvent event) {
-                                turtlenet.unlike(details.sig, new AsyncCallback<String>() {
-                                    public void onFailure(Throwable caught) {
-                                        System.out.println("turtlenet.unlike (comment) failed: " + caught);
-                                    }
-                                    public void onSuccess(String _result) {
-                                        if (_result.equals("success")) {
-                                            wall(wallKey, false);
-                                        } else {
-                                            System.out.println("turtlenet.unlike (comment) onSuccess String _result did not equal success");
-                                        }
-                                    }
-                                });
-                            }
-                        });
-                    } else {
-                        likeComment = new Anchor("Like");
-                        likeComment.addClickHandler(new ClickHandler() {
-                            public void onClick(ClickEvent event) {
-                                turtlenet.like(details.sig, new AsyncCallback<String>() {
-                                    public void onFailure(Throwable caught) {
-                                        System.out.println("turtlenet.like (comment) failed: " + caught);
-                                    }
-                                    public void onSuccess(String _result) {
-                                        if (_result.equals("success")) {
-                                            wall(wallKey, false);
-                                        } else {
-                                            System.out.println("turtlenet.like (comment) onSuccess String _result did not equal success");
-                                        }
-                                    }
-                                });
-                            }
-                        });
+                        
+                        likeComment.getElement().getStyle().setProperty("paddingLeft" , "130px");
+                        commentsControlPanel.add(likeComment);
                     }
-                    
-                    likeComment.getElement().getStyle().setProperty("paddingLeft" , "130px");
-                    commentsControlPanel.add(likeComment);
                 }
             }
         });
@@ -1459,8 +1486,8 @@ public class frontend implements EntryPoint, ClickListener {
     }
     
     // Global stuff for conversation
-    private String convoPanelSetup_convosig; //needed in inner class
-    private TextArea convoPanelSetup_input = new TextArea();
+    String convoPanelSetup_convosig; //needed in inner class
+    TextArea convoPanelSetup_input = new TextArea();
     private FlowPanel conversationPanel = new FlowPanel();
     
     private void conversation(final String conversationID, final boolean refresh) {
