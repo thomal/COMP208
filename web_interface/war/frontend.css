@@ -109,12 +109,20 @@ h1 {
 	padding: 0 100px 0 10px;
 }
 
-.gwt-group {
+.gwt-edit-group {
 	width: 1000px;
 	margin: 0 auto;
 	background: #E0EEEE;
 	color: #666666;
-	padding: 0 300px 0 100px;
+	padding: 0 300px 0 115px;
+}
+
+.gwt-new-group {
+	width: 1000px;
+	margin: 0 auto;
+	background: #E0EEEE;
+	color: #666666;
+	padding: 0 300px 0 200px;
 }
 
 .gwt-friend {
@@ -185,8 +193,10 @@ h1 {
 
 .gwt-TextArea-readonly {
    background-color: #EEEEEE;
+   color: #555555;
 }
 
 .gwt-TextBox-readonly {
    background-color: #EEEEEE;
+   color: #555555;
 }
