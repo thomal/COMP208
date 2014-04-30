@@ -90,10 +90,22 @@ public class frontend implements EntryPoint, ClickListener {
                         loginButton.addClickHandler(new ClickHandler() {
                         public void onClick(ClickEvent event) {
                             passwordLabel.setText("Please choose a password:");
+                            passwordLabel.getElement().getStyle().setProperty("color", "#000000");
                             passwordConfirmLabel.setText("Confirm your password");
+                            passwordConfirmLabel.getElement().getStyle().setProperty("color", "#000000");
                             usernameLabel.setText("Please choose a username:");
+                            usernameLabel.getElement().getStyle().setProperty("color", "#000000");
                             
-                            if(passwordInput.getText().equals(passwordConfirmInput.getText())) {
+                            if(usernameInput.getText().equals("")) {
+                                usernameLabel.setText("Must enter a username");
+                                usernameLabel.getElement().getStyle().setProperty("color", "#FFFFFF");
+                            } else if(passwordInput.getText().equals("")) {
+                                passwordLabel.setText("Must enter a password");
+                                passwordLabel.getElement().getStyle().setProperty("color", "#FFFFFF");
+                            } else if(passwordConfirmInput.getText().equals("")) {
+                                passwordConfirmLabel.setText("Must confirm password");
+                                passwordConfirmLabel.getElement().getStyle().setProperty("color", "#FFFFFF");
+                            } else if(passwordInput.getText().equals(passwordConfirmInput.getText())) {
                                 turtlenet.register(usernameInput.getText(), passwordInput.getText(), new AsyncCallback<String>() {
                                     public void onFailure(Throwable caught) {
                                         System.out.println("turtlenet.register failed: " + caught);
@@ -110,6 +122,7 @@ public class frontend implements EntryPoint, ClickListener {
                                             });
                                         } else if (result.equals("taken")) { 
                                             usernameLabel.setText("Username already taken. Try again:");
+                                            usernameLabel.getElement().getStyle().setProperty("color", "#FFFFFF");
                                         } else {
                                             System.out.println("turtlenet.register onSucess String result did not equal success or taken");
                                         }
@@ -117,6 +130,7 @@ public class frontend implements EntryPoint, ClickListener {
                                 });
                             } else {
                                 passwordLabel.setText("Passwords do not match. Try again:");
+                                passwordLabel.getElement().getStyle().setProperty("color", "#FFFFFF");
                                 passwordConfirmInput.setText("");
                                 passwordInput.setText("");
                             }
