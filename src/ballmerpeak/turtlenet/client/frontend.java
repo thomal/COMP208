@@ -790,6 +790,9 @@ public class frontend implements EntryPoint, ClickListener {
                 wall(friendsDetailsKey, false);
             }
         });
+        
+        userDetails.setText("Reload page");
+        userDetails.getElement().getStyle().setProperty("color", "#61B329");
     
         location = "friendsDetails";
         refreshID = "";
@@ -922,6 +925,7 @@ public class frontend implements EntryPoint, ClickListener {
             wallPanel.insert(wallControlPanel, 	0);
             
             wallControlPanelUserDetailsButton = new Button("About");
+            wallControlPanelUserDetailsButton.getElement().getStyle().setProperty("color", "#000000");
             wallControlPanel.add(wallControlPanelUserDetailsButton);
             wallControlPanelUserDetailsButton.getElement().getStyle().setProperty("marginRight" , "150px");
             wallControlPanelUserDetailsButton.addClickHandler(new ClickHandler() {
