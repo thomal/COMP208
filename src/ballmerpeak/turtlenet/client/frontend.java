@@ -183,7 +183,9 @@ public class frontend implements EntryPoint, ClickListener {
     }
     
     // Used to track the most recent wall post to be displayed
-    Long wallLastTimeStamp;
+    Long wallLastTimeStamp = 0L;
+    Long conversationLastTimeStamp = 0L;
+    
     // When the login button is clicked we start a repeating timer that refreshes
     // the page every 5 seconds. 
     public void onClick(Widget sender) {
@@ -205,8 +207,13 @@ public class frontend implements EntryPoint, ClickListener {
                     System.out.println("Refreshing: conversationList");
                     conversationList();
                 } else if(location.equals("conversation")) {
-                    System.out.println("Refreshing: conversation. refreshID: " + refreshID);
-                    conversation(refreshID);
+                    // LUKETODO '0' should be replaced with a call to a method that takes the ID of a conversation
+                    // and returns the time stamp of the most recent message in that conversation.
+                    // Give it refreshID 
+                    if(0 > conversationLastTimeStamp) {
+                        System.out.println("Refreshing: conversation. refreshID: " + refreshID);
+                        conversation(refreshID, true);
+                    }
                 } else {
                     //Do nothing
                 }
@@ -490,7 +497,7 @@ public class frontend implements EntryPoint, ClickListener {
                         // Add click handlers for anchors
                         linkConversation.addClickHandler(new ClickHandler() {
                             public void onClick(ClickEvent event) {
-                                conversation(conversationID);
+                                conversation(conversationID, false);
                             }
                         });
                         Label conversationParticipants = new Label(result[i].concatNames());
@@ -1429,7 +1436,7 @@ public class frontend implements EntryPoint, ClickListener {
                                                 }
                                                 public void onSuccess(String success) {
                                                     if (success.equals("success")) {
-                                                        conversation(createChatReturn[1]);
+                                                        conversation(createChatReturn[1], false);
                                                     } else {
                                                         System.out.println("turtlenet.addMessageToCHAT onSuccess String success did not equal success");
                                                     }
@@ -1451,32 +1458,34 @@ public class frontend implements EntryPoint, ClickListener {
         newConversationPanel.addStyleName("gwt-conversation");
     }
     
-    
+    // Global stuff for conversation
     private String convoPanelSetup_convosig; //needed in inner class
     private TextArea convoPanelSetup_input = new TextArea();
-    private void conversation(final String conversationID) {
+    private FlowPanel conversationPanel = new FlowPanel();
+    
+    private void conversation(final String conversationID, final boolean refresh) {
         location = "conversation";
         refreshID = conversationID;
-    
-        // Set up basic page
-        RootPanel.get().clear();
-        navigation();
-        
-        // Create panel to contain widgets
-        final FlowPanel conversationPanel = new FlowPanel();
-        RootPanel.get().add(conversationPanel);
-        HorizontalPanel conversationParticipantsPanel = new HorizontalPanel();
-        conversationParticipantsPanel.setSpacing(5);
-        conversationPanel.add(conversationParticipantsPanel);
-        convoPanelSetup_convosig = conversationID;
-        Label participantsLabel = new Label("Participants: ");
-        participantsLabel.getElement().getStyle().setProperty("marginRight" , "20px");
-        conversationParticipantsPanel.add(participantsLabel);
         
         final ListBox currentFriends = new ListBox();
-        currentFriends.setVisibleItemCount(1);
-        currentFriends.setWidth("150px");
-        conversationParticipantsPanel.add(currentFriends);
+        
+        if(!refresh) {
+            // Set up basic page
+            RootPanel.get().clear();
+            navigation();        
+            RootPanel.get().add(conversationPanel);
+            HorizontalPanel conversationParticipantsPanel = new HorizontalPanel();
+            conversationParticipantsPanel.setSpacing(5);
+            conversationPanel.add(conversationParticipantsPanel);
+            convoPanelSetup_convosig = conversationID;
+            Label participantsLabel = new Label("Participants: ");
+            participantsLabel.getElement().getStyle().setProperty("marginRight" , "20px");
+            conversationParticipantsPanel.add(participantsLabel);
+            
+            currentFriends.setVisibleItemCount(1);
+            currentFriends.setWidth("150px");
+            conversationParticipantsPanel.add(currentFriends);
+        }
         
         turtlenet.getConversation(convoPanelSetup_convosig, new AsyncCallback<Conversation>() {
             Conversation result;
@@ -1487,9 +1496,11 @@ public class frontend implements EntryPoint, ClickListener {
             public void onSuccess(Conversation _result) {
                 result = _result;
                 
-                for (i = 0; i < result.users.length; i++) {
-                    currentFriends.addItem(result.users[i]);
-                }
+                if (!refresh) {
+                    for (i = 0; i < result.users.length; i++) {
+                        currentFriends.addItem(result.users[i]);
+                    }
+                } 
                 
                 turtlenet.getConversationMessages(convoPanelSetup_convosig, new AsyncCallback<String[][]>() {
                     String[][] messages;
@@ -1500,73 +1511,84 @@ public class frontend implements EntryPoint, ClickListener {
                     public void onSuccess(String[][] msgs) {
                         messages = msgs;
                         
-                        for (int i = 0; i < messages.length; i++) {
-                            HorizontalPanel conversationContentsPanel = new HorizontalPanel();
-                            conversationContentsPanel.setSpacing(5);
-                            conversationPanel.add(conversationContentsPanel);
-                            Label postedBy = new Label(messages[i][0]);
-                            postedBy.getElement().getStyle().setProperty("marginRight" , "110px");
-                            postedBy.getElement().getStyle().setFontWeight(FontWeight.BOLD);
-                            conversationContentsPanel.add(postedBy);
-                            Label messageContents = new Label(messages[i][2]);
-                            conversationContentsPanel.add(messageContents);
-                        }
-                        
                         Button replyToConversation = new Button("Reply");
                         replyToConversation.setWidth("590px");
-                        conversationPanel.add(replyToConversation);                     
                         
-                        final FlowPanel conversationReplyPanel = new FlowPanel();
-                        convoPanelSetup_input.setCharacterWidth(80);
-                        convoPanelSetup_input.setVisibleLines(10); 
-                        conversationReplyPanel.add(convoPanelSetup_input);
+                        for (int i = 0; i < messages.length; i++) {
                         
-                        HorizontalPanel conversationReplyControlsPanel = new HorizontalPanel();
-                        conversationReplyPanel.add(conversationReplyControlsPanel);
-                        
-                        Label stop = new Label("Page auto update paused");
-                        stop.getElement().getStyle().setProperty("color" , "#FF0000");
-                        stop.getElement().getStyle().setProperty("paddingRight" , "55px");  
-                        conversationReplyControlsPanel.add(stop);
-                        stop.addClickHandler(new ClickHandler() {
-                            public void onClick(ClickEvent event) {
-                                conversation(conversationID);
+                            // LUKETODO '0' should be replaced with the time stamp of the messages[i]
+                            // (the message we are currently adding to the screen) 
+                            if(!refresh || 0 > conversationLastTimeStamp) {
+                                HorizontalPanel conversationContentsPanel = new HorizontalPanel();
+                                conversationContentsPanel.setSpacing(5);
+                                conversationPanel.add(conversationContentsPanel);
+                                Label postedBy = new Label(messages[i][0]);
+                                postedBy.getElement().getStyle().setProperty("marginRight" , "110px");
+                                postedBy.getElement().getStyle().setFontWeight(FontWeight.BOLD);
+                                conversationContentsPanel.insert(postedBy, conversationPanel.getWidgetIndex(replyToConversation));
+                                Label messageContents = new Label(messages[i][2]);
+                                conversationContentsPanel.add(messageContents);
+                                
+                                // LUKETODO '0' should be replaced with the timestamp of messages[i] 
+                                // (the message we are currently adding to the screen)
+                                conversationLastTimeStamp = 0L;
                             }
-                        });    
+                        }
                         
-                        Button cancel = new Button("Cancel");
-                        conversationReplyControlsPanel.add(cancel);
-                        
-                        cancel.addClickHandler(new ClickHandler() {
-                            public void onClick(ClickEvent event) {
-                                conversation(conversationID);
-                            }
-                        });    
-                        
-                        Button send = new Button("Send"); 
-                        conversationReplyControlsPanel.add(send);
-                        send.addClickHandler(new ClickHandler() {
-                            public void onClick(ClickEvent event) {
-                                turtlenet.addMessageToCHAT(convoPanelSetup_input.getText(), convoPanelSetup_convosig, new AsyncCallback<String>() {
-                                    public void onFailure(Throwable caught) {
-                                        System.out.println("turtlenet.addMessageToCHAT failed: " + caught);
-                                    }
-                                    public void onSuccess(String postingSuccess) {
-                                        //Reload the conversation after the new message has been added
-                                        conversation(convoPanelSetup_convosig);
-                                    }
-                                });
-                            }
-                        });
-                        
-                        replyToConversation.addClickHandler(new ClickHandler() {
-                            public void onClick(ClickEvent event) {
-                                location = "replyToConversation";
-                                refreshID = "";  
+                        if(!refresh) {
+                            conversationPanel.add(replyToConversation);                     
+                            final FlowPanel conversationReplyPanel = new FlowPanel();
+                            convoPanelSetup_input.setCharacterWidth(80);
+                            convoPanelSetup_input.setVisibleLines(10); 
+                            conversationReplyPanel.add(convoPanelSetup_input);
                             
-                                conversationPanel.add(conversationReplyPanel);
-                            }
-                        });    
+                            HorizontalPanel conversationReplyControlsPanel = new HorizontalPanel();
+                            conversationReplyPanel.add(conversationReplyControlsPanel);
+                            
+                            Label stop = new Label("Page auto update paused");
+                            stop.getElement().getStyle().setProperty("color" , "#FF0000");
+                            stop.getElement().getStyle().setProperty("paddingRight" , "55px");  
+                            conversationReplyControlsPanel.add(stop);
+                            stop.addClickHandler(new ClickHandler() {
+                                public void onClick(ClickEvent event) {
+                                    conversation(conversationID, false);
+                                }
+                            });    
+                            
+                            Button cancel = new Button("Cancel");
+                            conversationReplyControlsPanel.add(cancel);
+                            
+                            cancel.addClickHandler(new ClickHandler() {
+                                public void onClick(ClickEvent event) {
+                                    conversation(conversationID, false);
+                                }
+                            });    
+                            
+                            Button send = new Button("Send"); 
+                            conversationReplyControlsPanel.add(send);
+                            send.addClickHandler(new ClickHandler() {
+                                public void onClick(ClickEvent event) {
+                                    turtlenet.addMessageToCHAT(convoPanelSetup_input.getText(), convoPanelSetup_convosig, new AsyncCallback<String>() {
+                                        public void onFailure(Throwable caught) {
+                                            System.out.println("turtlenet.addMessageToCHAT failed: " + caught);
+                                        }
+                                        public void onSuccess(String postingSuccess) {
+                                            //Reload the conversation after the new message has been added
+                                            conversation(convoPanelSetup_convosig, false);
+                                        }
+                                    });
+                                }
+                            });
+                            
+                            replyToConversation.addClickHandler(new ClickHandler() {
+                                public void onClick(ClickEvent event) {
+                                    location = "replyToConversation";
+                                    refreshID = "";  
+                                
+                                    conversationPanel.add(conversationReplyPanel);
+                                }
+                            });  
+                        }  
                     }
                 });
             }
@@ -1725,12 +1747,14 @@ public class frontend implements EntryPoint, ClickListener {
                 turtlenet.addKey(addFriend_keyInput.getText(), new AsyncCallback<String>() {
                     public void onFailure(Throwable caught) {
                         success.setText("Key could not be added");
+                        System.out.println("turtlenet.addKey failed: " + caught);
                     }
                     public void onSuccess(String result) {
                         if (result.equals("success")) {
                                 success.setText("Key has been added");
                         } else {
                             success.setText("Key could not be added");
+                            System.out.println("turtlenet.addKey onSucess String result did not equal success");
                         }
                     }
                 });
