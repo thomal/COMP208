@@ -150,7 +150,7 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
             
             posts[i] = new PostDetails(sig, liked, commentCount, time, username, text, Crypto.encodeKey(c.db.getSignatory(msgs[i])));
         }
-        Logger.write("VERBOSE", "TnImpl", "getWallPosts(...) RETURNING\n\n");
+        Logger.write("VERBOSE", "TnImpl", "getWallPosts(...) RETURNING");
         return posts;
     }
     

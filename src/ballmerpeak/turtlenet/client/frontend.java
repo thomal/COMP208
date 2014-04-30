@@ -309,27 +309,33 @@ public class frontend implements EntryPoint, ClickListener {
                     // current user. We already have the current users key
                     // below the list of their friends.
                     
-                    // LUKETODO "my key" should be replaced with the current user's key
-                    if(!result[i][0].equals("my key")) {
-                        //list names/keys
-                        Anchor linkFriendsWall = new Anchor(result[i][0]);
-                        linkFriendsWall.getElement().getStyle().setProperty("paddingLeft" , "100px");
-                        friendsListPanel.setWidget((i + 2), 0, linkFriendsWall);
-                        final String resultString = result[i][1];
-                        TextBox friendKeyBox = new TextBox();
-                        friendKeyBox.setText(resultString);
-                        friendKeyBox.setVisibleLength(75);
-                        friendKeyBox.setReadOnly(true);
-                        friendsListPanel.setWidget((i + 2), 1, friendKeyBox);
-                        //link names to walls
-                        System.out.println("adding link to " + result[i][1] + "'s wall");
-                        final String fkey = result[i][1];
-                        linkFriendsWall.addClickHandler(new ClickHandler() {
-                            public void onClick(ClickEvent event) {
-                                wall(fkey, false);
+                    turtlenet.getMyKey(new AsyncCallback<String>() {
+                        public void onFailure(Throwable caught) {
+                            System.out.println("turtlenet.getMyKey failed");
+                        }
+                        public void onSuccess(String myKey) {
+                            if(!result[i][0].equals(myKey)) {
+                                //list names/keys
+                                Anchor linkFriendsWall = new Anchor(result[i][0]);
+                                linkFriendsWall.getElement().getStyle().setProperty("paddingLeft" , "100px");
+                                friendsListPanel.setWidget((i + 2), 0, linkFriendsWall);
+                                final String resultString = result[i][1];
+                                TextBox friendKeyBox = new TextBox();
+                                friendKeyBox.setText(resultString);
+                                friendKeyBox.setVisibleLength(75);
+                                friendKeyBox.setReadOnly(true);
+                                friendsListPanel.setWidget((i + 2), 1, friendKeyBox);
+                                //link names to walls
+                                System.out.println("adding link to " + result[i][1] + "'s wall");
+                                final String fkey = result[i][1];
+                                linkFriendsWall.addClickHandler(new ClickHandler() {
+                                    public void onClick(ClickEvent event) {
+                                        wall(fkey, false);
+                                    }
+                                });
                             }
-                        });
-                    }
+                        }
+                    });
                 }
             }
         });
@@ -868,16 +874,22 @@ public class frontend implements EntryPoint, ClickListener {
         friendsDetailsKeyBox.setText(friendsDetailsKey);
         friendsDetailsPanel.setWidget(5, 1, friendsDetailsKeyBox);
         
-        // LUKETODO "my key" should be replaced with the users key
-        if(friendsDetailsKey.equals("my key")) {
-            Button edit = new Button("Edit my details");
-            friendsDetailsPanel.setWidget(6, 1, edit);
-            edit.addClickHandler(new ClickHandler () {
-                public void onClick(ClickEvent event) {
-                    myDetails();
+        turtlenet.getMyKey(new AsyncCallback<String>() {
+            public void onFailure(Throwable caught) {
+                System.out.println("turtlenet.getMyKey failed");
+            }
+            public void onSuccess(String myKey) {
+                if(friendsDetailsKey.equals(myKey)) {
+                    Button edit = new Button("Edit my details");
+                    friendsDetailsPanel.setWidget(6, 1, edit);
+                    edit.addClickHandler(new ClickHandler () {
+                        public void onClick(ClickEvent event) {
+                            myDetails();
+                        }
+                    });
                 }
-            });
-        }
+            }
+        });
 
         // Add style name for CSS
         friendsDetailsPanel.addStyleName("gwt-friends-details");
