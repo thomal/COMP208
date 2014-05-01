@@ -44,7 +44,7 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
         
         if (startTN(password).equals("success")) {
             try {
-                Thread.sleep(5000); //TODO remove this goddamn race condition, use a semaphore
+                Thread.sleep(7000); //TODO remove this goddamn race condition, use a semaphore
             } catch (Exception e) {}
             
             Logger.write("INFO", "TnImpl", "Started TN...continuing registration");
@@ -188,6 +188,7 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
     //Profile Data
     public String claimUsername (String uname) {
         Logger.write("VERBOSE", "TnImpl", "claimUsername(" + uname + ")");
+        c.db.addClaim(new MessageFactory().newCLAIM(uname));
         if(c.connection.claimName(uname))
             return "success";
         else
@@ -198,11 +199,13 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
         String ret = "success";
         Logger.write("VERBOSE", "TnImpl", "updatePDATA(" + field + ", " + value + ")");
         PublicKey[] keys = c.db.keysCanSeePDATA();
+        Message message = new MessageFactory().newPDATA(field, value);
         for (int i = 0; i < keys.length; i++)
-            if (!c.connection.postMessage(new MessageFactory().newPDATA(field, value), keys[i]))
+            if (!c.connection.postMessage(message, keys[i]))
                 ret = "failure";
-        if (!c.connection.postMessage(new MessageFactory().newPDATA(field, value), Crypto.getPublicKey()))
+        if (!c.connection.postMessage(message, Crypto.getPublicKey()))
             ret = "failure";
+        Parser.parse(message, c.db);
         return ret;
     }
     
@@ -221,6 +224,7 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
                     ret = "failure";
             }
         }
+        Parser.parse(msg, c.db);
         
         return ret;
     }
@@ -235,6 +239,7 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
         for (int i = 0; i < keys.length; i++)
             if (!c.connection.postMessage(msg, Crypto.decodeKey(keys[i])))
                 ret[0] = "failure";
+        Parser.parse(msg, c.db);
         
         ret[1] = msg.getSig();
         return ret;
@@ -244,15 +249,6 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
         Logger.write("INFO", "TnImpl", "addMessageToCHAT(" + text + ",...)");
         PublicKey[] keys = c.db.getPeopleInConvo(sig);
         String ret = "success";
-        
-        if (keys.length == 0) {
-            try {
-                Thread.sleep(5*1000); //Account for latency when creating a chat
-            } catch (Exception e) {
-                Logger.write("ERROR", "TnImpl", "addMessageToCHAT(...) Could not find convo");
-            }
-            keys = c.db.getPeopleInConvo(sig);
-        }
             
         if (keys.length == 0) {
             Logger.write("INFO", "TnImpl", "addMessageToCHAT(...) convo has " + Integer.toString(keys.length) + " participants");
@@ -264,6 +260,7 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
         for (int i = 0; i < keys.length; i++)
             if (!c.connection.postMessage(msg, keys[i]))
                 ret = "failure";
+        Parser.parse(msg, c.db);
         return ret;
     }
     
@@ -278,6 +275,7 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
                 ret = "failure";
         if (!c.connection.postMessage(message, Crypto.getPublicKey()))
             ret = "failure";
+        Parser.parse(message, c.db);
             
         return ret;
     }
@@ -293,6 +291,7 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
                 ret = "failure";
         if(!c.connection.postMessage(message, Crypto.getPublicKey()))
             ret = "failure";
+        Parser.parse(message, c.db);
             
         return ret;
     }
@@ -375,6 +374,7 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
                 ret = "failure";
         if (!c.connection.postMessage(message, Crypto.getPublicKey()))
             ret = "failure";
+        Parser.parse(message, c.db);
             
         return ret;
     }
@@ -390,6 +390,7 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
                 ret = "failure";
         if(!c.connection.postMessage(message, Crypto.getPublicKey()))
             ret = "failure";
+        Parser.parse(message, c.db);
             
         return ret;
     }
