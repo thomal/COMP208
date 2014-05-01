@@ -110,8 +110,17 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
     }
     
     public Conversation[] getConversations () {
-        Logger.write("VERBOSE", "TnImpl", "getConversations()");
-        return c.db.getConversations();
+        Logger.write("VERBOSE", "TnImpl", "START------------getConversations()");
+        Conversation[] conversations = c.db.getConversations();
+        for (int i = 0; i < conversations.length; i++) {
+            Logger.write("VERBOSE", "TnImpl", "\tSig: " + conversations[i].signature);
+            Logger.write("VERBOSE", "TnImpl", "\tTime: " + conversations[i].timestamp);
+            Logger.write("VERBOSE", "TnImpl", "\tFirst Message: " + conversations[i].firstMessage);
+            Logger.write("VERBOSE", "TnImpl", "\tUsers: " + conversations[i].users.length);
+            Logger.write("VERBOSE", "TnImpl", "\tKeys: " + conversations[i].keys.length);
+        }
+        Logger.write("VERBOSE", "TnImpl", "END  ------------getConversations()");
+        return conversations;
     }
     
     public Conversation getConversation (String sig) {
@@ -178,7 +187,10 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
     
     public Long getConvoLastUpdated (String sig) {
         String[][] details = c.db.getConversationMessages(sig);
-        return Long.parseLong(details[details.length-1][1]);
+        if (details.length > 0)
+            return Long.parseLong(details[details.length-1][1]);
+        else
+            return 0L;
     }
     
     public Long getPostLastCommented (String sig) {
@@ -238,8 +250,7 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
         
         Message msg = new MessageFactory().newCHAT(keys);
         for (int i = 0; i < keys.length; i++)
-            if (!c.connection.postMessage(msg, Crypto.decodeKey(keys[i])))
-                ret[0] = "failure";
+            c.connection.postMessage(msg, Crypto.decodeKey(keys[i]));
         Parser.parse(msg, c.db);
         
         Logger.write("VERBOSE", "TnImpl", "createCHAT returning " + msg.getSig());

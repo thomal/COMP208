@@ -271,7 +271,7 @@ public class Database {
         Logger.write("VERBOSE", "DB", "getConversation(...)");    
         try {
             ResultSet convoSet = query(DBStrings.getConversation.replace("__SIG__", sig));
-            if(convoSet.next() ) {
+            if(convoSet.next()) {
                 String timestamp = convoSet.getString("time");
                 ResultSet messages = query(DBStrings.getConversationMessages.replace("__SIG__", sig));
                 String firstMsg;
@@ -288,7 +288,7 @@ public class Database {
                 }
                 return new Conversation(sig, timestamp, firstMsg, users, keystrings);
             } else {
-                Logger.write("ERROR", "DB", "getConversation(...) passed invalid Signature.");
+                Logger.write("WARNING", "DB", "getConversation(...) empty conversation: " + sig);
             }
         } catch (java.sql.SQLException e) {
             Logger.write("ERROR", "DB", "SQLException: " + e);
