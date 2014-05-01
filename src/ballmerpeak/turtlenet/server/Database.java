@@ -707,10 +707,19 @@ public class Database {
         Logger.write("VERBOSE", "DB", "addMessageToChat(...)");
         
         try {
-            execute(DBStrings.addMessageToConvo.replace("__convoID__", msg.PCHATgetConversationID())
-                                               .replace("__sendersKey__", Crypto.encodeKey(getSignatory(msg)))
-                                               .replace("__msgText__", msg.PCHATgetText())
-                                               .replace("__time__", Long.toString(msg.getTimestamp())));
+            boolean duplicate = false;
+            
+            String[][] messagesInConvo = getConversationMessages(msg.PCHATgetConversationID());
+            for (int i = 0; i < messagesInConvo.length; i++)
+                if (messagesInConvo[i][1].equals(Long.toString(msg.getTimestamp())) && messagesInConvo[i][2].equals(msg.PCHATgetText()))
+                    duplicate = true;
+            
+            if (!duplicate) {
+                execute(DBStrings.addMessageToConvo.replace("__convoID__", msg.PCHATgetConversationID())
+                                                   .replace("__sendersKey__", Crypto.encodeKey(getSignatory(msg)))
+                                                   .replace("__msgText__", msg.PCHATgetText())
+                                                   .replace("__time__", Long.toString(msg.getTimestamp())));
+            }
         } catch (java.sql.SQLException e) {
             Logger.write("ERROR", "DB", "SQLException: " + e);
             return false;
