@@ -547,8 +547,8 @@ public class Database {
                 Logger.write("VERBOSE", "DB", "                      time: \"" + Long.toString(Long.parseLong(claimSet.getString("claimTime"))) + "\"");
                 Logger.write("VERBOSE", "DB", "                       sig: \"" + claimSet.getString("sig") + "\"");
                 
-                
-                if (getSignatory(msg).equals(k)) {
+                PublicKey signatory = getSignatory(msg);
+                if (signatory != null && signatory.equals(k)) {
                     execute(DBStrings.newUsername.replace("__name__", msg.CLAIMgetName()).replace("__key__", Crypto.encodeKey(k)));
                     execute(DBStrings.removeClaim.replace("__sig__", msg.getSig()));
                     Logger.write("INFO", "DB", "Claim for " + msg.CLAIMgetName() + " verified");

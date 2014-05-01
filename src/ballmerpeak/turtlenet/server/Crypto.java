@@ -268,12 +268,16 @@ public class Crypto {
     }
     
     public static PublicKey decodeKey (String codedKey) {
-        try {
-            return KeyFactory.getInstance("RSA").generatePublic(
-                                new X509EncodedKeySpec(Base64Decode(codedKey)));
-        } catch (Exception e) {
-            Logger.write("ERROR", "Crypto", "decodeKey(" + codedKey + ") passed invalid keystring");
+        if (codedKey != null) {
+            try {
+                return KeyFactory.getInstance("RSA").generatePublic(
+                                    new X509EncodedKeySpec(Base64Decode(codedKey)));
+            } catch (Exception e) {
+                Logger.write("ERROR", "Crypto", "decodeKey(" + codedKey + ") passed invalid keystring");
+                return null;
+            }
         }
+        Logger.write("WARNING", "Crypto", "decodeKey(...) returning null - passed invalid keystring");
         return null;
     }
     
