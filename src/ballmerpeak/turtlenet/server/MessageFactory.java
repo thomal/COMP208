@@ -84,4 +84,24 @@ public class MessageFactory {
     public Message newEVNT(long start, long end, String descrip) {
         return newMessage("EVNT", start + ":" + end + ":" + descrip);
     }
+    
+    public Message newADDCAT(String name, boolean canSeePDATA) {
+        return newMessage("ADDCAT", (canSeePDATA?"true":"false") + ":" + name);
+    }
+    
+    public Message newUPDATECAT(String category, boolean value) {
+        return newMessage("UPDATECAT", (value?"true":"false") + ":" + category);
+    }
+    
+    public Message newADDTOCAT(String category, String key) {
+        return newMessage("ADDTOCAT", key + ":" + category);
+    }
+    
+    public Message newREMFROMCAT(String category, String key) {
+        return newMessage("REMFROMCAT", key + ":" + category);
+    }
+    
+    public Message newADDKEY(String key) {
+        return newMessage("ADDKEY", key);
+    }
 }

@@ -44,7 +44,7 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
         
         if (startTN(password).equals("success")) {
             try {
-                Thread.sleep(5000); //TODO remove this goddamn race condition, use a semaphore
+                Thread.sleep(7000); //TODO remove this goddamn race condition, use a semaphore
             } catch (Exception e) {}
             
             Logger.write("INFO", "TnImpl", "Started TN...continuing registration");
@@ -188,6 +188,7 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
     //Profile Data
     public String claimUsername (String uname) {
         Logger.write("VERBOSE", "TnImpl", "claimUsername(" + uname + ")");
+        c.db.addClaim(new MessageFactory().newCLAIM(uname));
         if(c.connection.claimName(uname))
             return "success";
         else
@@ -198,11 +199,13 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
         String ret = "success";
         Logger.write("VERBOSE", "TnImpl", "updatePDATA(" + field + ", " + value + ")");
         PublicKey[] keys = c.db.keysCanSeePDATA();
+        Message message = new MessageFactory().newPDATA(field, value);
         for (int i = 0; i < keys.length; i++)
-            if (!c.connection.postMessage(new MessageFactory().newPDATA(field, value), keys[i]))
+            if (!c.connection.postMessage(message, keys[i]))
                 ret = "failure";
-        if (!c.connection.postMessage(new MessageFactory().newPDATA(field, value), Crypto.getPublicKey()))
+        if (!c.connection.postMessage(message, Crypto.getPublicKey()))
             ret = "failure";
+        Parser.parse(message, c.db);
         return ret;
     }
     
@@ -210,7 +213,10 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
         Logger.write("VERBOSE", "TnImpl", "updatePDATApermission(" + category + ", " + value + ")");
         String ret = "success";
         
-        ret = c.db.updatePDATApermission(category, value) ? "success" : "failure";
+        Message msg = new MessageFactory().newUPDATECAT(category, value);
+        ret = c.connection.postMessage(msg, Crypto.getPublicKey())?"success":"failure";
+        if (!c.db.updatePDATApermission(category, value))
+            ret = "failure";
         if (value) {
             PublicKey[] keys = c.db.getCategoryMembers(category);
             for (int i = 0; i < keys.length; i++) {
@@ -218,6 +224,7 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
                     ret = "failure";
             }
         }
+        Parser.parse(msg, c.db);
         
         return ret;
     }
@@ -232,6 +239,7 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
         for (int i = 0; i < keys.length; i++)
             if (!c.connection.postMessage(msg, Crypto.decodeKey(keys[i])))
                 ret[0] = "failure";
+        Parser.parse(msg, c.db);
         
         ret[1] = msg.getSig();
         return ret;
@@ -241,15 +249,6 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
         Logger.write("INFO", "TnImpl", "addMessageToCHAT(" + text + ",...)");
         PublicKey[] keys = c.db.getPeopleInConvo(sig);
         String ret = "success";
-        
-        if (keys.length == 0) {
-            try {
-                Thread.sleep(5*1000); //Account for latency when creating a chat
-            } catch (Exception e) {
-                Logger.write("ERROR", "TnImpl", "addMessageToCHAT(...) Could not find convo");
-            }
-            keys = c.db.getPeopleInConvo(sig);
-        }
             
         if (keys.length == 0) {
             Logger.write("INFO", "TnImpl", "addMessageToCHAT(...) convo has " + Integer.toString(keys.length) + " participants");
@@ -261,6 +260,7 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
         for (int i = 0; i < keys.length; i++)
             if (!c.connection.postMessage(msg, keys[i]))
                 ret = "failure";
+        Parser.parse(msg, c.db);
         return ret;
     }
     
@@ -275,6 +275,7 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
                 ret = "failure";
         if (!c.connection.postMessage(message, Crypto.getPublicKey()))
             ret = "failure";
+        Parser.parse(message, c.db);
             
         return ret;
     }
@@ -290,6 +291,7 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
                 ret = "failure";
         if(!c.connection.postMessage(message, Crypto.getPublicKey()))
             ret = "failure";
+        Parser.parse(message, c.db);
             
         return ret;
     }
@@ -297,10 +299,11 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
     //Friends
     public String addCategory (String name) {
         Logger.write("VERBOSE", "TnImpl", "addCategory(" + name + ")");
-        if (c.db.addCategory(name, false))
-            return "success";
-        else
-            return "failure";
+        Message msg = new MessageFactory().newADDCAT("name", false);
+        
+        return (c.db.addCategory(name, false) &&
+                c.connection.postMessage(msg, Crypto.getPublicKey()))
+        ?"success":"failure";
     }
     
     public String addToCategory (String group, String key) {
@@ -314,6 +317,8 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
         
         if (!alreadyMember) {
             if (c.db.addToCategory(group, Crypto.decodeKey(key))) {
+                Message msg = new MessageFactory().newADDTOCAT(group, key);
+                c.connection.postMessage(msg, Crypto.getPublicKey());
                 if (c.db.canSeePDATA(group)) {
                     return sendPDATA(key).equals("success") ? "success" : "failure";
                 } else {
@@ -342,15 +347,16 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
     
     public String removeFromCategory (String group, String key) {
         Logger.write("VERBOSE", "TnImpl", "removeFromCategory(" + group + ",...)");
+        Message msg = new MessageFactory().newREMFROMCAT(group, key);
+        c.connection.postMessage(msg, Crypto.getPublicKey());
         return c.db.removeFromCategory(group, Crypto.decodeKey(key))?"success":"failure";
     }
     
     public String addKey (String key) {
         Logger.write("VERBOSE", "TnImpl", "addKey(...)");
-        if (c.db.addKey(Crypto.decodeKey(key)))
-            return "success";
-        else
-            return "failure";
+        Message msg = new MessageFactory().newADDKEY(key);
+        return (c.db.addKey(Crypto.decodeKey(key)) &&
+                c.connection.postMessage(msg, Crypto.getPublicKey())) ? "success":"failure";
     }
     
     public String addPost (String wallKey, String categoryVisibleTo, String msg) {
@@ -368,6 +374,7 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
                 ret = "failure";
         if (!c.connection.postMessage(message, Crypto.getPublicKey()))
             ret = "failure";
+        Parser.parse(message, c.db);
             
         return ret;
     }
@@ -383,6 +390,7 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
                 ret = "failure";
         if(!c.connection.postMessage(message, Crypto.getPublicKey()))
             ret = "failure";
+        Parser.parse(message, c.db);
             
         return ret;
     }
