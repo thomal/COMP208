@@ -44,8 +44,10 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
         
         if (startTN(password).equals("success")) {
             while(!c.dbReady) {
-                Logger.write("CRAP", "TnImpl", "WAITING FOR DB");
-                try{Thread.sleep(1000);}catch(Exception e){}///////////////////////////////////////TODO FIXME
+                try{
+                    Logger.write("CRAP", "TnImpl", "WAITING FOR DB");
+                    Thread.sleep(1000);//TODO THIS IS AWFUL PRACTICE
+                }catch(Exception e){}
             }
             
             Logger.write("INFO", "TnImpl", "Started TN...continuing registration");
@@ -240,6 +242,7 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
                 ret[0] = "failure";
         Parser.parse(msg, c.db);
         
+        Logger.write("VERBOSE", "TnImpl", "createCHAT returning " + msg.getSig());
         ret[1] = msg.getSig();
         return ret;
     }

@@ -4,11 +4,11 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class TNClient implements Runnable {
-    public boolean running = true;
     public NetworkConnection connection;
     public Thread networkThread;
     public Database db = null;
     public String password = "NOT SET";
+    public boolean running = true;
     public boolean dbReady = false;
     
     public TNClient (String pw) {
@@ -32,7 +32,6 @@ public class TNClient implements Runnable {
         
         connection.close();
         db.dbDisconnect();
-        Logger.write("INFO", "TNClient", "EXITING NOW");
         Logger.close();
     }
 }
