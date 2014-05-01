@@ -165,7 +165,7 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
     }
     
     public CommentDetails[] getComments (String parent) {
-        Logger.write("VERBOSE", "TnImpl", "getComments(...)");
+        Logger.write("VERBOSE", "TnImpl", "START----------getComments(...)");
         Message[] commentMsgs = c.db.getComments(parent);
         CommentDetails[] details = new CommentDetails[commentMsgs.length];
         
@@ -175,9 +175,16 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
             thisCmnt.posterName = c.db.getName(Crypto.decodeKey(thisCmnt.posterKey));
             thisCmnt.sig = commentMsgs[i].getSig();
             thisCmnt.text = commentMsgs[i].CMNTgetText();
-            thisCmnt.liked = c.db.isLiked(parent);
+            thisCmnt.liked = c.db.isLiked(thisCmnt.sig);
             details[i] = thisCmnt;
         }
+        for (int i = 0; i < details.length; i++) {
+            Logger.write("VERBOSE", "TnImpl", "comment   sig: " + details[i].sig);
+            Logger.write("VERBOSE", "TnImpl", "comment  text: " + details[i].text);
+            Logger.write("VERBOSE", "TnImpl", "comment liked: " + details[i].liked);
+        }
+        
+        Logger.write("VERBOSE", "TnImpl", "END -----------getComments(...)");
         return details;
     }
     
