@@ -48,13 +48,15 @@ public class frontend implements EntryPoint, ClickListener {
     
     private String location = new String("");
     private String refreshID = new String("");
-
-    FlexTable loginPanel;
+    
+    // LOUISTODO May need to remove ' = new FlexTable()'
+    private FlexTable loginPanel = new FlexTable();
     private void login() {
         location = "login";
         refreshID = "";
         RootPanel.get().clear();
         loginPanel = new FlexTable();
+        loginPanel.clear();
         RootPanel.get().add(loginPanel);
     
         // Create login panel widgets
@@ -482,42 +484,34 @@ public class frontend implements EntryPoint, ClickListener {
         
         turtlenet.getConversations(new AsyncCallback<Conversation[]>() {
             Conversation[] result;
-            int i;
             public void onFailure(Throwable caught) {
                 System.out.println("turtlenet.getConversations failed: " + caught);
             }
             public void onSuccess(Conversation[] _result) {
                 result = _result;
-                for (i = (result.length - 1); i >= 0; i--) {
-                    // Count up from 0 so we can add interface elements top to
-                    // bottom. This way we get the last result at the top of the
-                    // screen which should mean that the newest conversation 
-                    // appears at the top.
-                    for(int j = 0; j < result.length; j++) {
-                        final String conversationID = result[i].signature;
-                        
-                        // Substrings dont work if we set the end point so its
-                        // bigger than our string. If the length is less than 40
-                        // we output the full string. If the string is 40 or 
-                        // about we take the first 40 characters and add ...
-                        String linkText = new String("");
-                        if ((result[i].firstMessage).length() < 40) {
-                            linkText = (result[i].firstMessage);
-                        } else {
-                            linkText = (result[i].firstMessage).substring(1, 40) + "...";
-                        }
-                        Anchor linkConversation = new Anchor(linkText);
-                        conversationListPanel.setWidget(j, 0, linkConversation);
-                    
-                        // Add click handlers for anchors
-                        linkConversation.addClickHandler(new ClickHandler() {
-                            public void onClick(ClickEvent event) {
-                                conversation(conversationID, false);
-                            }
-                        });
-                        Label conversationParticipants = new Label(result[i].concatNames());
-                        conversationListPanel.setWidget(j, 1, conversationParticipants);
+                for (int i = 0; i < result.length; i ++) {
+                    final String conversationID = result[i].signature;
+                    // Substrings dont work if we set the end point so its
+                    // bigger than our string. If the length is less than 40
+                    // we output the full string. If the string is 40 or 
+                    // about we take the first 40 characters and add ...
+                    String linkText = new String("");
+                    if ((result[i].firstMessage).length() < 40) {
+                        linkText = (result[i].firstMessage);
+                    } else {
+                        linkText = (result[i].firstMessage).substring(1, 40) + "...";
                     }
+                    Anchor linkConversation = new Anchor(linkText);
+                    conversationListPanel.setWidget(i, 0, linkConversation);
+                
+                    // Add click handlers for anchors
+                    linkConversation.addClickHandler(new ClickHandler() {
+                        public void onClick(ClickEvent event) {
+                            conversation(conversationID, false);
+                        }
+                    });
+                    Label conversationParticipants = new Label(result[i].concatNames());
+                    conversationListPanel.setWidget(i, 1, conversationParticipants);
                 }
             }
         });
@@ -936,13 +930,16 @@ public class frontend implements EntryPoint, ClickListener {
     }
 
     // Global stuff for wall
-    private HorizontalPanel wallControlPanel;
+    // LOUISTODO May need to remove ' = new HorizontalPanel()'
+    private HorizontalPanel wallControlPanel = new HorizontalPanel();
     private TextArea postText;
     PostDetails[] wallPostDetails;
     int wallCurrentPost;
-    private FlowPanel wallPanel  = new FlowPanel();
+    // LOUISTODO May need to remove ' = new FlowPanel()'
+    private FlowPanel wallPanel = new FlowPanel();
     private Button wallControlPanelUserDetailsButton;
-    private FlowPanel postPanel;
+    // LOUISTODO May need to remove ' = new FlowPanel()'
+    private FlowPanel postPanel = new FlowPanel();
     private Anchor linkToComments;
     
     private void wall(final String key, final boolean refresh) {
@@ -950,6 +947,7 @@ public class frontend implements EntryPoint, ClickListener {
         refreshID = key;
         
         wallPanel = new FlowPanel();
+        wallPanel.clear();
         
         if(!refresh) {
             // Setup basic page
@@ -958,6 +956,7 @@ public class frontend implements EntryPoint, ClickListener {
             RootPanel.get().add(wallPanel);
             // Create a container for controls
             wallControlPanel = new HorizontalPanel();
+            wallControlPanel.clear();
             wallControlPanel.addStyleName("gwt-wall-control");
             wallControlPanel.setSpacing(5);
             wallPanel.insert(wallControlPanel, 	0);
@@ -1079,6 +1078,7 @@ public class frontend implements EntryPoint, ClickListener {
                     
                     if(!refresh || wallPostDetails[wallCurrentPost].timestamp > wallLastTimeStamp) {
                         postPanel = new FlowPanel();
+                        postPanel.clear();
                         wallPanel.insert(postPanel, 1);
                         postPanel.addStyleName("gwt-post-panel");
                         
@@ -1212,6 +1212,8 @@ public class frontend implements EntryPoint, ClickListener {
         keyOfWallCommentsAreOn = wallKey;
         
         if(!refresh) {
+            commentsPanel.clear();
+            
             // Disables the comment anchor for the current post to prevent duplicate
             // comment panels being created.
             linkToComments.addClickHandler(new ClickHandler() {
@@ -1457,7 +1459,9 @@ public class frontend implements EntryPoint, ClickListener {
                                                 }
                                             });
                                         } else {
-                                            System.out.println("turtlenet.createCHAT onSuccess String createChatReturn[0] did not equal success");
+                                            // THIS IS TEMPORARY!
+                                            conversation(createChatReturn[1], false);
+                                            //System.out.println("turtlenet.createCHAT onSuccess String createChatReturn[0] did not equal success");
                                         }
                                     }
                                 });
@@ -1473,17 +1477,19 @@ public class frontend implements EntryPoint, ClickListener {
     }
     
     // Global stuff for conversation
-    String convoPanelSetup_convosig; //needed in inner class
-    TextArea convoPanelSetup_input = new TextArea();
-    private FlowPanel conversationPanel = new FlowPanel();
+    private String convoPanelSetup_convosig; //needed in inner class
+    private TextArea convoPanelSetup_input = new TextArea();
+    private FlowPanel conversationPanel;
     
     private void conversation(final String conversationID, final boolean refresh) {
         location = "conversation";
         refreshID = conversationID;
         
+        conversationPanel = new FlowPanel();
         final ListBox currentFriends = new ListBox();
         
         if(!refresh) {
+            conversationPanel.clear();
             // Set up basic page
             RootPanel.get().clear();
             navigation();        
@@ -1536,7 +1542,10 @@ public class frontend implements EntryPoint, ClickListener {
                                 Label postedBy = new Label(messages[i][0]);
                                 postedBy.getElement().getStyle().setProperty("marginRight" , "110px");
                                 postedBy.getElement().getStyle().setFontWeight(FontWeight.BOLD);
-                                conversationContentsPanel.insert(postedBy, conversationPanel.getWidgetIndex(replyToConversation));
+                                
+                                // LOUISTODO This might not work
+                                conversationContentsPanel.add(postedBy);
+                                //conversationContentsPanel.insert(postedBy, conversationPanel.getWidgetIndex(replyToConversation));
                                 Label messageContents = new Label(messages[i][2]);
                                 conversationContentsPanel.add(messageContents);
                                 
