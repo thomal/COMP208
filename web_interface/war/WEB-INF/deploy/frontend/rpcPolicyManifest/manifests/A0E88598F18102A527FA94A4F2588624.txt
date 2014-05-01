@@ -1,2 +1,2 @@
 serviceClass: ballmerpeak.turtlenet.client.Turtlenet
-path: 448D3C392CF0E9D9D0FE5D6C510E6CAC.gwt.rpc
+path: 87F84C7461E1791092B266EC37FECFDE.gwt.rpc

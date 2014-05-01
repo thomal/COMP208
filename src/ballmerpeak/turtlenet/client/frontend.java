@@ -208,23 +208,29 @@ public class frontend implements EntryPoint, ClickListener {
                     System.out.println("Refreshing conversationList");
                     conversationList();
                 } else if(location.equals("conversation")) {
-                    
-                    // LUKETODO '0' should be replaced with a call to a method that takes the ID of a conversation
-                    // and returns the time stamp of the most recent message in that conversation.
-                    // Give it refreshID 
-                    if(0 > conversationLastTimeStamp) {
-                        System.out.println("Refreshing conversation. refreshID: " + refreshID);
-                        conversation(refreshID, true);
-                    } 
+                    turtlenet.getConvoLastUpdated(refreshID, new AsyncCallback<Long>() {
+                        public void onFailure(Throwable caught) {
+                            //TODO Error
+                        }
+                        public void onSuccess(Long result) {
+                            if(result > conversationLastTimeStamp) {
+                                System.out.println("Refreshing conversation. refreshID: " + refreshID);
+                                conversation(refreshID, true);
+                            }
+                        }
+                    });
                 } else if(location.equals("comments")) {
-                    
-                    // LUKETODO '0' should be replaced with a call to a method that takes the ID of a wall post
-                    // and returns the time stamp of the most recent comment associated with that wall post. 
-                    // Give it refreshID 
-                    if(0 > commentsLastTimeStamp) {
-                        System.out.println("Refreshing comments. refreshID: " + refreshID);
-                        comments(refreshID, keyOfWallCommentsAreOn, true);
-                    } 
+                    turtlenet.getPostLastCommented(refreshID, new AsyncCallback<Long>() {
+                        public void onFailure(Throwable caught) {
+                            //TODO Error
+                        }
+                        public void onSuccess(Long result) {
+                            if(result > commentsLastTimeStamp) {
+                                System.out.println("Refreshing comments. refreshID: " + refreshID);
+                                comments(refreshID, keyOfWallCommentsAreOn, true);
+                            }
+                        }
+                    }); 
                 } else {
                     //Do nothing
                 }
@@ -307,6 +313,8 @@ public class frontend implements EntryPoint, ClickListener {
         });
     }
 
+    String[][] friendsListCategoryMembers = new String[0][0];
+    String[][] friendsListCategoryList = new String[0][0];
     private TextBox friendsListPanel_myKeyTextBox;
     private void friendsList(final String currentGroupID) {
         location = "friendsList";
@@ -329,14 +337,13 @@ public class frontend implements EntryPoint, ClickListener {
         friendsListPanel.setWidget(1, 1, friendsKeyLabel);
     
         turtlenet.getCategoryMembers(currentGroupID, new AsyncCallback<String[][]>() {
-            String[][] result;
             int i;
             public void onFailure(Throwable caught) {
                 System.out.println("turtlenet.getCategoryMembers failed: " + caught);
             }
             public void onSuccess(String[][] _result) {
-                result = _result;
-                for (i = 0; i < result.length; i++) {
+                friendsListCategoryMembers = _result;
+                for (i = 0; i < friendsListCategoryMembers.length; i++) {
                     // Dont add a result to the page if that result is the
                     // current user. We already have the current users key
                     // below the list of their friends.
@@ -347,18 +354,18 @@ public class frontend implements EntryPoint, ClickListener {
                         }
                         public void onSuccess(String myKey) {
                             //list names/keys
-                            Anchor linkFriendsWall = new Anchor(result[i][0]);
+                            Anchor linkFriendsWall = new Anchor(friendsListCategoryMembers[i][0]);
                             linkFriendsWall.getElement().getStyle().setProperty("paddingLeft" , "100px");
                             friendsListPanel.setWidget((i + 2), 0, linkFriendsWall);
-                            final String resultString = result[i][1];
+                            final String resultString = friendsListCategoryMembers[i][1];
                             TextBox friendKeyBox = new TextBox();
                             friendKeyBox.setText(resultString);
                             friendKeyBox.setVisibleLength(75);
                             friendKeyBox.setReadOnly(true);
                             friendsListPanel.setWidget((i + 2), 1, friendKeyBox);
                             //link names to walls
-                            System.out.println("adding link to " + result[i][0] + "'s wall");
-                            final String fkey = result[i][1];
+                            System.out.println("adding link to " + friendsListCategoryMembers[i][0] + "'s wall");
+                            final String fkey = friendsListCategoryMembers[i][1];
                             linkFriendsWall.addClickHandler(new ClickHandler() {
                                 public void onClick(ClickEvent event) {
                                     wall(fkey, false);
@@ -384,20 +391,19 @@ public class frontend implements EntryPoint, ClickListener {
         friendsListPanel.setWidget(3, 3, currentGroups);
         
         turtlenet.getCategories(new AsyncCallback<String[][]>() {
-            String[][] result;
             int i;
             public void onFailure(Throwable caught) {
                 System.out.println("turtlenet.getCategories failed: " + caught);
             }
             int selected;
             public void onSuccess(String[][] _result) {
-                result = _result;
-                for (i = 0; i < result.length; i++) {
-                    currentGroups.addItem(result[i][0]);
+                friendsListCategoryList = _result;
+                for (i = 0; i < friendsListCategoryList.length; i++) {
+                    currentGroups.addItem(friendsListCategoryList[i][0]);
                     // Check if the group we've just added is the current group
                     // If it is note the index using selected. We need to add
                     // 1 to selected as "All" always appears first in the list.
-                    if(result[i][0].equals(currentGroupID)) {
+                    if(friendsListCategoryList[i][0].equals(currentGroupID)) {
                         selected = (i + 1);
                     }
                 }
@@ -934,7 +940,7 @@ public class frontend implements EntryPoint, ClickListener {
     private TextArea postText;
     PostDetails[] wallPostDetails;
     int wallCurrentPost;
-    private FlowPanel wallPanel;
+    private FlowPanel wallPanel  = new FlowPanel();
     private Button wallControlPanelUserDetailsButton;
     private FlowPanel postPanel;
     private Anchor linkToComments;
@@ -1268,10 +1274,7 @@ public class frontend implements EntryPoint, ClickListener {
             public void onSuccess(CommentDetails[] result) {
                 commentCount = result.length;
                 for (int i = 0; i < result.length; i++) {
-                
-                    // TODO LUKETODO '0' should be replaced with the timestamp of result[i]
-                    // (the comment we are currently adding to the screen)
-                    if(!refresh || 0 > commentsLastTimeStamp) {
+                    if(!refresh || result[i].timestamp > commentsLastTimeStamp) {
                         final CommentDetails details = result[i];
                         // Create panel to contain the main contents of each comment
                         FlowPanel commentsContentsPanel = new FlowPanel();
@@ -1526,10 +1529,7 @@ public class frontend implements EntryPoint, ClickListener {
                         replyToConversation.setWidth("590px");
                         
                         for (int i = 0; i < messages.length; i++) {
-                        
-                            // LUKETODO '0' should be replaced with the time stamp of the messages[i]
-                            // (the message we are currently adding to the screen) 
-                            if(!refresh || 0 > conversationLastTimeStamp) {
+                            if(!refresh || Long.parseLong(msgs[i][1]) > conversationLastTimeStamp) {
                                 HorizontalPanel conversationContentsPanel = new HorizontalPanel();
                                 conversationContentsPanel.setSpacing(5);
                                 conversationPanel.add(conversationContentsPanel);
@@ -1540,9 +1540,7 @@ public class frontend implements EntryPoint, ClickListener {
                                 Label messageContents = new Label(messages[i][2]);
                                 conversationContentsPanel.add(messageContents);
                                 
-                                // LUKETODO '0' should be replaced with the timestamp of messages[i] 
-                                // (the message we are currently adding to the screen)
-                                conversationLastTimeStamp = 0L;
+                                conversationLastTimeStamp = Long.parseLong(msgs[i][1]);
                             }
                         }
                         

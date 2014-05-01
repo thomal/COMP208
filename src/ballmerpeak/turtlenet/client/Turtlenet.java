@@ -29,6 +29,8 @@ public interface Turtlenet extends RemoteService {
   PostDetails[]    getWallPosts            (String key);
   CommentDetails[] getComments             (String parent);
   Long             timeMostRecentWallPost  (String key);
+  Long             getConvoLastUpdated     (String sig);
+  Long             getPostLastCommented    (String sig);
   
   String           claimUsername           (String uname);
   String           updatePDATA             (String field, String newValue);

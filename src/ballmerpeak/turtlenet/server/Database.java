@@ -26,8 +26,9 @@ public class Database {
     }
     
     public static boolean DBExists() {
-        File db = new File(path + "/turtlenet.db.aes");
-        return db.exists();
+        File edb = new File(path + "/turtlenet.db.aes");
+        File db = new File(path + "/turtlenet.db");
+        return db.exists() || edb.exists();
     }
     
     public static boolean createDBDir() {

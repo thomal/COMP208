@@ -103,6 +103,9 @@ run_server : config
 	mkdir -p data
 	java -cp $(CLASSPATH) ballmerpeak.turtlenet.remoteserver.Server
 
+winstone_client : config test
+	./build.sh
+
 run_client : config
 	sed -e `echo 's:___GWTPATH___:'$(GWTPATH)':g'` web_interface/protobuild.xml > web_interface/build.xml
 	ant -f web_interface/build.xml clean

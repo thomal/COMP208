@@ -175,6 +175,15 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
         return c.db.timeMostRecentWallPost(Crypto.decodeKey(key));
     }
     
+    public Long getConvoLastUpdated (String sig) {
+        String[][] details = c.db.getConversationMessages(sig);
+        return Long.parseLong(details[details.length-1][1]);
+    }
+    
+    public Long getPostLastCommented (String sig) {
+        Message[] comments = c.db.getComments(sig);
+        return comments[comments.length-1].getTimestamp();
+    }
     
     //Profile Data
     public String claimUsername (String uname) {

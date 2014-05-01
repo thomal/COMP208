@@ -27,6 +27,8 @@ public interface TurtlenetAsync {
     void getWallPosts            (String key,                                       AsyncCallback<PostDetails[]> callback);
     void getComments             (String parent,                                    AsyncCallback<CommentDetails[]> callback);
     void timeMostRecentWallPost  (String key,                                       AsyncCallback<Long> callback);
+    void getConvoLastUpdated     (String sig,                                       AsyncCallback<Long> callback);
+    void getPostLastCommented    (String sig,                                       AsyncCallback<Long> callback);
     
     void claimUsername           (String uname,                                     AsyncCallback<String> callback);
     void updatePDATA             (String field, String value,                       AsyncCallback<String> callback);

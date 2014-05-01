@@ -30,6 +30,7 @@ public class TNClient implements Runnable {
         
         connection.close();
         db.dbDisconnect();
+        Logger.write("INFO", "TNClient", "EXITING NOW");
         Logger.close();
     }
 }
