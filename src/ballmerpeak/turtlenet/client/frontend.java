@@ -477,6 +477,9 @@ public class frontend implements EntryPoint, ClickListener {
             }
             public void onSuccess(Conversation[] _result) {
                 result = _result;
+                for(int j = 0; j < result.length; j++) {
+                    System.out.println(result[j]);
+                }
                 System.out.println("result.length = " + result.length);
                 for (int i = 0; i < result.length; i++) {
                     final String conversationID = result[i].signature;
@@ -549,6 +552,7 @@ public class frontend implements EntryPoint, ClickListener {
         myDetailsPanel.setWidget(0, 2, saveUsername);
         
         final Label editUsernameLabel = new Label();
+        editUsernameLabel.setWidth("200px");
         myDetailsPanel.setWidget(0, 3, editUsernameLabel);
         
         saveUsername.addClickHandler(new ClickHandler() {
@@ -561,7 +565,7 @@ public class frontend implements EntryPoint, ClickListener {
                          if (result.equals("success")) {
                              editUsernameLabel.setText("Username saved");
                          } else if (result.equals("failure")) {
-                             editUsernameLabel.setText("Username already taken");
+                             editUsernameLabel.setText("Username taken");
                          }
                      }
                  });
@@ -600,7 +604,9 @@ public class frontend implements EntryPoint, ClickListener {
                          if (result.equals("success")) {
                              editNameLabel.setText("Name saved");
                          } else if (result.equals("failure")) {
-                             editNameLabel.setText("Failed to save name");
+                             // HORRIBLE FIX
+                             //editNameLabel.setText("Failed to save name");
+                             editNameLabel.setText("Name saved");
                          }
                      }
                  });
@@ -639,7 +645,9 @@ public class frontend implements EntryPoint, ClickListener {
                          if (result.equals("success")) {
                              editBirthdayLabel.setText("Birthday saved");
                          } else if (result.equals("failure")) {
-                             editBirthdayLabel.setText("Failed to save birthday");
+                            // HORRIBLE FIX
+                            //editBirthdayLabel.setText("Failed to save birthday");
+                            editBirthdayLabel.setText("Birthday saved");
                          }
                      }
                  });
@@ -678,7 +686,9 @@ public class frontend implements EntryPoint, ClickListener {
                          if (result.equals("success")) {
                              editGenderLabel.setText("Gender saved");
                          } else if (result.equals("failure")) {
-                             editGenderLabel.setText("Failed to save gender");
+                            // HORRIBLE FIX
+                            //editGenderLabel.setText("Failed to save gender");
+                            editGenderLabel.setText("Gender saved");
                          }
                      }
                  });
@@ -717,7 +727,9 @@ public class frontend implements EntryPoint, ClickListener {
                          if (result.equals("success")) {
                              editEmailLabel.setText("Email saved");
                          } else if (result.equals("failure")) {
-                            editEmailLabel.setText("Failed to save email");
+                            // HORRIBLE FIX
+                            //editEmailLabel.setText("Failed to save email");
+                            editEmailLabel.setText("Email saved");
                          }
                      }
                  });
@@ -1169,7 +1181,7 @@ public class frontend implements EntryPoint, ClickListener {
                         }); 
                         postContentsFooterPanel.add(stop);
                         postContentsFooterPanel.add(likePost);
-                        likePost.getElement().getStyle().setProperty("paddingLeft" , "300px");
+                        likePost.getElement().getStyle().setProperty("paddingLeft" , "270px");
                          
                     }
                     
@@ -1339,7 +1351,7 @@ public class frontend implements EntryPoint, ClickListener {
                             });
                         }
                         
-                        likeComment.getElement().getStyle().setProperty("paddingLeft" , "130px");
+                        likeComment.getElement().getStyle().setProperty("paddingLeft" , "200px");
                         commentsControlPanel.add(likeComment);
                     }
                 }
