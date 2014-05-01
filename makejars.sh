@@ -8,6 +8,9 @@
 make clean
 make
 
+# Make a directory for our jars to go in
+mkdir jars
+
 #########################################
 ##########Create the client jar##########
 #########################################
