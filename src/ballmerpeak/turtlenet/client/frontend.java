@@ -1208,7 +1208,7 @@ public class frontend implements EntryPoint, ClickListener {
     private String keyOfWallCommentsAreOn = new String("");
     
     private void comments(final String postID, final String wallKey, final boolean refresh) {
-        postPanel = new FlowPanel();
+        commentsPanel = new FlowPanel();
         location = "comments";
         refreshID = postID;
         keyOfWallCommentsAreOn = wallKey;
