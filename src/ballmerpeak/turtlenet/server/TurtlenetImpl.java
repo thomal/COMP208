@@ -43,24 +43,23 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
         Logger.write("INFO", "TnImpl", "Registering \"" + username + "\" with PW \"" + password + "\"");
         
         if (startTN(password).equals("success")) {
-            try {
-                Thread.sleep(7000); //TODO remove this goddamn race condition, use a semaphore
-            } catch (Exception e) {}
+            while(!c.dbReady) {
+                Logger.write("CRAP", "TnImpl", "WAITING FOR DB");
+                try{Thread.sleep(1000);}catch(Exception e){}///////////////////////////////////////TODO FIXME
+            }
             
             Logger.write("INFO", "TnImpl", "Started TN...continuing registration");
-            if(claimUsername(username).equals("success")) {
-                if(addKey(Crypto.encodeKey(Crypto.getPublicKey())).equals("success")) {
-                    return "success";
-                } else {
-                    Logger.write("ERROR", "TnImpl", "Could not add key");
-                    return "failure";
-                }
+            if (claimUsername(username).equals("success")) {
+                addKey(Crypto.encodeKey(Crypto.getPublicKey()));
+                return "success";
             } else {
                 Logger.write("INFO", "TnImpl", "Username taken");
+                Logger.write("INFO", "TnImpl", "---REGISTRATION FAIL#tUN---");
                 return "taken";
             }
         } else {
             Logger.write("ERROR", "TnImpl", "Could not start Turtlenet");
+            Logger.write("ERROR", "TnImpl", "---REGISTRATION FAIL#noTN---");
             return "failure";
         }
     }

@@ -9,6 +9,7 @@ public class TNClient implements Runnable {
     public Thread networkThread;
     public Database db = null;
     public String password = "NOT SET";
+    public boolean dbReady = false;
     
     public TNClient (String pw) {
         password = pw;
@@ -23,6 +24,7 @@ public class TNClient implements Runnable {
         db            = new Database(password);
         
         networkThread.start();
+        dbReady = true;
         
         while (running)
             while (connection.hasMessage())
