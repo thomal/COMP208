@@ -155,6 +155,8 @@ class Test {
         test("18 EVNTgetName",  eventm.EVNTgetName(), "bobs birthday");
         test("19 EVNTgetStart", eventm.EVNTgetStart(), 0);
         test("20 EVNTgetEnd",   eventm.EVNTgetEnd(),   60000);
+        test("21 before:(a1:b2)", Message.beforeColon("a1:b2"), "a1");
+        test("22 after:(a1:b2)", Message.afterColon("a1:b2"), "b2");
         
         
         return failures == ifailures;

@@ -506,6 +506,10 @@ public class Database {
         }
     }
     
+    public boolean addKey (Message msg) {
+        return addKey(Crypto.decodeKey(msg.ADDKEYgetKey()));
+    }
+    
     public boolean addKey (PublicKey k) {
         Logger.write("VERBOSE", "DB", "addKey(...)");
         
@@ -789,6 +793,10 @@ public class Database {
         return true;
     }
     
+    public boolean updatePDATApermission (Message msg) {
+        return updatePDATApermission(msg.UPDATECATgetName(), msg.UPDATECATgetValue());
+    }
+    
     public boolean updatePDATApermission (String category, boolean value) {
         Logger.write("VERBOSE", "DB", "updatePDATApermission(...)");
         try {
@@ -823,6 +831,10 @@ public class Database {
     }
     
     //no duplicate names
+    public boolean addCategory (Message msg) {
+        return addCategory(msg.ADDCATgetName(), msg.ADDCATgetValue());
+    }
+    
     public boolean addCategory (String name, boolean can_see_private_details) {
         Logger.write("VERBOSE", "DB", "addCategory(...)");
         try {
@@ -836,6 +848,10 @@ public class Database {
         return true;
     }
     
+    public boolean addToCategory (Message msg) {
+        return addToCategory(msg.ADDTOCATgetName(), Crypto.decodeKey(msg.ADDTOCATgetKey()));
+    }
+    
     public boolean addToCategory (String category, PublicKey key) {
         Logger.write("VERBOSE", "DB", "addToCategory(" + category + ", ...)");
         try {
@@ -847,6 +863,10 @@ public class Database {
         }
         
         return true;
+    }
+    
+    public boolean removeFromCategory (Message msg) {
+        return removeFromCategory(msg.REMFROMCATgetCategory(), Crypto.decodeKey(msg.REMFROMCATgetKey()));
     }
     
     public boolean removeFromCategory (String category, PublicKey key) {

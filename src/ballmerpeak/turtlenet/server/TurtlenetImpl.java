@@ -210,7 +210,10 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
         Logger.write("VERBOSE", "TnImpl", "updatePDATApermission(" + category + ", " + value + ")");
         String ret = "success";
         
-        ret = c.db.updatePDATApermission(category, value) ? "success" : "failure";
+        Message msg = new MessageFactory().newUPDATECAT(category, value);
+        ret = c.connection.postMessage(msg, Crypto.getPublicKey())?"success":"failure";
+        if (!c.db.updatePDATApermission(category, value))
+            ret = "failure";
         if (value) {
             PublicKey[] keys = c.db.getCategoryMembers(category);
             for (int i = 0; i < keys.length; i++) {
@@ -297,10 +300,11 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
     //Friends
     public String addCategory (String name) {
         Logger.write("VERBOSE", "TnImpl", "addCategory(" + name + ")");
-        if (c.db.addCategory(name, false))
-            return "success";
-        else
-            return "failure";
+        Message msg = new MessageFactory().newADDCAT("name", false);
+        
+        return (c.db.addCategory(name, false) &&
+                c.connection.postMessage(msg, Crypto.getPublicKey()))
+        ?"success":"failure";
     }
     
     public String addToCategory (String group, String key) {
@@ -314,6 +318,8 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
         
         if (!alreadyMember) {
             if (c.db.addToCategory(group, Crypto.decodeKey(key))) {
+                Message msg = new MessageFactory().newADDTOCAT(group, key);
+                c.connection.postMessage(msg, Crypto.getPublicKey());
                 if (c.db.canSeePDATA(group)) {
                     return sendPDATA(key).equals("success") ? "success" : "failure";
                 } else {
@@ -342,15 +348,16 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
     
     public String removeFromCategory (String group, String key) {
         Logger.write("VERBOSE", "TnImpl", "removeFromCategory(" + group + ",...)");
+        Message msg = new MessageFactory().newREMFROMCAT(group, key);
+        c.connection.postMessage(msg, Crypto.getPublicKey());
         return c.db.removeFromCategory(group, Crypto.decodeKey(key))?"success":"failure";
     }
     
     public String addKey (String key) {
         Logger.write("VERBOSE", "TnImpl", "addKey(...)");
-        if (c.db.addKey(Crypto.decodeKey(key)))
-            return "success";
-        else
-            return "failure";
+        Message msg = new MessageFactory().newADDKEY(key);
+        return (c.db.addKey(Crypto.decodeKey(key)) &&
+                c.connection.postMessage(msg, Crypto.getPublicKey())) ? "success":"failure";
     }
     
     public String addPost (String wallKey, String categoryVisibleTo, String msg) {

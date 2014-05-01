@@ -189,6 +189,50 @@ public class Message implements Serializable {
         }
     }
     
+    public String ADDCATgetName() {
+        return Message.afterColon(content);
+    }
+    
+    public boolean ADDCATgetValue() {
+        return Message.beforeColon(content).equals("true");
+    }
+    
+    public String UPDATECATgetName() {
+        return Message.afterColon(content);
+    }
+    
+    public boolean UPDATECATgetValue() {
+        return Message.beforeColon(content).equals("true");
+    }
+    
+    public String ADDTOCATgetName() {
+        return Message.afterColon(content);
+    }
+    
+    public String ADDTOCATgetKey() {
+        return Message.beforeColon(content);
+    }
+    
+    public String REMFROMCATgetCategory() {
+        return Message.afterColon(content);
+    }
+    
+    public String REMFROMCATgetKey() {
+        return Message.beforeColon(content);
+    }
+    
+    public String ADDKEYgetKey() {
+        return content;
+    }
+    
+    public static String beforeColon(String s) {
+        return s.substring(0, s.indexOf(':'));
+    }
+    
+    public static String afterColon(String s) {
+        return s.substring(s.indexOf(':')+1);
+    }
+    
     public String command;
     public String content;
     public String signature;
