@@ -22,10 +22,10 @@ h5 { padding-right: 15px; padding-left: 15px; color: #999999; font-family: Georg
 .wrapper { min-height: 100%; height: auto !important; height: 100%; margin: 0 auto -40px; background: linear-gradient(to bottom, #CBE2FE, #FFFFFF); background: -moz-linear-gradient(top, #CBE2FE, #FFFFFF); }
 
 /* ------- Container -------------------------------------------------------------------------------------------------------- */
-.container { width: 80%; width: 1000px; margin: 0 auto; }
+.container { width: 80%; width: 1000px; margin: 0 auto; padding-bottom: 30px; }
 
 /* ------- Topbar ----------------------------------------------------------------------------------------------------------- */
-.topbar { font-family: Verdana; color: #ffffff; background: #1e1e1e; text-transform: uppercase; font-size: 11px; padding-top: 5px; padding-bottom: 20px; }
+.topbar { font-family: Verdana; color: #ffffff; background: #1e1e1e; text-transform: uppercase; font-size: 11px; }
 
 .topbar ul li{ display: inline; }
 
