@@ -1,4 +1,4 @@
 Manifest-Version: 1.0
-Created-By: 1.7.0_55 (Oracle Corporation)
-Main-Class: Server.class
+Class-Path: .
+Main-Class: ballmerpeak.turtlenet.remoteserver.Server
 
