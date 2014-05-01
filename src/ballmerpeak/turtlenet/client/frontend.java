@@ -489,7 +489,8 @@ public class frontend implements EntryPoint, ClickListener {
             }
             public void onSuccess(Conversation[] _result) {
                 result = _result;
-                for (int i = 0; i < result.length; i ++) {
+                System.out.println("result.length = " + result.length);
+                for (int i = 0; i < result.length; i++) {
                     final String conversationID = result[i].signature;
                     // Substrings dont work if we set the end point so its
                     // bigger than our string. If the length is less than 40
@@ -939,7 +940,7 @@ public class frontend implements EntryPoint, ClickListener {
     private FlowPanel wallPanel = new FlowPanel();
     private Button wallControlPanelUserDetailsButton;
     // LOUISTODO May need to remove ' = new FlowPanel()'
-    private FlowPanel postPanel = new FlowPanel();
+    private FlowPanel postPanel;
     private Anchor linkToComments;
     
     private void wall(final String key, final boolean refresh) {
@@ -1207,6 +1208,7 @@ public class frontend implements EntryPoint, ClickListener {
     private String keyOfWallCommentsAreOn = new String("");
     
     private void comments(final String postID, final String wallKey, final boolean refresh) {
+        postPanel = new FlowPanel();
         location = "comments";
         refreshID = postID;
         keyOfWallCommentsAreOn = wallKey;
