@@ -61,10 +61,13 @@ public class Crypto {
     public static boolean encryptDB(String password) {
         Logger.write("VERBOSE", "Crypto", "encryptDB(" + password + ")");
         try {
-            FIO.writeFileBytes(encryptBytes(FIO.readFileBytes(Database.path + "/turtlenet.db"), password), Database.path + "/turtlenet.db.aes");
-            FIO.writeFileBytes(encryptBytes(FIO.readFileBytes(Database.path + "/public.key"), password), Database.path + "/public.key.aes");
-            FIO.writeFileBytes(encryptBytes(FIO.readFileBytes(Database.path + "/private.key"), password), Database.path + "/private.key.aes");
-            FIO.writeFileBytes(encryptBytes(FIO.readFileBytes(Database.path + "/lastread"), password), Database.path + "/lastread.aes");
+            String salt = Long.toString(System.currentTimeMillis());
+            password += salt;
+            FIO.writeFileBytes(salt.getBytes("UTF-8"), Database.path + "/salt");
+            FIO.writeFileBytes(encryptBytes(FIO.readFileBytes(Database.path + "/turtlenet.db"), password+"db"), Database.path + "/turtlenet.db.aes");
+            FIO.writeFileBytes(encryptBytes(FIO.readFileBytes(Database.path + "/public.key"), password+"pu"), Database.path + "/public.key.aes");
+            FIO.writeFileBytes(encryptBytes(FIO.readFileBytes(Database.path + "/private.key"), password+"pr"), Database.path + "/private.key.aes");
+            FIO.writeFileBytes(encryptBytes(FIO.readFileBytes(Database.path + "/lastread"), password+"lr"), Database.path + "/lastread.aes");
             new File(Database.path + "/turtlenet.db").delete();
             new File(Database.path + "/public.key").delete();
             new File(Database.path + "/private.key").delete();
@@ -80,14 +83,16 @@ public class Crypto {
     public static boolean decryptDB(String password) {
         Logger.write("VERBOSE", "Crypto", "decryptDB(" + password + ")");
         try {
-            FIO.writeFileBytes(decryptBytes(FIO.readFileBytes(Database.path + "/turtlenet.db.aes"), password), Database.path + "/turtlenet.db");
-            FIO.writeFileBytes(decryptBytes(FIO.readFileBytes(Database.path + "/public.key.aes"), password), Database.path + "/public.key");
-            FIO.writeFileBytes(decryptBytes(FIO.readFileBytes(Database.path + "/private.key.aes"), password), Database.path + "/private.key");
-            FIO.writeFileBytes(decryptBytes(FIO.readFileBytes(Database.path + "/lastread.aes"), password), Database.path + "/lastread");
+            password += new String(FIO.readFileBytes(Database.path + "/salt"));
+            FIO.writeFileBytes(decryptBytes(FIO.readFileBytes(Database.path + "/turtlenet.db.aes"), password+"db"), Database.path + "/turtlenet.db");
+            FIO.writeFileBytes(decryptBytes(FIO.readFileBytes(Database.path + "/public.key.aes"), password+"pu"), Database.path + "/public.key");
+            FIO.writeFileBytes(decryptBytes(FIO.readFileBytes(Database.path + "/private.key.aes"), password+"pr"), Database.path + "/private.key");
+            FIO.writeFileBytes(decryptBytes(FIO.readFileBytes(Database.path + "/lastread.aes"), password+"lr"), Database.path + "/lastread");
             new File(Database.path + "/turtlenet.db.aes").delete();
             new File(Database.path + "/public.key.aes").delete();
             new File(Database.path + "/private.key.aes").delete();
             new File(Database.path + "/lastread.aes").delete();
+            new File(Database.path + "/salt").delete();
         } catch (Exception e) {
             Logger.write("FATAL", "Crypto", "Unable to decrypt files: " + e);
             return false;
