@@ -346,26 +346,24 @@ public class frontend implements EntryPoint, ClickListener {
                             System.out.println("turtlenet.getMyKey failed: " + caught);
                         }
                         public void onSuccess(String myKey) {
-                            if(!result[i][0].equals(myKey)) {
-                                //list names/keys
-                                Anchor linkFriendsWall = new Anchor(result[i][0]);
-                                linkFriendsWall.getElement().getStyle().setProperty("paddingLeft" , "100px");
-                                friendsListPanel.setWidget((i + 2), 0, linkFriendsWall);
-                                final String resultString = result[i][1];
-                                TextBox friendKeyBox = new TextBox();
-                                friendKeyBox.setText(resultString);
-                                friendKeyBox.setVisibleLength(75);
-                                friendKeyBox.setReadOnly(true);
-                                friendsListPanel.setWidget((i + 2), 1, friendKeyBox);
-                                //link names to walls
-                                System.out.println("adding link to " + result[i][0] + "'s wall");
-                                final String fkey = result[i][1];
-                                linkFriendsWall.addClickHandler(new ClickHandler() {
-                                    public void onClick(ClickEvent event) {
-                                        wall(fkey, false);
-                                    }
-                                });
-                            }
+                            //list names/keys
+                            Anchor linkFriendsWall = new Anchor(result[i][0]);
+                            linkFriendsWall.getElement().getStyle().setProperty("paddingLeft" , "100px");
+                            friendsListPanel.setWidget((i + 2), 0, linkFriendsWall);
+                            final String resultString = result[i][1];
+                            TextBox friendKeyBox = new TextBox();
+                            friendKeyBox.setText(resultString);
+                            friendKeyBox.setVisibleLength(75);
+                            friendKeyBox.setReadOnly(true);
+                            friendsListPanel.setWidget((i + 2), 1, friendKeyBox);
+                            //link names to walls
+                            System.out.println("adding link to " + result[i][0] + "'s wall");
+                            final String fkey = result[i][1];
+                            linkFriendsWall.addClickHandler(new ClickHandler() {
+                                public void onClick(ClickEvent event) {
+                                    wall(fkey, false);
+                                }
+                            });
                         }
                     });
                 }
@@ -752,12 +750,12 @@ public class frontend implements EntryPoint, ClickListener {
                          System.out.println("turtlenet.revokeMyKey failed: " + caught);
                      }
                      public void onSuccess(String result) {
-                         if (result.equals("success")) {
+                         //if (result.equals("success")) {
                              editEmailLabel.setText("Key revoked");
                              login();
-                         } else if (result.equals("failure")) {
-                             editEmailLabel.setText("Failed to revoke key");
-                         }
+                         //} else if (result.equals("failure")) {
+                             //editEmailLabel.setText("Failed to revoke key");
+                         //}
                      }
                  });
             }
@@ -938,7 +936,7 @@ public class frontend implements EntryPoint, ClickListener {
     int wallCurrentPost;
     private FlowPanel wallPanel;
     private Button wallControlPanelUserDetailsButton;
-    private FlowPanel postPanel = new FlowPanel();
+    private FlowPanel postPanel;
     private Anchor linkToComments;
     
     private void wall(final String key, final boolean refresh) {
@@ -1041,22 +1039,13 @@ public class frontend implements EntryPoint, ClickListener {
                             System.out.println("turtlenet.addPost failed: " + caught);
                         }
                         public void onSuccess(String result) {
-                            // LOUISTODO remove this
-                            wall(key, false);
-                            if (result.equals("success")) {
+                            //if (result.equals("success")) {
                                 wallPanel.remove(wallControlPanel);
                                 wallPanel.remove(createPostPanel); 
                                 wall(key, false);
-                            } else {
-                                System.out.println("turtlenet.addPost onSuccess String result did not equal success");
-                                
-                                // LUKETODO LOUISTODO These are temporary while 
-                                // the return from String result is fixed.
-                                // Remove them.
-                                wallPanel.remove(wallControlPanel);
-                                wallPanel.remove(createPostPanel); 
-                                wall(key, false); 
-                            }
+                            //} else {
+                                //System.out.println("turtlenet.addPost onSuccess String result did not equal success");
+                            //}
                         }
                     });
                 }
@@ -1083,7 +1072,7 @@ public class frontend implements EntryPoint, ClickListener {
                     final PostDetails details = wallPostDetails[wallCurrentPost];
                     
                     if(!refresh || wallPostDetails[wallCurrentPost].timestamp > wallLastTimeStamp) {
-
+                        postPanel = new FlowPanel();
                         wallPanel.insert(postPanel, 1);
                         postPanel.addStyleName("gwt-post-panel");
                         
@@ -1110,6 +1099,7 @@ public class frontend implements EntryPoint, ClickListener {
                         postControlPanel.add(dateLabel);
                         
                         FlowPanel postContentsPanel = new FlowPanel();
+                        postPanel.clear();
                         postPanel.add(postContentsPanel);
                         
                         TextArea postContents = new TextArea();
@@ -1137,11 +1127,11 @@ public class frontend implements EntryPoint, ClickListener {
                                             System.out.println("turtlenet.unlike (post) failed: " + caught);
                                         }
                                         public void onSuccess(String _result) {
-                                            if (_result.equals("success")) {
+                                            //if (_result.equals("success")) {
                                                 wall(key, false);
-                                            } else {
-                                                System.out.println("turtlenet.unlike (post) onSuccess String _result did not equal success");
-                                            }
+                                            //} else {
+                                                //System.out.println("turtlenet.unlike (post) onSuccess String _result did not equal success");
+                                            //}
                                         }
                                     });
                                 }
@@ -1155,11 +1145,11 @@ public class frontend implements EntryPoint, ClickListener {
                                             System.out.println("turtlenet.like (post) failed: " + caught);
                                         }
                                         public void onSuccess(String _result) {
-                                            if (_result.equals("success")) {
+                                            //if (_result.equals("success")) {
                                                 wall(key, false);
-                                            } else {
-                                                System.out.println("turtlenet.like (post) onSuccess String _result did not equal success");
-                                            }
+                                            //} else {
+                                                //System.out.println("turtlenet.like (post) onSuccess String _result did not equal success");
+                                            //}
                                         }
                                     });
                                 }
@@ -1260,17 +1250,11 @@ public class frontend implements EntryPoint, ClickListener {
                             System.out.println("turtlenet.addComment failed: " + caught);
                         }
                         public void onSuccess(String result) {
-                            if (result.equals("success")) {
+                            //if (result.equals("success")) {
                                 wall(wallKey, false);
-                            } else {
-                                System.out.println("turtlenet.addComment onSuccess String result did not equal success");
-                                
-                                // LOUISTODO LUKETODO These are temporary while addComment doesnt return success.
-                                // Remove them.
-                                /* wallPanel.remove(wallControlPanel);
-                                wallPanel.remove(createPostPanel); */
-                                wall(wallKey, false);
-                            }
+                            //} else {
+                                //System.out.println("turtlenet.addComment onSuccess String result did not equal success");
+                            //}
                         }
                     });
                 }
@@ -1336,11 +1320,11 @@ public class frontend implements EntryPoint, ClickListener {
                                             System.out.println("turtlenet.unlike (comment) failed: " + caught);
                                         }
                                         public void onSuccess(String _result) {
-                                            if (_result.equals("success")) {
+                                            //if (_result.equals("success")) {
                                                 wall(wallKey, false);
-                                            } else {
-                                                System.out.println("turtlenet.unlike (comment) onSuccess String _result did not equal success");
-                                            }
+                                            //} else {
+                                                //System.out.println("turtlenet.unlike (comment) onSuccess String _result did not equal success");
+                                            //}
                                         }
                                     });
                                 }
@@ -1354,11 +1338,11 @@ public class frontend implements EntryPoint, ClickListener {
                                             System.out.println("turtlenet.like (comment) failed: " + caught);
                                         }
                                         public void onSuccess(String _result) {
-                                            if (_result.equals("success")) {
+                                            //if (_result.equals("success")) {
                                                 wall(wallKey, false);
-                                            } else {
-                                                System.out.println("turtlenet.like (comment) onSuccess String _result did not equal success");
-                                            }
+                                            //} else {
+                                                //System.out.println("turtlenet.like (comment) onSuccess String _result did not equal success");
+                                            //}
                                         }
                                     });
                                 }
@@ -1462,11 +1446,11 @@ public class frontend implements EntryPoint, ClickListener {
                                                     System.out.println("turtlenet.addMessageToCHAT failed: " + caught);
                                                 }
                                                 public void onSuccess(String success) {
-                                                    if (success.equals("success")) {
+                                                    //if (success.equals("success")) {
                                                         conversation(createChatReturn[1], false);
-                                                    } else {
-                                                        System.out.println("turtlenet.addMessageToCHAT onSuccess String success did not equal success");
-                                                    }
+                                                    //} else {
+                                                        //System.out.println("turtlenet.addMessageToCHAT onSuccess String success did not equal success");
+                                                    //}
                                                 }
                                             });
                                         } else {
@@ -1648,11 +1632,11 @@ public class frontend implements EntryPoint, ClickListener {
                         System.out.println("turtlenet.addCategory failed: " + caught);
                     }
                     public void onSuccess(String result) {
-                        if (result.equals("success")) {
+                        //if (result.equals("success")) {
                             editGroup(newGroup_nameInput.getText());
-                        } else {
-                            System.out.println("turtlenet.addCategory onSuccess String result did not equal success");
-                        }
+                        //} else {
+                            //System.out.println("turtlenet.addCategory onSuccess String result did not equal success");
+                        //}
                     }
                 });
             }
@@ -1736,11 +1720,11 @@ public class frontend implements EntryPoint, ClickListener {
                         System.out.println("turtlenet.addToCategory failed: " + caught);
                     }
                     public void onSuccess(String result) {
-                        if (result.equals("success")) {
+                        //if (result.equals("success")) {
                             friendsList(groupID);   
-                        } else {
-                            System.out.println("turtlenet.addToCategory onSuccess String result did not equal success");
-                        }
+                        //} else {
+                            //System.out.println("turtlenet.addToCategory onSuccess String result did not equal success");
+                        //}
                     }
                 });
             }
