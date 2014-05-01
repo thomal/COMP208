@@ -417,11 +417,12 @@ public class Database {
     
     //Given the sig of a post or comment return the keys which can see it
     public PublicKey[] getVisibilityOfParent(String sig) {
-        Logger.write("VERBOSE", "DB", "getVisibilityOfParent(...)");
+        Logger.write("VERBOSE", "DB", "getVisibilityOfParent(" + sig + ")");
         
         try {
             ResultSet postWithSig = query(DBStrings.getPost.replace("__SIG__", sig));
             if (postWithSig.next()) { //sig is a post
+                Logger.write("VERBOSE", "DB", "parent is a wall post: " + sig);
                 return getPostVisibleTo(sig);
             } else { //sig is a comment
                 ResultSet commentWithSig = query(DBStrings.getComment.replace("__SIG__", sig));
@@ -498,7 +499,7 @@ public class Database {
                                      .replace("__sendersKey__", Crypto.encodeKey(getSignatory(post))));
             String[] visibleTo = post.POSTgetVisibleTo();
             for (int i = 0; i < visibleTo.length; i++)
-                execute(DBStrings.addPostVisibility.replace("__postSig", post.getSig()).replace("__key__", visibleTo[i]));
+                execute(DBStrings.addPostVisibility.replace("__postSig__", post.getSig()).replace("__key__", visibleTo[i]));
             return true;
         } catch (java.sql.SQLException e) {
             Logger.write("ERROR", "DB", "SQLException: " + e);

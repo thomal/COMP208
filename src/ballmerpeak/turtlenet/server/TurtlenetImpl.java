@@ -405,6 +405,8 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
         Message message = new MessageFactory().newCMNT(parent, text);
         String ret = "success";
         
+        Logger.write("VERBOSE", "TnImpl", "==================POSTING COMMENT TO " + visibleTo.length + " people");
+        
         for (int i = 0; i < visibleTo.length; i++)
             if (!c.connection.postMessage(message, visibleTo[i]))
                 ret = "failure";
