@@ -8,6 +8,7 @@
 mkdir -p build
 cd ./build
 cp -R ../web_interface/war/* ./
+# Very important we have this dependency
 cp ../libs/sqlite-jdbc-3.7.2.jar ./WEB-INF/lib/sqlite-jdbc-3.7.2.jar
 jar -cvf ../embedded.war *
 cd ..
