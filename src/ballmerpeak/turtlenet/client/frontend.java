@@ -221,18 +221,6 @@ public class frontend implements EntryPoint, ClickListener {
                             }
                         }
                     });
-                } else if(location.equals("comments")) {
-                    turtlenet.getPostLastCommented(refreshID, new AsyncCallback<Long>() {
-                        public void onFailure(Throwable caught) {
-                            //TODO Error
-                        }
-                        public void onSuccess(Long result) {
-                            if(result > commentsLastTimeStamp) {
-                                System.out.println("Refreshing comments. refreshID: " + refreshID);
-                                comments(refreshID, keyOfWallCommentsAreOn, true);
-                            }
-                        }
-                    }); 
                 } else {
                     //Do nothing
                 }
@@ -931,16 +919,12 @@ public class frontend implements EntryPoint, ClickListener {
     }
 
     // Global stuff for wall
-    // LOUISTODO May need to remove ' = new HorizontalPanel()'
     private HorizontalPanel wallControlPanel = new HorizontalPanel();
     private TextArea postText;
     PostDetails[] wallPostDetails;
     int wallCurrentPost;
-    // LOUISTODO May need to remove ' = new FlowPanel()'
     private FlowPanel wallPanel = new FlowPanel();
     private Button wallControlPanelUserDetailsButton;
-    // LOUISTODO May need to remove ' = new FlowPanel()'
-    private FlowPanel postPanel;
     private Anchor linkToComments;
     
     private void wall(final String key, final boolean refresh) {
@@ -1078,7 +1062,7 @@ public class frontend implements EntryPoint, ClickListener {
                     final PostDetails details = wallPostDetails[wallCurrentPost];
                     
                     if(!refresh || wallPostDetails[wallCurrentPost].timestamp > wallLastTimeStamp) {
-                        postPanel = new FlowPanel();
+                        final FlowPanel postPanel = new FlowPanel();
                         postPanel.clear();
                         wallPanel.insert(postPanel, 1);
                         postPanel.addStyleName("gwt-post-panel");
@@ -1180,7 +1164,7 @@ public class frontend implements EntryPoint, ClickListener {
                                 postContentsFooterPanel.remove(linkToComments);
                                 stop.setText("Page auto update paused");
                                 stop.getElement().getStyle().setProperty("color" , "#FF0000");  
-                                comments(details.sig, key, false); 
+                                comments(details.sig, key, false, postPanel); 
                             }
                         }); 
                         postContentsFooterPanel.add(stop);
@@ -1204,11 +1188,10 @@ public class frontend implements EntryPoint, ClickListener {
     // Global stuff for comments
     private int commentCount;
     private TextArea threadReplyContents;
-    private FlowPanel commentsPanel = new FlowPanel();
     private String keyOfWallCommentsAreOn = new String("");
     
-    private void comments(final String postID, final String wallKey, final boolean refresh) {
-        commentsPanel = new FlowPanel();
+    private void comments(final String postID, final String wallKey, final boolean refresh, FlowPanel postPanel) {
+        final FlowPanel commentsPanel = new FlowPanel();
         location = "comments";
         refreshID = postID;
         keyOfWallCommentsAreOn = wallKey;
@@ -1225,7 +1208,7 @@ public class frontend implements EntryPoint, ClickListener {
             });
             
             // Add main panel to page
-            postPanel.insert(commentsPanel, 2);
+            postPanel.add(commentsPanel);
             FlexTable commentsReplyThreadPanel = new FlexTable();
             commentsReplyThreadPanel.getElement().getStyle().setProperty("paddingLeft", "60px");
             commentsPanel.add(commentsReplyThreadPanel);
