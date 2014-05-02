@@ -97,9 +97,8 @@ public class Message implements Serializable {
         //split into field/value pairs, colon delimiter
         String[][] values = new String[colonPairs.length][2];
         for (int i = 0; i < colonPairs.length; i++) {
-            Tokenizer st = new Tokenizer(colonPairs[i], ':');
-            values[i][0] = st.nextToken();
-            values[i][1] = st.nextToken();
+            values[i][0] = Message.beforeColon(colonPairs[i]);
+            values[i][1] = Message.afterColon(colonPairs[i]);
         }
         
         return values;

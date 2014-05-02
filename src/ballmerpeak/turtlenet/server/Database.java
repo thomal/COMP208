@@ -8,6 +8,7 @@ import java.security.*;
 import java.util.List;
 import java.io.File;
 import java.util.Vector;
+import java.util.Arrays;
 
 public class Database {
     public static String path = "./db"; //path to database directory
@@ -417,11 +418,12 @@ public class Database {
     
     //Given the sig of a post or comment return the keys which can see it
     public PublicKey[] getVisibilityOfParent(String sig) {
-        Logger.write("VERBOSE", "DB", "getVisibilityOfParent(...)");
+        Logger.write("VERBOSE", "DB", "getVisibilityOfParent(" + sig + ")");
         
         try {
             ResultSet postWithSig = query(DBStrings.getPost.replace("__SIG__", sig));
             if (postWithSig.next()) { //sig is a post
+                Logger.write("VERBOSE", "DB", "parent is a wall post: " + sig);
                 return getPostVisibleTo(sig);
             } else { //sig is a comment
                 ResultSet commentWithSig = query(DBStrings.getComment.replace("__SIG__", sig));
@@ -498,7 +500,7 @@ public class Database {
                                      .replace("__sendersKey__", Crypto.encodeKey(getSignatory(post))));
             String[] visibleTo = post.POSTgetVisibleTo();
             for (int i = 0; i < visibleTo.length; i++)
-                execute(DBStrings.addPostVisibility.replace("__postSig", post.getSig()).replace("__key__", visibleTo[i]));
+                execute(DBStrings.addPostVisibility.replace("__postSig__", post.getSig()).replace("__key__", visibleTo[i]));
             return true;
         } catch (java.sql.SQLException e) {
             Logger.write("ERROR", "DB", "SQLException: " + e);
@@ -547,8 +549,8 @@ public class Database {
                 Logger.write("VERBOSE", "DB", "                      time: \"" + Long.toString(Long.parseLong(claimSet.getString("claimTime"))) + "\"");
                 Logger.write("VERBOSE", "DB", "                       sig: \"" + claimSet.getString("sig") + "\"");
                 
-                
-                if (getSignatory(msg).equals(k)) {
+                PublicKey signatory = getSignatory(msg);
+                if (signatory != null && signatory.equals(k)) {
                     execute(DBStrings.newUsername.replace("__name__", msg.CLAIMgetName()).replace("__key__", Crypto.encodeKey(k)));
                     execute(DBStrings.removeClaim.replace("__sig__", msg.getSig()));
                     Logger.write("INFO", "DB", "Claim for " + msg.CLAIMgetName() + " verified");
@@ -670,7 +672,7 @@ public class Database {
     }
     
     public boolean updatePDATA (String field, String value, PublicKey k) {
-        Logger.write("VERBOSE", "DB", "updatePDATA(...)");
+        Logger.write("VERBOSE", "DB", "updatePDATA(" + field + ", " + value + ", ...)");
         
         try {
             execute(DBStrings.addPDATA.replace("__field__", field)
@@ -863,6 +865,12 @@ public class Database {
     
     public boolean addToCategory (String category, PublicKey key) {
         Logger.write("VERBOSE", "DB", "addToCategory(" + category + ", ...)");
+        
+        PublicKey[] members = getCategoryMembers(category);
+        if (Arrays.asList(members).contains(key)) {
+            return false;
+        }
+        
         try {
             execute(DBStrings.addToCategory.replace("__catID__", category)
                                            .replace("__key__", Crypto.encodeKey(key)));

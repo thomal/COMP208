@@ -334,33 +334,22 @@ public class frontend implements EntryPoint, ClickListener {
             public void onSuccess(String[][] _result) {
                 friendsListCategoryMembers = _result;
                 for (i = 0; i < friendsListCategoryMembers.length; i++) {
-                    // Dont add a result to the page if that result is the
-                    // current user. We already have the current users key
-                    // below the list of their friends.
-                    
-                    turtlenet.getMyKey(new AsyncCallback<String>() {
-                        public void onFailure(Throwable caught) {
-                            System.out.println("turtlenet.getMyKey failed: " + caught);
-                        }
-                        public void onSuccess(String myKey) {
-                            //list names/keys
-                            Anchor linkFriendsWall = new Anchor(friendsListCategoryMembers[i][0]);
-                            linkFriendsWall.getElement().getStyle().setProperty("paddingLeft" , "100px");
-                            friendsListPanel.setWidget((i + 2), 0, linkFriendsWall);
-                            final String resultString = friendsListCategoryMembers[i][1];
-                            TextBox friendKeyBox = new TextBox();
-                            friendKeyBox.setText(resultString);
-                            friendKeyBox.setVisibleLength(75);
-                            friendKeyBox.setReadOnly(true);
-                            friendsListPanel.setWidget((i + 2), 1, friendKeyBox);
-                            //link names to walls
-                            System.out.println("adding link to " + friendsListCategoryMembers[i][0] + "'s wall");
-                            final String fkey = friendsListCategoryMembers[i][1];
-                            linkFriendsWall.addClickHandler(new ClickHandler() {
-                                public void onClick(ClickEvent event) {
-                                    wall(fkey, false);
-                                }
-                            });
+                    //list names/keys
+                    Anchor linkFriendsWall = new Anchor(friendsListCategoryMembers[i][0]);
+                    linkFriendsWall.getElement().getStyle().setProperty("paddingLeft" , "100px");
+                    friendsListPanel.setWidget((i + 2), 0, linkFriendsWall);
+                    final String resultString = friendsListCategoryMembers[i][1];
+                    TextBox friendKeyBox = new TextBox();
+                    friendKeyBox.setText(resultString);
+                    friendKeyBox.setVisibleLength(75);
+                    friendKeyBox.setReadOnly(true);
+                    friendsListPanel.setWidget((i + 2), 1, friendKeyBox);
+                    //link names to walls
+                    System.out.println("adding link to " + friendsListCategoryMembers[i][0] + "'s wall");
+                    final String fkey = friendsListCategoryMembers[i][1];
+                    linkFriendsWall.addClickHandler(new ClickHandler() {
+                        public void onClick(ClickEvent event) {
+                            wall(fkey, false);
                         }
                     });
                 }
@@ -458,6 +447,7 @@ public class frontend implements EntryPoint, ClickListener {
         friendsListPanel.addStyleName("gwt-friends-list");
     }
     
+    FlexTable conversationListPanel;
     private void conversationList() {
         location = "conversationList";
         refreshID = "";
@@ -467,7 +457,7 @@ public class frontend implements EntryPoint, ClickListener {
         navigation();
         
         //Create panel to contain widgets
-        final FlexTable conversationListPanel = new FlexTable();
+        conversationListPanel = new FlexTable();
         RootPanel.get().add(conversationListPanel);
         
         turtlenet.getConversations(new AsyncCallback<Conversation[]>() {
@@ -505,18 +495,17 @@ public class frontend implements EntryPoint, ClickListener {
                     Label conversationParticipants = new Label(result[i].concatNames());
                     conversationListPanel.setWidget(i, 1, conversationParticipants);
                 }
+                Button newConversation = new Button("New conversation");
+                newConversation.setWidth("400px");
+                newConversation.addClickHandler(new ClickHandler() {
+                    public void onClick(ClickEvent event) {
+                        newConversation();
+                    }
+                });
+                
+                conversationListPanel.setWidget((result.length + 1), 0, newConversation);
             }
         });
-        
-        Button newConversation = new Button("New conversation");
-        newConversation.setWidth("400px");
-        newConversation.addClickHandler(new ClickHandler() {
-            public void onClick(ClickEvent event) {
-                newConversation();
-            }
-        });
-        
-        conversationListPanel.setWidget((conversationListPanel.getRowCount() + 2), 0, newConversation);
         
         // Add style name for CSS
         conversationListPanel.addStyleName("gwt-conversation-list");
