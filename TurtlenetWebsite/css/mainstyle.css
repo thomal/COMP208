@@ -57,7 +57,7 @@ h5 { padding-right: 15px; padding-left: 15px; color: #999999; font-family: Georg
 /* ------- Footer ----------------------------------------------------------------------------------------------------------- */
 .footer, .push { height: 40px; }
 
-.footer { color: #cccccc; background: #454545; bottom: 0px; left: 0px; right: 0px; height: 40px; font-size: 12px; }
+.footer { color: #cccccc; background: #454545; bottom: 0px; left: 0px; right: 0px; height: 30px; font-size: 12px; padding-top: 10px; }
 
 .footer ul { list-style-type: none; }
 
