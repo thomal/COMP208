@@ -19,7 +19,7 @@ public class TNClient implements Runnable {
         if (!Crypto.keysExist())
             Crypto.keyGen();
         
-        connection    = new NetworkConnection("54.205.167.241");
+        connection    = new NetworkConnection("turtle.turtlenet.co.uk");
         networkThread = new Thread(connection);
         db            = new Database(password);
         
