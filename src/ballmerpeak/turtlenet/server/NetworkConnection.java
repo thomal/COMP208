@@ -104,10 +104,10 @@ public class NetworkConnection implements Runnable {
             String ciphertext = Crypto.encrypt(msg, recipient, this);
             if (!serverCmd("s " + ciphertext).get(0).equals("s")) {
                 Logger.write("RED", "NetCon", "server reported failure uploading message");
-                return true;
+                return false;
             } else {
                 Logger.write("INFO", "NetCon", "uploaded message: \"" + msg + "\"");
-                return false;
+                return true;
             }
     }
     

@@ -255,6 +255,33 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
         String[] ret = new String[2];
         ret[0] = "success";
         
+        String myStrKey = Crypto.encodeKey(Crypto.getPublicKey());
+        int count = 0;
+        int index = 0;
+        for (int i=0; i < keys.length; i++) {
+            if (keys[i].equals(myStrKey)) {
+                count++;
+                index = i;
+            }
+        }
+        
+        //add self, or remove double self, from convo participants list
+        String[] newKeys = null;
+        if (count == 0) {
+            newKeys = new String[keys.length+1];
+            for (int i=0; i < keys.length; i++)
+                newKeys[i] = keys[i];
+            newKeys[keys.length] = myStrKey;
+            keys = newKeys;
+        } else if (count == 2) {
+            newKeys = new String[keys.length-1];
+            int j = 0; //javac complains about `for (int i=0, int j=1;...' for some reason
+            for (int i=0; i < keys.length; i++)
+                if (i != index)
+                    newKeys[j++] = keys[i];
+            keys = newKeys;
+        }
+        
         Message msg = new MessageFactory().newCHAT(keys);
         for (int i = 0; i < keys.length; i++)
             c.connection.postMessage(msg, Crypto.decodeKey(keys[i]));
@@ -319,7 +346,7 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
     //Friends
     public String addCategory (String name) {
         Logger.write("VERBOSE", "TnImpl", "addCategory(" + name + ")");
-        Message msg = new MessageFactory().newADDCAT("name", false);
+        Message msg = new MessageFactory().newADDCAT(name, false);
         
         return (c.db.addCategory(name, false) &&
                 c.connection.postMessage(msg, Crypto.getPublicKey()))
@@ -359,7 +386,7 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
     
     public String sendPDATA (String key) {
         String[] values = {"email", "name", "gender", "birthday"};
-        String[] fields = {getMyPDATA(""), getMyPDATA(""), getMyPDATA(""), getMyPDATA("")};
+        String[] fields = {getMyPDATA("email"), getMyPDATA("name"), getMyPDATA("gender"), getMyPDATA("birthday")};
         return c.connection.postMessage(new MessageFactory().newPDATA(fields, values),
                                         Crypto.decodeKey(key))
                ? "success" : "failure";

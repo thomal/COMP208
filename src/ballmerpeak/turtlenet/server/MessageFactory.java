@@ -33,7 +33,8 @@ public class MessageFactory {
     public Message newPDATA(String[] fields, String[] values) {
         String content = "";
         for (int i = 0; i < fields.length; i++)
-            content += fields[i] + ":" + values[i] + ";";
+            content += (values[i] + ":" + fields[i] + ";");
+        Logger.write("VERBOSE", "MsgF", "constructed pdata message: " + content);
         return newMessage("PDATA", content);
     }
     

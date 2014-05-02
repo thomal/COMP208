@@ -447,6 +447,7 @@ public class frontend implements EntryPoint, ClickListener {
         friendsListPanel.addStyleName("gwt-friends-list");
     }
     
+    FlexTable conversationListPanel;
     private void conversationList() {
         location = "conversationList";
         refreshID = "";
@@ -456,7 +457,7 @@ public class frontend implements EntryPoint, ClickListener {
         navigation();
         
         //Create panel to contain widgets
-        final FlexTable conversationListPanel = new FlexTable();
+        conversationListPanel = new FlexTable();
         RootPanel.get().add(conversationListPanel);
         
         turtlenet.getConversations(new AsyncCallback<Conversation[]>() {
@@ -494,18 +495,17 @@ public class frontend implements EntryPoint, ClickListener {
                     Label conversationParticipants = new Label(result[i].concatNames());
                     conversationListPanel.setWidget(i, 1, conversationParticipants);
                 }
+                Button newConversation = new Button("New conversation");
+                newConversation.setWidth("400px");
+                newConversation.addClickHandler(new ClickHandler() {
+                    public void onClick(ClickEvent event) {
+                        newConversation();
+                    }
+                });
+                
+                conversationListPanel.setWidget((result.length + 1), 0, newConversation);
             }
         });
-        
-        Button newConversation = new Button("New conversation");
-        newConversation.setWidth("400px");
-        newConversation.addClickHandler(new ClickHandler() {
-            public void onClick(ClickEvent event) {
-                newConversation();
-            }
-        });
-        
-        conversationListPanel.setWidget((conversationListPanel.getRowCount() + 2), 0, newConversation);
         
         // Add style name for CSS
         conversationListPanel.addStyleName("gwt-conversation-list");

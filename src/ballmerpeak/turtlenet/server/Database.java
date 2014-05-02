@@ -8,6 +8,7 @@ import java.security.*;
 import java.util.List;
 import java.io.File;
 import java.util.Vector;
+import java.util.Arrays;
 
 public class Database {
     public static String path = "./db"; //path to database directory
@@ -671,7 +672,7 @@ public class Database {
     }
     
     public boolean updatePDATA (String field, String value, PublicKey k) {
-        Logger.write("VERBOSE", "DB", "updatePDATA(...)");
+        Logger.write("VERBOSE", "DB", "updatePDATA(" + field + ", " + value + ", ...)");
         
         try {
             execute(DBStrings.addPDATA.replace("__field__", field)
@@ -864,6 +865,12 @@ public class Database {
     
     public boolean addToCategory (String category, PublicKey key) {
         Logger.write("VERBOSE", "DB", "addToCategory(" + category + ", ...)");
+        
+        PublicKey[] members = getCategoryMembers(category);
+        if (Arrays.asList(members).contains(key)) {
+            return false;
+        }
+        
         try {
             execute(DBStrings.addToCategory.replace("__catID__", category)
                                            .replace("__key__", Crypto.encodeKey(key)));
