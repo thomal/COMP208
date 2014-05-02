@@ -15,7 +15,7 @@ public class NetworkConnection implements Runnable {
         lastRead    = 0;
         messageLock = new Semaphore(1);
         connected   = true;
-        tor         = false;
+        tor         = true;
         
         //parse db/lastread
         File lastReadFile = new File("./db/lastread");
