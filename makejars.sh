@@ -32,7 +32,7 @@ cd ./build
 jar xf ../libs/winstone.jar 
 cp ../embedded.war ./embedded.war
 jar cmf ./META-INF/MANIFEST.MF turtlenet.jar *
-cp turtlenet.jar ../jars/turtlenet.jar
+cp turtlenet.jar ../TurtlenetWebsite/downloads/turtlenet.jar
 cd ..
 # Clean up
 rm -rf build
@@ -61,7 +61,7 @@ cp ../src/ballmerpeak/turtlenet/shared/Tokenizer.class ./ballmerpeak/turtlenet/s
 # Create a jar out of the class files
 jar cmf ../src/ballmerpeak/turtlenet/remoteserver/MANIFEST.MF remoteserver.jar *
 # Move the jar to the jars folder
-cp remoteserver.jar ../jars/remoteserver.jar
+cp remoteserver.jar ../TurtlenetWebsite/downloads/remoteserver.jar
 # Clean up
 cd ..
 rm -rf build
