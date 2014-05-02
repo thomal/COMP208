@@ -1,844 +1,897 @@
-===== Turtlenet started at Fri May 02 02:37:13 BST 2014=====
-1398994633 INFO		TnImpl	Registering "bob_bobson" with PW "a"
-1398994633 INFO		TNImpl	startTN(a)
-1398994633 CRAP		TnImpl	WAITING FOR DB
-1398994633 INFO		Crypto	Generating keys
-1398994634 INFO		DB	Creating database
-1398994634 INFO		DB	Connecting to database
-1398994634 VERBOSE	DB	execute("CREATE TABLE tConvos (convoID     TEXT,timeCreated TEXT,PRIMARY KEY (convoID));")
-1398994634 VERBOSE	DB	execute("CREATE TABLE tConvoKeys (pk      INTEGER PRIMARY KEY AUTOINCREMENT,convoID TEXT,key     TEXT);")
-1398994634 VERBOSE	DB	execute("CREATE TABLE tConvoMessages (pk         INTEGER PRIMARY KEY AUTOINCREMENT,convoID    TEXT,sendersKey TEXT,msgText    TEXT,time       TEXT);")
-1398994634 VERBOSE	DB	execute("CREATE TABLE tPost (sig         TEXT,msgText     TEXT,time        TEXT,recieverKey TEXT,sendersKey  TEXT,PRIMARY KEY (sig));")
-1398994634 VERBOSE	DB	execute("CREATE TABLE tPostVisibleTo (pk      INTEGER PRIMARY KEY AUTOINCREMENT,postSig TEXT,key     TEXT);")
-1398994634 CRAP		TnImpl	WAITING FOR DB
-1398994635 VERBOSE	DB	execute("CREATE TABLE tUser (key      TEXT,username TEXT,knowName INT,email    TEXT,name     TEXT,gender   TEXT,birthday TEXT,PRIMARY KEY (key));")
-1398994635 VERBOSE	DB	execute("CREATE TABLE tCategory (catID       TEXT,canSeePDATA INT,PRIMARY KEY (catID));")
-1398994635 VERBOSE	DB	execute("CREATE TABLE tCategoryMembers (pk      INTEGER PRIMARY KEY AUTOINCREMENT,catID   TEXT,userKey TEXT);")
-1398994635 VERBOSE	DB	execute("CREATE TABLE tEvent (sig          TEXT,startTime    TEXT,endTime      TEXT,creatorKey   TEXT,accepted     INT,name         TEXT,creationTime TEXT,PRIMARY KEY (sig));")
-1398994635 VERBOSE	DB	execute("CREATE TABLE tClaim (sig       TEXT,name      TEXT,claimTime TEXT,PRIMARY KEY (sig));")
-1398994635 VERBOSE	DB	execute("CREATE TABLE tLike (pk       INTEGER PRIMARY KEY AUTOINCREMENT,likerKey TEXT,parent   TEXT);")
-1398994635 VERBOSE	DB	execute("CREATE TABLE tComment (sig          TEXT,msgText      TEXT,senderKey    TEXT,parent       TEXT,creationTime TEXT,PRIMARY KEY (sig));")
-1398994635 CRAP		TnImpl	WAITING FOR DB
-1398994636 VERBOSE	DB	execute("CREATE TABLE tRevocations (key          TEXT,sig          TEXT,timeOfLeak   TEXT,creationTime TEXT,PRIMARY KEY (sig));")
-1398994636 INFO		NetCon	NetworkConnection started
-1398994636 INFO		TnImpl	Started TN...continuing registration
-1398994636 VERBOSE	TnImpl	claimUsername(bob_bobson)
-1398994636 INFO		Crypto	sign()
-1398994636 INFO		Crypto	sign()
-1398994636 VERBOSE	DB	addClaim(bob_bobson)
-1398994636 VERBOSE	DB	execute("INSERT INTO tClaim (sig, name, claimTime) VALUES ('RDH+KFi4A6wTIQNxUmJkbI4FTSSjJ8Qstuy6Ax4QqDGxXIg46xKWeTcGi++xNNy1grFT76FAzdS5qqSr23oZjbc8e3IlI0dNFfDPLppmO8F6QTqmYzhhNqkFi1BFDaLHto0+GyP/kQBIvfiXqqCRgAkiqGDSZ+1AXa5p/Bx0Wo4=', 'bob_bobson', '1398994636960');")
-1398994637 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398994638 INFO		Crypto	sign()
-1398994638 INFO		Crypto	sign()
-1398994639 INFO		NetCon	Claimed name: bob_bobson
-1398994639 INFO		NetCon		name: bob_bobson
-1398994639 INFO		NetCon		time: 1398994527586
-1398994639 INFO		NetCon		 sig: Kb1Jxb0drkOQyympFfWdie0Zyc31oEWiehnvQYPSYY5TZU6rFbEfWUZEZ9EUJC+mP45KI712GDhpNtCrNj517g/CB31QHvuwZLYeCoIK6goWe9eL+ih23X1crElf/gt0rhE7f+CNjsqJxgVeS89yhtwllEDch2cgkkqn/7gIn8A=
-1398994639 VERBOSE	TnImpl	addKey(...)
-1398994639 INFO		Crypto	sign()
-1398994639 INFO		Crypto	sign()
-1398994639 VERBOSE	DB	addKey(...)
-1398994639 VERBOSE	DB	execute("INSERT INTO tUser (key) VALUES ('MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCMO/BPjHAwl8fw1HuJYgCBG0W8zlxTWenxkb9ABX9ZCZIzJVEghZbAbsHMYJdr4tmHi2GfFy62wW6KdX2EpGg0Foza1BRxMnhfHpt2VEnCfxnYwqnhSqW9FoF70xL5FTKsT067NZYgnYJyBSPZlwCQ2pcWQ92UjEmvA0RV47KKxQIDAQAB');")
-1398994639 INFO		Crypto	decrypt()
-1398994639 VERBOSE	PARSE	parsing message
-1398994639 VERBOSE	DB	getSignatory(...)
-1398994639 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398994641 VERBOSE	DB	validateClaims(...)
-1398994641 VERBOSE	DB	query("SELECT * FROM tClaim;")
-1398994641 VERBOSE	DB	Considering Claim for name: "bob_bobson"
-1398994641 VERBOSE	DB	                      time: "1398994636960"
-1398994641 INFO		Crypto	verifySig()
-1398994641 VERBOSE	DB	                       sig: "RDH+KFi4A6wTIQNxUmJkbI4FTSSjJ8Qstuy6Ax4QqDGxXIg46xKWeTcGi++xNNy1grFT76FAzdS5qqSr23oZjbc8e3IlI0dNFfDPLppmO8F6QTqmYzhhNqkFi1BFDaLHto0+GyP/kQBIvfiXqqCRgAkiqGDSZ+1AXa5p/Bx0Wo4="
-1398994641 VERBOSE	DB	getSignatory(...)
-1398994641 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398994641 INFO		Crypto	verifySig() - FALSE
-1398994641 INFO		Crypto	verifySig()
-1398994641 WARNING	DB	getSignatory() could not find signatory
-1398994641 VERBOSE	DB	isRevoked(...)
-1398994641 ERROR	Crypto	encodeKey passed null key
-1398994641 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
-1398994641 VERBOSE	PARSE	undecryptable message
-1398994641 INFO		Crypto	verifySig() - TRUE
-1398994641 INFO		Crypto	decrypt()
-1398994641 VERBOSE	DB	execute("UPDATE tUser SET username = 'bob_bobson' WHERE key = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCMO/BPjHAwl8fw1HuJYgCBG0W8zlxTWenxkb9ABX9ZCZIzJVEghZbAbsHMYJdr4tmHi2GfFy62wW6KdX2EpGg0Foza1BRxMnhfHpt2VEnCfxnYwqnhSqW9FoF70xL5FTKsT067NZYgnYJyBSPZlwCQ2pcWQ92UjEmvA0RV47KKxQIDAQAB';")
-1398994641 VERBOSE	PARSE	parsing message
-1398994641 VERBOSE	DB	getSignatory(...)
-1398994641 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398994642 VERBOSE	DB	execute("DELETE FROM tClaim WHERE sig = 'RDH+KFi4A6wTIQNxUmJkbI4FTSSjJ8Qstuy6Ax4QqDGxXIg46xKWeTcGi++xNNy1grFT76FAzdS5qqSr23oZjbc8e3IlI0dNFfDPLppmO8F6QTqmYzhhNqkFi1BFDaLHto0+GyP/kQBIvfiXqqCRgAkiqGDSZ+1AXa5p/Bx0Wo4=';")
-1398994642 INFO		Crypto	verifySig()
-1398994642 INFO		Crypto	verifySig() - FALSE
-1398994643 INFO		DB	Claim for bob_bobson verified
-1398994643 WARNING	DB	getSignatory() could not find signatory
-1398994643 VERBOSE	DB	isRevoked(...)
-1398994643 ERROR	Crypto	encodeKey passed null key
-1398994643 VERBOSE	DB	calcRevocationKeys(...)
-1398994643 VERBOSE	DB	query("SELECT * FROM tRevocations;")
-1398994643 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
-1398994643 VERBOSE	PARSE	undecryptable message
-1398994643 INFO		Crypto	decrypt()
-1398994643 INFO		Crypto	encrypt()
-1398994643 VERBOSE	PARSE	parsing message
-1398994643 VERBOSE	DB	getSignatory(...)
-1398994643 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398994643 INFO		Crypto	verifySig()
-1398994643 INFO		Crypto	verifySig() - FALSE
-1398994643 WARNING	DB	getSignatory() could not find signatory
-1398994643 VERBOSE	DB	isRevoked(...)
-1398994643 ERROR	Crypto	encodeKey passed null key
-1398994643 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
-1398994643 VERBOSE	PARSE	undecryptable message
-1398994643 INFO		Crypto	decrypt()
-1398994643 VERBOSE	PARSE	parsing message
-1398994643 VERBOSE	DB	getSignatory(...)
-1398994643 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398994643 INFO		Crypto	verifySig()
-1398994643 INFO		Crypto	verifySig() - FALSE
-1398994643 WARNING	DB	getSignatory() could not find signatory
-1398994643 VERBOSE	DB	isRevoked(...)
-1398994643 ERROR	Crypto	encodeKey passed null key
-1398994643 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
-1398994643 VERBOSE	PARSE	undecryptable message
-1398994643 INFO		Crypto	decrypt()
-1398994643 VERBOSE	PARSE	parsing message
-1398994643 VERBOSE	DB	getSignatory(...)
-1398994643 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398994643 INFO		Crypto	verifySig()
-1398994643 INFO		Crypto	verifySig() - FALSE
-1398994643 WARNING	DB	getSignatory() could not find signatory
-1398994643 VERBOSE	DB	isRevoked(...)
-1398994643 ERROR	Crypto	encodeKey passed null key
-1398994643 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
-1398994643 VERBOSE	PARSE	undecryptable message
-1398994643 INFO		Crypto	decrypt()
-1398994643 VERBOSE	PARSE	parsing message
-1398994643 VERBOSE	DB	getSignatory(...)
-1398994643 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398994643 INFO		Crypto	verifySig()
-1398994643 INFO		Crypto	verifySig() - FALSE
-1398994643 WARNING	DB	getSignatory() could not find signatory
-1398994643 VERBOSE	DB	isRevoked(...)
-1398994643 ERROR	Crypto	encodeKey passed null key
-1398994643 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
-1398994643 VERBOSE	PARSE	undecryptable message
-1398994643 INFO		Crypto	decrypt()
-1398994643 VERBOSE	PARSE	parsing message
-1398994643 VERBOSE	DB	getSignatory(...)
-1398994643 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398994643 INFO		Crypto	verifySig()
-1398994643 INFO		Crypto	verifySig() - FALSE
-1398994643 WARNING	DB	getSignatory() could not find signatory
-1398994643 VERBOSE	DB	isRevoked(...)
-1398994643 ERROR	Crypto	encodeKey passed null key
-1398994643 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
-1398994643 VERBOSE	PARSE	undecryptable message
-1398994643 INFO		Crypto	decrypt()
-1398994643 VERBOSE	PARSE	parsing message
-1398994643 VERBOSE	DB	getSignatory(...)
-1398994643 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398994643 INFO		Crypto	verifySig()
-1398994643 INFO		Crypto	verifySig() - FALSE
-1398994643 WARNING	DB	getSignatory() could not find signatory
-1398994643 VERBOSE	DB	isRevoked(...)
-1398994643 ERROR	Crypto	encodeKey passed null key
-1398994643 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
-1398994643 VERBOSE	PARSE	undecryptable message
-1398994643 INFO		Crypto	decrypt()
-1398994643 VERBOSE	PARSE	parsing message
-1398994643 VERBOSE	DB	getSignatory(...)
-1398994643 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398994643 INFO		Crypto	verifySig()
-1398994643 INFO		Crypto	verifySig() - FALSE
-1398994643 WARNING	DB	getSignatory() could not find signatory
-1398994643 VERBOSE	DB	isRevoked(...)
-1398994643 ERROR	Crypto	encodeKey passed null key
-1398994643 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
-1398994643 VERBOSE	PARSE	undecryptable message
-1398994643 INFO		Crypto	decrypt()
-1398994643 VERBOSE	PARSE	parsing message
-1398994643 VERBOSE	DB	getSignatory(...)
-1398994643 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398994643 INFO		Crypto	verifySig()
-1398994643 INFO		Crypto	verifySig() - FALSE
-1398994643 WARNING	DB	getSignatory() could not find signatory
-1398994643 VERBOSE	DB	isRevoked(...)
-1398994643 ERROR	Crypto	encodeKey passed null key
-1398994643 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
-1398994643 VERBOSE	PARSE	undecryptable message
-1398994643 INFO		Crypto	decrypt()
-1398994643 VERBOSE	PARSE	parsing message
-1398994643 VERBOSE	DB	getSignatory(...)
-1398994643 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398994643 INFO		Crypto	verifySig()
-1398994643 INFO		Crypto	verifySig() - FALSE
-1398994643 WARNING	DB	getSignatory() could not find signatory
-1398994643 VERBOSE	DB	isRevoked(...)
-1398994643 ERROR	Crypto	encodeKey passed null key
-1398994643 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
-1398994643 VERBOSE	PARSE	undecryptable message
-1398994643 INFO		Crypto	decrypt()
-1398994643 VERBOSE	PARSE	parsing message
-1398994643 VERBOSE	DB	getSignatory(...)
-1398994643 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398994643 INFO		Crypto	verifySig()
-1398994643 INFO		Crypto	verifySig() - FALSE
-1398994643 WARNING	DB	getSignatory() could not find signatory
-1398994643 VERBOSE	DB	isRevoked(...)
-1398994643 ERROR	Crypto	encodeKey passed null key
-1398994643 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
-1398994643 VERBOSE	PARSE	undecryptable message
-1398994643 INFO		Crypto	decrypt()
-1398994643 VERBOSE	PARSE	parsing message
-1398994643 VERBOSE	DB	getSignatory(...)
-1398994643 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398994643 INFO		Crypto	verifySig()
-1398994643 INFO		Crypto	verifySig() - FALSE
-1398994643 WARNING	DB	getSignatory() could not find signatory
-1398994643 VERBOSE	DB	isRevoked(...)
-1398994643 ERROR	Crypto	encodeKey passed null key
-1398994643 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
-1398994643 VERBOSE	PARSE	undecryptable message
-1398994643 INFO		Crypto	decrypt()
-1398994643 VERBOSE	PARSE	parsing message
-1398994643 VERBOSE	DB	getSignatory(...)
-1398994643 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398994643 INFO		Crypto	verifySig()
-1398994643 INFO		Crypto	verifySig() - FALSE
-1398994643 WARNING	DB	getSignatory() could not find signatory
-1398994643 VERBOSE	DB	isRevoked(...)
-1398994643 ERROR	Crypto	encodeKey passed null key
-1398994643 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
-1398994643 VERBOSE	PARSE	undecryptable message
-1398994643 INFO		Crypto	decrypt()
-1398994643 VERBOSE	PARSE	parsing message
-1398994643 VERBOSE	DB	getSignatory(...)
-1398994643 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398994643 INFO		Crypto	verifySig()
-1398994643 INFO		Crypto	verifySig() - FALSE
-1398994643 WARNING	DB	getSignatory() could not find signatory
-1398994643 VERBOSE	DB	isRevoked(...)
-1398994643 ERROR	Crypto	encodeKey passed null key
-1398994643 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
-1398994643 VERBOSE	PARSE	undecryptable message
-1398994643 INFO		Crypto	decrypt()
-1398994643 VERBOSE	PARSE	parsing message
-1398994643 VERBOSE	DB	getSignatory(...)
-1398994643 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398994643 INFO		Crypto	verifySig()
-1398994643 INFO		Crypto	verifySig() - FALSE
-1398994643 WARNING	DB	getSignatory() could not find signatory
-1398994643 VERBOSE	DB	isRevoked(...)
-1398994643 ERROR	Crypto	encodeKey passed null key
-1398994643 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
-1398994643 VERBOSE	PARSE	undecryptable message
-1398994643 INFO		Crypto	decrypt()
-1398994643 VERBOSE	PARSE	parsing message
-1398994643 VERBOSE	DB	getSignatory(...)
-1398994643 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398994643 INFO		Crypto	verifySig()
-1398994643 INFO		Crypto	verifySig() - FALSE
-1398994643 WARNING	DB	getSignatory() could not find signatory
-1398994643 VERBOSE	DB	isRevoked(...)
-1398994643 ERROR	Crypto	encodeKey passed null key
-1398994643 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
-1398994643 VERBOSE	PARSE	undecryptable message
-1398994643 INFO		Crypto	decrypt()
-1398994643 VERBOSE	PARSE	parsing message
-1398994643 VERBOSE	DB	getSignatory(...)
-1398994643 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398994643 INFO		Crypto	verifySig()
-1398994643 INFO		Crypto	verifySig() - FALSE
-1398994643 WARNING	DB	getSignatory() could not find signatory
-1398994643 VERBOSE	DB	isRevoked(...)
-1398994643 ERROR	Crypto	encodeKey passed null key
-1398994643 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
-1398994643 VERBOSE	PARSE	undecryptable message
-1398994643 INFO		Crypto	decrypt()
-1398994643 VERBOSE	PARSE	parsing message
-1398994643 VERBOSE	DB	getSignatory(...)
-1398994643 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398994643 INFO		Crypto	verifySig()
-1398994643 INFO		Crypto	verifySig() - FALSE
-1398994643 WARNING	DB	getSignatory() could not find signatory
-1398994643 VERBOSE	DB	isRevoked(...)
-1398994643 ERROR	Crypto	encodeKey passed null key
-1398994643 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
-1398994643 VERBOSE	PARSE	undecryptable message
-1398994643 INFO		Crypto	decrypt()
-1398994643 VERBOSE	PARSE	parsing message
-1398994643 VERBOSE	DB	getSignatory(...)
-1398994643 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398994643 INFO		Crypto	verifySig()
-1398994643 INFO		Crypto	verifySig() - FALSE
-1398994643 WARNING	DB	getSignatory() could not find signatory
-1398994643 VERBOSE	DB	isRevoked(...)
-1398994643 ERROR	Crypto	encodeKey passed null key
-1398994643 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
-1398994643 VERBOSE	PARSE	undecryptable message
-1398994643 INFO		Crypto	decrypt()
-1398994643 VERBOSE	PARSE	parsing message
-1398994643 VERBOSE	DB	getSignatory(...)
-1398994643 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398994643 INFO		Crypto	verifySig()
-1398994643 INFO		Crypto	verifySig() - FALSE
-1398994643 WARNING	DB	getSignatory() could not find signatory
-1398994643 VERBOSE	DB	isRevoked(...)
-1398994643 ERROR	Crypto	encodeKey passed null key
-1398994643 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
-1398994643 VERBOSE	PARSE	undecryptable message
-1398994643 INFO		Crypto	decrypt()
-1398994643 VERBOSE	PARSE	parsing message
-1398994643 VERBOSE	DB	getSignatory(...)
-1398994643 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398994643 INFO		Crypto	verifySig()
-1398994643 INFO		Crypto	verifySig() - FALSE
-1398994643 WARNING	DB	getSignatory() could not find signatory
-1398994643 VERBOSE	DB	isRevoked(...)
-1398994643 ERROR	Crypto	encodeKey passed null key
-1398994643 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
-1398994643 VERBOSE	PARSE	undecryptable message
-1398994643 INFO		Crypto	decrypt()
-1398994643 VERBOSE	PARSE	parsing message
-1398994643 VERBOSE	DB	getSignatory(...)
-1398994643 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398994643 INFO		Crypto	verifySig()
-1398994643 INFO		Crypto	verifySig() - FALSE
-1398994643 WARNING	DB	getSignatory() could not find signatory
-1398994643 VERBOSE	DB	isRevoked(...)
-1398994643 ERROR	Crypto	encodeKey passed null key
-1398994643 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
-1398994643 VERBOSE	PARSE	undecryptable message
-1398994643 INFO		Crypto	decrypt()
-1398994643 VERBOSE	PARSE	parsing message
-1398994643 VERBOSE	DB	getSignatory(...)
-1398994643 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398994643 INFO		Crypto	verifySig()
-1398994643 INFO		Crypto	verifySig() - FALSE
-1398994643 WARNING	DB	getSignatory() could not find signatory
-1398994643 VERBOSE	DB	isRevoked(...)
-1398994643 ERROR	Crypto	encodeKey passed null key
-1398994643 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
-1398994643 VERBOSE	PARSE	undecryptable message
-1398994643 INFO		Crypto	decrypt()
-1398994643 VERBOSE	PARSE	parsing message
-1398994643 VERBOSE	DB	getSignatory(...)
-1398994643 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398994643 INFO		Crypto	verifySig()
-1398994643 INFO		Crypto	verifySig() - FALSE
-1398994643 WARNING	DB	getSignatory() could not find signatory
-1398994643 VERBOSE	DB	isRevoked(...)
-1398994643 ERROR	Crypto	encodeKey passed null key
-1398994643 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
-1398994643 VERBOSE	PARSE	undecryptable message
-1398994643 INFO		Crypto	decrypt()
-1398994643 VERBOSE	PARSE	parsing message
-1398994643 VERBOSE	DB	getSignatory(...)
-1398994643 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398994643 INFO		Crypto	verifySig()
-1398994643 INFO		Crypto	verifySig() - FALSE
-1398994643 WARNING	DB	getSignatory() could not find signatory
-1398994643 VERBOSE	DB	isRevoked(...)
-1398994643 ERROR	Crypto	encodeKey passed null key
-1398994643 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
-1398994643 VERBOSE	PARSE	undecryptable message
-1398994643 INFO		Crypto	decrypt()
-1398994643 VERBOSE	PARSE	parsing message
-1398994643 VERBOSE	DB	getSignatory(...)
-1398994643 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398994643 INFO		Crypto	verifySig()
-1398994643 INFO		Crypto	verifySig() - FALSE
-1398994643 WARNING	DB	getSignatory() could not find signatory
-1398994643 VERBOSE	DB	isRevoked(...)
-1398994643 ERROR	Crypto	encodeKey passed null key
-1398994643 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
-1398994643 VERBOSE	PARSE	undecryptable message
-1398994643 INFO		Crypto	decrypt()
-1398994643 VERBOSE	PARSE	parsing message
-1398994643 VERBOSE	DB	getSignatory(...)
-1398994643 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398994643 INFO		Crypto	verifySig()
-1398994643 INFO		Crypto	verifySig() - FALSE
-1398994643 WARNING	DB	getSignatory() could not find signatory
-1398994643 VERBOSE	DB	isRevoked(...)
-1398994643 ERROR	Crypto	encodeKey passed null key
-1398994643 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
-1398994643 VERBOSE	PARSE	undecryptable message
-1398994643 INFO		Crypto	decrypt()
-1398994643 VERBOSE	PARSE	parsing message
-1398994643 VERBOSE	DB	getSignatory(...)
-1398994643 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398994643 INFO		Crypto	verifySig()
-1398994643 INFO		Crypto	verifySig() - FALSE
-1398994643 WARNING	DB	getSignatory() could not find signatory
-1398994643 VERBOSE	DB	isRevoked(...)
-1398994643 ERROR	Crypto	encodeKey passed null key
-1398994643 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
-1398994643 VERBOSE	DB	addClaim(luca)
-1398994643 VERBOSE	DB	execute("INSERT INTO tClaim (sig, name, claimTime) VALUES ('kQsK2xnhtAWcBbrUa5xNMCAzFn6JtJsCuy7wiqTUJbBTQ/K4h9ITvHhbhaLDVpDrR3U8nStq+xeYErBN/FA+aivdQ2Ybn4Fp+y+PBqlE1ZDORGz11QsG1xV+XW7j5uMa75YMzGIOPQXY2ueMw+hR7HVDLj2KwZUYNZodFXyo9qg=', 'luca', '1398993306544');")
-1398994643 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398994643 VERBOSE	DB	validateClaims(...)
-1398994643 VERBOSE	DB	query("SELECT * FROM tClaim;")
-1398994643 VERBOSE	DB	Considering Claim for name: "luca"
-1398994643 VERBOSE	DB	                      time: "1398993306544"
-1398994643 VERBOSE	DB	                       sig: "kQsK2xnhtAWcBbrUa5xNMCAzFn6JtJsCuy7wiqTUJbBTQ/K4h9ITvHhbhaLDVpDrR3U8nStq+xeYErBN/FA+aivdQ2Ybn4Fp+y+PBqlE1ZDORGz11QsG1xV+XW7j5uMa75YMzGIOPQXY2ueMw+hR7HVDLj2KwZUYNZodFXyo9qg="
-1398994643 VERBOSE	DB	getSignatory(...)
-1398994643 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398994643 INFO		Crypto	verifySig()
-1398994643 INFO		Crypto	verifySig() - FALSE
-1398994643 WARNING	DB	getSignatory() could not find signatory
-1398994643 INFO		Crypto	decrypt()
-1398994643 VERBOSE	PARSE	parsing message
-1398994643 VERBOSE	DB	getSignatory(...)
-1398994643 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398994643 INFO		Crypto	verifySig()
-1398994643 INFO		Crypto	verifySig() - FALSE
-1398994643 WARNING	DB	getSignatory() could not find signatory
-1398994643 VERBOSE	DB	isRevoked(...)
-1398994643 ERROR	Crypto	encodeKey passed null key
-1398994643 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
-1398994643 VERBOSE	PARSE	undecryptable message
-1398994643 INFO		Crypto	decrypt()
-1398994643 VERBOSE	PARSE	parsing message
-1398994643 VERBOSE	DB	getSignatory(...)
-1398994643 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398994643 INFO		Crypto	verifySig()
-1398994643 INFO		Crypto	verifySig() - FALSE
-1398994643 WARNING	DB	getSignatory() could not find signatory
-1398994643 VERBOSE	DB	isRevoked(...)
-1398994643 ERROR	Crypto	encodeKey passed null key
-1398994643 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
-1398994643 VERBOSE	PARSE	undecryptable message
-1398994643 INFO		Crypto	decrypt()
-1398994643 VERBOSE	PARSE	parsing message
-1398994643 VERBOSE	DB	getSignatory(...)
-1398994643 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398994643 INFO		Crypto	verifySig()
-1398994643 INFO		Crypto	verifySig() - FALSE
-1398994643 WARNING	DB	getSignatory() could not find signatory
-1398994643 VERBOSE	DB	isRevoked(...)
-1398994643 ERROR	Crypto	encodeKey passed null key
-1398994643 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
-1398994643 VERBOSE	PARSE	undecryptable message
-1398994643 INFO		Crypto	decrypt()
-1398994643 VERBOSE	PARSE	parsing message
-1398994643 VERBOSE	DB	getSignatory(...)
-1398994643 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398994643 INFO		Crypto	verifySig()
-1398994643 INFO		Crypto	verifySig() - FALSE
-1398994643 WARNING	DB	getSignatory() could not find signatory
-1398994643 VERBOSE	DB	isRevoked(...)
-1398994643 ERROR	Crypto	encodeKey passed null key
-1398994643 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
-1398994643 VERBOSE	PARSE	undecryptable message
-1398994643 INFO		Crypto	decrypt()
-1398994643 VERBOSE	PARSE	parsing message
-1398994643 VERBOSE	DB	getSignatory(...)
-1398994643 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398994643 INFO		Crypto	verifySig()
-1398994643 INFO		Crypto	verifySig() - FALSE
-1398994643 WARNING	DB	getSignatory() could not find signatory
-1398994643 VERBOSE	DB	isRevoked(...)
-1398994643 ERROR	Crypto	encodeKey passed null key
-1398994643 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
-1398994643 VERBOSE	PARSE	undecryptable message
-1398994643 INFO		Crypto	decrypt()
-1398994643 VERBOSE	PARSE	parsing message
-1398994643 VERBOSE	DB	getSignatory(...)
-1398994643 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398994643 INFO		Crypto	verifySig()
-1398994643 INFO		Crypto	verifySig() - FALSE
-1398994643 WARNING	DB	getSignatory() could not find signatory
-1398994643 VERBOSE	DB	isRevoked(...)
-1398994643 ERROR	Crypto	encodeKey passed null key
-1398994643 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
-1398994643 VERBOSE	PARSE	undecryptable message
-1398994643 INFO		Crypto	decrypt()
-1398994643 VERBOSE	PARSE	parsing message
-1398994643 VERBOSE	DB	getSignatory(...)
-1398994643 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398994643 INFO		Crypto	verifySig()
-1398994643 INFO		Crypto	verifySig() - FALSE
-1398994643 WARNING	DB	getSignatory() could not find signatory
-1398994643 VERBOSE	DB	isRevoked(...)
-1398994643 ERROR	Crypto	encodeKey passed null key
-1398994643 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
-1398994643 VERBOSE	PARSE	undecryptable message
-1398994643 INFO		Crypto	decrypt()
-1398994643 VERBOSE	PARSE	parsing message
-1398994643 VERBOSE	DB	getSignatory(...)
-1398994643 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398994643 INFO		Crypto	verifySig()
-1398994643 INFO		Crypto	verifySig() - FALSE
-1398994643 WARNING	DB	getSignatory() could not find signatory
-1398994643 VERBOSE	DB	isRevoked(...)
-1398994643 ERROR	Crypto	encodeKey passed null key
-1398994643 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
-1398994643 VERBOSE	PARSE	undecryptable message
-1398994643 INFO		Crypto	decrypt()
-1398994643 VERBOSE	PARSE	parsing message
-1398994643 VERBOSE	DB	getSignatory(...)
-1398994643 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398994643 INFO		Crypto	verifySig()
-1398994643 INFO		Crypto	verifySig() - FALSE
-1398994643 WARNING	DB	getSignatory() could not find signatory
-1398994643 VERBOSE	DB	isRevoked(...)
-1398994643 ERROR	Crypto	encodeKey passed null key
-1398994643 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
-1398994643 VERBOSE	PARSE	undecryptable message
-1398994643 INFO		Crypto	decrypt()
-1398994643 VERBOSE	PARSE	parsing message
-1398994643 VERBOSE	DB	getSignatory(...)
-1398994643 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398994643 INFO		Crypto	verifySig()
-1398994643 INFO		Crypto	verifySig() - FALSE
-1398994643 WARNING	DB	getSignatory() could not find signatory
-1398994643 VERBOSE	DB	isRevoked(...)
-1398994643 ERROR	Crypto	encodeKey passed null key
-1398994643 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
-1398994643 VERBOSE	PARSE	undecryptable message
-1398994643 INFO		Crypto	decrypt()
-1398994643 VERBOSE	PARSE	parsing message
-1398994643 VERBOSE	DB	getSignatory(...)
-1398994643 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398994643 INFO		Crypto	verifySig()
-1398994643 INFO		Crypto	verifySig() - FALSE
-1398994643 WARNING	DB	getSignatory() could not find signatory
-1398994643 VERBOSE	DB	isRevoked(...)
-1398994643 ERROR	Crypto	encodeKey passed null key
-1398994643 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
-1398994643 VERBOSE	PARSE	undecryptable message
-1398994643 INFO		Crypto	decrypt()
-1398994643 VERBOSE	PARSE	parsing message
-1398994643 VERBOSE	DB	getSignatory(...)
-1398994643 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398994643 INFO		Crypto	verifySig()
-1398994643 INFO		Crypto	verifySig() - FALSE
-1398994643 WARNING	DB	getSignatory() could not find signatory
-1398994643 VERBOSE	DB	isRevoked(...)
-1398994643 ERROR	Crypto	encodeKey passed null key
-1398994643 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
-1398994643 VERBOSE	PARSE	undecryptable message
-1398994643 INFO		Crypto	decrypt()
-1398994643 VERBOSE	PARSE	parsing message
-1398994643 VERBOSE	DB	getSignatory(...)
-1398994643 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398994643 INFO		Crypto	verifySig()
-1398994643 INFO		Crypto	verifySig() - FALSE
-1398994643 WARNING	DB	getSignatory() could not find signatory
-1398994643 VERBOSE	DB	isRevoked(...)
-1398994643 ERROR	Crypto	encodeKey passed null key
-1398994643 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
-1398994643 VERBOSE	PARSE	undecryptable message
-1398994643 INFO		Crypto	decrypt()
-1398994643 VERBOSE	PARSE	parsing message
-1398994643 VERBOSE	DB	getSignatory(...)
-1398994643 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398994643 INFO		Crypto	verifySig()
-1398994643 INFO		Crypto	verifySig() - FALSE
-1398994643 WARNING	DB	getSignatory() could not find signatory
-1398994643 VERBOSE	DB	isRevoked(...)
-1398994643 ERROR	Crypto	encodeKey passed null key
-1398994643 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
-1398994643 VERBOSE	PARSE	undecryptable message
-1398994643 INFO		Crypto	decrypt()
-1398994643 VERBOSE	PARSE	parsing message
-1398994643 VERBOSE	DB	getSignatory(...)
-1398994643 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398994643 INFO		Crypto	verifySig()
-1398994643 INFO		Crypto	verifySig() - FALSE
-1398994643 WARNING	DB	getSignatory() could not find signatory
-1398994643 VERBOSE	DB	isRevoked(...)
-1398994643 ERROR	Crypto	encodeKey passed null key
-1398994643 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
-1398994643 VERBOSE	PARSE	undecryptable message
-1398994643 INFO		Crypto	decrypt()
-1398994643 VERBOSE	PARSE	parsing message
-1398994643 VERBOSE	DB	getSignatory(...)
-1398994643 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398994643 INFO		Crypto	verifySig()
-1398994643 INFO		Crypto	verifySig() - FALSE
-1398994643 WARNING	DB	getSignatory() could not find signatory
-1398994643 VERBOSE	DB	isRevoked(...)
-1398994643 ERROR	Crypto	encodeKey passed null key
-1398994643 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
-1398994643 VERBOSE	PARSE	undecryptable message
-1398994643 INFO		Crypto	decrypt()
-1398994643 VERBOSE	PARSE	parsing message
-1398994643 VERBOSE	DB	getSignatory(...)
-1398994643 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398994643 INFO		Crypto	verifySig()
-1398994643 INFO		Crypto	verifySig() - FALSE
-1398994643 WARNING	DB	getSignatory() could not find signatory
-1398994643 VERBOSE	DB	isRevoked(...)
-1398994643 ERROR	Crypto	encodeKey passed null key
-1398994643 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
-1398994643 VERBOSE	PARSE	undecryptable message
-1398994643 INFO		Crypto	decrypt()
-1398994643 VERBOSE	PARSE	parsing message
-1398994643 VERBOSE	DB	getSignatory(...)
-1398994643 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398994643 INFO		Crypto	verifySig()
-1398994643 INFO		Crypto	verifySig() - FALSE
-1398994643 WARNING	DB	getSignatory() could not find signatory
-1398994643 VERBOSE	DB	isRevoked(...)
-1398994643 ERROR	Crypto	encodeKey passed null key
-1398994643 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
-1398994643 VERBOSE	PARSE	undecryptable message
-1398994643 INFO		Crypto	decrypt()
-1398994643 VERBOSE	PARSE	parsing message
-1398994643 VERBOSE	DB	getSignatory(...)
-1398994643 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398994643 INFO		Crypto	verifySig()
-1398994643 INFO		Crypto	verifySig() - FALSE
-1398994643 WARNING	DB	getSignatory() could not find signatory
-1398994643 VERBOSE	DB	isRevoked(...)
-1398994643 ERROR	Crypto	encodeKey passed null key
-1398994643 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
-1398994643 VERBOSE	PARSE	undecryptable message
-1398994643 INFO		Crypto	decrypt()
-1398994643 VERBOSE	PARSE	parsing message
-1398994643 VERBOSE	DB	getSignatory(...)
-1398994643 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398994643 INFO		Crypto	verifySig()
-1398994643 INFO		Crypto	verifySig() - FALSE
-1398994643 WARNING	DB	getSignatory() could not find signatory
-1398994643 VERBOSE	DB	isRevoked(...)
-1398994643 ERROR	Crypto	encodeKey passed null key
-1398994643 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
-1398994643 VERBOSE	PARSE	undecryptable message
-1398994643 INFO		Crypto	decrypt()
-1398994643 VERBOSE	PARSE	parsing message
-1398994643 VERBOSE	DB	getSignatory(...)
-1398994643 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398994643 INFO		Crypto	verifySig()
-1398994643 INFO		Crypto	verifySig() - FALSE
-1398994643 WARNING	DB	getSignatory() could not find signatory
-1398994643 VERBOSE	DB	isRevoked(...)
-1398994643 ERROR	Crypto	encodeKey passed null key
-1398994643 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
-1398994643 VERBOSE	PARSE	undecryptable message
-1398994643 INFO		Crypto	decrypt()
-1398994643 VERBOSE	PARSE	parsing message
-1398994643 VERBOSE	DB	getSignatory(...)
-1398994643 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398994643 INFO		Crypto	verifySig()
-1398994643 INFO		Crypto	verifySig() - FALSE
-1398994643 WARNING	DB	getSignatory() could not find signatory
-1398994643 VERBOSE	DB	isRevoked(...)
-1398994643 ERROR	Crypto	encodeKey passed null key
-1398994643 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
-1398994643 VERBOSE	PARSE	undecryptable message
-1398994643 INFO		Crypto	decrypt()
-1398994643 VERBOSE	PARSE	parsing message
-1398994643 VERBOSE	DB	getSignatory(...)
-1398994643 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398994643 INFO		Crypto	verifySig()
-1398994643 INFO		Crypto	verifySig() - FALSE
-1398994643 WARNING	DB	getSignatory() could not find signatory
-1398994643 VERBOSE	DB	isRevoked(...)
-1398994643 ERROR	Crypto	encodeKey passed null key
-1398994643 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
-1398994643 VERBOSE	PARSE	undecryptable message
-1398994643 INFO		Crypto	decrypt()
-1398994643 VERBOSE	PARSE	parsing message
-1398994643 VERBOSE	DB	getSignatory(...)
-1398994643 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398994643 INFO		Crypto	verifySig()
-1398994643 INFO		Crypto	verifySig() - FALSE
-1398994643 WARNING	DB	getSignatory() could not find signatory
-1398994643 VERBOSE	DB	isRevoked(...)
-1398994643 ERROR	Crypto	encodeKey passed null key
-1398994643 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
-1398994643 VERBOSE	PARSE	undecryptable message
-1398994643 INFO		Crypto	decrypt()
-1398994643 VERBOSE	PARSE	parsing message
-1398994643 VERBOSE	DB	getSignatory(...)
-1398994643 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398994643 INFO		Crypto	verifySig()
-1398994643 INFO		Crypto	verifySig() - FALSE
-1398994643 WARNING	DB	getSignatory() could not find signatory
-1398994643 VERBOSE	DB	isRevoked(...)
-1398994643 ERROR	Crypto	encodeKey passed null key
-1398994643 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
-1398994643 VERBOSE	DB	addClaim(louisprince)
-1398994643 VERBOSE	DB	execute("INSERT INTO tClaim (sig, name, claimTime) VALUES ('XQCQhXfNe3cmmxLaSq8Jwo0sMx3Yf5YSiujFshCR/er+rGisG0EqVDbHVsrK3ChH6z5VEXkzeOqzA5+J7bJcN0W1rwxDFzByXtktMgQKMXFuaeVXBTu1YKdG9fkV57x86yH3+C5Kd5gWGD5veZqpYzghIz/tlkSir4BMmOTskzA=', 'louisprince', '1398993792184');")
-1398994643 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398994643 VERBOSE	DB	validateClaims(...)
-1398994643 VERBOSE	DB	query("SELECT * FROM tClaim;")
-1398994643 VERBOSE	DB	Considering Claim for name: "luca"
-1398994643 VERBOSE	DB	                      time: "1398993306544"
-1398994643 VERBOSE	DB	                       sig: "kQsK2xnhtAWcBbrUa5xNMCAzFn6JtJsCuy7wiqTUJbBTQ/K4h9ITvHhbhaLDVpDrR3U8nStq+xeYErBN/FA+aivdQ2Ybn4Fp+y+PBqlE1ZDORGz11QsG1xV+XW7j5uMa75YMzGIOPQXY2ueMw+hR7HVDLj2KwZUYNZodFXyo9qg="
-1398994643 VERBOSE	DB	getSignatory(...)
-1398994643 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398994643 INFO		Crypto	verifySig()
-1398994643 INFO		Crypto	verifySig() - FALSE
-1398994643 WARNING	DB	getSignatory() could not find signatory
-1398994643 VERBOSE	DB	Considering Claim for name: "louisprince"
-1398994643 VERBOSE	DB	                      time: "1398993792184"
-1398994643 VERBOSE	DB	                       sig: "XQCQhXfNe3cmmxLaSq8Jwo0sMx3Yf5YSiujFshCR/er+rGisG0EqVDbHVsrK3ChH6z5VEXkzeOqzA5+J7bJcN0W1rwxDFzByXtktMgQKMXFuaeVXBTu1YKdG9fkV57x86yH3+C5Kd5gWGD5veZqpYzghIz/tlkSir4BMmOTskzA="
-1398994643 VERBOSE	DB	getSignatory(...)
-1398994643 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398994643 INFO		Crypto	verifySig()
-1398994643 INFO		Crypto	verifySig() - FALSE
-1398994643 WARNING	DB	getSignatory() could not find signatory
-1398994643 INFO		Crypto	decrypt()
-1398994643 VERBOSE	PARSE	parsing message
-1398994643 VERBOSE	DB	getSignatory(...)
-1398994643 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398994643 INFO		Crypto	verifySig()
-1398994643 INFO		Crypto	verifySig() - FALSE
-1398994643 WARNING	DB	getSignatory() could not find signatory
-1398994643 VERBOSE	DB	isRevoked(...)
-1398994643 ERROR	Crypto	encodeKey passed null key
-1398994643 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
-1398994643 VERBOSE	DB	addClaim(luke)
-1398994643 VERBOSE	DB	execute("INSERT INTO tClaim (sig, name, claimTime) VALUES ('v/cJS4smlHamhc4baJbglaDii1bzskrzDSUSr818P6wAuu7JGQC31PZ9FMPitUPVqDWVLQWhVHiMFiPSX2o0mS9y98iYa1oBD9xUSFEdgAQKGJ6/wyP3bgCBIVokdGw6L6l9rZQ4p3EcWXvK+/fEcPmQGrNbOEhYLiqFwVcAQOM=', 'luke', '1398993498639');")
-1398994643 INFO		NetCon	uploaded message: "ADDKEY\Dt36k5d+R9c74Y12fKyV+l02U0r4yW1JQwsV/z13lezShGv9rkv3Xt/0Wb95lp/6EzXuSavy51VxX2nop//SdBm4UnFMz75aI8bdycL2LM3x71UpC0RPqrKKPJTZWFUlpvHsSdbDDKSOAMPRU7YiCi13T3XC6E35/xeQqVbU0Vo=\MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCMO/BPjHAwl8fw1HuJYgCBG0W8zlxTWenxkb9ABX9ZCZIzJVEghZbAbsHMYJdr4tmHi2GfFy62wW6KdX2EpGg0Foza1BRxMnhfHpt2VEnCfxnYwqnhSqW9FoF70xL5FTKsT067NZYgnYJyBSPZlwCQ2pcWQ92UjEmvA0RV47KKxQIDAQAB\1398994639241"
-1398994643 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398994643 VERBOSE	DB	validateClaims(...)
-1398994643 VERBOSE	DB	query("SELECT * FROM tClaim;")
-1398994643 VERBOSE	DB	Considering Claim for name: "luca"
-1398994643 VERBOSE	DB	                      time: "1398993306544"
-1398994643 VERBOSE	DB	                       sig: "kQsK2xnhtAWcBbrUa5xNMCAzFn6JtJsCuy7wiqTUJbBTQ/K4h9ITvHhbhaLDVpDrR3U8nStq+xeYErBN/FA+aivdQ2Ybn4Fp+y+PBqlE1ZDORGz11QsG1xV+XW7j5uMa75YMzGIOPQXY2ueMw+hR7HVDLj2KwZUYNZodFXyo9qg="
-1398994643 VERBOSE	DB	getSignatory(...)
-1398994643 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398994643 INFO		Crypto	verifySig()
-1398994643 INFO		Crypto	verifySig() - FALSE
-1398994643 WARNING	DB	getSignatory() could not find signatory
-1398994643 VERBOSE	DB	Considering Claim for name: "louisprince"
-1398994643 VERBOSE	DB	                      time: "1398993792184"
-1398994643 VERBOSE	DB	                       sig: "XQCQhXfNe3cmmxLaSq8Jwo0sMx3Yf5YSiujFshCR/er+rGisG0EqVDbHVsrK3ChH6z5VEXkzeOqzA5+J7bJcN0W1rwxDFzByXtktMgQKMXFuaeVXBTu1YKdG9fkV57x86yH3+C5Kd5gWGD5veZqpYzghIz/tlkSir4BMmOTskzA="
-1398994643 VERBOSE	DB	getSignatory(...)
-1398994643 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398994643 INFO		Crypto	verifySig()
-1398994643 INFO		Crypto	verifySig() - FALSE
-1398994643 WARNING	DB	getSignatory() could not find signatory
-1398994643 VERBOSE	DB	Considering Claim for name: "luke"
-1398994643 VERBOSE	DB	                      time: "1398993498639"
-1398994643 VERBOSE	DB	                       sig: "v/cJS4smlHamhc4baJbglaDii1bzskrzDSUSr818P6wAuu7JGQC31PZ9FMPitUPVqDWVLQWhVHiMFiPSX2o0mS9y98iYa1oBD9xUSFEdgAQKGJ6/wyP3bgCBIVokdGw6L6l9rZQ4p3EcWXvK+/fEcPmQGrNbOEhYLiqFwVcAQOM="
-1398994643 VERBOSE	DB	getSignatory(...)
-1398994643 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398994643 INFO		Crypto	verifySig()
-1398994643 INFO		Crypto	verifySig() - FALSE
-1398994643 WARNING	DB	getSignatory() could not find signatory
-1398994643 INFO		Crypto	decrypt()
-1398994643 VERBOSE	PARSE	parsing message
-1398994643 VERBOSE	DB	getSignatory(...)
-1398994643 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398994643 INFO		Crypto	verifySig()
-1398994643 INFO		Crypto	verifySig() - FALSE
-1398994643 WARNING	DB	getSignatory() could not find signatory
-1398994643 VERBOSE	DB	isRevoked(...)
-1398994643 ERROR	Crypto	encodeKey passed null key
-1398994643 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
-1398994643 VERBOSE	PARSE	undecryptable message
-1398994643 INFO		Crypto	decrypt()
-1398994643 VERBOSE	PARSE	parsing message
-1398994643 VERBOSE	DB	getSignatory(...)
-1398994643 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398994643 INFO		Crypto	verifySig()
-1398994643 INFO		Crypto	verifySig() - FALSE
-1398994643 WARNING	DB	getSignatory() could not find signatory
-1398994643 VERBOSE	DB	isRevoked(...)
-1398994643 ERROR	Crypto	encodeKey passed null key
-1398994643 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
-1398994643 VERBOSE	PARSE	undecryptable message
-1398994643 INFO		Crypto	decrypt()
-1398994643 VERBOSE	TnImpl	getMyKey()
-1398994643 VERBOSE	PARSE	parsing message
-1398994643 VERBOSE	DB	getSignatory(...)
-1398994643 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398994643 INFO		Crypto	verifySig()
-1398994643 INFO		Crypto	verifySig() - FALSE
-1398994643 WARNING	DB	getSignatory() could not find signatory
-1398994643 VERBOSE	DB	isRevoked(...)
-1398994643 ERROR	Crypto	encodeKey passed null key
-1398994643 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
-1398994643 VERBOSE	PARSE	undecryptable message
-1398994643 VERBOSE	TnImpl	getMyKey()
-1398994643 VERBOSE	TnImpl	getCategories()
-1398994643 VERBOSE	DB	getCategories()
-1398994643 VERBOSE	DB	query("SELECT * FROM tCategory;")
-1398994643 VERBOSE	DB	getCategories() returning 0 categories
-1398994643 VERBOSE	TnImpl	getWallPosts(...) ENTERING
-1398994643 VERBOSE	DB	getWallPost(...)
-1398994643 VERBOSE	DB	query("SELECT sig FROM tPost WHERE recieverKey = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCMO/BPjHAwl8fw1HuJYgCBG0W8zlxTWenxkb9ABX9ZCZIzJVEghZbAbsHMYJdr4tmHi2GfFy62wW6KdX2EpGg0Foza1BRxMnhfHpt2VEnCfxnYwqnhSqW9FoF70xL5FTKsT067NZYgnYJyBSPZlwCQ2pcWQ92UjEmvA0RV47KKxQIDAQAB';")
-1398994643 VERBOSE	TnImpl	getWallPosts(...) RETURNING
-1398994643 VERBOSE	DB	timeMostRecentWallPost(...)
-1398994643 VERBOSE	DB	query("SELECT maxtime FROM tPost INNER JOIN (SELECT MAX(time) maxtime, recieverKey FROM tPost GROUP BY recieverKey) AS temp ON tPost.recieverKey = temp.recieverKey AND tPost.time = temp.maxtime WHERE tPost.recieverKey = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCMO/BPjHAwl8fw1HuJYgCBG0W8zlxTWenxkb9ABX9ZCZIzJVEghZbAbsHMYJdr4tmHi2GfFy62wW6KdX2EpGg0Foza1BRxMnhfHpt2VEnCfxnYwqnhSqW9FoF70xL5FTKsT067NZYgnYJyBSPZlwCQ2pcWQ92UjEmvA0RV47KKxQIDAQAB';")
-1398994644 INFO		Crypto	decrypt()
-1398994644 VERBOSE	PARSE	parsing message
-1398994644 VERBOSE	DB	getSignatory(...)
-1398994644 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398994644 INFO		Crypto	verifySig()
-1398994644 INFO		Crypto	verifySig() - TRUE
-1398994644 VERBOSE	DB	isRevoked(...)
-1398994644 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCMO/BPjHAwl8fw1HuJYgCBG0W8zlxTWenxkb9ABX9ZCZIzJVEghZbAbsHMYJdr4tmHi2GfFy62wW6KdX2EpGg0Foza1BRxMnhfHpt2VEnCfxnYwqnhSqW9FoF70xL5FTKsT067NZYgnYJyBSPZlwCQ2pcWQ92UjEmvA0RV47KKxQIDAQAB';")
-1398994644 VERBOSE	DB	addKey(...)
-1398994644 VERBOSE	DB	execute("INSERT INTO tUser (key) VALUES ('MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCMO/BPjHAwl8fw1HuJYgCBG0W8zlxTWenxkb9ABX9ZCZIzJVEghZbAbsHMYJdr4tmHi2GfFy62wW6KdX2EpGg0Foza1BRxMnhfHpt2VEnCfxnYwqnhSqW9FoF70xL5FTKsT067NZYgnYJyBSPZlwCQ2pcWQ92UjEmvA0RV47KKxQIDAQAB');")
-1398994644 ERROR	DB	SQLException: java.sql.SQLException: column key is not unique
-1398994644 ERROR	DB	SQLException: java.sql.SQLException: column key is not unique
-1398994648 VERBOSE	DB	timeMostRecentWallPost(...)
-1398994648 VERBOSE	DB	query("SELECT maxtime FROM tPost INNER JOIN (SELECT MAX(time) maxtime, recieverKey FROM tPost GROUP BY recieverKey) AS temp ON tPost.recieverKey = temp.recieverKey AND tPost.time = temp.maxtime WHERE tPost.recieverKey = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCMO/BPjHAwl8fw1HuJYgCBG0W8zlxTWenxkb9ABX9ZCZIzJVEghZbAbsHMYJdr4tmHi2GfFy62wW6KdX2EpGg0Foza1BRxMnhfHpt2VEnCfxnYwqnhSqW9FoF70xL5FTKsT067NZYgnYJyBSPZlwCQ2pcWQ92UjEmvA0RV47KKxQIDAQAB';")
-1398994653 VERBOSE	DB	timeMostRecentWallPost(...)
-1398994653 VERBOSE	DB	query("SELECT maxtime FROM tPost INNER JOIN (SELECT MAX(time) maxtime, recieverKey FROM tPost GROUP BY recieverKey) AS temp ON tPost.recieverKey = temp.recieverKey AND tPost.time = temp.maxtime WHERE tPost.recieverKey = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCMO/BPjHAwl8fw1HuJYgCBG0W8zlxTWenxkb9ABX9ZCZIzJVEghZbAbsHMYJdr4tmHi2GfFy62wW6KdX2EpGg0Foza1BRxMnhfHpt2VEnCfxnYwqnhSqW9FoF70xL5FTKsT067NZYgnYJyBSPZlwCQ2pcWQ92UjEmvA0RV47KKxQIDAQAB';")
-1398994658 VERBOSE	DB	timeMostRecentWallPost(...)
-1398994658 VERBOSE	DB	query("SELECT maxtime FROM tPost INNER JOIN (SELECT MAX(time) maxtime, recieverKey FROM tPost GROUP BY recieverKey) AS temp ON tPost.recieverKey = temp.recieverKey AND tPost.time = temp.maxtime WHERE tPost.recieverKey = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCMO/BPjHAwl8fw1HuJYgCBG0W8zlxTWenxkb9ABX9ZCZIzJVEghZbAbsHMYJdr4tmHi2GfFy62wW6KdX2EpGg0Foza1BRxMnhfHpt2VEnCfxnYwqnhSqW9FoF70xL5FTKsT067NZYgnYJyBSPZlwCQ2pcWQ92UjEmvA0RV47KKxQIDAQAB';")
-1398994664 VERBOSE	DB	timeMostRecentWallPost(...)
-1398994664 VERBOSE	DB	query("SELECT maxtime FROM tPost INNER JOIN (SELECT MAX(time) maxtime, recieverKey FROM tPost GROUP BY recieverKey) AS temp ON tPost.recieverKey = temp.recieverKey AND tPost.time = temp.maxtime WHERE tPost.recieverKey = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCMO/BPjHAwl8fw1HuJYgCBG0W8zlxTWenxkb9ABX9ZCZIzJVEghZbAbsHMYJdr4tmHi2GfFy62wW6KdX2EpGg0Foza1BRxMnhfHpt2VEnCfxnYwqnhSqW9FoF70xL5FTKsT067NZYgnYJyBSPZlwCQ2pcWQ92UjEmvA0RV47KKxQIDAQAB';")
-1398994669 VERBOSE	DB	timeMostRecentWallPost(...)
-1398994669 VERBOSE	DB	query("SELECT maxtime FROM tPost INNER JOIN (SELECT MAX(time) maxtime, recieverKey FROM tPost GROUP BY recieverKey) AS temp ON tPost.recieverKey = temp.recieverKey AND tPost.time = temp.maxtime WHERE tPost.recieverKey = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCMO/BPjHAwl8fw1HuJYgCBG0W8zlxTWenxkb9ABX9ZCZIzJVEghZbAbsHMYJdr4tmHi2GfFy62wW6KdX2EpGg0Foza1BRxMnhfHpt2VEnCfxnYwqnhSqW9FoF70xL5FTKsT067NZYgnYJyBSPZlwCQ2pcWQ92UjEmvA0RV47KKxQIDAQAB';")
-1398994674 VERBOSE	DB	timeMostRecentWallPost(...)
-1398994674 VERBOSE	DB	query("SELECT maxtime FROM tPost INNER JOIN (SELECT MAX(time) maxtime, recieverKey FROM tPost GROUP BY recieverKey) AS temp ON tPost.recieverKey = temp.recieverKey AND tPost.time = temp.maxtime WHERE tPost.recieverKey = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCMO/BPjHAwl8fw1HuJYgCBG0W8zlxTWenxkb9ABX9ZCZIzJVEghZbAbsHMYJdr4tmHi2GfFy62wW6KdX2EpGg0Foza1BRxMnhfHpt2VEnCfxnYwqnhSqW9FoF70xL5FTKsT067NZYgnYJyBSPZlwCQ2pcWQ92UjEmvA0RV47KKxQIDAQAB';")
-1398994679 VERBOSE	DB	timeMostRecentWallPost(...)
-1398994679 VERBOSE	DB	query("SELECT maxtime FROM tPost INNER JOIN (SELECT MAX(time) maxtime, recieverKey FROM tPost GROUP BY recieverKey) AS temp ON tPost.recieverKey = temp.recieverKey AND tPost.time = temp.maxtime WHERE tPost.recieverKey = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCMO/BPjHAwl8fw1HuJYgCBG0W8zlxTWenxkb9ABX9ZCZIzJVEghZbAbsHMYJdr4tmHi2GfFy62wW6KdX2EpGg0Foza1BRxMnhfHpt2VEnCfxnYwqnhSqW9FoF70xL5FTKsT067NZYgnYJyBSPZlwCQ2pcWQ92UjEmvA0RV47KKxQIDAQAB';")
-1398994684 VERBOSE	DB	timeMostRecentWallPost(...)
-1398994684 VERBOSE	DB	query("SELECT maxtime FROM tPost INNER JOIN (SELECT MAX(time) maxtime, recieverKey FROM tPost GROUP BY recieverKey) AS temp ON tPost.recieverKey = temp.recieverKey AND tPost.time = temp.maxtime WHERE tPost.recieverKey = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCMO/BPjHAwl8fw1HuJYgCBG0W8zlxTWenxkb9ABX9ZCZIzJVEghZbAbsHMYJdr4tmHi2GfFy62wW6KdX2EpGg0Foza1BRxMnhfHpt2VEnCfxnYwqnhSqW9FoF70xL5FTKsT067NZYgnYJyBSPZlwCQ2pcWQ92UjEmvA0RV47KKxQIDAQAB';")
-1398994689 VERBOSE	DB	timeMostRecentWallPost(...)
-1398994689 VERBOSE	DB	query("SELECT maxtime FROM tPost INNER JOIN (SELECT MAX(time) maxtime, recieverKey FROM tPost GROUP BY recieverKey) AS temp ON tPost.recieverKey = temp.recieverKey AND tPost.time = temp.maxtime WHERE tPost.recieverKey = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCMO/BPjHAwl8fw1HuJYgCBG0W8zlxTWenxkb9ABX9ZCZIzJVEghZbAbsHMYJdr4tmHi2GfFy62wW6KdX2EpGg0Foza1BRxMnhfHpt2VEnCfxnYwqnhSqW9FoF70xL5FTKsT067NZYgnYJyBSPZlwCQ2pcWQ92UjEmvA0RV47KKxQIDAQAB';")
-1398994694 VERBOSE	DB	timeMostRecentWallPost(...)
-1398994694 VERBOSE	DB	query("SELECT maxtime FROM tPost INNER JOIN (SELECT MAX(time) maxtime, recieverKey FROM tPost GROUP BY recieverKey) AS temp ON tPost.recieverKey = temp.recieverKey AND tPost.time = temp.maxtime WHERE tPost.recieverKey = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCMO/BPjHAwl8fw1HuJYgCBG0W8zlxTWenxkb9ABX9ZCZIzJVEghZbAbsHMYJdr4tmHi2GfFy62wW6KdX2EpGg0Foza1BRxMnhfHpt2VEnCfxnYwqnhSqW9FoF70xL5FTKsT067NZYgnYJyBSPZlwCQ2pcWQ92UjEmvA0RV47KKxQIDAQAB';")
-1398994699 VERBOSE	DB	timeMostRecentWallPost(...)
-1398994699 VERBOSE	DB	query("SELECT maxtime FROM tPost INNER JOIN (SELECT MAX(time) maxtime, recieverKey FROM tPost GROUP BY recieverKey) AS temp ON tPost.recieverKey = temp.recieverKey AND tPost.time = temp.maxtime WHERE tPost.recieverKey = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCMO/BPjHAwl8fw1HuJYgCBG0W8zlxTWenxkb9ABX9ZCZIzJVEghZbAbsHMYJdr4tmHi2GfFy62wW6KdX2EpGg0Foza1BRxMnhfHpt2VEnCfxnYwqnhSqW9FoF70xL5FTKsT067NZYgnYJyBSPZlwCQ2pcWQ92UjEmvA0RV47KKxQIDAQAB';")
-1398994704 VERBOSE	DB	timeMostRecentWallPost(...)
-1398994704 VERBOSE	DB	query("SELECT maxtime FROM tPost INNER JOIN (SELECT MAX(time) maxtime, recieverKey FROM tPost GROUP BY recieverKey) AS temp ON tPost.recieverKey = temp.recieverKey AND tPost.time = temp.maxtime WHERE tPost.recieverKey = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCMO/BPjHAwl8fw1HuJYgCBG0W8zlxTWenxkb9ABX9ZCZIzJVEghZbAbsHMYJdr4tmHi2GfFy62wW6KdX2EpGg0Foza1BRxMnhfHpt2VEnCfxnYwqnhSqW9FoF70xL5FTKsT067NZYgnYJyBSPZlwCQ2pcWQ92UjEmvA0RV47KKxQIDAQAB';")
-1398994709 VERBOSE	DB	timeMostRecentWallPost(...)
-1398994709 VERBOSE	DB	query("SELECT maxtime FROM tPost INNER JOIN (SELECT MAX(time) maxtime, recieverKey FROM tPost GROUP BY recieverKey) AS temp ON tPost.recieverKey = temp.recieverKey AND tPost.time = temp.maxtime WHERE tPost.recieverKey = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCMO/BPjHAwl8fw1HuJYgCBG0W8zlxTWenxkb9ABX9ZCZIzJVEghZbAbsHMYJdr4tmHi2GfFy62wW6KdX2EpGg0Foza1BRxMnhfHpt2VEnCfxnYwqnhSqW9FoF70xL5FTKsT067NZYgnYJyBSPZlwCQ2pcWQ92UjEmvA0RV47KKxQIDAQAB';")
-1398994711 INFO		Crypto	decrypt()
-1398994711 VERBOSE	PARSE	parsing message
-1398994711 VERBOSE	DB	getSignatory(...)
-1398994711 VERBOSE	DB	query("SELECT key FROM tUser;")
-1398994711 INFO		Crypto	verifySig()
-1398994711 INFO		Crypto	verifySig() - FALSE
-1398994711 WARNING	DB	getSignatory() could not find signatory
-1398994711 VERBOSE	DB	isRevoked(...)
-1398994711 ERROR	Crypto	encodeKey passed null key
-1398994711 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
-1398994711 VERBOSE	PARSE	undecryptable message
-1398994714 VERBOSE	DB	timeMostRecentWallPost(...)
-1398994714 VERBOSE	DB	query("SELECT maxtime FROM tPost INNER JOIN (SELECT MAX(time) maxtime, recieverKey FROM tPost GROUP BY recieverKey) AS temp ON tPost.recieverKey = temp.recieverKey AND tPost.time = temp.maxtime WHERE tPost.recieverKey = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCMO/BPjHAwl8fw1HuJYgCBG0W8zlxTWenxkb9ABX9ZCZIzJVEghZbAbsHMYJdr4tmHi2GfFy62wW6KdX2EpGg0Foza1BRxMnhfHpt2VEnCfxnYwqnhSqW9FoF70xL5FTKsT067NZYgnYJyBSPZlwCQ2pcWQ92UjEmvA0RV47KKxQIDAQAB';")
-1398994719 VERBOSE	DB	timeMostRecentWallPost(...)
-1398994719 VERBOSE	DB	query("SELECT maxtime FROM tPost INNER JOIN (SELECT MAX(time) maxtime, recieverKey FROM tPost GROUP BY recieverKey) AS temp ON tPost.recieverKey = temp.recieverKey AND tPost.time = temp.maxtime WHERE tPost.recieverKey = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCMO/BPjHAwl8fw1HuJYgCBG0W8zlxTWenxkb9ABX9ZCZIzJVEghZbAbsHMYJdr4tmHi2GfFy62wW6KdX2EpGg0Foza1BRxMnhfHpt2VEnCfxnYwqnhSqW9FoF70xL5FTKsT067NZYgnYJyBSPZlwCQ2pcWQ92UjEmvA0RV47KKxQIDAQAB';")
-1398994724 VERBOSE	DB	timeMostRecentWallPost(...)
-1398994724 VERBOSE	DB	query("SELECT maxtime FROM tPost INNER JOIN (SELECT MAX(time) maxtime, recieverKey FROM tPost GROUP BY recieverKey) AS temp ON tPost.recieverKey = temp.recieverKey AND tPost.time = temp.maxtime WHERE tPost.recieverKey = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCMO/BPjHAwl8fw1HuJYgCBG0W8zlxTWenxkb9ABX9ZCZIzJVEghZbAbsHMYJdr4tmHi2GfFy62wW6KdX2EpGg0Foza1BRxMnhfHpt2VEnCfxnYwqnhSqW9FoF70xL5FTKsT067NZYgnYJyBSPZlwCQ2pcWQ92UjEmvA0RV47KKxQIDAQAB';")
-1398994729 VERBOSE	DB	timeMostRecentWallPost(...)
-1398994729 VERBOSE	DB	query("SELECT maxtime FROM tPost INNER JOIN (SELECT MAX(time) maxtime, recieverKey FROM tPost GROUP BY recieverKey) AS temp ON tPost.recieverKey = temp.recieverKey AND tPost.time = temp.maxtime WHERE tPost.recieverKey = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCMO/BPjHAwl8fw1HuJYgCBG0W8zlxTWenxkb9ABX9ZCZIzJVEghZbAbsHMYJdr4tmHi2GfFy62wW6KdX2EpGg0Foza1BRxMnhfHpt2VEnCfxnYwqnhSqW9FoF70xL5FTKsT067NZYgnYJyBSPZlwCQ2pcWQ92UjEmvA0RV47KKxQIDAQAB';")
-1398994734 VERBOSE	DB	timeMostRecentWallPost(...)
-1398994734 VERBOSE	DB	query("SELECT maxtime FROM tPost INNER JOIN (SELECT MAX(time) maxtime, recieverKey FROM tPost GROUP BY recieverKey) AS temp ON tPost.recieverKey = temp.recieverKey AND tPost.time = temp.maxtime WHERE tPost.recieverKey = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCMO/BPjHAwl8fw1HuJYgCBG0W8zlxTWenxkb9ABX9ZCZIzJVEghZbAbsHMYJdr4tmHi2GfFy62wW6KdX2EpGg0Foza1BRxMnhfHpt2VEnCfxnYwqnhSqW9FoF70xL5FTKsT067NZYgnYJyBSPZlwCQ2pcWQ92UjEmvA0RV47KKxQIDAQAB';")
-1398994739 VERBOSE	DB	timeMostRecentWallPost(...)
-1398994739 VERBOSE	DB	query("SELECT maxtime FROM tPost INNER JOIN (SELECT MAX(time) maxtime, recieverKey FROM tPost GROUP BY recieverKey) AS temp ON tPost.recieverKey = temp.recieverKey AND tPost.time = temp.maxtime WHERE tPost.recieverKey = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCMO/BPjHAwl8fw1HuJYgCBG0W8zlxTWenxkb9ABX9ZCZIzJVEghZbAbsHMYJdr4tmHi2GfFy62wW6KdX2EpGg0Foza1BRxMnhfHpt2VEnCfxnYwqnhSqW9FoF70xL5FTKsT067NZYgnYJyBSPZlwCQ2pcWQ92UjEmvA0RV47KKxQIDAQAB';")
-1398994744 VERBOSE	DB	timeMostRecentWallPost(...)
-1398994744 VERBOSE	DB	query("SELECT maxtime FROM tPost INNER JOIN (SELECT MAX(time) maxtime, recieverKey FROM tPost GROUP BY recieverKey) AS temp ON tPost.recieverKey = temp.recieverKey AND tPost.time = temp.maxtime WHERE tPost.recieverKey = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCMO/BPjHAwl8fw1HuJYgCBG0W8zlxTWenxkb9ABX9ZCZIzJVEghZbAbsHMYJdr4tmHi2GfFy62wW6KdX2EpGg0Foza1BRxMnhfHpt2VEnCfxnYwqnhSqW9FoF70xL5FTKsT067NZYgnYJyBSPZlwCQ2pcWQ92UjEmvA0RV47KKxQIDAQAB';")
-1398994749 VERBOSE	DB	timeMostRecentWallPost(...)
-1398994749 VERBOSE	DB	query("SELECT maxtime FROM tPost INNER JOIN (SELECT MAX(time) maxtime, recieverKey FROM tPost GROUP BY recieverKey) AS temp ON tPost.recieverKey = temp.recieverKey AND tPost.time = temp.maxtime WHERE tPost.recieverKey = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCMO/BPjHAwl8fw1HuJYgCBG0W8zlxTWenxkb9ABX9ZCZIzJVEghZbAbsHMYJdr4tmHi2GfFy62wW6KdX2EpGg0Foza1BRxMnhfHpt2VEnCfxnYwqnhSqW9FoF70xL5FTKsT067NZYgnYJyBSPZlwCQ2pcWQ92UjEmvA0RV47KKxQIDAQAB';")
-1398994754 VERBOSE	DB	timeMostRecentWallPost(...)
-1398994754 VERBOSE	DB	query("SELECT maxtime FROM tPost INNER JOIN (SELECT MAX(time) maxtime, recieverKey FROM tPost GROUP BY recieverKey) AS temp ON tPost.recieverKey = temp.recieverKey AND tPost.time = temp.maxtime WHERE tPost.recieverKey = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCMO/BPjHAwl8fw1HuJYgCBG0W8zlxTWenxkb9ABX9ZCZIzJVEghZbAbsHMYJdr4tmHi2GfFy62wW6KdX2EpGg0Foza1BRxMnhfHpt2VEnCfxnYwqnhSqW9FoF70xL5FTKsT067NZYgnYJyBSPZlwCQ2pcWQ92UjEmvA0RV47KKxQIDAQAB';")
-1398994759 VERBOSE	DB	timeMostRecentWallPost(...)
-1398994759 VERBOSE	DB	query("SELECT maxtime FROM tPost INNER JOIN (SELECT MAX(time) maxtime, recieverKey FROM tPost GROUP BY recieverKey) AS temp ON tPost.recieverKey = temp.recieverKey AND tPost.time = temp.maxtime WHERE tPost.recieverKey = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCMO/BPjHAwl8fw1HuJYgCBG0W8zlxTWenxkb9ABX9ZCZIzJVEghZbAbsHMYJdr4tmHi2GfFy62wW6KdX2EpGg0Foza1BRxMnhfHpt2VEnCfxnYwqnhSqW9FoF70xL5FTKsT067NZYgnYJyBSPZlwCQ2pcWQ92UjEmvA0RV47KKxQIDAQAB';")
-1398994764 VERBOSE	DB	timeMostRecentWallPost(...)
-1398994764 VERBOSE	DB	query("SELECT maxtime FROM tPost INNER JOIN (SELECT MAX(time) maxtime, recieverKey FROM tPost GROUP BY recieverKey) AS temp ON tPost.recieverKey = temp.recieverKey AND tPost.time = temp.maxtime WHERE tPost.recieverKey = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCMO/BPjHAwl8fw1HuJYgCBG0W8zlxTWenxkb9ABX9ZCZIzJVEghZbAbsHMYJdr4tmHi2GfFy62wW6KdX2EpGg0Foza1BRxMnhfHpt2VEnCfxnYwqnhSqW9FoF70xL5FTKsT067NZYgnYJyBSPZlwCQ2pcWQ92UjEmvA0RV47KKxQIDAQAB';")
-1398994764 INFO		TNImpl	stopTN()
-1398994764 INFO		NetCon	close()
-1398994764 INFO		NetCon	Saved lastRead to disk
-1398994764 INFO		DB	Disconnecting from database
-1398994764 VERBOSE	Crypto	encryptDB(a)
-===== Turtlenet closed  at Fri May 02 02:39:24 BST 2014=====
+===== Turtlenet started at Fri May 02 03:22:38 BST 2014=====
+1398997358 INFO		TnImpl	Registering "ppppp" with PW "p"
+1398997358 INFO		TNImpl	startTN(p)
+1398997358 CRAP		TnImpl	WAITING FOR DB
+1398997358 INFO		Crypto	Generating keys
+1398997358 INFO		DB	Creating database
+1398997358 INFO		DB	Connecting to database
+1398997358 VERBOSE	DB	execute("CREATE TABLE tConvos (convoID     TEXT,timeCreated TEXT,PRIMARY KEY (convoID));")
+1398997358 VERBOSE	DB	execute("CREATE TABLE tConvoKeys (pk      INTEGER PRIMARY KEY AUTOINCREMENT,convoID TEXT,key     TEXT);")
+1398997358 VERBOSE	DB	execute("CREATE TABLE tConvoMessages (pk         INTEGER PRIMARY KEY AUTOINCREMENT,convoID    TEXT,sendersKey TEXT,msgText    TEXT,time       TEXT);")
+1398997359 VERBOSE	DB	execute("CREATE TABLE tPost (sig         TEXT,msgText     TEXT,time        TEXT,recieverKey TEXT,sendersKey  TEXT,PRIMARY KEY (sig));")
+1398997359 VERBOSE	DB	execute("CREATE TABLE tPostVisibleTo (pk      INTEGER PRIMARY KEY AUTOINCREMENT,postSig TEXT,key     TEXT);")
+1398997359 CRAP		TnImpl	WAITING FOR DB
+1398997359 VERBOSE	DB	execute("CREATE TABLE tUser (key      TEXT,username TEXT,knowName INT,email    TEXT,name     TEXT,gender   TEXT,birthday TEXT,PRIMARY KEY (key));")
+1398997359 VERBOSE	DB	execute("CREATE TABLE tCategory (catID       TEXT,canSeePDATA INT,PRIMARY KEY (catID));")
+1398997359 VERBOSE	DB	execute("CREATE TABLE tCategoryMembers (pk      INTEGER PRIMARY KEY AUTOINCREMENT,catID   TEXT,userKey TEXT);")
+1398997359 VERBOSE	DB	execute("CREATE TABLE tEvent (sig          TEXT,startTime    TEXT,endTime      TEXT,creatorKey   TEXT,accepted     INT,name         TEXT,creationTime TEXT,PRIMARY KEY (sig));")
+1398997360 VERBOSE	DB	execute("CREATE TABLE tClaim (sig       TEXT,name      TEXT,claimTime TEXT,PRIMARY KEY (sig));")
+1398997360 CRAP		TnImpl	WAITING FOR DB
+1398997360 VERBOSE	DB	execute("CREATE TABLE tLike (pk       INTEGER PRIMARY KEY AUTOINCREMENT,likerKey TEXT,parent   TEXT);")
+1398997360 VERBOSE	DB	execute("CREATE TABLE tComment (sig          TEXT,msgText      TEXT,senderKey    TEXT,parent       TEXT,creationTime TEXT,PRIMARY KEY (sig));")
+1398997360 VERBOSE	DB	execute("CREATE TABLE tRevocations (key          TEXT,sig          TEXT,timeOfLeak   TEXT,creationTime TEXT,PRIMARY KEY (sig));")
+1398997360 INFO		NetCon	NetworkConnection started
+1398997361 INFO		TnImpl	Started TN...continuing registration
+1398997361 VERBOSE	TnImpl	claimUsername(ppppp)
+1398997361 INFO		Crypto	sign()
+1398997361 INFO		Crypto	sign()
+1398997361 VERBOSE	DB	addClaim(ppppp)
+1398997361 VERBOSE	DB	execute("INSERT INTO tClaim (sig, name, claimTime) VALUES ('GkCqwU/tzqKwXqLuhEU+PARDyB2UY5/Ff+lE2ZCNHo96FfoVWh5kerA1+NIphN296pGhOGOykIUZcwrJZOK3928UC4nCu/L8SMabEPNJY9V9vU5KyB5a4Th5lcMNzRpfMEvp22tBU4tXpdJArzMTFtJVHIRG03C8ckDcKH0Y6RE=', 'ppppp', '1398997361259');")
+1398997361 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997362 INFO		Crypto	sign()
+1398997362 INFO		Crypto	sign()
+1398997363 INFO		NetCon	Claimed name: ppppp
+1398997363 INFO		NetCon		name: ppppp
+1398997363 INFO		NetCon		time: 1398997251525
+1398997363 INFO		NetCon		 sig: DsGnLH7hATnPRd8h8tXBF36wpivIghCTsChB7/s9/Xg1cnZI8z11eLE7OrffJX6cSiRUpBIMoxa4jJ/gCsKbLr2RSsMiXaLPgVV9B9i+FQxAV8HFFTify71uS+XJsEXK1CEYtIEKaOVESYsHGCQPhP80cVOsXjyELdhYFeN+O7s=
+1398997363 VERBOSE	TnImpl	addKey(...)
+1398997363 INFO		Crypto	sign()
+1398997363 INFO		Crypto	sign()
+1398997363 VERBOSE	DB	addKey(...)
+1398997363 VERBOSE	DB	execute("INSERT INTO tUser (key) VALUES ('MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCQ//YWf1WLW9UdwVBIrUbbe2VdeMuQ+mFJpXrnjAIgn1Ao4XCZqXsnH8unKPFiiIiLngFs7MBKxGb2NIXP80aqn92lre34Po7BRaN0c2/1h/vlIVHTaxHxTH+cPlPIq7IqMjI9nUj6zjRMX/3is0j3NT/hbQSC+ydj9Mi5iebE8QIDAQAB');")
+1398997363 VERBOSE	DB	validateClaims(...)
+1398997363 VERBOSE	DB	query("SELECT * FROM tClaim;")
+1398997363 VERBOSE	DB	Considering Claim for name: "ppppp"
+1398997363 VERBOSE	DB	                      time: "1398997361259"
+1398997363 VERBOSE	DB	                       sig: "GkCqwU/tzqKwXqLuhEU+PARDyB2UY5/Ff+lE2ZCNHo96FfoVWh5kerA1+NIphN296pGhOGOykIUZcwrJZOK3928UC4nCu/L8SMabEPNJY9V9vU5KyB5a4Th5lcMNzRpfMEvp22tBU4tXpdJArzMTFtJVHIRG03C8ckDcKH0Y6RE="
+1398997363 VERBOSE	DB	getSignatory(...)
+1398997363 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997363 INFO		Crypto	verifySig()
+1398997363 INFO		Crypto	verifySig() - TRUE
+1398997363 VERBOSE	DB	execute("UPDATE tUser SET username = 'ppppp' WHERE key = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCQ//YWf1WLW9UdwVBIrUbbe2VdeMuQ+mFJpXrnjAIgn1Ao4XCZqXsnH8unKPFiiIiLngFs7MBKxGb2NIXP80aqn92lre34Po7BRaN0c2/1h/vlIVHTaxHxTH+cPlPIq7IqMjI9nUj6zjRMX/3is0j3NT/hbQSC+ydj9Mi5iebE8QIDAQAB';")
+1398997363 VERBOSE	DB	execute("DELETE FROM tClaim WHERE sig = 'GkCqwU/tzqKwXqLuhEU+PARDyB2UY5/Ff+lE2ZCNHo96FfoVWh5kerA1+NIphN296pGhOGOykIUZcwrJZOK3928UC4nCu/L8SMabEPNJY9V9vU5KyB5a4Th5lcMNzRpfMEvp22tBU4tXpdJArzMTFtJVHIRG03C8ckDcKH0Y6RE=';")
+1398997363 INFO		DB	Claim for ppppp verified
+1398997363 VERBOSE	DB	calcRevocationKeys(...)
+1398997363 VERBOSE	DB	query("SELECT * FROM tRevocations;")
+1398997363 INFO		Crypto	encrypt()
+1398997363 INFO		Crypto	decrypt()
+1398997363 VERBOSE	PARSE	parsing message
+1398997363 VERBOSE	DB	getSignatory(...)
+1398997363 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997363 INFO		Crypto	verifySig()
+1398997363 INFO		Crypto	verifySig() - FALSE
+1398997363 WARNING	DB	getSignatory() could not find signatory
+1398997363 VERBOSE	DB	isRevoked(...)
+1398997363 ERROR	Crypto	encodeKey passed null key
+1398997363 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
+1398997363 VERBOSE	PARSE	undecryptable message
+1398997363 INFO		Crypto	decrypt()
+1398997363 VERBOSE	PARSE	parsing message
+1398997363 VERBOSE	DB	getSignatory(...)
+1398997363 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997363 INFO		Crypto	verifySig()
+1398997363 INFO		Crypto	verifySig() - FALSE
+1398997363 WARNING	DB	getSignatory() could not find signatory
+1398997363 VERBOSE	DB	isRevoked(...)
+1398997363 ERROR	Crypto	encodeKey passed null key
+1398997363 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
+1398997363 VERBOSE	PARSE	undecryptable message
+1398997363 INFO		Crypto	decrypt()
+1398997363 VERBOSE	PARSE	parsing message
+1398997363 VERBOSE	DB	getSignatory(...)
+1398997363 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997363 INFO		Crypto	verifySig()
+1398997363 INFO		Crypto	verifySig() - FALSE
+1398997363 WARNING	DB	getSignatory() could not find signatory
+1398997363 VERBOSE	DB	isRevoked(...)
+1398997363 ERROR	Crypto	encodeKey passed null key
+1398997363 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
+1398997363 VERBOSE	PARSE	undecryptable message
+1398997363 INFO		Crypto	decrypt()
+1398997363 VERBOSE	PARSE	parsing message
+1398997363 VERBOSE	DB	getSignatory(...)
+1398997363 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997363 INFO		Crypto	verifySig()
+1398997363 INFO		Crypto	verifySig() - FALSE
+1398997363 WARNING	DB	getSignatory() could not find signatory
+1398997363 VERBOSE	DB	isRevoked(...)
+1398997363 ERROR	Crypto	encodeKey passed null key
+1398997363 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
+1398997363 VERBOSE	PARSE	undecryptable message
+1398997363 INFO		Crypto	decrypt()
+1398997363 VERBOSE	PARSE	parsing message
+1398997363 VERBOSE	DB	getSignatory(...)
+1398997363 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997363 INFO		Crypto	verifySig()
+1398997363 INFO		Crypto	verifySig() - FALSE
+1398997363 WARNING	DB	getSignatory() could not find signatory
+1398997363 VERBOSE	DB	isRevoked(...)
+1398997363 ERROR	Crypto	encodeKey passed null key
+1398997363 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
+1398997363 VERBOSE	PARSE	undecryptable message
+1398997363 INFO		Crypto	decrypt()
+1398997363 VERBOSE	PARSE	parsing message
+1398997363 VERBOSE	DB	getSignatory(...)
+1398997363 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997363 INFO		Crypto	verifySig()
+1398997363 INFO		Crypto	verifySig() - FALSE
+1398997363 WARNING	DB	getSignatory() could not find signatory
+1398997363 VERBOSE	DB	isRevoked(...)
+1398997363 ERROR	Crypto	encodeKey passed null key
+1398997363 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
+1398997363 VERBOSE	PARSE	undecryptable message
+1398997363 INFO		Crypto	decrypt()
+1398997363 VERBOSE	PARSE	parsing message
+1398997363 VERBOSE	DB	getSignatory(...)
+1398997363 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997363 INFO		Crypto	verifySig()
+1398997363 INFO		Crypto	verifySig() - FALSE
+1398997363 WARNING	DB	getSignatory() could not find signatory
+1398997363 VERBOSE	DB	isRevoked(...)
+1398997363 ERROR	Crypto	encodeKey passed null key
+1398997363 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
+1398997363 VERBOSE	PARSE	undecryptable message
+1398997363 INFO		Crypto	decrypt()
+1398997363 VERBOSE	PARSE	parsing message
+1398997363 VERBOSE	DB	getSignatory(...)
+1398997363 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997363 INFO		Crypto	verifySig()
+1398997363 INFO		Crypto	verifySig() - FALSE
+1398997363 WARNING	DB	getSignatory() could not find signatory
+1398997363 VERBOSE	DB	isRevoked(...)
+1398997363 ERROR	Crypto	encodeKey passed null key
+1398997363 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
+1398997363 VERBOSE	PARSE	undecryptable message
+1398997363 INFO		Crypto	decrypt()
+1398997363 VERBOSE	PARSE	parsing message
+1398997363 VERBOSE	DB	getSignatory(...)
+1398997363 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997363 INFO		Crypto	verifySig()
+1398997363 INFO		Crypto	verifySig() - FALSE
+1398997363 WARNING	DB	getSignatory() could not find signatory
+1398997363 VERBOSE	DB	isRevoked(...)
+1398997363 ERROR	Crypto	encodeKey passed null key
+1398997363 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
+1398997363 VERBOSE	DB	addClaim(bob_bobson)
+1398997363 VERBOSE	DB	execute("INSERT INTO tClaim (sig, name, claimTime) VALUES ('Kb1Jxb0drkOQyympFfWdie0Zyc31oEWiehnvQYPSYY5TZU6rFbEfWUZEZ9EUJC+mP45KI712GDhpNtCrNj517g/CB31QHvuwZLYeCoIK6goWe9eL+ih23X1crElf/gt0rhE7f+CNjsqJxgVeS89yhtwllEDch2cgkkqn/7gIn8A=', 'bob_bobson', '1398994527586');")
+1398997364 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997364 VERBOSE	DB	validateClaims(...)
+1398997364 VERBOSE	DB	query("SELECT * FROM tClaim;")
+1398997364 VERBOSE	DB	Considering Claim for name: "bob_bobson"
+1398997364 VERBOSE	DB	                      time: "1398994527586"
+1398997364 VERBOSE	DB	                       sig: "Kb1Jxb0drkOQyympFfWdie0Zyc31oEWiehnvQYPSYY5TZU6rFbEfWUZEZ9EUJC+mP45KI712GDhpNtCrNj517g/CB31QHvuwZLYeCoIK6goWe9eL+ih23X1crElf/gt0rhE7f+CNjsqJxgVeS89yhtwllEDch2cgkkqn/7gIn8A="
+1398997364 VERBOSE	DB	getSignatory(...)
+1398997364 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997364 INFO		Crypto	verifySig()
+1398997364 INFO		Crypto	verifySig() - FALSE
+1398997364 WARNING	DB	getSignatory() could not find signatory
+1398997364 INFO		Crypto	decrypt()
+1398997364 VERBOSE	PARSE	parsing message
+1398997364 VERBOSE	DB	getSignatory(...)
+1398997364 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997364 INFO		Crypto	verifySig()
+1398997364 INFO		Crypto	verifySig() - FALSE
+1398997364 WARNING	DB	getSignatory() could not find signatory
+1398997364 VERBOSE	DB	isRevoked(...)
+1398997364 ERROR	Crypto	encodeKey passed null key
+1398997364 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
+1398997364 VERBOSE	PARSE	undecryptable message
+1398997364 INFO		Crypto	decrypt()
+1398997364 VERBOSE	PARSE	parsing message
+1398997364 VERBOSE	DB	getSignatory(...)
+1398997364 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997364 INFO		Crypto	verifySig()
+1398997364 INFO		Crypto	verifySig() - FALSE
+1398997364 WARNING	DB	getSignatory() could not find signatory
+1398997364 VERBOSE	DB	isRevoked(...)
+1398997364 ERROR	Crypto	encodeKey passed null key
+1398997364 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
+1398997364 VERBOSE	PARSE	undecryptable message
+1398997364 INFO		Crypto	decrypt()
+1398997364 VERBOSE	PARSE	parsing message
+1398997364 VERBOSE	DB	getSignatory(...)
+1398997364 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997364 INFO		Crypto	verifySig()
+1398997364 INFO		Crypto	verifySig() - FALSE
+1398997364 WARNING	DB	getSignatory() could not find signatory
+1398997364 VERBOSE	DB	isRevoked(...)
+1398997364 ERROR	Crypto	encodeKey passed null key
+1398997364 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
+1398997364 VERBOSE	PARSE	undecryptable message
+1398997364 INFO		Crypto	decrypt()
+1398997364 VERBOSE	PARSE	parsing message
+1398997364 VERBOSE	DB	getSignatory(...)
+1398997364 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997364 INFO		Crypto	verifySig()
+1398997364 INFO		Crypto	verifySig() - FALSE
+1398997364 WARNING	DB	getSignatory() could not find signatory
+1398997364 VERBOSE	DB	isRevoked(...)
+1398997364 ERROR	Crypto	encodeKey passed null key
+1398997364 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
+1398997364 VERBOSE	PARSE	undecryptable message
+1398997364 INFO		Crypto	decrypt()
+1398997364 VERBOSE	PARSE	parsing message
+1398997364 VERBOSE	DB	getSignatory(...)
+1398997364 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997364 INFO		Crypto	verifySig()
+1398997364 INFO		Crypto	verifySig() - FALSE
+1398997364 WARNING	DB	getSignatory() could not find signatory
+1398997364 VERBOSE	DB	isRevoked(...)
+1398997364 ERROR	Crypto	encodeKey passed null key
+1398997364 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
+1398997364 VERBOSE	PARSE	undecryptable message
+1398997364 INFO		Crypto	decrypt()
+1398997364 VERBOSE	PARSE	parsing message
+1398997364 VERBOSE	DB	getSignatory(...)
+1398997364 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997364 INFO		Crypto	verifySig()
+1398997364 INFO		Crypto	verifySig() - FALSE
+1398997364 WARNING	DB	getSignatory() could not find signatory
+1398997364 VERBOSE	DB	isRevoked(...)
+1398997364 ERROR	Crypto	encodeKey passed null key
+1398997364 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
+1398997364 VERBOSE	PARSE	undecryptable message
+1398997364 INFO		Crypto	decrypt()
+1398997364 VERBOSE	PARSE	parsing message
+1398997364 VERBOSE	DB	getSignatory(...)
+1398997364 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997364 INFO		Crypto	verifySig()
+1398997364 INFO		Crypto	verifySig() - FALSE
+1398997364 WARNING	DB	getSignatory() could not find signatory
+1398997364 VERBOSE	DB	isRevoked(...)
+1398997364 ERROR	Crypto	encodeKey passed null key
+1398997364 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
+1398997364 VERBOSE	PARSE	undecryptable message
+1398997364 INFO		Crypto	decrypt()
+1398997364 VERBOSE	PARSE	parsing message
+1398997364 VERBOSE	DB	getSignatory(...)
+1398997364 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997364 INFO		Crypto	verifySig()
+1398997364 INFO		Crypto	verifySig() - FALSE
+1398997364 WARNING	DB	getSignatory() could not find signatory
+1398997364 VERBOSE	DB	isRevoked(...)
+1398997364 ERROR	Crypto	encodeKey passed null key
+1398997364 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
+1398997364 VERBOSE	PARSE	undecryptable message
+1398997364 INFO		Crypto	decrypt()
+1398997364 VERBOSE	PARSE	parsing message
+1398997364 VERBOSE	DB	getSignatory(...)
+1398997364 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997364 INFO		Crypto	verifySig()
+1398997364 INFO		Crypto	verifySig() - FALSE
+1398997364 WARNING	DB	getSignatory() could not find signatory
+1398997364 VERBOSE	DB	isRevoked(...)
+1398997364 ERROR	Crypto	encodeKey passed null key
+1398997364 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
+1398997364 VERBOSE	PARSE	undecryptable message
+1398997364 INFO		Crypto	decrypt()
+1398997364 VERBOSE	PARSE	parsing message
+1398997364 VERBOSE	DB	getSignatory(...)
+1398997364 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997364 INFO		Crypto	verifySig()
+1398997364 INFO		Crypto	verifySig() - FALSE
+1398997364 WARNING	DB	getSignatory() could not find signatory
+1398997364 VERBOSE	DB	isRevoked(...)
+1398997364 ERROR	Crypto	encodeKey passed null key
+1398997364 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
+1398997364 VERBOSE	PARSE	undecryptable message
+1398997364 INFO		Crypto	decrypt()
+1398997364 VERBOSE	PARSE	parsing message
+1398997364 VERBOSE	DB	getSignatory(...)
+1398997364 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997364 INFO		Crypto	verifySig()
+1398997364 INFO		Crypto	verifySig() - FALSE
+1398997364 WARNING	DB	getSignatory() could not find signatory
+1398997364 VERBOSE	DB	isRevoked(...)
+1398997364 ERROR	Crypto	encodeKey passed null key
+1398997364 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
+1398997364 VERBOSE	PARSE	undecryptable message
+1398997364 INFO		Crypto	decrypt()
+1398997364 VERBOSE	PARSE	parsing message
+1398997364 VERBOSE	DB	getSignatory(...)
+1398997364 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997364 INFO		Crypto	verifySig()
+1398997364 INFO		Crypto	verifySig() - FALSE
+1398997364 WARNING	DB	getSignatory() could not find signatory
+1398997364 VERBOSE	DB	isRevoked(...)
+1398997364 ERROR	Crypto	encodeKey passed null key
+1398997364 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
+1398997364 VERBOSE	PARSE	undecryptable message
+1398997364 INFO		Crypto	decrypt()
+1398997364 VERBOSE	PARSE	parsing message
+1398997364 VERBOSE	DB	getSignatory(...)
+1398997364 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997364 INFO		Crypto	verifySig()
+1398997364 INFO		Crypto	verifySig() - FALSE
+1398997364 WARNING	DB	getSignatory() could not find signatory
+1398997364 VERBOSE	DB	isRevoked(...)
+1398997364 ERROR	Crypto	encodeKey passed null key
+1398997364 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
+1398997364 VERBOSE	PARSE	undecryptable message
+1398997364 INFO		Crypto	decrypt()
+1398997364 VERBOSE	PARSE	parsing message
+1398997364 VERBOSE	DB	getSignatory(...)
+1398997364 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997364 INFO		Crypto	verifySig()
+1398997364 INFO		Crypto	verifySig() - FALSE
+1398997364 WARNING	DB	getSignatory() could not find signatory
+1398997364 VERBOSE	DB	isRevoked(...)
+1398997364 ERROR	Crypto	encodeKey passed null key
+1398997364 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
+1398997364 VERBOSE	PARSE	undecryptable message
+1398997364 INFO		Crypto	decrypt()
+1398997364 VERBOSE	PARSE	parsing message
+1398997364 VERBOSE	DB	getSignatory(...)
+1398997364 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997364 INFO		Crypto	verifySig()
+1398997364 INFO		Crypto	verifySig() - FALSE
+1398997364 WARNING	DB	getSignatory() could not find signatory
+1398997364 VERBOSE	DB	isRevoked(...)
+1398997364 ERROR	Crypto	encodeKey passed null key
+1398997364 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
+1398997364 VERBOSE	PARSE	undecryptable message
+1398997364 INFO		Crypto	decrypt()
+1398997364 VERBOSE	PARSE	parsing message
+1398997364 VERBOSE	DB	getSignatory(...)
+1398997364 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997364 INFO		Crypto	verifySig()
+1398997364 INFO		Crypto	verifySig() - FALSE
+1398997364 WARNING	DB	getSignatory() could not find signatory
+1398997364 VERBOSE	DB	isRevoked(...)
+1398997364 ERROR	Crypto	encodeKey passed null key
+1398997364 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
+1398997364 VERBOSE	PARSE	undecryptable message
+1398997364 INFO		Crypto	decrypt()
+1398997364 VERBOSE	PARSE	parsing message
+1398997364 VERBOSE	DB	getSignatory(...)
+1398997364 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997364 INFO		Crypto	verifySig()
+1398997364 INFO		Crypto	verifySig() - FALSE
+1398997364 WARNING	DB	getSignatory() could not find signatory
+1398997364 VERBOSE	DB	isRevoked(...)
+1398997364 ERROR	Crypto	encodeKey passed null key
+1398997364 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
+1398997364 VERBOSE	PARSE	undecryptable message
+1398997364 INFO		Crypto	decrypt()
+1398997364 VERBOSE	PARSE	parsing message
+1398997364 VERBOSE	DB	getSignatory(...)
+1398997364 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997364 INFO		Crypto	verifySig()
+1398997364 INFO		Crypto	verifySig() - FALSE
+1398997364 WARNING	DB	getSignatory() could not find signatory
+1398997364 VERBOSE	DB	isRevoked(...)
+1398997364 ERROR	Crypto	encodeKey passed null key
+1398997364 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
+1398997364 VERBOSE	PARSE	undecryptable message
+1398997364 INFO		Crypto	decrypt()
+1398997364 VERBOSE	PARSE	parsing message
+1398997364 VERBOSE	DB	getSignatory(...)
+1398997364 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997364 INFO		Crypto	verifySig()
+1398997364 INFO		Crypto	verifySig() - FALSE
+1398997364 WARNING	DB	getSignatory() could not find signatory
+1398997364 VERBOSE	DB	isRevoked(...)
+1398997364 ERROR	Crypto	encodeKey passed null key
+1398997364 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
+1398997364 VERBOSE	PARSE	undecryptable message
+1398997364 INFO		Crypto	decrypt()
+1398997364 VERBOSE	PARSE	parsing message
+1398997364 VERBOSE	DB	getSignatory(...)
+1398997364 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997364 INFO		Crypto	verifySig()
+1398997364 INFO		Crypto	verifySig() - FALSE
+1398997364 WARNING	DB	getSignatory() could not find signatory
+1398997364 VERBOSE	DB	isRevoked(...)
+1398997364 ERROR	Crypto	encodeKey passed null key
+1398997364 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
+1398997364 VERBOSE	PARSE	undecryptable message
+1398997364 INFO		Crypto	decrypt()
+1398997364 VERBOSE	PARSE	parsing message
+1398997364 VERBOSE	DB	getSignatory(...)
+1398997364 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997364 INFO		Crypto	verifySig()
+1398997364 INFO		Crypto	verifySig() - FALSE
+1398997364 WARNING	DB	getSignatory() could not find signatory
+1398997364 VERBOSE	DB	isRevoked(...)
+1398997364 ERROR	Crypto	encodeKey passed null key
+1398997364 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
+1398997364 VERBOSE	PARSE	undecryptable message
+1398997364 INFO		Crypto	decrypt()
+1398997364 VERBOSE	PARSE	parsing message
+1398997364 VERBOSE	DB	getSignatory(...)
+1398997364 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997364 INFO		Crypto	verifySig()
+1398997364 INFO		Crypto	verifySig() - FALSE
+1398997364 WARNING	DB	getSignatory() could not find signatory
+1398997364 VERBOSE	DB	isRevoked(...)
+1398997364 ERROR	Crypto	encodeKey passed null key
+1398997364 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
+1398997364 VERBOSE	PARSE	undecryptable message
+1398997364 INFO		Crypto	decrypt()
+1398997364 VERBOSE	PARSE	parsing message
+1398997364 VERBOSE	DB	getSignatory(...)
+1398997364 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997364 INFO		Crypto	verifySig()
+1398997364 INFO		Crypto	verifySig() - FALSE
+1398997364 WARNING	DB	getSignatory() could not find signatory
+1398997364 VERBOSE	DB	isRevoked(...)
+1398997364 ERROR	Crypto	encodeKey passed null key
+1398997364 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
+1398997364 VERBOSE	DB	addClaim(luca)
+1398997364 VERBOSE	DB	execute("INSERT INTO tClaim (sig, name, claimTime) VALUES ('kQsK2xnhtAWcBbrUa5xNMCAzFn6JtJsCuy7wiqTUJbBTQ/K4h9ITvHhbhaLDVpDrR3U8nStq+xeYErBN/FA+aivdQ2Ybn4Fp+y+PBqlE1ZDORGz11QsG1xV+XW7j5uMa75YMzGIOPQXY2ueMw+hR7HVDLj2KwZUYNZodFXyo9qg=', 'luca', '1398993306544');")
+1398997364 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997364 VERBOSE	DB	validateClaims(...)
+1398997364 VERBOSE	DB	query("SELECT * FROM tClaim;")
+1398997364 VERBOSE	DB	Considering Claim for name: "bob_bobson"
+1398997364 VERBOSE	DB	                      time: "1398994527586"
+1398997364 VERBOSE	DB	                       sig: "Kb1Jxb0drkOQyympFfWdie0Zyc31oEWiehnvQYPSYY5TZU6rFbEfWUZEZ9EUJC+mP45KI712GDhpNtCrNj517g/CB31QHvuwZLYeCoIK6goWe9eL+ih23X1crElf/gt0rhE7f+CNjsqJxgVeS89yhtwllEDch2cgkkqn/7gIn8A="
+1398997364 VERBOSE	DB	getSignatory(...)
+1398997364 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997364 INFO		Crypto	verifySig()
+1398997364 INFO		Crypto	verifySig() - FALSE
+1398997364 WARNING	DB	getSignatory() could not find signatory
+1398997364 VERBOSE	DB	Considering Claim for name: "luca"
+1398997364 VERBOSE	DB	                      time: "1398993306544"
+1398997364 VERBOSE	DB	                       sig: "kQsK2xnhtAWcBbrUa5xNMCAzFn6JtJsCuy7wiqTUJbBTQ/K4h9ITvHhbhaLDVpDrR3U8nStq+xeYErBN/FA+aivdQ2Ybn4Fp+y+PBqlE1ZDORGz11QsG1xV+XW7j5uMa75YMzGIOPQXY2ueMw+hR7HVDLj2KwZUYNZodFXyo9qg="
+1398997364 VERBOSE	DB	getSignatory(...)
+1398997364 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997364 INFO		Crypto	verifySig()
+1398997364 INFO		Crypto	verifySig() - FALSE
+1398997364 WARNING	DB	getSignatory() could not find signatory
+1398997364 INFO		Crypto	decrypt()
+1398997364 VERBOSE	PARSE	parsing message
+1398997364 VERBOSE	DB	getSignatory(...)
+1398997364 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997364 INFO		Crypto	verifySig()
+1398997364 INFO		Crypto	verifySig() - FALSE
+1398997364 WARNING	DB	getSignatory() could not find signatory
+1398997364 VERBOSE	DB	isRevoked(...)
+1398997364 ERROR	Crypto	encodeKey passed null key
+1398997364 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
+1398997364 VERBOSE	PARSE	undecryptable message
+1398997364 INFO		Crypto	decrypt()
+1398997364 VERBOSE	PARSE	parsing message
+1398997364 VERBOSE	DB	getSignatory(...)
+1398997364 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997364 INFO		Crypto	verifySig()
+1398997364 INFO		Crypto	verifySig() - FALSE
+1398997364 WARNING	DB	getSignatory() could not find signatory
+1398997364 VERBOSE	DB	isRevoked(...)
+1398997364 ERROR	Crypto	encodeKey passed null key
+1398997364 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
+1398997364 VERBOSE	PARSE	undecryptable message
+1398997364 INFO		Crypto	decrypt()
+1398997364 VERBOSE	PARSE	parsing message
+1398997364 VERBOSE	DB	getSignatory(...)
+1398997364 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997364 INFO		Crypto	verifySig()
+1398997364 INFO		Crypto	verifySig() - FALSE
+1398997364 WARNING	DB	getSignatory() could not find signatory
+1398997364 VERBOSE	DB	isRevoked(...)
+1398997364 ERROR	Crypto	encodeKey passed null key
+1398997364 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
+1398997364 VERBOSE	PARSE	undecryptable message
+1398997364 INFO		Crypto	decrypt()
+1398997364 VERBOSE	PARSE	parsing message
+1398997364 VERBOSE	DB	getSignatory(...)
+1398997364 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997364 INFO		Crypto	verifySig()
+1398997364 INFO		Crypto	verifySig() - FALSE
+1398997364 WARNING	DB	getSignatory() could not find signatory
+1398997364 VERBOSE	DB	isRevoked(...)
+1398997364 ERROR	Crypto	encodeKey passed null key
+1398997364 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
+1398997364 VERBOSE	PARSE	undecryptable message
+1398997364 INFO		Crypto	decrypt()
+1398997364 VERBOSE	PARSE	parsing message
+1398997364 VERBOSE	DB	getSignatory(...)
+1398997364 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997364 INFO		Crypto	verifySig()
+1398997364 INFO		Crypto	verifySig() - FALSE
+1398997364 WARNING	DB	getSignatory() could not find signatory
+1398997364 VERBOSE	DB	isRevoked(...)
+1398997364 ERROR	Crypto	encodeKey passed null key
+1398997364 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
+1398997364 VERBOSE	PARSE	undecryptable message
+1398997364 INFO		Crypto	decrypt()
+1398997364 VERBOSE	PARSE	parsing message
+1398997364 VERBOSE	DB	getSignatory(...)
+1398997364 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997364 INFO		Crypto	verifySig()
+1398997364 INFO		Crypto	verifySig() - FALSE
+1398997364 WARNING	DB	getSignatory() could not find signatory
+1398997364 VERBOSE	DB	isRevoked(...)
+1398997364 ERROR	Crypto	encodeKey passed null key
+1398997364 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
+1398997364 VERBOSE	PARSE	undecryptable message
+1398997364 INFO		Crypto	decrypt()
+1398997364 VERBOSE	PARSE	parsing message
+1398997364 VERBOSE	DB	getSignatory(...)
+1398997364 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997364 INFO		Crypto	verifySig()
+1398997364 INFO		Crypto	verifySig() - FALSE
+1398997364 WARNING	DB	getSignatory() could not find signatory
+1398997364 VERBOSE	DB	isRevoked(...)
+1398997364 ERROR	Crypto	encodeKey passed null key
+1398997364 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
+1398997364 VERBOSE	PARSE	undecryptable message
+1398997364 INFO		Crypto	decrypt()
+1398997364 VERBOSE	PARSE	parsing message
+1398997364 VERBOSE	DB	getSignatory(...)
+1398997364 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997364 INFO		Crypto	verifySig()
+1398997364 INFO		Crypto	verifySig() - FALSE
+1398997364 WARNING	DB	getSignatory() could not find signatory
+1398997364 VERBOSE	DB	isRevoked(...)
+1398997364 ERROR	Crypto	encodeKey passed null key
+1398997364 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
+1398997364 VERBOSE	PARSE	undecryptable message
+1398997364 INFO		Crypto	decrypt()
+1398997364 VERBOSE	PARSE	parsing message
+1398997364 VERBOSE	DB	getSignatory(...)
+1398997364 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997364 INFO		Crypto	verifySig()
+1398997364 INFO		Crypto	verifySig() - FALSE
+1398997364 WARNING	DB	getSignatory() could not find signatory
+1398997364 VERBOSE	DB	isRevoked(...)
+1398997364 ERROR	Crypto	encodeKey passed null key
+1398997364 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
+1398997364 VERBOSE	PARSE	undecryptable message
+1398997364 INFO		Crypto	decrypt()
+1398997364 VERBOSE	PARSE	parsing message
+1398997364 VERBOSE	DB	getSignatory(...)
+1398997364 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997364 INFO		Crypto	verifySig()
+1398997364 INFO		Crypto	verifySig() - FALSE
+1398997364 WARNING	DB	getSignatory() could not find signatory
+1398997364 VERBOSE	DB	isRevoked(...)
+1398997364 ERROR	Crypto	encodeKey passed null key
+1398997364 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
+1398997364 VERBOSE	PARSE	undecryptable message
+1398997364 INFO		Crypto	decrypt()
+1398997364 VERBOSE	PARSE	parsing message
+1398997364 VERBOSE	DB	getSignatory(...)
+1398997364 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997364 INFO		Crypto	verifySig()
+1398997364 INFO		Crypto	verifySig() - FALSE
+1398997364 WARNING	DB	getSignatory() could not find signatory
+1398997364 VERBOSE	DB	isRevoked(...)
+1398997364 ERROR	Crypto	encodeKey passed null key
+1398997364 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
+1398997364 VERBOSE	PARSE	undecryptable message
+1398997364 INFO		Crypto	decrypt()
+1398997364 VERBOSE	PARSE	parsing message
+1398997364 VERBOSE	DB	getSignatory(...)
+1398997364 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997364 INFO		Crypto	verifySig()
+1398997364 INFO		Crypto	verifySig() - FALSE
+1398997364 WARNING	DB	getSignatory() could not find signatory
+1398997364 VERBOSE	DB	isRevoked(...)
+1398997364 ERROR	Crypto	encodeKey passed null key
+1398997364 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
+1398997364 VERBOSE	PARSE	undecryptable message
+1398997364 INFO		Crypto	decrypt()
+1398997364 VERBOSE	PARSE	parsing message
+1398997364 VERBOSE	DB	getSignatory(...)
+1398997364 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997364 INFO		Crypto	verifySig()
+1398997364 INFO		Crypto	verifySig() - FALSE
+1398997364 WARNING	DB	getSignatory() could not find signatory
+1398997364 VERBOSE	DB	isRevoked(...)
+1398997364 ERROR	Crypto	encodeKey passed null key
+1398997364 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
+1398997364 VERBOSE	PARSE	undecryptable message
+1398997364 INFO		Crypto	decrypt()
+1398997364 VERBOSE	PARSE	parsing message
+1398997364 VERBOSE	DB	getSignatory(...)
+1398997364 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997364 INFO		Crypto	verifySig()
+1398997364 INFO		Crypto	verifySig() - FALSE
+1398997364 WARNING	DB	getSignatory() could not find signatory
+1398997364 VERBOSE	DB	isRevoked(...)
+1398997364 ERROR	Crypto	encodeKey passed null key
+1398997364 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
+1398997364 VERBOSE	PARSE	undecryptable message
+1398997364 INFO		Crypto	decrypt()
+1398997364 VERBOSE	PARSE	parsing message
+1398997364 VERBOSE	DB	getSignatory(...)
+1398997364 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997364 INFO		Crypto	verifySig()
+1398997364 INFO		Crypto	verifySig() - FALSE
+1398997364 WARNING	DB	getSignatory() could not find signatory
+1398997364 VERBOSE	DB	isRevoked(...)
+1398997364 ERROR	Crypto	encodeKey passed null key
+1398997364 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
+1398997364 VERBOSE	PARSE	undecryptable message
+1398997364 INFO		Crypto	decrypt()
+1398997364 VERBOSE	PARSE	parsing message
+1398997364 VERBOSE	DB	getSignatory(...)
+1398997364 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997364 INFO		Crypto	verifySig()
+1398997364 INFO		Crypto	verifySig() - FALSE
+1398997364 WARNING	DB	getSignatory() could not find signatory
+1398997364 VERBOSE	DB	isRevoked(...)
+1398997364 ERROR	Crypto	encodeKey passed null key
+1398997364 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
+1398997364 VERBOSE	PARSE	undecryptable message
+1398997364 INFO		Crypto	decrypt()
+1398997364 VERBOSE	PARSE	parsing message
+1398997364 VERBOSE	DB	getSignatory(...)
+1398997364 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997364 INFO		Crypto	verifySig()
+1398997364 INFO		Crypto	verifySig() - FALSE
+1398997364 WARNING	DB	getSignatory() could not find signatory
+1398997364 VERBOSE	DB	isRevoked(...)
+1398997364 ERROR	Crypto	encodeKey passed null key
+1398997364 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
+1398997364 VERBOSE	PARSE	undecryptable message
+1398997364 INFO		Crypto	decrypt()
+1398997364 VERBOSE	PARSE	parsing message
+1398997364 VERBOSE	DB	getSignatory(...)
+1398997364 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997364 INFO		Crypto	verifySig()
+1398997364 INFO		Crypto	verifySig() - FALSE
+1398997364 WARNING	DB	getSignatory() could not find signatory
+1398997364 VERBOSE	DB	isRevoked(...)
+1398997364 ERROR	Crypto	encodeKey passed null key
+1398997364 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
+1398997364 VERBOSE	PARSE	undecryptable message
+1398997364 INFO		Crypto	decrypt()
+1398997364 VERBOSE	PARSE	parsing message
+1398997364 VERBOSE	DB	getSignatory(...)
+1398997364 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997364 INFO		Crypto	verifySig()
+1398997364 INFO		Crypto	verifySig() - FALSE
+1398997364 WARNING	DB	getSignatory() could not find signatory
+1398997364 VERBOSE	DB	isRevoked(...)
+1398997364 ERROR	Crypto	encodeKey passed null key
+1398997364 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
+1398997364 VERBOSE	PARSE	undecryptable message
+1398997364 INFO		Crypto	decrypt()
+1398997364 VERBOSE	PARSE	parsing message
+1398997364 VERBOSE	DB	getSignatory(...)
+1398997364 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997364 INFO		Crypto	verifySig()
+1398997364 INFO		Crypto	verifySig() - FALSE
+1398997364 WARNING	DB	getSignatory() could not find signatory
+1398997364 VERBOSE	DB	isRevoked(...)
+1398997364 ERROR	Crypto	encodeKey passed null key
+1398997364 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
+1398997364 VERBOSE	PARSE	undecryptable message
+1398997364 INFO		Crypto	decrypt()
+1398997364 VERBOSE	PARSE	parsing message
+1398997364 VERBOSE	DB	getSignatory(...)
+1398997364 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997364 INFO		Crypto	verifySig()
+1398997364 INFO		Crypto	verifySig() - FALSE
+1398997364 WARNING	DB	getSignatory() could not find signatory
+1398997364 VERBOSE	DB	isRevoked(...)
+1398997364 ERROR	Crypto	encodeKey passed null key
+1398997364 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
+1398997364 VERBOSE	PARSE	undecryptable message
+1398997364 INFO		Crypto	decrypt()
+1398997364 VERBOSE	PARSE	parsing message
+1398997364 VERBOSE	DB	getSignatory(...)
+1398997364 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997364 INFO		Crypto	verifySig()
+1398997364 INFO		Crypto	verifySig() - FALSE
+1398997364 WARNING	DB	getSignatory() could not find signatory
+1398997364 VERBOSE	DB	isRevoked(...)
+1398997364 ERROR	Crypto	encodeKey passed null key
+1398997364 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
+1398997364 VERBOSE	PARSE	undecryptable message
+1398997364 INFO		Crypto	decrypt()
+1398997364 VERBOSE	PARSE	parsing message
+1398997364 VERBOSE	DB	getSignatory(...)
+1398997364 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997364 INFO		Crypto	verifySig()
+1398997364 INFO		Crypto	verifySig() - FALSE
+1398997364 WARNING	DB	getSignatory() could not find signatory
+1398997364 VERBOSE	DB	isRevoked(...)
+1398997364 ERROR	Crypto	encodeKey passed null key
+1398997364 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
+1398997364 VERBOSE	PARSE	undecryptable message
+1398997364 INFO		Crypto	decrypt()
+1398997364 VERBOSE	PARSE	parsing message
+1398997364 VERBOSE	DB	getSignatory(...)
+1398997364 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997364 INFO		Crypto	verifySig()
+1398997364 INFO		Crypto	verifySig() - FALSE
+1398997364 WARNING	DB	getSignatory() could not find signatory
+1398997364 VERBOSE	DB	isRevoked(...)
+1398997364 ERROR	Crypto	encodeKey passed null key
+1398997364 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
+1398997364 VERBOSE	PARSE	undecryptable message
+1398997364 INFO		Crypto	decrypt()
+1398997364 VERBOSE	PARSE	parsing message
+1398997364 VERBOSE	DB	getSignatory(...)
+1398997364 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997364 INFO		Crypto	verifySig()
+1398997364 INFO		Crypto	verifySig() - FALSE
+1398997364 WARNING	DB	getSignatory() could not find signatory
+1398997364 VERBOSE	DB	isRevoked(...)
+1398997364 ERROR	Crypto	encodeKey passed null key
+1398997364 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
+1398997364 VERBOSE	PARSE	undecryptable message
+1398997364 INFO		Crypto	decrypt()
+1398997364 VERBOSE	PARSE	parsing message
+1398997364 VERBOSE	DB	getSignatory(...)
+1398997364 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997364 INFO		Crypto	verifySig()
+1398997364 INFO		Crypto	verifySig() - FALSE
+1398997364 WARNING	DB	getSignatory() could not find signatory
+1398997364 VERBOSE	DB	isRevoked(...)
+1398997364 ERROR	Crypto	encodeKey passed null key
+1398997364 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
+1398997364 VERBOSE	PARSE	undecryptable message
+1398997364 INFO		Crypto	decrypt()
+1398997364 VERBOSE	PARSE	parsing message
+1398997364 VERBOSE	DB	getSignatory(...)
+1398997364 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997364 INFO		Crypto	verifySig()
+1398997364 INFO		Crypto	verifySig() - FALSE
+1398997364 WARNING	DB	getSignatory() could not find signatory
+1398997364 VERBOSE	DB	isRevoked(...)
+1398997364 ERROR	Crypto	encodeKey passed null key
+1398997364 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
+1398997364 VERBOSE	DB	addClaim(louisprince)
+1398997364 VERBOSE	DB	execute("INSERT INTO tClaim (sig, name, claimTime) VALUES ('XQCQhXfNe3cmmxLaSq8Jwo0sMx3Yf5YSiujFshCR/er+rGisG0EqVDbHVsrK3ChH6z5VEXkzeOqzA5+J7bJcN0W1rwxDFzByXtktMgQKMXFuaeVXBTu1YKdG9fkV57x86yH3+C5Kd5gWGD5veZqpYzghIz/tlkSir4BMmOTskzA=', 'louisprince', '1398993792184');")
+1398997364 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997364 VERBOSE	DB	validateClaims(...)
+1398997364 VERBOSE	DB	query("SELECT * FROM tClaim;")
+1398997364 VERBOSE	DB	Considering Claim for name: "bob_bobson"
+1398997364 VERBOSE	DB	                      time: "1398994527586"
+1398997364 VERBOSE	DB	                       sig: "Kb1Jxb0drkOQyympFfWdie0Zyc31oEWiehnvQYPSYY5TZU6rFbEfWUZEZ9EUJC+mP45KI712GDhpNtCrNj517g/CB31QHvuwZLYeCoIK6goWe9eL+ih23X1crElf/gt0rhE7f+CNjsqJxgVeS89yhtwllEDch2cgkkqn/7gIn8A="
+1398997364 VERBOSE	DB	getSignatory(...)
+1398997364 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997364 INFO		Crypto	verifySig()
+1398997364 INFO		Crypto	verifySig() - FALSE
+1398997364 WARNING	DB	getSignatory() could not find signatory
+1398997364 VERBOSE	DB	Considering Claim for name: "luca"
+1398997364 VERBOSE	DB	                      time: "1398993306544"
+1398997364 VERBOSE	DB	                       sig: "kQsK2xnhtAWcBbrUa5xNMCAzFn6JtJsCuy7wiqTUJbBTQ/K4h9ITvHhbhaLDVpDrR3U8nStq+xeYErBN/FA+aivdQ2Ybn4Fp+y+PBqlE1ZDORGz11QsG1xV+XW7j5uMa75YMzGIOPQXY2ueMw+hR7HVDLj2KwZUYNZodFXyo9qg="
+1398997364 VERBOSE	DB	getSignatory(...)
+1398997364 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997364 INFO		Crypto	verifySig()
+1398997364 INFO		Crypto	verifySig() - FALSE
+1398997364 WARNING	DB	getSignatory() could not find signatory
+1398997364 VERBOSE	DB	Considering Claim for name: "louisprince"
+1398997364 VERBOSE	DB	                      time: "1398993792184"
+1398997364 VERBOSE	DB	                       sig: "XQCQhXfNe3cmmxLaSq8Jwo0sMx3Yf5YSiujFshCR/er+rGisG0EqVDbHVsrK3ChH6z5VEXkzeOqzA5+J7bJcN0W1rwxDFzByXtktMgQKMXFuaeVXBTu1YKdG9fkV57x86yH3+C5Kd5gWGD5veZqpYzghIz/tlkSir4BMmOTskzA="
+1398997364 VERBOSE	DB	getSignatory(...)
+1398997364 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997364 INFO		Crypto	verifySig()
+1398997364 INFO		Crypto	verifySig() - FALSE
+1398997364 WARNING	DB	getSignatory() could not find signatory
+1398997364 INFO		Crypto	decrypt()
+1398997364 VERBOSE	PARSE	parsing message
+1398997364 VERBOSE	DB	getSignatory(...)
+1398997364 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997364 INFO		Crypto	verifySig()
+1398997364 INFO		Crypto	verifySig() - FALSE
+1398997364 WARNING	DB	getSignatory() could not find signatory
+1398997364 VERBOSE	DB	isRevoked(...)
+1398997364 ERROR	Crypto	encodeKey passed null key
+1398997364 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
+1398997364 VERBOSE	DB	addClaim(luke)
+1398997364 VERBOSE	DB	execute("INSERT INTO tClaim (sig, name, claimTime) VALUES ('v/cJS4smlHamhc4baJbglaDii1bzskrzDSUSr818P6wAuu7JGQC31PZ9FMPitUPVqDWVLQWhVHiMFiPSX2o0mS9y98iYa1oBD9xUSFEdgAQKGJ6/wyP3bgCBIVokdGw6L6l9rZQ4p3EcWXvK+/fEcPmQGrNbOEhYLiqFwVcAQOM=', 'luke', '1398993498639');")
+1398997364 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997364 VERBOSE	DB	validateClaims(...)
+1398997364 VERBOSE	DB	query("SELECT * FROM tClaim;")
+1398997364 VERBOSE	DB	Considering Claim for name: "bob_bobson"
+1398997364 VERBOSE	DB	                      time: "1398994527586"
+1398997364 VERBOSE	DB	                       sig: "Kb1Jxb0drkOQyympFfWdie0Zyc31oEWiehnvQYPSYY5TZU6rFbEfWUZEZ9EUJC+mP45KI712GDhpNtCrNj517g/CB31QHvuwZLYeCoIK6goWe9eL+ih23X1crElf/gt0rhE7f+CNjsqJxgVeS89yhtwllEDch2cgkkqn/7gIn8A="
+1398997364 VERBOSE	DB	getSignatory(...)
+1398997364 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997364 INFO		Crypto	verifySig()
+1398997364 INFO		Crypto	verifySig() - FALSE
+1398997364 WARNING	DB	getSignatory() could not find signatory
+1398997364 VERBOSE	DB	Considering Claim for name: "luca"
+1398997364 VERBOSE	DB	                      time: "1398993306544"
+1398997364 VERBOSE	DB	                       sig: "kQsK2xnhtAWcBbrUa5xNMCAzFn6JtJsCuy7wiqTUJbBTQ/K4h9ITvHhbhaLDVpDrR3U8nStq+xeYErBN/FA+aivdQ2Ybn4Fp+y+PBqlE1ZDORGz11QsG1xV+XW7j5uMa75YMzGIOPQXY2ueMw+hR7HVDLj2KwZUYNZodFXyo9qg="
+1398997364 VERBOSE	DB	getSignatory(...)
+1398997364 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997364 INFO		Crypto	verifySig()
+1398997364 INFO		Crypto	verifySig() - FALSE
+1398997364 WARNING	DB	getSignatory() could not find signatory
+1398997364 VERBOSE	DB	Considering Claim for name: "louisprince"
+1398997364 VERBOSE	DB	                      time: "1398993792184"
+1398997364 VERBOSE	DB	                       sig: "XQCQhXfNe3cmmxLaSq8Jwo0sMx3Yf5YSiujFshCR/er+rGisG0EqVDbHVsrK3ChH6z5VEXkzeOqzA5+J7bJcN0W1rwxDFzByXtktMgQKMXFuaeVXBTu1YKdG9fkV57x86yH3+C5Kd5gWGD5veZqpYzghIz/tlkSir4BMmOTskzA="
+1398997364 VERBOSE	DB	getSignatory(...)
+1398997364 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997364 INFO		Crypto	verifySig()
+1398997364 INFO		Crypto	verifySig() - FALSE
+1398997364 WARNING	DB	getSignatory() could not find signatory
+1398997364 VERBOSE	DB	Considering Claim for name: "luke"
+1398997364 VERBOSE	DB	                      time: "1398993498639"
+1398997364 VERBOSE	DB	                       sig: "v/cJS4smlHamhc4baJbglaDii1bzskrzDSUSr818P6wAuu7JGQC31PZ9FMPitUPVqDWVLQWhVHiMFiPSX2o0mS9y98iYa1oBD9xUSFEdgAQKGJ6/wyP3bgCBIVokdGw6L6l9rZQ4p3EcWXvK+/fEcPmQGrNbOEhYLiqFwVcAQOM="
+1398997364 VERBOSE	DB	getSignatory(...)
+1398997364 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997364 INFO		Crypto	verifySig()
+1398997364 INFO		Crypto	verifySig() - FALSE
+1398997364 WARNING	DB	getSignatory() could not find signatory
+1398997364 INFO		Crypto	decrypt()
+1398997364 VERBOSE	PARSE	parsing message
+1398997364 VERBOSE	DB	getSignatory(...)
+1398997364 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997364 INFO		Crypto	verifySig()
+1398997364 INFO		Crypto	verifySig() - FALSE
+1398997364 WARNING	DB	getSignatory() could not find signatory
+1398997364 VERBOSE	DB	isRevoked(...)
+1398997364 ERROR	Crypto	encodeKey passed null key
+1398997364 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
+1398997364 VERBOSE	PARSE	undecryptable message
+1398997364 INFO		Crypto	decrypt()
+1398997364 VERBOSE	PARSE	parsing message
+1398997364 VERBOSE	DB	getSignatory(...)
+1398997364 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997364 INFO		Crypto	verifySig()
+1398997364 INFO		Crypto	verifySig() - FALSE
+1398997364 WARNING	DB	getSignatory() could not find signatory
+1398997364 VERBOSE	DB	isRevoked(...)
+1398997364 ERROR	Crypto	encodeKey passed null key
+1398997364 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
+1398997364 VERBOSE	PARSE	undecryptable message
+1398997364 INFO		Crypto	decrypt()
+1398997364 VERBOSE	PARSE	parsing message
+1398997364 VERBOSE	DB	getSignatory(...)
+1398997364 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997364 INFO		Crypto	verifySig()
+1398997364 INFO		Crypto	verifySig() - FALSE
+1398997364 WARNING	DB	getSignatory() could not find signatory
+1398997364 VERBOSE	DB	isRevoked(...)
+1398997364 ERROR	Crypto	encodeKey passed null key
+1398997364 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = '--INVALID KEYSTRING--';")
+1398997364 VERBOSE	PARSE	undecryptable message
+1398997364 INFO		NetCon	uploaded message: "ADDKEY\kDSbOkjL+gg1FFRGIy90Q2YMGSuJtz7E7craCT8Hc4gA0a1fNB78Ox5mDAkBJ+6FYYidXQAvK6HKpnskWQsq0aM3FjuBOc2yRHW5bAsIcINCn85OThcyNtvZ/DPOxI54Tahe5gkkMgu6EzE6sUNqxky/SMlquKCmiG88VnbwSHA=\MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCQ//YWf1WLW9UdwVBIrUbbe2VdeMuQ+mFJpXrnjAIgn1Ao4XCZqXsnH8unKPFiiIiLngFs7MBKxGb2NIXP80aqn92lre34Po7BRaN0c2/1h/vlIVHTaxHxTH+cPlPIq7IqMjI9nUj6zjRMX/3is0j3NT/hbQSC+ydj9Mi5iebE8QIDAQAB\1398997363456"
+1398997364 VERBOSE	TnImpl	getMyKey()
+1398997364 VERBOSE	TnImpl	getMyKey()
+1398997364 VERBOSE	TnImpl	getCategories()
+1398997364 VERBOSE	DB	getCategories()
+1398997364 VERBOSE	DB	query("SELECT * FROM tCategory;")
+1398997364 VERBOSE	DB	getCategories() returning 0 categories
+1398997364 VERBOSE	TnImpl	getWallPosts(...) ENTERING
+1398997364 VERBOSE	DB	getWallPost(...)
+1398997364 VERBOSE	DB	query("SELECT sig FROM tPost WHERE recieverKey = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCQ//YWf1WLW9UdwVBIrUbbe2VdeMuQ+mFJpXrnjAIgn1Ao4XCZqXsnH8unKPFiiIiLngFs7MBKxGb2NIXP80aqn92lre34Po7BRaN0c2/1h/vlIVHTaxHxTH+cPlPIq7IqMjI9nUj6zjRMX/3is0j3NT/hbQSC+ydj9Mi5iebE8QIDAQAB';")
+1398997364 VERBOSE	TnImpl	getWallPosts(...) RETURNING
+1398997366 INFO		Crypto	decrypt()
+1398997366 VERBOSE	PARSE	parsing message
+1398997366 VERBOSE	DB	getSignatory(...)
+1398997366 VERBOSE	DB	query("SELECT key FROM tUser;")
+1398997366 INFO		Crypto	verifySig()
+1398997366 INFO		Crypto	verifySig() - TRUE
+1398997366 VERBOSE	DB	isRevoked(...)
+1398997366 VERBOSE	DB	query("SELECT key FROM tRevocations WHERE key = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCQ//YWf1WLW9UdwVBIrUbbe2VdeMuQ+mFJpXrnjAIgn1Ao4XCZqXsnH8unKPFiiIiLngFs7MBKxGb2NIXP80aqn92lre34Po7BRaN0c2/1h/vlIVHTaxHxTH+cPlPIq7IqMjI9nUj6zjRMX/3is0j3NT/hbQSC+ydj9Mi5iebE8QIDAQAB';")
+1398997366 VERBOSE	DB	addKey(...)
+1398997366 VERBOSE	DB	execute("INSERT INTO tUser (key) VALUES ('MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCQ//YWf1WLW9UdwVBIrUbbe2VdeMuQ+mFJpXrnjAIgn1Ao4XCZqXsnH8unKPFiiIiLngFs7MBKxGb2NIXP80aqn92lre34Po7BRaN0c2/1h/vlIVHTaxHxTH+cPlPIq7IqMjI9nUj6zjRMX/3is0j3NT/hbQSC+ydj9Mi5iebE8QIDAQAB');")
+1398997366 ERROR	DB	SQLException: java.sql.SQLException: column key is not unique
+1398997366 ERROR	DB	SQLException: java.sql.SQLException: column key is not unique
+1398997366 VERBOSE	TnImpl	getMyUsername()
+1398997366 VERBOSE	DB	getName(...)
+1398997366 VERBOSE	DB	query("SELECT username FROM tUser WHERE key = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCQ//YWf1WLW9UdwVBIrUbbe2VdeMuQ+mFJpXrnjAIgn1Ao4XCZqXsnH8unKPFiiIiLngFs7MBKxGb2NIXP80aqn92lre34Po7BRaN0c2/1h/vlIVHTaxHxTH+cPlPIq7IqMjI9nUj6zjRMX/3is0j3NT/hbQSC+ydj9Mi5iebE8QIDAQAB';")
+1398997367 VERBOSE	TnImpl	getMyPDATA(name)
+1398997367 VERBOSE	TnImpl	getPDATA(name, ...)
+1398997367 VERBOSE	DB	getPDATA(name,...)
+1398997367 VERBOSE	DB	query("SELECT name FROM tUser WHERE key = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCQ//YWf1WLW9UdwVBIrUbbe2VdeMuQ+mFJpXrnjAIgn1Ao4XCZqXsnH8unKPFiiIiLngFs7MBKxGb2NIXP80aqn92lre34Po7BRaN0c2/1h/vlIVHTaxHxTH+cPlPIq7IqMjI9nUj6zjRMX/3is0j3NT/hbQSC+ydj9Mi5iebE8QIDAQAB';")
+1398997367 VERBOSE	TnImpl	getMyPDATA(birthday)
+1398997367 VERBOSE	TnImpl	getPDATA(birthday, ...)
+1398997367 VERBOSE	DB	getPDATA(birthday,...)
+1398997367 VERBOSE	DB	query("SELECT birthday FROM tUser WHERE key = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCQ//YWf1WLW9UdwVBIrUbbe2VdeMuQ+mFJpXrnjAIgn1Ao4XCZqXsnH8unKPFiiIiLngFs7MBKxGb2NIXP80aqn92lre34Po7BRaN0c2/1h/vlIVHTaxHxTH+cPlPIq7IqMjI9nUj6zjRMX/3is0j3NT/hbQSC+ydj9Mi5iebE8QIDAQAB';")
+1398997367 VERBOSE	TnImpl	getMyPDATA(gender)
+1398997367 VERBOSE	TnImpl	getPDATA(gender, ...)
+1398997367 VERBOSE	DB	getPDATA(gender,...)
+1398997367 VERBOSE	DB	query("SELECT gender FROM tUser WHERE key = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCQ//YWf1WLW9UdwVBIrUbbe2VdeMuQ+mFJpXrnjAIgn1Ao4XCZqXsnH8unKPFiiIiLngFs7MBKxGb2NIXP80aqn92lre34Po7BRaN0c2/1h/vlIVHTaxHxTH+cPlPIq7IqMjI9nUj6zjRMX/3is0j3NT/hbQSC+ydj9Mi5iebE8QIDAQAB';")
+1398997367 VERBOSE	TnImpl	getMyPDATA(email)
+1398997367 VERBOSE	TnImpl	getPDATA(email, ...)
+1398997367 VERBOSE	DB	getPDATA(email,...)
+1398997367 VERBOSE	DB	query("SELECT email FROM tUser WHERE key = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCQ//YWf1WLW9UdwVBIrUbbe2VdeMuQ+mFJpXrnjAIgn1Ao4XCZqXsnH8unKPFiiIiLngFs7MBKxGb2NIXP80aqn92lre34Po7BRaN0c2/1h/vlIVHTaxHxTH+cPlPIq7IqMjI9nUj6zjRMX/3is0j3NT/hbQSC+ydj9Mi5iebE8QIDAQAB';")
+1398997367 VERBOSE	TnImpl	getCategories()
+1398997367 VERBOSE	DB	getCategories()
+1398997367 VERBOSE	DB	query("SELECT * FROM tCategory;")
+1398997367 VERBOSE	DB	getCategories() returning 0 categories
+1398997368 INFO		TNImpl	stopTN()
+1398997368 INFO		NetCon	close()
+1398997368 INFO		NetCon	Saved lastRead to disk
+1398997368 INFO		DB	Disconnecting from database
+1398997368 VERBOSE	Crypto	encryptDB(p)
+===== Turtlenet closed  at Fri May 02 03:22:48 BST 2014=====
