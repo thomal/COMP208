@@ -33,7 +33,7 @@ jar xf ../libs/winstone.jar
 cp ../embedded.war ./embedded.war
 echo "httpPort=3141" > embedded.properties
 jar cmf ./META-INF/MANIFEST.MF turtlenet.jar *
-cp turtlenet.jar ../TurtlenetWebsite/downloads/turtlenet.jar
+cp turtlenet.jar ../turtlenet_website/downloads/turtlenet.jar
 cd ..
 # Clean up
 rm -rf build
