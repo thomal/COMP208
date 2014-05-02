@@ -31,6 +31,7 @@ mkdir -p build
 cd ./build 
 jar xf ../libs/winstone.jar 
 cp ../embedded.war ./embedded.war
+echo "httpPort=3141" > embedded.properties
 jar cmf ./META-INF/MANIFEST.MF turtlenet.jar *
 cp turtlenet.jar ../TurtlenetWebsite/downloads/turtlenet.jar
 cd ..
@@ -61,7 +62,7 @@ cp ../src/ballmerpeak/turtlenet/shared/Tokenizer.class ./ballmerpeak/turtlenet/s
 # Create a jar out of the class files
 jar cmf ../src/ballmerpeak/turtlenet/remoteserver/MANIFEST.MF remoteserver.jar *
 # Move the jar to the jars folder
-cp remoteserver.jar ../TurtlenetWebsite/downloads/remoteserver.jar
+cp remoteserver.jar ../remoteserver.jar
 # Clean up
 cd ..
 rm -rf build
