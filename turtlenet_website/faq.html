@@ -40,14 +40,28 @@
     <div class="faq-spacing">
       <div class="faq-box">
         <h3>What is Turtletnet?</h3>
-        <p>Turtlenet is an encrypted social media network.</p>
+        <p>Turtlenet is an encrypted social network which doesn't merely hide what you say but whom you say it to.</p>
+      </div>
+    </div>
+    
+    <div class="faq-spacing">
+      <div class="faq-box">
+        <h3>What security does it provide?</h3>
+        <p>Turtlenet hides both what you say and whom you say it to. It hides it from companies, governments, and even the people running the servers (we can't be legally or physically compelled to turn over information we don't have).</p>
+      </div>
+    </div>
+    
+    <div class="faq-spacing">
+      <div class="faq-box">
+        <h3>Why should I trust you?</h3>
+        <p>You don't need to trust the server at all, you need only trust the client. The client is licened under CC0 and the source is visible for everyone to see. If we were trying to pull a fast one it would quickly be discovered and exposed. If you want proof you can trust the client then having the source code audited would be your best bet, unfortunetly we can't afford this ourselves.</p>
       </div>
     </div>
     
     <div class="faq-spacing">
       <div class="faq-box">
         <h3>Why does it need to be encrypted?</h3>
-        <p>Privacy and the internet is becoming a very large, contentious, issue in the past few years. In order to make sure your communications arent read by those unauthorised, the safest bet is to make sure your communications are encrypted in some way.</p>
+        <p>Privacy and the internet has become a contentious issue in the past few years. We feel that logging of internet traffic is no more acceptable than logging all movements of your car (which the UK does) or placing cameras in your home. In order to make sure your communications aren't snooped on by others the safest bet is to encrypt your communications.</p>
       </div>
     </div>   
     
@@ -61,21 +75,21 @@
     <div class="faq-spacing">
       <div class="faq-box">
         <h3>Aren't people monitored just for speaking to the wrong person?</h3>
-        <p>Turtlenet has got you covered. Not only is your data encrypted it's also anonymous so nobody can see who you've been communicating with.</p>
+        <p>Turtlenet has got you covered. Not only are your communications encrypted, but they're stored in such a way that the server has no idea who can or even does read which messages. This means that only you and the people you communicate with know that the communication occurred.</p>
       </div>
     </div>
     
     <div class="faq-spacing">
       <div class="faq-box">
         <h3>Can I share photos and videos?</h3>
-        <p>We do not support the sharing of images and videos via this service, as it would create extremely large transfers of data once encrypted. As broadband infrastructure increases in speed, it may become a viable option in the future.</p>
+        <p>We do not support the sharing of images and videos via this service, as it would create an extremely large amount of data given the overhead involving in hiding who talks with whom. As broadband infrastructure increases in speed, it may become a viable option in the future.</p>
       </div>
     </div>
     
     <div class="faq-spacing">
       <div class="faq-box">
         <h3>Can't I just encrypt my facebook/twitter/other social media?</h3>
-        <p>No, unfortunately those social media networks do not offer this as an option, as it would decrease their overall revenue drastically.</p>
+        <p>No, unfortunately those social media networks do not offer this as an option, as it would decrease their overall revenue drastically. Even third party additions to encrypt your communications on extant networks are unable to hide whom you talk with given the fundamental architechture of those systems.</p>
       </div>
     </div>
     
@@ -83,6 +97,13 @@
       <div class="faq-box">
         <h3>How much does it cost?</h3>
         <p>We at the Turtlenet Project do not believe privacy should be paid for, it should be respected. Turtlenet is completely free to use and do with as you please, it is completely open source.</p>
+      </div>
+    </div>
+    
+    <div class="faq-spacing">
+      <div class="faq-box">
+        <h3>How can the server not know who I talk with?</h3>
+        <p>Imagine a new type of lock is invented, this lock is special in that it takes two keys to use it. One key allows you to close it, and another to open it. These keys are different, and having one doesn't tell you anything about the other. The Turtlenet server maintains a large amount of chests locked with these speical locks. When Alice wants to send Bob a message she asks him for a copy of his public key (the one used to close locks) and uses it to lock a message inside a chest. Bob then comes along and tries his key that opens locks in every box until he finds one which opens and he reads the message inside. Given that every user downloads every message on turtlenet rather than only the messages that they can read the server has no idea which messages end up getting read by who.</p>
       </div>
     </div>
     
