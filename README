@@ -13,31 +13,24 @@ KAWAII TURTLE~
                 / o  o   \    /___/____|_____\
                 \  w     /   /___ /_____|_____\ >
                    -----     u              u
+
+--------------------------------------------
+Running TN
+--------------------------------------------
+Download turtlenet.jar, launch it with `java -jar turtlenet.jar' and connect to
+localhost:3141 in a webbrowser.
+
+If using the tor version ensure that tor has started a SOCKS proxy on 9050.
+
+IMPORTANT: The servers DNS records changed on may 4th at 1425 and the old
+servers data was not preserved. If you had an account on the older server please
+erase your db folder and reregister on the new server.
                    
 --------------------------------------------
 TODO
 --------------------------------------------
-Luke:
-    - Fill in DB calls in GWT frontend
-    - Automatically send all messages to self
-    - Finish revocation function
-    - JAR file for remote server
-    - winstone JAR file for local server
-    - parser drop messages from revoked keys
-    - escape semicolons in parser
-
-Leon:
-    - Start/Stop server via gui (leon)
-
-Peter:
-    - Website
-    - User manual
-
-Louis:
-    - All panels
-    - Ctrl-F "//TODO" in frontend.java
-    - reload convos/walls/comments every few seconds so people don't have to refresh
-    - loader icon that's removed in the onModuleLoad method (HTML loads long before GWT starts)
+Autorefresh pages on new content
+Currently the users DB is erased if they enter the wrong PW
 
 --------------------------------------------
 HOW-TO
