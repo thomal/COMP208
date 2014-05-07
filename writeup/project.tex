@@ -21,6 +21,7 @@
 \usepackage[english]{babel}
 \usepackage[T1]{fontenc}
 \usepackage{latex/tikz-uml}
+\usepackage{pdfpages}
 \usetikzlibrary{calc,trees,positioning,arrows,chains,shapes.geometric,%
     decorations.pathreplacing,decorations.pathmorphing,shapes,%
     matrix,shapes.symbols}
@@ -42,6 +43,12 @@
 
 \part{Design}
 \input{text/design/design.tex}
+
+\part{User Manual}
+\includepdf[pages={-}]{manual.pdf}
+
+\part{Portfolio}
+\input{text/portfolio/portfolio.tex}
 
 \begin{appendices}
 \appendixpage % Page empty but for page# and "Appendicies" precedes appendicies
