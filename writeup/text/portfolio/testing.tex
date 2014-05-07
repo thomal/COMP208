@@ -1,1 +1,20 @@
-Coming soon: TEXT!
+\section{Automated Testing}
+We have included a series of automated tests with Turtlenet. Each of these tests runs a different part of the system 
+with predetermined data and compares the results with what we expect to receive from the part of the system currently 
+being tested.
+
+For example we can test the part of the system responsible for returning the contents of wall posts by sending it:
+"11 POSTgetText". We should expect to receive "I'm posting on your wall". If we do not receive that exact message we
+know that there is something wrong with the system and the developers are alerted to this.
+
+\section{Black-box Testing}
+Black-box testing comprised mainly of:
+
+\begin{itemize}
+    \item Clicking on buttons even if they didn't fit into the logical work flow.
+    \item Attempting to 'cheat' the system by making it it do things that aren't intended by the design.
+    \item Entering silly values into various parts of the system in an attempt to see if this would break anything.
+\end{itemize}
+
+Given more time we would test more extensively and have people not familiar with the system perform Black-box testing on
+our behalf.
