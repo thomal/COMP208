@@ -1,0 +1,51 @@
+\begin{enumerate}
+\item We have decided that the event function isn't very valuable and so dropped it
+from the requirements early in development.
+
+\item Our data flow has changed in that the client now updates the local
+database without waiting for updates from the server to arrive. This was done so
+that network latency didn't interfere with the user experiance. All actions are
+still sent to oneself via the server, else multiple clients with the same key
+wouldn't function.
+
+\item The client-client protocol has been significantly expanded so that all
+actions can be represented within it. This is so that if all one has is a
+keypair to an account, that account may be fully recovered. An example of new
+functionality in the protocol is that category creation and modification is
+recorded on the server (via encrypted messages sent, and viewable, soley to
+oneself). NB: The client-server protocol is wholly unaltered.
+
+\item The datatypes in the database have changes due to the limitations of
+SQLite.
+
+\item The primary key in many database tables has changed from an arbitrary
+value to a globally identifying cryptographic signature (from the message
+establishing the relevent datum.)
+
+\item A number of accessors were added to the Message class for extracing
+information from different types of messages.
+
+\item The DBStrings class was added so as to keep SQL query strings seperate
+from java code, and to localize them within one namespace. This class merely
+contains a large number of static strings.
+
+\item The Logger, Tokenizer,  MessageFactory, and F(ile)IO class were added as
+helper classes. Tokenizer was created instead of using javas existing Tokenizer
+class because we needed a tokenizer automatically convertable to javascript. A
+factory class was required because the Message class cannot contain constructors
+not automatically convertable to javascript.
+
+\item The following data bearing classes were created to return structured data
+to the HTML/JS frontend. They allow the more powerful java backend to extract
+(and format) data from the database before returning a simple class containing
+it.
+\begin{enumerate}
+\item Friend
+\item CommentDetails
+\item Conversation
+\item PostDetails
+\end{enumerate}
+
+\item The Turtlenet, TurtlenetImpl, and TurtlenetAsync classes exist to provide
+an asynchronous interface between the HTML/JS frontend and the Java backend.
+\end{enumerate}
