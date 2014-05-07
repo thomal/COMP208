@@ -15,6 +15,13 @@ KAWAII TURTLE~
                    -----     u              u
 
 --------------------------------------------
+Notices
+--------------------------------------------
+The user manual given during the demo contains a lot of incorrect information.
+A new version will be submitted in the portfolio with errors corrected.
+(passwords have nothing to do with authentication at all, among other errors)
+
+--------------------------------------------
 Running TN
 --------------------------------------------
 Download turtlenet.jar, launch it with `java -jar turtlenet.jar' and connect to
