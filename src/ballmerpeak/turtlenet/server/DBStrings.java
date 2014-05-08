@@ -62,7 +62,7 @@ class DBStrings {
         "startTime    TEXT,"+
         "endTime      TEXT,"+
         "creatorKey   TEXT,"+
-        "accepted     INT,"+                 //1 if category can see pdata, 0 otherwise
+        "accepted     INT,"+                 //1 if accepted, 0 otherwise
         "name         TEXT,"+
         "creationTime TEXT,"+
         "PRIMARY KEY (sig));",
