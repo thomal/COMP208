@@ -96,243 +96,130 @@ user logs in and out, a new tuple will be inserted into this table.
 \clearpage
 
 \section{Table layout of the database}
-NB: Public keys are 217 characters long, all id's are auto-incremented.
 
-\begin{table}[!ht]
-\caption{user}
-\centering
-\begin{tabular}{c c c}
-\hline\hline
-Name               & Datatype    & Key \\
-\hline
-user\_id           & INT          & PK \\  % 64-bit has key public key
-username           & VARCHAR(25)  &    \\
-name               & VARCHAR(30)  &    \\
-birthday           & DATE         &    \\
-sex                & VARCHAR(1)   &    \\
-email              & VARCHAR(30)  &    \\
-public\_key        & VARCHAR(600)   & PK \\
-\hline
-\end{tabular}
-\label{table:nonlin}
-\end{table}
+% tCategory
+tCategory 
+\begin{center}
+    \begin{tabular}{ | l | l |}
+    \hline
+    catId & canSeePDATA \\ \hline
+    \end{tabular}
+\end{center}
 
-\begin{table}[!ht]
-\caption{is\_in\_category}
-\centering
-\begin{tabular}{c c c}
-\hline\hline
-Name               & Datatype    & Key \\
-\hline
-is\_in\_id         & INT     & PK   \\
-category\_id       & INT     & FK   \\
-user\_id           & INT     & FK   \\
-\hline
-\end{tabular}
-\label{table:nonlin}
-\end{table}
+%tCategoryMembers
+tCategoryMembers
+\begin{center}
+    \begin{tabular}{ | l | l | l |}
+    \hline
+    pk & catID & userKey \\ \hline
+    \end{tabular}
+\end{center}
 
-\begin{table}[!ht]
-\caption{category}
-\centering
-\begin{tabular}{c c c}
-\hline\hline
-Name               & Datatype    & Key \\
-\hline
-category\_id       & INT         & PK  \\
-name               & VARCHAR(30) &     \\
-\hline
-\end{tabular}
-\label{table:nonlin}
-\end{table}
+%tClaim
+tClaim
+\begin{center}
+    \begin{tabular}{ | l | l | l |}
+    \hline
+    sig & name & claimTime \\ \hline
+    \end{tabular}
+\end{center}
 
+%tRevocations
+tRevocations
+\begin{center}
+    \begin{tabular}{ | l | l | l | l |}
+    \hline
+    key & sig & timeOfLeak & creationTime \\ \hline
+    \end{tabular}
+\end{center}
 
-\begin{table}[!ht]
-\caption{private\_message}
-\centering
-\begin{tabular}{c c c}
-\hline\hline
-Name               & Datatype    & Key \\
-\hline
-message\_id        & INT         & PK  \\
-from               & INT         &     \\
-content            & VARCHAR(50) &     \\
-time               & DATE        &     \\
-\hline
-\end{tabular}
-\label{table:nonlin}
-\end{table}
+%tPostVisibleTo
+tPostVisibleTo
+\begin{center}
+    \begin{tabular}{ | l | l | l |}
+    \hline
+    pk & postSig & key \\ \hline
+    \end{tabular}
+\end{center}
 
-\begin{table}[!ht]
-\caption{is\_in\_message}
-\centering
-\begin{tabular}{c c c}
-\hline\hline
-Name               & Datatype        & Key \\
-\hline
-is\_in\_id         & INT             & PK  \\
-time               & DATETIME        &     \\
-message\_id        & INT             & FK  \\
-user\_id           & INT             & FK  \\
-\hline
-\end{tabular}
-\label{table:nonlin}
-\end{table}
+%tConvoKeys
+tConvoKeys
+\begin{center}
+    \begin{tabular}{ | l | l | l |}
+    \hline
+    pk & convoID & key \\ \hline
+    \end{tabular}
+\end{center}
 
-\begin{table}[!ht]
-\caption{wall\_post}
-\centering
-\begin{tabular}{c c c}
-\hline\hline
-Name                    & Datatype    & Key \\
-\hline
-wall\_id                & INT         & PK  \\
-from                    & INT         & FK  \\
-to                      & INT         & FK  \\
-content                 & VARCHAR(50) &     \\
-time                    & DATETIME    &     \\
-\hline
-\end{tabular}
-\label{table:nonlin}
-\end{table}
+%tConvos
+tConvos
+\begin{center}
+    \begin{tabular}{ | l | l |}
+    \hline
+    convoID & timeCreated \\ \hline
+    \end{tabular}
+\end{center}
 
-\begin{table}[!ht]
-\caption{allowed\_to}
-\centering
-\begin{tabular}{c c c}
-\hline\hline
-Name                    & Datatype    & Key \\
-\hline
-allowed\_to\_id         & INT         & PK  \\
-user\_id                & INT         & FK  \\
-category\_id            & INT         & FK  \\
-post\_id                & INT         & FK  \\
-\hline
-\end{tabular}
-\label{table:nonlin}
-\end{table}
+%tUser
+tUser
+\begin{center}
+    \begin{tabular}{ | l | l | l | l | l | l | l |}
+    \hline
+    key & username & knowName & email & name & gender & birthday \\ \hline
+    \end{tabular}
+\end{center}
 
-\begin{table}[!ht]
-\caption{has\_comment}
-\centering
-\begin{tabular}{c c c}
-\hline\hline
-Name                 & Datatype     & Key \\
-\hline
-comment\_id          & INT     & PK  \\
-comment\_content     & VARCHAR(50)  &     \\
-post\_id             & INT     & FK  \\
-user\_id             & VARCHAR(50)  & FK  \\
-comment\_comment\_id & INT     & FK   \\
-time                 & DATETIME     &     \\
-\hline
-\end{tabular}
-\label{table:nonlin}
-\end{table}
+%tComment
+tComment
+\begin{center}
+    \begin{tabular}{ | l | l | l | l | l |}
+    \hline
+    sig & msgText & senderKey & parent & creationTime \\ \hline
+    \end{tabular}
+\end{center}
 
-\begin{table}[!ht]
-\caption{has\_like}
-\centering
-\begin{tabular}{c c c}
-\hline\hline
-Name               & Datatype    & Key \\
-\hline
-like\_id           & INT          & PK  \\
-post\_id           & INT          & FK  \\
-user\_id           & INT          & FK  \\
-comment\_id        & INT          & FK  \\
-time               & DATETIME     &     \\
-\hline
-\end{tabular}
-\label{table:nonlin}
-\end{table}
+%tPost
+tPost
+\begin{center}
+    \begin{tabular}{ | l | l | l | l | l |}
+    \hline
+    sig & msgText & time & recieverKey & sendersKey  \\ \hline
+    \end{tabular}
+\end{center}
 
-\begin{table}[!ht]
-\caption{events}
-\centering
-\begin{tabular}{c c c}
-\hline\hline
-Name                    & Datatype    & Key \\
-\hline
-event\_id               & INT          & PK  \\
-title                   & VARCHAR(10)  &     \\
-content                 & VARCHAR(40)  &     \\
-time                    & DATETIME     & \\
-start\_date             & DATETIME     & \\
-end\_date               & DATETIME     & \\
-from                    & INT          & FK  \\
-\hline
-\end{tabular}
-\label{table:nonlin}
-\end{table}
+%tConvoMessages
+tConvoMessages
+\begin{center}
+    \begin{tabular}{ | l | l | l | l | l |}
+    \hline
+    pk & convoID & sendersKey & msgText & time\\ \hline
+    \end{tabular}
+\end{center}
 
-\begin{table}[!ht]
-\caption{is\_invited}
-\centering
-\begin{tabular}{c c c}
-\hline\hline
-Name                    & Datatype    & Key \\
-\hline
-is\_invited\_id         & INT         & PK  \\
-user\_id                & INT         & FK  \\
-is\_in\_category\_id    & INT         & FK  \\
-event\_id               & INT         & FK  \\
-decision                & BIT         &     \\
-\hline
-\end{tabular}
-\label{table:nonlin}
-\end{table}
+%tEvent
+tEvent
+\begin{center}
+    \begin{tabular}{ | l | l | l | l | l | l | l |}
+    \hline
+    sig & startTime & endTime & creatorKey & accepted & name & creationTime \\ \hline
+    \end{tabular}
+\end{center}
 
-\begin{table}[!ht]
-\caption{login\_logout\_log}
-\centering
-\begin{tabular}{c c c}
-\hline\hline
-Name               & Datatype    & Key \\
-\hline
-log\_id            & INT         & PK  \\
-login\_time        & DATETIME    &     \\
-logout\_time       & DATETIME    &     \\
-\hline
-\end{tabular}
-\label{table:nonlin}
-\end{table}
-
-\begin{table}[!ht]
-\caption{key\_revoke}
-\centering
-\begin{tabular}{c c c}
-\hline\hline
-Name               & Datatype    & Key \\
-\hline
-revoke\_id         & INT          & PK  \\
-signature          & VARCHAR(45)  &     \\
-time               & DATETIME     &     \\
-\hline
-\end{tabular}
-\label{table:nonlin}
-\end{table}
-
-\begin{table}[!ht]
-\caption{message\_claim}
-\centering
-\begin{tabular}{c c c}
-\hline\hline
-Name               & Datatype    & Key \\
-\hline
-username           & VARCHAR(25) & PK  \\
-signature          & VARCHAR(45) &     \\
-\hline
-\end{tabular}
-\label{table:nonlin}
-\end{table}
+%tLike
+tLike
+\begin{center}
+    \begin{tabular}{ | l | l | l |}
+    \hline
+    pk & likerKey & parent \\ \hline
+    \end{tabular}
+\end{center}
 
 \clearpage
 
 \begin{landscape}
 \begin{figure}[h]
     
-    \includegraphics[width=1.4\textwidth]{images/design/project_er_diagram.png}
+    \includegraphics[width=1.4\textwidth]{images/design/db_shot.png}
     \caption{Database Entity Relationship diagram}
     \label{fig:db_er_diag}
 \end{figure}
