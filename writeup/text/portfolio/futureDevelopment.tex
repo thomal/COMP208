@@ -1,0 +1,85 @@
+\section{Interface Framework}
+Currently the interface framework is the Google Web Toolkit (GWT).  This
+currently allows the Turtlenet client's interface to run in a web browser of the
+user's choosing.  This choice helped the group and the project initially by 
+allowing the developers to not consciously worry about any particular problems
+in the running of the project in terms of the front end - our mentality was that
+everyone had a browser on their computers so it was one less requirement to add
+to the minimum requirements section of the user manual.  In hindsight however,
+what this decision has done is open the project to a flood of potential bug
+reports; some from inexperienced users hoping for a fix on Internet Explorer
+whilst others filling in reports about how their personally compiled browser is
+not rendering a button, for example.  With Java, the code is run by a Java
+Virtual Machine (JVM) so there is only one platform to worry about whereas
+through the use of a browser being a container for the user interface, each with
+different layout engines and capabilities, the project can expect to receive bug
+reports from at least four different front ends.
+
+With the potential workload heavily increased just by a decision made by the
+user, which we assume holds little to no knowledge and just wishes the project
+work on their computer, this may be a problem for the future developers of
+Turtlenet.  As a possible solution, a different framework could be used which
+provides an executable that is tailored to the operating system, as opposed to
+a web browser.  Running in a native window as opposed to a browser means that
+there is only a couple of different ways the front end can appear, variations
+mainly appearing due to a change of operating system - although a different
+desktop environment (DE) would also affect the final look of Turtlenet.  This
+improves the usability of the project as the final outcome would be an
+executable file, which runs in the same or similar manner to other programs on
+their computer, improves consistency as GWT creates JavaScript as a core 
+component in the running of the front-end, which may be blocked by the browser
+as well as creating specific statements which are interpreted or ignored
+dependent on the browser currently in use.  Finally there is debugging, which
+is improved because there are fewer main variables for the testers to cater to,
+such as versions of browsers and their plug-in files which may hamper use of the
+front end.  Through consolidation into a native window, testing and bug catching
+can become more efficient as there are less programs to load, and less time
+required.
+
+\section{Interface and House Style}
+The current interface for the client has been made in such a way that it
+provides all of the functionality of the project in fairly easily identifiable
+sections.  What it does not do though is look polished enough to be on an
+average user's computer yet.  This is most likely due to time constraints
+stressing for functionality as opposed to aesthetics.  Another potential problem
+is the house style of the front-end.  Green has symbolic meaning and was not
+chosen simply due to the name of the project - Turtles more often than not have
+darker colours such as brown or grey and not green.  Green is often used in
+healthcare as a sign that something is either safe or good for you (the green
+health 'plus' being an example), which is what Turtlenet aims to be for your
+communicative efforts.  On a per-user basis however, colour is simply a way of
+making the front end become more pleasant.
+
+This leads to the problem of personal taste - some people don't like green.
+Therefore to increase usability of the project as well as the total amount of
+users, themes could be a future development.  Allowing the user to change the
+look of the front end can make a difference to the amount of people using the
+project.  More users may appear if the project synchronises well with the rest
+of their system.
+
+\section{Languages Used}
+The project used Java for the back end of the system, SQLite for the Database
+and Java converted to JavaScript for the front end.  Java was chosen for the
+interoperability of the language - being able to run on whatever has a Java
+Virtual Machine (JVM), which are available for most operating systems.  Most
+users have the Java Runtime Environment (JRE) installed, which includes JVM so
+Java was a good choice for the project.
+
+SQLite is a notably lightweight Database Management System (DBMS) at the expense
+of some features that are used in a more complete SQL solution, none of which
+were needed for the project.  SQL notably requires you to define data type as
+well as the length of the variable as well - while SQLite is more lenient in
+this regard, removing this constraint completely would make a system more
+usable.  An example of a more user friendly database would be one that uses 
+MongoDB but that is not as popular as an SQL derived DBMS, so this is the
+reason SQLite was chosen.
+
+Google Web Toolkit (GWT) allowed one of our developers the capability of writing
+code in a similar manner to Java which when compiled creates the required
+JavaScript and Ajax code.  On a technical level we believed this to be quite
+clever, and was one of the reasons we chose GWT for the interface framework.
+In hindsight it would have been better to choose a different framework which
+would allow us to get a native executable after compilation.  This would mean
+that the user does not need to open a terminal and enter any Java commands,
+improving usability by not forcing the user to enter an environment that they
+are not comfortable with.
