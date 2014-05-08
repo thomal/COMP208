@@ -2,6 +2,9 @@
 \item We have decided that the event function isn't very valuable and so dropped it
 from the requirements early in development.
 
+\item We decided that having a website and active servers was important and so
+added it early in development.
+
 \item Our data flow has changed in that the client now updates the local
 database without waiting for updates from the server to arrive. This was done so
 that network latency didn't interfere with the user experiance. All actions are
@@ -21,6 +24,17 @@ SQLite.
 \item The primary key in many database tables has changed from an arbitrary
 value to a globally identifying cryptographic signature (from the message
 establishing the relevent datum.)
+
+\item The database doesn't make use of foreign keys because the combination of
+network latency being potentially different for every message (due to Tor) and
+asymmetric relationships and communication means that foreign keys will often
+reference something that either doesn't exist yet or will never exist.
+Furthermore in SQLite a foreign key can only reference one thing, and two of our
+potential foreign keys don't always reference the same field. Therefore there is
+only one possible foriegn key in our entire database: tCategoryMembers.catID
+references tCategory.catID, and even that is tenuous at best as relies upon
+undefined behaviour of the frontend. For these reasons we removed foreign keys
+from the schema.
 
 \item A number of accessors were added to the Message class for extracing
 information from different types of messages.
