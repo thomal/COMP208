@@ -1,13 +1,15 @@
 \section{Automated Testing}
-We have included a series of automated tests with Turtlenet. Each of these tests runs a different part of the system 
-with predetermined data and compares the results with what we expect to receive from the part of the system currently 
-being tested. \par
+We have included a series of automated tests with Turtlenet. These tests are
+ran automatically whenever the binaries are built, they can be ran manually with
+`make test'.\par
 
-For example we can test the part of the system responsible for returning the contents of wall posts by sending it:
-"11 POSTgetText". We should expect to receive "I'm posting on your wall". If we do not receive that exact message we
-know that there is something wrong with the system and the developers are alerted to this. \par
+For example we can test the part of the system responsible for parsing the
+contents of wall posts by constructing a wall post Message instance and calling
+POSTgetKeys(). If we do not receive the expected value for any test the
+developer is alerted. \par
 
-More examples of the automated testing we used can be found at: \url{https://github.com/thomal/COMP208/blob/master/src/ballmerpeak/turtlenet/testing/Test.java}.
+More examples of the automated testing we used can be found at:
+\url{https://github.com/thomal/COMP208/blob/master/src/ballmerpeak/turtlenet/testing/Test.java}.
 
 \section{Black-box Testing}
 Black-box testing comprised mainly of:
@@ -18,5 +20,20 @@ Black-box testing comprised mainly of:
     \item Entering silly values into various parts of the system in an attempt to see if this would break anything.
 \end{itemize}
 
-Given more time we would test more extensively and have people not familiar with the system perform Black-box testing on
-our behalf.
+The system functioned as expected in all cases. Our intent in not validating the
+date field was because people don't read things telling them how to format dates
+but rather type them how they normally do; however it allows for peoples date of
+birth to be "the past". This perhaps isn't such a bad thing, but was ultimitly
+unintentional.
+
+\section{Usability Testing}
+We had a person who had never used Turtlenet before use the system with only
+five minutes of introduction beforehand. Without further instruction she was
+able to easily register, add my public key that I sent her, and take part in a
+conversaiton. She did however need help finding the wall of a friend. After I
+showed her she found it easy to do so after.
+
+
+From this we've concluded that it's preferable to have more obvious ways of
+accessing anothers wall. This test occurred too late in development to add the
+change.
