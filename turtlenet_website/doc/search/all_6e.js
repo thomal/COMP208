@@ -2,8 +2,6 @@ var searchData=
 [
   ['networkconnection',['NetworkConnection',['../classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection.html',1,'ballmerpeak::turtlenet::server']]],
   ['networkconnection',['NetworkConnection',['../classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection.html#ae7c0317cc0fa85bc885799436affb5e6',1,'ballmerpeak::turtlenet::server::NetworkConnection']]],
-  ['networkconnection_2ejava',['NetworkConnection.java',['../NetworkConnection_8java.html',1,'']]],
-  ['networkthread',['networkThread',['../classballmerpeak_1_1turtlenet_1_1server_1_1TNClient.html#a30362e2dd295df5ecaadc7fed3374ea0',1,'ballmerpeak::turtlenet::server::TNClient']]],
   ['newaddcat',['newADDCAT',['../classballmerpeak_1_1turtlenet_1_1server_1_1MessageFactory.html#ac31e65610f9ec3966639894fb47d7afc',1,'ballmerpeak::turtlenet::server::MessageFactory']]],
   ['newaddkey',['newADDKEY',['../classballmerpeak_1_1turtlenet_1_1server_1_1MessageFactory.html#ad66a61b31e19d8c49af33bc6ebe4ff13',1,'ballmerpeak::turtlenet::server::MessageFactory']]],
   ['newaddtocat',['newADDTOCAT',['../classballmerpeak_1_1turtlenet_1_1server_1_1MessageFactory.html#afd84179b0e98eec0fc3a04baec495de8',1,'ballmerpeak::turtlenet::server::MessageFactory']]],
@@ -19,6 +17,5 @@ var searchData=
   ['newremfromcat',['newREMFROMCAT',['../classballmerpeak_1_1turtlenet_1_1server_1_1MessageFactory.html#a0fd9519783f42df00f70246ac3101a01',1,'ballmerpeak::turtlenet::server::MessageFactory']]],
   ['newrevoke',['newREVOKE',['../classballmerpeak_1_1turtlenet_1_1server_1_1MessageFactory.html#aef6d14c4ca6c13776d25fa525c1f39fc',1,'ballmerpeak::turtlenet::server::MessageFactory']]],
   ['newunlike',['newUNLIKE',['../classballmerpeak_1_1turtlenet_1_1server_1_1MessageFactory.html#ab70cf1c0f0ec11df5d5a55c444dee6c0',1,'ballmerpeak::turtlenet::server::MessageFactory']]],
-  ['newupdatecat',['newUPDATECAT',['../classballmerpeak_1_1turtlenet_1_1server_1_1MessageFactory.html#ac9f69e89c9075dbc495aea39161fbdc4',1,'ballmerpeak::turtlenet::server::MessageFactory']]],
-  ['nexttoken',['nextToken',['../classballmerpeak_1_1turtlenet_1_1shared_1_1Tokenizer.html#aaa2e2f9a3abb9557ab3e11e7f7103c3d',1,'ballmerpeak::turtlenet::shared::Tokenizer']]]
+  ['newupdatecat',['newUPDATECAT',['../classballmerpeak_1_1turtlenet_1_1server_1_1MessageFactory.html#ac9f69e89c9075dbc495aea39161fbdc4',1,'ballmerpeak::turtlenet::server::MessageFactory']]]
 ];

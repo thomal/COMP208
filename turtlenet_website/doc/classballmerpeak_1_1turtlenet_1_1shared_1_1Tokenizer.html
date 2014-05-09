@@ -36,7 +36,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="namespaces.html"><span>Packages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -61,7 +60,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
-      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
@@ -70,7 +68,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -81,12 +79,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="namespaceballmerpeak.html">ballmerpeak</a></li><li class="navelem"><a class="el" href="namespaceballmerpeak_1_1turtlenet.html">turtlenet</a></li><li class="navelem"><a class="el" href="namespaceballmerpeak_1_1turtlenet_1_1shared.html">shared</a></li><li class="navelem"><a class="el" href="classballmerpeak_1_1turtlenet_1_1shared_1_1Tokenizer.html">Tokenizer</a></li>  </ul>
+<li class="navelem"><b>ballmerpeak</b></li><li class="navelem"><b>turtlenet</b></li><li class="navelem"><b>shared</b></li><li class="navelem"><a class="el" href="classballmerpeak_1_1turtlenet_1_1shared_1_1Tokenizer.html">Tokenizer</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pac-attribs">Package Attributes</a> &#124;
 <a href="classballmerpeak_1_1turtlenet_1_1shared_1_1Tokenizer-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">ballmerpeak.turtlenet.shared.Tokenizer Class Reference</div>  </div>
@@ -95,102 +94,32 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a5aabdd62ed478d9d0693741b000aed81"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1shared_1_1Tokenizer.html#a5aabdd62ed478d9d0693741b000aed81">Tokenizer</a> (String s, char c)</td></tr>
-<tr class="memitem:aaa2e2f9a3abb9557ab3e11e7f7103c3d"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1shared_1_1Tokenizer.html#aaa2e2f9a3abb9557ab3e11e7f7103c3d">nextToken</a> ()</td></tr>
-<tr class="memitem:a4a3ca279fc748a7afcd37fd50bc533d4"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1shared_1_1Tokenizer.html#a4a3ca279fc748a7afcd37fd50bc533d4">hasMoreTokens</a> ()</td></tr>
-<tr class="memitem:a9e57ee02e894bf1291ae702ecc0fa11f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1shared_1_1Tokenizer.html#a9e57ee02e894bf1291ae702ecc0fa11f">countTokens</a> ()</td></tr>
+<tr class="memitem:a5aabdd62ed478d9d0693741b000aed81"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5aabdd62ed478d9d0693741b000aed81"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Tokenizer</b> (String s, char c)</td></tr>
+<tr class="memitem:aaa2e2f9a3abb9557ab3e11e7f7103c3d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaa2e2f9a3abb9557ab3e11e7f7103c3d"></a>
+String&#160;</td><td class="memItemRight" valign="bottom"><b>nextToken</b> ()</td></tr>
+<tr class="memitem:a4a3ca279fc748a7afcd37fd50bc533d4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4a3ca279fc748a7afcd37fd50bc533d4"></a>
+boolean&#160;</td><td class="memItemRight" valign="bottom"><b>hasMoreTokens</b> ()</td></tr>
+<tr class="memitem:a9e57ee02e894bf1291ae702ecc0fa11f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9e57ee02e894bf1291ae702ecc0fa11f"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>countTokens</b> ()</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2><a name="pac-attribs"></a>
+Package Attributes</h2></td></tr>
+<tr class="memitem:a776a32b36d0990c7008b7ae2084ff178"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a776a32b36d0990c7008b7ae2084ff178"></a>
+String[]&#160;</td><td class="memItemRight" valign="bottom"><b>tokens</b></td></tr>
+<tr class="memitem:a97d589eb1229875bb10e4ab062a1489a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a97d589eb1229875bb10e4ab062a1489a"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>i</b> = 0</td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock">
 <p>Definition at line <a class="el" href="Tokenizer_8java_source.html#l00004">4</a> of file <a class="el" href="Tokenizer_8java_source.html">Tokenizer.java</a>.</p>
-</div><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a5aabdd62ed478d9d0693741b000aed81"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">ballmerpeak.turtlenet.shared.Tokenizer.Tokenizer </td>
-          <td>(</td>
-          <td class="paramtype">String&#160;</td>
-          <td class="paramname"><em>s</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">char&#160;</td>
-          <td class="paramname"><em>c</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="Tokenizer_8java_source.html#l00008">8</a> of file <a class="el" href="Tokenizer_8java_source.html">Tokenizer.java</a>.</p>
-
-</div>
-</div>
-<h2>Member Function Documentation</h2>
-<a class="anchor" id="a9e57ee02e894bf1291ae702ecc0fa11f"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int ballmerpeak.turtlenet.shared.Tokenizer.countTokens </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="Tokenizer_8java_source.html#l00023">23</a> of file <a class="el" href="Tokenizer_8java_source.html">Tokenizer.java</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a4a3ca279fc748a7afcd37fd50bc533d4"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">boolean ballmerpeak.turtlenet.shared.Tokenizer.hasMoreTokens </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="Tokenizer_8java_source.html#l00019">19</a> of file <a class="el" href="Tokenizer_8java_source.html">Tokenizer.java</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="aaa2e2f9a3abb9557ab3e11e7f7103c3d"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">String ballmerpeak.turtlenet.shared.Tokenizer.nextToken </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="Tokenizer_8java_source.html#l00015">15</a> of file <a class="el" href="Tokenizer_8java_source.html">Tokenizer.java</a>.</p>
-
-</div>
-</div>
-<hr/>The documentation for this class was generated from the following file:<ul>
+</div><hr/>The documentation for this class was generated from the following file:<ul>
 <li>src/ballmerpeak/turtlenet/shared/<a class="el" href="Tokenizer_8java_source.html">Tokenizer.java</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri May 9 2014 03:30:36 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri May 9 2014 08:45:00 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>

@@ -36,7 +36,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="namespaces.html"><span>Packages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -61,7 +60,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
-      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
@@ -70,7 +68,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -81,13 +79,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="namespaceballmerpeak.html">ballmerpeak</a></li><li class="navelem"><a class="el" href="namespaceballmerpeak_1_1turtlenet.html">turtlenet</a></li><li class="navelem"><a class="el" href="namespaceballmerpeak_1_1turtlenet_1_1remoteserver.html">remoteserver</a></li><li class="navelem"><a class="el" href="classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Server.html">Server</a></li>  </ul>
+<li class="navelem"><b>ballmerpeak</b></li><li class="navelem"><b>turtlenet</b></li><li class="navelem"><b>remoteserver</b></li><li class="navelem"><a class="el" href="classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Server.html">Server</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pub-static-attribs">Static Public Attributes</a> &#124;
+<a href="#pri-static-attribs">Static Private Attributes</a> &#124;
 <a href="classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Server-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">ballmerpeak.turtlenet.remoteserver.Server Class Reference</div>  </div>
@@ -96,125 +95,35 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a48f2ebb138b28914f6351e81f84fa02c"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Server.html#a48f2ebb138b28914f6351e81f84fa02c">start</a> (int port)</td></tr>
-<tr class="memitem:a884654078b48154feac526fd94a9efe9"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Server.html#a884654078b48154feac526fd94a9efe9">shutdown</a> ()</td></tr>
-<tr class="memitem:a01aebeba4dcef19b48fda4be14b3f433"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Server.html#a01aebeba4dcef19b48fda4be14b3f433">main</a> (String[] argv)</td></tr>
+<tr class="memitem:a48f2ebb138b28914f6351e81f84fa02c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a48f2ebb138b28914f6351e81f84fa02c"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>start</b> (int port)</td></tr>
+<tr class="memitem:a884654078b48154feac526fd94a9efe9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a884654078b48154feac526fd94a9efe9"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>shutdown</b> ()</td></tr>
+<tr class="memitem:a01aebeba4dcef19b48fda4be14b3f433"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a01aebeba4dcef19b48fda4be14b3f433"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>main</b> (String[] argv)</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
-<tr class="memitem:a1e2e63723daf1b2544af8d00be7ba4f0"><td class="memItemLeft" align="right" valign="top">static String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Server.html#a1e2e63723daf1b2544af8d00be7ba4f0">shutdownPassword</a> = &quot;SHUTDOWN 83eea84d472df09f5e64468996fdff0e&quot;</td></tr>
+<tr class="memitem:a1e2e63723daf1b2544af8d00be7ba4f0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1e2e63723daf1b2544af8d00be7ba4f0"></a>
+static String&#160;</td><td class="memItemRight" valign="bottom"><b>shutdownPassword</b> = &quot;SHUTDOWN 83eea84d472df09f5e64468996fdff0e&quot;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2><a name="pri-static-attribs"></a>
+Static Private Attributes</h2></td></tr>
+<tr class="memitem:a7c8eb04639b16695b20c36b55d3e1773"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7c8eb04639b16695b20c36b55d3e1773"></a>
+static ServerSocket&#160;</td><td class="memItemRight" valign="bottom"><b>socket</b></td></tr>
+<tr class="memitem:abbb43613df0ad76d3bca12b361dc118f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abbb43613df0ad76d3bca12b361dc118f"></a>
+static boolean&#160;</td><td class="memItemRight" valign="bottom"><b>running</b> = true</td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock">
 <p>Definition at line <a class="el" href="Server_8java_source.html#l00010">10</a> of file <a class="el" href="Server_8java_source.html">Server.java</a>.</p>
-</div><h2>Member Function Documentation</h2>
-<a class="anchor" id="a01aebeba4dcef19b48fda4be14b3f433"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static void ballmerpeak.turtlenet.remoteserver.Server.main </td>
-          <td>(</td>
-          <td class="paramtype">String[]&#160;</td>
-          <td class="paramname"><em>argv</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="Server_8java_source.html#l00047">47</a> of file <a class="el" href="Server_8java_source.html">Server.java</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a884654078b48154feac526fd94a9efe9"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static void ballmerpeak.turtlenet.remoteserver.Server.shutdown </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="Server_8java_source.html#l00036">36</a> of file <a class="el" href="Server_8java_source.html">Server.java</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a48f2ebb138b28914f6351e81f84fa02c"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static void ballmerpeak.turtlenet.remoteserver.Server.start </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>port</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="Server_8java_source.html#l00016">16</a> of file <a class="el" href="Server_8java_source.html">Server.java</a>.</p>
-
-</div>
-</div>
-<h2>Member Data Documentation</h2>
-<a class="anchor" id="a1e2e63723daf1b2544af8d00be7ba4f0"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">String ballmerpeak.turtlenet.remoteserver.Server.shutdownPassword = &quot;SHUTDOWN 83eea84d472df09f5e64468996fdff0e&quot;</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="Server_8java_source.html#l00012">12</a> of file <a class="el" href="Server_8java_source.html">Server.java</a>.</p>
-
-</div>
-</div>
-<hr/>The documentation for this class was generated from the following file:<ul>
+</div><hr/>The documentation for this class was generated from the following file:<ul>
 <li>src/ballmerpeak/turtlenet/remoteserver/<a class="el" href="Server_8java_source.html">Server.java</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri May 9 2014 03:30:36 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri May 9 2014 08:45:00 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>

@@ -16,6 +16,5 @@ var searchData=
   ['newremfromcat',['newREMFROMCAT',['../classballmerpeak_1_1turtlenet_1_1server_1_1MessageFactory.html#a0fd9519783f42df00f70246ac3101a01',1,'ballmerpeak::turtlenet::server::MessageFactory']]],
   ['newrevoke',['newREVOKE',['../classballmerpeak_1_1turtlenet_1_1server_1_1MessageFactory.html#aef6d14c4ca6c13776d25fa525c1f39fc',1,'ballmerpeak::turtlenet::server::MessageFactory']]],
   ['newunlike',['newUNLIKE',['../classballmerpeak_1_1turtlenet_1_1server_1_1MessageFactory.html#ab70cf1c0f0ec11df5d5a55c444dee6c0',1,'ballmerpeak::turtlenet::server::MessageFactory']]],
-  ['newupdatecat',['newUPDATECAT',['../classballmerpeak_1_1turtlenet_1_1server_1_1MessageFactory.html#ac9f69e89c9075dbc495aea39161fbdc4',1,'ballmerpeak::turtlenet::server::MessageFactory']]],
-  ['nexttoken',['nextToken',['../classballmerpeak_1_1turtlenet_1_1shared_1_1Tokenizer.html#aaa2e2f9a3abb9557ab3e11e7f7103c3d',1,'ballmerpeak::turtlenet::shared::Tokenizer']]]
+  ['newupdatecat',['newUPDATECAT',['../classballmerpeak_1_1turtlenet_1_1server_1_1MessageFactory.html#ac9f69e89c9075dbc495aea39161fbdc4',1,'ballmerpeak::turtlenet::server::MessageFactory']]]
 ];

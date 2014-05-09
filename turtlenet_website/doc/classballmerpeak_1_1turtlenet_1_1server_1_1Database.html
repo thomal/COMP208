@@ -36,7 +36,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="namespaces.html"><span>Packages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -61,7 +60,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
-      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
@@ -70,7 +68,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -81,7 +79,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="namespaceballmerpeak.html">ballmerpeak</a></li><li class="navelem"><a class="el" href="namespaceballmerpeak_1_1turtlenet.html">turtlenet</a></li><li class="navelem"><a class="el" href="namespaceballmerpeak_1_1turtlenet_1_1server.html">server</a></li><li class="navelem"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html">Database</a></li>  </ul>
+<li class="navelem"><b>ballmerpeak</b></li><li class="navelem"><b>turtlenet</b></li><li class="navelem"><b>server</b></li><li class="navelem"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html">Database</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -89,6 +87,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pub-static-attribs">Static Public Attributes</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classballmerpeak_1_1turtlenet_1_1server_1_1Database-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">ballmerpeak.turtlenet.server.Database Class Reference</div>  </div>
@@ -98,72 +97,139 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <tr class="heading"><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a2df6c740699204eafab513d8990f14a8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#a2df6c740699204eafab513d8990f14a8">Database</a> (String pw)</td></tr>
+<tr class="memdesc:a2df6c740699204eafab513d8990f14a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a database object.  <a href="#a2df6c740699204eafab513d8990f14a8"></a><br/></td></tr>
 <tr class="memitem:af796c23330bbae7271011b0e81901643"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#af796c23330bbae7271011b0e81901643">dbCreate</a> ()</td></tr>
+<tr class="memdesc:af796c23330bbae7271011b0e81901643"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new database.  <a href="#af796c23330bbae7271011b0e81901643"></a><br/></td></tr>
 <tr class="memitem:a80e93295b9fd81f2a3c73bcaa2df39ee"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#a80e93295b9fd81f2a3c73bcaa2df39ee">dbConnect</a> (boolean dbexists)</td></tr>
-<tr class="memitem:a1900530bc7bf5c275a275b788086f6ec"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#a1900530bc7bf5c275a275b788086f6ec">dbDisconnect</a> ()</td></tr>
+<tr class="memdesc:a80e93295b9fd81f2a3c73bcaa2df39ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Connects to an extant database.  <a href="#a80e93295b9fd81f2a3c73bcaa2df39ee"></a><br/></td></tr>
+<tr class="memitem:a1900530bc7bf5c275a275b788086f6ec"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1900530bc7bf5c275a275b788086f6ec"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#a1900530bc7bf5c275a275b788086f6ec">dbDisconnect</a> ()</td></tr>
+<tr class="memdesc:a1900530bc7bf5c275a275b788086f6ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disconnects from the database. <br/></td></tr>
 <tr class="memitem:a717872aaaaf6529490c31465f2952219"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#a717872aaaaf6529490c31465f2952219">execute</a> (String <a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#a4401c37a89ca60d2e6b926b9930446dc">query</a>)  throws java.sql.SQLException </td></tr>
+<tr class="memdesc:a717872aaaaf6529490c31465f2952219"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes the given SQL query.  <a href="#a717872aaaaf6529490c31465f2952219"></a><br/></td></tr>
 <tr class="memitem:a4401c37a89ca60d2e6b926b9930446dc"><td class="memItemLeft" align="right" valign="top">ResultSet&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#a4401c37a89ca60d2e6b926b9930446dc">query</a> (String query)  throws java.sql.SQLException </td></tr>
+<tr class="memdesc:a4401c37a89ca60d2e6b926b9930446dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes the given SQL query, returns the results.  <a href="#a4401c37a89ca60d2e6b926b9930446dc"></a><br/></td></tr>
 <tr class="memitem:ab2e0d804fa40eb9b08275f2548737b34"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#ab2e0d804fa40eb9b08275f2548737b34">getPDATA</a> (String field, PublicKey key)</td></tr>
+<tr class="memdesc:ab2e0d804fa40eb9b08275f2548737b34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the specified piece of profile data for the specified user.  <a href="#ab2e0d804fa40eb9b08275f2548737b34"></a><br/></td></tr>
 <tr class="memitem:a095f1356c13e33debb06929244b98150"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classballmerpeak_1_1turtlenet_1_1shared_1_1Message.html">Message</a>[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#a095f1356c13e33debb06929244b98150">getWallPost</a> (PublicKey key)</td></tr>
+<tr class="memdesc:a095f1356c13e33debb06929244b98150"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the posts on the wall of the given user.  <a href="#a095f1356c13e33debb06929244b98150"></a><br/></td></tr>
 <tr class="memitem:a6c5618c6a7e144ee7eec9e6e4de6314d"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#a6c5618c6a7e144ee7eec9e6e4de6314d">getWallPostSender</a> (String sig)</td></tr>
+<tr class="memdesc:a6c5618c6a7e144ee7eec9e6e4de6314d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the key of the user who created a given post.  <a href="#a6c5618c6a7e144ee7eec9e6e4de6314d"></a><br/></td></tr>
 <tr class="memitem:a4f77bc5e3bdf13f836136bc7eb763cac"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classballmerpeak_1_1turtlenet_1_1shared_1_1Message.html">Message</a>[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#a4f77bc5e3bdf13f836136bc7eb763cac">getComments</a> (String sig)</td></tr>
+<tr class="memdesc:a4f77bc5e3bdf13f836136bc7eb763cac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get all comments on a given post or comment.  <a href="#a4f77bc5e3bdf13f836136bc7eb763cac"></a><br/></td></tr>
 <tr class="memitem:a4b2795d1417e265aa345d21e5e1c3a23"><td class="memItemLeft" align="right" valign="top">Long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#a4b2795d1417e265aa345d21e5e1c3a23">timeMostRecentWallPost</a> (PublicKey key)</td></tr>
+<tr class="memdesc:a4b2795d1417e265aa345d21e5e1c3a23"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the time that a given users wall was last posted on.  <a href="#a4b2795d1417e265aa345d21e5e1c3a23"></a><br/></td></tr>
 <tr class="memitem:a76fdbae3c50e5e2fc64d9973de7e08d9"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#a76fdbae3c50e5e2fc64d9973de7e08d9">isLiked</a> (String sig)</td></tr>
+<tr class="memdesc:a76fdbae3c50e5e2fc64d9973de7e08d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Query whether or not a given comment or post is liked.  <a href="#a76fdbae3c50e5e2fc64d9973de7e08d9"></a><br/></td></tr>
 <tr class="memitem:ab81803b4c6efc49a774faaba66add16d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classballmerpeak_1_1turtlenet_1_1shared_1_1Conversation.html">Conversation</a>[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#ab81803b4c6efc49a774faaba66add16d">getConversations</a> ()</td></tr>
+<tr class="memdesc:ab81803b4c6efc49a774faaba66add16d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get all conversations you know about.  <a href="#ab81803b4c6efc49a774faaba66add16d"></a><br/></td></tr>
 <tr class="memitem:ab4048f6c37cc47a31838aa992398cdac"><td class="memItemLeft" align="right" valign="top">PublicKey[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#ab4048f6c37cc47a31838aa992398cdac">getPeopleInConvo</a> (String sig)</td></tr>
+<tr class="memdesc:ab4048f6c37cc47a31838aa992398cdac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the keys of users involved in a given conversation.  <a href="#ab4048f6c37cc47a31838aa992398cdac"></a><br/></td></tr>
 <tr class="memitem:a85b0c44b683cbbab3f966ce7b266f837"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classballmerpeak_1_1turtlenet_1_1shared_1_1Conversation.html">Conversation</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#a85b0c44b683cbbab3f966ce7b266f837">getConversation</a> (String sig)</td></tr>
+<tr class="memdesc:a85b0c44b683cbbab3f966ce7b266f837"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get details of a specific conversation, but not the messages therein.  <a href="#a85b0c44b683cbbab3f966ce7b266f837"></a><br/></td></tr>
 <tr class="memitem:ac65176a79a8e7433b18e8c98dbc02689"><td class="memItemLeft" align="right" valign="top">String[][]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#ac65176a79a8e7433b18e8c98dbc02689">getConversationMessages</a> (String sig)</td></tr>
+<tr class="memdesc:ac65176a79a8e7433b18e8c98dbc02689"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get all the messages from a given conversation.  <a href="#ac65176a79a8e7433b18e8c98dbc02689"></a><br/></td></tr>
 <tr class="memitem:a67893a85c22e9e5b5a039f1900817df5"><td class="memItemLeft" align="right" valign="top">PublicKey&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#a67893a85c22e9e5b5a039f1900817df5">getKey</a> (String userName)</td></tr>
+<tr class="memdesc:a67893a85c22e9e5b5a039f1900817df5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve the key of the specified user.  <a href="#a67893a85c22e9e5b5a039f1900817df5"></a><br/></td></tr>
 <tr class="memitem:ac51008e3d60ba40c4afa37287918a5b7"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#ac51008e3d60ba40c4afa37287918a5b7">canSeePDATA</a> (String category)</td></tr>
+<tr class="memdesc:ac51008e3d60ba40c4afa37287918a5b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Query whether or not a given category can see your profile information.  <a href="#ac51008e3d60ba40c4afa37287918a5b7"></a><br/></td></tr>
 <tr class="memitem:a7f615f18361634692adff5e59c428d84"><td class="memItemLeft" align="right" valign="top">String[][]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#a7f615f18361634692adff5e59c428d84">getCategories</a> ()</td></tr>
+<tr class="memdesc:a7f615f18361634692adff5e59c428d84"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a list of all categories.  <a href="#a7f615f18361634692adff5e59c428d84"></a><br/></td></tr>
 <tr class="memitem:ad6939a97222c8e7da39726b181220aff"><td class="memItemLeft" align="right" valign="top">PublicKey[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#ad6939a97222c8e7da39726b181220aff">getCategoryMembers</a> (String catID)</td></tr>
+<tr class="memdesc:ad6939a97222c8e7da39726b181220aff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get all members of a given category.  <a href="#ad6939a97222c8e7da39726b181220aff"></a><br/></td></tr>
 <tr class="memitem:a9e36a1c14ff02a2cc43b38a646ee20ab"><td class="memItemLeft" align="right" valign="top">PublicKey[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#a9e36a1c14ff02a2cc43b38a646ee20ab">getVisibilityOfParent</a> (String sig)</td></tr>
+<tr class="memdesc:a9e36a1c14ff02a2cc43b38a646ee20ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get all people who can see a given post or comment.  <a href="#a9e36a1c14ff02a2cc43b38a646ee20ab"></a><br/></td></tr>
 <tr class="memitem:a0ccbad682720c86cb152de04a7052332"><td class="memItemLeft" align="right" valign="top">PublicKey[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#a0ccbad682720c86cb152de04a7052332">getPostVisibleTo</a> (String sig)</td></tr>
+<tr class="memdesc:a0ccbad682720c86cb152de04a7052332"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get all people who can see a given post.  <a href="#a0ccbad682720c86cb152de04a7052332"></a><br/></td></tr>
 <tr class="memitem:a102153ec0531bc6be459d0879c78051d"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#a102153ec0531bc6be459d0879c78051d">getName</a> (PublicKey key)</td></tr>
+<tr class="memdesc:a102153ec0531bc6be459d0879c78051d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retreives the most recent username associated with a given key.  <a href="#a102153ec0531bc6be459d0879c78051d"></a><br/></td></tr>
 <tr class="memitem:a890f60c47e11af8823d48689fdeac360"><td class="memItemLeft" align="right" valign="top">PublicKey&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#a890f60c47e11af8823d48689fdeac360">getSignatory</a> (<a class="el" href="classballmerpeak_1_1turtlenet_1_1shared_1_1Message.html">Message</a> m)</td></tr>
+<tr class="memdesc:a890f60c47e11af8823d48689fdeac360"><td class="mdescLeft">&#160;</td><td class="mdescRight">Discover who sent a given message.  <a href="#a890f60c47e11af8823d48689fdeac360"></a><br/></td></tr>
 <tr class="memitem:a8456bb059a9438ecc03a8c65c2cf908a"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#a8456bb059a9438ecc03a8c65c2cf908a">addPost</a> (<a class="el" href="classballmerpeak_1_1turtlenet_1_1shared_1_1Message.html">Message</a> post)</td></tr>
+<tr class="memdesc:a8456bb059a9438ecc03a8c65c2cf908a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a post.  <a href="#a8456bb059a9438ecc03a8c65c2cf908a"></a><br/></td></tr>
 <tr class="memitem:add2acddf62824bcedfe2724257ab0b04"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#add2acddf62824bcedfe2724257ab0b04">addKey</a> (<a class="el" href="classballmerpeak_1_1turtlenet_1_1shared_1_1Message.html">Message</a> msg)</td></tr>
+<tr class="memdesc:add2acddf62824bcedfe2724257ab0b04"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add another users public key.  <a href="#add2acddf62824bcedfe2724257ab0b04"></a><br/></td></tr>
 <tr class="memitem:a4641ac050b40864856bb7ab903fb96c2"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#a4641ac050b40864856bb7ab903fb96c2">addKey</a> (PublicKey k)</td></tr>
+<tr class="memdesc:a4641ac050b40864856bb7ab903fb96c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add another users public key.  <a href="#a4641ac050b40864856bb7ab903fb96c2"></a><br/></td></tr>
 <tr class="memitem:a1d9276229eb90ede286f8ecbee955248"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#a1d9276229eb90ede286f8ecbee955248">validateClaims</a> (PublicKey k)</td></tr>
+<tr class="memdesc:a1d9276229eb90ede286f8ecbee955248"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check username claims against a given public key.  <a href="#a1d9276229eb90ede286f8ecbee955248"></a><br/></td></tr>
 <tr class="memitem:a222ba2352c2b9c48dd9c66470d106623"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#a222ba2352c2b9c48dd9c66470d106623">calcRevocationKeys</a> (PublicKey k)</td></tr>
+<tr class="memdesc:a222ba2352c2b9c48dd9c66470d106623"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update the keys column in the key revocations table.  <a href="#a222ba2352c2b9c48dd9c66470d106623"></a><br/></td></tr>
 <tr class="memitem:afc065fd588fdbd556bd2a013e648b43d"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#afc065fd588fdbd556bd2a013e648b43d">addClaim</a> (<a class="el" href="classballmerpeak_1_1turtlenet_1_1shared_1_1Message.html">Message</a> claim)</td></tr>
+<tr class="memdesc:afc065fd588fdbd556bd2a013e648b43d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a claim.  <a href="#afc065fd588fdbd556bd2a013e648b43d"></a><br/></td></tr>
 <tr class="memitem:ac4eeb9a2d74bd6cfe1e72f63fc93243b"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#ac4eeb9a2d74bd6cfe1e72f63fc93243b">addRevocation</a> (<a class="el" href="classballmerpeak_1_1turtlenet_1_1shared_1_1Message.html">Message</a> revocation)</td></tr>
+<tr class="memdesc:ac4eeb9a2d74bd6cfe1e72f63fc93243b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a revocation.  <a href="#ac4eeb9a2d74bd6cfe1e72f63fc93243b"></a><br/></td></tr>
 <tr class="memitem:ab3e267a71350c940b476949722eda0eb"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#ab3e267a71350c940b476949722eda0eb">isRevoked</a> (PublicKey key)</td></tr>
+<tr class="memdesc:ab3e267a71350c940b476949722eda0eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a given key is revoked.  <a href="#ab3e267a71350c940b476949722eda0eb"></a><br/></td></tr>
 <tr class="memitem:a6b4d12d2583d01113c6ba154a94261af"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#a6b4d12d2583d01113c6ba154a94261af">eraseContentFrom</a> (PublicKey key)</td></tr>
+<tr class="memdesc:a6b4d12d2583d01113c6ba154a94261af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Erase all content signed by a given key.  <a href="#a6b4d12d2583d01113c6ba154a94261af"></a><br/></td></tr>
 <tr class="memitem:a051ccb269be2f30af05fe554b83597a5"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#a051ccb269be2f30af05fe554b83597a5">addPDATA</a> (<a class="el" href="classballmerpeak_1_1turtlenet_1_1shared_1_1Message.html">Message</a> update)</td></tr>
+<tr class="memdesc:a051ccb269be2f30af05fe554b83597a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add new profile information.  <a href="#a051ccb269be2f30af05fe554b83597a5"></a><br/></td></tr>
 <tr class="memitem:a54a5e6c02389fb8f3528bf503019f7fe"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#a54a5e6c02389fb8f3528bf503019f7fe">updatePDATA</a> (String field, String value, PublicKey k)</td></tr>
+<tr class="memdesc:a54a5e6c02389fb8f3528bf503019f7fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update a given users profile information.  <a href="#a54a5e6c02389fb8f3528bf503019f7fe"></a><br/></td></tr>
 <tr class="memitem:a4a18cb43547e71e48bbf7269b3e5d560"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#a4a18cb43547e71e48bbf7269b3e5d560">addConvo</a> (<a class="el" href="classballmerpeak_1_1turtlenet_1_1shared_1_1Message.html">Message</a> convo)</td></tr>
+<tr class="memdesc:a4a18cb43547e71e48bbf7269b3e5d560"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a new conversation.  <a href="#a4a18cb43547e71e48bbf7269b3e5d560"></a><br/></td></tr>
 <tr class="memitem:a42de72fca336efc18a3c486749289b50"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#a42de72fca336efc18a3c486749289b50">addMessageToChat</a> (<a class="el" href="classballmerpeak_1_1turtlenet_1_1shared_1_1Message.html">Message</a> msg)</td></tr>
+<tr class="memdesc:a42de72fca336efc18a3c486749289b50"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a message to an extant conversation.  <a href="#a42de72fca336efc18a3c486749289b50"></a><br/></td></tr>
 <tr class="memitem:a1bfae51747f69a2dd125d9c915b980d4"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#a1bfae51747f69a2dd125d9c915b980d4">addComment</a> (<a class="el" href="classballmerpeak_1_1turtlenet_1_1shared_1_1Message.html">Message</a> comment)</td></tr>
+<tr class="memdesc:a1bfae51747f69a2dd125d9c915b980d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a comment to a post or comment.  <a href="#a1bfae51747f69a2dd125d9c915b980d4"></a><br/></td></tr>
 <tr class="memitem:af22fa4b19c7863929894a3ed278a174c"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#af22fa4b19c7863929894a3ed278a174c">addLike</a> (<a class="el" href="classballmerpeak_1_1turtlenet_1_1shared_1_1Message.html">Message</a> <a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#ac2c2361722304a6446d5cd01cb0c5d3b">like</a>)</td></tr>
+<tr class="memdesc:af22fa4b19c7863929894a3ed278a174c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a like.  <a href="#af22fa4b19c7863929894a3ed278a174c"></a><br/></td></tr>
 <tr class="memitem:a484dad4e2e272c608996a4a6bbb463a4"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#a484dad4e2e272c608996a4a6bbb463a4">addEvent</a> (<a class="el" href="classballmerpeak_1_1turtlenet_1_1shared_1_1Message.html">Message</a> event)</td></tr>
+<tr class="memdesc:a484dad4e2e272c608996a4a6bbb463a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a new event.  <a href="#a484dad4e2e272c608996a4a6bbb463a4"></a><br/></td></tr>
 <tr class="memitem:a30d0cd474644f531f6bfded6c9a63506"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#a30d0cd474644f531f6bfded6c9a63506">acceptEvent</a> (String sig)</td></tr>
+<tr class="memdesc:a30d0cd474644f531f6bfded6c9a63506"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accept an event.  <a href="#a30d0cd474644f531f6bfded6c9a63506"></a><br/></td></tr>
 <tr class="memitem:a2618960f1f28ee6fb130fba5077d8088"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#a2618960f1f28ee6fb130fba5077d8088">declineEvent</a> (String sig)</td></tr>
+<tr class="memdesc:a2618960f1f28ee6fb130fba5077d8088"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decline an event.  <a href="#a2618960f1f28ee6fb130fba5077d8088"></a><br/></td></tr>
 <tr class="memitem:ae65d70bab4c0fba8f0c941487385c8c9"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#ae65d70bab4c0fba8f0c941487385c8c9">updatePDATApermission</a> (<a class="el" href="classballmerpeak_1_1turtlenet_1_1shared_1_1Message.html">Message</a> msg)</td></tr>
+<tr class="memdesc:ae65d70bab4c0fba8f0c941487385c8c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update whether or not a given category can see your profile information.  <a href="#ae65d70bab4c0fba8f0c941487385c8c9"></a><br/></td></tr>
 <tr class="memitem:aed151a8daa6202838bdc8b949d6de05c"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#aed151a8daa6202838bdc8b949d6de05c">updatePDATApermission</a> (String category, boolean value)</td></tr>
+<tr class="memdesc:aed151a8daa6202838bdc8b949d6de05c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Change whether or not a category can see your profile information.  <a href="#aed151a8daa6202838bdc8b949d6de05c"></a><br/></td></tr>
 <tr class="memitem:acd908d7244665e90b2c852d2bd4d24d8"><td class="memItemLeft" align="right" valign="top">PublicKey[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#acd908d7244665e90b2c852d2bd4d24d8">keysCanSeePDATA</a> ()</td></tr>
+<tr class="memdesc:acd908d7244665e90b2c852d2bd4d24d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a list of people who can see your profile information.  <a href="#acd908d7244665e90b2c852d2bd4d24d8"></a><br/></td></tr>
 <tr class="memitem:a60f429af2120947b9a6cc06617bb1bea"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#a60f429af2120947b9a6cc06617bb1bea">addCategory</a> (<a class="el" href="classballmerpeak_1_1turtlenet_1_1shared_1_1Message.html">Message</a> msg)</td></tr>
+<tr class="memdesc:a60f429af2120947b9a6cc06617bb1bea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a new category.  <a href="#a60f429af2120947b9a6cc06617bb1bea"></a><br/></td></tr>
 <tr class="memitem:a543175382e7c3baf70b684a79c5046d8"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#a543175382e7c3baf70b684a79c5046d8">addCategory</a> (String name, boolean can_see_private_details)</td></tr>
+<tr class="memdesc:a543175382e7c3baf70b684a79c5046d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a new category.  <a href="#a543175382e7c3baf70b684a79c5046d8"></a><br/></td></tr>
 <tr class="memitem:aca5e259e29216730354cf97b87f1a070"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#aca5e259e29216730354cf97b87f1a070">addToCategory</a> (<a class="el" href="classballmerpeak_1_1turtlenet_1_1shared_1_1Message.html">Message</a> msg)</td></tr>
+<tr class="memdesc:aca5e259e29216730354cf97b87f1a070"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a user to a category.  <a href="#aca5e259e29216730354cf97b87f1a070"></a><br/></td></tr>
 <tr class="memitem:a92b3b3bea181888c22086688816738aa"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#a92b3b3bea181888c22086688816738aa">addToCategory</a> (String category, PublicKey key)</td></tr>
+<tr class="memdesc:a92b3b3bea181888c22086688816738aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a user to a category.  <a href="#a92b3b3bea181888c22086688816738aa"></a><br/></td></tr>
 <tr class="memitem:a2718a68613d43dabf2c62bebc9f41e05"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#a2718a68613d43dabf2c62bebc9f41e05">removeFromCategory</a> (<a class="el" href="classballmerpeak_1_1turtlenet_1_1shared_1_1Message.html">Message</a> msg)</td></tr>
+<tr class="memdesc:a2718a68613d43dabf2c62bebc9f41e05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove a user from a category.  <a href="#a2718a68613d43dabf2c62bebc9f41e05"></a><br/></td></tr>
 <tr class="memitem:a25313e4d456741744541e8b42d7bef9b"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#a25313e4d456741744541e8b42d7bef9b">removeFromCategory</a> (String category, PublicKey key)</td></tr>
+<tr class="memdesc:a25313e4d456741744541e8b42d7bef9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove a user form a category.  <a href="#a25313e4d456741744541e8b42d7bef9b"></a><br/></td></tr>
 <tr class="memitem:ac2c2361722304a6446d5cd01cb0c5d3b"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#ac2c2361722304a6446d5cd01cb0c5d3b">like</a> (String sig)</td></tr>
+<tr class="memdesc:ac2c2361722304a6446d5cd01cb0c5d3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Like a given post or comment.  <a href="#ac2c2361722304a6446d5cd01cb0c5d3b"></a><br/></td></tr>
 <tr class="memitem:a500911b2c3d32d456c2bf34a23747d85"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#a500911b2c3d32d456c2bf34a23747d85">unlike</a> (String sig)</td></tr>
+<tr class="memdesc:a500911b2c3d32d456c2bf34a23747d85"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unlike a given post or comment.  <a href="#a500911b2c3d32d456c2bf34a23747d85"></a><br/></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a89fecb924cc735abbc16d58405945fb2"><td class="memItemLeft" align="right" valign="top">static boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#a89fecb924cc735abbc16d58405945fb2">DBDirExists</a> ()</td></tr>
+<tr class="memdesc:a89fecb924cc735abbc16d58405945fb2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test whether the directory used for storing local data exists.  <a href="#a89fecb924cc735abbc16d58405945fb2"></a><br/></td></tr>
 <tr class="memitem:a2001d0b63c21d13d0a023d70f571c5bd"><td class="memItemLeft" align="right" valign="top">static boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#a2001d0b63c21d13d0a023d70f571c5bd">DBExists</a> ()</td></tr>
+<tr class="memdesc:a2001d0b63c21d13d0a023d70f571c5bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether the database exists or not.  <a href="#a2001d0b63c21d13d0a023d70f571c5bd"></a><br/></td></tr>
 <tr class="memitem:aa21c9f4bf38697e84fe76fee2023be9e"><td class="memItemLeft" align="right" valign="top">static boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#aa21c9f4bf38697e84fe76fee2023be9e">createDBDir</a> ()</td></tr>
+<tr class="memdesc:aa21c9f4bf38697e84fe76fee2023be9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a directory to store local data.  <a href="#aa21c9f4bf38697e84fe76fee2023be9e"></a><br/></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
-<tr class="memitem:a3933689115f43166439d740b2a254481"><td class="memItemLeft" align="right" valign="top">static String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#a3933689115f43166439d740b2a254481">path</a> = &quot;./db&quot;</td></tr>
+<tr class="memitem:a3933689115f43166439d740b2a254481"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3933689115f43166439d740b2a254481"></a>
+static String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#a3933689115f43166439d740b2a254481">path</a> = &quot;./db&quot;</td></tr>
+<tr class="memdesc:a3933689115f43166439d740b2a254481"><td class="mdescLeft">&#160;</td><td class="mdescRight">path to database directory <br/></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:afc619b6caae48aed2aef929243b00410"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afc619b6caae48aed2aef929243b00410"></a>
+Connection&#160;</td><td class="memItemRight" valign="bottom"><b>dbConnection</b></td></tr>
+<tr class="memitem:a6dc69ef37a9765547dfa556596f5ad3c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6dc69ef37a9765547dfa556596f5ad3c"></a>
+String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#a6dc69ef37a9765547dfa556596f5ad3c">password</a> = &quot;UNSET&quot;</td></tr>
+<tr class="memdesc:a6dc69ef37a9765547dfa556596f5ad3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Users password, used to encrypt local data. <br/></td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock">
-<p>Definition at line <a class="el" href="Database_8java_source.html#l00013">13</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
+<p>Definition at line <a class="el" href="Database_8java_source.html#l00026">26</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
 </div><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a2df6c740699204eafab513d8990f14a8"></a>
 <div class="memitem">
@@ -179,7 +245,16 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Database_8java_source.html#l00018">18</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
+<p>Construct a database object. </p>
+<p>Creates the database if it doesn't exist, if it does exit then it is decrypted. It creates a directory (<a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#a3933689115f43166439d740b2a254481" title="path to database directory">Database.path</a>) to store local data if it doesn't already exist. It then connects to the database and returns. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pw</td><td>The password the database is/should be encrypted with. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="Database_8java_source.html#l00038">38</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
 
 </div>
 </div>
@@ -198,7 +273,16 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Database_8java_source.html#l00783">783</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
+<p>Accept an event. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sig</td><td>The signature of the event you are accepting. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>"true" if successful, "false" otherwise. </dd></dl>
+
+<p>Definition at line <a class="el" href="Database_8java_source.html#l00973">973</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
 
 </div>
 </div>
@@ -216,7 +300,16 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Database_8java_source.html#l00845">845</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
+<p>Add a new category. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">msg</td><td>The Message object representing the new category. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>"true" if successful, "false" otherwise. </dd></dl>
+
+<p>Definition at line <a class="el" href="Database_8java_source.html#l01056">1056</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
 
 </div>
 </div>
@@ -244,7 +337,17 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Database_8java_source.html#l00849">849</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
+<p>Add a new category. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>The name of the new category. </td></tr>
+    <tr><td class="paramname">can_see_private_details</td><td>true if the new category ought to be able to see your profile information, false otherfile. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>"true" if successful, "false" otherwise. </dd></dl>
+
+<p>Definition at line <a class="el" href="Database_8java_source.html#l01066">1066</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
 
 </div>
 </div>
@@ -262,7 +365,17 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Database_8java_source.html#l00596">596</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
+<p>Add a claim. </p>
+<p>If a username is already claimed, forget the old name. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">claim</td><td>The Message object representing the claim. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>"true" if successful, "false" otherwise. </dd></dl>
+
+<p>Definition at line <a class="el" href="Database_8java_source.html#l00739">739</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
 
 </div>
 </div>
@@ -280,7 +393,16 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Database_8java_source.html#l00733">733</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
+<p>Add a comment to a post or comment. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">comment</td><td>The Message object representing the comment. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>"true" if successful, "false" otherwise. </dd></dl>
+
+<p>Definition at line <a class="el" href="Database_8java_source.html#l00911">911</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
 
 </div>
 </div>
@@ -298,7 +420,16 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Database_8java_source.html#l00689">689</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
+<p>Add a new conversation. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">convo</td><td>The Message object representing the conversation. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>"true" if successful, "false" otherwise. </dd></dl>
+
+<p>Definition at line <a class="el" href="Database_8java_source.html#l00859">859</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
 
 </div>
 </div>
@@ -316,7 +447,16 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Database_8java_source.html#l00765">765</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
+<p>Add a new event. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">event</td><td>The Message object representing the event. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>"true" if successful, "false" otherwise. </dd></dl>
+
+<p>Definition at line <a class="el" href="Database_8java_source.html#l00951">951</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
 
 </div>
 </div>
@@ -334,7 +474,16 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Database_8java_source.html#l00511">511</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
+<p>Add another users public key. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">msg</td><td>The Message object representing the ADDKEY message. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>"true" if successful, "false" otherwise. </dd></dl>
+
+<p>Definition at line <a class="el" href="Database_8java_source.html#l00637">637</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
 
 </div>
 </div>
@@ -352,7 +501,16 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Database_8java_source.html#l00515">515</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
+<p>Add another users public key. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">k</td><td>The PublicKey to add. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>"true" if successful, "false" otherwise. </dd></dl>
+
+<p>Definition at line <a class="el" href="Database_8java_source.html#l00645">645</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
 
 </div>
 </div>
@@ -370,7 +528,16 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Database_8java_source.html#l00751">751</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
+<p>Add a like. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">like</td><td>The Message object representing the like. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>"true" if successful, "false" otherwise. </dd></dl>
+
+<p>Definition at line <a class="el" href="Database_8java_source.html#l00933">933</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
 
 </div>
 </div>
@@ -388,7 +555,16 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Database_8java_source.html#l00708">708</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
+<p>Add a message to an extant conversation. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">msg</td><td>The Message object representing the new message to be added. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>"true" if successful, "false" otherwise. </dd></dl>
+
+<p>Definition at line <a class="el" href="Database_8java_source.html#l00882">882</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
 
 </div>
 </div>
@@ -406,7 +582,16 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Database_8java_source.html#l00662">662</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
+<p>Add new profile information. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">update</td><td>The Message object representing the update. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>"true" if successful, "false" otherwise. </dd></dl>
+
+<p>Definition at line <a class="el" href="Database_8java_source.html#l00821">821</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
 
 </div>
 </div>
@@ -424,7 +609,16 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Database_8java_source.html#l00492">492</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
+<p>Add a post. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">post</td><td>The Message object representing the post. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>"true" if successful, "false" otherwise. </dd></dl>
+
+<p>Definition at line <a class="el" href="Database_8java_source.html#l00614">614</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
 
 </div>
 </div>
@@ -442,7 +636,16 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Database_8java_source.html#l00614">614</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
+<p>Add a revocation. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">revocation</td><td>The Message object representing the revocation. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>"true" if successful, "false" otherwise. </dd></dl>
+
+<p>Definition at line <a class="el" href="Database_8java_source.html#l00761">761</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
 
 </div>
 </div>
@@ -460,7 +663,16 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Database_8java_source.html#l00862">862</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
+<p>Add a user to a category. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">msg</td><td>The Message object representing the addition of a user to a category. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>"true" if successful, "false" otherwise. </dd></dl>
+
+<p>Definition at line <a class="el" href="Database_8java_source.html#l01083">1083</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
 
 </div>
 </div>
@@ -488,7 +700,17 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Database_8java_source.html#l00866">866</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
+<p>Add a user to a category. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">category</td><td>The category to add a user to. </td></tr>
+    <tr><td class="paramname">key</td><td>The key of the user who is being added to the specified category. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>"true" if successful, "false" otherwise. </dd></dl>
+
+<p>Definition at line <a class="el" href="Database_8java_source.html#l01092">1092</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
 
 </div>
 </div>
@@ -506,7 +728,17 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Database_8java_source.html#l00567">567</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
+<p>Update the keys column in the key revocations table. </p>
+<p>Called automatically after a new key is added to ensure it isn't revoked. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">k</td><td>The new key. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>"true" if successful, "false" otherwise. </dd></dl>
+
+<p>Definition at line <a class="el" href="Database_8java_source.html#l00706">706</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
 
 </div>
 </div>
@@ -524,7 +756,16 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Database_8java_source.html#l00350">350</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
+<p>Query whether or not a given category can see your profile information. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">category</td><td>The name of the category in question. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true is the people in the category can see your profile information, false otherwise. </dd></dl>
+
+<p>Definition at line <a class="el" href="Database_8java_source.html#l00445">445</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
 
 </div>
 </div>
@@ -549,7 +790,10 @@ Static Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Database_8java_source.html#l00035">35</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
+<p>Creates a directory to store local data. </p>
+<p>The directory is that specified in <a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#a3933689115f43166439d740b2a254481" title="path to database directory">Database.path</a>. </p>
+
+<p>Definition at line <a class="el" href="Database_8java_source.html#l00065">65</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
 
 </div>
 </div>
@@ -567,7 +811,17 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Database_8java_source.html#l00054">54</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
+<p>Connects to an extant database. </p>
+<p>Called automatically by the constructor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dbexists</td><td>true if a database already exists, false otherwise. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>returns true if successful at connecting, false otherwise. </dd></dl>
+
+<p>Definition at line <a class="el" href="Database_8java_source.html#l00090">90</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
 
 </div>
 </div>
@@ -584,7 +838,10 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Database_8java_source.html#l00040">40</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
+<p>Creates a new database. </p>
+<p>Called automatically by the consturctor. </p>
+
+<p>Definition at line <a class="el" href="Database_8java_source.html#l00072">72</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
 
 </div>
 </div>
@@ -609,24 +866,11 @@ Static Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Database_8java_source.html#l00024">24</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
+<p>Test whether the directory used for storing local data exists. </p>
+<p>The directory is specified by <a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#a3933689115f43166439d740b2a254481" title="path to database directory">Database.path</a>. </p>
+<dl class="section return"><dt>Returns</dt><dd>true is the directory exists, false otherwise. </dd></dl>
 
-</div>
-</div>
-<a class="anchor" id="a1900530bc7bf5c275a275b788086f6ec"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ballmerpeak.turtlenet.server.Database.dbDisconnect </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="Database_8java_source.html#l00071">71</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
+<p>Definition at line <a class="el" href="Database_8java_source.html#l00048">48</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
 
 </div>
 </div>
@@ -651,7 +895,10 @@ Static Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Database_8java_source.html#l00029">29</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
+<p>Checks whether the database exists or not. </p>
+<dl class="section return"><dt>Returns</dt><dd>true if the database exists, false otherwise. </dd></dl>
+
+<p>Definition at line <a class="el" href="Database_8java_source.html#l00056">56</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
 
 </div>
 </div>
@@ -669,7 +916,16 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Database_8java_source.html#l00795">795</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
+<p>Decline an event. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sig</td><td>The signature of the event you are declining. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>"true" if successful, "false" otherwise. </dd></dl>
+
+<p>Definition at line <a class="el" href="Database_8java_source.html#l00989">989</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
 
 </div>
 </div>
@@ -687,7 +943,16 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Database_8java_source.html#l00640">640</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
+<p>Erase all content signed by a given key. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>The key whose data is being expurgated. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>"true" if successful, "false" otherwise. </dd></dl>
+
+<p>Definition at line <a class="el" href="Database_8java_source.html#l00795">795</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
 
 </div>
 </div>
@@ -705,7 +970,16 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Database_8java_source.html#l00083">83</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
+<p>Executes the given SQL query. </p>
+<dl class="section warning"><dt>Warning</dt><dd>Throws a java.sql.SQLException on failure. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">query</td><td>The query to execute. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="Database_8java_source.html#l00124">124</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
 
 </div>
 </div>
@@ -722,7 +996,10 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Database_8java_source.html#l00367">367</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
+<p>Get a list of all categories. </p>
+<dl class="section return"><dt>Returns</dt><dd>The names of each category and if it can see your profile info. Data is in this format: {{"friends", "false"}, {"family", "true"}, etc.} </dd></dl>
+
+<p>Definition at line <a class="el" href="Database_8java_source.html#l00464">464</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
 
 </div>
 </div>
@@ -740,7 +1017,17 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Database_8java_source.html#l00392">392</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
+<p>Get all members of a given category. </p>
+<p>If the category given is "all" then all known people are returned. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">catID</td><td>The name of the category of which you want to know the members. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>An array of PublicKeys containing the key of every user in the specified category. </dd></dl>
+
+<p>Definition at line <a class="el" href="Database_8java_source.html#l00492">492</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
 
 </div>
 </div>
@@ -758,7 +1045,16 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Database_8java_source.html#l00193">193</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
+<p>Get all comments on a given post or comment. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sig</td><td>The signature of the item whose comments one desires. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>An array of Messages, ordered chronologically so that element 0 is the oldest comment on the item. </dd></dl>
+
+<p>Definition at line <a class="el" href="Database_8java_source.html#l00260">260</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
 
 </div>
 </div>
@@ -776,7 +1072,16 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Database_8java_source.html#l00271">271</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
+<p>Get details of a specific conversation, but not the messages therein. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sig</td><td>The signature of the conversation you want details about. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A conversation object with the details of the specified conversation. </dd></dl>
+
+<p>Definition at line <a class="el" href="Database_8java_source.html#l00356">356</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
 
 </div>
 </div>
@@ -794,7 +1099,16 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Database_8java_source.html#l00303">303</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
+<p>Get all the messages from a given conversation. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sig</td><td>The signature of the conversation you want the messages of. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The messages in the specified conversation, in chronological order (i.e.: Element 0 is the oldest message in the conversation). Data is in this format: {{username, time, msg}, {username, time, msg}, etc.} </dd></dl>
+
+<p>Definition at line <a class="el" href="Database_8java_source.html#l00391">391</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
 
 </div>
 </div>
@@ -811,7 +1125,10 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Database_8java_source.html#l00239">239</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
+<p>Get all conversations you know about. </p>
+<dl class="section return"><dt>Returns</dt><dd>An array of all conversations you know about in no particular order. </dd></dl>
+
+<p>Definition at line <a class="el" href="Database_8java_source.html#l00317">317</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
 
 </div>
 </div>
@@ -829,7 +1146,16 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Database_8java_source.html#l00327">327</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
+<p>Retrieve the key of the specified user. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">userName</td><td>The username of the user which you wish to know the key of. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The key of the specified user. Returns "&amp;ndash;INVALID KEYSTRING&amp;ndash;" if no key is known. </dd></dl>
+
+<p>Definition at line <a class="el" href="Database_8java_source.html#l00417">417</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
 
 </div>
 </div>
@@ -847,7 +1173,16 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Database_8java_source.html#l00458">458</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
+<p>Retreives the most recent username associated with a given key. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>The public key of the user whose username you wish to know. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The most recent username of the user with the given public key. "&lt;no username&gt;" is returned if no username is known. </dd></dl>
+
+<p>Definition at line <a class="el" href="Database_8java_source.html#l00572">572</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
 
 </div>
 </div>
@@ -875,7 +1210,17 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Database_8java_source.html#l00126">126</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
+<p>Gets the specified piece of profile data for the specified user. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">field</td><td>The name of the field the value of which you wish to retrieve. valid options are: email, name, gender, and birthday. </td></tr>
+    <tr><td class="paramname">key</td><td>The key of the user which you wish to retrieve data about. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The value of the specified field for the specified user. Returns "&lt;no value&gt;" if no value is known. </dd></dl>
+
+<p>Definition at line <a class="el" href="Database_8java_source.html#l00178">178</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
 
 </div>
 </div>
@@ -893,7 +1238,16 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Database_8java_source.html#l00255">255</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
+<p>Get the keys of users involved in a given conversation. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sig</td><td>The signature of the conversation being examined. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>An array of PublicKeys containing the keys of every user who is in the specified conversation. </dd></dl>
+
+<p>Definition at line <a class="el" href="Database_8java_source.html#l00337">337</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
 
 </div>
 </div>
@@ -911,7 +1265,16 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Database_8java_source.html#l00442">442</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
+<p>Get all people who can see a given post. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sig</td><td>The signature of the post being considered. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>An array of PublicKeys which contains the key of every user which is able to decrypt and view the given post. </dd></dl>
+
+<p>Definition at line <a class="el" href="Database_8java_source.html#l00552">552</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
 
 </div>
 </div>
@@ -929,7 +1292,17 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Database_8java_source.html#l00477">477</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
+<p>Discover who sent a given message. </p>
+<p>Derived from the signautre on the message and known public keys. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">m</td><td>The message whose author you wish to determine. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The public key of the user who wrote m. null is returned if no signatory can be found. </dd></dl>
+
+<p>Definition at line <a class="el" href="Database_8java_source.html#l00596">596</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
 
 </div>
 </div>
@@ -947,7 +1320,17 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Database_8java_source.html#l00420">420</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
+<p>Get all people who can see a given post or comment. </p>
+<p>The visibility of comments is the same as that of their parents. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sig</td><td>The signature of the post or comment being considered. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>An array of PublicKeys which contains the key of every user which is able to decrypt and view the given comment or post. </dd></dl>
+
+<p>Definition at line <a class="el" href="Database_8java_source.html#l00525">525</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
 
 </div>
 </div>
@@ -965,7 +1348,16 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Database_8java_source.html#l00150">150</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
+<p>Get the posts on the wall of the given user. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>The public key of the user the wall of whom you are interested in. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>An array of Messages, ordered chronologically so that element 0 is the oldest post on their wall. </dd></dl>
+
+<p>Definition at line <a class="el" href="Database_8java_source.html#l00206">206</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
 
 </div>
 </div>
@@ -983,7 +1375,16 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Database_8java_source.html#l00179">179</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
+<p>Get the key of the user who created a given post. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sig</td><td>The signature of the post. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The key of the user who created the post. Returns "&lt;POST DOESN'T EXIST&gt;" if the post doesn't exist, may also return "ERROR" if there is an SQL error. </dd></dl>
+
+<p>Definition at line <a class="el" href="Database_8java_source.html#l00241">241</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
 
 </div>
 </div>
@@ -1001,7 +1402,16 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Database_8java_source.html#l00224">224</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
+<p>Query whether or not a given comment or post is liked. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sig</td><td>The signature of the comment or post being examined. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the item is liked, false otherwise. </dd></dl>
+
+<p>Definition at line <a class="el" href="Database_8java_source.html#l00300">300</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
 
 </div>
 </div>
@@ -1019,7 +1429,16 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Database_8java_source.html#l00629">629</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
+<p>Check if a given key is revoked. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>The key being checked. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>"true" if revoked, "false" otherwise. </dd></dl>
+
+<p>Definition at line <a class="el" href="Database_8java_source.html#l00780">780</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
 
 </div>
 </div>
@@ -1036,7 +1455,10 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Database_8java_source.html#l00824">824</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
+<p>Get a list of people who can see your profile information. </p>
+<dl class="section return"><dt>Returns</dt><dd>An array of PublicKeys containing every key which is able to see your profile information. </dd></dl>
+
+<p>Definition at line <a class="el" href="Database_8java_source.html#l01032">1032</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
 
 </div>
 </div>
@@ -1054,7 +1476,16 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Database_8java_source.html#l00902">902</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
+<p>Like a given post or comment. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sig</td><td>The signature of the comment or post to like. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>"true" if successful, "false" otherwise. </dd></dl>
+
+<p>Definition at line <a class="el" href="Database_8java_source.html#l01141">1141</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
 
 </div>
 </div>
@@ -1072,7 +1503,17 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Database_8java_source.html#l00105">105</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
+<p>Executes the given SQL query, returns the results. </p>
+<dl class="section warning"><dt>Warning</dt><dd>Throws a java.sql.SQLException on failure. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">query</td><td>The query to execute. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A ResultSet, the rows returned by the query. </dd></dl>
+
+<p>Definition at line <a class="el" href="Database_8java_source.html#l00151">151</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
 
 </div>
 </div>
@@ -1090,7 +1531,16 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Database_8java_source.html#l00885">885</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
+<p>Remove a user from a category. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">msg</td><td>The Message object representing the removal of a user from a category. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>"true" if successful, "false" otherwise. </dd></dl>
+
+<p>Definition at line <a class="el" href="Database_8java_source.html#l01115">1115</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
 
 </div>
 </div>
@@ -1118,7 +1568,17 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Database_8java_source.html#l00889">889</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
+<p>Remove a user form a category. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">category</td><td>The name of the category the user is being removed from. </td></tr>
+    <tr><td class="paramname">key</td><td>The key of the user to be removed from the category. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>"true" if successful, "false" otherwise. </dd></dl>
+
+<p>Definition at line <a class="el" href="Database_8java_source.html#l01124">1124</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
 
 </div>
 </div>
@@ -1136,7 +1596,16 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Database_8java_source.html#l00212">212</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
+<p>Get the time that a given users wall was last posted on. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>The public key of the user the wall of whom you are interested in. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The number of milliseconds from midnight january first 1970 to the time of the most recent post placed on the specified users wall. </dd></dl>
+
+<p>Definition at line <a class="el" href="Database_8java_source.html#l00284">284</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
 
 </div>
 </div>
@@ -1154,7 +1623,16 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Database_8java_source.html#l00915">915</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
+<p>Unlike a given post or comment. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sig</td><td>The signature of the comment or post to like. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>"true" if successful, "false" otherwise. </dd></dl>
+
+<p>Definition at line <a class="el" href="Database_8java_source.html#l01158">1158</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
 
 </div>
 </div>
@@ -1188,7 +1666,18 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Database_8java_source.html#l00674">674</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
+<p>Update a given users profile information. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">field</td><td>The name of the field the value of which you wish to update. valid options are: email, name, gender, and birthday. </td></tr>
+    <tr><td class="paramname">value</td><td>The desired value. </td></tr>
+    <tr><td class="paramname">k</td><td>The key of the user whos profile information is being updated. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>"true" if successful, "false" otherwise. </dd></dl>
+
+<p>Definition at line <a class="el" href="Database_8java_source.html#l00840">840</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
 
 </div>
 </div>
@@ -1206,7 +1695,16 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Database_8java_source.html#l00807">807</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
+<p>Update whether or not a given category can see your profile information. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">msg</td><td>The Message object representing the update. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>"true" if successful, "false" otherwise. </dd></dl>
+
+<p>Definition at line <a class="el" href="Database_8java_source.html#l01005">1005</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
 
 </div>
 </div>
@@ -1234,7 +1732,17 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Database_8java_source.html#l00811">811</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
+<p>Change whether or not a category can see your profile information. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">category</td><td>The name of the category you wish to update. </td></tr>
+    <tr><td class="paramname">value</td><td>The desired value, true to allow the category to see your profile data, false to forbid it. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>"true" if successful, "false" otherwise. </dd></dl>
+
+<p>Definition at line <a class="el" href="Database_8java_source.html#l01015">1015</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
 
 </div>
 </div>
@@ -1252,30 +1760,17 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Database_8java_source.html#l00532">532</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
+<p>Check username claims against a given public key. </p>
+<p>Called automatically after a new key is added to ensure that old username claims are recognised. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">k</td><td>The key to be considered. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>"true" if successful, "false" otherwise. </dd></dl>
 
-</div>
-</div>
-<h2>Member Data Documentation</h2>
-<a class="anchor" id="a3933689115f43166439d740b2a254481"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">String ballmerpeak.turtlenet.server.Database.path = &quot;./db&quot;</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="Database_8java_source.html#l00014">14</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
+<p>Definition at line <a class="el" href="Database_8java_source.html#l00667">667</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
 
 </div>
 </div>
@@ -1285,7 +1780,7 @@ Static Public Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri May 9 2014 03:30:36 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri May 9 2014 08:45:00 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>

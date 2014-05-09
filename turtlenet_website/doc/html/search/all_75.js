@@ -1,6 +1,0 @@
-var searchData=
-[
-  ['unlike',['unlike',['../classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#a500911b2c3d32d456c2bf34a23747d85',1,'ballmerpeak.turtlenet.server.Database.unlike()'],['../classballmerpeak_1_1turtlenet_1_1server_1_1TurtlenetImpl.html#a34dd5b2e3422a38ddd9ab2ded072e870',1,'ballmerpeak.turtlenet.server.TurtlenetImpl.unlike()']]],
-  ['updatepdata',['updatePDATA',['../classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#a54a5e6c02389fb8f3528bf503019f7fe',1,'ballmerpeak.turtlenet.server.Database.updatePDATA()'],['../classballmerpeak_1_1turtlenet_1_1server_1_1TurtlenetImpl.html#a6498adb8c069a9778b241dde8bad667a',1,'ballmerpeak.turtlenet.server.TurtlenetImpl.updatePDATA()']]],
-  ['updatepdatapermission',['updatePDATApermission',['../classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#ae65d70bab4c0fba8f0c941487385c8c9',1,'ballmerpeak.turtlenet.server.Database.updatePDATApermission(Message msg)'],['../classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#aed151a8daa6202838bdc8b949d6de05c',1,'ballmerpeak.turtlenet.server.Database.updatePDATApermission(String category, boolean value)'],['../classballmerpeak_1_1turtlenet_1_1server_1_1TurtlenetImpl.html#af50db109b6ae5adde4ac18a324a4aa66',1,'ballmerpeak.turtlenet.server.TurtlenetImpl.updatePDATApermission()']]]
-];
