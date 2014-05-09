@@ -1,19 +1,4 @@
 var searchData=
 [
-  ['c',['c',['../classballmerpeak_1_1turtlenet_1_1server_1_1TurtlenetImpl.html#a8e8797ccc45aa68a72f8349c4eaf84ca',1,'ballmerpeak::turtlenet::server::TurtlenetImpl']]],
-  ['canseepdata',['canSeePDATA',['../classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings.html#a77d2491681df92cdf133252afe8af98d',1,'ballmerpeak::turtlenet::server::DBStrings']]],
-  ['categoriescanseepdata',['categoriesCanSeePDATA',['../classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings.html#af323bc7e8a4dfe7f7f321a0f868b234b',1,'ballmerpeak::turtlenet::server::DBStrings']]],
-  ['client',['client',['../classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Session.html#a2506d1b24e158edf2fcfd2a31d57f43a',1,'ballmerpeak::turtlenet::remoteserver::Session']]],
-  ['command',['command',['../classballmerpeak_1_1turtlenet_1_1shared_1_1Message.html#a6057d3c8ba04010edfb343203176645d',1,'ballmerpeak::turtlenet::shared::Message']]],
-  ['commentcount',['commentCount',['../classballmerpeak_1_1turtlenet_1_1client_1_1frontend.html#acabb927a2716d2523f33d8055a608a7c',1,'ballmerpeak.turtlenet.client.frontend.commentCount()'],['../classballmerpeak_1_1turtlenet_1_1shared_1_1PostDetails.html#a24553cdb518e4501cbdf63263c21d1a0',1,'ballmerpeak.turtlenet.shared.PostDetails.commentCount()']]],
-  ['commentslasttimestamp',['commentsLastTimeStamp',['../classballmerpeak_1_1turtlenet_1_1client_1_1frontend.html#a7a4a64b5a06ff541b6a7112f852833b3',1,'ballmerpeak::turtlenet::client::frontend']]],
-  ['connected',['connected',['../classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection.html#af895a5014e7217db08f6444247064938',1,'ballmerpeak::turtlenet::server::NetworkConnection']]],
-  ['connection',['connection',['../classballmerpeak_1_1turtlenet_1_1server_1_1TNClient.html#a5f3a2db779658358496e57ddc06ca612',1,'ballmerpeak::turtlenet::server::TNClient']]],
-  ['content',['content',['../classballmerpeak_1_1turtlenet_1_1shared_1_1Message.html#a88b89de79f9fec571a22623688697de9',1,'ballmerpeak::turtlenet::shared::Message']]],
-  ['conversationlasttimestamp',['conversationLastTimeStamp',['../classballmerpeak_1_1turtlenet_1_1client_1_1frontend.html#a97ea23587c248a189f579102c29a0fc9',1,'ballmerpeak::turtlenet::client::frontend']]],
-  ['conversationlistpanel',['conversationListPanel',['../classballmerpeak_1_1turtlenet_1_1client_1_1frontend.html#ad41191c45ac70b949585a24904a7f83a',1,'ballmerpeak::turtlenet::client::frontend']]],
-  ['conversationpanel',['conversationPanel',['../classballmerpeak_1_1turtlenet_1_1client_1_1frontend.html#a98647f4c02d7c216346e1b4dd3ca499d',1,'ballmerpeak::turtlenet::client::frontend']]],
-  ['convopanelsetup_5fconvosig',['convoPanelSetup_convosig',['../classballmerpeak_1_1turtlenet_1_1client_1_1frontend.html#a0fec8e94df0b2bcc31292da80030c92f',1,'ballmerpeak::turtlenet::client::frontend']]],
-  ['convopanelsetup_5finput',['convoPanelSetup_input',['../classballmerpeak_1_1turtlenet_1_1client_1_1frontend.html#a5f2d5e5cab0462b9bd2b2c05d412606d',1,'ballmerpeak::turtlenet::client::frontend']]],
-  ['createdb',['createDB',['../classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings.html#a70ba551ea4397e98cc09b96eb0d9ff43',1,'ballmerpeak::turtlenet::server::DBStrings']]]
+  ['c',['c',['../classballmerpeak_1_1turtlenet_1_1server_1_1TurtlenetImpl.html#a8e8797ccc45aa68a72f8349c4eaf84ca',1,'ballmerpeak::turtlenet::server::TurtlenetImpl']]]
 ];

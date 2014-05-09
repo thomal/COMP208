@@ -36,7 +36,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="namespaces.html"><span>Packages</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -67,7 +66,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -86,38 +85,38 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">PostDetails.java</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="PostDetails_8java.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">//To reduce RPC calls</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">//To reduce RPC calls</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;</div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="keyword">package </span>ballmerpeak.turtlenet.shared;</div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;</div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keyword">import</span> java.io.Serializable;</div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div>
 <div class="line"><a name="l00007"></a><span class="lineno"><a class="code" href="classballmerpeak_1_1turtlenet_1_1shared_1_1PostDetails.html">    7</a></span>&#160;<span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="classballmerpeak_1_1turtlenet_1_1shared_1_1PostDetails.html">PostDetails</a> <span class="keyword">implements</span> Serializable {</div>
-<div class="line"><a name="l00008"></a><span class="lineno"><a class="code" href="classballmerpeak_1_1turtlenet_1_1shared_1_1PostDetails.html#ac805c8c68de597a5ff5696d1d253b5a7">    8</a></span>&#160;    <span class="keyword">public</span> <a class="code" href="classballmerpeak_1_1turtlenet_1_1shared_1_1PostDetails.html#ac805c8c68de597a5ff5696d1d253b5a7">PostDetails</a> () {</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <span class="keyword">public</span> <a class="code" href="classballmerpeak_1_1turtlenet_1_1shared_1_1PostDetails.html">PostDetails</a> () {</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    }</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    </div>
-<div class="line"><a name="l00011"></a><span class="lineno"><a class="code" href="classballmerpeak_1_1turtlenet_1_1shared_1_1PostDetails.html#a1f3b272444d0abfc4e4fc374c2a0c833">   11</a></span>&#160;    <span class="keyword">public</span> <a class="code" href="classballmerpeak_1_1turtlenet_1_1shared_1_1PostDetails.html#a1f3b272444d0abfc4e4fc374c2a0c833">PostDetails</a> (String _sig, <span class="keywordtype">boolean</span> _liked, <span class="keywordtype">int</span> _commentCount, Long _timestamp, String _posterUsername, String _text, String _posterKey) {</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        <a class="code" href="classballmerpeak_1_1turtlenet_1_1shared_1_1PostDetails.html#ac6f606b33cca7c5be0e3eb908241bf8e">sig</a> = _sig;</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        <a class="code" href="classballmerpeak_1_1turtlenet_1_1shared_1_1PostDetails.html#aea0cbf8b30b582800479e28eeb1e931f">liked</a> = _liked;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        <a class="code" href="classballmerpeak_1_1turtlenet_1_1shared_1_1PostDetails.html#a24553cdb518e4501cbdf63263c21d1a0">commentCount</a> = _commentCount;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        <a class="code" href="classballmerpeak_1_1turtlenet_1_1shared_1_1PostDetails.html#a0602043b91650f4eec3d4b71175b7362">timestamp</a> = _timestamp;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        <a class="code" href="classballmerpeak_1_1turtlenet_1_1shared_1_1PostDetails.html#a01a466200c299cca8b1cefabb10973d7">posterKey</a> = _posterKey;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <a class="code" href="classballmerpeak_1_1turtlenet_1_1shared_1_1PostDetails.html#a15dfe34395623678a63f569dc9339cbd">posterUsername</a> = _posterUsername;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        <a class="code" href="classballmerpeak_1_1turtlenet_1_1shared_1_1PostDetails.html#a28dbe8ca59c66a80b1d0538f5485314d">text</a> = _text;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <span class="keyword">public</span> <a class="code" href="classballmerpeak_1_1turtlenet_1_1shared_1_1PostDetails.html">PostDetails</a> (String _sig, <span class="keywordtype">boolean</span> _liked, <span class="keywordtype">int</span> _commentCount, Long _timestamp, String _posterUsername, String _text, String _posterKey) {</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        sig = _sig;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        liked = _liked;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        commentCount = _commentCount;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        timestamp = _timestamp;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        posterKey = _posterKey;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        posterUsername = _posterUsername;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        text = _text;</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    }</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    </div>
-<div class="line"><a name="l00021"></a><span class="lineno"><a class="code" href="classballmerpeak_1_1turtlenet_1_1shared_1_1PostDetails.html#ac6f606b33cca7c5be0e3eb908241bf8e">   21</a></span>&#160;    <span class="keyword">public</span> String  <a class="code" href="classballmerpeak_1_1turtlenet_1_1shared_1_1PostDetails.html#ac6f606b33cca7c5be0e3eb908241bf8e">sig</a>;</div>
-<div class="line"><a name="l00022"></a><span class="lineno"><a class="code" href="classballmerpeak_1_1turtlenet_1_1shared_1_1PostDetails.html#aea0cbf8b30b582800479e28eeb1e931f">   22</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">boolean</span> <a class="code" href="classballmerpeak_1_1turtlenet_1_1shared_1_1PostDetails.html#aea0cbf8b30b582800479e28eeb1e931f">liked</a>;</div>
-<div class="line"><a name="l00023"></a><span class="lineno"><a class="code" href="classballmerpeak_1_1turtlenet_1_1shared_1_1PostDetails.html#a24553cdb518e4501cbdf63263c21d1a0">   23</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">int</span>     <a class="code" href="classballmerpeak_1_1turtlenet_1_1shared_1_1PostDetails.html#a24553cdb518e4501cbdf63263c21d1a0">commentCount</a>;</div>
-<div class="line"><a name="l00024"></a><span class="lineno"><a class="code" href="classballmerpeak_1_1turtlenet_1_1shared_1_1PostDetails.html#a0602043b91650f4eec3d4b71175b7362">   24</a></span>&#160;    <span class="keyword">public</span> Long    <a class="code" href="classballmerpeak_1_1turtlenet_1_1shared_1_1PostDetails.html#a0602043b91650f4eec3d4b71175b7362">timestamp</a>;</div>
-<div class="line"><a name="l00025"></a><span class="lineno"><a class="code" href="classballmerpeak_1_1turtlenet_1_1shared_1_1PostDetails.html#a01a466200c299cca8b1cefabb10973d7">   25</a></span>&#160;    <span class="keyword">public</span> String  <a class="code" href="classballmerpeak_1_1turtlenet_1_1shared_1_1PostDetails.html#a01a466200c299cca8b1cefabb10973d7">posterKey</a>;</div>
-<div class="line"><a name="l00026"></a><span class="lineno"><a class="code" href="classballmerpeak_1_1turtlenet_1_1shared_1_1PostDetails.html#a15dfe34395623678a63f569dc9339cbd">   26</a></span>&#160;    <span class="keyword">public</span> String  <a class="code" href="classballmerpeak_1_1turtlenet_1_1shared_1_1PostDetails.html#a15dfe34395623678a63f569dc9339cbd">posterUsername</a>;</div>
-<div class="line"><a name="l00027"></a><span class="lineno"><a class="code" href="classballmerpeak_1_1turtlenet_1_1shared_1_1PostDetails.html#a28dbe8ca59c66a80b1d0538f5485314d">   27</a></span>&#160;    <span class="keyword">public</span> String  <a class="code" href="classballmerpeak_1_1turtlenet_1_1shared_1_1PostDetails.html#a28dbe8ca59c66a80b1d0538f5485314d">text</a>;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keyword">public</span> String  sig;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keyword">public</span> <span class="keywordtype">boolean</span> liked;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keyword">public</span> <span class="keywordtype">int</span>     commentCount;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keyword">public</span> Long    timestamp;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keyword">public</span> String  posterKey;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keyword">public</span> String  posterUsername;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keyword">public</span> String  text;</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri May 9 2014 06:46:01 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri May 9 2014 07:31:27 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>

@@ -36,7 +36,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="namespaces.html"><span>Packages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -70,7 +69,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -81,7 +80,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="namespaceballmerpeak.html">ballmerpeak</a></li><li class="navelem"><a class="el" href="namespaceballmerpeak_1_1turtlenet.html">turtlenet</a></li><li class="navelem"><a class="el" href="namespaceballmerpeak_1_1turtlenet_1_1server.html">server</a></li><li class="navelem"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html">Database</a></li>  </ul>
+<li class="navelem"><b>ballmerpeak</b></li><li class="navelem"><b>turtlenet</b></li><li class="navelem"><b>server</b></li><li class="navelem"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html">Database</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -104,8 +103,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:af796c23330bbae7271011b0e81901643"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new database.  <a href="#af796c23330bbae7271011b0e81901643"></a><br/></td></tr>
 <tr class="memitem:a80e93295b9fd81f2a3c73bcaa2df39ee"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#a80e93295b9fd81f2a3c73bcaa2df39ee">dbConnect</a> (boolean dbexists)</td></tr>
 <tr class="memdesc:a80e93295b9fd81f2a3c73bcaa2df39ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Connects to an extant database.  <a href="#a80e93295b9fd81f2a3c73bcaa2df39ee"></a><br/></td></tr>
-<tr class="memitem:a1900530bc7bf5c275a275b788086f6ec"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#a1900530bc7bf5c275a275b788086f6ec">dbDisconnect</a> ()</td></tr>
-<tr class="memdesc:a1900530bc7bf5c275a275b788086f6ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disconnects from the database.  <a href="#a1900530bc7bf5c275a275b788086f6ec"></a><br/></td></tr>
+<tr class="memitem:a1900530bc7bf5c275a275b788086f6ec"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1900530bc7bf5c275a275b788086f6ec"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#a1900530bc7bf5c275a275b788086f6ec">dbDisconnect</a> ()</td></tr>
+<tr class="memdesc:a1900530bc7bf5c275a275b788086f6ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disconnects from the database. <br/></td></tr>
 <tr class="memitem:a717872aaaaf6529490c31465f2952219"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#a717872aaaaf6529490c31465f2952219">execute</a> (String <a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#a4401c37a89ca60d2e6b926b9930446dc">query</a>)  throws java.sql.SQLException </td></tr>
 <tr class="memdesc:a717872aaaaf6529490c31465f2952219"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes the given SQL query.  <a href="#a717872aaaaf6529490c31465f2952219"></a><br/></td></tr>
 <tr class="memitem:a4401c37a89ca60d2e6b926b9930446dc"><td class="memItemLeft" align="right" valign="top">ResultSet&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#a4401c37a89ca60d2e6b926b9930446dc">query</a> (String query)  throws java.sql.SQLException </td></tr>
@@ -216,14 +216,17 @@ Static Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
-<tr class="memitem:a3933689115f43166439d740b2a254481"><td class="memItemLeft" align="right" valign="top">static String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#a3933689115f43166439d740b2a254481">path</a> = &quot;./db&quot;</td></tr>
-<tr class="memdesc:a3933689115f43166439d740b2a254481"><td class="mdescLeft">&#160;</td><td class="mdescRight">path to database directory  <a href="#a3933689115f43166439d740b2a254481"></a><br/></td></tr>
+<tr class="memitem:a3933689115f43166439d740b2a254481"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3933689115f43166439d740b2a254481"></a>
+static String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#a3933689115f43166439d740b2a254481">path</a> = &quot;./db&quot;</td></tr>
+<tr class="memdesc:a3933689115f43166439d740b2a254481"><td class="mdescLeft">&#160;</td><td class="mdescRight">path to database directory <br/></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:afc619b6caae48aed2aef929243b00410"><td class="memItemLeft" align="right" valign="top">Connection&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#afc619b6caae48aed2aef929243b00410">dbConnection</a></td></tr>
-<tr class="memitem:a6dc69ef37a9765547dfa556596f5ad3c"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#a6dc69ef37a9765547dfa556596f5ad3c">password</a> = &quot;UNSET&quot;</td></tr>
-<tr class="memdesc:a6dc69ef37a9765547dfa556596f5ad3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Users password, used to encrypt local data.  <a href="#a6dc69ef37a9765547dfa556596f5ad3c"></a><br/></td></tr>
+<tr class="memitem:afc619b6caae48aed2aef929243b00410"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afc619b6caae48aed2aef929243b00410"></a>
+Connection&#160;</td><td class="memItemRight" valign="bottom"><b>dbConnection</b></td></tr>
+<tr class="memitem:a6dc69ef37a9765547dfa556596f5ad3c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6dc69ef37a9765547dfa556596f5ad3c"></a>
+String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#a6dc69ef37a9765547dfa556596f5ad3c">password</a> = &quot;UNSET&quot;</td></tr>
+<tr class="memdesc:a6dc69ef37a9765547dfa556596f5ad3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Users password, used to encrypt local data. <br/></td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock">
@@ -869,25 +872,6 @@ Private Attributes</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>true is the directory exists, false otherwise. </dd></dl>
 
 <p>Definition at line <a class="el" href="Database_8java_source.html#l00035">35</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a1900530bc7bf5c275a275b788086f6ec"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ballmerpeak.turtlenet.server.Database.dbDisconnect </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Disconnects from the database. </p>
-
-<p>Definition at line <a class="el" href="Database_8java_source.html#l00095">95</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
 
 </div>
 </div>
@@ -1791,84 +1775,13 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<h2>Member Data Documentation</h2>
-<a class="anchor" id="afc619b6caae48aed2aef929243b00410"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">Connection ballmerpeak.turtlenet.server.Database.dbConnection</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="Database_8java_source.html#l00015">15</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a6dc69ef37a9765547dfa556596f5ad3c"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">String ballmerpeak.turtlenet.server.Database.password = &quot;UNSET&quot;</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Users password, used to encrypt local data. </p>
-
-<p>Definition at line <a class="el" href="Database_8java_source.html#l00016">16</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a3933689115f43166439d740b2a254481"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">String ballmerpeak.turtlenet.server.Database.path = &quot;./db&quot;</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>path to database directory </p>
-
-<p>Definition at line <a class="el" href="Database_8java_source.html#l00014">14</a> of file <a class="el" href="Database_8java_source.html">Database.java</a>.</p>
-
-</div>
-</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>src/ballmerpeak/turtlenet/server/<a class="el" href="Database_8java_source.html">Database.java</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri May 9 2014 06:46:01 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri May 9 2014 07:31:28 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>

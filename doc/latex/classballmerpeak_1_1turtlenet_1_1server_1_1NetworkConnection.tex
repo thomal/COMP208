@@ -5,44 +5,51 @@
 \begin{DoxyCompactItemize}
 \item 
 \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection_ae7c0317cc0fa85bc885799436affb5e6}{Network\-Connection} (String serverurl)
-\item 
+\begin{DoxyCompactList}\small\item\em Construct a network connection that connects to the given U\-R\-L. \end{DoxyCompactList}\item 
 void \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection_a44b870f7d418ce3ab69587e94ce32a74}{run} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Used for constructing a network thread. \end{DoxyCompactList}\item 
 void \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection_a1bb312cc4af1b95710ecd9b65c5215ce}{close} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Shutdown the network connection. \end{DoxyCompactList}\item 
 Boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection_aadf8e9595cea4dadbb82355e58ba72ec}{has\-Message} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Checks for new messages. \end{DoxyCompactList}\item 
 String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection_a5b9adc8fa4dee623cc1d1c33ccaa7846}{get\-Message} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Get a message. \end{DoxyCompactList}\item 
 long \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection_adc4c65f1c818d16a6abd8ace93bf0047}{get\-Time} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Get the server time. \end{DoxyCompactList}\item 
 boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection_adde42c7caa6295080ba05a66f4bb9ad3}{post\-Message} (\hyperlink{classballmerpeak_1_1turtlenet_1_1shared_1_1Message}{Message} msg, Public\-Key recipient)
-\item 
+\begin{DoxyCompactList}\small\item\em Post a Message object over the network. \end{DoxyCompactList}\item 
 Boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection_a023c16ede7a0c0175e31a937823fbc8f}{claim\-Name} (String name)
-\item 
+\begin{DoxyCompactList}\small\item\em Claims a username on the network. \end{DoxyCompactList}\item 
 void \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection_aa13cfceaafe089d920b79b877a5b810c}{download\-New\-Messages} ()
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Download new messages. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Private Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 Vector$<$ String $>$ \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection_a117a5b525dfb1a2e03ed10ce9adaed77}{server\-Cmd} (String cmd)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Send a command to the server. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
-String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection_a4586970fdb2b8223360db3464bda5526}{url}
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection_a4586970fdb2b8223360db3464bda5526}{String {\bfseries url}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection_a4586970fdb2b8223360db3464bda5526}
+
 \item 
-final int \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection_aa9ff41ab125a57c5e8465a2b3a6da971}{port} = 31415
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection_aa9ff41ab125a57c5e8465a2b3a6da971}{final int \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection_aa9ff41ab125a57c5e8465a2b3a6da971}{port} = 31415}\label{classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection_aa9ff41ab125a57c5e8465a2b3a6da971}
+
+\begin{DoxyCompactList}\small\item\em Pi is awesome. \end{DoxyCompactList}\item 
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection_a477f742ecdd3902fb26a4292f760b163}{Vector$<$ String $>$ {\bfseries messages}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection_a477f742ecdd3902fb26a4292f760b163}
+
 \item 
-Vector$<$ String $>$ \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection_a477f742ecdd3902fb26a4292f760b163}{messages}
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection_a6bee33347e456d6f94d08df8f407e637}{long {\bfseries last\-Read}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection_a6bee33347e456d6f94d08df8f407e637}
+
 \item 
-long \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection_a6bee33347e456d6f94d08df8f407e637}{last\-Read}
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection_af895a5014e7217db08f6444247064938}{boolean {\bfseries connected}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection_af895a5014e7217db08f6444247064938}
+
 \item 
-boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection_af895a5014e7217db08f6444247064938}{connected}
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection_a6ffbe477a10b675006dbcc18dbf72909}{boolean {\bfseries tor}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection_a6ffbe477a10b675006dbcc18dbf72909}
+
 \item 
-boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection_a6ffbe477a10b675006dbcc18dbf72909}{tor}
-\item 
-Semaphore \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection_af9588f9c66266d7aacadce9b0351a177}{message\-Lock}
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection_af9588f9c66266d7aacadce9b0351a177}{Semaphore {\bfseries message\-Lock}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection_af9588f9c66266d7aacadce9b0351a177}
+
 \end{DoxyCompactItemize}
 
 
@@ -63,7 +70,16 @@ Definition at line 11 of file Network\-Connection.\-java.
 )}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection_ae7c0317cc0fa85bc885799436affb5e6}
 
 
-Definition at line 12 of file Network\-Connection.\-java.
+Construct a network connection that connects to the given U\-R\-L. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serverurl} & The U\-Rl to connect to. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 15 of file Network\-Connection.\-java.
 
 
 
@@ -77,7 +93,22 @@ Definition at line 12 of file Network\-Connection.\-java.
 )}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection_a023c16ede7a0c0175e31a937823fbc8f}
 
 
-Definition at line 115 of file Network\-Connection.\-java.
+Claims a username on the network. 
+
+Usernames must be unique, this is enforced by the server. Thread safe. \begin{DoxyWarning}{Warning}
+Extant usernames are considered public information. This is the only plaintext sent in the system. 
+\end{DoxyWarning}
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name to claim. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if succes, false otherwsie. 
+\end{DoxyReturn}
+
+
+Definition at line 153 of file Network\-Connection.\-java.
 
 \hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection_a1bb312cc4af1b95710ecd9b65c5215ce}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Network\-Connection@{ballmerpeak\-::turtlenet\-::server\-::\-Network\-Connection}!close@{close}}
 \index{close@{close}!ballmerpeak::turtlenet::server::NetworkConnection@{ballmerpeak\-::turtlenet\-::server\-::\-Network\-Connection}}
@@ -88,7 +119,11 @@ Definition at line 115 of file Network\-Connection.\-java.
 )}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection_a1bb312cc4af1b95710ecd9b65c5215ce}
 
 
-Definition at line 46 of file Network\-Connection.\-java.
+Shutdown the network connection. 
+
+Saves the last time at which new messages were fetched to disk. Thread safe. 
+
+Definition at line 56 of file Network\-Connection.\-java.
 
 \hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection_aa13cfceaafe089d920b79b877a5b810c}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Network\-Connection@{ballmerpeak\-::turtlenet\-::server\-::\-Network\-Connection}!download\-New\-Messages@{download\-New\-Messages}}
 \index{download\-New\-Messages@{download\-New\-Messages}!ballmerpeak::turtlenet::server::NetworkConnection@{ballmerpeak\-::turtlenet\-::server\-::\-Network\-Connection}}
@@ -99,7 +134,11 @@ Definition at line 46 of file Network\-Connection.\-java.
 )}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection_aa13cfceaafe089d920b79b877a5b810c}
 
 
-Definition at line 136 of file Network\-Connection.\-java.
+Download new messages. 
+
+Automatically called every second by \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection_a44b870f7d418ce3ab69587e94ce32a74}{run()}. Thread safe. 
+
+Definition at line 178 of file Network\-Connection.\-java.
 
 \hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection_a5b9adc8fa4dee623cc1d1c33ccaa7846}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Network\-Connection@{ballmerpeak\-::turtlenet\-::server\-::\-Network\-Connection}!get\-Message@{get\-Message}}
 \index{get\-Message@{get\-Message}!ballmerpeak::turtlenet::server::NetworkConnection@{ballmerpeak\-::turtlenet\-::server\-::\-Network\-Connection}}
@@ -110,7 +149,14 @@ Definition at line 136 of file Network\-Connection.\-java.
 )}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection_a5b9adc8fa4dee623cc1d1c33ccaa7846}
 
 
-Definition at line 79 of file Network\-Connection.\-java.
+Get a message. 
+
+Get the next message in the queue, and remove it from the queue. Thread safe. \begin{DoxyReturn}{Returns}
+The oldest message in the stack of messages recieved. 
+\end{DoxyReturn}
+
+
+Definition at line 96 of file Network\-Connection.\-java.
 
 \hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection_adc4c65f1c818d16a6abd8ace93bf0047}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Network\-Connection@{ballmerpeak\-::turtlenet\-::server\-::\-Network\-Connection}!get\-Time@{get\-Time}}
 \index{get\-Time@{get\-Time}!ballmerpeak::turtlenet::server::NetworkConnection@{ballmerpeak\-::turtlenet\-::server\-::\-Network\-Connection}}
@@ -121,7 +167,14 @@ Definition at line 79 of file Network\-Connection.\-java.
 )}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection_adc4c65f1c818d16a6abd8ace93bf0047}
 
 
-Definition at line 92 of file Network\-Connection.\-java.
+Get the server time. 
+
+Millisecond timestamps can, and have, been used to identify users. We therefore recomend always using server time. (Obviously other methods are in place to hide true network latency.) Thread safe. \begin{DoxyReturn}{Returns}
+The number of milliseconds since midnight january first 1970, according to the server. 
+\end{DoxyReturn}
+
+
+Definition at line 117 of file Network\-Connection.\-java.
 
 \hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection_aadf8e9595cea4dadbb82355e58ba72ec}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Network\-Connection@{ballmerpeak\-::turtlenet\-::server\-::\-Network\-Connection}!has\-Message@{has\-Message}}
 \index{has\-Message@{has\-Message}!ballmerpeak::turtlenet::server::NetworkConnection@{ballmerpeak\-::turtlenet\-::server\-::\-Network\-Connection}}
@@ -132,7 +185,14 @@ Definition at line 92 of file Network\-Connection.\-java.
 )}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection_aadf8e9595cea4dadbb82355e58ba72ec}
 
 
-Definition at line 66 of file Network\-Connection.\-java.
+Checks for new messages. 
+
+Thread safe. \begin{DoxyReturn}{Returns}
+returns true if a message is available, false otherwise 
+\end{DoxyReturn}
+
+
+Definition at line 79 of file Network\-Connection.\-java.
 
 \hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection_adde42c7caa6295080ba05a66f4bb9ad3}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Network\-Connection@{ballmerpeak\-::turtlenet\-::server\-::\-Network\-Connection}!post\-Message@{post\-Message}}
 \index{post\-Message@{post\-Message}!ballmerpeak::turtlenet::server::NetworkConnection@{ballmerpeak\-::turtlenet\-::server\-::\-Network\-Connection}}
@@ -144,7 +204,19 @@ Definition at line 66 of file Network\-Connection.\-java.
 )}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection_adde42c7caa6295080ba05a66f4bb9ad3}
 
 
-Definition at line 103 of file Network\-Connection.\-java.
+Post a Message object over the network. 
+
+Only viewable by recipitent. Thread safe. 
+\begin{DoxyParams}{Parameters}
+{\em recipient} & The person you are sending the message to. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns true on success, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 134 of file Network\-Connection.\-java.
 
 \hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection_a44b870f7d418ce3ab69587e94ce32a74}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Network\-Connection@{ballmerpeak\-::turtlenet\-::server\-::\-Network\-Connection}!run@{run}}
 \index{run@{run}!ballmerpeak::turtlenet::server::NetworkConnection@{ballmerpeak\-::turtlenet\-::server\-::\-Network\-Connection}}
@@ -155,7 +227,11 @@ Definition at line 103 of file Network\-Connection.\-java.
 )}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection_a44b870f7d418ce3ab69587e94ce32a74}
 
 
-Definition at line 34 of file Network\-Connection.\-java.
+Used for constructing a network thread. 
+
+Fetches new messages every second. Thread safe. 
+
+Definition at line 40 of file Network\-Connection.\-java.
 
 \hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection_a117a5b525dfb1a2e03ed10ce9adaed77}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Network\-Connection@{ballmerpeak\-::turtlenet\-::server\-::\-Network\-Connection}!server\-Cmd@{server\-Cmd}}
 \index{server\-Cmd@{server\-Cmd}!ballmerpeak::turtlenet::server::NetworkConnection@{ballmerpeak\-::turtlenet\-::server\-::\-Network\-Connection}}
@@ -166,62 +242,22 @@ Definition at line 34 of file Network\-Connection.\-java.
 )\hspace{0.3cm}{\ttfamily [private]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection_a117a5b525dfb1a2e03ed10ce9adaed77}
 
 
-Definition at line 154 of file Network\-Connection.\-java.
+Send a command to the server. 
 
 
-
-\subsubsection{Member Data Documentation}
-\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection_af895a5014e7217db08f6444247064938}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Network\-Connection@{ballmerpeak\-::turtlenet\-::server\-::\-Network\-Connection}!connected@{connected}}
-\index{connected@{connected}!ballmerpeak::turtlenet::server::NetworkConnection@{ballmerpeak\-::turtlenet\-::server\-::\-Network\-Connection}}
-\paragraph[{connected}]{\setlength{\rightskip}{0pt plus 5cm}boolean ballmerpeak.\-turtlenet.\-server.\-Network\-Connection.\-connected\hspace{0.3cm}{\ttfamily [private]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection_af895a5014e7217db08f6444247064938}
-
-
-Definition at line 222 of file Network\-Connection.\-java.
-
-\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection_a6bee33347e456d6f94d08df8f407e637}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Network\-Connection@{ballmerpeak\-::turtlenet\-::server\-::\-Network\-Connection}!last\-Read@{last\-Read}}
-\index{last\-Read@{last\-Read}!ballmerpeak::turtlenet::server::NetworkConnection@{ballmerpeak\-::turtlenet\-::server\-::\-Network\-Connection}}
-\paragraph[{last\-Read}]{\setlength{\rightskip}{0pt plus 5cm}long ballmerpeak.\-turtlenet.\-server.\-Network\-Connection.\-last\-Read\hspace{0.3cm}{\ttfamily [private]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection_a6bee33347e456d6f94d08df8f407e637}
+\begin{DoxyParams}{Parameters}
+{\em cmd} & The text to send to the server. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The servers response, one string per line, element 0 is the topmost (first) line sent by the server. 
+\end{DoxyReturn}
 
 
-Definition at line 221 of file Network\-Connection.\-java.
-
-\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection_af9588f9c66266d7aacadce9b0351a177}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Network\-Connection@{ballmerpeak\-::turtlenet\-::server\-::\-Network\-Connection}!message\-Lock@{message\-Lock}}
-\index{message\-Lock@{message\-Lock}!ballmerpeak::turtlenet::server::NetworkConnection@{ballmerpeak\-::turtlenet\-::server\-::\-Network\-Connection}}
-\paragraph[{message\-Lock}]{\setlength{\rightskip}{0pt plus 5cm}Semaphore ballmerpeak.\-turtlenet.\-server.\-Network\-Connection.\-message\-Lock\hspace{0.3cm}{\ttfamily [private]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection_af9588f9c66266d7aacadce9b0351a177}
-
-
-Definition at line 224 of file Network\-Connection.\-java.
-
-\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection_a477f742ecdd3902fb26a4292f760b163}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Network\-Connection@{ballmerpeak\-::turtlenet\-::server\-::\-Network\-Connection}!messages@{messages}}
-\index{messages@{messages}!ballmerpeak::turtlenet::server::NetworkConnection@{ballmerpeak\-::turtlenet\-::server\-::\-Network\-Connection}}
-\paragraph[{messages}]{\setlength{\rightskip}{0pt plus 5cm}Vector$<$String$>$ ballmerpeak.\-turtlenet.\-server.\-Network\-Connection.\-messages\hspace{0.3cm}{\ttfamily [private]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection_a477f742ecdd3902fb26a4292f760b163}
-
-
-Definition at line 219 of file Network\-Connection.\-java.
-
-\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection_aa9ff41ab125a57c5e8465a2b3a6da971}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Network\-Connection@{ballmerpeak\-::turtlenet\-::server\-::\-Network\-Connection}!port@{port}}
-\index{port@{port}!ballmerpeak::turtlenet::server::NetworkConnection@{ballmerpeak\-::turtlenet\-::server\-::\-Network\-Connection}}
-\paragraph[{port}]{\setlength{\rightskip}{0pt plus 5cm}final int ballmerpeak.\-turtlenet.\-server.\-Network\-Connection.\-port = 31415\hspace{0.3cm}{\ttfamily [private]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection_aa9ff41ab125a57c5e8465a2b3a6da971}
-
-
-Definition at line 218 of file Network\-Connection.\-java.
-
-\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection_a6ffbe477a10b675006dbcc18dbf72909}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Network\-Connection@{ballmerpeak\-::turtlenet\-::server\-::\-Network\-Connection}!tor@{tor}}
-\index{tor@{tor}!ballmerpeak::turtlenet::server::NetworkConnection@{ballmerpeak\-::turtlenet\-::server\-::\-Network\-Connection}}
-\paragraph[{tor}]{\setlength{\rightskip}{0pt plus 5cm}boolean ballmerpeak.\-turtlenet.\-server.\-Network\-Connection.\-tor\hspace{0.3cm}{\ttfamily [private]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection_a6ffbe477a10b675006dbcc18dbf72909}
-
-
-Definition at line 223 of file Network\-Connection.\-java.
-
-\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection_a4586970fdb2b8223360db3464bda5526}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Network\-Connection@{ballmerpeak\-::turtlenet\-::server\-::\-Network\-Connection}!url@{url}}
-\index{url@{url}!ballmerpeak::turtlenet::server::NetworkConnection@{ballmerpeak\-::turtlenet\-::server\-::\-Network\-Connection}}
-\paragraph[{url}]{\setlength{\rightskip}{0pt plus 5cm}String ballmerpeak.\-turtlenet.\-server.\-Network\-Connection.\-url\hspace{0.3cm}{\ttfamily [private]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection_a4586970fdb2b8223360db3464bda5526}
-
-
-Definition at line 217 of file Network\-Connection.\-java.
+Definition at line 200 of file Network\-Connection.\-java.
 
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-src/ballmerpeak/turtlenet/server/\hyperlink{NetworkConnection_8java}{Network\-Connection.\-java}\end{DoxyCompactItemize}
+src/ballmerpeak/turtlenet/server/Network\-Connection.\-java\end{DoxyCompactItemize}

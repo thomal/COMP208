@@ -36,7 +36,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="namespaces.html"><span>Packages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -70,7 +69,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -81,7 +80,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="namespaceballmerpeak.html">ballmerpeak</a></li><li class="navelem"><a class="el" href="namespaceballmerpeak_1_1turtlenet.html">turtlenet</a></li><li class="navelem"><a class="el" href="namespaceballmerpeak_1_1turtlenet_1_1server.html">server</a></li><li class="navelem"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Crypto.html">Crypto</a></li>  </ul>
+<li class="navelem"><b>ballmerpeak</b></li><li class="navelem"><b>turtlenet</b></li><li class="navelem"><b>server</b></li><li class="navelem"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Crypto.html">Crypto</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -98,33 +97,54 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <tr class="heading"><td colspan="2"><h2><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a4d363a946bc16a383bb3516a6819e06f"><td class="memItemLeft" align="right" valign="top">static Boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Crypto.html#a4d363a946bc16a383bb3516a6819e06f">keysExist</a> ()</td></tr>
+<tr class="memdesc:a4d363a946bc16a383bb3516a6819e06f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check whether the user has a keypair.  <a href="#a4d363a946bc16a383bb3516a6819e06f"></a><br/></td></tr>
 <tr class="memitem:ae3a1070020af2f98bfb23284115f1b97"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Crypto.html#ae3a1070020af2f98bfb23284115f1b97">keyGen</a> ()</td></tr>
+<tr class="memdesc:ae3a1070020af2f98bfb23284115f1b97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generate an RSA keypair.  <a href="#ae3a1070020af2f98bfb23284115f1b97"></a><br/></td></tr>
 <tr class="memitem:a028cefbca14291fa686b27c36f3b212a"><td class="memItemLeft" align="right" valign="top">static boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Crypto.html#a028cefbca14291fa686b27c36f3b212a">encryptDB</a> (String password)</td></tr>
+<tr class="memdesc:a028cefbca14291fa686b27c36f3b212a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encrypt local data store.  <a href="#a028cefbca14291fa686b27c36f3b212a"></a><br/></td></tr>
 <tr class="memitem:a0faed916bbc35f2f01c4a09a52c008df"><td class="memItemLeft" align="right" valign="top">static boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Crypto.html#a0faed916bbc35f2f01c4a09a52c008df">decryptDB</a> (String password)</td></tr>
+<tr class="memdesc:a0faed916bbc35f2f01c4a09a52c008df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decrypt local data store.  <a href="#a0faed916bbc35f2f01c4a09a52c008df"></a><br/></td></tr>
 <tr class="memitem:a2e95210ca85eb6273d47a1bde6be22e4"><td class="memItemLeft" align="right" valign="top">static KeyPair&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Crypto.html#a2e95210ca85eb6273d47a1bde6be22e4">getTestKey</a> ()</td></tr>
+<tr class="memdesc:a2e95210ca85eb6273d47a1bde6be22e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a keypair for testing purposes.  <a href="#a2e95210ca85eb6273d47a1bde6be22e4"></a><br/></td></tr>
 <tr class="memitem:a830f62b5e45e6d1f424c3340b80d90c2"><td class="memItemLeft" align="right" valign="top">static PublicKey&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Crypto.html#a830f62b5e45e6d1f424c3340b80d90c2">getPublicKey</a> ()</td></tr>
+<tr class="memdesc:a830f62b5e45e6d1f424c3340b80d90c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current users public key.  <a href="#a830f62b5e45e6d1f424c3340b80d90c2"></a><br/></td></tr>
 <tr class="memitem:af6bfe6ea68cff3020c22221361f2d7f2"><td class="memItemLeft" align="right" valign="top">static PrivateKey&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Crypto.html#af6bfe6ea68cff3020c22221361f2d7f2">getPrivateKey</a> ()</td></tr>
+<tr class="memdesc:af6bfe6ea68cff3020c22221361f2d7f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current users private key.  <a href="#af6bfe6ea68cff3020c22221361f2d7f2"></a><br/></td></tr>
 <tr class="memitem:a3551509d86a909950bb4c44ae1803240"><td class="memItemLeft" align="right" valign="top">static String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Crypto.html#a3551509d86a909950bb4c44ae1803240">sign</a> (<a class="el" href="classballmerpeak_1_1turtlenet_1_1shared_1_1Message.html">Message</a> msg)</td></tr>
+<tr class="memdesc:a3551509d86a909950bb4c44ae1803240"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generate the appropriate signature for a message.  <a href="#a3551509d86a909950bb4c44ae1803240"></a><br/></td></tr>
 <tr class="memitem:aaa857c040134654c8d6187cb4f4090b5"><td class="memItemLeft" align="right" valign="top">static String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Crypto.html#aaa857c040134654c8d6187cb4f4090b5">sign</a> (<a class="el" href="classballmerpeak_1_1turtlenet_1_1shared_1_1Message.html">Message</a> msg, PrivateKey k)</td></tr>
+<tr class="memdesc:aaa857c040134654c8d6187cb4f4090b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generate the appropriate signature for a message.  <a href="#aaa857c040134654c8d6187cb4f4090b5"></a><br/></td></tr>
 <tr class="memitem:a359e1b82e7bf6ff8018bed7829850def"><td class="memItemLeft" align="right" valign="top">static String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Crypto.html#a359e1b82e7bf6ff8018bed7829850def">hash</a> (String data)</td></tr>
+<tr class="memdesc:a359e1b82e7bf6ff8018bed7829850def"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hash a string.  <a href="#a359e1b82e7bf6ff8018bed7829850def"></a><br/></td></tr>
 <tr class="memitem:ae5bdc4040fce3773ce9d5718d3bf8d0b"><td class="memItemLeft" align="right" valign="top">static boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Crypto.html#ae5bdc4040fce3773ce9d5718d3bf8d0b">verifySig</a> (<a class="el" href="classballmerpeak_1_1turtlenet_1_1shared_1_1Message.html">Message</a> msg, PublicKey author)</td></tr>
+<tr class="memdesc:ae5bdc4040fce3773ce9d5718d3bf8d0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verify a signature.  <a href="#ae5bdc4040fce3773ce9d5718d3bf8d0b"></a><br/></td></tr>
 <tr class="memitem:ae3b4ea7217b7e91abd1d42f932611c85"><td class="memItemLeft" align="right" valign="top">static String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Crypto.html#ae3b4ea7217b7e91abd1d42f932611c85">encrypt</a> (<a class="el" href="classballmerpeak_1_1turtlenet_1_1shared_1_1Message.html">Message</a> msg, PublicKey recipient, <a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection.html">NetworkConnection</a> connection)</td></tr>
+<tr class="memdesc:ae3b4ea7217b7e91abd1d42f932611c85"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encrypt a message.  <a href="#ae3b4ea7217b7e91abd1d42f932611c85"></a><br/></td></tr>
 <tr class="memitem:a74c30e340ade0ff1729abe05c772d3f7"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classballmerpeak_1_1turtlenet_1_1shared_1_1Message.html">Message</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Crypto.html#a74c30e340ade0ff1729abe05c772d3f7">decrypt</a> (String msg)</td></tr>
+<tr class="memdesc:a74c30e340ade0ff1729abe05c772d3f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decrypt a message.  <a href="#a74c30e340ade0ff1729abe05c772d3f7"></a><br/></td></tr>
 <tr class="memitem:ac3423c536327620f518dab7f55d85b20"><td class="memItemLeft" align="right" valign="top">static String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Crypto.html#ac3423c536327620f518dab7f55d85b20">encodeKey</a> (PublicKey key)</td></tr>
+<tr class="memdesc:ac3423c536327620f518dab7f55d85b20"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encode a PublicKey as a String.  <a href="#ac3423c536327620f518dab7f55d85b20"></a><br/></td></tr>
 <tr class="memitem:a78b5adee9b8deda2f2558fcc9aa3aa4b"><td class="memItemLeft" align="right" valign="top">static PublicKey&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Crypto.html#a78b5adee9b8deda2f2558fcc9aa3aa4b">decodeKey</a> (String codedKey)</td></tr>
+<tr class="memdesc:a78b5adee9b8deda2f2558fcc9aa3aa4b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decode a string representation of a PublicKey.  <a href="#a78b5adee9b8deda2f2558fcc9aa3aa4b"></a><br/></td></tr>
 <tr class="memitem:a9a8cf56daec604a46eff71fd42b21eef"><td class="memItemLeft" align="right" valign="top">static String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Crypto.html#a9a8cf56daec604a46eff71fd42b21eef">Base64Encode</a> (byte[] data)</td></tr>
+<tr class="memdesc:a9a8cf56daec604a46eff71fd42b21eef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encode a byte[] as a string.  <a href="#a9a8cf56daec604a46eff71fd42b21eef"></a><br/></td></tr>
 <tr class="memitem:a9ff76fd9368082d0e3fa77c9687d8bee"><td class="memItemLeft" align="right" valign="top">static byte[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Crypto.html#a9ff76fd9368082d0e3fa77c9687d8bee">Base64Decode</a> (String data)</td></tr>
+<tr class="memdesc:a9ff76fd9368082d0e3fa77c9687d8bee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decode a string representation of a byte[] Uses base64 encoding.  <a href="#a9ff76fd9368082d0e3fa77c9687d8bee"></a><br/></td></tr>
 <tr class="memitem:a226d168b01eb7f6c9b1c5c0984528a41"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Crypto.html#a226d168b01eb7f6c9b1c5c0984528a41">rand</a> (int min, int max)</td></tr>
+<tr class="memdesc:a226d168b01eb7f6c9b1c5c0984528a41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a random number.  <a href="#a226d168b01eb7f6c9b1c5c0984528a41"></a><br/></td></tr>
 <tr class="memitem:abfc04f2d0f6f92bcca41c53b6cdc667d"><td class="memItemLeft" align="right" valign="top">static byte[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Crypto.html#abfc04f2d0f6f92bcca41c53b6cdc667d">encryptBytes</a> (byte[] data, String key)</td></tr>
+<tr class="memdesc:abfc04f2d0f6f92bcca41c53b6cdc667d"><td class="mdescLeft">&#160;</td><td class="mdescRight">AES Encrypt data.  <a href="#abfc04f2d0f6f92bcca41c53b6cdc667d"></a><br/></td></tr>
 <tr class="memitem:aea88564254a1c6c217042419f304c1ef"><td class="memItemLeft" align="right" valign="top">static byte[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Crypto.html#aea88564254a1c6c217042419f304c1ef">decryptBytes</a> (byte[] data, String key)</td></tr>
+<tr class="memdesc:aea88564254a1c6c217042419f304c1ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decrypt AES data.  <a href="#aea88564254a1c6c217042419f304c1ef"></a><br/></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
-<tr class="memitem:ad2ae6688f871ae46b7a5ae98b35d7000"><td class="memItemLeft" align="right" valign="top">static SecureRandom&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Crypto.html#ad2ae6688f871ae46b7a5ae98b35d7000">srand</a></td></tr>
+<tr class="memitem:ad2ae6688f871ae46b7a5ae98b35d7000"><td class="memItemLeft" align="right" valign="top">static SecureRandom&#160;</td><td class="memItemRight" valign="bottom"><b>srand</b></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pri-static-methods"></a>
 Static Private Member Functions</h2></td></tr>
 <tr class="memitem:ae27396e1a327d1fc2eba6f7ccd53defc"><td class="memItemLeft" align="right" valign="top">static byte[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Crypto.html#ae27396e1a327d1fc2eba6f7ccd53defc">getAESKey</a> (String password)</td></tr>
+<tr class="memdesc:ae27396e1a327d1fc2eba6f7ccd53defc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Derives a byte[] suitable for constructing an AES key from a string.  <a href="#ae27396e1a327d1fc2eba6f7ccd53defc"></a><br/></td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock">
@@ -152,7 +172,16 @@ Static Private Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Crypto_8java_source.html#l00288">288</a> of file <a class="el" href="Crypto_8java_source.html">Crypto.java</a>.</p>
+<p>Decode a string representation of a byte[] Uses base64 encoding. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>The string to decode. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The byte[] data represents. </dd></dl>
+
+<p>Definition at line <a class="el" href="Crypto_8java_source.html#l00378">378</a> of file <a class="el" href="Crypto_8java_source.html">Crypto.java</a>.</p>
 
 </div>
 </div>
@@ -178,7 +207,17 @@ Static Private Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Crypto_8java_source.html#l00284">284</a> of file <a class="el" href="Crypto_8java_source.html">Crypto.java</a>.</p>
+<p>Encode a byte[] as a string. </p>
+<p>Uses base64 encoding. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>The byte array to encode. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A string representation of data. </dd></dl>
+
+<p>Definition at line <a class="el" href="Crypto_8java_source.html#l00369">369</a> of file <a class="el" href="Crypto_8java_source.html">Crypto.java</a>.</p>
 
 </div>
 </div>
@@ -204,7 +243,16 @@ Static Private Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Crypto_8java_source.html#l00270">270</a> of file <a class="el" href="Crypto_8java_source.html">Crypto.java</a>.</p>
+<p>Decode a string representation of a PublicKey. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">codedKey</td><td>The encoded public key to decode. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The PublicKey encoded in codedKey. </dd></dl>
+
+<p>Definition at line <a class="el" href="Crypto_8java_source.html#l00350">350</a> of file <a class="el" href="Crypto_8java_source.html">Crypto.java</a>.</p>
 
 </div>
 </div>
@@ -230,7 +278,18 @@ Static Private Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Crypto_8java_source.html#l00222">222</a> of file <a class="el" href="Crypto_8java_source.html">Crypto.java</a>.</p>
+<p>Decrypt a message. </p>
+<p>Uses an RSA header with the main ciphertext being AES encrypted. There are significant speed advantages to this given most modern CPUs have AES as part of the instruction set.</p>
+<p>Message is decrypted using the current users private key.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">msg</td><td>The message to decryot. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The decrypted message. </dd></dl>
+
+<p>Definition at line <a class="el" href="Crypto_8java_source.html#l00294">294</a> of file <a class="el" href="Crypto_8java_source.html">Crypto.java</a>.</p>
 
 </div>
 </div>
@@ -266,7 +325,18 @@ Static Private Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Crypto_8java_source.html#l00309">309</a> of file <a class="el" href="Crypto_8java_source.html">Crypto.java</a>.</p>
+<p>Decrypt AES data. </p>
+<p>Decrypts AES encrypted byte[]s using a key derived from key. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>The data to decrypt. </td></tr>
+    <tr><td class="paramname">key</td><td>The string from which the key is derived. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>decrypted data. </dd></dl>
+
+<p>Definition at line <a class="el" href="Crypto_8java_source.html#l00416">416</a> of file <a class="el" href="Crypto_8java_source.html">Crypto.java</a>.</p>
 
 </div>
 </div>
@@ -292,7 +362,17 @@ Static Private Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Crypto_8java_source.html#l00083">83</a> of file <a class="el" href="Crypto_8java_source.html">Crypto.java</a>.</p>
+<p>Decrypt local data store. </p>
+<p>Decrypts all files in the db folder with AES-128. Removes the trailing .aes from the filename </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">password</td><td>The password used to derive the AES key. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true of success, false otherwise. </dd></dl>
+
+<p>Definition at line <a class="el" href="Crypto_8java_source.html#l00098">98</a> of file <a class="el" href="Crypto_8java_source.html">Crypto.java</a>.</p>
 
 </div>
 </div>
@@ -318,7 +398,16 @@ Static Private Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Crypto_8java_source.html#l00261">261</a> of file <a class="el" href="Crypto_8java_source.html">Crypto.java</a>.</p>
+<p>Encode a PublicKey as a String. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>The PublicKey to encode. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A string representation of key. </dd></dl>
+
+<p>Definition at line <a class="el" href="Crypto_8java_source.html#l00337">337</a> of file <a class="el" href="Crypto_8java_source.html">Crypto.java</a>.</p>
 
 </div>
 </div>
@@ -360,7 +449,22 @@ Static Private Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Crypto_8java_source.html#l00192">192</a> of file <a class="el" href="Crypto_8java_source.html">Crypto.java</a>.</p>
+<p>Encrypt a message. </p>
+<p>Uses an RSA header with the main ciphertext being AES encrypted. There are significant speed advantages to this given most modern CPUs have AES as part of the instruction set.</p>
+<p>Message is encrypted using the current users private key.</p>
+<p>Time differentials can, and have, been used to corrolate otherwise anonymous messages; therefore server time is used. This is not to protect against malicious server operators, but operators ordered after the fact to provide the data they've collected.</p>
+<p>The <a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection.html">NetworkConnection</a> is used to get the servers time. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">msg</td><td>The message to encrypt. </td></tr>
+    <tr><td class="paramname">recipient</td><td>The public key that should be used to encrypt the message. </td></tr>
+    <tr><td class="paramname">connection</td><td>A network connection to the server you intend to send this message to. Used to get a timestamp. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The encrypted message as a string. </dd></dl>
+
+<p>Definition at line <a class="el" href="Crypto_8java_source.html#l00254">254</a> of file <a class="el" href="Crypto_8java_source.html">Crypto.java</a>.</p>
 
 </div>
 </div>
@@ -396,7 +500,18 @@ Static Private Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Crypto_8java_source.html#l00297">297</a> of file <a class="el" href="Crypto_8java_source.html">Crypto.java</a>.</p>
+<p>AES Encrypt data. </p>
+<p>AES encrypts a byte[] using AES and a key derived from key. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>The data to encrypt. </td></tr>
+    <tr><td class="paramname">key</td><td>The string from which the key is derived. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>data encrypted using AES. </dd></dl>
+
+<p>Definition at line <a class="el" href="Crypto_8java_source.html#l00398">398</a> of file <a class="el" href="Crypto_8java_source.html">Crypto.java</a>.</p>
 
 </div>
 </div>
@@ -422,7 +537,17 @@ Static Private Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Crypto_8java_source.html#l00061">61</a> of file <a class="el" href="Crypto_8java_source.html">Crypto.java</a>.</p>
+<p>Encrypt local data store. </p>
+<p>encrypts all files in the db folder with AES-128. Renames files to &lt;filename&gt;.aes </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">password</td><td>The password used to derive the AES key. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true of success, false otherwise. </dd></dl>
+
+<p>Definition at line <a class="el" href="Crypto_8java_source.html#l00072">72</a> of file <a class="el" href="Crypto_8java_source.html">Crypto.java</a>.</p>
 
 </div>
 </div>
@@ -448,7 +573,16 @@ Static Private Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Crypto_8java_source.html#l00321">321</a> of file <a class="el" href="Crypto_8java_source.html">Crypto.java</a>.</p>
+<p>Derives a byte[] suitable for constructing an AES key from a string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">password</td><td>The string from which to derive a byte[]. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A byte[] suitable for constructing an AES key. </dd></dl>
+
+<p>Definition at line <a class="el" href="Crypto_8java_source.html#l00432">432</a> of file <a class="el" href="Crypto_8java_source.html">Crypto.java</a>.</p>
 
 </div>
 </div>
@@ -473,7 +607,10 @@ Static Private Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Crypto_8java_source.html#l00127">127</a> of file <a class="el" href="Crypto_8java_source.html">Crypto.java</a>.</p>
+<p>Get the current users private key. </p>
+<dl class="section return"><dt>Returns</dt><dd>The current users PrivateKey </dd></dl>
+
+<p>Definition at line <a class="el" href="Crypto_8java_source.html#l00152">152</a> of file <a class="el" href="Crypto_8java_source.html">Crypto.java</a>.</p>
 
 </div>
 </div>
@@ -498,7 +635,10 @@ Static Private Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Crypto_8java_source.html#l00115">115</a> of file <a class="el" href="Crypto_8java_source.html">Crypto.java</a>.</p>
+<p>Get the current users public key. </p>
+<dl class="section return"><dt>Returns</dt><dd>The current users PublicKey. </dd></dl>
+
+<p>Definition at line <a class="el" href="Crypto_8java_source.html#l00137">137</a> of file <a class="el" href="Crypto_8java_source.html">Crypto.java</a>.</p>
 
 </div>
 </div>
@@ -523,7 +663,16 @@ Static Private Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Crypto_8java_source.html#l00103">103</a> of file <a class="el" href="Crypto_8java_source.html">Crypto.java</a>.</p>
+<p>Get a keypair for testing purposes. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">bar</td><td>baz. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>An RSA KeyPair </dd></dl>
+
+<p>Definition at line <a class="el" href="Crypto_8java_source.html#l00122">122</a> of file <a class="el" href="Crypto_8java_source.html">Crypto.java</a>.</p>
 
 </div>
 </div>
@@ -549,7 +698,17 @@ Static Private Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Crypto_8java_source.html#l00158">158</a> of file <a class="el" href="Crypto_8java_source.html">Crypto.java</a>.</p>
+<p>Hash a string. </p>
+<p>Uses SHA-256. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>The text to hash. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The SHA-256 hash of the data. </dd></dl>
+
+<p>Definition at line <a class="el" href="Crypto_8java_source.html#l00201">201</a> of file <a class="el" href="Crypto_8java_source.html">Crypto.java</a>.</p>
 
 </div>
 </div>
@@ -574,7 +733,10 @@ Static Private Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Crypto_8java_source.html#l00030">30</a> of file <a class="el" href="Crypto_8java_source.html">Crypto.java</a>.</p>
+<p>Generate an RSA keypair. </p>
+<p>Stores the keys in <a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#a3933689115f43166439d740b2a254481" title="path to database directory">Database.path</a> + public/private .key They are automatically encrypted by <a class="el" href="classballmerpeak_1_1turtlenet_1_1server_1_1TNClient.html">TNClient</a>. </p>
+
+<p>Definition at line <a class="el" href="Crypto_8java_source.html#l00037">37</a> of file <a class="el" href="Crypto_8java_source.html">Crypto.java</a>.</p>
 
 </div>
 </div>
@@ -599,7 +761,10 @@ Static Private Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Crypto_8java_source.html#l00024">24</a> of file <a class="el" href="Crypto_8java_source.html">Crypto.java</a>.</p>
+<p>Check whether the user has a keypair. </p>
+<dl class="section return"><dt>Returns</dt><dd>true is the user has a keypair, false otherwise. </dd></dl>
+
+<p>Definition at line <a class="el" href="Crypto_8java_source.html#l00027">27</a> of file <a class="el" href="Crypto_8java_source.html">Crypto.java</a>.</p>
 
 </div>
 </div>
@@ -635,7 +800,17 @@ Static Private Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Crypto_8java_source.html#l00292">292</a> of file <a class="el" href="Crypto_8java_source.html">Crypto.java</a>.</p>
+<p>Get a random number. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">min</td><td>The minimum value to return, inclusive. </td></tr>
+    <tr><td class="paramname">max</td><td>The maximum value to return, exclusive. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a random integer between min and max (inclusive.) </dd></dl>
+
+<p>Definition at line <a class="el" href="Crypto_8java_source.html#l00387">387</a> of file <a class="el" href="Crypto_8java_source.html">Crypto.java</a>.</p>
 
 </div>
 </div>
@@ -661,7 +836,17 @@ Static Private Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Crypto_8java_source.html#l00139">139</a> of file <a class="el" href="Crypto_8java_source.html">Crypto.java</a>.</p>
+<p>Generate the appropriate signature for a message. </p>
+<p>Returns the appropriate signature for the given message as a string. Signature is created using the current users private key. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">msg</td><td>The message to sign. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A signature of msg by the current users private key. </dd></dl>
+
+<p>Definition at line <a class="el" href="Crypto_8java_source.html#l00170">170</a> of file <a class="el" href="Crypto_8java_source.html">Crypto.java</a>.</p>
 
 </div>
 </div>
@@ -697,7 +882,18 @@ Static Private Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Crypto_8java_source.html#l00144">144</a> of file <a class="el" href="Crypto_8java_source.html">Crypto.java</a>.</p>
+<p>Generate the appropriate signature for a message. </p>
+<p>Returns the appropriate signature for the given message as a string. Signature is created using the given key. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">msg</td><td>The message to sign. </td></tr>
+    <tr><td class="paramname">k</td><td>The key to sign with. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A signature of msg by k. </dd></dl>
+
+<p>Definition at line <a class="el" href="Crypto_8java_source.html#l00182">182</a> of file <a class="el" href="Crypto_8java_source.html">Crypto.java</a>.</p>
 
 </div>
 </div>
@@ -733,7 +929,17 @@ Static Private Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Crypto_8java_source.html#l00168">168</a> of file <a class="el" href="Crypto_8java_source.html">Crypto.java</a>.</p>
+<p>Verify a signature. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">msg</td><td>The message that's been signed. </td></tr>
+    <tr><td class="paramname">author</td><td>The key suspected to be the author of the signature. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true is author signed msg, false otherwise. </dd></dl>
+
+<p>Definition at line <a class="el" href="Crypto_8java_source.html#l00216">216</a> of file <a class="el" href="Crypto_8java_source.html">Crypto.java</a>.</p>
 
 </div>
 </div>
@@ -770,7 +976,7 @@ Static Private Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri May 9 2014 06:46:01 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri May 9 2014 07:31:28 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>

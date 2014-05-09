@@ -36,7 +36,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="namespaces.html"><span>Packages</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -67,7 +66,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -86,7 +85,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">Server.java</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="Server_8java.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="keyword">package </span>ballmerpeak.turtlenet.remoteserver;</div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="keyword">package </span>ballmerpeak.turtlenet.remoteserver;</div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;</div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="keyword">import</span> ballmerpeak.turtlenet.shared.Message;</div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="keyword">import</span> java.io.*;</div>
@@ -97,68 +96,68 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div>
 <div class="line"><a name="l00010"></a><span class="lineno"><a class="code" href="classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Server.html">   10</a></span>&#160;<span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Server.html">Server</a></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;{</div>
-<div class="line"><a name="l00012"></a><span class="lineno"><a class="code" href="classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Server.html#a1e2e63723daf1b2544af8d00be7ba4f0">   12</a></span>&#160;    <span class="keyword">public</span>  <span class="keyword">static</span> String <a class="code" href="classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Server.html#a1e2e63723daf1b2544af8d00be7ba4f0">shutdownPassword</a> = <span class="stringliteral">&quot;SHUTDOWN 83eea84d472df09f5e64468996fdff0e&quot;</span>;</div>
-<div class="line"><a name="l00013"></a><span class="lineno"><a class="code" href="classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Server.html#a7c8eb04639b16695b20c36b55d3e1773">   13</a></span>&#160;    <span class="keyword">private</span> <span class="keyword">static</span> ServerSocket <a class="code" href="classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Server.html#a7c8eb04639b16695b20c36b55d3e1773">socket</a>;</div>
-<div class="line"><a name="l00014"></a><span class="lineno"><a class="code" href="classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Server.html#abbb43613df0ad76d3bca12b361dc118f">   14</a></span>&#160;    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keywordtype">boolean</span> <a class="code" href="classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Server.html#abbb43613df0ad76d3bca12b361dc118f">running</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keyword">public</span>  <span class="keyword">static</span> String shutdownPassword = <span class="stringliteral">&quot;SHUTDOWN 83eea84d472df09f5e64468996fdff0e&quot;</span>;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <span class="keyword">private</span> <span class="keyword">static</span> ServerSocket socket;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keywordtype">boolean</span> running = <span class="keyword">true</span>;</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    </div>
-<div class="line"><a name="l00016"></a><span class="lineno"><a class="code" href="classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Server.html#a48f2ebb138b28914f6351e81f84fa02c">   16</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Server.html#a48f2ebb138b28914f6351e81f84fa02c">start</a> (<span class="keywordtype">int</span> port) {</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keywordtype">void</span> start (<span class="keywordtype">int</span> port) {</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        Socket incoming;</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        Thread t;</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        <span class="keywordflow">try</span> {</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;            <a class="code" href="classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Server.html#a7c8eb04639b16695b20c36b55d3e1773">socket</a> = <span class="keyword">new</span> ServerSocket(port);</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;            socket = <span class="keyword">new</span> ServerSocket(port);</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;            <span class="keywordflow">while</span> (<a class="code" href="classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Server.html#abbb43613df0ad76d3bca12b361dc118f">running</a>) {</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;                incoming = <a class="code" href="classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Server.html#a7c8eb04639b16695b20c36b55d3e1773">socket</a>.accept();</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;            <span class="keywordflow">while</span> (running) {</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;                incoming = socket.accept();</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;                t = <span class="keyword">new</span> Thread(<span class="keyword">new</span> <a class="code" href="classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Session.html">Session</a>(incoming));</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;                t.start();</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            }</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        } <span class="keywordflow">catch</span> (Exception e) {</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Server.html#abbb43613df0ad76d3bca12b361dc118f">running</a>)</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;            <span class="keywordflow">if</span> (running)</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;                System.out.println(<span class="stringliteral">&quot;ERROR: &quot;</span> + e.getMessage());</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        } <span class="keywordflow">finally</span> {</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            <a class="code" href="classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Server.html#a884654078b48154feac526fd94a9efe9">shutdown</a>();</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            shutdown();</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        }</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    }</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno"><a class="code" href="classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Server.html#a884654078b48154feac526fd94a9efe9">   36</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Server.html#a884654078b48154feac526fd94a9efe9">shutdown</a>() {</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <a class="code" href="classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Server.html#abbb43613df0ad76d3bca12b361dc118f">running</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keywordtype">void</span> shutdown() {</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        running = <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <span class="keywordflow">try</span> {</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;            <a class="code" href="classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Server.html#a7c8eb04639b16695b20c36b55d3e1773">socket</a>.close();</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;            socket.close();</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        } <span class="keywordflow">catch</span> (Exception e) {</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;            System.out.println(<span class="stringliteral">&quot;ERROR: &quot;</span> + e.getMessage());</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            System.exit(1);</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        }</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    }</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    </div>
-<div class="line"><a name="l00047"></a><span class="lineno"><a class="code" href="classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Server.html#a01aebeba4dcef19b48fda4be14b3f433">   47</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Server.html#a01aebeba4dcef19b48fda4be14b3f433">main</a> (String[] argv) {</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keywordtype">void</span> main (String[] argv) {</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        System.out.println(<span class="stringliteral">&quot;Server running...&quot;</span>);</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <a class="code" href="classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Server.html#a48f2ebb138b28914f6351e81f84fa02c">start</a>(31415);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        start(31415);</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    }</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;}</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
 <div class="line"><a name="l00053"></a><span class="lineno"><a class="code" href="classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Session.html">   53</a></span>&#160;<span class="keyword">class </span><a class="code" href="classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Session.html">Session</a> <span class="keyword">implements</span> Runnable</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;{</div>
-<div class="line"><a name="l00055"></a><span class="lineno"><a class="code" href="classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Session.html#a2506d1b24e158edf2fcfd2a31d57f43a">   55</a></span>&#160;    <span class="keyword">private</span> Socket <a class="code" href="classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Session.html#a2506d1b24e158edf2fcfd2a31d57f43a">client</a>;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keyword">private</span> Socket client;</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    </div>
-<div class="line"><a name="l00057"></a><span class="lineno"><a class="code" href="classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Session.html#a31ba0e5f5755afc2f26dfac1e344b371">   57</a></span>&#160;    <a class="code" href="classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Session.html#a31ba0e5f5755afc2f26dfac1e344b371">Session</a> (Socket s) {</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <a class="code" href="classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Session.html#a2506d1b24e158edf2fcfd2a31d57f43a">client</a> = s;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <a class="code" href="classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Session.html">Session</a> (Socket s) {</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        client = s;</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    }</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="comment">// execute()s the clients command and then closes the connection.</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno"><a class="code" href="classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Session.html#a5109a88ef4f77fa6419f80df207a08d9">   62</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Session.html#a5109a88ef4f77fa6419f80df207a08d9">run</a>() {</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        System.out.println(<span class="stringliteral">&quot;Connection from &quot;</span> + <a class="code" href="classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Session.html#a2506d1b24e158edf2fcfd2a31d57f43a">client</a>.getInetAddress().getHostAddress());</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keyword">public</span> <span class="keywordtype">void</span> run() {</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        System.out.println(<span class="stringliteral">&quot;Connection from &quot;</span> + client.getInetAddress().getHostAddress());</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        BufferedReader in = null;</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        PrintWriter out = null;</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <span class="keywordflow">try</span> {</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            in = <span class="keyword">new</span> BufferedReader</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;              (<span class="keyword">new</span> InputStreamReader(<a class="code" href="classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Session.html#a2506d1b24e158edf2fcfd2a31d57f43a">client</a>.getInputStream()));</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;              (<span class="keyword">new</span> InputStreamReader(client.getInputStream()));</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            out = <span class="keyword">new</span> PrintWriter</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;              (<span class="keyword">new</span> OutputStreamWriter(<a class="code" href="classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Session.html#a2506d1b24e158edf2fcfd2a31d57f43a">client</a>.getOutputStream()));</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;              (<span class="keyword">new</span> OutputStreamWriter(client.getOutputStream()));</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;            <a class="code" href="classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Session.html#adb3abede1d8a8751ad7bcc89439721db">execute</a>(in.readLine(), in, out);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;            execute(in.readLine(), in, out);</div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        } <span class="keywordflow">catch</span> (IOException e) {</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            System.out.println(<span class="stringliteral">&quot;ERROR: &quot;</span> + e.getMessage());</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        }</div>
@@ -173,7 +172,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        } <span class="keywordflow">catch</span> (Exception e) {}</div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;          </div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        <span class="keywordflow">try</span> {</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;            <a class="code" href="classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Session.html#a2506d1b24e158edf2fcfd2a31d57f43a">client</a>.close();</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;            client.close();</div>
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        } <span class="keywordflow">catch</span> (Exception e) {}</div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    }</div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    </div>
@@ -191,13 +190,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <span class="comment">//e         - error</span></div>
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="comment">//&lt;long&gt;    - number of milliseconds since midnight on 1970-01-01</span></div>
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <span class="comment">//&lt;string&gt;* - (0 or more strings) messages requested using get</span></div>
-<div class="line"><a name="l00106"></a><span class="lineno"><a class="code" href="classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Session.html#adb3abede1d8a8751ad7bcc89439721db">  106</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Session.html#adb3abede1d8a8751ad7bcc89439721db">execute</a>(String cmd, BufferedReader in, PrintWriter out) {</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <span class="keyword">public</span> <span class="keywordtype">void</span> execute(String cmd, BufferedReader in, PrintWriter out) {</div>
 <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        System.out.println(<span class="stringliteral">&quot;Recieved \&quot;&quot;</span> + cmd + <span class="stringliteral">&quot;\&quot;&quot;</span>);</div>
 <div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    </div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        <span class="keywordflow">if</span> (cmd.equals(<a class="code" href="classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Server.html">Server</a>.<a class="code" href="classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Server.html#a1e2e63723daf1b2544af8d00be7ba4f0">shutdownPassword</a>)) {</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        <span class="keywordflow">if</span> (cmd.equals(<a class="code" href="classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Server.html">Server</a>.shutdownPassword)) {</div>
 <div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;            System.out.println(<span class="stringliteral">&quot;WARNING: shutdown password should be loaded from config file&quot;</span>);</div>
 <div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;            System.out.println(<span class="stringliteral">&quot;Shutting down&quot;</span>);</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;            <a class="code" href="classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Server.html">Server</a>.<a class="code" href="classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Server.html#a884654078b48154feac526fd94a9efe9">shutdown</a>();</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;            <a class="code" href="classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Server.html">Server</a>.shutdown();</div>
 <div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        }</div>
 <div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        </div>
 <div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (cmd.equals(<span class="stringliteral">&quot;t&quot;</span>)) {</div>
@@ -212,7 +211,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;                BufferedWriter writer = <span class="keyword">new</span> BufferedWriter(</div>
 <div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;                                        <span class="keyword">new</span> FileWriter(</div>
 <div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;                                        <span class="keyword">new</span> File(<span class="stringliteral">&quot;./data/&quot;</span> + (<span class="keyword">new</span> Date()).getTime() +</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;                                                 <span class="stringliteral">&quot;_&quot;</span> + <a class="code" href="classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Hasher.html">Hasher</a>.<a class="code" href="classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Hasher.html#ab0249de6a9191c8890b9d2e2100a63ef">hash</a>(message))));</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;                                                 <span class="stringliteral">&quot;_&quot;</span> + <a class="code" href="classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Hasher.html">Hasher</a>.hash(message))));</div>
 <div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;                writer.write(message);</div>
 <div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;                writer.close();</div>
 <div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;                out.println(<span class="stringliteral">&quot;s&quot;</span>);</div>
@@ -230,7 +229,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;                File dataDir = <span class="keyword">new</span> File(<span class="stringliteral">&quot;./data&quot;</span>);</div>
 <div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;                File[] files = dataDir.listFiles();</div>
 <div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;                <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; files.length; i++) {</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;                    <span class="keywordflow">if</span> (lastRead &lt;= <a class="code" href="classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Session.html#a5b7f50eb21d441fee5f67637c9c8d4b5">getTimestamp</a>(files[i])) {</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;                    <span class="keywordflow">if</span> (lastRead &lt;= getTimestamp(files[i])) {</div>
 <div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;                        BufferedReader reader = <span class="keyword">new</span> BufferedReader(</div>
 <div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;                                                <span class="keyword">new</span> FileReader(files[i]));</div>
 <div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;                        String msg = reader.readLine();</div>
@@ -245,14 +244,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;        }</div>
 <div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;        </div>
 <div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (cmd.length() &gt; 2 &amp;&amp; cmd.substring(0,2).equals(<span class="stringliteral">&quot;c &quot;</span>)) {</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;            <a class="code" href="classballmerpeak_1_1turtlenet_1_1shared_1_1Message.html">Message</a> claim = <a class="code" href="classballmerpeak_1_1turtlenet_1_1shared_1_1Message.html">Message</a>.<a class="code" href="classballmerpeak_1_1turtlenet_1_1shared_1_1Message.html#a6f88e1021ee9943badeeffd2ecf32262">parse</a>(</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;            <a class="code" href="classballmerpeak_1_1turtlenet_1_1shared_1_1Message.html">Message</a> claim = <a class="code" href="classballmerpeak_1_1turtlenet_1_1shared_1_1Message.html">Message</a>.parse(</div>
 <div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;                                <span class="keyword">new</span> String(</div>
 <div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;                                    DatatypeConverter.parseBase64Binary(</div>
 <div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;                                        cmd.substring(2))));</div>
 <div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;            </div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;            String content = claim.<a class="code" href="classballmerpeak_1_1turtlenet_1_1shared_1_1Message.html#af04d03a5ccc6fbf47401869f70202076">getContent</a>();</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;            String content = claim.getContent();</div>
 <div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;            File data = <span class="keyword">new</span> File(<span class="stringliteral">&quot;./data/&quot;</span> + (<span class="keyword">new</span> Date()).getTime() + <span class="stringliteral">&quot;_&quot;</span> + content);</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;            <span class="keywordflow">if</span>(<a class="code" href="classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Session.html#ae149d39f26b4a47b7ae7751921249f76">userExists</a>(content)) {</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;            <span class="keywordflow">if</span>(userExists(content)) {</div>
 <div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;                out.println(<span class="stringliteral">&quot;e&quot;</span>);</div>
 <div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;            } <span class="keywordflow">else</span> {</div>
 <div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;                <span class="keywordflow">try</span> {</div>
@@ -276,7 +275,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;    }</div>
 <div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;    </div>
 <div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;    <span class="comment">//44634633434_HASH -&gt; 44634633434</span></div>
-<div class="line"><a name="l00191"></a><span class="lineno"><a class="code" href="classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Session.html#a5b7f50eb21d441fee5f67637c9c8d4b5">  191</a></span>&#160;    <span class="keyword">private</span> <span class="keywordtype">long</span> <a class="code" href="classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Session.html#a5b7f50eb21d441fee5f67637c9c8d4b5">getTimestamp</a> (File f) {</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;    <span class="keyword">private</span> <span class="keywordtype">long</span> getTimestamp (File f) {</div>
 <div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;        <span class="keywordflow">try</span> {</div>
 <div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;            String fn = f.getName();</div>
 <div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;            <span class="keywordflow">if</span> (fn.indexOf(<span class="stringliteral">&quot;_&quot;</span>) != -1) {</div>
@@ -289,7 +288,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;        <span class="keywordflow">return</span> 1;</div>
 <div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;    }</div>
 <div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;    </div>
-<div class="line"><a name="l00204"></a><span class="lineno"><a class="code" href="classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Session.html#ae149d39f26b4a47b7ae7751921249f76">  204</a></span>&#160;    <span class="keyword">private</span> Boolean <a class="code" href="classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Session.html#ae149d39f26b4a47b7ae7751921249f76">userExists</a> (String name) {</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;    <span class="keyword">private</span> Boolean userExists (String name) {</div>
 <div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;        File dir = <span class="keyword">new</span> File(<span class="stringliteral">&quot;./data&quot;</span>);</div>
 <div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;        File[] files = dir.listFiles();</div>
 <div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; files.length; i++) {</div>
@@ -311,7 +310,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri May 9 2014 06:46:01 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri May 9 2014 07:31:27 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>
