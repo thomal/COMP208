@@ -36,6 +36,34 @@ references tCategory.catID, and even that is tenuous at best as relies upon
 undefined behaviour of the frontend. For these reasons we removed foreign keys
 from the schema. The new database design is as follow:
 
+\item A number of accessors were added to the Message class for extracing
+information from different types of messages.
+
+\item The DBStrings class was added so as to keep SQL query strings seperate
+from java code, and to localize them within one namespace. This class merely
+contains a large number of static strings.
+
+\item The Logger, Tokenizer,  MessageFactory, and F(ile)IO class were added as
+helper classes. Tokenizer was created instead of using javas existing Tokenizer
+class because we needed a tokenizer automatically convertable to javascript. A
+factory class was required because the Message class cannot contain constructors
+not automatically convertable to javascript.
+
+\item The following data bearing classes were created to return structured data
+to the HTML/JS frontend. They allow the more powerful java backend to extract
+(and format) data from the database before returning a simple class containing
+it.
+\begin{enumerate}
+\item Friend
+\item CommentDetails
+\item Conversation
+\item PostDetails
+\end{enumerate}
+
+\item The Turtlenet, TurtlenetImpl, and TurtlenetAsync classes exist to provide
+an asynchronous interface between the HTML/JS frontend and the Java backend.
+\end{enumerate}
+
 \section{Logical table design version 2.0}
 
 % tCategory
@@ -155,7 +183,7 @@ tLike
     \end{tabular}
 \end{center}
 
-\subsection{Database design version 2.0}
+\section{Database design version 2.0}
 \begin{landscape}
 \begin{figure}[h]
     \includegraphics[width=1.4\textwidth]{images/design/db_shot.png}
@@ -164,33 +192,17 @@ tLike
 \end{figure}
 \end{landscape}
 
+\section{Expanded Client-Client Protocol}
+Given number of new message types were added a summary of the new types
+can be found below:
 
-
-\item A number of accessors were added to the Message class for extracing
-information from different types of messages.
-
-\item The DBStrings class was added so as to keep SQL query strings seperate
-from java code, and to localize them within one namespace. This class merely
-contains a large number of static strings.
-
-\item The Logger, Tokenizer,  MessageFactory, and F(ile)IO class were added as
-helper classes. Tokenizer was created instead of using javas existing Tokenizer
-class because we needed a tokenizer automatically convertable to javascript. A
-factory class was required because the Message class cannot contain constructors
-not automatically convertable to javascript.
-
-\item The following data bearing classes were created to return structured data
-to the HTML/JS frontend. They allow the more powerful java backend to extract
-(and format) data from the database before returning a simple class containing
-it.
-\begin{enumerate}
-\item Friend
-\item CommentDetails
-\item Conversation
-\item PostDetails
-\end{enumerate}
-
-\item The Turtlenet, TurtlenetImpl, and TurtlenetAsync classes exist to provide
-an asynchronous interface between the HTML/JS frontend and the Java backend.
-\end{enumerate}
-
+\begin{center}
+\begin{tabular}{ | p{3cm} | p{3.5cm} | p{10cm} |}
+    Command    & Format of content & Purpose \\ \hline
+    ADDCAT     & true:family       & add a new category named `family' that can see your profile data\\
+    UPDATECAT  & false:family      & change the category named `family' to be unable to see your profile data\\
+    ADDTOCAT   & <key>:family      & where `<key>' is replaced with a UTF-8, base64, X509 encoded RSA public key it adds that key to the category named family\\
+    REMFROMCAT & <key>:family      & where `<key>' is replaced with a UTF-8, base64, X509 encoded RSA public key it removes that key from the category named family\\
+    ADDKEY     & <key>             & where `<key>' is replaced with a UTF-8, base64, X509 encoded RSA public key it adds that key to your list of known people\\
+\end{tabular}
+\end{center}
