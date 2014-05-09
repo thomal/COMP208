@@ -23,7 +23,7 @@ else
 	GWTPATH="SET YO GODDAMN PATH"
 endif
 
-all : clean web rserver config doc pdf manual
+all : clean web rserver config doc pdf manual website
 	@echo ""
 	@echo "              **************************"
 	@echo "              successfully built project"
@@ -132,3 +132,6 @@ pdf:
 
 manual:
 	make -C user_manual
+
+website : doc
+	cp -r doc/html turtlenet_website/doc
