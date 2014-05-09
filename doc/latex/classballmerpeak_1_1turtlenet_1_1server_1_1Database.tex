@@ -5,132 +5,132 @@
 \begin{DoxyCompactItemize}
 \item 
 \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a2df6c740699204eafab513d8990f14a8}{Database} (String pw)
-\item 
+\begin{DoxyCompactList}\small\item\em Construct a database object. \end{DoxyCompactList}\item 
 void \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_af796c23330bbae7271011b0e81901643}{db\-Create} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Creates a new database. \end{DoxyCompactList}\item 
 boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a80e93295b9fd81f2a3c73bcaa2df39ee}{db\-Connect} (boolean dbexists)
-\item 
+\begin{DoxyCompactList}\small\item\em Connects to an extant database. \end{DoxyCompactList}\item 
 void \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a1900530bc7bf5c275a275b788086f6ec}{db\-Disconnect} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Disconnects from the database. \end{DoxyCompactList}\item 
 void \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a717872aaaaf6529490c31465f2952219}{execute} (String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a4401c37a89ca60d2e6b926b9930446dc}{query})  throws java.\-sql.\-S\-Q\-L\-Exception 
-\item 
+\begin{DoxyCompactList}\small\item\em Executes the given S\-Q\-L query. \end{DoxyCompactList}\item 
 Result\-Set \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a4401c37a89ca60d2e6b926b9930446dc}{query} (String query)  throws java.\-sql.\-S\-Q\-L\-Exception 
-\item 
+\begin{DoxyCompactList}\small\item\em Executes the given S\-Q\-L query, returns the results. \end{DoxyCompactList}\item 
 String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_ab2e0d804fa40eb9b08275f2548737b34}{get\-P\-D\-A\-T\-A} (String field, Public\-Key key)
-\item 
+\begin{DoxyCompactList}\small\item\em Gets the specified piece of profile data for the specified user. \end{DoxyCompactList}\item 
 \hyperlink{classballmerpeak_1_1turtlenet_1_1shared_1_1Message}{Message}\mbox{[}$\,$\mbox{]} \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a095f1356c13e33debb06929244b98150}{get\-Wall\-Post} (Public\-Key key)
-\item 
+\begin{DoxyCompactList}\small\item\em Get the posts on the wall of the given user. \end{DoxyCompactList}\item 
 String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a6c5618c6a7e144ee7eec9e6e4de6314d}{get\-Wall\-Post\-Sender} (String sig)
-\item 
+\begin{DoxyCompactList}\small\item\em Get the key of the user who created a given post. \end{DoxyCompactList}\item 
 \hyperlink{classballmerpeak_1_1turtlenet_1_1shared_1_1Message}{Message}\mbox{[}$\,$\mbox{]} \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a4f77bc5e3bdf13f836136bc7eb763cac}{get\-Comments} (String sig)
-\item 
+\begin{DoxyCompactList}\small\item\em Get all comments on a given post or comment. \end{DoxyCompactList}\item 
 Long \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a4b2795d1417e265aa345d21e5e1c3a23}{time\-Most\-Recent\-Wall\-Post} (Public\-Key key)
-\item 
+\begin{DoxyCompactList}\small\item\em Get the time that a given users wall was last posted on. \end{DoxyCompactList}\item 
 boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a76fdbae3c50e5e2fc64d9973de7e08d9}{is\-Liked} (String sig)
-\item 
+\begin{DoxyCompactList}\small\item\em Query whether or not a given comment or post is liked. \end{DoxyCompactList}\item 
 \hyperlink{classballmerpeak_1_1turtlenet_1_1shared_1_1Conversation}{Conversation}\mbox{[}$\,$\mbox{]} \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_ab81803b4c6efc49a774faaba66add16d}{get\-Conversations} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Get all conversations you know about. \end{DoxyCompactList}\item 
 Public\-Key\mbox{[}$\,$\mbox{]} \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_ab4048f6c37cc47a31838aa992398cdac}{get\-People\-In\-Convo} (String sig)
-\item 
+\begin{DoxyCompactList}\small\item\em Get the keys of users involved in a given conversation. \end{DoxyCompactList}\item 
 \hyperlink{classballmerpeak_1_1turtlenet_1_1shared_1_1Conversation}{Conversation} \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a85b0c44b683cbbab3f966ce7b266f837}{get\-Conversation} (String sig)
-\item 
+\begin{DoxyCompactList}\small\item\em Get details of a specific conversation, but not the messages therein. \end{DoxyCompactList}\item 
 String\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_ac65176a79a8e7433b18e8c98dbc02689}{get\-Conversation\-Messages} (String sig)
-\item 
+\begin{DoxyCompactList}\small\item\em Get all the messages from a given conversation. \end{DoxyCompactList}\item 
 Public\-Key \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a67893a85c22e9e5b5a039f1900817df5}{get\-Key} (String user\-Name)
-\item 
+\begin{DoxyCompactList}\small\item\em Retrieve the key of the specified user. \end{DoxyCompactList}\item 
 boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_ac51008e3d60ba40c4afa37287918a5b7}{can\-See\-P\-D\-A\-T\-A} (String category)
-\item 
+\begin{DoxyCompactList}\small\item\em Query whether or not a given category can see your profile information. \end{DoxyCompactList}\item 
 String\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a7f615f18361634692adff5e59c428d84}{get\-Categories} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Get a list of all categories. \end{DoxyCompactList}\item 
 Public\-Key\mbox{[}$\,$\mbox{]} \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_ad6939a97222c8e7da39726b181220aff}{get\-Category\-Members} (String cat\-I\-D)
-\item 
+\begin{DoxyCompactList}\small\item\em Get all members of a given category. \end{DoxyCompactList}\item 
 Public\-Key\mbox{[}$\,$\mbox{]} \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a9e36a1c14ff02a2cc43b38a646ee20ab}{get\-Visibility\-Of\-Parent} (String sig)
-\item 
+\begin{DoxyCompactList}\small\item\em Get all people who can see a given post or comment. \end{DoxyCompactList}\item 
 Public\-Key\mbox{[}$\,$\mbox{]} \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a0ccbad682720c86cb152de04a7052332}{get\-Post\-Visible\-To} (String sig)
-\item 
+\begin{DoxyCompactList}\small\item\em Get all people who can see a given post. \end{DoxyCompactList}\item 
 String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a102153ec0531bc6be459d0879c78051d}{get\-Name} (Public\-Key key)
-\item 
+\begin{DoxyCompactList}\small\item\em Retreives the most recent username associated with a given key. \end{DoxyCompactList}\item 
 Public\-Key \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a890f60c47e11af8823d48689fdeac360}{get\-Signatory} (\hyperlink{classballmerpeak_1_1turtlenet_1_1shared_1_1Message}{Message} m)
-\item 
+\begin{DoxyCompactList}\small\item\em Discover who sent a given message. \end{DoxyCompactList}\item 
 boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a8456bb059a9438ecc03a8c65c2cf908a}{add\-Post} (\hyperlink{classballmerpeak_1_1turtlenet_1_1shared_1_1Message}{Message} post)
-\item 
+\begin{DoxyCompactList}\small\item\em Add a post. \end{DoxyCompactList}\item 
 boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_add2acddf62824bcedfe2724257ab0b04}{add\-Key} (\hyperlink{classballmerpeak_1_1turtlenet_1_1shared_1_1Message}{Message} msg)
-\item 
+\begin{DoxyCompactList}\small\item\em Add another users public key. \end{DoxyCompactList}\item 
 boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a4641ac050b40864856bb7ab903fb96c2}{add\-Key} (Public\-Key k)
-\item 
+\begin{DoxyCompactList}\small\item\em Add another users public key. \end{DoxyCompactList}\item 
 boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a1d9276229eb90ede286f8ecbee955248}{validate\-Claims} (Public\-Key k)
-\item 
+\begin{DoxyCompactList}\small\item\em Check username claims against a given public key. \end{DoxyCompactList}\item 
 boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a222ba2352c2b9c48dd9c66470d106623}{calc\-Revocation\-Keys} (Public\-Key k)
-\item 
+\begin{DoxyCompactList}\small\item\em Update the keys column in the key revocations table. \end{DoxyCompactList}\item 
 boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_afc065fd588fdbd556bd2a013e648b43d}{add\-Claim} (\hyperlink{classballmerpeak_1_1turtlenet_1_1shared_1_1Message}{Message} claim)
-\item 
+\begin{DoxyCompactList}\small\item\em Add a claim. \end{DoxyCompactList}\item 
 boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_ac4eeb9a2d74bd6cfe1e72f63fc93243b}{add\-Revocation} (\hyperlink{classballmerpeak_1_1turtlenet_1_1shared_1_1Message}{Message} revocation)
-\item 
+\begin{DoxyCompactList}\small\item\em Add a revocation. \end{DoxyCompactList}\item 
 boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_ab3e267a71350c940b476949722eda0eb}{is\-Revoked} (Public\-Key key)
-\item 
+\begin{DoxyCompactList}\small\item\em Check if a given key is revoked. \end{DoxyCompactList}\item 
 boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a6b4d12d2583d01113c6ba154a94261af}{erase\-Content\-From} (Public\-Key key)
-\item 
+\begin{DoxyCompactList}\small\item\em Erase all content signed by a given key. \end{DoxyCompactList}\item 
 boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a051ccb269be2f30af05fe554b83597a5}{add\-P\-D\-A\-T\-A} (\hyperlink{classballmerpeak_1_1turtlenet_1_1shared_1_1Message}{Message} update)
-\item 
+\begin{DoxyCompactList}\small\item\em Add new profile information. \end{DoxyCompactList}\item 
 boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a54a5e6c02389fb8f3528bf503019f7fe}{update\-P\-D\-A\-T\-A} (String field, String value, Public\-Key k)
-\item 
+\begin{DoxyCompactList}\small\item\em Update a given users profile information. \end{DoxyCompactList}\item 
 boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a4a18cb43547e71e48bbf7269b3e5d560}{add\-Convo} (\hyperlink{classballmerpeak_1_1turtlenet_1_1shared_1_1Message}{Message} convo)
-\item 
+\begin{DoxyCompactList}\small\item\em Add a new conversation. \end{DoxyCompactList}\item 
 boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a42de72fca336efc18a3c486749289b50}{add\-Message\-To\-Chat} (\hyperlink{classballmerpeak_1_1turtlenet_1_1shared_1_1Message}{Message} msg)
-\item 
+\begin{DoxyCompactList}\small\item\em Add a message to an extant conversation. \end{DoxyCompactList}\item 
 boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a1bfae51747f69a2dd125d9c915b980d4}{add\-Comment} (\hyperlink{classballmerpeak_1_1turtlenet_1_1shared_1_1Message}{Message} comment)
-\item 
+\begin{DoxyCompactList}\small\item\em Add a comment to a post or comment. \end{DoxyCompactList}\item 
 boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_af22fa4b19c7863929894a3ed278a174c}{add\-Like} (\hyperlink{classballmerpeak_1_1turtlenet_1_1shared_1_1Message}{Message} \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_ac2c2361722304a6446d5cd01cb0c5d3b}{like})
-\item 
+\begin{DoxyCompactList}\small\item\em Add a like. \end{DoxyCompactList}\item 
 boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a484dad4e2e272c608996a4a6bbb463a4}{add\-Event} (\hyperlink{classballmerpeak_1_1turtlenet_1_1shared_1_1Message}{Message} event)
-\item 
+\begin{DoxyCompactList}\small\item\em Add a new event. \end{DoxyCompactList}\item 
 boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a30d0cd474644f531f6bfded6c9a63506}{accept\-Event} (String sig)
-\item 
+\begin{DoxyCompactList}\small\item\em Accept an event. \end{DoxyCompactList}\item 
 boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a2618960f1f28ee6fb130fba5077d8088}{decline\-Event} (String sig)
-\item 
+\begin{DoxyCompactList}\small\item\em Decline an event. \end{DoxyCompactList}\item 
 boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_ae65d70bab4c0fba8f0c941487385c8c9}{update\-P\-D\-A\-T\-Apermission} (\hyperlink{classballmerpeak_1_1turtlenet_1_1shared_1_1Message}{Message} msg)
-\item 
+\begin{DoxyCompactList}\small\item\em Update whether or not a given category can see your profile information. \end{DoxyCompactList}\item 
 boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_aed151a8daa6202838bdc8b949d6de05c}{update\-P\-D\-A\-T\-Apermission} (String category, boolean value)
-\item 
+\begin{DoxyCompactList}\small\item\em Change whether or not a category can see your profile information. \end{DoxyCompactList}\item 
 Public\-Key\mbox{[}$\,$\mbox{]} \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_acd908d7244665e90b2c852d2bd4d24d8}{keys\-Can\-See\-P\-D\-A\-T\-A} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Get a list of people who can see your profile information. \end{DoxyCompactList}\item 
 boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a60f429af2120947b9a6cc06617bb1bea}{add\-Category} (\hyperlink{classballmerpeak_1_1turtlenet_1_1shared_1_1Message}{Message} msg)
-\item 
+\begin{DoxyCompactList}\small\item\em Add a new category. \end{DoxyCompactList}\item 
 boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a543175382e7c3baf70b684a79c5046d8}{add\-Category} (String name, boolean can\-\_\-see\-\_\-private\-\_\-details)
-\item 
+\begin{DoxyCompactList}\small\item\em Add a new category. \end{DoxyCompactList}\item 
 boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_aca5e259e29216730354cf97b87f1a070}{add\-To\-Category} (\hyperlink{classballmerpeak_1_1turtlenet_1_1shared_1_1Message}{Message} msg)
-\item 
+\begin{DoxyCompactList}\small\item\em Add a user to a category. \end{DoxyCompactList}\item 
 boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a92b3b3bea181888c22086688816738aa}{add\-To\-Category} (String category, Public\-Key key)
-\item 
+\begin{DoxyCompactList}\small\item\em Add a user to a category. \end{DoxyCompactList}\item 
 boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a2718a68613d43dabf2c62bebc9f41e05}{remove\-From\-Category} (\hyperlink{classballmerpeak_1_1turtlenet_1_1shared_1_1Message}{Message} msg)
-\item 
+\begin{DoxyCompactList}\small\item\em Remove a user from a category. \end{DoxyCompactList}\item 
 boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a25313e4d456741744541e8b42d7bef9b}{remove\-From\-Category} (String category, Public\-Key key)
-\item 
+\begin{DoxyCompactList}\small\item\em Remove a user form a category. \end{DoxyCompactList}\item 
 boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_ac2c2361722304a6446d5cd01cb0c5d3b}{like} (String sig)
-\item 
+\begin{DoxyCompactList}\small\item\em Like a given post or comment. \end{DoxyCompactList}\item 
 boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a500911b2c3d32d456c2bf34a23747d85}{unlike} (String sig)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Unlike a given post or comment. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 static boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a89fecb924cc735abbc16d58405945fb2}{D\-B\-Dir\-Exists} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Test whether the directory used for storing local data exists. \end{DoxyCompactList}\item 
 static boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a2001d0b63c21d13d0a023d70f571c5bd}{D\-B\-Exists} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Checks whether the database exists or not. \end{DoxyCompactList}\item 
 static boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_aa21c9f4bf38697e84fe76fee2023be9e}{create\-D\-B\-Dir} ()
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Creates a directory to store local data. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Static Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
 static String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a3933689115f43166439d740b2a254481}{path} = \char`\"{}./db\char`\"{}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em path to database directory \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
 Connection \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_afc619b6caae48aed2aef929243b00410}{db\-Connection}
 \item 
 String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a6dc69ef37a9765547dfa556596f5ad3c}{password} = \char`\"{}U\-N\-S\-E\-T\char`\"{}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Users password, used to encrypt local data. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsubsection{Detailed Description}
@@ -150,7 +150,16 @@ Definition at line 13 of file Database.\-java.
 )}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a2df6c740699204eafab513d8990f14a8}
 
 
-Definition at line 18 of file Database.\-java.
+Construct a database object. 
+
+Creates the database if it doesn't exist, if it does exit then it is decrypted. It creates a directory (\hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a3933689115f43166439d740b2a254481}{Database.\-path}) to store local data if it doesn't already exist. It then connects to the database and returns. 
+\begin{DoxyParams}{Parameters}
+{\em pw} & The password the database is/should be encrypted with. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 25 of file Database.\-java.
 
 
 
@@ -164,7 +173,19 @@ Definition at line 18 of file Database.\-java.
 )}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a30d0cd474644f531f6bfded6c9a63506}
 
 
-Definition at line 783 of file Database.\-java.
+Accept an event. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sig} & The signature of the event you are accepting. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\char`\"{}true\char`\"{} if successful, \char`\"{}false\char`\"{} otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 960 of file Database.\-java.
 
 \hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a60f429af2120947b9a6cc06617bb1bea}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!add\-Category@{add\-Category}}
 \index{add\-Category@{add\-Category}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
@@ -175,7 +196,19 @@ Definition at line 783 of file Database.\-java.
 )}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a60f429af2120947b9a6cc06617bb1bea}
 
 
-Definition at line 845 of file Database.\-java.
+Add a new category. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & The Message object representing the new category. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\char`\"{}true\char`\"{} if successful, \char`\"{}false\char`\"{} otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 1043 of file Database.\-java.
 
 \hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a543175382e7c3baf70b684a79c5046d8}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!add\-Category@{add\-Category}}
 \index{add\-Category@{add\-Category}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
@@ -187,7 +220,21 @@ Definition at line 845 of file Database.\-java.
 )}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a543175382e7c3baf70b684a79c5046d8}
 
 
-Definition at line 849 of file Database.\-java.
+Add a new category. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the new category. \\
+\hline
+{\em can\-\_\-see\-\_\-private\-\_\-details} & true if the new category ought to be able to see your profile information, false otherfile. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\char`\"{}true\char`\"{} if successful, \char`\"{}false\char`\"{} otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 1053 of file Database.\-java.
 
 \hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_afc065fd588fdbd556bd2a013e648b43d}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!add\-Claim@{add\-Claim}}
 \index{add\-Claim@{add\-Claim}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
@@ -198,7 +245,19 @@ Definition at line 849 of file Database.\-java.
 )}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_afc065fd588fdbd556bd2a013e648b43d}
 
 
-Definition at line 596 of file Database.\-java.
+Add a claim. 
+
+If a username is already claimed, forget the old name. 
+\begin{DoxyParams}{Parameters}
+{\em claim} & The Message object representing the claim. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\char`\"{}true\char`\"{} if successful, \char`\"{}false\char`\"{} otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 726 of file Database.\-java.
 
 \hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a1bfae51747f69a2dd125d9c915b980d4}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!add\-Comment@{add\-Comment}}
 \index{add\-Comment@{add\-Comment}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
@@ -209,7 +268,19 @@ Definition at line 596 of file Database.\-java.
 )}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a1bfae51747f69a2dd125d9c915b980d4}
 
 
-Definition at line 733 of file Database.\-java.
+Add a comment to a post or comment. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em comment} & The Message object representing the comment. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\char`\"{}true\char`\"{} if successful, \char`\"{}false\char`\"{} otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 898 of file Database.\-java.
 
 \hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a4a18cb43547e71e48bbf7269b3e5d560}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!add\-Convo@{add\-Convo}}
 \index{add\-Convo@{add\-Convo}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
@@ -220,7 +291,19 @@ Definition at line 733 of file Database.\-java.
 )}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a4a18cb43547e71e48bbf7269b3e5d560}
 
 
-Definition at line 689 of file Database.\-java.
+Add a new conversation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em convo} & The Message object representing the conversation. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\char`\"{}true\char`\"{} if successful, \char`\"{}false\char`\"{} otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 846 of file Database.\-java.
 
 \hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a484dad4e2e272c608996a4a6bbb463a4}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!add\-Event@{add\-Event}}
 \index{add\-Event@{add\-Event}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
@@ -231,7 +314,19 @@ Definition at line 689 of file Database.\-java.
 )}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a484dad4e2e272c608996a4a6bbb463a4}
 
 
-Definition at line 765 of file Database.\-java.
+Add a new event. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & The Message object representing the event. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\char`\"{}true\char`\"{} if successful, \char`\"{}false\char`\"{} otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 938 of file Database.\-java.
 
 \hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_add2acddf62824bcedfe2724257ab0b04}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!add\-Key@{add\-Key}}
 \index{add\-Key@{add\-Key}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
@@ -242,7 +337,19 @@ Definition at line 765 of file Database.\-java.
 )}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_add2acddf62824bcedfe2724257ab0b04}
 
 
-Definition at line 511 of file Database.\-java.
+Add another users public key. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & The Message object representing the A\-D\-D\-K\-E\-Y message. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\char`\"{}true\char`\"{} if successful, \char`\"{}false\char`\"{} otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 624 of file Database.\-java.
 
 \hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a4641ac050b40864856bb7ab903fb96c2}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!add\-Key@{add\-Key}}
 \index{add\-Key@{add\-Key}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
@@ -253,7 +360,19 @@ Definition at line 511 of file Database.\-java.
 )}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a4641ac050b40864856bb7ab903fb96c2}
 
 
-Definition at line 515 of file Database.\-java.
+Add another users public key. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em k} & The Public\-Key to add. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\char`\"{}true\char`\"{} if successful, \char`\"{}false\char`\"{} otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 632 of file Database.\-java.
 
 \hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_af22fa4b19c7863929894a3ed278a174c}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!add\-Like@{add\-Like}}
 \index{add\-Like@{add\-Like}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
@@ -264,7 +383,19 @@ Definition at line 515 of file Database.\-java.
 )}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_af22fa4b19c7863929894a3ed278a174c}
 
 
-Definition at line 751 of file Database.\-java.
+Add a like. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em like} & The Message object representing the like. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\char`\"{}true\char`\"{} if successful, \char`\"{}false\char`\"{} otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 920 of file Database.\-java.
 
 \hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a42de72fca336efc18a3c486749289b50}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!add\-Message\-To\-Chat@{add\-Message\-To\-Chat}}
 \index{add\-Message\-To\-Chat@{add\-Message\-To\-Chat}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
@@ -275,7 +406,19 @@ Definition at line 751 of file Database.\-java.
 )}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a42de72fca336efc18a3c486749289b50}
 
 
-Definition at line 708 of file Database.\-java.
+Add a message to an extant conversation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & The Message object representing the new message to be added. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\char`\"{}true\char`\"{} if successful, \char`\"{}false\char`\"{} otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 869 of file Database.\-java.
 
 \hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a051ccb269be2f30af05fe554b83597a5}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!add\-P\-D\-A\-T\-A@{add\-P\-D\-A\-T\-A}}
 \index{add\-P\-D\-A\-T\-A@{add\-P\-D\-A\-T\-A}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
@@ -286,7 +429,19 @@ Definition at line 708 of file Database.\-java.
 )}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a051ccb269be2f30af05fe554b83597a5}
 
 
-Definition at line 662 of file Database.\-java.
+Add new profile information. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em update} & The Message object representing the update. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\char`\"{}true\char`\"{} if successful, \char`\"{}false\char`\"{} otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 808 of file Database.\-java.
 
 \hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a8456bb059a9438ecc03a8c65c2cf908a}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!add\-Post@{add\-Post}}
 \index{add\-Post@{add\-Post}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
@@ -297,7 +452,19 @@ Definition at line 662 of file Database.\-java.
 )}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a8456bb059a9438ecc03a8c65c2cf908a}
 
 
-Definition at line 492 of file Database.\-java.
+Add a post. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em post} & The Message object representing the post. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\char`\"{}true\char`\"{} if successful, \char`\"{}false\char`\"{} otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 601 of file Database.\-java.
 
 \hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_ac4eeb9a2d74bd6cfe1e72f63fc93243b}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!add\-Revocation@{add\-Revocation}}
 \index{add\-Revocation@{add\-Revocation}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
@@ -308,7 +475,19 @@ Definition at line 492 of file Database.\-java.
 )}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_ac4eeb9a2d74bd6cfe1e72f63fc93243b}
 
 
-Definition at line 614 of file Database.\-java.
+Add a revocation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em revocation} & The Message object representing the revocation. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\char`\"{}true\char`\"{} if successful, \char`\"{}false\char`\"{} otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 748 of file Database.\-java.
 
 \hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_aca5e259e29216730354cf97b87f1a070}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!add\-To\-Category@{add\-To\-Category}}
 \index{add\-To\-Category@{add\-To\-Category}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
@@ -319,7 +498,19 @@ Definition at line 614 of file Database.\-java.
 )}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_aca5e259e29216730354cf97b87f1a070}
 
 
-Definition at line 862 of file Database.\-java.
+Add a user to a category. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & The Message object representing the addition of a user to a category. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\char`\"{}true\char`\"{} if successful, \char`\"{}false\char`\"{} otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 1070 of file Database.\-java.
 
 \hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a92b3b3bea181888c22086688816738aa}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!add\-To\-Category@{add\-To\-Category}}
 \index{add\-To\-Category@{add\-To\-Category}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
@@ -331,7 +522,21 @@ Definition at line 862 of file Database.\-java.
 )}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a92b3b3bea181888c22086688816738aa}
 
 
-Definition at line 866 of file Database.\-java.
+Add a user to a category. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em category} & The category to add a user to. \\
+\hline
+{\em key} & The key of the user who is being added to the specified category. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\char`\"{}true\char`\"{} if successful, \char`\"{}false\char`\"{} otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 1079 of file Database.\-java.
 
 \hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a222ba2352c2b9c48dd9c66470d106623}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!calc\-Revocation\-Keys@{calc\-Revocation\-Keys}}
 \index{calc\-Revocation\-Keys@{calc\-Revocation\-Keys}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
@@ -342,7 +547,19 @@ Definition at line 866 of file Database.\-java.
 )}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a222ba2352c2b9c48dd9c66470d106623}
 
 
-Definition at line 567 of file Database.\-java.
+Update the keys column in the key revocations table. 
+
+Called automatically after a new key is added to ensure it isn't revoked. 
+\begin{DoxyParams}{Parameters}
+{\em k} & The new key. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\char`\"{}true\char`\"{} if successful, \char`\"{}false\char`\"{} otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 693 of file Database.\-java.
 
 \hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_ac51008e3d60ba40c4afa37287918a5b7}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!can\-See\-P\-D\-A\-T\-A@{can\-See\-P\-D\-A\-T\-A}}
 \index{can\-See\-P\-D\-A\-T\-A@{can\-See\-P\-D\-A\-T\-A}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
@@ -353,7 +570,19 @@ Definition at line 567 of file Database.\-java.
 )}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_ac51008e3d60ba40c4afa37287918a5b7}
 
 
-Definition at line 350 of file Database.\-java.
+Query whether or not a given category can see your profile information. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em category} & The name of the category in question. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true is the people in the category can see your profile information, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 432 of file Database.\-java.
 
 \hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_aa21c9f4bf38697e84fe76fee2023be9e}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!create\-D\-B\-Dir@{create\-D\-B\-Dir}}
 \index{create\-D\-B\-Dir@{create\-D\-B\-Dir}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
@@ -364,7 +593,11 @@ Definition at line 350 of file Database.\-java.
 )\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_aa21c9f4bf38697e84fe76fee2023be9e}
 
 
-Definition at line 35 of file Database.\-java.
+Creates a directory to store local data. 
+
+The directory is that specified in \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a3933689115f43166439d740b2a254481}{Database.\-path}. 
+
+Definition at line 52 of file Database.\-java.
 
 \hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a80e93295b9fd81f2a3c73bcaa2df39ee}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!db\-Connect@{db\-Connect}}
 \index{db\-Connect@{db\-Connect}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
@@ -375,7 +608,19 @@ Definition at line 35 of file Database.\-java.
 )}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a80e93295b9fd81f2a3c73bcaa2df39ee}
 
 
-Definition at line 54 of file Database.\-java.
+Connects to an extant database. 
+
+Called automatically by the constructor. 
+\begin{DoxyParams}{Parameters}
+{\em dbexists} & true if a database already exists, false otherwise. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns true if successful at connecting, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 77 of file Database.\-java.
 
 \hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_af796c23330bbae7271011b0e81901643}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!db\-Create@{db\-Create}}
 \index{db\-Create@{db\-Create}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
@@ -386,7 +631,11 @@ Definition at line 54 of file Database.\-java.
 )}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_af796c23330bbae7271011b0e81901643}
 
 
-Definition at line 40 of file Database.\-java.
+Creates a new database. 
+
+Called automatically by the consturctor. 
+
+Definition at line 59 of file Database.\-java.
 
 \hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a89fecb924cc735abbc16d58405945fb2}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!D\-B\-Dir\-Exists@{D\-B\-Dir\-Exists}}
 \index{D\-B\-Dir\-Exists@{D\-B\-Dir\-Exists}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
@@ -397,7 +646,14 @@ Definition at line 40 of file Database.\-java.
 )\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a89fecb924cc735abbc16d58405945fb2}
 
 
-Definition at line 24 of file Database.\-java.
+Test whether the directory used for storing local data exists. 
+
+The directory is specified by \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a3933689115f43166439d740b2a254481}{Database.\-path}. \begin{DoxyReturn}{Returns}
+true is the directory exists, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 35 of file Database.\-java.
 
 \hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a1900530bc7bf5c275a275b788086f6ec}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!db\-Disconnect@{db\-Disconnect}}
 \index{db\-Disconnect@{db\-Disconnect}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
@@ -408,7 +664,11 @@ Definition at line 24 of file Database.\-java.
 )}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a1900530bc7bf5c275a275b788086f6ec}
 
 
-Definition at line 71 of file Database.\-java.
+Disconnects from the database. 
+
+
+
+Definition at line 95 of file Database.\-java.
 
 \hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a2001d0b63c21d13d0a023d70f571c5bd}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!D\-B\-Exists@{D\-B\-Exists}}
 \index{D\-B\-Exists@{D\-B\-Exists}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
@@ -419,7 +679,14 @@ Definition at line 71 of file Database.\-java.
 )\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a2001d0b63c21d13d0a023d70f571c5bd}
 
 
-Definition at line 29 of file Database.\-java.
+Checks whether the database exists or not. 
+
+\begin{DoxyReturn}{Returns}
+true if the database exists, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 43 of file Database.\-java.
 
 \hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a2618960f1f28ee6fb130fba5077d8088}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!decline\-Event@{decline\-Event}}
 \index{decline\-Event@{decline\-Event}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
@@ -430,7 +697,19 @@ Definition at line 29 of file Database.\-java.
 )}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a2618960f1f28ee6fb130fba5077d8088}
 
 
-Definition at line 795 of file Database.\-java.
+Decline an event. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sig} & The signature of the event you are declining. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\char`\"{}true\char`\"{} if successful, \char`\"{}false\char`\"{} otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 976 of file Database.\-java.
 
 \hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a6b4d12d2583d01113c6ba154a94261af}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!erase\-Content\-From@{erase\-Content\-From}}
 \index{erase\-Content\-From@{erase\-Content\-From}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
@@ -441,7 +720,19 @@ Definition at line 795 of file Database.\-java.
 )}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a6b4d12d2583d01113c6ba154a94261af}
 
 
-Definition at line 640 of file Database.\-java.
+Erase all content signed by a given key. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The key whose data is being expurgated. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\char`\"{}true\char`\"{} if successful, \char`\"{}false\char`\"{} otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 782 of file Database.\-java.
 
 \hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a717872aaaaf6529490c31465f2952219}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!execute@{execute}}
 \index{execute@{execute}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
@@ -452,7 +743,19 @@ Definition at line 640 of file Database.\-java.
 )  throws java.\-sql.\-S\-Q\-L\-Exception }}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a717872aaaaf6529490c31465f2952219}
 
 
-Definition at line 83 of file Database.\-java.
+Executes the given S\-Q\-L query. 
+
+\begin{DoxyWarning}{Warning}
+Throws a java.\-sql.\-S\-Q\-L\-Exception on failure. 
+\end{DoxyWarning}
+
+\begin{DoxyParams}{Parameters}
+{\em query} & The query to execute. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 111 of file Database.\-java.
 
 \hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a7f615f18361634692adff5e59c428d84}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!get\-Categories@{get\-Categories}}
 \index{get\-Categories@{get\-Categories}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
@@ -463,7 +766,14 @@ Definition at line 83 of file Database.\-java.
 )}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a7f615f18361634692adff5e59c428d84}
 
 
-Definition at line 367 of file Database.\-java.
+Get a list of all categories. 
+
+\begin{DoxyReturn}{Returns}
+The names of each category and if it can see your profile info. Data is in this format\-: \{\{\char`\"{}friends\char`\"{}, \char`\"{}false\char`\"{}\}, \{\char`\"{}family\char`\"{}, \char`\"{}true\char`\"{}\}, etc.\} 
+\end{DoxyReturn}
+
+
+Definition at line 451 of file Database.\-java.
 
 \hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_ad6939a97222c8e7da39726b181220aff}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!get\-Category\-Members@{get\-Category\-Members}}
 \index{get\-Category\-Members@{get\-Category\-Members}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
@@ -474,7 +784,19 @@ Definition at line 367 of file Database.\-java.
 )}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_ad6939a97222c8e7da39726b181220aff}
 
 
-Definition at line 392 of file Database.\-java.
+Get all members of a given category. 
+
+If the category given is \char`\"{}all\char`\"{} then all known people are returned. 
+\begin{DoxyParams}{Parameters}
+{\em cat\-I\-D} & The name of the category of which you want to know the members. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An array of Public\-Keys containing the key of every user in the specified category. 
+\end{DoxyReturn}
+
+
+Definition at line 479 of file Database.\-java.
 
 \hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a4f77bc5e3bdf13f836136bc7eb763cac}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!get\-Comments@{get\-Comments}}
 \index{get\-Comments@{get\-Comments}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
@@ -485,7 +807,19 @@ Definition at line 392 of file Database.\-java.
 )}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a4f77bc5e3bdf13f836136bc7eb763cac}
 
 
-Definition at line 193 of file Database.\-java.
+Get all comments on a given post or comment. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sig} & The signature of the item whose comments one desires. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An array of Messages, ordered chronologically so that element 0 is the oldest comment on the item. 
+\end{DoxyReturn}
+
+
+Definition at line 247 of file Database.\-java.
 
 \hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a85b0c44b683cbbab3f966ce7b266f837}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!get\-Conversation@{get\-Conversation}}
 \index{get\-Conversation@{get\-Conversation}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
@@ -496,7 +830,19 @@ Definition at line 193 of file Database.\-java.
 )}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a85b0c44b683cbbab3f966ce7b266f837}
 
 
-Definition at line 271 of file Database.\-java.
+Get details of a specific conversation, but not the messages therein. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sig} & The signature of the conversation you want details about. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A conversation object with the details of the specified conversation. 
+\end{DoxyReturn}
+
+
+Definition at line 343 of file Database.\-java.
 
 \hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_ac65176a79a8e7433b18e8c98dbc02689}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!get\-Conversation\-Messages@{get\-Conversation\-Messages}}
 \index{get\-Conversation\-Messages@{get\-Conversation\-Messages}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
@@ -507,7 +853,19 @@ Definition at line 271 of file Database.\-java.
 )}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_ac65176a79a8e7433b18e8c98dbc02689}
 
 
-Definition at line 303 of file Database.\-java.
+Get all the messages from a given conversation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sig} & The signature of the conversation you want the messages of. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The messages in the specified conversation, in chronological order (i.\-e.\-: Element 0 is the oldest message in the conversation). Data is in this format\-: \{\{username, time, msg\}, \{username, time, msg\}, etc.\} 
+\end{DoxyReturn}
+
+
+Definition at line 378 of file Database.\-java.
 
 \hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_ab81803b4c6efc49a774faaba66add16d}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!get\-Conversations@{get\-Conversations}}
 \index{get\-Conversations@{get\-Conversations}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
@@ -518,7 +876,14 @@ Definition at line 303 of file Database.\-java.
 )}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_ab81803b4c6efc49a774faaba66add16d}
 
 
-Definition at line 239 of file Database.\-java.
+Get all conversations you know about. 
+
+\begin{DoxyReturn}{Returns}
+An array of all conversations you know about in no particular order. 
+\end{DoxyReturn}
+
+
+Definition at line 304 of file Database.\-java.
 
 \hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a67893a85c22e9e5b5a039f1900817df5}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!get\-Key@{get\-Key}}
 \index{get\-Key@{get\-Key}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
@@ -529,7 +894,19 @@ Definition at line 239 of file Database.\-java.
 )}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a67893a85c22e9e5b5a039f1900817df5}
 
 
-Definition at line 327 of file Database.\-java.
+Retrieve the key of the specified user. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user\-Name} & The username of the user which you wish to know the key of. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The key of the specified user. Returns \char`\"{}\&ndash;\-I\-N\-V\-A\-L\-I\-D K\-E\-Y\-S\-T\-R\-I\-N\-G\&ndash;\char`\"{} if no key is known. 
+\end{DoxyReturn}
+
+
+Definition at line 404 of file Database.\-java.
 
 \hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a102153ec0531bc6be459d0879c78051d}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!get\-Name@{get\-Name}}
 \index{get\-Name@{get\-Name}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
@@ -540,7 +917,19 @@ Definition at line 327 of file Database.\-java.
 )}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a102153ec0531bc6be459d0879c78051d}
 
 
-Definition at line 458 of file Database.\-java.
+Retreives the most recent username associated with a given key. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The public key of the user whose username you wish to know. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The most recent username of the user with the given public key. \char`\"{}$<$no username$>$\char`\"{} is returned if no username is known. 
+\end{DoxyReturn}
+
+
+Definition at line 559 of file Database.\-java.
 
 \hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_ab2e0d804fa40eb9b08275f2548737b34}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!get\-P\-D\-A\-T\-A@{get\-P\-D\-A\-T\-A}}
 \index{get\-P\-D\-A\-T\-A@{get\-P\-D\-A\-T\-A}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
@@ -552,7 +941,21 @@ Definition at line 458 of file Database.\-java.
 )}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_ab2e0d804fa40eb9b08275f2548737b34}
 
 
-Definition at line 126 of file Database.\-java.
+Gets the specified piece of profile data for the specified user. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em field} & The name of the field the value of which you wish to retrieve. valid options are\-: email, name, gender, and birthday. \\
+\hline
+{\em key} & The key of the user which you wish to retrieve data about. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The value of the specified field for the specified user. Returns \char`\"{}$<$no value$>$\char`\"{} if no value is known. 
+\end{DoxyReturn}
+
+
+Definition at line 165 of file Database.\-java.
 
 \hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_ab4048f6c37cc47a31838aa992398cdac}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!get\-People\-In\-Convo@{get\-People\-In\-Convo}}
 \index{get\-People\-In\-Convo@{get\-People\-In\-Convo}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
@@ -563,7 +966,19 @@ Definition at line 126 of file Database.\-java.
 )}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_ab4048f6c37cc47a31838aa992398cdac}
 
 
-Definition at line 255 of file Database.\-java.
+Get the keys of users involved in a given conversation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sig} & The signature of the conversation being examined. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An array of Public\-Keys containing the keys of every user who is in the specified conversation. 
+\end{DoxyReturn}
+
+
+Definition at line 324 of file Database.\-java.
 
 \hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a0ccbad682720c86cb152de04a7052332}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!get\-Post\-Visible\-To@{get\-Post\-Visible\-To}}
 \index{get\-Post\-Visible\-To@{get\-Post\-Visible\-To}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
@@ -574,7 +989,19 @@ Definition at line 255 of file Database.\-java.
 )}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a0ccbad682720c86cb152de04a7052332}
 
 
-Definition at line 442 of file Database.\-java.
+Get all people who can see a given post. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sig} & The signature of the post being considered. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An array of Public\-Keys which contains the key of every user which is able to decrypt and view the given post. 
+\end{DoxyReturn}
+
+
+Definition at line 539 of file Database.\-java.
 
 \hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a890f60c47e11af8823d48689fdeac360}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!get\-Signatory@{get\-Signatory}}
 \index{get\-Signatory@{get\-Signatory}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
@@ -585,7 +1012,19 @@ Definition at line 442 of file Database.\-java.
 )}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a890f60c47e11af8823d48689fdeac360}
 
 
-Definition at line 477 of file Database.\-java.
+Discover who sent a given message. 
+
+Derived from the signautre on the message and known public keys. 
+\begin{DoxyParams}{Parameters}
+{\em m} & The message whose author you wish to determine. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The public key of the user who wrote m. null is returned if no signatory can be found. 
+\end{DoxyReturn}
+
+
+Definition at line 583 of file Database.\-java.
 
 \hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a9e36a1c14ff02a2cc43b38a646ee20ab}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!get\-Visibility\-Of\-Parent@{get\-Visibility\-Of\-Parent}}
 \index{get\-Visibility\-Of\-Parent@{get\-Visibility\-Of\-Parent}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
@@ -596,7 +1035,19 @@ Definition at line 477 of file Database.\-java.
 )}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a9e36a1c14ff02a2cc43b38a646ee20ab}
 
 
-Definition at line 420 of file Database.\-java.
+Get all people who can see a given post or comment. 
+
+The visibility of comments is the same as that of their parents. 
+\begin{DoxyParams}{Parameters}
+{\em sig} & The signature of the post or comment being considered. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An array of Public\-Keys which contains the key of every user which is able to decrypt and view the given comment or post. 
+\end{DoxyReturn}
+
+
+Definition at line 512 of file Database.\-java.
 
 \hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a095f1356c13e33debb06929244b98150}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!get\-Wall\-Post@{get\-Wall\-Post}}
 \index{get\-Wall\-Post@{get\-Wall\-Post}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
@@ -607,7 +1058,19 @@ Definition at line 420 of file Database.\-java.
 )}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a095f1356c13e33debb06929244b98150}
 
 
-Definition at line 150 of file Database.\-java.
+Get the posts on the wall of the given user. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The public key of the user the wall of whom you are interested in. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An array of Messages, ordered chronologically so that element 0 is the oldest post on their wall. 
+\end{DoxyReturn}
+
+
+Definition at line 193 of file Database.\-java.
 
 \hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a6c5618c6a7e144ee7eec9e6e4de6314d}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!get\-Wall\-Post\-Sender@{get\-Wall\-Post\-Sender}}
 \index{get\-Wall\-Post\-Sender@{get\-Wall\-Post\-Sender}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
@@ -618,7 +1081,19 @@ Definition at line 150 of file Database.\-java.
 )}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a6c5618c6a7e144ee7eec9e6e4de6314d}
 
 
-Definition at line 179 of file Database.\-java.
+Get the key of the user who created a given post. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sig} & The signature of the post. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The key of the user who created the post. Returns \char`\"{}$<$\-P\-O\-S\-T D\-O\-E\-S\-N'\-T E\-X\-I\-S\-T$>$\char`\"{} if the post doesn't exist, may also return \char`\"{}\-E\-R\-R\-O\-R\char`\"{} if there is an S\-Q\-L error. 
+\end{DoxyReturn}
+
+
+Definition at line 228 of file Database.\-java.
 
 \hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a76fdbae3c50e5e2fc64d9973de7e08d9}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!is\-Liked@{is\-Liked}}
 \index{is\-Liked@{is\-Liked}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
@@ -629,7 +1104,19 @@ Definition at line 179 of file Database.\-java.
 )}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a76fdbae3c50e5e2fc64d9973de7e08d9}
 
 
-Definition at line 224 of file Database.\-java.
+Query whether or not a given comment or post is liked. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sig} & The signature of the comment or post being examined. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the item is liked, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 287 of file Database.\-java.
 
 \hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_ab3e267a71350c940b476949722eda0eb}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!is\-Revoked@{is\-Revoked}}
 \index{is\-Revoked@{is\-Revoked}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
@@ -640,7 +1127,19 @@ Definition at line 224 of file Database.\-java.
 )}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_ab3e267a71350c940b476949722eda0eb}
 
 
-Definition at line 629 of file Database.\-java.
+Check if a given key is revoked. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The key being checked. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\char`\"{}true\char`\"{} if revoked, \char`\"{}false\char`\"{} otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 767 of file Database.\-java.
 
 \hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_acd908d7244665e90b2c852d2bd4d24d8}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!keys\-Can\-See\-P\-D\-A\-T\-A@{keys\-Can\-See\-P\-D\-A\-T\-A}}
 \index{keys\-Can\-See\-P\-D\-A\-T\-A@{keys\-Can\-See\-P\-D\-A\-T\-A}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
@@ -651,7 +1150,14 @@ Definition at line 629 of file Database.\-java.
 )}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_acd908d7244665e90b2c852d2bd4d24d8}
 
 
-Definition at line 824 of file Database.\-java.
+Get a list of people who can see your profile information. 
+
+\begin{DoxyReturn}{Returns}
+An array of Public\-Keys containing every key which is able to see your profile information. 
+\end{DoxyReturn}
+
+
+Definition at line 1019 of file Database.\-java.
 
 \hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_ac2c2361722304a6446d5cd01cb0c5d3b}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!like@{like}}
 \index{like@{like}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
@@ -662,7 +1168,19 @@ Definition at line 824 of file Database.\-java.
 )}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_ac2c2361722304a6446d5cd01cb0c5d3b}
 
 
-Definition at line 902 of file Database.\-java.
+Like a given post or comment. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sig} & The signature of the comment or post to like. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\char`\"{}true\char`\"{} if successful, \char`\"{}false\char`\"{} otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 1128 of file Database.\-java.
 
 \hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a4401c37a89ca60d2e6b926b9930446dc}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!query@{query}}
 \index{query@{query}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
@@ -673,7 +1191,22 @@ Definition at line 902 of file Database.\-java.
 )  throws java.\-sql.\-S\-Q\-L\-Exception }}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a4401c37a89ca60d2e6b926b9930446dc}
 
 
-Definition at line 105 of file Database.\-java.
+Executes the given S\-Q\-L query, returns the results. 
+
+\begin{DoxyWarning}{Warning}
+Throws a java.\-sql.\-S\-Q\-L\-Exception on failure. 
+\end{DoxyWarning}
+
+\begin{DoxyParams}{Parameters}
+{\em query} & The query to execute. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A Result\-Set, the rows returned by the query. 
+\end{DoxyReturn}
+
+
+Definition at line 138 of file Database.\-java.
 
 \hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a2718a68613d43dabf2c62bebc9f41e05}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!remove\-From\-Category@{remove\-From\-Category}}
 \index{remove\-From\-Category@{remove\-From\-Category}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
@@ -684,7 +1217,19 @@ Definition at line 105 of file Database.\-java.
 )}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a2718a68613d43dabf2c62bebc9f41e05}
 
 
-Definition at line 885 of file Database.\-java.
+Remove a user from a category. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & The Message object representing the removal of a user from a category. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\char`\"{}true\char`\"{} if successful, \char`\"{}false\char`\"{} otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 1102 of file Database.\-java.
 
 \hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a25313e4d456741744541e8b42d7bef9b}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!remove\-From\-Category@{remove\-From\-Category}}
 \index{remove\-From\-Category@{remove\-From\-Category}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
@@ -696,7 +1241,21 @@ Definition at line 885 of file Database.\-java.
 )}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a25313e4d456741744541e8b42d7bef9b}
 
 
-Definition at line 889 of file Database.\-java.
+Remove a user form a category. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em category} & The name of the category the user is being removed from. \\
+\hline
+{\em key} & The key of the user to be removed from the category. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\char`\"{}true\char`\"{} if successful, \char`\"{}false\char`\"{} otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 1111 of file Database.\-java.
 
 \hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a4b2795d1417e265aa345d21e5e1c3a23}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!time\-Most\-Recent\-Wall\-Post@{time\-Most\-Recent\-Wall\-Post}}
 \index{time\-Most\-Recent\-Wall\-Post@{time\-Most\-Recent\-Wall\-Post}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
@@ -707,7 +1266,19 @@ Definition at line 889 of file Database.\-java.
 )}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a4b2795d1417e265aa345d21e5e1c3a23}
 
 
-Definition at line 212 of file Database.\-java.
+Get the time that a given users wall was last posted on. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The public key of the user the wall of whom you are interested in. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of milliseconds from midnight january first 1970 to the time of the most recent post placed on the specified users wall. 
+\end{DoxyReturn}
+
+
+Definition at line 271 of file Database.\-java.
 
 \hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a500911b2c3d32d456c2bf34a23747d85}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!unlike@{unlike}}
 \index{unlike@{unlike}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
@@ -718,7 +1289,19 @@ Definition at line 212 of file Database.\-java.
 )}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a500911b2c3d32d456c2bf34a23747d85}
 
 
-Definition at line 915 of file Database.\-java.
+Unlike a given post or comment. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sig} & The signature of the comment or post to like. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\char`\"{}true\char`\"{} if successful, \char`\"{}false\char`\"{} otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 1145 of file Database.\-java.
 
 \hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a54a5e6c02389fb8f3528bf503019f7fe}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!update\-P\-D\-A\-T\-A@{update\-P\-D\-A\-T\-A}}
 \index{update\-P\-D\-A\-T\-A@{update\-P\-D\-A\-T\-A}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
@@ -731,7 +1314,23 @@ Definition at line 915 of file Database.\-java.
 )}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a54a5e6c02389fb8f3528bf503019f7fe}
 
 
-Definition at line 674 of file Database.\-java.
+Update a given users profile information. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em field} & The name of the field the value of which you wish to update. valid options are\-: email, name, gender, and birthday. \\
+\hline
+{\em value} & The desired value. \\
+\hline
+{\em k} & The key of the user whos profile information is being updated. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\char`\"{}true\char`\"{} if successful, \char`\"{}false\char`\"{} otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 827 of file Database.\-java.
 
 \hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_ae65d70bab4c0fba8f0c941487385c8c9}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!update\-P\-D\-A\-T\-Apermission@{update\-P\-D\-A\-T\-Apermission}}
 \index{update\-P\-D\-A\-T\-Apermission@{update\-P\-D\-A\-T\-Apermission}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
@@ -742,7 +1341,19 @@ Definition at line 674 of file Database.\-java.
 )}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_ae65d70bab4c0fba8f0c941487385c8c9}
 
 
-Definition at line 807 of file Database.\-java.
+Update whether or not a given category can see your profile information. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & The Message object representing the update. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\char`\"{}true\char`\"{} if successful, \char`\"{}false\char`\"{} otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 992 of file Database.\-java.
 
 \hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_aed151a8daa6202838bdc8b949d6de05c}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!update\-P\-D\-A\-T\-Apermission@{update\-P\-D\-A\-T\-Apermission}}
 \index{update\-P\-D\-A\-T\-Apermission@{update\-P\-D\-A\-T\-Apermission}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
@@ -754,7 +1365,21 @@ Definition at line 807 of file Database.\-java.
 )}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_aed151a8daa6202838bdc8b949d6de05c}
 
 
-Definition at line 811 of file Database.\-java.
+Change whether or not a category can see your profile information. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em category} & The name of the category you wish to update. \\
+\hline
+{\em value} & The desired value, true to allow the category to see your profile data, false to forbid it. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\char`\"{}true\char`\"{} if successful, \char`\"{}false\char`\"{} otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 1002 of file Database.\-java.
 
 \hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a1d9276229eb90ede286f8ecbee955248}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!validate\-Claims@{validate\-Claims}}
 \index{validate\-Claims@{validate\-Claims}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
@@ -765,7 +1390,19 @@ Definition at line 811 of file Database.\-java.
 )}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a1d9276229eb90ede286f8ecbee955248}
 
 
-Definition at line 532 of file Database.\-java.
+Check username claims against a given public key. 
+
+Called automatically after a new key is added to ensure that old username claims are recognised. 
+\begin{DoxyParams}{Parameters}
+{\em k} & The key to be considered. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\char`\"{}true\char`\"{} if successful, \char`\"{}false\char`\"{} otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 654 of file Database.\-java.
 
 
 
@@ -782,11 +1419,19 @@ Definition at line 15 of file Database.\-java.
 \paragraph[{password}]{\setlength{\rightskip}{0pt plus 5cm}String ballmerpeak.\-turtlenet.\-server.\-Database.\-password = \char`\"{}U\-N\-S\-E\-T\char`\"{}\hspace{0.3cm}{\ttfamily [private]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a6dc69ef37a9765547dfa556596f5ad3c}
 
 
+Users password, used to encrypt local data. 
+
+
+
 Definition at line 16 of file Database.\-java.
 
 \hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a3933689115f43166439d740b2a254481}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!path@{path}}
 \index{path@{path}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
 \paragraph[{path}]{\setlength{\rightskip}{0pt plus 5cm}String ballmerpeak.\-turtlenet.\-server.\-Database.\-path = \char`\"{}./db\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a3933689115f43166439d740b2a254481}
+
+
+path to database directory 
+
 
 
 Definition at line 14 of file Database.\-java.

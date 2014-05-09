@@ -198,6 +198,7 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
     }
     
     /** Get all members of a given category.
+     * If the category given is "all" then all known people are returned.
      * \param category The name of the category of which you want to know the members.
      * \return The username and key of each member of the specified category.
      * Data is in this format: {{"bob", "bobs_key"}, {"john", "johns_key"}, etc.}

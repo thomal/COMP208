@@ -11,32 +11,51 @@ import java.util.Vector;
 import java.util.Arrays;
 
 public class Database {
-    public static String path = "./db"; //path to database directory
+    public static String path = "./db"; //!<path to database directory
     private Connection dbConnection;
-    private String password = "UNSET";
+    private String password = "UNSET";  //!< Users password, used to encrypt local data
 
+    /** Construct a database object.
+     * Creates the database if it doesn't exist, if it does exit then it is decrypted.
+     * It creates a directory (Database.path) to store local data if it doesn't
+     * already exist.
+     * It then connects to the database and returns.
+     * \param pw The password the database is/should be encrypted with.
+     */
     public Database (String pw) {
         password = pw;
         dbConnection = null;
         if (DBExists()) dbConnect(true); else dbCreate();
     }
     
+    /** Test whether the directory used for storing local data exists.
+     * The directory is specified by Database.path.
+     * \return true is the directory exists, false otherwise.
+     */
     public static boolean DBDirExists() {
         File dir = new File(path);
         return dir.exists();
     }
     
+    /** Checks whether the database exists or not.
+     * \return true if the database exists, false otherwise.
+     */
     public static boolean DBExists() {
         File edb = new File(path + "/turtlenet.db.aes");
         File db = new File(path + "/turtlenet.db");
         return db.exists() || edb.exists();
     }
     
+    /** Creates a directory to store local data.
+     * The directory is that specified in Database.path.
+     */
     public static boolean createDBDir() {
         return (new File(path)).mkdirs();
     }
     
-    //Creates a database from scratch
+    /** Creates a new database.
+     * Called automatically by the consturctor.
+     */
     public void dbCreate() {
         Logger.write("INFO", "DB", "Creating database");
         try {
@@ -50,7 +69,11 @@ public class Database {
         }
     }
 
-    //Connects to a pre-defined database
+    /** Connects to an extant database.
+     * Called automatically by the constructor.
+     * \param dbexists true if a database already exists, false otherwise.
+     * \return returns true if successful at connecting, false otherwise.
+     */
     public boolean dbConnect(boolean dbexists) {
         if (dbexists)
             if (!Crypto.decryptDB(password))
@@ -67,7 +90,8 @@ public class Database {
         }
     }
 
-    //Disconnects the pre-defined database
+    /** Disconnects from the database.
+     */
     public void dbDisconnect() {
         Logger.write("INFO", "DB", "Disconnecting from database");
         try {
@@ -80,6 +104,10 @@ public class Database {
             Logger.write("FATAL", "DB", "failed to encrypt database");
     }
     
+    /** Executes the given SQL query.
+     * \warning Throws a java.sql.SQLException on failure.
+     * \param query The query to execute.
+     */
     public void execute (String query) throws java.sql.SQLException {
         try {
             /*
@@ -102,6 +130,11 @@ public class Database {
         }
     }
     
+    /** Executes the given SQL query, returns the results.
+     * \warning Throws a java.sql.SQLException on failure.
+     * \param query The query to execute.
+     * \return A ResultSet, the rows returned by the query.
+     */
     public ResultSet query (String query) throws java.sql.SQLException {
         /*
         if (query.indexOf('(') != -1)
@@ -122,7 +155,13 @@ public class Database {
         }
     }
     
-    //Get from DB
+    /** Gets the specified piece of profile data for the specified user.
+     * \param field The name of the field the value of which you wish to retrieve.
+     *              valid options are: email, name, gender, and birthday.
+     * \param key The key of the user which you wish to retrieve data about.
+     * \return The value of the specified field for the specified user. Returns
+     *         "<no value>" if no value is known.
+     */
     public String getPDATA(String field, PublicKey key) {
         Logger.write("VERBOSE", "DB", "getPDATA(" + field + ",...)"); 
         String value = "";
@@ -146,7 +185,11 @@ public class Database {
             return "<no value>";
     }
     
-    //Set the CMD to POST in the Message constructor
+    /** Get the posts on the wall of the given user.
+     * \param key The public key of the user the wall of whom you are interested in.
+     * \return An array of Messages, ordered chronologically so that element 0
+     *         is the oldest post on their wall.
+     */
     public Message[] getWallPost (PublicKey key) {
         Logger.write("VERBOSE", "DB", "getWallPost(...)");
         Vector<Message> posts = new Vector<Message>();
@@ -176,6 +219,12 @@ public class Database {
         return posts.toArray(new Message[0]);
     }
     
+    /** Get the key of the user who created a given post.
+     * \param sig The signature of the post.
+     * \return The key of the user who created the post.
+     * Returns "<POST DOESN'T EXIST>" if the post doesn't exist, may also return
+     * "ERROR" if there is an SQL error.
+     */
     public String getWallPostSender (String sig) {
         Logger.write("VERBOSE", "DB", "getWallPostSender(...)");
         try {
@@ -190,6 +239,11 @@ public class Database {
         }
     }
     
+    /** Get all comments on a given post or comment.
+     * \param sig The signature of the item whose comments one desires.
+     * \return An array of Messages, ordered chronologically so that element 0
+     *         is the oldest comment on the item.
+     */
     public Message[] getComments (String sig) {
         Vector<Message> comments = new Vector<Message>();
         Logger.write("VERBOSE", "DB", "getComments(...)");
@@ -209,6 +263,11 @@ public class Database {
         return comments.toArray(new Message[0]); 
     }
     
+    /** Get the time that a given users wall was last posted on.
+     * \param key The public key of the user the wall of whom you are interested in.
+     * \return The number of milliseconds from midnight january first 1970 to
+     *  the time of the most recent post placed on the specified users wall.
+     */
     public Long timeMostRecentWallPost (PublicKey key) {
         Logger.write("VERBOSE", "DB", "timeMostRecentWallPost(...)");
         try {
@@ -221,6 +280,10 @@ public class Database {
         return 0L;
     }
     
+    /** Query whether or not a given comment or post is liked.
+     * \param sig The signature of the comment or post being examined.
+     * \return true if the item is liked, false otherwise.
+     */
     public boolean isLiked (String sig) {
         Logger.write("VERBOSE", "DB", "isLiked(...)");
         int ret = 0;
@@ -235,7 +298,9 @@ public class Database {
         return false;
     }
     
-    //Return all conversations
+    /** Get all conversations you know about.
+     * \return An array of all conversations you know about in no particular order.
+     */
     public Conversation[] getConversations () {
         Vector<Conversation> convoList = new Vector<Conversation>();
         Logger.write("VERBOSE", "DB", "getConversations()");
@@ -251,7 +316,11 @@ public class Database {
         return convoList.toArray(new Conversation[0]);
     }
     
-    //Get keys of all people in the given conversation
+    /** Get the keys of users involved in a given conversation.
+     * \param sig The signature of the conversation being examined.
+     * \return An array of PublicKeys containing the keys of every user who is
+     * in the specified conversation.
+     */
     public PublicKey[] getPeopleInConvo (String sig) {
         Logger.write("VERBOSE", "DB", "getPeopleInConvo(...)");
         Vector<PublicKey> keys = new Vector<PublicKey>();
@@ -267,7 +336,10 @@ public class Database {
         return keys.toArray(new PublicKey[0]);
     }
     
-    //Reurn a conversation object
+    /** Get details of a specific conversation, but not the messages therein.
+     * \param sig The signature of the conversation you want details about.
+     * \return A conversation object with the details of the specified conversation.
+     */
     public Conversation getConversation (String sig) {
         Logger.write("VERBOSE", "DB", "getConversation(...)");    
         try {
@@ -297,9 +369,12 @@ public class Database {
         return new Conversation();
     }
     
-    //Return all messages in a conversation
-    //{{username, time, msg}, {username, time, msg}, etc.}
-    //Please order it so that element 0 is the oldest message
+    /** Get all the messages from a given conversation.
+     * \param sig The signature of the conversation you want the messages of.
+     * \return The messages in the specified conversation, in chronological
+     *  order (i.e.: Element 0 is the oldest message in the conversation).
+     * Data is in this format: {{username, time, msg}, {username, time, msg}, etc.}
+     */
     public String[][] getConversationMessages (String sig) {
         Logger.write("VERBOSE", "DB", "getConversationMessages(...)");
         Vector<String[]> messagesList = new Vector<String[]>();
@@ -321,9 +396,11 @@ public class Database {
         return messagesList.toArray(new String[0][0]);
     }
     
-    //If multiple people have the same username then:
-    //Logger.write("FATAL", "DB", "Duplicate usernames");
-    //System.exit(1);
+    /** Retrieve the key of the specified user.
+     * \param userName The username of the user which you wish to know the key of.
+     * \return The key of the specified user. Returns "--INVALID KEYSTRING--" if
+     *         no key is known.
+     */
     public PublicKey getKey (String userName) {
         Logger.write("VERBOSE", "DB", "getKey(" + userName + ")");
         int nameCount = 0;
@@ -347,6 +424,11 @@ public class Database {
         return Crypto.decodeKey(key);
     }
     
+    /** Query whether or not a given category can see your profile information.
+     * \param category The name of the category in question.
+     * \return true is the people in the category can see your profile information,
+     * false otherwise.
+     */
     public boolean canSeePDATA (String category) {
         Logger.write("VERBOSE", "DB", "canSeePDATA()");
         
@@ -362,8 +444,10 @@ public class Database {
         return false;
     }
     
-    //Return the name of each category and if it can see your profile info
-    //In this format: {{"friends", "false"}, {"family", "true"}, etc.}
+    /** Get a list of all categories.
+     * \return The names of each category and if it can see your profile info.
+     * Data is in this format: {{"friends", "false"}, {"family", "true"}, etc.}
+     */
     public String[][] getCategories () {
         Logger.write("VERBOSE", "DB", "getCategories()");
         Vector<String[]> catList = new Vector<String[]>();
@@ -386,9 +470,12 @@ public class Database {
         return catList.toArray(new String[0][0]);
     }
     
-    //Return the keys of each member of the category
-    //if(category.equals("all")) //remember NEVER to compare strings with ==
-    //    return every key you know about
+    /** Get all members of a given category.
+     * If the category given is "all" then all known people are returned.
+     * \param catID The name of the category of which you want to know the members.
+     * \return An array of PublicKeys containing the key of every user in the
+     *  specified category.
+     */
     public PublicKey[] getCategoryMembers (String catID) {
         Logger.write("VERBOSE", "DB", "getCategoryMembers(" + catID + ")");
         String queryStr = "";
@@ -416,7 +503,12 @@ public class Database {
         return keyList.toArray(new PublicKey[0]);
     }
     
-    //Given the sig of a post or comment return the keys which can see it
+    /** Get all people who can see a given post or comment.
+     * The visibility of comments is the same as that of their parents.
+     * \param sig The signature of the post or comment being considered.
+     * \return An array of PublicKeys which contains the key of every user which
+     *  is able to decrypt and view the given comment or post.
+     */
     public PublicKey[] getVisibilityOfParent(String sig) {
         Logger.write("VERBOSE", "DB", "getVisibilityOfParent(" + sig + ")");
         
@@ -439,6 +531,11 @@ public class Database {
         return null;
     }
     
+    /** Get all people who can see a given post.
+     * \param sig The signature of the post being considered.
+     * \return An array of PublicKeys which contains the key of every user which
+     *  is able to decrypt and view the given post.
+     */
     public PublicKey[] getPostVisibleTo (String sig) {
         Logger.write("VERBOSE", "DB", "getVisibleTo(...)");
         Vector<PublicKey> keyList = new Vector<PublicKey>();
@@ -454,7 +551,11 @@ public class Database {
         return keyList.toArray(new PublicKey[0]);
     }
     
-    //In the case of no username for the key: "return Crypto.encode(k);"
+    /** Retreives the most recent username associated with a given key.
+     * \param key The public key of the user whose username you wish to know.
+     * \return The most recent username of the user with the given public key.
+     * "<no username>" is returned if no username is known.
+     */
     public String getName (PublicKey key) {
         Logger.write("VERBOSE", "DB", "getName(...)");
         String name = "";
@@ -473,7 +574,12 @@ public class Database {
             return "<no username>";
     }
     
-    //"What key signed this message"
+    /** Discover who sent a given message.
+     * Derived from the signautre on the message and known public keys.
+     * \param m The message whose author you wish to determine.
+     * \return The public key of the user who wrote m.
+     * null is returned if no signatory can be found.
+     */
     public PublicKey getSignatory (Message m) {
         Logger.write("VERBOSE", "DB", "getSignatory(...)");
         try {
@@ -488,7 +594,10 @@ public class Database {
         return null;
     }
     
-    //Add to DB
+    /** Add a post.
+     * \param post The Message object representing the post.
+     * \return "true" if successful, "false" otherwise.
+     */
     public boolean addPost (Message post) {
         Logger.write("VERBOSE", "DB", "addPost(...)");
         
@@ -508,10 +617,18 @@ public class Database {
         }
     }
     
+    /** Add another users public key.
+     * \param msg The Message object representing the ADDKEY message.
+     * \return "true" if successful, "false" otherwise.
+     */
     public boolean addKey (Message msg) {
         return addKey(Crypto.decodeKey(msg.ADDKEYgetKey()));
     }
     
+    /** Add another users public key.
+     * \param k The PublicKey to add.
+     * \return "true" if successful, "false" otherwise.
+     */
     public boolean addKey (PublicKey k) {
         Logger.write("VERBOSE", "DB", "addKey(...)");
         
@@ -528,7 +645,12 @@ public class Database {
         return false;
     }
     
-    //Update k's username by validating claims
+    /** Check username claims against a given public key.
+     * Called automatically after a new key is added to ensure that old username
+     *  claims are recognised.
+     * \param k The key to be considered.
+     * \return "true" if successful, "false" otherwise.
+     */
     public boolean validateClaims(PublicKey k) {
         if (k == null) {
             Logger.write("ERROR", "DB", "validateClaims(...) called with null key");
@@ -563,7 +685,11 @@ public class Database {
         return true;
     }
     
-    //update keys column in revocations
+    /** Update the keys column in the key revocations table.
+     * Called automatically after a new key is added to ensure it isn't revoked.
+     * \param k The new key.
+     * \return "true" if successful, "false" otherwise.
+     */
     public boolean calcRevocationKeys (PublicKey k) {
         if (k == null) {
             Logger.write("ERROR", "DB", "calcRevocationKeys(...) called with null key");
@@ -592,7 +718,11 @@ public class Database {
         return true;
     }
     
-    //if this key has already claimed a name, forget the old one
+    /** Add a claim.
+     * If a username is already claimed, forget the old name.
+     * \param claim The Message object representing the claim.
+     * \return "true" if successful, "false" otherwise.
+     */
     public boolean addClaim (Message claim) {
         Logger.write("VERBOSE", "DB", "addClaim("+ claim.CLAIMgetName() +")");
         
@@ -611,6 +741,10 @@ public class Database {
         return true;
     }
     
+    /** Add a revocation.
+     * \param revocation The Message object representing the revocation.
+     * \return "true" if successful, "false" otherwise.
+     */
     public boolean addRevocation (Message revocation) {
         Logger.write("VERBOSE", "DB", "-------addRevocation(...)-------");
         
@@ -626,6 +760,10 @@ public class Database {
         }
     }
     
+    /** Check if a given key is revoked.
+     * \param key The key being checked.
+     * \return "true" if revoked, "false" otherwise.
+     */
     public boolean isRevoked (PublicKey key) {
         Logger.write("VERBOSE", "DB", "isRevoked(...)");
         
@@ -637,6 +775,10 @@ public class Database {
         }
     }
     
+    /** Erase all content signed by a given key.
+     * \param key The key whose data is being expurgated.
+     * \return "true" if successful, "false" otherwise.
+     */
     public boolean eraseContentFrom(PublicKey key) {
         Logger.write("VERBOSE", "DB", "-------eraseContentFrom(...)-------");
         String keyStr = Crypto.encodeKey(key);
@@ -659,6 +801,10 @@ public class Database {
         return true;
     }
     
+    /** Add new profile information.
+     * \param update The Message object representing the update.
+     * \return "true" if successful, "false" otherwise.
+     */
     public boolean addPDATA (Message update) {
         Logger.write("VERBOSE", "DB", "addPDATA(...)");
         boolean ret = true;
@@ -671,6 +817,13 @@ public class Database {
         return ret;
     }
     
+    /** Update a given users profile information.
+     * \param field The name of the field the value of which you wish to update.
+     *              valid options are: email, name, gender, and birthday.
+     * \param value The desired value.
+     * \param k The key of the user whos profile information is being updated.
+     * \return "true" if successful, "false" otherwise.
+     */
     public boolean updatePDATA (String field, String value, PublicKey k) {
         Logger.write("VERBOSE", "DB", "updatePDATA(" + field + ", " + value + ", ...)");
         
@@ -686,6 +839,10 @@ public class Database {
         return true;
     }
     
+    /** Add a new conversation.
+     * \param convo The Message object representing the conversation.
+     * \return "true" if successful, "false" otherwise.
+     */
     public boolean addConvo (Message convo) {
         Logger.write("VERBOSE", "DB", "addConvo(...)");
         
@@ -705,6 +862,10 @@ public class Database {
         return true;
     }
     
+    /** Add a message to an extant conversation.
+     * \param msg The Message object representing the new message to be added.
+     * \return "true" if successful, "false" otherwise.
+     */
     public boolean addMessageToChat (Message msg) {
         Logger.write("VERBOSE", "DB", "addMessageToChat(...)");
         
@@ -730,6 +891,10 @@ public class Database {
         return true;
     }
     
+    /** Add a comment to a post or comment.
+     * \param comment The Message object representing the comment.
+     * \return "true" if successful, "false" otherwise.
+     */
     public boolean addComment (Message comment) {
         Logger.write("VERBOSE", "DB", "addComment(...)");
         
@@ -748,6 +913,10 @@ public class Database {
         return true;
     }
     
+    /** Add a like.
+     * \param like The Message object representing the like.
+     * \return "true" if successful, "false" otherwise.
+     */
     public boolean addLike (Message like) {
         Logger.write("VERBOSE", "DB", "addLike(...)");
         
@@ -762,6 +931,10 @@ public class Database {
         return true;
     }
     
+    /** Add a new event.
+     * \param event The Message object representing the event.
+     * \return "true" if successful, "false" otherwise.
+     */
     public boolean addEvent (Message event) {
         Logger.write("VERBOSE", "DB", "addEvent(...)");
         try {
@@ -780,6 +953,10 @@ public class Database {
         return true;
     }
     
+    /** Accept an event.
+     * \param sig The signature of the event you are accepting.
+     * \return "true" if successful, "false" otherwise.
+     */
     public boolean acceptEvent (String sig) {
         Logger.write("VERBOSE", "DB", "acceptEvent(...)");
         try {
@@ -792,6 +969,10 @@ public class Database {
         return true;
     }
     
+    /** Decline an event.
+     * \param sig The signature of the event you are declining.
+     * \return "true" if successful, "false" otherwise.
+     */
     public boolean declineEvent (String sig) {
         Logger.write("VERBOSE", "DB", "declineEvent(...)");
         try {
@@ -804,10 +985,20 @@ public class Database {
         return true;
     }
     
+    /** Update whether or not a given category can see your profile information.
+     * \param msg The Message object representing the update.
+     * \return "true" if successful, "false" otherwise.
+     */
     public boolean updatePDATApermission (Message msg) {
         return updatePDATApermission(msg.UPDATECATgetName(), msg.UPDATECATgetValue());
     }
     
+    /** Change whether or not a category can see your profile information.
+     * \param category The name of the category you wish to update.
+     * \param value The desired value, true to allow the category to see your
+     *  profile data, false to forbid it.
+     * \return "true" if successful, "false" otherwise.
+     */
     public boolean updatePDATApermission (String category, boolean value) {
         Logger.write("VERBOSE", "DB", "updatePDATApermission(...)");
         try {
@@ -821,6 +1012,10 @@ public class Database {
         return true;
     }
     
+    /** Get a list of people who can see your profile information.
+     * \return An array of PublicKeys containing every key which is able to see
+     *  your profile information.
+     */
     public PublicKey[] keysCanSeePDATA () {
         Logger.write("VERBOSE", "DB", "keysCanSeePDATA()");
         Vector<PublicKey> keys = new Vector<PublicKey>();
@@ -841,11 +1036,20 @@ public class Database {
         return keys.toArray(new PublicKey[0]);
     }
     
-    //no duplicate names
+    /** Add a new category.
+     * \param msg The Message object representing the new category.
+     * \return "true" if successful, "false" otherwise.
+     */
     public boolean addCategory (Message msg) {
         return addCategory(msg.ADDCATgetName(), msg.ADDCATgetValue());
     }
     
+    /** Add a new category.
+     * \param name The name of the new category.
+     * \param can_see_private_details true if the new category ought to be able
+     *  to see your profile information, false otherfile.
+     * \return "true" if successful, "false" otherwise.
+     */
     public boolean addCategory (String name, boolean can_see_private_details) {
         Logger.write("VERBOSE", "DB", "addCategory(...)");
         try {
@@ -859,10 +1063,19 @@ public class Database {
         return true;
     }
     
+    /** Add a user to a category.
+     * \param msg The Message object representing the addition of a user to a category.
+     * \return "true" if successful, "false" otherwise.
+     */
     public boolean addToCategory (Message msg) {
         return addToCategory(msg.ADDTOCATgetName(), Crypto.decodeKey(msg.ADDTOCATgetKey()));
     }
     
+    /** Add a user to a category.
+     * \param category The category to add a user to.
+     * \param key The key of the user who is being added to the specified category.
+     * \return "true" if successful, "false" otherwise.
+     */
     public boolean addToCategory (String category, PublicKey key) {
         Logger.write("VERBOSE", "DB", "addToCategory(" + category + ", ...)");
         
@@ -882,10 +1095,19 @@ public class Database {
         return true;
     }
     
+    /** Remove a user from a category.
+     * \param msg The Message object representing the removal of a user from a category.
+     * \return "true" if successful, "false" otherwise.
+     */
     public boolean removeFromCategory (Message msg) {
         return removeFromCategory(msg.REMFROMCATgetCategory(), Crypto.decodeKey(msg.REMFROMCATgetKey()));
     }
     
+    /** Remove a user form a category.
+     * \param category The name of the category the user is being removed from.
+     * \param key The key of the user to be removed from the category.
+     * \return "true" if successful, "false" otherwise.
+     */
     public boolean removeFromCategory (String category, PublicKey key) {
         Logger.write("VERBOSE", "DB", "removeFromCategory(" + category + ", ...)");
         try {
@@ -899,6 +1121,10 @@ public class Database {
         return true;
     }
     
+    /** Like a given post or comment.
+     * \param sig The signature of the comment or post to like.
+     * \return "true" if successful, "false" otherwise.
+     */
     public boolean like (String sig) {
         Logger.write("VERBOSE", "DB", "like(...)");
         try {
@@ -912,6 +1138,10 @@ public class Database {
         return true;
     }
     
+    /** Unlike a given post or comment.
+     * \param sig The signature of the comment or post to like.
+     * \return "true" if successful, "false" otherwise.
+     */
     public boolean unlike (String sig) {
         Logger.write("VERBOSE", "DB", "like(...)");
         try {
