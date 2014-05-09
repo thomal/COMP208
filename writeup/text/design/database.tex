@@ -95,131 +95,14 @@ user logs in and out, a new tuple will be inserted into this table.
 
 \clearpage
 
-\section{Table layout of the database}
+\section{Logical table design version 1.0}
 
-% tCategory
-tCategory 
-\begin{center}
-    \begin{tabular}{ | l | l |}
-    \hline
-    catId & canSeePDATA \\ \hline
-    \end{tabular}
-\end{center}
+\section{ER Diagram}
 
-%tCategoryMembers
-tCategoryMembers
-\begin{center}
-    \begin{tabular}{ | l | l | l |}
-    \hline
-    pk & catID & userKey \\ \hline
-    \end{tabular}
-\end{center}
-
-%tClaim
-tClaim
-\begin{center}
-    \begin{tabular}{ | l | l | l |}
-    \hline
-    sig & name & claimTime \\ \hline
-    \end{tabular}
-\end{center}
-
-%tRevocations
-tRevocations
-\begin{center}
-    \begin{tabular}{ | l | l | l | l |}
-    \hline
-    key & sig & timeOfLeak & creationTime \\ \hline
-    \end{tabular}
-\end{center}
-
-%tPostVisibleTo
-tPostVisibleTo
-\begin{center}
-    \begin{tabular}{ | l | l | l |}
-    \hline
-    pk & postSig & key \\ \hline
-    \end{tabular}
-\end{center}
-
-%tConvoKeys
-tConvoKeys
-\begin{center}
-    \begin{tabular}{ | l | l | l |}
-    \hline
-    pk & convoID & key \\ \hline
-    \end{tabular}
-\end{center}
-
-%tConvos
-tConvos
-\begin{center}
-    \begin{tabular}{ | l | l |}
-    \hline
-    convoID & timeCreated \\ \hline
-    \end{tabular}
-\end{center}
-
-%tUser
-tUser
-\begin{center}
-    \begin{tabular}{ | l | l | l | l | l | l | l |}
-    \hline
-    key & username & knowName & email & name & gender & birthday \\ \hline
-    \end{tabular}
-\end{center}
-
-%tComment
-tComment
-\begin{center}
-    \begin{tabular}{ | l | l | l | l | l |}
-    \hline
-    sig & msgText & senderKey & parent & creationTime \\ \hline
-    \end{tabular}
-\end{center}
-
-%tPost
-tPost
-\begin{center}
-    \begin{tabular}{ | l | l | l | l | l |}
-    \hline
-    sig & msgText & time & recieverKey & sendersKey  \\ \hline
-    \end{tabular}
-\end{center}
-
-%tConvoMessages
-tConvoMessages
-\begin{center}
-    \begin{tabular}{ | l | l | l | l | l |}
-    \hline
-    pk & convoID & sendersKey & msgText & time\\ \hline
-    \end{tabular}
-\end{center}
-
-%tEvent
-tEvent
-\begin{center}
-    \begin{tabular}{ | l | l | l | l | l | l | l |}
-    \hline
-    sig & startTime & endTime & creatorKey & accepted & name & creationTime \\ \hline
-    \end{tabular}
-\end{center}
-
-%tLike
-tLike
-\begin{center}
-    \begin{tabular}{ | l | l | l |}
-    \hline
-    pk & likerKey & parent \\ \hline
-    \end{tabular}
-\end{center}
-
-\clearpage
-
+\subsection{Database design version 1.0}
 \begin{landscape}
 \begin{figure}[h]
-    
-    \includegraphics[width=1.4\textwidth]{images/design/db_shot.png}
+    \includegraphics[width=1.4\textwidth]{images/design/project_er_diagram.png}
     \caption{Database Entity Relationship diagram}
     \label{fig:db_er_diag}
 \end{figure}
