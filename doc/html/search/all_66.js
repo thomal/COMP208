@@ -9,6 +9,8 @@ var searchData=
   ['friend_2ejava',['Friend.java',['../Friend_8java.html',1,'']]],
   ['friendsdetails',['friendsDetails',['../classballmerpeak_1_1turtlenet_1_1client_1_1frontend.html#a8686e8f6959324ea74e98cf8a89eeca0',1,'ballmerpeak::turtlenet::client::frontend']]],
   ['friendslist',['friendsList',['../classballmerpeak_1_1turtlenet_1_1client_1_1frontend.html#a2fe4471c89ba970c517388d212b617d6',1,'ballmerpeak::turtlenet::client::frontend']]],
+  ['friendslistcategorylist',['friendsListCategoryList',['../classballmerpeak_1_1turtlenet_1_1client_1_1frontend.html#af616e8f4d9c96bac48b8f997004cc385',1,'ballmerpeak::turtlenet::client::frontend']]],
+  ['friendslistcategorymembers',['friendsListCategoryMembers',['../classballmerpeak_1_1turtlenet_1_1client_1_1frontend.html#a5f5b375a148f003db1813758020730d6',1,'ballmerpeak::turtlenet::client::frontend']]],
   ['friendslistpanel_5fmykeytextbox',['friendsListPanel_myKeyTextBox',['../classballmerpeak_1_1turtlenet_1_1client_1_1frontend.html#a342dab1f72f4cf1660ec756f4180b331',1,'ballmerpeak::turtlenet::client::frontend']]],
   ['frontend',['frontend',['../classballmerpeak_1_1turtlenet_1_1client_1_1frontend.html',1,'ballmerpeak::turtlenet::client']]],
   ['frontend_2ejava',['frontend.java',['../frontend_8java.html',1,'']]]

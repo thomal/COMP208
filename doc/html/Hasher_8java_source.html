@@ -91,11 +91,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="keyword">import</span> javax.xml.bind.DatatypeConverter;</div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="keyword">import</span> java.security.MessageDigest;</div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">class </span>Hasher {</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <span class="keyword">public</span> <span class="keyword">static</span> String hash (String data) {</div>
+<div class="line"><a name="l00006"></a><span class="lineno"><a class="code" href="classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Hasher.html">    6</a></span>&#160;<span class="keyword">class </span><a class="code" href="classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Hasher.html">Hasher</a> {</div>
+<div class="line"><a name="l00007"></a><span class="lineno"><a class="code" href="classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Hasher.html#ab0249de6a9191c8890b9d2e2100a63ef">    7</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">static</span> String <a class="code" href="classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Hasher.html#ab0249de6a9191c8890b9d2e2100a63ef">hash</a> (String data) {</div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;        <span class="keywordflow">try</span> {</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;            MessageDigest hasher = MessageDigest.getInstance(<span class="stringliteral">&quot;SHA-256&quot;</span>);        </div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;            byte[] hash = hasher.digest(data.getBytes(<span class="stringliteral">&quot;UTF-8&quot;</span>));</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;            byte[] <a class="code" href="classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Hasher.html#ab0249de6a9191c8890b9d2e2100a63ef">hash</a> = hasher.digest(data.getBytes(<span class="stringliteral">&quot;UTF-8&quot;</span>));</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;            <span class="keywordflow">return</span> DatatypeConverter.printHexBinary(hash);</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        } <span class="keywordflow">catch</span> (Exception e) {</div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;            System.out.println(<span class="stringliteral">&quot;SHA-256 isn&#39;t supported.&quot;</span>);</div>
@@ -106,7 +106,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri May 9 2014 04:27:53 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri May 9 2014 05:54:58 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>

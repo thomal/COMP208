@@ -2,6 +2,7 @@ var searchData=
 [
   ['sendpdata',['sendPDATA',['../classballmerpeak_1_1turtlenet_1_1server_1_1TurtlenetImpl.html#a2436ebfe8ae7ed08b831f21f83aaf3bc',1,'ballmerpeak::turtlenet::server::TurtlenetImpl']]],
   ['servercmd',['serverCmd',['../classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection.html#a117a5b525dfb1a2e03ed10ce9adaed77',1,'ballmerpeak::turtlenet::server::NetworkConnection']]],
+  ['session',['Session',['../classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Session.html#a31ba0e5f5755afc2f26dfac1e344b371',1,'ballmerpeak::turtlenet::remoteserver::Session']]],
   ['setname',['setName',['../classballmerpeak_1_1turtlenet_1_1server_1_1Friend.html#af8c55f75a45736fc7d0a811eb0d16135',1,'ballmerpeak::turtlenet::server::Friend']]],
   ['shutdown',['shutdown',['../classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Server.html#a884654078b48154feac526fd94a9efe9',1,'ballmerpeak::turtlenet::remoteserver::Server']]],
   ['sign',['sign',['../classballmerpeak_1_1turtlenet_1_1server_1_1Crypto.html#a3551509d86a909950bb4c44ae1803240',1,'ballmerpeak.turtlenet.server.Crypto.sign(Message msg)'],['../classballmerpeak_1_1turtlenet_1_1server_1_1Crypto.html#aaa857c040134654c8d6187cb4f4090b5',1,'ballmerpeak.turtlenet.server.Crypto.sign(Message msg, PrivateKey k)']]],

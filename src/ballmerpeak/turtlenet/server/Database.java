@@ -362,7 +362,7 @@ public class Database {
         return false;
     }
     
-    //Return the name of each member and if it can see your profile info
+    //Return the name of each category and if it can see your profile info
     //In this format: {{"friends", "false"}, {"family", "true"}, etc.}
     public String[][] getCategories () {
         Logger.write("VERBOSE", "DB", "getCategories()");

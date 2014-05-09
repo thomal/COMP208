@@ -13,8 +13,11 @@ import ballmerpeak.turtlenet.shared.CommentDetails;
 
 @SuppressWarnings("serial")
 public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
-    TNClient c = null;
+    TNClient c = null; //!< Turtlenet client that runs in the background on the backend.
     
+    /** Starts Turtlenet client on the backend..
+     * \return "true" if successful, "false" otherwise.
+     */
     public String startTN(String password) {
         Logger.init("LOG_turtlenet");
         Logger.write("INFO", "TNImpl","startTN(" + password + ")");
@@ -28,16 +31,28 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
         }
     }
     
+    /** Stops Turtlenet client on the backend..
+     * \return "true" if successful, "false" otherwise.
+     */
     public String stopTN() {
         Logger.write("INFO", "TNImpl","stopTN()");
         c.running = false;
         return "success";
     }
     
+    /** Check if this is the first time Turtlenet has been run.
+     * \return "true" if this is the first time turtlenet has been run, "false" otherwise.
+     */
     public String isFirstTime() {
         return !Database.DBExists() ? "true" : "false"; //GWT can only return objects
     }
     
+    /** Register on the network.
+     * \param username The desired username.
+     * \param password The desired password (used for local encryption, not remote).
+     * \return "true" if successful, "false" otherwise. Usernames must be unique
+     *  and the server enforces this.
+     */
     public String register(String username, String password) {
         Logger.init("LOG_turtlenet");
         Logger.write("INFO", "TnImpl", "Registering \"" + username + "\" with PW \"" + password + "\"");
@@ -66,12 +81,19 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
         }
     }
     
-    //Profile Data
+    /** Retreives the users username from the database.
+     * \return the users username.
+     */
     public String getMyUsername() {
         Logger.write("VERBOSE", "TnImpl", "getMyUsername()");
         return c.db.getName(Crypto.getPublicKey());
     }
     
+    /** Retreives the most recent username associated with a given key.
+     * \param key The public key of the user whose username you wish to know.
+     * \return The most recent username of the user with the given public key.
+     * "<no username>" is returned if no username is known.
+     */
     public String getUsername(String key) {
         Logger.write("VERBOSE", "TnImpl", "getUsername(" + key + ")");
         String name = c.db.getName(Crypto.decodeKey(key));
@@ -79,36 +101,68 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
         return name;
     }
     
+    /** Gets the specified piece of profile data for the current user.
+     * \param field The name of the field the value of which you wish to retrieve.
+     *              valid options are: email, name, gender, and birthday.
+     * \return The value of the specified field for the current user. Returns
+     *         "<no value>" if no value is known.
+     */
     public String getMyPDATA(String field) {
         Logger.write("VERBOSE", "TnImpl", "getMyPDATA(" + field + ")");
         return getPDATA(field, Crypto.encodeKey(Crypto.getPublicKey()));
     }
     
+    /** Gets the specified piece of profile data for the specified user.
+     * \param field The name of the field the value of which you wish to retrieve.
+     *              valid options are: email, name, gender, and birthday.
+     * \param key The key of the user which you wish to retrieve data about.
+     * \return The value of the specified field for the specified user. Returns
+     *         "<no value>" if no value is known.
+     */
     public String getPDATA(String field, String key) {
         Logger.write("VERBOSE", "TnImpl", "getPDATA("+ field + ", ...)");
         return c.db.getPDATA(field, Crypto.decodeKey(key));
     }
     
+    /** Retrieve the key of the current user.
+     * \return The key of the current user.
+     */
     public String getMyKey() {
         Logger.write("VERBOSE", "TnImpl", "getMyKey()");
         return Crypto.encodeKey(Crypto.getPublicKey());
     }
     
+    /** Retrieve the key of the specified user.
+     * \param username The username of the user which you wish to know the key of.
+     * \return The key of the specified user. Returns "--INVALID KEYSTRING--" if
+     *         no key is known.
+     */
     public String getKey(String username) {
         Logger.write("VERBOSE", "TnImpl", "getKey(" + username + ")");
         return Crypto.encodeKey(c.db.getKey(username));
     }
     
+    /** Get a list of all categories.
+     * \return The names of each category and if it can see your profile info.
+     * Data is in this format: {{"friends", "false"}, {"family", "true"}, etc.}
+     */
     public String[][] getCategories () {
         Logger.write("VERBOSE", "TnImpl", "getCategories()");
         return c.db.getCategories();
     }
     
+    /** Get all people you know about.
+     * \return The usernames and public keys of everyone you know about.
+     * Data is in this format: {{"bob", "bobs_key"}, {"john", "johns_key"}, etc.}
+     */
     public String[][] getPeople () {
         Logger.write("VERBOSE", "TnImpl", "getPeople()");
         return getCategoryMembers("all");
     }
     
+    /** Get all conversations you know about.
+     * \return An array of all conversations you know about in no particular order.
+     */
     public Conversation[] getConversations () {
         Logger.write("VERBOSE", "TnImpl", "START------------getConversations()");
         Conversation[] conversations = c.db.getConversations();
@@ -123,16 +177,31 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
         return conversations;
     }
     
+    /** Get details of a specific conversation, but not the messages therein.
+     * \param sig The signature of the conversation you want details about.
+     * \return A conversation object with the details of the specified conversation.
+     */
     public Conversation getConversation (String sig) {
         Logger.write("VERBOSE", "TnImpl", "getConversation(...)");
         return c.db.getConversation(sig);
     }
     
+    /** Get all the messages from a given conversation.
+     * \param sig The signature of the conversation you want the messages of.
+     * \return The messages in the specified conversation, in chronological
+     *  order (i.e.: Element 0 is the oldest message in the conversation).
+     * Data is in this format: {{username, time, msg}, {username, time, msg}, etc.}
+     */
     public String[][] getConversationMessages (String sig) {
         Logger.write("VERBOSE", "TnImpl", "getConversationMessages(...)");
         return c.db.getConversationMessages(sig);
     }
     
+    /** Get all members of a given category.
+     * \param category The name of the category of which you want to know the members.
+     * \return The username and key of each member of the specified category.
+     * Data is in this format: {{"bob", "bobs_key"}, {"john", "johns_key"}, etc.}
+     */
     public String[][] getCategoryMembers (String category) {
         Logger.write("VERBOSE", "TnImpl", "getCategoryMembers(" + category + ")");
         PublicKey[] keys = c.db.getCategoryMembers(category);        
@@ -146,6 +215,11 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
         return pairs;
     }
     
+    /** Get the posts on the wall of the given user.
+     * \param key The public key of the user the wall of whom you are interested in.
+     * \return An array of PostDetails, ordered chronologically so that element 0
+     *         is the oldest post on their wall.
+     */
     public PostDetails[] getWallPosts (String key) {
         Logger.write("VERBOSE", "TnImpl", "getWallPosts(...) ENTERING");
         Message[] msgs = c.db.getWallPost(Crypto.decodeKey(key));
@@ -164,6 +238,11 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
         return posts;
     }
     
+    /** Get the details of all comments on a given post or comment.
+     * \param parent The signature of the item whose comments one desires.
+     * \return An array of CommentDetails, ordered chronologically so that element 0
+     *         is the oldest comment on the item.
+     */
     public CommentDetails[] getComments (String parent) {
         Logger.write("VERBOSE", "TnImpl", "START----------getComments(...)");
         Message[] commentMsgs = c.db.getComments(parent);
@@ -188,10 +267,20 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
         return details;
     }
     
+    /** Get the time that a given users wall was last posted on.
+     * \param key The public key of the user the wall of whom you are interested in.
+     * \return The number of milliseconds from midnight january first 1970 to
+     *  the time of the most recent post placed on the specified users wall.
+     */
     public Long timeMostRecentWallPost (String key) {
         return c.db.timeMostRecentWallPost(Crypto.decodeKey(key));
     }
     
+    /** Get the time that a given conversation was last posted in.
+     * \param sig The signature of the conversation being examined.
+     * \return The number of milliseconds from midnight january first 1970 to
+     *  the time of the most recent message in the specified conversation.
+     */
     public Long getConvoLastUpdated (String sig) {
         String[][] details = c.db.getConversationMessages(sig);
         if (details.length > 0)
@@ -200,12 +289,22 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
             return 0L;
     }
     
+    /** Get the time that a given comment or post was last commented on.
+     * \param sig The signature of the comment or post being examined.
+     * \return The number of milliseconds from midnight january first 1970 to
+     *  the time of the most recent comment was posted on the given comment or
+     *  post.
+     */
     public Long getPostLastCommented (String sig) {
         Message[] comments = c.db.getComments(sig);
         return comments[comments.length-1].getTimestamp();
     }
     
-    //Profile Data
+    /** Register a new username on the network.
+     * \param uname The desired username.
+     * \return "true" if successful, "false" otherwise. Usernames must be unique
+     *  and the server enforces this.
+     */
     public String claimUsername (String uname) {
         Logger.write("VERBOSE", "TnImpl", "claimUsername(" + uname + ")");
         c.db.addClaim(new MessageFactory().newCLAIM(uname));
@@ -215,6 +314,12 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
             return "failure";
     }
     
+    /** Change your profile information.
+     * \param field The name of the field the value of which you wish to update.
+     *              valid options are: email, name, gender, and birthday.
+     * \param value The desired value.
+     * \return "true" if successful, "false" otherwise.
+     */
     public String updatePDATA (String field, String value) {
         String ret = "success";
         Logger.write("VERBOSE", "TnImpl", "updatePDATA(" + field + ", " + value + ")");
@@ -229,6 +334,12 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
         return ret;
     }
     
+    /** Change whether or not a category can see your profile information.
+     * \param category The name of the category you wish to update.
+     * \param value The desired value, true to allow the category to see your
+     *  profile data, false to forbid it.
+     * \return "true" if successful, "false" otherwise.
+     */
     public String updatePDATApermission (String category, boolean value) {
         Logger.write("VERBOSE", "TnImpl", "updatePDATApermission(" + category + ", " + value + ")");
         String ret = "success";
@@ -249,7 +360,11 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
         return ret;
     }
     
-    //Posting
+    /** Create a new conversation.
+     * \param keys The keys of each person you wish to include in the
+     *   conversation.
+     * \return "true" if successful, "false" otherwise.
+     */
     public String[] createCHAT (String[] keys) {
         Logger.write("INFO", "TnImpl", "createCHAT(<" + keys.length + " keys>)");
         String[] ret = new String[2];
@@ -292,6 +407,11 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
         return ret;
     }
     
+    /** Add a message to a conversation.
+     * \param text The text of your message.
+     * \param sig The signature of the conversation you wish to add a message to.
+     * \return "true" if successful, "false" otherwise.
+     */
     public String addMessageToCHAT (String text, String sig) {
         Logger.write("INFO", "TnImpl", "addMessageToCHAT(" + text + ",...)");
         PublicKey[] keys = c.db.getPeopleInConvo(sig);
@@ -311,6 +431,10 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
         return ret;
     }
     
+    /** Add a like to a post or comment.
+     * \param sig The signature of the post or comment you wish to add a like to.
+     * \return "true" if successful, "false" otherwise.
+     */
     public String like (String sig) {
         Logger.write("VERBOSE", "TnImpl", "like(...)");
         PublicKey[] visibleTo = c.db.getVisibilityOfParent(sig);
@@ -327,6 +451,10 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
         return ret;
     }
     
+    /** Remove a like from a post or comment.
+     * \param sig The signature of the post or comment you wish to remove a like from.
+     * \return "true" if successful, "false" otherwise.
+     */
     public String unlike (String sig) {
         Logger.write("VERBOSE", "TnImpl", "unlike(...)");
         PublicKey[] visibleTo = c.db.getVisibilityOfParent(sig);
@@ -343,7 +471,11 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
         return ret;
     }
     
-    //Friends
+    /** Add a category.
+     * By default the category cannot see your profile information.
+     * \param name The name of the category you wish to create.
+     * \return "true" if successful, "false" otherwise.
+     */
     public String addCategory (String name) {
         Logger.write("VERBOSE", "TnImpl", "addCategory(" + name + ")");
         Message msg = new MessageFactory().newADDCAT(name, false);
@@ -353,6 +485,11 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
         ?"success":"failure";
     }
     
+    /** Add a user to a category.
+     * \param group The name of the category you wish to add a user to.
+     * \param key The key you wish to add to the category.
+     * \return "true" if successful, "false" otherwise.
+     */
     public String addToCategory (String group, String key) {
         Logger.write("VERBOSE", "TnImpl", "addToCategory(" + group + ",...)");
         
@@ -384,6 +521,12 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
         }
     }
     
+    /** Send profile information to the specified key.
+     * This is a one off thing, the user will not be automatically kept abreast
+     * of new profile information.
+     * \param key The public key of the user you wish to send profile information to.
+     * \return "true" if successful, "false" otherwise.
+     */
     public String sendPDATA (String key) {
         String[] values = {"email", "name", "gender", "birthday"};
         String[] fields = {getMyPDATA("email"), getMyPDATA("name"), getMyPDATA("gender"), getMyPDATA("birthday")};
@@ -392,6 +535,11 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
                ? "success" : "failure";
     }
     
+    /** Remove a user from a category.
+     * \param group The name of the category you wish to remove a person from.
+     * \param key The public key of the person you wish to be removed.
+     * \return "true" if successful, "false" otherwise.
+     */
     public String removeFromCategory (String group, String key) {
         Logger.write("VERBOSE", "TnImpl", "removeFromCategory(" + group + ",...)");
         Message msg = new MessageFactory().newREMFROMCAT(group, key);
@@ -399,6 +547,10 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
         return c.db.removeFromCategory(group, Crypto.decodeKey(key))?"success":"failure";
     }
     
+    /** Add a public key.
+     * \param key The key you wish to add.
+     * \return "true" if successful, "false" otherwise.
+     */
     public String addKey (String key) {
         Logger.write("VERBOSE", "TnImpl", "addKey(...)");
         Message msg = new MessageFactory().newADDKEY(key);
@@ -406,6 +558,14 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
                 c.connection.postMessage(msg, Crypto.getPublicKey())) ? "success":"failure";
     }
     
+    /** Add a post to a specified wall.
+     * Posting on another users wall does not require their permission.
+     * \param wallKey The key of the user whos wall you want to post on.
+     * \param categoryVisibleTo The name of the category of people who may see
+     *    the post.
+     * \param msg The text of the post you wish to make.
+     * \return "true" if successful, "false" otherwise.
+     */
     public String addPost (String wallKey, String categoryVisibleTo, String msg) {
         Logger.write("VERBOSE", "TnImpl", "addPost(..., " + msg + ")");
         PublicKey[] visibleTo = c.db.getCategoryMembers(categoryVisibleTo);
@@ -426,6 +586,14 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
         return ret;
     }
     
+    /** Add a comment to a specified comment or post.
+     * Commenting does not require the permission of the person who posted the
+     * item you are commenting.
+     * \param parent The signature of the post or comment that you wish to
+     *   comment on.
+     * \param text The text of the comment you wish to make.
+     * \return "true" if successful, "false" otherwise.
+     */
     public String addComment (String parent, String text) {
         Logger.write("VERBOSE", "TnImpl", "addComment(..., " + text + ")");
         PublicKey[] visibleTo = c.db.getVisibilityOfParent(parent);
@@ -444,7 +612,17 @@ public class TurtlenetImpl extends RemoteServiceServlet implements Turtlenet {
         return ret;
     }
     
-    //Bad stuff
+    /** Revoke the current users key.
+     * This marks the current users key as untrusted. All people whose key they
+     * have will be informed. This cannot be publically broadcast to all users
+     * because despite the nature of misdirection employed it would be fairly
+     * easy for the server operators to identify and suppress the revocation
+     * message.
+     * \warning Only people whose keys the user has added will be informed of
+     * the revocation.
+     * \warning This erases the users account and local database.
+     * \return "true" if successful, "false" otherwise.
+     */
     public String revokeMyKey () {
         Logger.write("VERBOSE", "TnImpl", "-------revokeMyKey()-------");
         PublicKey[] keys = c.db.getCategoryMembers("all");

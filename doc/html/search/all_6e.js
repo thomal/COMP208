@@ -16,6 +16,7 @@ var searchData=
   ['newconvoinput',['newConvoInput',['../classballmerpeak_1_1turtlenet_1_1client_1_1frontend.html#a3a97955a4caeb2d7eec937a55e0f1505',1,'ballmerpeak::turtlenet::client::frontend']]],
   ['newevnt',['newEVNT',['../classballmerpeak_1_1turtlenet_1_1server_1_1MessageFactory.html#aec8e8561f1583c781f5bb11719def583',1,'ballmerpeak::turtlenet::server::MessageFactory']]],
   ['newgroup',['newGroup',['../classballmerpeak_1_1turtlenet_1_1client_1_1frontend.html#a931cf38d0a5bb38b3d15b7c04eaaa6b7',1,'ballmerpeak::turtlenet::client::frontend']]],
+  ['newgroup_5fnameinput',['newGroup_nameInput',['../classballmerpeak_1_1turtlenet_1_1client_1_1frontend.html#a4516ddce9452d891a12579a0978b130f',1,'ballmerpeak::turtlenet::client::frontend']]],
   ['newlike',['newLIKE',['../classballmerpeak_1_1turtlenet_1_1server_1_1MessageFactory.html#a38bba7934fa384ff258714a9506029f8',1,'ballmerpeak::turtlenet::server::MessageFactory']]],
   ['newmessage',['newMessage',['../classballmerpeak_1_1turtlenet_1_1server_1_1MessageFactory.html#a7002eaa445dc787d9f48c522e3c4d38f',1,'ballmerpeak::turtlenet::server::MessageFactory']]],
   ['newpchat',['newPCHAT',['../classballmerpeak_1_1turtlenet_1_1server_1_1MessageFactory.html#a8b3f97caecf16fb1438477a781cfefc1',1,'ballmerpeak::turtlenet::server::MessageFactory']]],
@@ -25,5 +26,6 @@ var searchData=
   ['newrevoke',['newREVOKE',['../classballmerpeak_1_1turtlenet_1_1server_1_1MessageFactory.html#aef6d14c4ca6c13776d25fa525c1f39fc',1,'ballmerpeak::turtlenet::server::MessageFactory']]],
   ['newunlike',['newUNLIKE',['../classballmerpeak_1_1turtlenet_1_1server_1_1MessageFactory.html#ab70cf1c0f0ec11df5d5a55c444dee6c0',1,'ballmerpeak::turtlenet::server::MessageFactory']]],
   ['newupdatecat',['newUPDATECAT',['../classballmerpeak_1_1turtlenet_1_1server_1_1MessageFactory.html#ac9f69e89c9075dbc495aea39161fbdc4',1,'ballmerpeak::turtlenet::server::MessageFactory']]],
+  ['newusername',['newUsername',['../classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings.html#a9561d2bc731daafe8e20cb46dc51cfb6',1,'ballmerpeak::turtlenet::server::DBStrings']]],
   ['nexttoken',['nextToken',['../classballmerpeak_1_1turtlenet_1_1shared_1_1Tokenizer.html#aaa2e2f9a3abb9557ab3e11e7f7103c3d',1,'ballmerpeak::turtlenet::shared::Tokenizer']]]
 ];
