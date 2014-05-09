@@ -1,202 +1,185 @@
---------------------------------------------
-Meeting #13 Minutes (Friday 02/04/2014)
-(Peter, Luke, Aishah, Leon, Mike, Louis)
---------------------------------------------
-- Assigned final weeks tasks and roles for submitting the portfolio
-- Updates Requirements (Aishah)
-- Updates Design (Aishah)
-- Website (Leon)
-- Source Code (Leon)
-- Personal Statements (All)
-- Deviations Requirements (Luke)
-- Deviations Design (Luke)
-- Hashes (Luke)
-- User Manual (Mike)
-- Future Development Continued (Mike)
-- Hosting AWS (Louis)
-- Testing Automated/Blackbox (Louis)
+\section{Meeting \#1 Minutes (Thursday, 30/01/2014)}
+Peter, Luke, Aishah, Leon, Mike
+\begin{itemize}
+\item Introductions
+\item Overview of the project
+\item Assigned roles to members
+\end{itemize}
 
-Submission for all this is WEDNESDAY 7th May.
+\section{Meeting \#2 Minutes (Friday, 31/01/2014)}
+Peter, Luke, Aishah, Leon, Mike
+\begin{itemize}
+\item We ate nice chinese in celebration of the new year
+\item If I'm honest this wasnt really a team meeting, more a hunger thing
+\end{itemize}
 
---------------------------------------------
-Meeting #12 Minutes (Saturday, 19/04/2014)
-(Peter, Luke, Aishah, Leon, Mike, Louis)
---------------------------------------------
-- Website finally unveiled
-- Reassignment of some tasks (prioritization)
-- Mostly a formality to remind people of deadlines
+\section{Meeting \#3 Minutes (Tuesday, 04/02/2014)}
+Peter, Luke, Aishah, Leon, Mike
+\begin{itemize}
+\item State out the problems, criticisms on Facebook regarding user privacy issues
+    (Leon)
+\item Data flow of the system (Luke)
+\item User requirements (Luke has done the draft. Refinement to be done by Aishah
+    and Peter)
+\item Class diagram (to be completed after dataflow diagram and user requirements)
+\item Sketches of GUI (Peter and Mike to do this together)
+\item GANTT chart and risk assessment (after user requirements has been drafted out)
+\item Data dictionary (Aishah)
+\item Read about how to implement SQLite (Aishah)
+\end{itemize}
 
---------------------------------------------
-Meeting #11 Minutes (Sunday, 13/04/2014)
-(Peter, Luke, Aishah, Louis)
---------------------------------------------
-- Progress Recap:
-    Luke:
-        - Added testing
-        - Added logger
-        - Implemented createDatabase to execute aishahs create table
-            SQL queries
-        - Message::XgetY methods
-        - Altered frontend to start turtlenet when it starts, and
-            stop it when the tab is closed
+\section{Meeting \#4 Minutes (Friday, 07/02/2014)}
+Peter, Luke, Aishah, Leon, Louis
+\begin{itemize}
+\item Introduced Louis Prince to members/project
+\item Assigned Roles to requirement sections
+\item Team Review date proposed (Wed 19th, Afternoon)
+\item Team name: Ballmer Peak
+\end{itemize}
 
-- Luke/Louis Re: Enable -strict for compiling frontend
+\section{Meeting \#5 Minutes (Wednesday, 12/02/2014)}
+Peter, Luke, Aishah, Leon, Mike
+\begin{itemize}
+\item Allocated left over parts
+\item Feedback on project and requirements so far
+\item Project name: Turtlenet
+\item Louis Prince absent from scheduled meeting.
+\end{itemize}
 
-Reassigned installer, updated todo:
-Luke:
-    - Installer
+\section{Meeting \#6 Minutes (Wednesday, 19/02/2014)}
+Peter, Luke, Aishah, Leon, Mike, Louis
+\begin{itemize}
+\item Discussed design phase, outlined what needs to be done
+\item Also outlined who needs to do it, tasklist:
+\item Mike - Use Case Diagram, Data Dictionary
+\item Leon - Mobile GUI, Sequence Diagram
+\item Louis - Web GUI Design, Java/SQLite/HTML-CSS Documentation
+\item Aishah - Database Design Doc
+\item Peter - Swing/AWT GUI Design, Server GUI Design
+\item Luke - Class Interfaces, Protocol, Architecture, Data Flow Diagrams, More Protocol, Psuedocode
+\end{itemize}
 
-Aishah/Mike:
-    - Store the signature (String) for posts and comments
-    - SQL for database methods
-    - Implement database methods
+\section{Meeting \#7 Minutes (Friday, 07/03/2014)}
+Peter, Luke, Aishah, Leon, Mike, Louis
+\begin{itemize}
+\item Business Rules (Peter)
+\item Gantt Chart (Mike)
+\item Various DB tweaks (Aishah)
+\item Merge work into PDF (Luke)
+\item Rename GUI design as storyboard
+\end{itemize}
 
-Leon:
-    - Start/Stop server via gui (leon)
+\section{Meeting \#8 Minutes (Wednesday, 19/03/2014)}
+Peter, Luke, Aishah, Leon, Louis
+\begin{itemize}
+\item Server.java		(Luke)
+\item Client.java		(Luke)
+\item Crypto.java		(Luke)
+\item NetworkConnection.java	(Luke)
+\item Parser.java		(Luke)
+\item HTTPServer.java		(Luke)
+\item helper classes		(Luke)
+\item browser plugins		(Luke)
+\item QR Code parser		(Luke)
+\item Test harness		(Luke)
+\item Installer		(Peter)
+\item Website			(Peter [mimic gnome.org])
+\item Manual			(Peter)
+\item Hardware Server		(Peter)
+\item ServerGUI.java		(Leon)
+\item First run config	(Leon)
+\item Database.java		(Mike, Aishah)
+\item SQLite Database		(Aishah)
+    \begin{itemize}
+    \item Database connection
+    \item Create DB
+    \end{itemize}
+\item Logo and Graphic Design	(Aishah)
+\item GWT interface		(Louis)
+    \begin{itemize}
+    \item Stubs in interface
+    \item error on failure to connect
+    \item Add public keys
+    \item Categorise users
+    \item Post to your wall
+    \item Read others wall posts
+    \item Post to anothers wall
+    \item Events create and recieve
+    \item Chat
+    \item Comment posts and comments
+    \item Like posts and comments
+    \end{itemize}
+\end{itemize}
 
-Peter:
-    - Website Prototype
-
-Louis:
-    - Call appropriate Database.getX methods
-
-Leon, Mike not present.
-
---------------------------------------------
-Meeting #10 Minutes (Friday, 28/03/2014)
-(Peter, Luke, Aishah, Leon, Mike, Louis)
---------------------------------------------
-By next meeting:
-    - Fix manual stuff, add makefile, finish initial test setup (luke)
-    - Create tables from Database.java (aishah/mike)
-    - GWT Interface (louis)
-    - Start/Stop server via gui (leon)
-    - Webstie Prototype (peter)
-    - Document regarding hashing for various classes (luke)
-
---------------------------------------------
-Meeting #9 Minutes (Friday, 21/03/2014)
-(Peter, Luke, Aishah, Mike, Louis)
---------------------------------------------
-By next meeting:
-    - Everyone can build project
-    - DB Connection
-    - GWT Interface stubs
-    - Stubs for other classes
-    - Manual contents page
-    - Create table statements
-    - Compile remote server as a JAR
-    - Server GUI, start up and shut down
-
+\section{Meeting \#9 Minutes (Friday, 21/03/2014)}
+Peter, Luke, Aishah, Mike, Louis
+\begin{itemize}
+\item Everyone can build project
+\item DB Connection
+\item GWT Interface stubs
+\item Stubs for other classes
+\item Manual contents page
+\item Create table statements
+\item Compile remote server as a JAR
+\item Server GUI, start up and shut down
+\end{itemize}
 Leon absent.
 
---------------------------------------------
-Meeting #8 Minutes (Wednesday, 19/03/2014)
-(Peter, Luke, Aishah, Leon, Louis)
---------------------------------------------
-Server.java		(Luke)
-Client.java		(Luke)
-Crypto.java		(Luke)
-NetworkConnection.java	(Luke)
-Parser.java		(Luke)
-HTTPServer.java		(Luke)
-helper classes		(Luke)
-browser plugins		(Luke)
-QR Code parser		(Luke)
-Test harness		(Luke)
-Installer		(Peter)
-Website			(Peter [mimic gnome.org])
-Manual			(Peter)
-Hardware Server		(Peter)
-ServerGUI.java		(Leon)
-First run config	(Leon)
-Database.java		(Mike, Aishah)
-    - Stubs
-SQLite Database		(Aishah)
-    - Database connection
-    - Create DB
-Logo and Graphic Design	(Aishah)
-GWT interface		(Louis)
-    - Stubs in interface
-    - error on failure to connect
-    - Add public keys
-    - Categorise users
-    - Post to your wall
-    - Read others wall posts
-    - Post to anothers wall
-    - Events create and recieve
-    - Chat
-    - Comment posts and comments
-    - Like posts and comments
+\section{Meeting \#10 Minutes (Friday, 28/03/2014)}
+Peter, Luke, Aishah, Leon, Mike, Louis
+\begin{itemize}
+\item Fix manual stuff, add makefile, finish initial test setup (luke)
+\item Create tables from Database.java (aishah/mike)
+\item GWT Interface (louis)
+\item Start/Stop server via gui (leon)
+\item Webstie Prototype (peter)
+\item Document regarding hashing for various classes (luke)
+\end{itemize}
 
-------------------------------------------
-Meeting #7 Minutes (Friday, 07/03/2014)
-(Peter, Luke, Aishah, Leon, Mike, Louis)
-------------------------------------------
-- Business Rules (Peter)
-- Gantt Chart (Mike)
-- Various DB tweaks (Aishah)
-- Merge work into PDF (Luke)
-- Rename GUI design as storyboard
+\section{Meeting \#11 Minutes (Sunday, 13/04/2014)}
+Peter, Luke, Aishah, Louis
+\begin{itemize}
+\item Progress Recap: (Luke)
+    \begin{itemize}
+    \item Added testing
+    \item Added logger
+    \item Implemented createDatabase to execute aishahs create table SQL queries
+    \item Message::XgetY methods
+    \item Altered frontend to start turtlenet when it starts, and stop it when the tab is closed
+    \end{itemize}
+\item Re: Enable -strict for compiling frontend (Luke/Louis)
+\item Installer (Luke)
+\item Store the signature (String) for posts and comments (Aishah/Mike)
+\item SQL for database methods (Aishah/Mike)
+\item Implement database methods (Aishah/Mike)
+\item Start/Stop server via gui (Leon)
+\item Website Prototype (Peter)
+\item Call appropriate Database.getX methods (Louis)
+\end{itemize}
+Leon, Mike not present.
 
-------------------------------------------
-Meeting #6 Minutes (Wednesday, 19/02/2014)
-(Peter, Luke, Aishah, Leon, Mike, Louis)
-------------------------------------------
-- Discussed design phase, outlined what needs to be done
-- Also outlined who needs to do it, tasklist:
-- Mike - Use Case Diagram, Data Dictionary
-- Leon - Mobile GUI, Sequence Diagram
-- Louis - Web GUI Design, Java/SQLite/HTML-CSS Documentation
-- Aishah - Database Design Doc
-- Peter - Swing/AWT GUI Design, Server GUI Design
-- Luke - Class Interfaces, Protocol, Architecture, Data Flow Diagrams, More
-         Protocol, Psuedocode
+\section{Meeting \#12 Minutes (Saturday, 19/04/2014)}
+Peter, Luke, Aishah, Leon, Mike, Louis
+\begin{itemize}
+\item Website finally unveiled
+\item Reassignment of some tasks (prioritization)
+\item Mostly a formality to remind people of deadlines
+\end{itemize}
 
-------------------------------------------
-Meeting #5 Minutes (Wednesday, 12/02/2014)
-(Peter, Luke, Aishah, Leon, Mike)
-------------------------------------------
-- Allocated left over parts
-- Feedback on project and requirements so far
-- Project name: Turtlenet
-- Louis Prince absent from scheduled meeting.
-
------------------------------------------
-Meeting #4 Minutes (Friday, 07/02/2014)
-(Peter, Luke, Aishah, Leon, Louis)
------------------------------------------
-- Introduced Louis Prince to members/project
-- Assigned Roles to requirement sections
-- Team Review date proposed (Wed 19th, Afternoon)
-- Team name: Ballmer Peak
-
-----------------------------------------
-Meeting #3 Minutes (Tuesday, 04/02/2014)
-(Peter, Luke, Aishah, Leon, Mike)
-----------------------------------------
-- State out the problems, criticisms on Facebook regarding user privacy issues
-    (Leon to do this)
-- Data flow of the system (Luke has done the draft)
-- User requirements (Luke has done the draft. Refinement to be done by Aishah
-    and Peter)
-- Class diagram (to be completed after dataflow diagram and user requirements)
-- Sketches of GUI (Peter and Mike to do this together)
-- GANTT chart and risk assessment (after user requirements has been drafted out)
-- Data dictionary (Aishah)
-- Read about how to implement SQLite (Aishah)
-
----------------------------------------
-Meeting #2 Minutes (Friday, 31/01/2014)
-(Peter, Luke, Aishah, Leon, Mike)
----------------------------------------
-- We ate nice chinese in celebration of the new year
-- If I'm honest this wasnt really a team meeting, more a hunger thing
-
------------------------------------------
-Meeting #1 Minutes (Thursday, 30/01/2014)
-(Peter, Luke, Aishah, Leon, Mike)
------------------------------------------
-- Introductions
-- Overview of the project
-- Assigned roles to members
+\section{Meeting \#13 Minutes (Friday 02/05/2014)}
+Peter, Luke, Aishah, Leon, Mike, Louis
+\begin{itemize}
+\item Assigned final weeks tasks and roles for submitting the portfolio
+\item Updates Requirements (Aishah)
+\item Updates Design (Aishah)
+\item Website (Leon)
+\item Source Code (Leon)
+\item Personal Statements (All)
+\item Deviations Requirements (Luke)
+\item Deviations Design (Luke)
+\item Hashes (Luke)
+\item User Manual (Mike)
+\item Future Development Continued (Mike)
+\item Hosting AWS (Louis)
+\item Testing Automated/Blackbox (Louis)
+\end{itemize}
