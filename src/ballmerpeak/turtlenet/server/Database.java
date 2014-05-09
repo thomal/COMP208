@@ -1,3 +1,16 @@
+/*! \mainpage A note on notation
+ * The following format is often used to describe arrays:
+ *    {{"a", "b"}, {"c", "d"}, {"e", "f"}}
+ *
+ * This represents a String[3][2]
+ * An array of 3 String[2]'s
+ * Each String[2] contains two strings [0] and [1]
+ * So [1][1] = "d"
+ * and [2][0] = "e"
+ *
+ * This format is used to describe return formats.
+ */
+
 package ballmerpeak.turtlenet.server;
 
 import ballmerpeak.turtlenet.shared.Message;
