@@ -4,15 +4,15 @@ Entities from the system database
     \hline
     Entity Name      & Description                                                                                              & Aliases                             & Occurrence                                     \\ \hline
     User             & A person who uses the program                                                                            & Friend, contact, another user       & A user can have contacts, posts, comments, events, convos, likes, or found in a category                                              \\ \hline
-    Category         & A type or a group of selected users which the main user classifies his contacts                          & Group                               & Some users may belong in a category           \\ \hline
-   '' Category members        &                      &                               &            \\ \hline
-    Claim            & When a user gets another user's public key, the key is claimed.                                          & Retrieving, getting                 & A user can have many claims                   \\ \hline
-    Revocations      & A term for when the user marks a contact as malicious and blocks it                                      & Block, mark                         & A user can revoke many users                  \\ \hline
-    Post             & A set of words that has been written by user which displays on the wall when submitted                   & Wall post                           & Posts are displayed onto walls when submitted \\ \hline
-   '' Post visible to         &                          &                           &         \\ \hline
-    Convo            & A term for when two users or more talks to each other privately                                          & Conversation, chat, private message & A user can initiate or be added into a convo  \\ \hline
-   '' Convo keys        &                          &                                &         \\ \hline
-   '' Convo messages        &                          &                                &         \\ \hline
+    Category         & A type or a group of selected users which the main user classifies his contacts        & Group                               & Some users may belong in a category           \\ \hline
+    Category members & Users which belongs to category                                                        & users                             &  Users can belong in a category          \\ \hline
+    Claim            & When a user gets another user's public key, the key is claimed.                        & Retrieving, getting                 & A user can have many claims                   \\ \hline
+    Revocations      & A term for when the user marks a contact as malicious and blocks it                    & Block, mark                         & A user can revoke many users                  \\ \hline
+    Post             & A set of words that has been written by user which displays on the wall when submitted & Wall post                           & Posts are displayed onto walls when submitted \\ \hline
+    Post visible to  & Posts which are visible to a certain user  & viewable post                             & Some posts are made viewable to certain users         \\ \hline
+    Convo            & A term for when two users or more talks to each other privately                        & Conversation, chat, private message & A user can initiate or be added into a convo  \\ \hline
+    Convo keys       & Public keys of those who are in the conversation                                       & public key                        & Conversations may have users in it       \\ \hline
+    Convo messages   & Messages which are sent within the conversation                                        & messages, chat                              &  Conversations have messages       \\ \hline
     Comment          & A term for text which is written directly for a specific post or comment which then displays on the wall &                                     & Comment appears on posts and parent comments  \\ \hline 
     Event            & A post that describes an activity, time and place                                                        &                                     & User can post events and invite users into it \\ \hline
     Like             & A response when someone finds a post favourable                                                          &                                     & Posts have likes                              \\ \hline
