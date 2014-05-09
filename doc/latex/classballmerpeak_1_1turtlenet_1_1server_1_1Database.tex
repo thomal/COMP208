@@ -1,0 +1,777 @@
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database}{\section{ballmerpeak.\-turtlenet.\-server.\-Database Class Reference}
+\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database}\index{ballmerpeak.\-turtlenet.\-server.\-Database@{ballmerpeak.\-turtlenet.\-server.\-Database}}
+}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a2df6c740699204eafab513d8990f14a8}{Database} (String pw)
+\item 
+void \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_af796c23330bbae7271011b0e81901643}{db\-Create} ()
+\item 
+boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a80e93295b9fd81f2a3c73bcaa2df39ee}{db\-Connect} (boolean dbexists)
+\item 
+void \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a1900530bc7bf5c275a275b788086f6ec}{db\-Disconnect} ()
+\item 
+void \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a717872aaaaf6529490c31465f2952219}{execute} (String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a4401c37a89ca60d2e6b926b9930446dc}{query})  throws java.\-sql.\-S\-Q\-L\-Exception 
+\item 
+Result\-Set \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a4401c37a89ca60d2e6b926b9930446dc}{query} (String query)  throws java.\-sql.\-S\-Q\-L\-Exception 
+\item 
+String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_ab2e0d804fa40eb9b08275f2548737b34}{get\-P\-D\-A\-T\-A} (String field, Public\-Key key)
+\item 
+\hyperlink{classballmerpeak_1_1turtlenet_1_1shared_1_1Message}{Message}\mbox{[}$\,$\mbox{]} \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a095f1356c13e33debb06929244b98150}{get\-Wall\-Post} (Public\-Key key)
+\item 
+String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a6c5618c6a7e144ee7eec9e6e4de6314d}{get\-Wall\-Post\-Sender} (String sig)
+\item 
+\hyperlink{classballmerpeak_1_1turtlenet_1_1shared_1_1Message}{Message}\mbox{[}$\,$\mbox{]} \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a4f77bc5e3bdf13f836136bc7eb763cac}{get\-Comments} (String sig)
+\item 
+Long \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a4b2795d1417e265aa345d21e5e1c3a23}{time\-Most\-Recent\-Wall\-Post} (Public\-Key key)
+\item 
+boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a76fdbae3c50e5e2fc64d9973de7e08d9}{is\-Liked} (String sig)
+\item 
+\hyperlink{classballmerpeak_1_1turtlenet_1_1shared_1_1Conversation}{Conversation}\mbox{[}$\,$\mbox{]} \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_ab81803b4c6efc49a774faaba66add16d}{get\-Conversations} ()
+\item 
+Public\-Key\mbox{[}$\,$\mbox{]} \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_ab4048f6c37cc47a31838aa992398cdac}{get\-People\-In\-Convo} (String sig)
+\item 
+\hyperlink{classballmerpeak_1_1turtlenet_1_1shared_1_1Conversation}{Conversation} \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a85b0c44b683cbbab3f966ce7b266f837}{get\-Conversation} (String sig)
+\item 
+String\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_ac65176a79a8e7433b18e8c98dbc02689}{get\-Conversation\-Messages} (String sig)
+\item 
+Public\-Key \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a67893a85c22e9e5b5a039f1900817df5}{get\-Key} (String user\-Name)
+\item 
+boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_ac51008e3d60ba40c4afa37287918a5b7}{can\-See\-P\-D\-A\-T\-A} (String category)
+\item 
+String\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a7f615f18361634692adff5e59c428d84}{get\-Categories} ()
+\item 
+Public\-Key\mbox{[}$\,$\mbox{]} \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_ad6939a97222c8e7da39726b181220aff}{get\-Category\-Members} (String cat\-I\-D)
+\item 
+Public\-Key\mbox{[}$\,$\mbox{]} \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a9e36a1c14ff02a2cc43b38a646ee20ab}{get\-Visibility\-Of\-Parent} (String sig)
+\item 
+Public\-Key\mbox{[}$\,$\mbox{]} \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a0ccbad682720c86cb152de04a7052332}{get\-Post\-Visible\-To} (String sig)
+\item 
+String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a102153ec0531bc6be459d0879c78051d}{get\-Name} (Public\-Key key)
+\item 
+Public\-Key \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a890f60c47e11af8823d48689fdeac360}{get\-Signatory} (\hyperlink{classballmerpeak_1_1turtlenet_1_1shared_1_1Message}{Message} m)
+\item 
+boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a8456bb059a9438ecc03a8c65c2cf908a}{add\-Post} (\hyperlink{classballmerpeak_1_1turtlenet_1_1shared_1_1Message}{Message} post)
+\item 
+boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_add2acddf62824bcedfe2724257ab0b04}{add\-Key} (\hyperlink{classballmerpeak_1_1turtlenet_1_1shared_1_1Message}{Message} msg)
+\item 
+boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a4641ac050b40864856bb7ab903fb96c2}{add\-Key} (Public\-Key k)
+\item 
+boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a1d9276229eb90ede286f8ecbee955248}{validate\-Claims} (Public\-Key k)
+\item 
+boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a222ba2352c2b9c48dd9c66470d106623}{calc\-Revocation\-Keys} (Public\-Key k)
+\item 
+boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_afc065fd588fdbd556bd2a013e648b43d}{add\-Claim} (\hyperlink{classballmerpeak_1_1turtlenet_1_1shared_1_1Message}{Message} claim)
+\item 
+boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_ac4eeb9a2d74bd6cfe1e72f63fc93243b}{add\-Revocation} (\hyperlink{classballmerpeak_1_1turtlenet_1_1shared_1_1Message}{Message} revocation)
+\item 
+boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_ab3e267a71350c940b476949722eda0eb}{is\-Revoked} (Public\-Key key)
+\item 
+boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a6b4d12d2583d01113c6ba154a94261af}{erase\-Content\-From} (Public\-Key key)
+\item 
+boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a051ccb269be2f30af05fe554b83597a5}{add\-P\-D\-A\-T\-A} (\hyperlink{classballmerpeak_1_1turtlenet_1_1shared_1_1Message}{Message} update)
+\item 
+boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a54a5e6c02389fb8f3528bf503019f7fe}{update\-P\-D\-A\-T\-A} (String field, String value, Public\-Key k)
+\item 
+boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a4a18cb43547e71e48bbf7269b3e5d560}{add\-Convo} (\hyperlink{classballmerpeak_1_1turtlenet_1_1shared_1_1Message}{Message} convo)
+\item 
+boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a42de72fca336efc18a3c486749289b50}{add\-Message\-To\-Chat} (\hyperlink{classballmerpeak_1_1turtlenet_1_1shared_1_1Message}{Message} msg)
+\item 
+boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a1bfae51747f69a2dd125d9c915b980d4}{add\-Comment} (\hyperlink{classballmerpeak_1_1turtlenet_1_1shared_1_1Message}{Message} comment)
+\item 
+boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_af22fa4b19c7863929894a3ed278a174c}{add\-Like} (\hyperlink{classballmerpeak_1_1turtlenet_1_1shared_1_1Message}{Message} \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_ac2c2361722304a6446d5cd01cb0c5d3b}{like})
+\item 
+boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a484dad4e2e272c608996a4a6bbb463a4}{add\-Event} (\hyperlink{classballmerpeak_1_1turtlenet_1_1shared_1_1Message}{Message} event)
+\item 
+boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a30d0cd474644f531f6bfded6c9a63506}{accept\-Event} (String sig)
+\item 
+boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a2618960f1f28ee6fb130fba5077d8088}{decline\-Event} (String sig)
+\item 
+boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_ae65d70bab4c0fba8f0c941487385c8c9}{update\-P\-D\-A\-T\-Apermission} (\hyperlink{classballmerpeak_1_1turtlenet_1_1shared_1_1Message}{Message} msg)
+\item 
+boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_aed151a8daa6202838bdc8b949d6de05c}{update\-P\-D\-A\-T\-Apermission} (String category, boolean value)
+\item 
+Public\-Key\mbox{[}$\,$\mbox{]} \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_acd908d7244665e90b2c852d2bd4d24d8}{keys\-Can\-See\-P\-D\-A\-T\-A} ()
+\item 
+boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a60f429af2120947b9a6cc06617bb1bea}{add\-Category} (\hyperlink{classballmerpeak_1_1turtlenet_1_1shared_1_1Message}{Message} msg)
+\item 
+boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a543175382e7c3baf70b684a79c5046d8}{add\-Category} (String name, boolean can\-\_\-see\-\_\-private\-\_\-details)
+\item 
+boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_aca5e259e29216730354cf97b87f1a070}{add\-To\-Category} (\hyperlink{classballmerpeak_1_1turtlenet_1_1shared_1_1Message}{Message} msg)
+\item 
+boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a92b3b3bea181888c22086688816738aa}{add\-To\-Category} (String category, Public\-Key key)
+\item 
+boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a2718a68613d43dabf2c62bebc9f41e05}{remove\-From\-Category} (\hyperlink{classballmerpeak_1_1turtlenet_1_1shared_1_1Message}{Message} msg)
+\item 
+boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a25313e4d456741744541e8b42d7bef9b}{remove\-From\-Category} (String category, Public\-Key key)
+\item 
+boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_ac2c2361722304a6446d5cd01cb0c5d3b}{like} (String sig)
+\item 
+boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a500911b2c3d32d456c2bf34a23747d85}{unlike} (String sig)
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a89fecb924cc735abbc16d58405945fb2}{D\-B\-Dir\-Exists} ()
+\item 
+static boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a2001d0b63c21d13d0a023d70f571c5bd}{D\-B\-Exists} ()
+\item 
+static boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_aa21c9f4bf38697e84fe76fee2023be9e}{create\-D\-B\-Dir} ()
+\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a3933689115f43166439d740b2a254481}{path} = \char`\"{}./db\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 13 of file Database.\-java.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a2df6c740699204eafab513d8990f14a8}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!Database@{Database}}
+\index{Database@{Database}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
+\subsubsection[{Database}]{\setlength{\rightskip}{0pt plus 5cm}ballmerpeak.\-turtlenet.\-server.\-Database.\-Database (
+\begin{DoxyParamCaption}
+\item[{String}]{pw}
+\end{DoxyParamCaption}
+)}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a2df6c740699204eafab513d8990f14a8}
+
+
+Definition at line 18 of file Database.\-java.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a30d0cd474644f531f6bfded6c9a63506}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!accept\-Event@{accept\-Event}}
+\index{accept\-Event@{accept\-Event}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
+\subsubsection[{accept\-Event}]{\setlength{\rightskip}{0pt plus 5cm}boolean ballmerpeak.\-turtlenet.\-server.\-Database.\-accept\-Event (
+\begin{DoxyParamCaption}
+\item[{String}]{sig}
+\end{DoxyParamCaption}
+)}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a30d0cd474644f531f6bfded6c9a63506}
+
+
+Definition at line 783 of file Database.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a60f429af2120947b9a6cc06617bb1bea}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!add\-Category@{add\-Category}}
+\index{add\-Category@{add\-Category}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
+\subsubsection[{add\-Category}]{\setlength{\rightskip}{0pt plus 5cm}boolean ballmerpeak.\-turtlenet.\-server.\-Database.\-add\-Category (
+\begin{DoxyParamCaption}
+\item[{{\bf Message}}]{msg}
+\end{DoxyParamCaption}
+)}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a60f429af2120947b9a6cc06617bb1bea}
+
+
+Definition at line 845 of file Database.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a543175382e7c3baf70b684a79c5046d8}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!add\-Category@{add\-Category}}
+\index{add\-Category@{add\-Category}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
+\subsubsection[{add\-Category}]{\setlength{\rightskip}{0pt plus 5cm}boolean ballmerpeak.\-turtlenet.\-server.\-Database.\-add\-Category (
+\begin{DoxyParamCaption}
+\item[{String}]{name, }
+\item[{boolean}]{can\-\_\-see\-\_\-private\-\_\-details}
+\end{DoxyParamCaption}
+)}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a543175382e7c3baf70b684a79c5046d8}
+
+
+Definition at line 849 of file Database.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_afc065fd588fdbd556bd2a013e648b43d}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!add\-Claim@{add\-Claim}}
+\index{add\-Claim@{add\-Claim}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
+\subsubsection[{add\-Claim}]{\setlength{\rightskip}{0pt plus 5cm}boolean ballmerpeak.\-turtlenet.\-server.\-Database.\-add\-Claim (
+\begin{DoxyParamCaption}
+\item[{{\bf Message}}]{claim}
+\end{DoxyParamCaption}
+)}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_afc065fd588fdbd556bd2a013e648b43d}
+
+
+Definition at line 596 of file Database.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a1bfae51747f69a2dd125d9c915b980d4}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!add\-Comment@{add\-Comment}}
+\index{add\-Comment@{add\-Comment}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
+\subsubsection[{add\-Comment}]{\setlength{\rightskip}{0pt plus 5cm}boolean ballmerpeak.\-turtlenet.\-server.\-Database.\-add\-Comment (
+\begin{DoxyParamCaption}
+\item[{{\bf Message}}]{comment}
+\end{DoxyParamCaption}
+)}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a1bfae51747f69a2dd125d9c915b980d4}
+
+
+Definition at line 733 of file Database.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a4a18cb43547e71e48bbf7269b3e5d560}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!add\-Convo@{add\-Convo}}
+\index{add\-Convo@{add\-Convo}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
+\subsubsection[{add\-Convo}]{\setlength{\rightskip}{0pt plus 5cm}boolean ballmerpeak.\-turtlenet.\-server.\-Database.\-add\-Convo (
+\begin{DoxyParamCaption}
+\item[{{\bf Message}}]{convo}
+\end{DoxyParamCaption}
+)}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a4a18cb43547e71e48bbf7269b3e5d560}
+
+
+Definition at line 689 of file Database.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a484dad4e2e272c608996a4a6bbb463a4}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!add\-Event@{add\-Event}}
+\index{add\-Event@{add\-Event}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
+\subsubsection[{add\-Event}]{\setlength{\rightskip}{0pt plus 5cm}boolean ballmerpeak.\-turtlenet.\-server.\-Database.\-add\-Event (
+\begin{DoxyParamCaption}
+\item[{{\bf Message}}]{event}
+\end{DoxyParamCaption}
+)}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a484dad4e2e272c608996a4a6bbb463a4}
+
+
+Definition at line 765 of file Database.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_add2acddf62824bcedfe2724257ab0b04}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!add\-Key@{add\-Key}}
+\index{add\-Key@{add\-Key}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
+\subsubsection[{add\-Key}]{\setlength{\rightskip}{0pt plus 5cm}boolean ballmerpeak.\-turtlenet.\-server.\-Database.\-add\-Key (
+\begin{DoxyParamCaption}
+\item[{{\bf Message}}]{msg}
+\end{DoxyParamCaption}
+)}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_add2acddf62824bcedfe2724257ab0b04}
+
+
+Definition at line 511 of file Database.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a4641ac050b40864856bb7ab903fb96c2}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!add\-Key@{add\-Key}}
+\index{add\-Key@{add\-Key}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
+\subsubsection[{add\-Key}]{\setlength{\rightskip}{0pt plus 5cm}boolean ballmerpeak.\-turtlenet.\-server.\-Database.\-add\-Key (
+\begin{DoxyParamCaption}
+\item[{Public\-Key}]{k}
+\end{DoxyParamCaption}
+)}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a4641ac050b40864856bb7ab903fb96c2}
+
+
+Definition at line 515 of file Database.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_af22fa4b19c7863929894a3ed278a174c}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!add\-Like@{add\-Like}}
+\index{add\-Like@{add\-Like}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
+\subsubsection[{add\-Like}]{\setlength{\rightskip}{0pt plus 5cm}boolean ballmerpeak.\-turtlenet.\-server.\-Database.\-add\-Like (
+\begin{DoxyParamCaption}
+\item[{{\bf Message}}]{like}
+\end{DoxyParamCaption}
+)}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_af22fa4b19c7863929894a3ed278a174c}
+
+
+Definition at line 751 of file Database.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a42de72fca336efc18a3c486749289b50}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!add\-Message\-To\-Chat@{add\-Message\-To\-Chat}}
+\index{add\-Message\-To\-Chat@{add\-Message\-To\-Chat}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
+\subsubsection[{add\-Message\-To\-Chat}]{\setlength{\rightskip}{0pt plus 5cm}boolean ballmerpeak.\-turtlenet.\-server.\-Database.\-add\-Message\-To\-Chat (
+\begin{DoxyParamCaption}
+\item[{{\bf Message}}]{msg}
+\end{DoxyParamCaption}
+)}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a42de72fca336efc18a3c486749289b50}
+
+
+Definition at line 708 of file Database.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a051ccb269be2f30af05fe554b83597a5}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!add\-P\-D\-A\-T\-A@{add\-P\-D\-A\-T\-A}}
+\index{add\-P\-D\-A\-T\-A@{add\-P\-D\-A\-T\-A}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
+\subsubsection[{add\-P\-D\-A\-T\-A}]{\setlength{\rightskip}{0pt plus 5cm}boolean ballmerpeak.\-turtlenet.\-server.\-Database.\-add\-P\-D\-A\-T\-A (
+\begin{DoxyParamCaption}
+\item[{{\bf Message}}]{update}
+\end{DoxyParamCaption}
+)}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a051ccb269be2f30af05fe554b83597a5}
+
+
+Definition at line 662 of file Database.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a8456bb059a9438ecc03a8c65c2cf908a}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!add\-Post@{add\-Post}}
+\index{add\-Post@{add\-Post}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
+\subsubsection[{add\-Post}]{\setlength{\rightskip}{0pt plus 5cm}boolean ballmerpeak.\-turtlenet.\-server.\-Database.\-add\-Post (
+\begin{DoxyParamCaption}
+\item[{{\bf Message}}]{post}
+\end{DoxyParamCaption}
+)}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a8456bb059a9438ecc03a8c65c2cf908a}
+
+
+Definition at line 492 of file Database.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_ac4eeb9a2d74bd6cfe1e72f63fc93243b}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!add\-Revocation@{add\-Revocation}}
+\index{add\-Revocation@{add\-Revocation}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
+\subsubsection[{add\-Revocation}]{\setlength{\rightskip}{0pt plus 5cm}boolean ballmerpeak.\-turtlenet.\-server.\-Database.\-add\-Revocation (
+\begin{DoxyParamCaption}
+\item[{{\bf Message}}]{revocation}
+\end{DoxyParamCaption}
+)}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_ac4eeb9a2d74bd6cfe1e72f63fc93243b}
+
+
+Definition at line 614 of file Database.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_aca5e259e29216730354cf97b87f1a070}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!add\-To\-Category@{add\-To\-Category}}
+\index{add\-To\-Category@{add\-To\-Category}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
+\subsubsection[{add\-To\-Category}]{\setlength{\rightskip}{0pt plus 5cm}boolean ballmerpeak.\-turtlenet.\-server.\-Database.\-add\-To\-Category (
+\begin{DoxyParamCaption}
+\item[{{\bf Message}}]{msg}
+\end{DoxyParamCaption}
+)}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_aca5e259e29216730354cf97b87f1a070}
+
+
+Definition at line 862 of file Database.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a92b3b3bea181888c22086688816738aa}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!add\-To\-Category@{add\-To\-Category}}
+\index{add\-To\-Category@{add\-To\-Category}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
+\subsubsection[{add\-To\-Category}]{\setlength{\rightskip}{0pt plus 5cm}boolean ballmerpeak.\-turtlenet.\-server.\-Database.\-add\-To\-Category (
+\begin{DoxyParamCaption}
+\item[{String}]{category, }
+\item[{Public\-Key}]{key}
+\end{DoxyParamCaption}
+)}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a92b3b3bea181888c22086688816738aa}
+
+
+Definition at line 866 of file Database.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a222ba2352c2b9c48dd9c66470d106623}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!calc\-Revocation\-Keys@{calc\-Revocation\-Keys}}
+\index{calc\-Revocation\-Keys@{calc\-Revocation\-Keys}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
+\subsubsection[{calc\-Revocation\-Keys}]{\setlength{\rightskip}{0pt plus 5cm}boolean ballmerpeak.\-turtlenet.\-server.\-Database.\-calc\-Revocation\-Keys (
+\begin{DoxyParamCaption}
+\item[{Public\-Key}]{k}
+\end{DoxyParamCaption}
+)}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a222ba2352c2b9c48dd9c66470d106623}
+
+
+Definition at line 567 of file Database.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_ac51008e3d60ba40c4afa37287918a5b7}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!can\-See\-P\-D\-A\-T\-A@{can\-See\-P\-D\-A\-T\-A}}
+\index{can\-See\-P\-D\-A\-T\-A@{can\-See\-P\-D\-A\-T\-A}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
+\subsubsection[{can\-See\-P\-D\-A\-T\-A}]{\setlength{\rightskip}{0pt plus 5cm}boolean ballmerpeak.\-turtlenet.\-server.\-Database.\-can\-See\-P\-D\-A\-T\-A (
+\begin{DoxyParamCaption}
+\item[{String}]{category}
+\end{DoxyParamCaption}
+)}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_ac51008e3d60ba40c4afa37287918a5b7}
+
+
+Definition at line 350 of file Database.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_aa21c9f4bf38697e84fe76fee2023be9e}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!create\-D\-B\-Dir@{create\-D\-B\-Dir}}
+\index{create\-D\-B\-Dir@{create\-D\-B\-Dir}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
+\subsubsection[{create\-D\-B\-Dir}]{\setlength{\rightskip}{0pt plus 5cm}static boolean ballmerpeak.\-turtlenet.\-server.\-Database.\-create\-D\-B\-Dir (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_aa21c9f4bf38697e84fe76fee2023be9e}
+
+
+Definition at line 35 of file Database.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a80e93295b9fd81f2a3c73bcaa2df39ee}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!db\-Connect@{db\-Connect}}
+\index{db\-Connect@{db\-Connect}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
+\subsubsection[{db\-Connect}]{\setlength{\rightskip}{0pt plus 5cm}boolean ballmerpeak.\-turtlenet.\-server.\-Database.\-db\-Connect (
+\begin{DoxyParamCaption}
+\item[{boolean}]{dbexists}
+\end{DoxyParamCaption}
+)}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a80e93295b9fd81f2a3c73bcaa2df39ee}
+
+
+Definition at line 54 of file Database.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_af796c23330bbae7271011b0e81901643}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!db\-Create@{db\-Create}}
+\index{db\-Create@{db\-Create}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
+\subsubsection[{db\-Create}]{\setlength{\rightskip}{0pt plus 5cm}void ballmerpeak.\-turtlenet.\-server.\-Database.\-db\-Create (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_af796c23330bbae7271011b0e81901643}
+
+
+Definition at line 40 of file Database.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a89fecb924cc735abbc16d58405945fb2}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!D\-B\-Dir\-Exists@{D\-B\-Dir\-Exists}}
+\index{D\-B\-Dir\-Exists@{D\-B\-Dir\-Exists}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
+\subsubsection[{D\-B\-Dir\-Exists}]{\setlength{\rightskip}{0pt plus 5cm}static boolean ballmerpeak.\-turtlenet.\-server.\-Database.\-D\-B\-Dir\-Exists (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a89fecb924cc735abbc16d58405945fb2}
+
+
+Definition at line 24 of file Database.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a1900530bc7bf5c275a275b788086f6ec}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!db\-Disconnect@{db\-Disconnect}}
+\index{db\-Disconnect@{db\-Disconnect}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
+\subsubsection[{db\-Disconnect}]{\setlength{\rightskip}{0pt plus 5cm}void ballmerpeak.\-turtlenet.\-server.\-Database.\-db\-Disconnect (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a1900530bc7bf5c275a275b788086f6ec}
+
+
+Definition at line 71 of file Database.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a2001d0b63c21d13d0a023d70f571c5bd}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!D\-B\-Exists@{D\-B\-Exists}}
+\index{D\-B\-Exists@{D\-B\-Exists}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
+\subsubsection[{D\-B\-Exists}]{\setlength{\rightskip}{0pt plus 5cm}static boolean ballmerpeak.\-turtlenet.\-server.\-Database.\-D\-B\-Exists (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a2001d0b63c21d13d0a023d70f571c5bd}
+
+
+Definition at line 29 of file Database.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a2618960f1f28ee6fb130fba5077d8088}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!decline\-Event@{decline\-Event}}
+\index{decline\-Event@{decline\-Event}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
+\subsubsection[{decline\-Event}]{\setlength{\rightskip}{0pt plus 5cm}boolean ballmerpeak.\-turtlenet.\-server.\-Database.\-decline\-Event (
+\begin{DoxyParamCaption}
+\item[{String}]{sig}
+\end{DoxyParamCaption}
+)}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a2618960f1f28ee6fb130fba5077d8088}
+
+
+Definition at line 795 of file Database.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a6b4d12d2583d01113c6ba154a94261af}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!erase\-Content\-From@{erase\-Content\-From}}
+\index{erase\-Content\-From@{erase\-Content\-From}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
+\subsubsection[{erase\-Content\-From}]{\setlength{\rightskip}{0pt plus 5cm}boolean ballmerpeak.\-turtlenet.\-server.\-Database.\-erase\-Content\-From (
+\begin{DoxyParamCaption}
+\item[{Public\-Key}]{key}
+\end{DoxyParamCaption}
+)}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a6b4d12d2583d01113c6ba154a94261af}
+
+
+Definition at line 640 of file Database.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a717872aaaaf6529490c31465f2952219}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!execute@{execute}}
+\index{execute@{execute}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
+\subsubsection[{execute}]{\setlength{\rightskip}{0pt plus 5cm}void ballmerpeak.\-turtlenet.\-server.\-Database.\-execute (
+\begin{DoxyParamCaption}
+\item[{String}]{query}
+\end{DoxyParamCaption}
+)  throws java.\-sql.\-S\-Q\-L\-Exception }}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a717872aaaaf6529490c31465f2952219}
+
+
+Definition at line 83 of file Database.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a7f615f18361634692adff5e59c428d84}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!get\-Categories@{get\-Categories}}
+\index{get\-Categories@{get\-Categories}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
+\subsubsection[{get\-Categories}]{\setlength{\rightskip}{0pt plus 5cm}String \mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} ballmerpeak.\-turtlenet.\-server.\-Database.\-get\-Categories (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a7f615f18361634692adff5e59c428d84}
+
+
+Definition at line 367 of file Database.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_ad6939a97222c8e7da39726b181220aff}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!get\-Category\-Members@{get\-Category\-Members}}
+\index{get\-Category\-Members@{get\-Category\-Members}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
+\subsubsection[{get\-Category\-Members}]{\setlength{\rightskip}{0pt plus 5cm}Public\-Key \mbox{[}$\,$\mbox{]} ballmerpeak.\-turtlenet.\-server.\-Database.\-get\-Category\-Members (
+\begin{DoxyParamCaption}
+\item[{String}]{cat\-I\-D}
+\end{DoxyParamCaption}
+)}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_ad6939a97222c8e7da39726b181220aff}
+
+
+Definition at line 392 of file Database.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a4f77bc5e3bdf13f836136bc7eb763cac}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!get\-Comments@{get\-Comments}}
+\index{get\-Comments@{get\-Comments}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
+\subsubsection[{get\-Comments}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Message} \mbox{[}$\,$\mbox{]} ballmerpeak.\-turtlenet.\-server.\-Database.\-get\-Comments (
+\begin{DoxyParamCaption}
+\item[{String}]{sig}
+\end{DoxyParamCaption}
+)}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a4f77bc5e3bdf13f836136bc7eb763cac}
+
+
+Definition at line 193 of file Database.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a85b0c44b683cbbab3f966ce7b266f837}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!get\-Conversation@{get\-Conversation}}
+\index{get\-Conversation@{get\-Conversation}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
+\subsubsection[{get\-Conversation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Conversation} ballmerpeak.\-turtlenet.\-server.\-Database.\-get\-Conversation (
+\begin{DoxyParamCaption}
+\item[{String}]{sig}
+\end{DoxyParamCaption}
+)}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a85b0c44b683cbbab3f966ce7b266f837}
+
+
+Definition at line 271 of file Database.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_ac65176a79a8e7433b18e8c98dbc02689}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!get\-Conversation\-Messages@{get\-Conversation\-Messages}}
+\index{get\-Conversation\-Messages@{get\-Conversation\-Messages}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
+\subsubsection[{get\-Conversation\-Messages}]{\setlength{\rightskip}{0pt plus 5cm}String \mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} ballmerpeak.\-turtlenet.\-server.\-Database.\-get\-Conversation\-Messages (
+\begin{DoxyParamCaption}
+\item[{String}]{sig}
+\end{DoxyParamCaption}
+)}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_ac65176a79a8e7433b18e8c98dbc02689}
+
+
+Definition at line 303 of file Database.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_ab81803b4c6efc49a774faaba66add16d}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!get\-Conversations@{get\-Conversations}}
+\index{get\-Conversations@{get\-Conversations}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
+\subsubsection[{get\-Conversations}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Conversation} \mbox{[}$\,$\mbox{]} ballmerpeak.\-turtlenet.\-server.\-Database.\-get\-Conversations (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_ab81803b4c6efc49a774faaba66add16d}
+
+
+Definition at line 239 of file Database.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a67893a85c22e9e5b5a039f1900817df5}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!get\-Key@{get\-Key}}
+\index{get\-Key@{get\-Key}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
+\subsubsection[{get\-Key}]{\setlength{\rightskip}{0pt plus 5cm}Public\-Key ballmerpeak.\-turtlenet.\-server.\-Database.\-get\-Key (
+\begin{DoxyParamCaption}
+\item[{String}]{user\-Name}
+\end{DoxyParamCaption}
+)}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a67893a85c22e9e5b5a039f1900817df5}
+
+
+Definition at line 327 of file Database.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a102153ec0531bc6be459d0879c78051d}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!get\-Name@{get\-Name}}
+\index{get\-Name@{get\-Name}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
+\subsubsection[{get\-Name}]{\setlength{\rightskip}{0pt plus 5cm}String ballmerpeak.\-turtlenet.\-server.\-Database.\-get\-Name (
+\begin{DoxyParamCaption}
+\item[{Public\-Key}]{key}
+\end{DoxyParamCaption}
+)}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a102153ec0531bc6be459d0879c78051d}
+
+
+Definition at line 458 of file Database.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_ab2e0d804fa40eb9b08275f2548737b34}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!get\-P\-D\-A\-T\-A@{get\-P\-D\-A\-T\-A}}
+\index{get\-P\-D\-A\-T\-A@{get\-P\-D\-A\-T\-A}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
+\subsubsection[{get\-P\-D\-A\-T\-A}]{\setlength{\rightskip}{0pt plus 5cm}String ballmerpeak.\-turtlenet.\-server.\-Database.\-get\-P\-D\-A\-T\-A (
+\begin{DoxyParamCaption}
+\item[{String}]{field, }
+\item[{Public\-Key}]{key}
+\end{DoxyParamCaption}
+)}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_ab2e0d804fa40eb9b08275f2548737b34}
+
+
+Definition at line 126 of file Database.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_ab4048f6c37cc47a31838aa992398cdac}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!get\-People\-In\-Convo@{get\-People\-In\-Convo}}
+\index{get\-People\-In\-Convo@{get\-People\-In\-Convo}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
+\subsubsection[{get\-People\-In\-Convo}]{\setlength{\rightskip}{0pt plus 5cm}Public\-Key \mbox{[}$\,$\mbox{]} ballmerpeak.\-turtlenet.\-server.\-Database.\-get\-People\-In\-Convo (
+\begin{DoxyParamCaption}
+\item[{String}]{sig}
+\end{DoxyParamCaption}
+)}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_ab4048f6c37cc47a31838aa992398cdac}
+
+
+Definition at line 255 of file Database.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a0ccbad682720c86cb152de04a7052332}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!get\-Post\-Visible\-To@{get\-Post\-Visible\-To}}
+\index{get\-Post\-Visible\-To@{get\-Post\-Visible\-To}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
+\subsubsection[{get\-Post\-Visible\-To}]{\setlength{\rightskip}{0pt plus 5cm}Public\-Key \mbox{[}$\,$\mbox{]} ballmerpeak.\-turtlenet.\-server.\-Database.\-get\-Post\-Visible\-To (
+\begin{DoxyParamCaption}
+\item[{String}]{sig}
+\end{DoxyParamCaption}
+)}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a0ccbad682720c86cb152de04a7052332}
+
+
+Definition at line 442 of file Database.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a890f60c47e11af8823d48689fdeac360}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!get\-Signatory@{get\-Signatory}}
+\index{get\-Signatory@{get\-Signatory}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
+\subsubsection[{get\-Signatory}]{\setlength{\rightskip}{0pt plus 5cm}Public\-Key ballmerpeak.\-turtlenet.\-server.\-Database.\-get\-Signatory (
+\begin{DoxyParamCaption}
+\item[{{\bf Message}}]{m}
+\end{DoxyParamCaption}
+)}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a890f60c47e11af8823d48689fdeac360}
+
+
+Definition at line 477 of file Database.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a9e36a1c14ff02a2cc43b38a646ee20ab}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!get\-Visibility\-Of\-Parent@{get\-Visibility\-Of\-Parent}}
+\index{get\-Visibility\-Of\-Parent@{get\-Visibility\-Of\-Parent}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
+\subsubsection[{get\-Visibility\-Of\-Parent}]{\setlength{\rightskip}{0pt plus 5cm}Public\-Key \mbox{[}$\,$\mbox{]} ballmerpeak.\-turtlenet.\-server.\-Database.\-get\-Visibility\-Of\-Parent (
+\begin{DoxyParamCaption}
+\item[{String}]{sig}
+\end{DoxyParamCaption}
+)}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a9e36a1c14ff02a2cc43b38a646ee20ab}
+
+
+Definition at line 420 of file Database.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a095f1356c13e33debb06929244b98150}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!get\-Wall\-Post@{get\-Wall\-Post}}
+\index{get\-Wall\-Post@{get\-Wall\-Post}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
+\subsubsection[{get\-Wall\-Post}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Message} \mbox{[}$\,$\mbox{]} ballmerpeak.\-turtlenet.\-server.\-Database.\-get\-Wall\-Post (
+\begin{DoxyParamCaption}
+\item[{Public\-Key}]{key}
+\end{DoxyParamCaption}
+)}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a095f1356c13e33debb06929244b98150}
+
+
+Definition at line 150 of file Database.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a6c5618c6a7e144ee7eec9e6e4de6314d}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!get\-Wall\-Post\-Sender@{get\-Wall\-Post\-Sender}}
+\index{get\-Wall\-Post\-Sender@{get\-Wall\-Post\-Sender}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
+\subsubsection[{get\-Wall\-Post\-Sender}]{\setlength{\rightskip}{0pt plus 5cm}String ballmerpeak.\-turtlenet.\-server.\-Database.\-get\-Wall\-Post\-Sender (
+\begin{DoxyParamCaption}
+\item[{String}]{sig}
+\end{DoxyParamCaption}
+)}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a6c5618c6a7e144ee7eec9e6e4de6314d}
+
+
+Definition at line 179 of file Database.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a76fdbae3c50e5e2fc64d9973de7e08d9}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!is\-Liked@{is\-Liked}}
+\index{is\-Liked@{is\-Liked}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
+\subsubsection[{is\-Liked}]{\setlength{\rightskip}{0pt plus 5cm}boolean ballmerpeak.\-turtlenet.\-server.\-Database.\-is\-Liked (
+\begin{DoxyParamCaption}
+\item[{String}]{sig}
+\end{DoxyParamCaption}
+)}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a76fdbae3c50e5e2fc64d9973de7e08d9}
+
+
+Definition at line 224 of file Database.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_ab3e267a71350c940b476949722eda0eb}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!is\-Revoked@{is\-Revoked}}
+\index{is\-Revoked@{is\-Revoked}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
+\subsubsection[{is\-Revoked}]{\setlength{\rightskip}{0pt plus 5cm}boolean ballmerpeak.\-turtlenet.\-server.\-Database.\-is\-Revoked (
+\begin{DoxyParamCaption}
+\item[{Public\-Key}]{key}
+\end{DoxyParamCaption}
+)}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_ab3e267a71350c940b476949722eda0eb}
+
+
+Definition at line 629 of file Database.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_acd908d7244665e90b2c852d2bd4d24d8}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!keys\-Can\-See\-P\-D\-A\-T\-A@{keys\-Can\-See\-P\-D\-A\-T\-A}}
+\index{keys\-Can\-See\-P\-D\-A\-T\-A@{keys\-Can\-See\-P\-D\-A\-T\-A}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
+\subsubsection[{keys\-Can\-See\-P\-D\-A\-T\-A}]{\setlength{\rightskip}{0pt plus 5cm}Public\-Key \mbox{[}$\,$\mbox{]} ballmerpeak.\-turtlenet.\-server.\-Database.\-keys\-Can\-See\-P\-D\-A\-T\-A (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_acd908d7244665e90b2c852d2bd4d24d8}
+
+
+Definition at line 824 of file Database.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_ac2c2361722304a6446d5cd01cb0c5d3b}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!like@{like}}
+\index{like@{like}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
+\subsubsection[{like}]{\setlength{\rightskip}{0pt plus 5cm}boolean ballmerpeak.\-turtlenet.\-server.\-Database.\-like (
+\begin{DoxyParamCaption}
+\item[{String}]{sig}
+\end{DoxyParamCaption}
+)}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_ac2c2361722304a6446d5cd01cb0c5d3b}
+
+
+Definition at line 902 of file Database.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a4401c37a89ca60d2e6b926b9930446dc}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!query@{query}}
+\index{query@{query}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
+\subsubsection[{query}]{\setlength{\rightskip}{0pt plus 5cm}Result\-Set ballmerpeak.\-turtlenet.\-server.\-Database.\-query (
+\begin{DoxyParamCaption}
+\item[{String}]{query}
+\end{DoxyParamCaption}
+)  throws java.\-sql.\-S\-Q\-L\-Exception }}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a4401c37a89ca60d2e6b926b9930446dc}
+
+
+Definition at line 105 of file Database.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a2718a68613d43dabf2c62bebc9f41e05}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!remove\-From\-Category@{remove\-From\-Category}}
+\index{remove\-From\-Category@{remove\-From\-Category}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
+\subsubsection[{remove\-From\-Category}]{\setlength{\rightskip}{0pt plus 5cm}boolean ballmerpeak.\-turtlenet.\-server.\-Database.\-remove\-From\-Category (
+\begin{DoxyParamCaption}
+\item[{{\bf Message}}]{msg}
+\end{DoxyParamCaption}
+)}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a2718a68613d43dabf2c62bebc9f41e05}
+
+
+Definition at line 885 of file Database.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a25313e4d456741744541e8b42d7bef9b}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!remove\-From\-Category@{remove\-From\-Category}}
+\index{remove\-From\-Category@{remove\-From\-Category}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
+\subsubsection[{remove\-From\-Category}]{\setlength{\rightskip}{0pt plus 5cm}boolean ballmerpeak.\-turtlenet.\-server.\-Database.\-remove\-From\-Category (
+\begin{DoxyParamCaption}
+\item[{String}]{category, }
+\item[{Public\-Key}]{key}
+\end{DoxyParamCaption}
+)}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a25313e4d456741744541e8b42d7bef9b}
+
+
+Definition at line 889 of file Database.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a4b2795d1417e265aa345d21e5e1c3a23}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!time\-Most\-Recent\-Wall\-Post@{time\-Most\-Recent\-Wall\-Post}}
+\index{time\-Most\-Recent\-Wall\-Post@{time\-Most\-Recent\-Wall\-Post}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
+\subsubsection[{time\-Most\-Recent\-Wall\-Post}]{\setlength{\rightskip}{0pt plus 5cm}Long ballmerpeak.\-turtlenet.\-server.\-Database.\-time\-Most\-Recent\-Wall\-Post (
+\begin{DoxyParamCaption}
+\item[{Public\-Key}]{key}
+\end{DoxyParamCaption}
+)}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a4b2795d1417e265aa345d21e5e1c3a23}
+
+
+Definition at line 212 of file Database.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a500911b2c3d32d456c2bf34a23747d85}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!unlike@{unlike}}
+\index{unlike@{unlike}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
+\subsubsection[{unlike}]{\setlength{\rightskip}{0pt plus 5cm}boolean ballmerpeak.\-turtlenet.\-server.\-Database.\-unlike (
+\begin{DoxyParamCaption}
+\item[{String}]{sig}
+\end{DoxyParamCaption}
+)}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a500911b2c3d32d456c2bf34a23747d85}
+
+
+Definition at line 915 of file Database.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a54a5e6c02389fb8f3528bf503019f7fe}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!update\-P\-D\-A\-T\-A@{update\-P\-D\-A\-T\-A}}
+\index{update\-P\-D\-A\-T\-A@{update\-P\-D\-A\-T\-A}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
+\subsubsection[{update\-P\-D\-A\-T\-A}]{\setlength{\rightskip}{0pt plus 5cm}boolean ballmerpeak.\-turtlenet.\-server.\-Database.\-update\-P\-D\-A\-T\-A (
+\begin{DoxyParamCaption}
+\item[{String}]{field, }
+\item[{String}]{value, }
+\item[{Public\-Key}]{k}
+\end{DoxyParamCaption}
+)}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a54a5e6c02389fb8f3528bf503019f7fe}
+
+
+Definition at line 674 of file Database.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_ae65d70bab4c0fba8f0c941487385c8c9}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!update\-P\-D\-A\-T\-Apermission@{update\-P\-D\-A\-T\-Apermission}}
+\index{update\-P\-D\-A\-T\-Apermission@{update\-P\-D\-A\-T\-Apermission}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
+\subsubsection[{update\-P\-D\-A\-T\-Apermission}]{\setlength{\rightskip}{0pt plus 5cm}boolean ballmerpeak.\-turtlenet.\-server.\-Database.\-update\-P\-D\-A\-T\-Apermission (
+\begin{DoxyParamCaption}
+\item[{{\bf Message}}]{msg}
+\end{DoxyParamCaption}
+)}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_ae65d70bab4c0fba8f0c941487385c8c9}
+
+
+Definition at line 807 of file Database.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_aed151a8daa6202838bdc8b949d6de05c}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!update\-P\-D\-A\-T\-Apermission@{update\-P\-D\-A\-T\-Apermission}}
+\index{update\-P\-D\-A\-T\-Apermission@{update\-P\-D\-A\-T\-Apermission}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
+\subsubsection[{update\-P\-D\-A\-T\-Apermission}]{\setlength{\rightskip}{0pt plus 5cm}boolean ballmerpeak.\-turtlenet.\-server.\-Database.\-update\-P\-D\-A\-T\-Apermission (
+\begin{DoxyParamCaption}
+\item[{String}]{category, }
+\item[{boolean}]{value}
+\end{DoxyParamCaption}
+)}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_aed151a8daa6202838bdc8b949d6de05c}
+
+
+Definition at line 811 of file Database.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a1d9276229eb90ede286f8ecbee955248}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!validate\-Claims@{validate\-Claims}}
+\index{validate\-Claims@{validate\-Claims}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
+\subsubsection[{validate\-Claims}]{\setlength{\rightskip}{0pt plus 5cm}boolean ballmerpeak.\-turtlenet.\-server.\-Database.\-validate\-Claims (
+\begin{DoxyParamCaption}
+\item[{Public\-Key}]{k}
+\end{DoxyParamCaption}
+)}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a1d9276229eb90ede286f8ecbee955248}
+
+
+Definition at line 532 of file Database.\-java.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a3933689115f43166439d740b2a254481}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}!path@{path}}
+\index{path@{path}!ballmerpeak::turtlenet::server::Database@{ballmerpeak\-::turtlenet\-::server\-::\-Database}}
+\subsubsection[{path}]{\setlength{\rightskip}{0pt plus 5cm}String ballmerpeak.\-turtlenet.\-server.\-Database.\-path = \char`\"{}./db\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Database_a3933689115f43166439d740b2a254481}
+
+
+Definition at line 14 of file Database.\-java.
+
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+src/ballmerpeak/turtlenet/server/\hyperlink{Database_8java}{Database.\-java}\end{DoxyCompactItemize}

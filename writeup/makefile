@@ -1,4 +1,6 @@
 pdf :
+	make -C .. doc
+	cp ../doc/latex/refman.pdf refman.pdf
 	make -C ../user_manual
 	cp ../user_manual/manual.pdf manual.pdf
 	pdflatex project.tex
@@ -25,4 +27,6 @@ clean :
 	rm -f requirementsONLY.blg
 	rm -f requirementsONLY-blx.bib
 	rm manual.pdf
+	rm refman.pdf
 	make -C ../user_manual clean
+	make -C ../doc/latex clean

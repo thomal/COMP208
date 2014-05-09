@@ -1,0 +1,310 @@
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Crypto}{\section{ballmerpeak.\-turtlenet.\-server.\-Crypto Class Reference}
+\label{classballmerpeak_1_1turtlenet_1_1server_1_1Crypto}\index{ballmerpeak.\-turtlenet.\-server.\-Crypto@{ballmerpeak.\-turtlenet.\-server.\-Crypto}}
+}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static Boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Crypto_a4d363a946bc16a383bb3516a6819e06f}{keys\-Exist} ()
+\item 
+static void \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Crypto_ae3a1070020af2f98bfb23284115f1b97}{key\-Gen} ()
+\item 
+static boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Crypto_a028cefbca14291fa686b27c36f3b212a}{encrypt\-D\-B} (String password)
+\item 
+static boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Crypto_a0faed916bbc35f2f01c4a09a52c008df}{decrypt\-D\-B} (String password)
+\item 
+static Key\-Pair \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Crypto_a2e95210ca85eb6273d47a1bde6be22e4}{get\-Test\-Key} ()
+\item 
+static Public\-Key \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Crypto_a830f62b5e45e6d1f424c3340b80d90c2}{get\-Public\-Key} ()
+\item 
+static Private\-Key \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Crypto_af6bfe6ea68cff3020c22221361f2d7f2}{get\-Private\-Key} ()
+\item 
+static String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Crypto_a3551509d86a909950bb4c44ae1803240}{sign} (\hyperlink{classballmerpeak_1_1turtlenet_1_1shared_1_1Message}{Message} msg)
+\item 
+static String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Crypto_aaa857c040134654c8d6187cb4f4090b5}{sign} (\hyperlink{classballmerpeak_1_1turtlenet_1_1shared_1_1Message}{Message} msg, Private\-Key k)
+\item 
+static String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Crypto_a359e1b82e7bf6ff8018bed7829850def}{hash} (String data)
+\item 
+static boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Crypto_ae5bdc4040fce3773ce9d5718d3bf8d0b}{verify\-Sig} (\hyperlink{classballmerpeak_1_1turtlenet_1_1shared_1_1Message}{Message} msg, Public\-Key author)
+\item 
+static String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Crypto_ae3b4ea7217b7e91abd1d42f932611c85}{encrypt} (\hyperlink{classballmerpeak_1_1turtlenet_1_1shared_1_1Message}{Message} msg, Public\-Key recipient, \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection}{Network\-Connection} connection)
+\item 
+static \hyperlink{classballmerpeak_1_1turtlenet_1_1shared_1_1Message}{Message} \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Crypto_a74c30e340ade0ff1729abe05c772d3f7}{decrypt} (String msg)
+\item 
+static String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Crypto_ac3423c536327620f518dab7f55d85b20}{encode\-Key} (Public\-Key key)
+\item 
+static Public\-Key \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Crypto_a78b5adee9b8deda2f2558fcc9aa3aa4b}{decode\-Key} (String coded\-Key)
+\item 
+static String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Crypto_a9a8cf56daec604a46eff71fd42b21eef}{Base64\-Encode} (byte\mbox{[}$\,$\mbox{]} data)
+\item 
+static byte\mbox{[}$\,$\mbox{]} \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Crypto_a9ff76fd9368082d0e3fa77c9687d8bee}{Base64\-Decode} (String data)
+\item 
+static int \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Crypto_a226d168b01eb7f6c9b1c5c0984528a41}{rand} (int min, int max)
+\item 
+static byte\mbox{[}$\,$\mbox{]} \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Crypto_abfc04f2d0f6f92bcca41c53b6cdc667d}{encrypt\-Bytes} (byte\mbox{[}$\,$\mbox{]} data, String key)
+\item 
+static byte\mbox{[}$\,$\mbox{]} \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Crypto_aea88564254a1c6c217042419f304c1ef}{decrypt\-Bytes} (byte\mbox{[}$\,$\mbox{]} data, String key)
+\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static Secure\-Random \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1Crypto_ad2ae6688f871ae46b7a5ae98b35d7000}{srand}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 18 of file Crypto.\-java.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Crypto_a9ff76fd9368082d0e3fa77c9687d8bee}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Crypto@{ballmerpeak\-::turtlenet\-::server\-::\-Crypto}!Base64\-Decode@{Base64\-Decode}}
+\index{Base64\-Decode@{Base64\-Decode}!ballmerpeak::turtlenet::server::Crypto@{ballmerpeak\-::turtlenet\-::server\-::\-Crypto}}
+\subsubsection[{Base64\-Decode}]{\setlength{\rightskip}{0pt plus 5cm}static byte \mbox{[}$\,$\mbox{]} ballmerpeak.\-turtlenet.\-server.\-Crypto.\-Base64\-Decode (
+\begin{DoxyParamCaption}
+\item[{String}]{data}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Crypto_a9ff76fd9368082d0e3fa77c9687d8bee}
+
+
+Definition at line 288 of file Crypto.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Crypto_a9a8cf56daec604a46eff71fd42b21eef}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Crypto@{ballmerpeak\-::turtlenet\-::server\-::\-Crypto}!Base64\-Encode@{Base64\-Encode}}
+\index{Base64\-Encode@{Base64\-Encode}!ballmerpeak::turtlenet::server::Crypto@{ballmerpeak\-::turtlenet\-::server\-::\-Crypto}}
+\subsubsection[{Base64\-Encode}]{\setlength{\rightskip}{0pt plus 5cm}static String ballmerpeak.\-turtlenet.\-server.\-Crypto.\-Base64\-Encode (
+\begin{DoxyParamCaption}
+\item[{byte\mbox{[}$\,$\mbox{]}}]{data}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Crypto_a9a8cf56daec604a46eff71fd42b21eef}
+
+
+Definition at line 284 of file Crypto.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Crypto_a78b5adee9b8deda2f2558fcc9aa3aa4b}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Crypto@{ballmerpeak\-::turtlenet\-::server\-::\-Crypto}!decode\-Key@{decode\-Key}}
+\index{decode\-Key@{decode\-Key}!ballmerpeak::turtlenet::server::Crypto@{ballmerpeak\-::turtlenet\-::server\-::\-Crypto}}
+\subsubsection[{decode\-Key}]{\setlength{\rightskip}{0pt plus 5cm}static Public\-Key ballmerpeak.\-turtlenet.\-server.\-Crypto.\-decode\-Key (
+\begin{DoxyParamCaption}
+\item[{String}]{coded\-Key}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Crypto_a78b5adee9b8deda2f2558fcc9aa3aa4b}
+
+
+Definition at line 270 of file Crypto.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Crypto_a74c30e340ade0ff1729abe05c772d3f7}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Crypto@{ballmerpeak\-::turtlenet\-::server\-::\-Crypto}!decrypt@{decrypt}}
+\index{decrypt@{decrypt}!ballmerpeak::turtlenet::server::Crypto@{ballmerpeak\-::turtlenet\-::server\-::\-Crypto}}
+\subsubsection[{decrypt}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Message} ballmerpeak.\-turtlenet.\-server.\-Crypto.\-decrypt (
+\begin{DoxyParamCaption}
+\item[{String}]{msg}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Crypto_a74c30e340ade0ff1729abe05c772d3f7}
+
+
+Definition at line 222 of file Crypto.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Crypto_aea88564254a1c6c217042419f304c1ef}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Crypto@{ballmerpeak\-::turtlenet\-::server\-::\-Crypto}!decrypt\-Bytes@{decrypt\-Bytes}}
+\index{decrypt\-Bytes@{decrypt\-Bytes}!ballmerpeak::turtlenet::server::Crypto@{ballmerpeak\-::turtlenet\-::server\-::\-Crypto}}
+\subsubsection[{decrypt\-Bytes}]{\setlength{\rightskip}{0pt plus 5cm}static byte \mbox{[}$\,$\mbox{]} ballmerpeak.\-turtlenet.\-server.\-Crypto.\-decrypt\-Bytes (
+\begin{DoxyParamCaption}
+\item[{byte\mbox{[}$\,$\mbox{]}}]{data, }
+\item[{String}]{key}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Crypto_aea88564254a1c6c217042419f304c1ef}
+
+
+Definition at line 309 of file Crypto.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Crypto_a0faed916bbc35f2f01c4a09a52c008df}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Crypto@{ballmerpeak\-::turtlenet\-::server\-::\-Crypto}!decrypt\-D\-B@{decrypt\-D\-B}}
+\index{decrypt\-D\-B@{decrypt\-D\-B}!ballmerpeak::turtlenet::server::Crypto@{ballmerpeak\-::turtlenet\-::server\-::\-Crypto}}
+\subsubsection[{decrypt\-D\-B}]{\setlength{\rightskip}{0pt plus 5cm}static boolean ballmerpeak.\-turtlenet.\-server.\-Crypto.\-decrypt\-D\-B (
+\begin{DoxyParamCaption}
+\item[{String}]{password}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Crypto_a0faed916bbc35f2f01c4a09a52c008df}
+
+
+Definition at line 83 of file Crypto.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Crypto_ac3423c536327620f518dab7f55d85b20}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Crypto@{ballmerpeak\-::turtlenet\-::server\-::\-Crypto}!encode\-Key@{encode\-Key}}
+\index{encode\-Key@{encode\-Key}!ballmerpeak::turtlenet::server::Crypto@{ballmerpeak\-::turtlenet\-::server\-::\-Crypto}}
+\subsubsection[{encode\-Key}]{\setlength{\rightskip}{0pt plus 5cm}static String ballmerpeak.\-turtlenet.\-server.\-Crypto.\-encode\-Key (
+\begin{DoxyParamCaption}
+\item[{Public\-Key}]{key}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Crypto_ac3423c536327620f518dab7f55d85b20}
+
+
+Definition at line 261 of file Crypto.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Crypto_ae3b4ea7217b7e91abd1d42f932611c85}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Crypto@{ballmerpeak\-::turtlenet\-::server\-::\-Crypto}!encrypt@{encrypt}}
+\index{encrypt@{encrypt}!ballmerpeak::turtlenet::server::Crypto@{ballmerpeak\-::turtlenet\-::server\-::\-Crypto}}
+\subsubsection[{encrypt}]{\setlength{\rightskip}{0pt plus 5cm}static String ballmerpeak.\-turtlenet.\-server.\-Crypto.\-encrypt (
+\begin{DoxyParamCaption}
+\item[{{\bf Message}}]{msg, }
+\item[{Public\-Key}]{recipient, }
+\item[{{\bf Network\-Connection}}]{connection}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Crypto_ae3b4ea7217b7e91abd1d42f932611c85}
+
+
+Definition at line 192 of file Crypto.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Crypto_abfc04f2d0f6f92bcca41c53b6cdc667d}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Crypto@{ballmerpeak\-::turtlenet\-::server\-::\-Crypto}!encrypt\-Bytes@{encrypt\-Bytes}}
+\index{encrypt\-Bytes@{encrypt\-Bytes}!ballmerpeak::turtlenet::server::Crypto@{ballmerpeak\-::turtlenet\-::server\-::\-Crypto}}
+\subsubsection[{encrypt\-Bytes}]{\setlength{\rightskip}{0pt plus 5cm}static byte \mbox{[}$\,$\mbox{]} ballmerpeak.\-turtlenet.\-server.\-Crypto.\-encrypt\-Bytes (
+\begin{DoxyParamCaption}
+\item[{byte\mbox{[}$\,$\mbox{]}}]{data, }
+\item[{String}]{key}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Crypto_abfc04f2d0f6f92bcca41c53b6cdc667d}
+
+
+Definition at line 297 of file Crypto.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Crypto_a028cefbca14291fa686b27c36f3b212a}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Crypto@{ballmerpeak\-::turtlenet\-::server\-::\-Crypto}!encrypt\-D\-B@{encrypt\-D\-B}}
+\index{encrypt\-D\-B@{encrypt\-D\-B}!ballmerpeak::turtlenet::server::Crypto@{ballmerpeak\-::turtlenet\-::server\-::\-Crypto}}
+\subsubsection[{encrypt\-D\-B}]{\setlength{\rightskip}{0pt plus 5cm}static boolean ballmerpeak.\-turtlenet.\-server.\-Crypto.\-encrypt\-D\-B (
+\begin{DoxyParamCaption}
+\item[{String}]{password}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Crypto_a028cefbca14291fa686b27c36f3b212a}
+
+
+Definition at line 61 of file Crypto.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Crypto_af6bfe6ea68cff3020c22221361f2d7f2}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Crypto@{ballmerpeak\-::turtlenet\-::server\-::\-Crypto}!get\-Private\-Key@{get\-Private\-Key}}
+\index{get\-Private\-Key@{get\-Private\-Key}!ballmerpeak::turtlenet::server::Crypto@{ballmerpeak\-::turtlenet\-::server\-::\-Crypto}}
+\subsubsection[{get\-Private\-Key}]{\setlength{\rightskip}{0pt plus 5cm}static Private\-Key ballmerpeak.\-turtlenet.\-server.\-Crypto.\-get\-Private\-Key (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Crypto_af6bfe6ea68cff3020c22221361f2d7f2}
+
+
+Definition at line 127 of file Crypto.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Crypto_a830f62b5e45e6d1f424c3340b80d90c2}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Crypto@{ballmerpeak\-::turtlenet\-::server\-::\-Crypto}!get\-Public\-Key@{get\-Public\-Key}}
+\index{get\-Public\-Key@{get\-Public\-Key}!ballmerpeak::turtlenet::server::Crypto@{ballmerpeak\-::turtlenet\-::server\-::\-Crypto}}
+\subsubsection[{get\-Public\-Key}]{\setlength{\rightskip}{0pt plus 5cm}static Public\-Key ballmerpeak.\-turtlenet.\-server.\-Crypto.\-get\-Public\-Key (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Crypto_a830f62b5e45e6d1f424c3340b80d90c2}
+
+
+Definition at line 115 of file Crypto.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Crypto_a2e95210ca85eb6273d47a1bde6be22e4}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Crypto@{ballmerpeak\-::turtlenet\-::server\-::\-Crypto}!get\-Test\-Key@{get\-Test\-Key}}
+\index{get\-Test\-Key@{get\-Test\-Key}!ballmerpeak::turtlenet::server::Crypto@{ballmerpeak\-::turtlenet\-::server\-::\-Crypto}}
+\subsubsection[{get\-Test\-Key}]{\setlength{\rightskip}{0pt plus 5cm}static Key\-Pair ballmerpeak.\-turtlenet.\-server.\-Crypto.\-get\-Test\-Key (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Crypto_a2e95210ca85eb6273d47a1bde6be22e4}
+
+
+Definition at line 103 of file Crypto.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Crypto_a359e1b82e7bf6ff8018bed7829850def}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Crypto@{ballmerpeak\-::turtlenet\-::server\-::\-Crypto}!hash@{hash}}
+\index{hash@{hash}!ballmerpeak::turtlenet::server::Crypto@{ballmerpeak\-::turtlenet\-::server\-::\-Crypto}}
+\subsubsection[{hash}]{\setlength{\rightskip}{0pt plus 5cm}static String ballmerpeak.\-turtlenet.\-server.\-Crypto.\-hash (
+\begin{DoxyParamCaption}
+\item[{String}]{data}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Crypto_a359e1b82e7bf6ff8018bed7829850def}
+
+
+Definition at line 158 of file Crypto.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Crypto_ae3a1070020af2f98bfb23284115f1b97}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Crypto@{ballmerpeak\-::turtlenet\-::server\-::\-Crypto}!key\-Gen@{key\-Gen}}
+\index{key\-Gen@{key\-Gen}!ballmerpeak::turtlenet::server::Crypto@{ballmerpeak\-::turtlenet\-::server\-::\-Crypto}}
+\subsubsection[{key\-Gen}]{\setlength{\rightskip}{0pt plus 5cm}static void ballmerpeak.\-turtlenet.\-server.\-Crypto.\-key\-Gen (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Crypto_ae3a1070020af2f98bfb23284115f1b97}
+
+
+Definition at line 30 of file Crypto.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Crypto_a4d363a946bc16a383bb3516a6819e06f}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Crypto@{ballmerpeak\-::turtlenet\-::server\-::\-Crypto}!keys\-Exist@{keys\-Exist}}
+\index{keys\-Exist@{keys\-Exist}!ballmerpeak::turtlenet::server::Crypto@{ballmerpeak\-::turtlenet\-::server\-::\-Crypto}}
+\subsubsection[{keys\-Exist}]{\setlength{\rightskip}{0pt plus 5cm}static Boolean ballmerpeak.\-turtlenet.\-server.\-Crypto.\-keys\-Exist (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Crypto_a4d363a946bc16a383bb3516a6819e06f}
+
+
+Definition at line 24 of file Crypto.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Crypto_a226d168b01eb7f6c9b1c5c0984528a41}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Crypto@{ballmerpeak\-::turtlenet\-::server\-::\-Crypto}!rand@{rand}}
+\index{rand@{rand}!ballmerpeak::turtlenet::server::Crypto@{ballmerpeak\-::turtlenet\-::server\-::\-Crypto}}
+\subsubsection[{rand}]{\setlength{\rightskip}{0pt plus 5cm}static int ballmerpeak.\-turtlenet.\-server.\-Crypto.\-rand (
+\begin{DoxyParamCaption}
+\item[{int}]{min, }
+\item[{int}]{max}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Crypto_a226d168b01eb7f6c9b1c5c0984528a41}
+
+
+Definition at line 292 of file Crypto.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Crypto_a3551509d86a909950bb4c44ae1803240}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Crypto@{ballmerpeak\-::turtlenet\-::server\-::\-Crypto}!sign@{sign}}
+\index{sign@{sign}!ballmerpeak::turtlenet::server::Crypto@{ballmerpeak\-::turtlenet\-::server\-::\-Crypto}}
+\subsubsection[{sign}]{\setlength{\rightskip}{0pt plus 5cm}static String ballmerpeak.\-turtlenet.\-server.\-Crypto.\-sign (
+\begin{DoxyParamCaption}
+\item[{{\bf Message}}]{msg}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Crypto_a3551509d86a909950bb4c44ae1803240}
+
+
+Definition at line 139 of file Crypto.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Crypto_aaa857c040134654c8d6187cb4f4090b5}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Crypto@{ballmerpeak\-::turtlenet\-::server\-::\-Crypto}!sign@{sign}}
+\index{sign@{sign}!ballmerpeak::turtlenet::server::Crypto@{ballmerpeak\-::turtlenet\-::server\-::\-Crypto}}
+\subsubsection[{sign}]{\setlength{\rightskip}{0pt plus 5cm}static String ballmerpeak.\-turtlenet.\-server.\-Crypto.\-sign (
+\begin{DoxyParamCaption}
+\item[{{\bf Message}}]{msg, }
+\item[{Private\-Key}]{k}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Crypto_aaa857c040134654c8d6187cb4f4090b5}
+
+
+Definition at line 144 of file Crypto.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Crypto_ae5bdc4040fce3773ce9d5718d3bf8d0b}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Crypto@{ballmerpeak\-::turtlenet\-::server\-::\-Crypto}!verify\-Sig@{verify\-Sig}}
+\index{verify\-Sig@{verify\-Sig}!ballmerpeak::turtlenet::server::Crypto@{ballmerpeak\-::turtlenet\-::server\-::\-Crypto}}
+\subsubsection[{verify\-Sig}]{\setlength{\rightskip}{0pt plus 5cm}static boolean ballmerpeak.\-turtlenet.\-server.\-Crypto.\-verify\-Sig (
+\begin{DoxyParamCaption}
+\item[{{\bf Message}}]{msg, }
+\item[{Public\-Key}]{author}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Crypto_ae5bdc4040fce3773ce9d5718d3bf8d0b}
+
+
+Definition at line 168 of file Crypto.\-java.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1Crypto_ad2ae6688f871ae46b7a5ae98b35d7000}{\index{ballmerpeak\-::turtlenet\-::server\-::\-Crypto@{ballmerpeak\-::turtlenet\-::server\-::\-Crypto}!srand@{srand}}
+\index{srand@{srand}!ballmerpeak::turtlenet::server::Crypto@{ballmerpeak\-::turtlenet\-::server\-::\-Crypto}}
+\subsubsection[{srand}]{\setlength{\rightskip}{0pt plus 5cm}Secure\-Random ballmerpeak.\-turtlenet.\-server.\-Crypto.\-srand\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1Crypto_ad2ae6688f871ae46b7a5ae98b35d7000}
+{\bfseries Initial value\-:}
+\begin{DoxyCode}
+ \textcolor{keyword}{new} SecureRandom(
+                                               Long.toString(
+                                                   System.currentTimeMillis())
+                                               .getBytes())
+\end{DoxyCode}
+
+
+Definition at line 19 of file Crypto.\-java.
+
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+src/ballmerpeak/turtlenet/server/\hyperlink{Crypto_8java}{Crypto.\-java}\end{DoxyCompactItemize}

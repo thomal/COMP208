@@ -1,0 +1,525 @@
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings}{\section{ballmerpeak.\-turtlenet.\-server.\-D\-B\-Strings Class Reference}
+\label{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings}\index{ballmerpeak.\-turtlenet.\-server.\-D\-B\-Strings@{ballmerpeak.\-turtlenet.\-server.\-D\-B\-Strings}}
+}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static final String\mbox{[}$\,$\mbox{]} \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a70ba551ea4397e98cc09b96eb0d9ff43}{create\-D\-B}
+\item 
+static final String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a93ae46feb4aaeb78cac2ba7b4fce04ec}{get\-P\-D\-A\-T\-A} = \char`\"{}S\-E\-L\-E\-C\-T \-\_\-\-\_\-\-F\-I\-E\-L\-D\-\_\-\-\_\- F\-R\-O\-M t\-User W\-H\-E\-R\-E key = '\-\_\-\-\_\-\-K\-E\-Y\-\_\-\-\_\-';\char`\"{}
+\item 
+static final String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_abc7b51ce40123124593dc92582e256b0}{get\-Wall\-Post\-Sigs} = \char`\"{}S\-E\-L\-E\-C\-T sig F\-R\-O\-M t\-Post W\-H\-E\-R\-E reciever\-Key = '\-\_\-\-\_\-\-K\-E\-Y\-\_\-\-\_\-';\char`\"{}
+\item 
+static final String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a80f3d94ed94b75193a7fd3490548739b}{get\-Post} = \char`\"{}S\-E\-L\-E\-C\-T time, sig, msg\-Text, reciever\-Key, senders\-Key F\-R\-O\-M t\-Post W\-H\-E\-R\-E sig = '\-\_\-\-\_\-\-S\-I\-G\-\_\-\-\_\-';\char`\"{}
+\item 
+static final String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_ad87c5a646e57a7280c16bc34c599eba2}{get\-Post\-Sender} = \char`\"{}S\-E\-L\-E\-C\-T senders\-Key F\-R\-O\-M t\-Post W\-H\-E\-R\-E sig = '\-\_\-\-\_\-\-S\-I\-G\-\_\-\-\_\-';\char`\"{}
+\item 
+static final String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a977f96408405a039b29ea0375f014129}{get\-Visible\-To} = \char`\"{}S\-E\-L\-E\-C\-T key F\-R\-O\-M t\-Post\-Visible\-To W\-H\-E\-R\-E post\-Sig = '\-\_\-\-\_\-\-S\-I\-G\-\_\-\-\_\-';\char`\"{}
+\item 
+static final String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a764e619962ecc020606b3f8b2f3068dd}{get\-Conversation} = \char`\"{}S\-E\-L\-E\-C\-T senders\-Key, msg\-Text, time F\-R\-O\-M t\-Convo\-Messages W\-H\-E\-R\-E convo\-I\-D = '\-\_\-\-\_\-\-S\-I\-G\-\_\-\-\_\-';\char`\"{}
+\item 
+static final String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a329ba6510f891c7ff5a45117bb13c46f}{get\-Conversations} = \char`\"{}S\-E\-L\-E\-C\-T $\ast$ F\-R\-O\-M t\-Convos;\char`\"{}
+\item 
+static final String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_adb5c2853326eef2b392ebcdf237c66b0}{get\-Conversation\-Members} = \char`\"{}S\-E\-L\-E\-C\-T key F\-R\-O\-M t\-Convo\-Keys W\-H\-E\-R\-E convo\-I\-D = '\-\_\-\-\_\-\-S\-I\-G\-\_\-\-\_\-';\char`\"{}
+\item 
+static final String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a181d0ea3e7576342fa2c4d22fde126d8}{get\-Conversation\-Messages} = \char`\"{}S\-E\-L\-E\-C\-T senders\-Key, time, msg\-Text F\-R\-O\-M t\-Convo\-Messages W\-H\-E\-R\-E convo\-I\-D = '\-\_\-\-\_\-\-S\-I\-G\-\_\-\-\_\-';\char`\"{}
+\item 
+static final String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_ad9a4d662e135722a93cd5b5b37839e84}{get\-Key} = \char`\"{}S\-E\-L\-E\-C\-T key F\-R\-O\-M t\-User W\-H\-E\-R\-E username = '\-\_\-\-\_\-\-U\-S\-E\-R\-N\-A\-M\-E\-\_\-\-\_\-';\char`\"{}
+\item 
+static final String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_abe38c9de113b63c18b1e7083e8b1af6f}{get\-Categories} = \char`\"{}S\-E\-L\-E\-C\-T $\ast$ F\-R\-O\-M t\-Category;\char`\"{}
+\item 
+static final String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_aefd36226bfa1c2c3f5b7cfd7a88c8ea6}{get\-Category} = \char`\"{}S\-E\-L\-E\-C\-T $\ast$ F\-R\-O\-M t\-Category W\-H\-E\-R\-E cat\-I\-D = '\-\_\-\-\_\-\-C\-A\-T\-N\-A\-M\-E\-\_\-\-\_\-';\char`\"{}
+\item 
+static final String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a77d2491681df92cdf133252afe8af98d}{can\-See\-P\-D\-A\-T\-A} = \char`\"{}S\-E\-L\-E\-C\-T can\-See\-P\-D\-A\-T\-A F\-R\-O\-M t\-Category W\-H\-E\-R\-E cat\-I\-D = '\-\_\-\-\_\-\-C\-A\-T\-I\-D\-\_\-\-\_\-';\char`\"{}
+\item 
+static final String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_af323bc7e8a4dfe7f7f321a0f868b234b}{categories\-Can\-See\-P\-D\-A\-T\-A} = \char`\"{}S\-E\-L\-E\-C\-T cat\-I\-D F\-R\-O\-M t\-Category W\-H\-E\-R\-E \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a77d2491681df92cdf133252afe8af98d}{can\-See\-P\-D\-A\-T\-A} = 1;\char`\"{}
+\item 
+static final String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a421524524ae9aecc5f05c4a087a8a3b9}{get\-All\-Keys} = \char`\"{}S\-E\-L\-E\-C\-T key F\-R\-O\-M t\-User;\char`\"{}
+\item 
+static final String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_af52ab80c3167b21dd0b8c7c61e498e61}{get\-Member\-Keys} = \char`\"{}S\-E\-L\-E\-C\-T user\-Key F\-R\-O\-M t\-Category\-Members W\-H\-E\-R\-E cat\-I\-D = '\-\_\-\-\_\-\-C\-A\-T\-N\-A\-M\-E\-\_\-\-\_\-';\char`\"{}
+\item 
+static final String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a1a166aed33e92e5a9990201b6d426e07}{get\-Name} = \char`\"{}S\-E\-L\-E\-C\-T username F\-R\-O\-M t\-User W\-H\-E\-R\-E key = '\-\_\-\-\_\-\-K\-E\-Y\-\_\-\-\_\-';\char`\"{}
+\item 
+static final String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a18809032ae6a521a9293b4f4e8cfa5f4}{get\-Claims} = \char`\"{}S\-E\-L\-E\-C\-T $\ast$ F\-R\-O\-M t\-Claim;\char`\"{}
+\item 
+static final String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_ae351265e633b120e4897cf92f17d3018}{get\-Like} = \char`\"{}S\-E\-L\-E\-C\-T $\ast$ F\-R\-O\-M t\-Like W\-H\-E\-R\-E parent = '\-\_\-\-\_\-\-S\-I\-G\-\_\-\-\_\-';\char`\"{}
+\item 
+static final String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a1576b88412e7eac8188422b2f9945cd4}{get\-Comments} = \char`\"{}S\-E\-L\-E\-C\-T $\ast$ F\-R\-O\-M t\-Comment W\-H\-E\-R\-E parent = '\-\_\-\-\_\-\-P\-A\-R\-E\-N\-T\-\_\-\-\_\-';\char`\"{}
+\item 
+static final String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a5584702225a961d74dc35ee4660c136e}{get\-Comment} = \char`\"{}S\-E\-L\-E\-C\-T $\ast$ F\-R\-O\-M t\-Comment W\-H\-E\-R\-E sig = '\-\_\-\-\_\-\-S\-I\-G\-\_\-\-\_\-';\char`\"{}
+\item 
+static final String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a8dc5636da5576be650e1de5c08109bc8}{get\-Revocations} = \char`\"{}S\-E\-L\-E\-C\-T $\ast$ F\-R\-O\-M t\-Revocations;\char`\"{}
+\item 
+static final String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a18c48137c57f21cff5ba853fbf5f524f}{is\-Revoked} = \char`\"{}S\-E\-L\-E\-C\-T key F\-R\-O\-M t\-Revocations W\-H\-E\-R\-E key = '\-\_\-\-\_\-\-K\-E\-Y\-\_\-\-\_\-';\char`\"{}
+\item 
+static final String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_ad9c0536856622b589ca1c0877681c86c}{most\-Recent\-Wall\-Post} = \char`\"{}W\-H\-E\-R\-E t\-Post.\-reciever\-Key = '\-\_\-\-\_\-\-K\-E\-Y\-\_\-\-\_\-';\char`\"{}
+\item 
+static final String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a0fa383a5ec1519c387372722ee41a7fe}{add\-Post} = \char`\"{}V\-A\-L\-U\-E\-S ('\-\_\-\-\_\-\-S\-I\-G\-\_\-\-\_\-', '\-\_\-\-\_\-msg\-Text\-\_\-\-\_\-', '\-\_\-\-\_\-time\-\_\-\-\_\-', '\-\_\-\-\_\-reciever\-Key\-\_\-\-\_\-', '\-\_\-\-\_\-senders\-Key\-\_\-\-\_\-');\char`\"{}
+\item 
+static final String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a3a96505a04038ec4631bbeeb7aa64f4d}{add\-Post\-Visibility} = \char`\"{}V\-A\-L\-U\-E\-S ('\-\_\-\-\_\-post\-Sig\-\_\-\-\_\-', '\-\_\-\-\_\-key\-\_\-\-\_\-');\char`\"{}
+\item 
+static final String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a411c712ba8bd368765dfd890abca6106}{add\-Key} = \char`\"{}I\-N\-S\-E\-R\-T I\-N\-T\-O t\-User (key) V\-A\-L\-U\-E\-S ('\-\_\-\-\_\-key\-\_\-\-\_\-');\char`\"{}
+\item 
+static final String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a9561d2bc731daafe8e20cb46dc51cfb6}{new\-Username} = \char`\"{}U\-P\-D\-A\-T\-E t\-User S\-E\-T username = '\-\_\-\-\_\-name\-\_\-\-\_\-' W\-H\-E\-R\-E key = '\-\_\-\-\_\-key\-\_\-\-\_\-';\char`\"{}
+\item 
+static final String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a01691bb9e0418b279a1eb0bcddb94b14}{remove\-Claim} = \char`\"{}D\-E\-L\-E\-T\-E F\-R\-O\-M t\-Claim W\-H\-E\-R\-E sig = '\-\_\-\-\_\-sig\-\_\-\-\_\-';\char`\"{}
+\item 
+static final String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a7622f836df4c75f736ae6b35eaa936a9}{add\-Claim} = \char`\"{}I\-N\-S\-E\-R\-T I\-N\-T\-O t\-Claim (sig, name, claim\-Time) V\-A\-L\-U\-E\-S ('\-\_\-\-\_\-sig\-\_\-\-\_\-', '\-\_\-\-\_\-name\-\_\-\-\_\-', '\-\_\-\-\_\-time\-\_\-\-\_\-');\char`\"{}
+\item 
+static final String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a75d68f5b33bdd9fa483ebe6c4145b17e}{add\-Revocation} = \char`\"{}I\-N\-S\-E\-R\-T I\-N\-T\-O t\-Revocations (key, sig, time\-Of\-Leak, creation\-Time) V\-A\-L\-U\-E\-S ('\-\_\-\-\_\-key\-\_\-\-\_\-', '\-\_\-\-\_\-sig\-\_\-\-\_\-', '\-\_\-\-\_\-time\-\_\-\-\_\-', '\-\_\-\-\_\-creation\-Time\-\_\-\-\_\-');\char`\"{}
+\item 
+static final String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a39d82ab9d47622f3d106772a81171a1d}{update\-Revocation\-Key} = \char`\"{}U\-P\-D\-A\-T\-E t\-Revocations S\-E\-T key = '\-\_\-\-\_\-\-K\-E\-Y\-\_\-\-\_\-' W\-H\-E\-R\-E sig = '\-\_\-\-\_\-\-S\-I\-G\-\_\-\-\_\-';\char`\"{}
+\item 
+static final String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_aac23d2b9eecb5d6088f8bb5058370c7b}{add\-P\-D\-A\-T\-A} = \char`\"{}U\-P\-D\-A\-T\-E t\-User S\-E\-T \-\_\-\-\_\-field\-\_\-\-\_\- = '\-\_\-\-\_\-value\-\_\-\-\_\-' W\-H\-E\-R\-E key = '\-\_\-\-\_\-key\-\_\-\-\_\-';\char`\"{}
+\item 
+static final String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_ac332d75426a3fc552c1492ca1c14701c}{add\-Convo} = \char`\"{}I\-N\-S\-E\-R\-T I\-N\-T\-O t\-Convos (convo\-I\-D, time\-Created) V\-A\-L\-U\-E\-S ('\-\_\-\-\_\-sig\-\_\-\-\_\-', '\-\_\-\-\_\-time\-\_\-\-\_\-');\char`\"{}
+\item 
+static final String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a2ef3257d6674eeb1d1eb0db4427eee3f}{add\-Convo\-Participant} = \char`\"{}I\-N\-S\-E\-R\-T I\-N\-T\-O t\-Convo\-Keys (convo\-I\-D, key) V\-A\-L\-U\-E\-S ('\-\_\-\-\_\-sig\-\_\-\-\_\-', '\-\_\-\-\_\-key\-\_\-\-\_\-');\char`\"{}
+\item 
+static final String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a45dac2349c3f3f754513df6f87cc3b50}{add\-Message\-To\-Convo} = \char`\"{}V\-A\-L\-U\-E\-S ('\-\_\-\-\_\-convo\-I\-D\-\_\-\-\_\-', '\-\_\-\-\_\-senders\-Key\-\_\-\-\_\-', '\-\_\-\-\_\-msg\-Text\-\_\-\-\_\-', '\-\_\-\-\_\-time\-\_\-\-\_\-');\char`\"{}
+\item 
+static final String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a87d52ca49fb4861212ad5e9319ca8707}{add\-Comment} = \char`\"{}V\-A\-L\-U\-E\-S ('\-\_\-\-\_\-sig\-\_\-\-\_\-', '\-\_\-\-\_\-msg\-Text\-\_\-\-\_\-', '\-\_\-\-\_\-sender\-Key\-\_\-\-\_\-', '\-\_\-\-\_\-parent\-\_\-\-\_\-', '\-\_\-\-\_\-creation\-Time\-\_\-\-\_\-');\char`\"{}
+\item 
+static final String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a2a78b8bf2571d76c753619719f6f5aac}{add\-Like} = \char`\"{}I\-N\-S\-E\-R\-T I\-N\-T\-O t\-Like (liker\-Key, parent) V\-A\-L\-U\-E\-S ('\-\_\-\-\_\-liker\-Key\-\_\-\-\_\-', '\-\_\-\-\_\-parent\-\_\-\-\_\-');\char`\"{}
+\item 
+static final String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a17b087b58c02d5e260242f71add2c9ca}{remove\-Like} = \char`\"{}D\-E\-L\-E\-T\-E F\-R\-O\-M t\-Like W\-H\-E\-R\-E liker\-Key = '\-\_\-\-\_\-liker\-Key\-\_\-\-\_\-' A\-N\-D parent = '\-\_\-\-\_\-parent\-\_\-\-\_\-';\char`\"{}
+\item 
+static final String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a179f2c1d92f556d4fa74acf16cf13f7a}{add\-Event} = \char`\"{}V\-A\-L\-U\-E\-S ('\-\_\-\-\_\-sig\-\_\-\-\_\-', '\-\_\-\-\_\-start\-Time\-\_\-\-\_\-', '\-\_\-\-\_\-end\-Time\-\_\-\-\_\-', '\-\_\-\-\_\-creator\-Key\-\_\-\-\_\-', '\-\_\-\-\_\-accepted\-\_\-\-\_\-', '\-\_\-\-\_\-name\-\_\-\-\_\-', '\-\_\-\-\_\-creation\-Time\-\_\-\-\_\-');\char`\"{}
+\item 
+static final String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_acf9b2fff82aaa6ad4d024ff69d1cba96}{accept\-Event} = \char`\"{}U\-P\-D\-A\-T\-E t\-Event S\-E\-T accepted = 1 W\-H\-E\-R\-E sig = '\-\_\-\-\_\-sig\-\_\-\-\_\-';\char`\"{}
+\item 
+static final String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a17aab2fc0a6a4f06d268a67e4e7104d4}{decline\-Event} = \char`\"{}U\-P\-D\-A\-T\-E t\-Event S\-E\-T accepted = -\/1 W\-H\-E\-R\-E sig = '\-\_\-\-\_\-sig\-\_\-\-\_\-';\char`\"{}
+\item 
+static final String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a1464c2aac4cc5e8112ece2e1840e1976}{update\-P\-D\-A\-T\-Apermission} = \char`\"{}U\-P\-D\-A\-T\-E t\-Category S\-E\-T \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a77d2491681df92cdf133252afe8af98d}{can\-See\-P\-D\-A\-T\-A} = \-\_\-\-\_\-bool\-\_\-\-\_\- W\-H\-E\-R\-E cat\-I\-D = '\-\_\-\-\_\-cat\-I\-D\-\_\-\-\_\-'\char`\"{}
+\item 
+static final String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a4de95aa5509b7246d85f48577ea3822e}{add\-Category} = \char`\"{}I\-N\-S\-E\-R\-T I\-N\-T\-O t\-Category (cat\-I\-D, \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a77d2491681df92cdf133252afe8af98d}{can\-See\-P\-D\-A\-T\-A}) V\-A\-L\-U\-E\-S ('\-\_\-\-\_\-cat\-I\-D\-\_\-\-\_\-', \-\_\-\-\_\-can\-See\-P\-D\-A\-T\-A\-\_\-\-\_\-);\char`\"{}
+\item 
+static final String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_ae9cfc6daa2238b984d82b11442b47a49}{add\-To\-Category} = \char`\"{}I\-N\-S\-E\-R\-T I\-N\-T\-O t\-Category\-Members (cat\-I\-D, user\-Key) V\-A\-L\-U\-E\-S ('\-\_\-\-\_\-cat\-I\-D\-\_\-\-\_\-', '\-\_\-\-\_\-key\-\_\-\-\_\-');\char`\"{}
+\item 
+static final String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a46667f523f0f1dad5378e5b23b49a18e}{remove\-From\-Category} = \char`\"{}D\-E\-L\-E\-T\-E F\-R\-O\-M t\-Category\-Members W\-H\-E\-R\-E cat\-Id = '\-\_\-\-\_\-cat\-I\-D\-\_\-\-\_\-' A\-N\-D user\-Key = '\-\_\-\-\_\-key\-\_\-\-\_\-';\char`\"{}
+\item 
+static final String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_aa376b74543195cc63ee7e443131d2822}{remove\-Message\-Access} = \char`\"{}D\-E\-L\-E\-T\-E F\-R\-O\-M t\-Convo\-Keys W\-H\-E\-R\-E key = '\-\_\-\-\_\-\-K\-E\-Y\-\_\-\-\_\-';\char`\"{}
+\item 
+static final String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a1b06410e67831509b9f39c59360cd3a4}{remove\-Messages} = \char`\"{}D\-E\-L\-E\-T\-E F\-R\-O\-M t\-Convo\-Messages W\-H\-E\-R\-E senders\-Key = '\-\_\-\-\_\-\-K\-E\-Y\-\_\-\-\_\-';\char`\"{}
+\item 
+static final String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a558a3b46958bfa577aecc36b4f2c7b2f}{remove\-Posts} = \char`\"{}D\-E\-L\-E\-T\-E F\-R\-O\-M t\-Post W\-H\-E\-R\-E senders\-Key = '\-\_\-\-\_\-\-K\-E\-Y\-\_\-\-\_\-';\char`\"{}
+\item 
+static final String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a2541bcdbb1f43144be6a70b42199b0d2}{remove\-Post\-Visibility} = \char`\"{}D\-E\-L\-E\-T\-E F\-R\-O\-M t\-Post\-Visible\-To W\-H\-E\-R\-E key = '\-\_\-\-\_\-\-K\-E\-Y\-\_\-\-\_\-';\char`\"{}
+\item 
+static final String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a7280cd9a150a098b62c0d23a88eeb566}{remove\-User} = \char`\"{}D\-E\-L\-E\-T\-E F\-R\-O\-M t\-User W\-H\-E\-R\-E key = '\-\_\-\-\_\-\-K\-E\-Y\-\_\-\-\_\-';\char`\"{}
+\item 
+static final String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a34489c428648e96854f7ae0665fa2830}{remove\-From\-Categories} = \char`\"{}D\-E\-L\-E\-T\-E F\-R\-O\-M t\-Category\-Members W\-H\-E\-R\-E user\-Key = '\-\_\-\-\_\-\-K\-E\-Y\-\_\-\-\_\-';\char`\"{}
+\item 
+static final String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a93fcbcf4eaf96862a3db95dec6b1fbcb}{remove\-Likes} = \char`\"{}D\-E\-L\-E\-T\-E F\-R\-O\-M t\-Like W\-H\-E\-R\-E liker\-Key = '\-\_\-\-\_\-\-K\-E\-Y\-\_\-\-\_\-';\char`\"{}
+\item 
+static final String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a54bb85c47ce1672a4adecc4104caa10e}{remove\-Comments} = \char`\"{}D\-E\-L\-E\-T\-E F\-R\-O\-M t\-Comment W\-H\-E\-R\-E sender\-Key = '\-\_\-\-\_\-\-K\-E\-Y\-\_\-\-\_\-';\char`\"{}
+\item 
+static final String \hyperlink{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a107f35f84bfad780727aa44465cf9c59}{remove\-Events} = \char`\"{}D\-E\-L\-E\-T\-E F\-R\-O\-M t\-Event W\-H\-E\-R\-E creator\-Key = '\-\_\-\-\_\-\-K\-E\-Y\-\_\-\-\_\-';\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 3 of file D\-B\-Strings.\-java.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_acf9b2fff82aaa6ad4d024ff69d1cba96}{\index{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}!accept\-Event@{accept\-Event}}
+\index{accept\-Event@{accept\-Event}!ballmerpeak::turtlenet::server::DBStrings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}}
+\subsubsection[{accept\-Event}]{\setlength{\rightskip}{0pt plus 5cm}final String ballmerpeak.\-turtlenet.\-server.\-D\-B\-Strings.\-accept\-Event = \char`\"{}U\-P\-D\-A\-T\-E t\-Event S\-E\-T accepted = 1 W\-H\-E\-R\-E sig = '\-\_\-\-\_\-sig\-\_\-\-\_\-';\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_acf9b2fff82aaa6ad4d024ff69d1cba96}
+
+
+Definition at line 148 of file D\-B\-Strings.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a4de95aa5509b7246d85f48577ea3822e}{\index{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}!add\-Category@{add\-Category}}
+\index{add\-Category@{add\-Category}!ballmerpeak::turtlenet::server::DBStrings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}}
+\subsubsection[{add\-Category}]{\setlength{\rightskip}{0pt plus 5cm}final String ballmerpeak.\-turtlenet.\-server.\-D\-B\-Strings.\-add\-Category = \char`\"{}I\-N\-S\-E\-R\-T I\-N\-T\-O t\-Category (cat\-I\-D, {\bf can\-See\-P\-D\-A\-T\-A}) V\-A\-L\-U\-E\-S ('\-\_\-\-\_\-cat\-I\-D\-\_\-\-\_\-', \-\_\-\-\_\-can\-See\-P\-D\-A\-T\-A\-\_\-\-\_\-);\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a4de95aa5509b7246d85f48577ea3822e}
+
+
+Definition at line 151 of file D\-B\-Strings.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a7622f836df4c75f736ae6b35eaa936a9}{\index{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}!add\-Claim@{add\-Claim}}
+\index{add\-Claim@{add\-Claim}!ballmerpeak::turtlenet::server::DBStrings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}}
+\subsubsection[{add\-Claim}]{\setlength{\rightskip}{0pt plus 5cm}final String ballmerpeak.\-turtlenet.\-server.\-D\-B\-Strings.\-add\-Claim = \char`\"{}I\-N\-S\-E\-R\-T I\-N\-T\-O t\-Claim (sig, name, claim\-Time) V\-A\-L\-U\-E\-S ('\-\_\-\-\_\-sig\-\_\-\-\_\-', '\-\_\-\-\_\-name\-\_\-\-\_\-', '\-\_\-\-\_\-time\-\_\-\-\_\-');\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a7622f836df4c75f736ae6b35eaa936a9}
+
+
+Definition at line 134 of file D\-B\-Strings.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a87d52ca49fb4861212ad5e9319ca8707}{\index{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}!add\-Comment@{add\-Comment}}
+\index{add\-Comment@{add\-Comment}!ballmerpeak::turtlenet::server::DBStrings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}}
+\subsubsection[{add\-Comment}]{\setlength{\rightskip}{0pt plus 5cm}final String ballmerpeak.\-turtlenet.\-server.\-D\-B\-Strings.\-add\-Comment = \char`\"{}V\-A\-L\-U\-E\-S ('\-\_\-\-\_\-sig\-\_\-\-\_\-', '\-\_\-\-\_\-msg\-Text\-\_\-\-\_\-', '\-\_\-\-\_\-sender\-Key\-\_\-\-\_\-', '\-\_\-\-\_\-parent\-\_\-\-\_\-', '\-\_\-\-\_\-creation\-Time\-\_\-\-\_\-');\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a87d52ca49fb4861212ad5e9319ca8707}
+
+
+Definition at line 142 of file D\-B\-Strings.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_ac332d75426a3fc552c1492ca1c14701c}{\index{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}!add\-Convo@{add\-Convo}}
+\index{add\-Convo@{add\-Convo}!ballmerpeak::turtlenet::server::DBStrings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}}
+\subsubsection[{add\-Convo}]{\setlength{\rightskip}{0pt plus 5cm}final String ballmerpeak.\-turtlenet.\-server.\-D\-B\-Strings.\-add\-Convo = \char`\"{}I\-N\-S\-E\-R\-T I\-N\-T\-O t\-Convos (convo\-I\-D, time\-Created) V\-A\-L\-U\-E\-S ('\-\_\-\-\_\-sig\-\_\-\-\_\-', '\-\_\-\-\_\-time\-\_\-\-\_\-');\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_ac332d75426a3fc552c1492ca1c14701c}
+
+
+Definition at line 138 of file D\-B\-Strings.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a2ef3257d6674eeb1d1eb0db4427eee3f}{\index{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}!add\-Convo\-Participant@{add\-Convo\-Participant}}
+\index{add\-Convo\-Participant@{add\-Convo\-Participant}!ballmerpeak::turtlenet::server::DBStrings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}}
+\subsubsection[{add\-Convo\-Participant}]{\setlength{\rightskip}{0pt plus 5cm}final String ballmerpeak.\-turtlenet.\-server.\-D\-B\-Strings.\-add\-Convo\-Participant = \char`\"{}I\-N\-S\-E\-R\-T I\-N\-T\-O t\-Convo\-Keys (convo\-I\-D, key) V\-A\-L\-U\-E\-S ('\-\_\-\-\_\-sig\-\_\-\-\_\-', '\-\_\-\-\_\-key\-\_\-\-\_\-');\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a2ef3257d6674eeb1d1eb0db4427eee3f}
+
+
+Definition at line 139 of file D\-B\-Strings.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a179f2c1d92f556d4fa74acf16cf13f7a}{\index{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}!add\-Event@{add\-Event}}
+\index{add\-Event@{add\-Event}!ballmerpeak::turtlenet::server::DBStrings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}}
+\subsubsection[{add\-Event}]{\setlength{\rightskip}{0pt plus 5cm}final String ballmerpeak.\-turtlenet.\-server.\-D\-B\-Strings.\-add\-Event = \char`\"{}V\-A\-L\-U\-E\-S ('\-\_\-\-\_\-sig\-\_\-\-\_\-', '\-\_\-\-\_\-start\-Time\-\_\-\-\_\-', '\-\_\-\-\_\-end\-Time\-\_\-\-\_\-', '\-\_\-\-\_\-creator\-Key\-\_\-\-\_\-', '\-\_\-\-\_\-accepted\-\_\-\-\_\-', '\-\_\-\-\_\-name\-\_\-\-\_\-', '\-\_\-\-\_\-creation\-Time\-\_\-\-\_\-');\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a179f2c1d92f556d4fa74acf16cf13f7a}
+
+
+Definition at line 146 of file D\-B\-Strings.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a411c712ba8bd368765dfd890abca6106}{\index{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}!add\-Key@{add\-Key}}
+\index{add\-Key@{add\-Key}!ballmerpeak::turtlenet::server::DBStrings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}}
+\subsubsection[{add\-Key}]{\setlength{\rightskip}{0pt plus 5cm}final String ballmerpeak.\-turtlenet.\-server.\-D\-B\-Strings.\-add\-Key = \char`\"{}I\-N\-S\-E\-R\-T I\-N\-T\-O t\-User (key) V\-A\-L\-U\-E\-S ('\-\_\-\-\_\-key\-\_\-\-\_\-');\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a411c712ba8bd368765dfd890abca6106}
+
+
+Definition at line 131 of file D\-B\-Strings.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a2a78b8bf2571d76c753619719f6f5aac}{\index{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}!add\-Like@{add\-Like}}
+\index{add\-Like@{add\-Like}!ballmerpeak::turtlenet::server::DBStrings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}}
+\subsubsection[{add\-Like}]{\setlength{\rightskip}{0pt plus 5cm}final String ballmerpeak.\-turtlenet.\-server.\-D\-B\-Strings.\-add\-Like = \char`\"{}I\-N\-S\-E\-R\-T I\-N\-T\-O t\-Like (liker\-Key, parent) V\-A\-L\-U\-E\-S ('\-\_\-\-\_\-liker\-Key\-\_\-\-\_\-', '\-\_\-\-\_\-parent\-\_\-\-\_\-');\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a2a78b8bf2571d76c753619719f6f5aac}
+
+
+Definition at line 144 of file D\-B\-Strings.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a45dac2349c3f3f754513df6f87cc3b50}{\index{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}!add\-Message\-To\-Convo@{add\-Message\-To\-Convo}}
+\index{add\-Message\-To\-Convo@{add\-Message\-To\-Convo}!ballmerpeak::turtlenet::server::DBStrings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}}
+\subsubsection[{add\-Message\-To\-Convo}]{\setlength{\rightskip}{0pt plus 5cm}final String ballmerpeak.\-turtlenet.\-server.\-D\-B\-Strings.\-add\-Message\-To\-Convo = \char`\"{}V\-A\-L\-U\-E\-S ('\-\_\-\-\_\-convo\-I\-D\-\_\-\-\_\-', '\-\_\-\-\_\-senders\-Key\-\_\-\-\_\-', '\-\_\-\-\_\-msg\-Text\-\_\-\-\_\-', '\-\_\-\-\_\-time\-\_\-\-\_\-');\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a45dac2349c3f3f754513df6f87cc3b50}
+
+
+Definition at line 140 of file D\-B\-Strings.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_aac23d2b9eecb5d6088f8bb5058370c7b}{\index{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}!add\-P\-D\-A\-T\-A@{add\-P\-D\-A\-T\-A}}
+\index{add\-P\-D\-A\-T\-A@{add\-P\-D\-A\-T\-A}!ballmerpeak::turtlenet::server::DBStrings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}}
+\subsubsection[{add\-P\-D\-A\-T\-A}]{\setlength{\rightskip}{0pt plus 5cm}final String ballmerpeak.\-turtlenet.\-server.\-D\-B\-Strings.\-add\-P\-D\-A\-T\-A = \char`\"{}U\-P\-D\-A\-T\-E t\-User S\-E\-T \-\_\-\-\_\-field\-\_\-\-\_\- = '\-\_\-\-\_\-value\-\_\-\-\_\-' W\-H\-E\-R\-E key = '\-\_\-\-\_\-key\-\_\-\-\_\-';\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_aac23d2b9eecb5d6088f8bb5058370c7b}
+
+
+Definition at line 137 of file D\-B\-Strings.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a0fa383a5ec1519c387372722ee41a7fe}{\index{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}!add\-Post@{add\-Post}}
+\index{add\-Post@{add\-Post}!ballmerpeak::turtlenet::server::DBStrings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}}
+\subsubsection[{add\-Post}]{\setlength{\rightskip}{0pt plus 5cm}final String ballmerpeak.\-turtlenet.\-server.\-D\-B\-Strings.\-add\-Post = \char`\"{}V\-A\-L\-U\-E\-S ('\-\_\-\-\_\-\-S\-I\-G\-\_\-\-\_\-', '\-\_\-\-\_\-msg\-Text\-\_\-\-\_\-', '\-\_\-\-\_\-time\-\_\-\-\_\-', '\-\_\-\-\_\-reciever\-Key\-\_\-\-\_\-', '\-\_\-\-\_\-senders\-Key\-\_\-\-\_\-');\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a0fa383a5ec1519c387372722ee41a7fe}
+
+
+Definition at line 127 of file D\-B\-Strings.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a3a96505a04038ec4631bbeeb7aa64f4d}{\index{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}!add\-Post\-Visibility@{add\-Post\-Visibility}}
+\index{add\-Post\-Visibility@{add\-Post\-Visibility}!ballmerpeak::turtlenet::server::DBStrings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}}
+\subsubsection[{add\-Post\-Visibility}]{\setlength{\rightskip}{0pt plus 5cm}final String ballmerpeak.\-turtlenet.\-server.\-D\-B\-Strings.\-add\-Post\-Visibility = \char`\"{}V\-A\-L\-U\-E\-S ('\-\_\-\-\_\-post\-Sig\-\_\-\-\_\-', '\-\_\-\-\_\-key\-\_\-\-\_\-');\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a3a96505a04038ec4631bbeeb7aa64f4d}
+
+
+Definition at line 129 of file D\-B\-Strings.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a75d68f5b33bdd9fa483ebe6c4145b17e}{\index{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}!add\-Revocation@{add\-Revocation}}
+\index{add\-Revocation@{add\-Revocation}!ballmerpeak::turtlenet::server::DBStrings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}}
+\subsubsection[{add\-Revocation}]{\setlength{\rightskip}{0pt plus 5cm}final String ballmerpeak.\-turtlenet.\-server.\-D\-B\-Strings.\-add\-Revocation = \char`\"{}I\-N\-S\-E\-R\-T I\-N\-T\-O t\-Revocations (key, sig, time\-Of\-Leak, creation\-Time) V\-A\-L\-U\-E\-S ('\-\_\-\-\_\-key\-\_\-\-\_\-', '\-\_\-\-\_\-sig\-\_\-\-\_\-', '\-\_\-\-\_\-time\-\_\-\-\_\-', '\-\_\-\-\_\-creation\-Time\-\_\-\-\_\-');\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a75d68f5b33bdd9fa483ebe6c4145b17e}
+
+
+Definition at line 135 of file D\-B\-Strings.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_ae9cfc6daa2238b984d82b11442b47a49}{\index{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}!add\-To\-Category@{add\-To\-Category}}
+\index{add\-To\-Category@{add\-To\-Category}!ballmerpeak::turtlenet::server::DBStrings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}}
+\subsubsection[{add\-To\-Category}]{\setlength{\rightskip}{0pt plus 5cm}final String ballmerpeak.\-turtlenet.\-server.\-D\-B\-Strings.\-add\-To\-Category = \char`\"{}I\-N\-S\-E\-R\-T I\-N\-T\-O t\-Category\-Members (cat\-I\-D, user\-Key) V\-A\-L\-U\-E\-S ('\-\_\-\-\_\-cat\-I\-D\-\_\-\-\_\-', '\-\_\-\-\_\-key\-\_\-\-\_\-');\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_ae9cfc6daa2238b984d82b11442b47a49}
+
+
+Definition at line 152 of file D\-B\-Strings.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a77d2491681df92cdf133252afe8af98d}{\index{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}!can\-See\-P\-D\-A\-T\-A@{can\-See\-P\-D\-A\-T\-A}}
+\index{can\-See\-P\-D\-A\-T\-A@{can\-See\-P\-D\-A\-T\-A}!ballmerpeak::turtlenet::server::DBStrings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}}
+\subsubsection[{can\-See\-P\-D\-A\-T\-A}]{\setlength{\rightskip}{0pt plus 5cm}final String ballmerpeak.\-turtlenet.\-server.\-D\-B\-Strings.\-can\-See\-P\-D\-A\-T\-A = \char`\"{}S\-E\-L\-E\-C\-T can\-See\-P\-D\-A\-T\-A F\-R\-O\-M t\-Category W\-H\-E\-R\-E cat\-I\-D = '\-\_\-\-\_\-\-C\-A\-T\-I\-D\-\_\-\-\_\-';\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a77d2491681df92cdf133252afe8af98d}
+
+
+Definition at line 110 of file D\-B\-Strings.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_af323bc7e8a4dfe7f7f321a0f868b234b}{\index{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}!categories\-Can\-See\-P\-D\-A\-T\-A@{categories\-Can\-See\-P\-D\-A\-T\-A}}
+\index{categories\-Can\-See\-P\-D\-A\-T\-A@{categories\-Can\-See\-P\-D\-A\-T\-A}!ballmerpeak::turtlenet::server::DBStrings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}}
+\subsubsection[{categories\-Can\-See\-P\-D\-A\-T\-A}]{\setlength{\rightskip}{0pt plus 5cm}final String ballmerpeak.\-turtlenet.\-server.\-D\-B\-Strings.\-categories\-Can\-See\-P\-D\-A\-T\-A = \char`\"{}S\-E\-L\-E\-C\-T cat\-I\-D F\-R\-O\-M t\-Category W\-H\-E\-R\-E {\bf can\-See\-P\-D\-A\-T\-A} = 1;\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_af323bc7e8a4dfe7f7f321a0f868b234b}
+
+
+Definition at line 111 of file D\-B\-Strings.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a70ba551ea4397e98cc09b96eb0d9ff43}{\index{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}!create\-D\-B@{create\-D\-B}}
+\index{create\-D\-B@{create\-D\-B}!ballmerpeak::turtlenet::server::DBStrings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}}
+\subsubsection[{create\-D\-B}]{\setlength{\rightskip}{0pt plus 5cm}final String \mbox{[}$\,$\mbox{]} ballmerpeak.\-turtlenet.\-server.\-D\-B\-Strings.\-create\-D\-B\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a70ba551ea4397e98cc09b96eb0d9ff43}
+
+
+Definition at line 4 of file D\-B\-Strings.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a17aab2fc0a6a4f06d268a67e4e7104d4}{\index{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}!decline\-Event@{decline\-Event}}
+\index{decline\-Event@{decline\-Event}!ballmerpeak::turtlenet::server::DBStrings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}}
+\subsubsection[{decline\-Event}]{\setlength{\rightskip}{0pt plus 5cm}final String ballmerpeak.\-turtlenet.\-server.\-D\-B\-Strings.\-decline\-Event = \char`\"{}U\-P\-D\-A\-T\-E t\-Event S\-E\-T accepted = -\/1 W\-H\-E\-R\-E sig = '\-\_\-\-\_\-sig\-\_\-\-\_\-';\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a17aab2fc0a6a4f06d268a67e4e7104d4}
+
+
+Definition at line 149 of file D\-B\-Strings.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a421524524ae9aecc5f05c4a087a8a3b9}{\index{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}!get\-All\-Keys@{get\-All\-Keys}}
+\index{get\-All\-Keys@{get\-All\-Keys}!ballmerpeak::turtlenet::server::DBStrings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}}
+\subsubsection[{get\-All\-Keys}]{\setlength{\rightskip}{0pt plus 5cm}final String ballmerpeak.\-turtlenet.\-server.\-D\-B\-Strings.\-get\-All\-Keys = \char`\"{}S\-E\-L\-E\-C\-T key F\-R\-O\-M t\-User;\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a421524524ae9aecc5f05c4a087a8a3b9}
+
+
+Definition at line 112 of file D\-B\-Strings.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_abe38c9de113b63c18b1e7083e8b1af6f}{\index{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}!get\-Categories@{get\-Categories}}
+\index{get\-Categories@{get\-Categories}!ballmerpeak::turtlenet::server::DBStrings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}}
+\subsubsection[{get\-Categories}]{\setlength{\rightskip}{0pt plus 5cm}final String ballmerpeak.\-turtlenet.\-server.\-D\-B\-Strings.\-get\-Categories = \char`\"{}S\-E\-L\-E\-C\-T $\ast$ F\-R\-O\-M t\-Category;\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_abe38c9de113b63c18b1e7083e8b1af6f}
+
+
+Definition at line 108 of file D\-B\-Strings.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_aefd36226bfa1c2c3f5b7cfd7a88c8ea6}{\index{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}!get\-Category@{get\-Category}}
+\index{get\-Category@{get\-Category}!ballmerpeak::turtlenet::server::DBStrings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}}
+\subsubsection[{get\-Category}]{\setlength{\rightskip}{0pt plus 5cm}final String ballmerpeak.\-turtlenet.\-server.\-D\-B\-Strings.\-get\-Category = \char`\"{}S\-E\-L\-E\-C\-T $\ast$ F\-R\-O\-M t\-Category W\-H\-E\-R\-E cat\-I\-D = '\-\_\-\-\_\-\-C\-A\-T\-N\-A\-M\-E\-\_\-\-\_\-';\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_aefd36226bfa1c2c3f5b7cfd7a88c8ea6}
+
+
+Definition at line 109 of file D\-B\-Strings.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a18809032ae6a521a9293b4f4e8cfa5f4}{\index{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}!get\-Claims@{get\-Claims}}
+\index{get\-Claims@{get\-Claims}!ballmerpeak::turtlenet::server::DBStrings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}}
+\subsubsection[{get\-Claims}]{\setlength{\rightskip}{0pt plus 5cm}final String ballmerpeak.\-turtlenet.\-server.\-D\-B\-Strings.\-get\-Claims = \char`\"{}S\-E\-L\-E\-C\-T $\ast$ F\-R\-O\-M t\-Claim;\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a18809032ae6a521a9293b4f4e8cfa5f4}
+
+
+Definition at line 115 of file D\-B\-Strings.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a5584702225a961d74dc35ee4660c136e}{\index{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}!get\-Comment@{get\-Comment}}
+\index{get\-Comment@{get\-Comment}!ballmerpeak::turtlenet::server::DBStrings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}}
+\subsubsection[{get\-Comment}]{\setlength{\rightskip}{0pt plus 5cm}final String ballmerpeak.\-turtlenet.\-server.\-D\-B\-Strings.\-get\-Comment = \char`\"{}S\-E\-L\-E\-C\-T $\ast$ F\-R\-O\-M t\-Comment W\-H\-E\-R\-E sig = '\-\_\-\-\_\-\-S\-I\-G\-\_\-\-\_\-';\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a5584702225a961d74dc35ee4660c136e}
+
+
+Definition at line 118 of file D\-B\-Strings.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a1576b88412e7eac8188422b2f9945cd4}{\index{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}!get\-Comments@{get\-Comments}}
+\index{get\-Comments@{get\-Comments}!ballmerpeak::turtlenet::server::DBStrings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}}
+\subsubsection[{get\-Comments}]{\setlength{\rightskip}{0pt plus 5cm}final String ballmerpeak.\-turtlenet.\-server.\-D\-B\-Strings.\-get\-Comments = \char`\"{}S\-E\-L\-E\-C\-T $\ast$ F\-R\-O\-M t\-Comment W\-H\-E\-R\-E parent = '\-\_\-\-\_\-\-P\-A\-R\-E\-N\-T\-\_\-\-\_\-';\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a1576b88412e7eac8188422b2f9945cd4}
+
+
+Definition at line 117 of file D\-B\-Strings.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a764e619962ecc020606b3f8b2f3068dd}{\index{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}!get\-Conversation@{get\-Conversation}}
+\index{get\-Conversation@{get\-Conversation}!ballmerpeak::turtlenet::server::DBStrings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}}
+\subsubsection[{get\-Conversation}]{\setlength{\rightskip}{0pt plus 5cm}final String ballmerpeak.\-turtlenet.\-server.\-D\-B\-Strings.\-get\-Conversation = \char`\"{}S\-E\-L\-E\-C\-T senders\-Key, msg\-Text, time F\-R\-O\-M t\-Convo\-Messages W\-H\-E\-R\-E convo\-I\-D = '\-\_\-\-\_\-\-S\-I\-G\-\_\-\-\_\-';\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a764e619962ecc020606b3f8b2f3068dd}
+
+
+Definition at line 103 of file D\-B\-Strings.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_adb5c2853326eef2b392ebcdf237c66b0}{\index{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}!get\-Conversation\-Members@{get\-Conversation\-Members}}
+\index{get\-Conversation\-Members@{get\-Conversation\-Members}!ballmerpeak::turtlenet::server::DBStrings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}}
+\subsubsection[{get\-Conversation\-Members}]{\setlength{\rightskip}{0pt plus 5cm}final String ballmerpeak.\-turtlenet.\-server.\-D\-B\-Strings.\-get\-Conversation\-Members = \char`\"{}S\-E\-L\-E\-C\-T key F\-R\-O\-M t\-Convo\-Keys W\-H\-E\-R\-E convo\-I\-D = '\-\_\-\-\_\-\-S\-I\-G\-\_\-\-\_\-';\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_adb5c2853326eef2b392ebcdf237c66b0}
+
+
+Definition at line 105 of file D\-B\-Strings.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a181d0ea3e7576342fa2c4d22fde126d8}{\index{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}!get\-Conversation\-Messages@{get\-Conversation\-Messages}}
+\index{get\-Conversation\-Messages@{get\-Conversation\-Messages}!ballmerpeak::turtlenet::server::DBStrings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}}
+\subsubsection[{get\-Conversation\-Messages}]{\setlength{\rightskip}{0pt plus 5cm}final String ballmerpeak.\-turtlenet.\-server.\-D\-B\-Strings.\-get\-Conversation\-Messages = \char`\"{}S\-E\-L\-E\-C\-T senders\-Key, time, msg\-Text F\-R\-O\-M t\-Convo\-Messages W\-H\-E\-R\-E convo\-I\-D = '\-\_\-\-\_\-\-S\-I\-G\-\_\-\-\_\-';\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a181d0ea3e7576342fa2c4d22fde126d8}
+
+
+Definition at line 106 of file D\-B\-Strings.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a329ba6510f891c7ff5a45117bb13c46f}{\index{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}!get\-Conversations@{get\-Conversations}}
+\index{get\-Conversations@{get\-Conversations}!ballmerpeak::turtlenet::server::DBStrings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}}
+\subsubsection[{get\-Conversations}]{\setlength{\rightskip}{0pt plus 5cm}final String ballmerpeak.\-turtlenet.\-server.\-D\-B\-Strings.\-get\-Conversations = \char`\"{}S\-E\-L\-E\-C\-T $\ast$ F\-R\-O\-M t\-Convos;\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a329ba6510f891c7ff5a45117bb13c46f}
+
+
+Definition at line 104 of file D\-B\-Strings.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_ad9a4d662e135722a93cd5b5b37839e84}{\index{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}!get\-Key@{get\-Key}}
+\index{get\-Key@{get\-Key}!ballmerpeak::turtlenet::server::DBStrings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}}
+\subsubsection[{get\-Key}]{\setlength{\rightskip}{0pt plus 5cm}final String ballmerpeak.\-turtlenet.\-server.\-D\-B\-Strings.\-get\-Key = \char`\"{}S\-E\-L\-E\-C\-T key F\-R\-O\-M t\-User W\-H\-E\-R\-E username = '\-\_\-\-\_\-\-U\-S\-E\-R\-N\-A\-M\-E\-\_\-\-\_\-';\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_ad9a4d662e135722a93cd5b5b37839e84}
+
+
+Definition at line 107 of file D\-B\-Strings.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_ae351265e633b120e4897cf92f17d3018}{\index{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}!get\-Like@{get\-Like}}
+\index{get\-Like@{get\-Like}!ballmerpeak::turtlenet::server::DBStrings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}}
+\subsubsection[{get\-Like}]{\setlength{\rightskip}{0pt plus 5cm}final String ballmerpeak.\-turtlenet.\-server.\-D\-B\-Strings.\-get\-Like = \char`\"{}S\-E\-L\-E\-C\-T $\ast$ F\-R\-O\-M t\-Like W\-H\-E\-R\-E parent = '\-\_\-\-\_\-\-S\-I\-G\-\_\-\-\_\-';\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_ae351265e633b120e4897cf92f17d3018}
+
+
+Definition at line 116 of file D\-B\-Strings.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_af52ab80c3167b21dd0b8c7c61e498e61}{\index{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}!get\-Member\-Keys@{get\-Member\-Keys}}
+\index{get\-Member\-Keys@{get\-Member\-Keys}!ballmerpeak::turtlenet::server::DBStrings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}}
+\subsubsection[{get\-Member\-Keys}]{\setlength{\rightskip}{0pt plus 5cm}final String ballmerpeak.\-turtlenet.\-server.\-D\-B\-Strings.\-get\-Member\-Keys = \char`\"{}S\-E\-L\-E\-C\-T user\-Key F\-R\-O\-M t\-Category\-Members W\-H\-E\-R\-E cat\-I\-D = '\-\_\-\-\_\-\-C\-A\-T\-N\-A\-M\-E\-\_\-\-\_\-';\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_af52ab80c3167b21dd0b8c7c61e498e61}
+
+
+Definition at line 113 of file D\-B\-Strings.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a1a166aed33e92e5a9990201b6d426e07}{\index{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}!get\-Name@{get\-Name}}
+\index{get\-Name@{get\-Name}!ballmerpeak::turtlenet::server::DBStrings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}}
+\subsubsection[{get\-Name}]{\setlength{\rightskip}{0pt plus 5cm}final String ballmerpeak.\-turtlenet.\-server.\-D\-B\-Strings.\-get\-Name = \char`\"{}S\-E\-L\-E\-C\-T username F\-R\-O\-M t\-User W\-H\-E\-R\-E key = '\-\_\-\-\_\-\-K\-E\-Y\-\_\-\-\_\-';\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a1a166aed33e92e5a9990201b6d426e07}
+
+
+Definition at line 114 of file D\-B\-Strings.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a93ae46feb4aaeb78cac2ba7b4fce04ec}{\index{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}!get\-P\-D\-A\-T\-A@{get\-P\-D\-A\-T\-A}}
+\index{get\-P\-D\-A\-T\-A@{get\-P\-D\-A\-T\-A}!ballmerpeak::turtlenet::server::DBStrings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}}
+\subsubsection[{get\-P\-D\-A\-T\-A}]{\setlength{\rightskip}{0pt plus 5cm}final String ballmerpeak.\-turtlenet.\-server.\-D\-B\-Strings.\-get\-P\-D\-A\-T\-A = \char`\"{}S\-E\-L\-E\-C\-T \-\_\-\-\_\-\-F\-I\-E\-L\-D\-\_\-\-\_\- F\-R\-O\-M t\-User W\-H\-E\-R\-E key = '\-\_\-\-\_\-\-K\-E\-Y\-\_\-\-\_\-';\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a93ae46feb4aaeb78cac2ba7b4fce04ec}
+
+
+Definition at line 98 of file D\-B\-Strings.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a80f3d94ed94b75193a7fd3490548739b}{\index{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}!get\-Post@{get\-Post}}
+\index{get\-Post@{get\-Post}!ballmerpeak::turtlenet::server::DBStrings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}}
+\subsubsection[{get\-Post}]{\setlength{\rightskip}{0pt plus 5cm}final String ballmerpeak.\-turtlenet.\-server.\-D\-B\-Strings.\-get\-Post = \char`\"{}S\-E\-L\-E\-C\-T time, sig, msg\-Text, reciever\-Key, senders\-Key F\-R\-O\-M t\-Post W\-H\-E\-R\-E sig = '\-\_\-\-\_\-\-S\-I\-G\-\_\-\-\_\-';\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a80f3d94ed94b75193a7fd3490548739b}
+
+
+Definition at line 100 of file D\-B\-Strings.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_ad87c5a646e57a7280c16bc34c599eba2}{\index{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}!get\-Post\-Sender@{get\-Post\-Sender}}
+\index{get\-Post\-Sender@{get\-Post\-Sender}!ballmerpeak::turtlenet::server::DBStrings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}}
+\subsubsection[{get\-Post\-Sender}]{\setlength{\rightskip}{0pt plus 5cm}final String ballmerpeak.\-turtlenet.\-server.\-D\-B\-Strings.\-get\-Post\-Sender = \char`\"{}S\-E\-L\-E\-C\-T senders\-Key F\-R\-O\-M t\-Post W\-H\-E\-R\-E sig = '\-\_\-\-\_\-\-S\-I\-G\-\_\-\-\_\-';\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_ad87c5a646e57a7280c16bc34c599eba2}
+
+
+Definition at line 101 of file D\-B\-Strings.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a8dc5636da5576be650e1de5c08109bc8}{\index{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}!get\-Revocations@{get\-Revocations}}
+\index{get\-Revocations@{get\-Revocations}!ballmerpeak::turtlenet::server::DBStrings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}}
+\subsubsection[{get\-Revocations}]{\setlength{\rightskip}{0pt plus 5cm}final String ballmerpeak.\-turtlenet.\-server.\-D\-B\-Strings.\-get\-Revocations = \char`\"{}S\-E\-L\-E\-C\-T $\ast$ F\-R\-O\-M t\-Revocations;\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a8dc5636da5576be650e1de5c08109bc8}
+
+
+Definition at line 119 of file D\-B\-Strings.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a977f96408405a039b29ea0375f014129}{\index{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}!get\-Visible\-To@{get\-Visible\-To}}
+\index{get\-Visible\-To@{get\-Visible\-To}!ballmerpeak::turtlenet::server::DBStrings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}}
+\subsubsection[{get\-Visible\-To}]{\setlength{\rightskip}{0pt plus 5cm}final String ballmerpeak.\-turtlenet.\-server.\-D\-B\-Strings.\-get\-Visible\-To = \char`\"{}S\-E\-L\-E\-C\-T key F\-R\-O\-M t\-Post\-Visible\-To W\-H\-E\-R\-E post\-Sig = '\-\_\-\-\_\-\-S\-I\-G\-\_\-\-\_\-';\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a977f96408405a039b29ea0375f014129}
+
+
+Definition at line 102 of file D\-B\-Strings.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_abc7b51ce40123124593dc92582e256b0}{\index{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}!get\-Wall\-Post\-Sigs@{get\-Wall\-Post\-Sigs}}
+\index{get\-Wall\-Post\-Sigs@{get\-Wall\-Post\-Sigs}!ballmerpeak::turtlenet::server::DBStrings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}}
+\subsubsection[{get\-Wall\-Post\-Sigs}]{\setlength{\rightskip}{0pt plus 5cm}final String ballmerpeak.\-turtlenet.\-server.\-D\-B\-Strings.\-get\-Wall\-Post\-Sigs = \char`\"{}S\-E\-L\-E\-C\-T sig F\-R\-O\-M t\-Post W\-H\-E\-R\-E reciever\-Key = '\-\_\-\-\_\-\-K\-E\-Y\-\_\-\-\_\-';\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_abc7b51ce40123124593dc92582e256b0}
+
+
+Definition at line 99 of file D\-B\-Strings.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a18c48137c57f21cff5ba853fbf5f524f}{\index{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}!is\-Revoked@{is\-Revoked}}
+\index{is\-Revoked@{is\-Revoked}!ballmerpeak::turtlenet::server::DBStrings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}}
+\subsubsection[{is\-Revoked}]{\setlength{\rightskip}{0pt plus 5cm}final String ballmerpeak.\-turtlenet.\-server.\-D\-B\-Strings.\-is\-Revoked = \char`\"{}S\-E\-L\-E\-C\-T key F\-R\-O\-M t\-Revocations W\-H\-E\-R\-E key = '\-\_\-\-\_\-\-K\-E\-Y\-\_\-\-\_\-';\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a18c48137c57f21cff5ba853fbf5f524f}
+
+
+Definition at line 120 of file D\-B\-Strings.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_ad9c0536856622b589ca1c0877681c86c}{\index{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}!most\-Recent\-Wall\-Post@{most\-Recent\-Wall\-Post}}
+\index{most\-Recent\-Wall\-Post@{most\-Recent\-Wall\-Post}!ballmerpeak::turtlenet::server::DBStrings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}}
+\subsubsection[{most\-Recent\-Wall\-Post}]{\setlength{\rightskip}{0pt plus 5cm}final String ballmerpeak.\-turtlenet.\-server.\-D\-B\-Strings.\-most\-Recent\-Wall\-Post = \char`\"{}W\-H\-E\-R\-E t\-Post.\-reciever\-Key = '\-\_\-\-\_\-\-K\-E\-Y\-\_\-\-\_\-';\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_ad9c0536856622b589ca1c0877681c86c}
+
+
+Definition at line 121 of file D\-B\-Strings.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a9561d2bc731daafe8e20cb46dc51cfb6}{\index{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}!new\-Username@{new\-Username}}
+\index{new\-Username@{new\-Username}!ballmerpeak::turtlenet::server::DBStrings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}}
+\subsubsection[{new\-Username}]{\setlength{\rightskip}{0pt plus 5cm}final String ballmerpeak.\-turtlenet.\-server.\-D\-B\-Strings.\-new\-Username = \char`\"{}U\-P\-D\-A\-T\-E t\-User S\-E\-T username = '\-\_\-\-\_\-name\-\_\-\-\_\-' W\-H\-E\-R\-E key = '\-\_\-\-\_\-key\-\_\-\-\_\-';\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a9561d2bc731daafe8e20cb46dc51cfb6}
+
+
+Definition at line 132 of file D\-B\-Strings.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a01691bb9e0418b279a1eb0bcddb94b14}{\index{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}!remove\-Claim@{remove\-Claim}}
+\index{remove\-Claim@{remove\-Claim}!ballmerpeak::turtlenet::server::DBStrings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}}
+\subsubsection[{remove\-Claim}]{\setlength{\rightskip}{0pt plus 5cm}final String ballmerpeak.\-turtlenet.\-server.\-D\-B\-Strings.\-remove\-Claim = \char`\"{}D\-E\-L\-E\-T\-E F\-R\-O\-M t\-Claim W\-H\-E\-R\-E sig = '\-\_\-\-\_\-sig\-\_\-\-\_\-';\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a01691bb9e0418b279a1eb0bcddb94b14}
+
+
+Definition at line 133 of file D\-B\-Strings.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a54bb85c47ce1672a4adecc4104caa10e}{\index{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}!remove\-Comments@{remove\-Comments}}
+\index{remove\-Comments@{remove\-Comments}!ballmerpeak::turtlenet::server::DBStrings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}}
+\subsubsection[{remove\-Comments}]{\setlength{\rightskip}{0pt plus 5cm}final String ballmerpeak.\-turtlenet.\-server.\-D\-B\-Strings.\-remove\-Comments = \char`\"{}D\-E\-L\-E\-T\-E F\-R\-O\-M t\-Comment W\-H\-E\-R\-E sender\-Key = '\-\_\-\-\_\-\-K\-E\-Y\-\_\-\-\_\-';\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a54bb85c47ce1672a4adecc4104caa10e}
+
+
+Definition at line 163 of file D\-B\-Strings.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a107f35f84bfad780727aa44465cf9c59}{\index{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}!remove\-Events@{remove\-Events}}
+\index{remove\-Events@{remove\-Events}!ballmerpeak::turtlenet::server::DBStrings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}}
+\subsubsection[{remove\-Events}]{\setlength{\rightskip}{0pt plus 5cm}final String ballmerpeak.\-turtlenet.\-server.\-D\-B\-Strings.\-remove\-Events = \char`\"{}D\-E\-L\-E\-T\-E F\-R\-O\-M t\-Event W\-H\-E\-R\-E creator\-Key = '\-\_\-\-\_\-\-K\-E\-Y\-\_\-\-\_\-';\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a107f35f84bfad780727aa44465cf9c59}
+
+
+Definition at line 164 of file D\-B\-Strings.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a34489c428648e96854f7ae0665fa2830}{\index{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}!remove\-From\-Categories@{remove\-From\-Categories}}
+\index{remove\-From\-Categories@{remove\-From\-Categories}!ballmerpeak::turtlenet::server::DBStrings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}}
+\subsubsection[{remove\-From\-Categories}]{\setlength{\rightskip}{0pt plus 5cm}final String ballmerpeak.\-turtlenet.\-server.\-D\-B\-Strings.\-remove\-From\-Categories = \char`\"{}D\-E\-L\-E\-T\-E F\-R\-O\-M t\-Category\-Members W\-H\-E\-R\-E user\-Key = '\-\_\-\-\_\-\-K\-E\-Y\-\_\-\-\_\-';\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a34489c428648e96854f7ae0665fa2830}
+
+
+Definition at line 161 of file D\-B\-Strings.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a46667f523f0f1dad5378e5b23b49a18e}{\index{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}!remove\-From\-Category@{remove\-From\-Category}}
+\index{remove\-From\-Category@{remove\-From\-Category}!ballmerpeak::turtlenet::server::DBStrings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}}
+\subsubsection[{remove\-From\-Category}]{\setlength{\rightskip}{0pt plus 5cm}final String ballmerpeak.\-turtlenet.\-server.\-D\-B\-Strings.\-remove\-From\-Category = \char`\"{}D\-E\-L\-E\-T\-E F\-R\-O\-M t\-Category\-Members W\-H\-E\-R\-E cat\-Id = '\-\_\-\-\_\-cat\-I\-D\-\_\-\-\_\-' A\-N\-D user\-Key = '\-\_\-\-\_\-key\-\_\-\-\_\-';\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a46667f523f0f1dad5378e5b23b49a18e}
+
+
+Definition at line 153 of file D\-B\-Strings.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a17b087b58c02d5e260242f71add2c9ca}{\index{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}!remove\-Like@{remove\-Like}}
+\index{remove\-Like@{remove\-Like}!ballmerpeak::turtlenet::server::DBStrings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}}
+\subsubsection[{remove\-Like}]{\setlength{\rightskip}{0pt plus 5cm}final String ballmerpeak.\-turtlenet.\-server.\-D\-B\-Strings.\-remove\-Like = \char`\"{}D\-E\-L\-E\-T\-E F\-R\-O\-M t\-Like W\-H\-E\-R\-E liker\-Key = '\-\_\-\-\_\-liker\-Key\-\_\-\-\_\-' A\-N\-D parent = '\-\_\-\-\_\-parent\-\_\-\-\_\-';\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a17b087b58c02d5e260242f71add2c9ca}
+
+
+Definition at line 145 of file D\-B\-Strings.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a93fcbcf4eaf96862a3db95dec6b1fbcb}{\index{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}!remove\-Likes@{remove\-Likes}}
+\index{remove\-Likes@{remove\-Likes}!ballmerpeak::turtlenet::server::DBStrings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}}
+\subsubsection[{remove\-Likes}]{\setlength{\rightskip}{0pt plus 5cm}final String ballmerpeak.\-turtlenet.\-server.\-D\-B\-Strings.\-remove\-Likes = \char`\"{}D\-E\-L\-E\-T\-E F\-R\-O\-M t\-Like W\-H\-E\-R\-E liker\-Key = '\-\_\-\-\_\-\-K\-E\-Y\-\_\-\-\_\-';\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a93fcbcf4eaf96862a3db95dec6b1fbcb}
+
+
+Definition at line 162 of file D\-B\-Strings.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_aa376b74543195cc63ee7e443131d2822}{\index{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}!remove\-Message\-Access@{remove\-Message\-Access}}
+\index{remove\-Message\-Access@{remove\-Message\-Access}!ballmerpeak::turtlenet::server::DBStrings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}}
+\subsubsection[{remove\-Message\-Access}]{\setlength{\rightskip}{0pt plus 5cm}final String ballmerpeak.\-turtlenet.\-server.\-D\-B\-Strings.\-remove\-Message\-Access = \char`\"{}D\-E\-L\-E\-T\-E F\-R\-O\-M t\-Convo\-Keys W\-H\-E\-R\-E key = '\-\_\-\-\_\-\-K\-E\-Y\-\_\-\-\_\-';\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_aa376b74543195cc63ee7e443131d2822}
+
+
+Definition at line 156 of file D\-B\-Strings.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a1b06410e67831509b9f39c59360cd3a4}{\index{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}!remove\-Messages@{remove\-Messages}}
+\index{remove\-Messages@{remove\-Messages}!ballmerpeak::turtlenet::server::DBStrings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}}
+\subsubsection[{remove\-Messages}]{\setlength{\rightskip}{0pt plus 5cm}final String ballmerpeak.\-turtlenet.\-server.\-D\-B\-Strings.\-remove\-Messages = \char`\"{}D\-E\-L\-E\-T\-E F\-R\-O\-M t\-Convo\-Messages W\-H\-E\-R\-E senders\-Key = '\-\_\-\-\_\-\-K\-E\-Y\-\_\-\-\_\-';\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a1b06410e67831509b9f39c59360cd3a4}
+
+
+Definition at line 157 of file D\-B\-Strings.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a558a3b46958bfa577aecc36b4f2c7b2f}{\index{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}!remove\-Posts@{remove\-Posts}}
+\index{remove\-Posts@{remove\-Posts}!ballmerpeak::turtlenet::server::DBStrings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}}
+\subsubsection[{remove\-Posts}]{\setlength{\rightskip}{0pt plus 5cm}final String ballmerpeak.\-turtlenet.\-server.\-D\-B\-Strings.\-remove\-Posts = \char`\"{}D\-E\-L\-E\-T\-E F\-R\-O\-M t\-Post W\-H\-E\-R\-E senders\-Key = '\-\_\-\-\_\-\-K\-E\-Y\-\_\-\-\_\-';\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a558a3b46958bfa577aecc36b4f2c7b2f}
+
+
+Definition at line 158 of file D\-B\-Strings.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a2541bcdbb1f43144be6a70b42199b0d2}{\index{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}!remove\-Post\-Visibility@{remove\-Post\-Visibility}}
+\index{remove\-Post\-Visibility@{remove\-Post\-Visibility}!ballmerpeak::turtlenet::server::DBStrings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}}
+\subsubsection[{remove\-Post\-Visibility}]{\setlength{\rightskip}{0pt plus 5cm}final String ballmerpeak.\-turtlenet.\-server.\-D\-B\-Strings.\-remove\-Post\-Visibility = \char`\"{}D\-E\-L\-E\-T\-E F\-R\-O\-M t\-Post\-Visible\-To W\-H\-E\-R\-E key = '\-\_\-\-\_\-\-K\-E\-Y\-\_\-\-\_\-';\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a2541bcdbb1f43144be6a70b42199b0d2}
+
+
+Definition at line 159 of file D\-B\-Strings.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a7280cd9a150a098b62c0d23a88eeb566}{\index{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}!remove\-User@{remove\-User}}
+\index{remove\-User@{remove\-User}!ballmerpeak::turtlenet::server::DBStrings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}}
+\subsubsection[{remove\-User}]{\setlength{\rightskip}{0pt plus 5cm}final String ballmerpeak.\-turtlenet.\-server.\-D\-B\-Strings.\-remove\-User = \char`\"{}D\-E\-L\-E\-T\-E F\-R\-O\-M t\-User W\-H\-E\-R\-E key = '\-\_\-\-\_\-\-K\-E\-Y\-\_\-\-\_\-';\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a7280cd9a150a098b62c0d23a88eeb566}
+
+
+Definition at line 160 of file D\-B\-Strings.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a1464c2aac4cc5e8112ece2e1840e1976}{\index{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}!update\-P\-D\-A\-T\-Apermission@{update\-P\-D\-A\-T\-Apermission}}
+\index{update\-P\-D\-A\-T\-Apermission@{update\-P\-D\-A\-T\-Apermission}!ballmerpeak::turtlenet::server::DBStrings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}}
+\subsubsection[{update\-P\-D\-A\-T\-Apermission}]{\setlength{\rightskip}{0pt plus 5cm}final String ballmerpeak.\-turtlenet.\-server.\-D\-B\-Strings.\-update\-P\-D\-A\-T\-Apermission = \char`\"{}U\-P\-D\-A\-T\-E t\-Category S\-E\-T {\bf can\-See\-P\-D\-A\-T\-A} = \-\_\-\-\_\-bool\-\_\-\-\_\- W\-H\-E\-R\-E cat\-I\-D = '\-\_\-\-\_\-cat\-I\-D\-\_\-\-\_\-'\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a1464c2aac4cc5e8112ece2e1840e1976}
+
+
+Definition at line 150 of file D\-B\-Strings.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a39d82ab9d47622f3d106772a81171a1d}{\index{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}!update\-Revocation\-Key@{update\-Revocation\-Key}}
+\index{update\-Revocation\-Key@{update\-Revocation\-Key}!ballmerpeak::turtlenet::server::DBStrings@{ballmerpeak\-::turtlenet\-::server\-::\-D\-B\-Strings}}
+\subsubsection[{update\-Revocation\-Key}]{\setlength{\rightskip}{0pt plus 5cm}final String ballmerpeak.\-turtlenet.\-server.\-D\-B\-Strings.\-update\-Revocation\-Key = \char`\"{}U\-P\-D\-A\-T\-E t\-Revocations S\-E\-T key = '\-\_\-\-\_\-\-K\-E\-Y\-\_\-\-\_\-' W\-H\-E\-R\-E sig = '\-\_\-\-\_\-\-S\-I\-G\-\_\-\-\_\-';\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings_a39d82ab9d47622f3d106772a81171a1d}
+
+
+Definition at line 136 of file D\-B\-Strings.\-java.
+
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+src/ballmerpeak/turtlenet/server/\hyperlink{DBStrings_8java}{D\-B\-Strings.\-java}\end{DoxyCompactItemize}

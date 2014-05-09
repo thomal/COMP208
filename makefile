@@ -23,7 +23,7 @@ else
 	GWTPATH="SET YO GODDAMN PATH"
 endif
 
-all : clean web rserver config
+all : clean web rserver config doc pdf manual
 	@echo ""
 	@echo "              **************************"
 	@echo "              successfully built project"
@@ -95,6 +95,9 @@ clean : config
 	rm -rf web_interface/db
 	rm -rf data
 	rm -rf testfile
+	make -C doc/latex clean
+	make -C user_manual clean
+	make -C writeup clean
 	@echo "              *******"
 	@echo "              Cleaned"
 	@echo "              *******"
@@ -119,3 +122,13 @@ run_headlessclient : config
 config:
 	@echo "GWTPath: $(GWTPATH)"
 	@echo "Classpath: $(CLASSPATH)"
+
+doc:
+	doxygen doxyfile
+	make -C doc/latex
+
+pdf:
+	make -C writeup
+
+manual:
+	make -C user_manual
