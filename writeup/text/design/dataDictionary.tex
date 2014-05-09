@@ -1,6 +1,6 @@
 Entities from the system database
 \begin{center}
-    \begin{tabular}{| l | l | l | l |}
+    \begin{tabular}{| l | l | l | l | l |}
     \hline
     Entity Name      & Description                                                                                              & Aliases                             & Occurrence                                     \\ \hline
     User             & A person who uses the program                                                                            & Friend, contact, another user       & A user can have contacts, posts, comments, events, convos, likes, or found in a category                                              \\ \hline
@@ -22,7 +22,7 @@ Entities from the system database
 
 Attributes
 \begin{center}
-    \begin{tabular}{| l | l | l | l |}
+    \begin{tabular}{| l | l | l | l | l |}
     \hline
     Attribute name         & Description                             & Aliases             & Found in entity            & Occurrence          \\ \hline
 
@@ -59,13 +59,13 @@ Attributes
 
     sig          & Globally unique primary key               & signature         & event & Signature is generated on every event created \\ \hline
     startTime    & The start time of the event               & start, time       & event & Events have a start time otherwise not stated by user \\ \hline           
-    endTime      & The end time of the event                 & end, time         & event & Events have a end time otherwise not stated by user
+    endTime      & The end time of the event                 & end, time         & event & Events have a end time otherwise not stated by user\\ \hline
     creatorKey   & The public key of the owner of the event  & public key        & event & Every event has a creator key \\ \hline
     accepted     & Users who accepted the invitation         & users             & event & When users accept the event invitation, it will be listed here \\ \hline
     name 	     & The name of the event                     & Title, event name & event & Every event has a name \\ \hline
     creationTime & The time when event is created            & creation time     & event & Every event has a creation time \\ \hline
 
-    pk       & Unique identifier for like                      & primary key     & like & Every like has a primary key \\ \hline
+    pk       & Unique identifier for like                      & primarfy key     & like & Every like has a primary key \\ \hline
     likerKey & The public key of the person who likes the post & public key      & like & Some posts have likes \\ \hline
     parent   & The post of which the user has liked            & post, wall post & like & Every like has a parent attribute \\ \hline
     \hline 
