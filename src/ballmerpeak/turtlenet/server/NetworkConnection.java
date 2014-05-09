@@ -9,6 +9,9 @@ import java.net.*;
 import java.util.concurrent.Semaphore;
 
 public class NetworkConnection implements Runnable {
+    /** Construct a network connection that connects to the given URL.
+     * \param serverurl The URl to connect to.
+     */
     public NetworkConnection (String serverurl) {
         url         = serverurl;
         messages    = new Vector<String>();
@@ -31,6 +34,9 @@ public class NetworkConnection implements Runnable {
         }
     }
     
+    /** Used for constructing a network thread.
+     * Fetches new messages every second. Thread safe.
+     */
     public void run () {
         Logger.write("INFO", "NetCon","NetworkConnection started");
         while (connected) {
@@ -43,6 +49,10 @@ public class NetworkConnection implements Runnable {
         }
     }
     
+    /** Shutdown the network connection.
+     * Saves the last time at which new messages were fetched to disk.
+     * Thread safe.
+     */
     public void close () {
         Logger.write("INFO", "NetCon","close()");
         connected = false;
@@ -62,7 +72,10 @@ public class NetworkConnection implements Runnable {
         }
     }
     
-    //returns true if a message is available
+    /** Checks for new messages.
+     * Thread safe.
+     * \return returns true if a message is available, false otherwise
+     */
     public Boolean hasMessage () {
         try {
             messageLock.acquire();
@@ -75,7 +88,11 @@ public class NetworkConnection implements Runnable {
         return false;
     }
     
-    //get the next message in the queue, and remove it from the queue
+    /** Get a message.
+     * Get the next message in the queue, and remove it from the queue.
+     * Thread safe.
+     * \return The oldest message in the stack of messages recieved.
+     */
     public String getMessage() {
         try {
             messageLock.acquire();
@@ -89,6 +106,14 @@ public class NetworkConnection implements Runnable {
         return new Message("NULL", "", 0, "").toString();
     }
     
+    /** Get the server time.
+     * Millisecond timestamps can, and have, been used to identify users. We
+     * therefore recomend always using server time. (Obviously other methods
+     * are in place to hide true network latency.)
+     * Thread safe.
+     * \return The number of milliseconds since midnight january first 1970,
+     *  according to the server.
+     */
     public long getTime () {
         Vector<String> time = serverCmd("t");
         
@@ -100,6 +125,12 @@ public class NetworkConnection implements Runnable {
         return 0;
     }
     
+    /** Post a Message object over the network.
+     * Only viewable by recipitent.
+     * Thread safe.
+     * \param recipient The person you are sending the message to.
+     * \return returns true on success, false otherwise.
+     */
     public boolean postMessage (Message msg, PublicKey recipient) {
             String ciphertext = Crypto.encrypt(msg, recipient, this);
             if (!serverCmd("s " + ciphertext).get(0).equals("s")) {
@@ -111,7 +142,14 @@ public class NetworkConnection implements Runnable {
             }
     }
     
-    //The only time unencrypted data is sent
+    /** Claims a username on the network.
+     * Usernames must be unique, this is enforced by the server.
+     * Thread safe.
+     * \warning Extant usernames are considered public information. This is the
+     * only plaintext sent in the system.
+     * \param name The name to claim.
+     * \return true if succes, false otherwsie.
+     */
     public Boolean claimName (String name) {
         try {
             Message claim = new Message("CLAIM", name,
@@ -133,6 +171,10 @@ public class NetworkConnection implements Runnable {
         return false;
     }
     
+    /** Download new messages.
+     * Automatically called every second by run().
+     * Thread safe.
+     */
     public void downloadNewMessages () {
         Vector<String> msgs = serverCmd("get " + lastRead);
         lastRead = getTime();
@@ -150,7 +192,11 @@ public class NetworkConnection implements Runnable {
         }
     }
     
-    //send text to the server, recieve its response
+    /** Send a command to the server.
+     * \param cmd The text to send to the server.
+     * \return The servers response, one string per line, element 0 is the
+     * topmost (first) line sent by the server.
+     */
     private Vector<String> serverCmd(String cmd) {
         Socket s;
         BufferedReader in;
@@ -215,7 +261,7 @@ public class NetworkConnection implements Runnable {
     }
     
     private String url;
-    private final int port = 31415;
+    private final int port = 31415; //!< Pi is awesome
     private Vector<String> messages;
     
     private long lastRead;
