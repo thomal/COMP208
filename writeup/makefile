@@ -1,5 +1,5 @@
 pdf :
-	make -C .. doc
+	make -C ../doc/latex
 	cp ../doc/latex/refman.pdf refman.pdf
 	make -C ../user_manual
 	cp ../user_manual/manual.pdf manual.pdf
