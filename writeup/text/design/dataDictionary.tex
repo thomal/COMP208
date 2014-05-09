@@ -1,8 +1,5 @@
-\todo{these tables are WAY to wide}
-
-Entities from the system database
-\begin{center}
-    \begin{tabular}{| l | l | l | l | l |}
+\begin{landscape}
+    \begin{tabular}{| p{2cm} | p{4cm} | p{5cm} | p{7cm} | p{12cm} |}
     \hline
     Entity Name      & Description                                                                                              & Aliases                             & Occurrence                                     \\ \hline
     User             & A person who uses the program                                                                            & Friend, contact, another user       & A user can have contacts, posts, comments, events, convos, likes, or found in a category                                              \\ \hline
@@ -14,17 +11,20 @@ Entities from the system database
     Post visible to  & Posts which are visible to a certain user  & viewable post                             & Some posts are made viewable to certain users         \\ \hline
     Convo            & A term for when two users or more talks to each other privately                        & Conversation, chat, private message & A user can initiate or be added into a convo  \\ \hline
     Convo keys       & Public keys of those who are in the conversation                                       & public key                        & Conversations may have users in it       \\ \hline
+    \hline
+    \end{tabular}
+    
+    \begin{tabular}{| p{2cm} | p{4cm} | p{5cm} | p{7cm} | p{12cm} |}
+    \hline
+    Entity Name      & Description                                                                                              & Aliases                             & Occurrence                                     \\ \hline
     Convo messages   & Messages which are sent within the conversation                                        & messages, chat                              &  Conversations have messages       \\ \hline
     Comment          & A term for text which is written directly for a specific post or comment which then displays on the wall &                                     & Comment appears on posts and parent comments  \\ \hline 
     Event            & A post that describes an activity, time and place                                                        &                                     & User can post events and invite users into it \\ \hline
     Like             & A response when someone finds a post favourable                                                          &                                     & Posts have likes                              \\ \hline
     \hline
     \end{tabular}
-\end{center}
 
-Attributes
-\begin{center}
-    \begin{tabular}{| l | l | l | l | l |}
+    \begin{tabular}{| p{2cm} | p{4cm} | p{3cm} | p{3cm} | p{6cm} |}
     \hline
     Attribute name         & Description                             & Aliases             & Found in entity            & Occurrence          \\ \hline
 
@@ -42,7 +42,12 @@ Attributes
     gender       & A term to suggest female or male                   & sex            & user   & Every user has a gender\\ \hline
     birthday     & Date of birth 							          & DOB, birthdate & user   & Every user has a date of birth \\ \hline
     sig          & Globally unique primary key & signature & user & Every user has a sig \\ \hline
-
+    \hline 
+    \end{tabular}
+    
+        \begin{tabular}{| p{2cm} | p{4cm} | p{3cm} | p{3cm} | p{6cm} |}
+    \hline
+    Attribute name         & Description                             & Aliases             & Found in entity            & Occurrence          \\ \hline
     msgText 	 & Written message in the comment      & message, text      & Comment    & Every comment needs to have a message \\ \hline
     senderKey  	 & Owner's public key of the comment   & public key         & Comment    & Every comment has a sender key \\ \hline
     parent		 & The parent comment                  & comment, parent    & Comment    & Comment can be commented on \\ \hline
@@ -58,7 +63,12 @@ Attributes
     sendersKey   & Refers to the owner of the message & public key, user & convo messages & Every message has a sender key \\ \hline
     msgText      & The content of the message         & text             & convo messages & Every message has a content in it \\ \hline
     time         & Time of when the message is sent   & creation time    & convo messages & Every message has a time when sent \\ \hline
+    \hline 
+    \end{tabular}
 
+    \begin{tabular}{| p{2cm} | p{4cm} | p{3cm} | p{3cm} | p{6cm} |}
+    \hline
+    Attribute name         & Description                             & Aliases             & Found in entity            & Occurrence          \\ \hline
     sig          & Globally unique primary key               & signature         & event & Signature is generated on every event created \\ \hline
     startTime    & The start time of the event               & start, time       & event & Events have a start time otherwise not stated by user \\ \hline           
     endTime      & The end time of the event                 & end, time         & event & Events have a end time otherwise not stated by user\\ \hline
@@ -72,6 +82,4 @@ Attributes
     parent   & The post of which the user has liked            & post, wall post & like & Every like has a parent attribute \\ \hline
     \hline 
     \end{tabular}
-\end{center}
-
-
+\end{landscape}

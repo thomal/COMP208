@@ -26,7 +26,7 @@ clean :
 	rm -f requirementsONLY.bbl
 	rm -f requirementsONLY.blg
 	rm -f requirementsONLY-blx.bib
-	rm manual.pdf
-	rm refman.pdf
+	rm -f manual.pdf
+	rm -f refman.pdf
 	make -C ../user_manual clean
 	make -C ../doc/latex clean

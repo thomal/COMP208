@@ -244,7 +244,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;                    visibleTo.add(currentPostVisibleTo.getString(<span class="stringliteral">&quot;key&quot;</span>) );</div>
 <div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;</div>
 <div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;                <span class="keywordflow">if</span>(currentPost.next()) {</div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;                    <a class="code" href="classballmerpeak_1_1turtlenet_1_1shared_1_1Message.html">Message</a> m = <span class="keyword">new</span> <a class="code" href="classballmerpeak_1_1turtlenet_1_1server_1_1MessageFactory.html">MessageFactory</a>().newPOST(currentPost.getString(<span class="stringliteral">&quot;msgText&quot;</span>), currentPost.getString(<span class="stringliteral">&quot;recieverKey&quot;</span>), (visibleTo.toArray(<span class="keyword">new</span> String[0])) );</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;                    <a class="code" href="classballmerpeak_1_1turtlenet_1_1shared_1_1Message.html">Message</a> m = <span class="keyword">new</span> <a class="code" href="classballmerpeak_1_1turtlenet_1_1server_1_1MessageFactory.html">MessageFactory</a>().<a class="code" href="classballmerpeak_1_1turtlenet_1_1server_1_1MessageFactory.html#a5e92918871b2aa9a8263e70c0d73e51c" title="Create a message that adds a post to an wall.">newPOST</a>(currentPost.getString(<span class="stringliteral">&quot;msgText&quot;</span>), currentPost.getString(<span class="stringliteral">&quot;recieverKey&quot;</span>), (visibleTo.toArray(<span class="keyword">new</span> String[0])) );</div>
 <div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;                    m.timestamp = Long.parseLong(currentPost.getString(<span class="stringliteral">&quot;time&quot;</span>));</div>
 <div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;                    m.signature = currentPost.getString(<span class="stringliteral">&quot;sig&quot;</span>);</div>
 <div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;                    m.command = <span class="stringliteral">&quot;POST&quot;</span>;</div>
@@ -279,7 +279,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;        <span class="keywordflow">try</span> {</div>
 <div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;            ResultSet commentSet = <a class="code" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#a4401c37a89ca60d2e6b926b9930446dc" title="Executes the given SQL query, returns the results.">query</a>(<a class="code" href="classballmerpeak_1_1turtlenet_1_1server_1_1DBStrings.html">DBStrings</a>.getComments.replace(<span class="stringliteral">&quot;__PARENT__&quot;</span>, sig));</div>
 <div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;            <span class="keywordflow">while</span> (commentSet.next()) {</div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;                <a class="code" href="classballmerpeak_1_1turtlenet_1_1shared_1_1Message.html">Message</a> cmnt = <span class="keyword">new</span> <a class="code" href="classballmerpeak_1_1turtlenet_1_1server_1_1MessageFactory.html">MessageFactory</a>().newCMNT(sig, commentSet.getString(<span class="stringliteral">&quot;msgText&quot;</span>));</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;                <a class="code" href="classballmerpeak_1_1turtlenet_1_1shared_1_1Message.html">Message</a> cmnt = <span class="keyword">new</span> <a class="code" href="classballmerpeak_1_1turtlenet_1_1server_1_1MessageFactory.html">MessageFactory</a>().<a class="code" href="classballmerpeak_1_1turtlenet_1_1server_1_1MessageFactory.html#a82da74dad414bf54a6477d26e33ef2e0" title="Create a message that adds a comment to a comment or post.">newCMNT</a>(sig, commentSet.getString(<span class="stringliteral">&quot;msgText&quot;</span>));</div>
 <div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;                cmnt.timestamp = Long.parseLong(commentSet.getString(<span class="stringliteral">&quot;creationTime&quot;</span>));</div>
 <div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;                cmnt.signature = commentSet.getString(<span class="stringliteral">&quot;sig&quot;</span>);</div>
 <div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;                comments.add(cmnt);</div>
@@ -988,7 +988,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri May 9 2014 07:31:27 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri May 9 2014 08:15:28 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>
