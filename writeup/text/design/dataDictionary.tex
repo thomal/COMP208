@@ -1,99 +1,75 @@
+Entities from the system database
+\begin{center}
+    \begin{tabular}{| l | l | l | l |}
+    \hline
+    Entity Name      & Description                                                                                              & Aliases                             & Occurrence                                     \\ \hline
+    User             & A person who uses the program                                                                            & Friend, contact, another user       & A user can have contacts, posts, comments, events, convos, likes, or found in a category                                              \\ \hline
+    Category         & A type or a group of selected users which the main user classifies his contacts                          & Group                               & Some users may belong in a category           \\ \hline
+   '' Category members        &                      &                               &            \\ \hline
+    Claim            & When a user gets another user's public key, the key is claimed.                                          & Retrieving, getting                 & A user can have many claims                   \\ \hline
+    Revocations      & A term for when the user marks a contact as malicious and blocks it                                      & Block, mark                         & A user can revoke many users                  \\ \hline
+    Post             & A set of words that has been written by user which displays on the wall when submitted                   & Wall post                           & Posts are displayed onto walls when submitted \\ \hline
+   '' Post visible to         &                          &                           &         \\ \hline
+    Convo            & A term for when two users or more talks to each other privately                                          & Conversation, chat, private message & A user can initiate or be added into a convo  \\ \hline
+   '' Convo keys        &                          &                                &         \\ \hline
+   '' Convo messages        &                          &                                &         \\ \hline
+    Comment          & A term for text which is written directly for a specific post or comment which then displays on the wall &                                     & Comment appears on posts and parent comments  \\ \hline 
+    Event            & A post that describes an activity, time and place                                                        &                                     & User can post events and invite users into it \\ \hline
+    Like             & A response when someone finds a post favourable                                                          &                                     & Posts have likes                              \\ \hline
+    \hline
+    \end{tabular}
+\end{center}
 
-\begin{tabular}{lllll}
+Attributes
+\begin{center}
+    \begin{tabular}{| l | l | l | l |}
+    \hline
+    Attribute name         & Description                             & Aliases             & Found in entity            & Occurrence          \\ \hline
 
-\toprule
+    convoID 	 & Uniquely identifies conversations & primary key & convo & Every convo has an convo ID     \\ \hline
+    timeCreated  & Time the convo is initiated       &             & convo & Every convo has a creation time \\ \hline
+
+    pk 			 & Unique key identifier			       & primary key, key & convo keys       & Uniquely identifies the row                   \\ \hline
+    convoID		 & Unique key identifier for conversations & primary key      & convo keys       & Every convo keys has a convo ID               \\ \hline
+    key          & User's public key 					   & public key       & convo keys, user & Key is shown when user is in the conversation \\ \hline
+
+    username     & A human readable identifier for a user             & 	           & user   & Every user has a username \\ \hline
+    knowName     & A boolean figure to see if user knows the contact  & know his name  & user   & If user knows the contact, value is 1, if not 0  \\ \hline
+    email        & User's email	                                      &                & user   & Every user has an email \\ \hline
+    name         & User's real name						              & name           & user   & Every user has a name \\ \hline
+    gender       & A term to suggest female or male                   & sex            & user   & Every user has a gender\\ \hline
+    birthday     & Date of birth 							          & DOB, birthdate & user   & Every user has a date of birth \\ \hline
+    sig          & Globally unique primary key & signature & user & Every user has a sig \\ \hline
+
+    msgText 	 & Written message in the comment      & message, text      & Comment    & Every comment needs to have a message \\ \hline
+    senderKey  	 & Owner's public key of the comment   & public key         & Comment    & Every comment has a sender key \\ \hline
+    parent		 & The parent comment                  & comment, parent    & Comment    & Comment can be commented on \\ \hline
+    creationTime & Comment's creation time             & time               & Comment    & Every comment has a creation time \\ \hline
+
+    msgText	     & Text message of the post                 & post message  & post & Every post has a text message \\ \hline
+    time         & Time of the post being created           & creation time & post & Every post has a creation time \\ \hline
+    receiverKey  & Public key of user who receives the post & public key    & post & If post is directed to a user, it is to have a receiver key \\ \hline
+    sendersKey   & Public key of user who creates the post  & public key    & post & Every post has a senders key \\ \hline
     
-    Entity & Attributes & Description & Key & Nulls \\
+    pk           & The unique identifier for convo    & primary key      & convo messages & Every convo messages has its own identity key \\ \hline
+    convoID      & Refers to the convo ID             & convo ID         & convo messages & Every message belongs in a conversation \\ \hline
+    sendersKey   & Refers to the owner of the message & public key, user & convo messages & Every message has a sender key \\ \hline
+    msgText      & The content of the message         & text             & convo messages & Every message has a content in it \\ \hline
+    time         & Time of when the message is sent   & creation time    & convo messages & Every message has a time when sent \\ \hline
 
-\midrule
+    sig          & Globally unique primary key               & signature         & event & Signature is generated on every event created \\ \hline
+    startTime    & The start time of the event               & start, time       & event & Events have a start time otherwise not stated by user \\ \hline           
+    endTime      & The end time of the event                 & end, time         & event & Events have a end time otherwise not stated by user
+    creatorKey   & The public key of the owner of the event  & public key        & event & Every event has a creator key \\ \hline
+    accepted     & Users who accepted the invitation         & users             & event & When users accept the event invitation, it will be listed here \\ \hline
+    name 	     & The name of the event                     & Title, event name & event & Every event has a name \\ \hline
+    creationTime & The time when event is created            & creation time     & event & Every event has a creation time \\ \hline
 
-    'You' & username      & Human-readable identifier         & PK & No  \\
-          & name          & User's first name                 &    & Yes \\
-          & birthday      & User's date of birth              &    & Yes \\
-          & sex           & User's gender                     &    & Yes \\
-          & email         & User's email address              &    & Yes \\
-          & public-key    & Key for distribution              &    & No  \\
+    pk       & Unique identifier for like                      & primary key     & like & Every like has a primary key \\ \hline
+    likerKey & The public key of the person who likes the post & public key      & like & Some posts have likes \\ \hline
+    parent   & The post of which the user has liked            & post, wall post & like & Every like has a parent attribute \\ \hline
+    \hline 
+    \end{tabular}
+\end{center}
 
-\midrule
 
-    User  & user-id       & Numeric identifier                & PK & No  \\
-          & username      & Human-readable identifier         &    & Yes \\ 
-          & name          & User's first name                 &    & Yes \\
-          & birthday      & User's date of birth              &    & Yes \\
-          & sex           & User's gender                     &    & Yes \\
-          & email         & User's email address              &    & Yes \\
-          
-\midrule
-
-  'Is-in' & is-in-id      & Category/user relation identifier & PK & No  \\
-          & category-id   & Category ID used in relation      & FK & No  \\
-          & user-id       & User ID used in relation          & FK & No  \\
-          
-\midrule
-
-Category & category-id & Numeric identifier for category     & PK & No  \\
-         & name        & Human-readable name for category    &    & Yes \\
-
-\midrule
-
-private-message & message-id  & Numeric identifier for the message & PK & No  \\
-                & from        & Sender of the message              & FK & No  \\
-                & to          & Receiver of the message            & FK & No  \\
-                & content     & The content of the message         &    & No  \\
-                & time        & Time of message creation           &    & No  \\
-
-\midrule
-
-      wall-post & wall-id     & Numeric identifier for the wall    & PK & No  \\
-                & from        & Sender of the message              & FK & No  \\
-                & to          & Receiver of the message            & FK & No  \\
-                & perm-To     & User/s that have permission        & FK & No  \\
-                & content     & Data placed upon wall              &    & No  \\
-                & time        & Time of message creation           &    & No  \\
-
-\bottomrule
-
-\end{tabular}
-
-\begin{tabular}{lllll}
-
-\toprule
-    
-    Entity & Attributes & Description & Key & Nulls \\
-
-\midrule
-
-    has-comment & comment-id  & Numeric identifier for the comment & PK & No  \\
-                & post-id     & Numeric identifier for the post    & FK & No  \\
-                & user-id     & Numeric identifier for the user    & FK & No  \\
-                & commentTime & Time the comment was made          &    & No  \\
-
-\midrule
-
-       has-like & like-id     & Numeric identifier for the 'like'  & PK & No  \\
-                & post-id     & Numeric identifier for the post    & FK & No  \\
-                & user-id     & Numeric identifier for the user    & FK & No  \\
-                
-\midrule
-
-         events & event-id    & Numeric identifier for the event   & PK & No  \\
-                & title       & Heading for the event              &    & No  \\
-                & content     & Data placed within the event       &    & No  \\
-                & from        & User that created the event        & FK & No  \\
-                & perm-To     & Users allowed to view the event    & FK & No  \\
-                
-\midrule
-
- friend-request & public-key  & Key from a different user          & PK & No  \\
-                & req-time    & Time the request was sent          &    & No  \\
-                & req-react   & Reaction of the user               &    & No  \\
-                
-\midrule
-
-           log* & log-id      & Numerical identifier of the log*   & PK & No  \\
-                & login-time  & Date the user logged in to server  &    & No  \\
-                & logout-time & Date the user logged out of server &    & No  \\
-                
-\bottomrule
-
-\end{tabular}
