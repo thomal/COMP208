@@ -1,7 +1,7 @@
-\hypertarget{classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Server}{\section{ballmerpeak.\-turtlenet.\-remoteserver.\-Server Class Reference}
+\hypertarget{classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Server}{\subsection{ballmerpeak.\-turtlenet.\-remoteserver.\-Server Class Reference}
 \label{classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Server}\index{ballmerpeak.\-turtlenet.\-remoteserver.\-Server@{ballmerpeak.\-turtlenet.\-remoteserver.\-Server}}
 }
-\subsection*{Static Public Member Functions}
+\subsubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 static void \hyperlink{classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Server_a48f2ebb138b28914f6351e81f84fa02c}{start} (int port)
@@ -10,24 +10,31 @@ static void \hyperlink{classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Server_a
 \item 
 static void \hyperlink{classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Server_a01aebeba4dcef19b48fda4be14b3f433}{main} (String\mbox{[}$\,$\mbox{]} argv)
 \end{DoxyCompactItemize}
-\subsection*{Static Public Attributes}
+\subsubsection*{Static Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
 static String \hyperlink{classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Server_a1e2e63723daf1b2544af8d00be7ba4f0}{shutdown\-Password} = \char`\"{}S\-H\-U\-T\-D\-O\-W\-N 83eea84d472df09f5e64468996fdff0e\char`\"{}
 \end{DoxyCompactItemize}
+\subsubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static Server\-Socket \hyperlink{classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Server_a7c8eb04639b16695b20c36b55d3e1773}{socket}
+\item 
+static boolean \hyperlink{classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Server_abbb43613df0ad76d3bca12b361dc118f}{running} = true
+\end{DoxyCompactItemize}
 
 
-\subsection{Detailed Description}
+\subsubsection{Detailed Description}
 
 
 Definition at line 10 of file Server.\-java.
 
 
 
-\subsection{Member Function Documentation}
+\subsubsection{Member Function Documentation}
 \hypertarget{classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Server_a01aebeba4dcef19b48fda4be14b3f433}{\index{ballmerpeak\-::turtlenet\-::remoteserver\-::\-Server@{ballmerpeak\-::turtlenet\-::remoteserver\-::\-Server}!main@{main}}
 \index{main@{main}!ballmerpeak::turtlenet::remoteserver::Server@{ballmerpeak\-::turtlenet\-::remoteserver\-::\-Server}}
-\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}static void ballmerpeak.\-turtlenet.\-remoteserver.\-Server.\-main (
+\paragraph[{main}]{\setlength{\rightskip}{0pt plus 5cm}static void ballmerpeak.\-turtlenet.\-remoteserver.\-Server.\-main (
 \begin{DoxyParamCaption}
 \item[{String\mbox{[}$\,$\mbox{]}}]{argv}
 \end{DoxyParamCaption}
@@ -38,7 +45,7 @@ Definition at line 47 of file Server.\-java.
 
 \hypertarget{classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Server_a884654078b48154feac526fd94a9efe9}{\index{ballmerpeak\-::turtlenet\-::remoteserver\-::\-Server@{ballmerpeak\-::turtlenet\-::remoteserver\-::\-Server}!shutdown@{shutdown}}
 \index{shutdown@{shutdown}!ballmerpeak::turtlenet::remoteserver::Server@{ballmerpeak\-::turtlenet\-::remoteserver\-::\-Server}}
-\subsubsection[{shutdown}]{\setlength{\rightskip}{0pt plus 5cm}static void ballmerpeak.\-turtlenet.\-remoteserver.\-Server.\-shutdown (
+\paragraph[{shutdown}]{\setlength{\rightskip}{0pt plus 5cm}static void ballmerpeak.\-turtlenet.\-remoteserver.\-Server.\-shutdown (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
@@ -49,7 +56,7 @@ Definition at line 36 of file Server.\-java.
 
 \hypertarget{classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Server_a48f2ebb138b28914f6351e81f84fa02c}{\index{ballmerpeak\-::turtlenet\-::remoteserver\-::\-Server@{ballmerpeak\-::turtlenet\-::remoteserver\-::\-Server}!start@{start}}
 \index{start@{start}!ballmerpeak::turtlenet::remoteserver::Server@{ballmerpeak\-::turtlenet\-::remoteserver\-::\-Server}}
-\subsubsection[{start}]{\setlength{\rightskip}{0pt plus 5cm}static void ballmerpeak.\-turtlenet.\-remoteserver.\-Server.\-start (
+\paragraph[{start}]{\setlength{\rightskip}{0pt plus 5cm}static void ballmerpeak.\-turtlenet.\-remoteserver.\-Server.\-start (
 \begin{DoxyParamCaption}
 \item[{int}]{port}
 \end{DoxyParamCaption}
@@ -60,13 +67,27 @@ Definition at line 16 of file Server.\-java.
 
 
 
-\subsection{Member Data Documentation}
+\subsubsection{Member Data Documentation}
+\hypertarget{classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Server_abbb43613df0ad76d3bca12b361dc118f}{\index{ballmerpeak\-::turtlenet\-::remoteserver\-::\-Server@{ballmerpeak\-::turtlenet\-::remoteserver\-::\-Server}!running@{running}}
+\index{running@{running}!ballmerpeak::turtlenet::remoteserver::Server@{ballmerpeak\-::turtlenet\-::remoteserver\-::\-Server}}
+\paragraph[{running}]{\setlength{\rightskip}{0pt plus 5cm}boolean ballmerpeak.\-turtlenet.\-remoteserver.\-Server.\-running = true\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Server_abbb43613df0ad76d3bca12b361dc118f}
+
+
+Definition at line 14 of file Server.\-java.
+
 \hypertarget{classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Server_a1e2e63723daf1b2544af8d00be7ba4f0}{\index{ballmerpeak\-::turtlenet\-::remoteserver\-::\-Server@{ballmerpeak\-::turtlenet\-::remoteserver\-::\-Server}!shutdown\-Password@{shutdown\-Password}}
 \index{shutdown\-Password@{shutdown\-Password}!ballmerpeak::turtlenet::remoteserver::Server@{ballmerpeak\-::turtlenet\-::remoteserver\-::\-Server}}
-\subsubsection[{shutdown\-Password}]{\setlength{\rightskip}{0pt plus 5cm}String ballmerpeak.\-turtlenet.\-remoteserver.\-Server.\-shutdown\-Password = \char`\"{}S\-H\-U\-T\-D\-O\-W\-N 83eea84d472df09f5e64468996fdff0e\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Server_a1e2e63723daf1b2544af8d00be7ba4f0}
+\paragraph[{shutdown\-Password}]{\setlength{\rightskip}{0pt plus 5cm}String ballmerpeak.\-turtlenet.\-remoteserver.\-Server.\-shutdown\-Password = \char`\"{}S\-H\-U\-T\-D\-O\-W\-N 83eea84d472df09f5e64468996fdff0e\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}}\label{classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Server_a1e2e63723daf1b2544af8d00be7ba4f0}
 
 
 Definition at line 12 of file Server.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Server_a7c8eb04639b16695b20c36b55d3e1773}{\index{ballmerpeak\-::turtlenet\-::remoteserver\-::\-Server@{ballmerpeak\-::turtlenet\-::remoteserver\-::\-Server}!socket@{socket}}
+\index{socket@{socket}!ballmerpeak::turtlenet::remoteserver::Server@{ballmerpeak\-::turtlenet\-::remoteserver\-::\-Server}}
+\paragraph[{socket}]{\setlength{\rightskip}{0pt plus 5cm}Server\-Socket ballmerpeak.\-turtlenet.\-remoteserver.\-Server.\-socket\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{classballmerpeak_1_1turtlenet_1_1remoteserver_1_1Server_a7c8eb04639b16695b20c36b55d3e1773}
+
+
+Definition at line 13 of file Server.\-java.
 
 
 

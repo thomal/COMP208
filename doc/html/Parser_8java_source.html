@@ -103,7 +103,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    </div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        <a class="code" href="classballmerpeak_1_1turtlenet_1_1server_1_1Logger.html">Logger</a>.<a class="code" href="classballmerpeak_1_1turtlenet_1_1server_1_1Logger.html#aa3ebd83be6d967692fae7980eb7b146f">write</a>(<span class="stringliteral">&quot;VERBOSE&quot;</span>, <span class="stringliteral">&quot;PARSE&quot;</span>, <span class="stringliteral">&quot;parsing message&quot;</span>);</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        </div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        escape(msg);</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        <a class="code" href="classballmerpeak_1_1turtlenet_1_1server_1_1Parser.html#a7fbaf78c66fb1ab467c9c66605e3c3e8">escape</a>(msg);</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        </div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        <span class="keywordflow">if</span> (db.<a class="code" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#ab3e267a71350c940b476949722eda0eb">isRevoked</a>(db.<a class="code" href="classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#a890f60c47e11af8823d48689fdeac360">getSignatory</a>(msg)))</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;            <a class="code" href="classballmerpeak_1_1turtlenet_1_1server_1_1Logger.html">Logger</a>.<a class="code" href="classballmerpeak_1_1turtlenet_1_1server_1_1Logger.html#aa3ebd83be6d967692fae7980eb7b146f">write</a>(<span class="stringliteral">&quot;WARNING&quot;</span>, <span class="stringliteral">&quot;PARSE&quot;</span>, <span class="stringliteral">&quot;Revoked key in use, message dropped&quot;</span>);</div>
@@ -146,14 +146,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            <a class="code" href="classballmerpeak_1_1turtlenet_1_1server_1_1Logger.html">Logger</a>.<a class="code" href="classballmerpeak_1_1turtlenet_1_1server_1_1Logger.html#aa3ebd83be6d967692fae7980eb7b146f">write</a>(<span class="stringliteral">&quot;WARNING&quot;</span>, <span class="stringliteral">&quot;PARSE&quot;</span>, <span class="stringliteral">&quot;FPOST is depreciated&quot;</span>);</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    }</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    </div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keywordtype">void</span> escape (<a class="code" href="classballmerpeak_1_1turtlenet_1_1shared_1_1Message.html">Message</a> m) {</div>
+<div class="line"><a name="l00061"></a><span class="lineno"><a class="code" href="classballmerpeak_1_1turtlenet_1_1server_1_1Parser.html#a7fbaf78c66fb1ab467c9c66605e3c3e8">   61</a></span>&#160;    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="classballmerpeak_1_1turtlenet_1_1server_1_1Parser.html#a7fbaf78c66fb1ab467c9c66605e3c3e8">escape</a> (<a class="code" href="classballmerpeak_1_1turtlenet_1_1shared_1_1Message.html">Message</a> m) {</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        m.<a class="code" href="classballmerpeak_1_1turtlenet_1_1shared_1_1Message.html#a88b89de79f9fec571a22623688697de9">content</a> = m.<a class="code" href="classballmerpeak_1_1turtlenet_1_1shared_1_1Message.html#a88b89de79f9fec571a22623688697de9">content</a>.replace(<span class="stringliteral">&quot;&#39;&quot;</span>, <span class="stringliteral">&quot;&#39;&#39;&quot;</span>);</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    }</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri May 9 2014 03:30:36 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri May 9 2014 04:27:53 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>

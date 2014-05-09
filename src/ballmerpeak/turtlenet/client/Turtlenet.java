@@ -9,9 +9,12 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
 @RemoteServiceRelativePath("turtlenet")
 public interface Turtlenet extends RemoteService {
-  String           startTN                 (String password);
-  String           stopTN                  ();
-  String           isFirstTime             (); //GWT requires an object
+  String           startTN                 (String password); //!< Start turtlenet client on the backend.
+  String           stopTN                  ();                //!< Stop turtlenet client on the backend.
+  /** Check if this is the first time Turtlenet has been run.
+   * \return "true" if this is the first time turtlenet has been run, "false" otherwise.
+   */
+  String           isFirstTime             ();
   String           register                (String username, String password);
   
   String           getUsername             (String key);

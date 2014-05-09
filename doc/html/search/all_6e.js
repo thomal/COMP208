@@ -1,7 +1,9 @@
 var searchData=
 [
-  ['networkconnection',['NetworkConnection',['../classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection.html',1,'ballmerpeak::turtlenet::server']]],
+  ['name',['name',['../classballmerpeak_1_1turtlenet_1_1server_1_1Friend.html#a6ca8fa062fdfee5cb31da6408d33fc47',1,'ballmerpeak::turtlenet::server::Friend']]],
+  ['navigation',['navigation',['../classballmerpeak_1_1turtlenet_1_1client_1_1frontend.html#ae632d3d6bfd5ed81da02b4bf53fc9327',1,'ballmerpeak::turtlenet::client::frontend']]],
   ['networkconnection',['NetworkConnection',['../classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection.html#ae7c0317cc0fa85bc885799436affb5e6',1,'ballmerpeak::turtlenet::server::NetworkConnection']]],
+  ['networkconnection',['NetworkConnection',['../classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection.html',1,'ballmerpeak::turtlenet::server']]],
   ['networkconnection_2ejava',['NetworkConnection.java',['../NetworkConnection_8java.html',1,'']]],
   ['networkthread',['networkThread',['../classballmerpeak_1_1turtlenet_1_1server_1_1TNClient.html#a30362e2dd295df5ecaadc7fed3374ea0',1,'ballmerpeak::turtlenet::server::TNClient']]],
   ['newaddcat',['newADDCAT',['../classballmerpeak_1_1turtlenet_1_1server_1_1MessageFactory.html#ac31e65610f9ec3966639894fb47d7afc',1,'ballmerpeak::turtlenet::server::MessageFactory']]],
@@ -10,7 +12,10 @@ var searchData=
   ['newchat',['newCHAT',['../classballmerpeak_1_1turtlenet_1_1server_1_1MessageFactory.html#abe8168e826ccb131414c28811af014ec',1,'ballmerpeak.turtlenet.server.MessageFactory.newCHAT(PublicKey[] keys)'],['../classballmerpeak_1_1turtlenet_1_1server_1_1MessageFactory.html#a0af47a494cce68d272366b9c5bf486bb',1,'ballmerpeak.turtlenet.server.MessageFactory.newCHAT(String[] keys)']]],
   ['newclaim',['newCLAIM',['../classballmerpeak_1_1turtlenet_1_1server_1_1MessageFactory.html#a96cb2d8fa129ec51603a53f0bffd821d',1,'ballmerpeak::turtlenet::server::MessageFactory']]],
   ['newcmnt',['newCMNT',['../classballmerpeak_1_1turtlenet_1_1server_1_1MessageFactory.html#a82da74dad414bf54a6477d26e33ef2e0',1,'ballmerpeak::turtlenet::server::MessageFactory']]],
+  ['newconversation',['newConversation',['../classballmerpeak_1_1turtlenet_1_1client_1_1frontend.html#aa36f8f33cf634edf044aa9d31790ac67',1,'ballmerpeak::turtlenet::client::frontend']]],
+  ['newconvoinput',['newConvoInput',['../classballmerpeak_1_1turtlenet_1_1client_1_1frontend.html#a3a97955a4caeb2d7eec937a55e0f1505',1,'ballmerpeak::turtlenet::client::frontend']]],
   ['newevnt',['newEVNT',['../classballmerpeak_1_1turtlenet_1_1server_1_1MessageFactory.html#aec8e8561f1583c781f5bb11719def583',1,'ballmerpeak::turtlenet::server::MessageFactory']]],
+  ['newgroup',['newGroup',['../classballmerpeak_1_1turtlenet_1_1client_1_1frontend.html#a931cf38d0a5bb38b3d15b7c04eaaa6b7',1,'ballmerpeak::turtlenet::client::frontend']]],
   ['newlike',['newLIKE',['../classballmerpeak_1_1turtlenet_1_1server_1_1MessageFactory.html#a38bba7934fa384ff258714a9506029f8',1,'ballmerpeak::turtlenet::server::MessageFactory']]],
   ['newmessage',['newMessage',['../classballmerpeak_1_1turtlenet_1_1server_1_1MessageFactory.html#a7002eaa445dc787d9f48c522e3c4d38f',1,'ballmerpeak::turtlenet::server::MessageFactory']]],
   ['newpchat',['newPCHAT',['../classballmerpeak_1_1turtlenet_1_1server_1_1MessageFactory.html#a8b3f97caecf16fb1438477a781cfefc1',1,'ballmerpeak::turtlenet::server::MessageFactory']]],

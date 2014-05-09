@@ -1,26 +1,243 @@
-\hypertarget{classballmerpeak_1_1turtlenet_1_1client_1_1frontend}{\section{ballmerpeak.\-turtlenet.\-client.\-frontend Class Reference}
+\hypertarget{classballmerpeak_1_1turtlenet_1_1client_1_1frontend}{\subsection{ballmerpeak.\-turtlenet.\-client.\-frontend Class Reference}
 \label{classballmerpeak_1_1turtlenet_1_1client_1_1frontend}\index{ballmerpeak.\-turtlenet.\-client.\-frontend@{ballmerpeak.\-turtlenet.\-client.\-frontend}}
 }
-\subsection*{Public Member Functions}
+\subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 void \hyperlink{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_adce2a675f44267e0ab469bcb30095a39}{on\-Module\-Load} ()
 \item 
 void \hyperlink{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_a32d8529c726125bae2ac35635712d067}{on\-Click} (Widget sender)
 \end{DoxyCompactItemize}
+\subsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_a0e5a972d2f4619b2ebc2257ae1ca1288}{login} ()
+\item 
+void \hyperlink{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_ae632d3d6bfd5ed81da02b4bf53fc9327}{navigation} ()
+\item 
+void \hyperlink{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_a2fe4471c89ba970c517388d212b617d6}{friends\-List} (final String current\-Group\-I\-D)
+\item 
+void \hyperlink{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_a87b09347320292a852b37e97c01b2ea2}{conversation\-List} ()
+\item 
+void \hyperlink{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_aa0f7dea95f68603b6c8e17c8b97733c7}{my\-Details} ()
+\item 
+void \hyperlink{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_ace0e354862cbae6e9f10d1c4be6db11d}{my\-Details\-Permissions} ()
+\item 
+void \hyperlink{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_a8686e8f6959324ea74e98cf8a89eeca0}{friends\-Details} (final String friends\-Details\-Key, Flow\-Panel \hyperlink{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_aabfe3b109c5a81d51ede885f008d7530}{wall\-Panel}, Button user\-Details)
+\item 
+void \hyperlink{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_a8911e15af92aa31b90cdc2ec0cd78a3a}{wall} (final String key, final boolean refresh)
+\item 
+void \hyperlink{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_a936e2b44e7f19a58586752ae5317bdfd}{comments} (final String post\-I\-D, final String wall\-Key, final boolean refresh, Flow\-Panel post\-Panel)
+\item 
+void \hyperlink{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_aa36f8f33cf634edf044aa9d31790ac67}{new\-Conversation} ()
+\item 
+void \hyperlink{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_a27cabae704f2e4164bfcb5b18184144d}{conversation} (final String conversation\-I\-D, final boolean refresh)
+\item 
+void \hyperlink{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_a931cf38d0a5bb38b3d15b7c04eaaa6b7}{new\-Group} ()
+\item 
+void \hyperlink{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_a8017892ef2b857bdac093a24ddb5dfa3}{edit\-Group} (final String group\-I\-D)
+\item 
+void \hyperlink{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_a0862ca49f2b011650c302787602c1395}{add\-Friend} ()
+\end{DoxyCompactItemize}
+\subsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+final \hyperlink{interfaceballmerpeak_1_1turtlenet_1_1client_1_1TurtlenetAsync}{Turtlenet\-Async} \hyperlink{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_aef6ce8b50c96dc1af6177f057c4b717f}{turtlenet} = G\-W\-T.\-create(Turtlenet.\-class)
+\item 
+String \hyperlink{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_a7d6f7af35b97248a4c87681b56b247b6}{location} = new String(\char`\"{}\char`\"{})
+\item 
+String \hyperlink{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_a280a54ef9864d0adbd9a44e32b7a4775}{refresh\-I\-D} = new String(\char`\"{}\char`\"{})
+\item 
+Flex\-Table \hyperlink{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_a8991d2d9a0c72e08986aa710d0e02278}{login\-Panel} = new Flex\-Table()
+\item 
+Text\-Box \hyperlink{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_a342dab1f72f4cf1660ec756f4180b331}{friends\-List\-Panel\-\_\-my\-Key\-Text\-Box}
+\item 
+Horizontal\-Panel \hyperlink{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_a7ec1c30337c5278194425a4fa458996b}{wall\-Control\-Panel} = new Horizontal\-Panel()
+\item 
+Text\-Area \hyperlink{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_af105d0e6450c2caedeaee033e8f5d444}{post\-Text}
+\item 
+Flow\-Panel \hyperlink{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_aabfe3b109c5a81d51ede885f008d7530}{wall\-Panel} = new Flow\-Panel()
+\item 
+Button \hyperlink{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_ae8e9ee35fb5626cbcdffeb1217d9b71e}{wall\-Control\-Panel\-User\-Details\-Button}
+\item 
+Anchor \hyperlink{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_a1dc4e0c879ec185e39c9df33f96b99d6}{link\-To\-Comments}
+\item 
+int \hyperlink{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_acabb927a2716d2523f33d8055a608a7c}{comment\-Count}
+\item 
+Text\-Area \hyperlink{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_a0135fa512db0b8a94e65353bad182e11}{thread\-Reply\-Contents}
+\item 
+String \hyperlink{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_a617fe60a3b99c4f624cbc16a359d5726}{key\-Of\-Wall\-Comments\-Are\-On} = new String(\char`\"{}\char`\"{})
+\item 
+Text\-Area \hyperlink{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_a3a97955a4caeb2d7eec937a55e0f1505}{new\-Convo\-Input} = new Text\-Area()
+\item 
+String \hyperlink{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_a0fec8e94df0b2bcc31292da80030c92f}{convo\-Panel\-Setup\-\_\-convosig}
+\item 
+Text\-Area \hyperlink{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_a5f2d5e5cab0462b9bd2b2c05d412606d}{convo\-Panel\-Setup\-\_\-input} = new Text\-Area()
+\item 
+Flow\-Panel \hyperlink{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_a98647f4c02d7c216346e1b4dd3ca499d}{conversation\-Panel}
+\end{DoxyCompactItemize}
 
 
-\subsection{Detailed Description}
+\subsubsection{Detailed Description}
 
 
 Definition at line 21 of file frontend.\-java.
 
 
 
-\subsection{Member Function Documentation}
+\subsubsection{Member Function Documentation}
+\hypertarget{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_a0862ca49f2b011650c302787602c1395}{\index{ballmerpeak\-::turtlenet\-::client\-::frontend@{ballmerpeak\-::turtlenet\-::client\-::frontend}!add\-Friend@{add\-Friend}}
+\index{add\-Friend@{add\-Friend}!ballmerpeak::turtlenet::client::frontend@{ballmerpeak\-::turtlenet\-::client\-::frontend}}
+\paragraph[{add\-Friend}]{\setlength{\rightskip}{0pt plus 5cm}void ballmerpeak.\-turtlenet.\-client.\-frontend.\-add\-Friend (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_a0862ca49f2b011650c302787602c1395}
+
+
+Definition at line 1730 of file frontend.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_a936e2b44e7f19a58586752ae5317bdfd}{\index{ballmerpeak\-::turtlenet\-::client\-::frontend@{ballmerpeak\-::turtlenet\-::client\-::frontend}!comments@{comments}}
+\index{comments@{comments}!ballmerpeak::turtlenet::client::frontend@{ballmerpeak\-::turtlenet\-::client\-::frontend}}
+\paragraph[{comments}]{\setlength{\rightskip}{0pt plus 5cm}void ballmerpeak.\-turtlenet.\-client.\-frontend.\-comments (
+\begin{DoxyParamCaption}
+\item[{final String}]{post\-I\-D, }
+\item[{final String}]{wall\-Key, }
+\item[{final boolean}]{refresh, }
+\item[{Flow\-Panel}]{post\-Panel}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_a936e2b44e7f19a58586752ae5317bdfd}
+
+
+Definition at line 1194 of file frontend.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_a27cabae704f2e4164bfcb5b18184144d}{\index{ballmerpeak\-::turtlenet\-::client\-::frontend@{ballmerpeak\-::turtlenet\-::client\-::frontend}!conversation@{conversation}}
+\index{conversation@{conversation}!ballmerpeak::turtlenet::client::frontend@{ballmerpeak\-::turtlenet\-::client\-::frontend}}
+\paragraph[{conversation}]{\setlength{\rightskip}{0pt plus 5cm}void ballmerpeak.\-turtlenet.\-client.\-frontend.\-conversation (
+\begin{DoxyParamCaption}
+\item[{final String}]{conversation\-I\-D, }
+\item[{final boolean}]{refresh}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_a27cabae704f2e4164bfcb5b18184144d}
+
+
+Definition at line 1470 of file frontend.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_a87b09347320292a852b37e97c01b2ea2}{\index{ballmerpeak\-::turtlenet\-::client\-::frontend@{ballmerpeak\-::turtlenet\-::client\-::frontend}!conversation\-List@{conversation\-List}}
+\index{conversation\-List@{conversation\-List}!ballmerpeak::turtlenet::client::frontend@{ballmerpeak\-::turtlenet\-::client\-::frontend}}
+\paragraph[{conversation\-List}]{\setlength{\rightskip}{0pt plus 5cm}void ballmerpeak.\-turtlenet.\-client.\-frontend.\-conversation\-List (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_a87b09347320292a852b37e97c01b2ea2}
+
+
+Definition at line 451 of file frontend.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_a8017892ef2b857bdac093a24ddb5dfa3}{\index{ballmerpeak\-::turtlenet\-::client\-::frontend@{ballmerpeak\-::turtlenet\-::client\-::frontend}!edit\-Group@{edit\-Group}}
+\index{edit\-Group@{edit\-Group}!ballmerpeak::turtlenet::client::frontend@{ballmerpeak\-::turtlenet\-::client\-::frontend}}
+\paragraph[{edit\-Group}]{\setlength{\rightskip}{0pt plus 5cm}void ballmerpeak.\-turtlenet.\-client.\-frontend.\-edit\-Group (
+\begin{DoxyParamCaption}
+\item[{final String}]{group\-I\-D}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_a8017892ef2b857bdac093a24ddb5dfa3}
+
+
+Definition at line 1641 of file frontend.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_a8686e8f6959324ea74e98cf8a89eeca0}{\index{ballmerpeak\-::turtlenet\-::client\-::frontend@{ballmerpeak\-::turtlenet\-::client\-::frontend}!friends\-Details@{friends\-Details}}
+\index{friends\-Details@{friends\-Details}!ballmerpeak::turtlenet::client::frontend@{ballmerpeak\-::turtlenet\-::client\-::frontend}}
+\paragraph[{friends\-Details}]{\setlength{\rightskip}{0pt plus 5cm}void ballmerpeak.\-turtlenet.\-client.\-frontend.\-friends\-Details (
+\begin{DoxyParamCaption}
+\item[{final String}]{friends\-Details\-Key, }
+\item[{Flow\-Panel}]{wall\-Panel, }
+\item[{Button}]{user\-Details}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_a8686e8f6959324ea74e98cf8a89eeca0}
+
+
+Definition at line 807 of file frontend.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_a2fe4471c89ba970c517388d212b617d6}{\index{ballmerpeak\-::turtlenet\-::client\-::frontend@{ballmerpeak\-::turtlenet\-::client\-::frontend}!friends\-List@{friends\-List}}
+\index{friends\-List@{friends\-List}!ballmerpeak::turtlenet::client::frontend@{ballmerpeak\-::turtlenet\-::client\-::frontend}}
+\paragraph[{friends\-List}]{\setlength{\rightskip}{0pt plus 5cm}void ballmerpeak.\-turtlenet.\-client.\-frontend.\-friends\-List (
+\begin{DoxyParamCaption}
+\item[{final String}]{current\-Group\-I\-D}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_a2fe4471c89ba970c517388d212b617d6}
+
+
+Definition at line 309 of file frontend.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_a0e5a972d2f4619b2ebc2257ae1ca1288}{\index{ballmerpeak\-::turtlenet\-::client\-::frontend@{ballmerpeak\-::turtlenet\-::client\-::frontend}!login@{login}}
+\index{login@{login}!ballmerpeak::turtlenet::client::frontend@{ballmerpeak\-::turtlenet\-::client\-::frontend}}
+\paragraph[{login}]{\setlength{\rightskip}{0pt plus 5cm}void ballmerpeak.\-turtlenet.\-client.\-frontend.\-login (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_a0e5a972d2f4619b2ebc2257ae1ca1288}
+
+
+Definition at line 54 of file frontend.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_aa0f7dea95f68603b6c8e17c8b97733c7}{\index{ballmerpeak\-::turtlenet\-::client\-::frontend@{ballmerpeak\-::turtlenet\-::client\-::frontend}!my\-Details@{my\-Details}}
+\index{my\-Details@{my\-Details}!ballmerpeak::turtlenet::client::frontend@{ballmerpeak\-::turtlenet\-::client\-::frontend}}
+\paragraph[{my\-Details}]{\setlength{\rightskip}{0pt plus 5cm}void ballmerpeak.\-turtlenet.\-client.\-frontend.\-my\-Details (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_aa0f7dea95f68603b6c8e17c8b97733c7}
+
+
+Definition at line 514 of file frontend.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_ace0e354862cbae6e9f10d1c4be6db11d}{\index{ballmerpeak\-::turtlenet\-::client\-::frontend@{ballmerpeak\-::turtlenet\-::client\-::frontend}!my\-Details\-Permissions@{my\-Details\-Permissions}}
+\index{my\-Details\-Permissions@{my\-Details\-Permissions}!ballmerpeak::turtlenet::client::frontend@{ballmerpeak\-::turtlenet\-::client\-::frontend}}
+\paragraph[{my\-Details\-Permissions}]{\setlength{\rightskip}{0pt plus 5cm}void ballmerpeak.\-turtlenet.\-client.\-frontend.\-my\-Details\-Permissions (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_ace0e354862cbae6e9f10d1c4be6db11d}
+
+
+Definition at line 760 of file frontend.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_ae632d3d6bfd5ed81da02b4bf53fc9327}{\index{ballmerpeak\-::turtlenet\-::client\-::frontend@{ballmerpeak\-::turtlenet\-::client\-::frontend}!navigation@{navigation}}
+\index{navigation@{navigation}!ballmerpeak::turtlenet::client::frontend@{ballmerpeak\-::turtlenet\-::client\-::frontend}}
+\paragraph[{navigation}]{\setlength{\rightskip}{0pt plus 5cm}void ballmerpeak.\-turtlenet.\-client.\-frontend.\-navigation (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_ae632d3d6bfd5ed81da02b4bf53fc9327}
+
+
+Definition at line 232 of file frontend.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_aa36f8f33cf634edf044aa9d31790ac67}{\index{ballmerpeak\-::turtlenet\-::client\-::frontend@{ballmerpeak\-::turtlenet\-::client\-::frontend}!new\-Conversation@{new\-Conversation}}
+\index{new\-Conversation@{new\-Conversation}!ballmerpeak::turtlenet::client::frontend@{ballmerpeak\-::turtlenet\-::client\-::frontend}}
+\paragraph[{new\-Conversation}]{\setlength{\rightskip}{0pt plus 5cm}void ballmerpeak.\-turtlenet.\-client.\-frontend.\-new\-Conversation (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_aa36f8f33cf634edf044aa9d31790ac67}
+
+
+Definition at line 1354 of file frontend.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_a931cf38d0a5bb38b3d15b7c04eaaa6b7}{\index{ballmerpeak\-::turtlenet\-::client\-::frontend@{ballmerpeak\-::turtlenet\-::client\-::frontend}!new\-Group@{new\-Group}}
+\index{new\-Group@{new\-Group}!ballmerpeak::turtlenet::client::frontend@{ballmerpeak\-::turtlenet\-::client\-::frontend}}
+\paragraph[{new\-Group}]{\setlength{\rightskip}{0pt plus 5cm}void ballmerpeak.\-turtlenet.\-client.\-frontend.\-new\-Group (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_a931cf38d0a5bb38b3d15b7c04eaaa6b7}
+
+
+Definition at line 1606 of file frontend.\-java.
+
 \hypertarget{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_a32d8529c726125bae2ac35635712d067}{\index{ballmerpeak\-::turtlenet\-::client\-::frontend@{ballmerpeak\-::turtlenet\-::client\-::frontend}!on\-Click@{on\-Click}}
 \index{on\-Click@{on\-Click}!ballmerpeak::turtlenet::client::frontend@{ballmerpeak\-::turtlenet\-::client\-::frontend}}
-\subsubsection[{on\-Click}]{\setlength{\rightskip}{0pt plus 5cm}void ballmerpeak.\-turtlenet.\-client.\-frontend.\-on\-Click (
+\paragraph[{on\-Click}]{\setlength{\rightskip}{0pt plus 5cm}void ballmerpeak.\-turtlenet.\-client.\-frontend.\-on\-Click (
 \begin{DoxyParamCaption}
 \item[{Widget}]{sender}
 \end{DoxyParamCaption}
@@ -31,7 +248,7 @@ Definition at line 194 of file frontend.\-java.
 
 \hypertarget{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_adce2a675f44267e0ab469bcb30095a39}{\index{ballmerpeak\-::turtlenet\-::client\-::frontend@{ballmerpeak\-::turtlenet\-::client\-::frontend}!on\-Module\-Load@{on\-Module\-Load}}
 \index{on\-Module\-Load@{on\-Module\-Load}!ballmerpeak::turtlenet::client::frontend@{ballmerpeak\-::turtlenet\-::client\-::frontend}}
-\subsubsection[{on\-Module\-Load}]{\setlength{\rightskip}{0pt plus 5cm}void ballmerpeak.\-turtlenet.\-client.\-frontend.\-on\-Module\-Load (
+\paragraph[{on\-Module\-Load}]{\setlength{\rightskip}{0pt plus 5cm}void ballmerpeak.\-turtlenet.\-client.\-frontend.\-on\-Module\-Load (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
@@ -39,6 +256,140 @@ Definition at line 194 of file frontend.\-java.
 
 
 Definition at line 26 of file frontend.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_a8911e15af92aa31b90cdc2ec0cd78a3a}{\index{ballmerpeak\-::turtlenet\-::client\-::frontend@{ballmerpeak\-::turtlenet\-::client\-::frontend}!wall@{wall}}
+\index{wall@{wall}!ballmerpeak::turtlenet::client::frontend@{ballmerpeak\-::turtlenet\-::client\-::frontend}}
+\paragraph[{wall}]{\setlength{\rightskip}{0pt plus 5cm}void ballmerpeak.\-turtlenet.\-client.\-frontend.\-wall (
+\begin{DoxyParamCaption}
+\item[{final String}]{key, }
+\item[{final boolean}]{refresh}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_a8911e15af92aa31b90cdc2ec0cd78a3a}
+
+
+Definition at line 931 of file frontend.\-java.
+
+
+
+\subsubsection{Member Data Documentation}
+\hypertarget{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_acabb927a2716d2523f33d8055a608a7c}{\index{ballmerpeak\-::turtlenet\-::client\-::frontend@{ballmerpeak\-::turtlenet\-::client\-::frontend}!comment\-Count@{comment\-Count}}
+\index{comment\-Count@{comment\-Count}!ballmerpeak::turtlenet::client::frontend@{ballmerpeak\-::turtlenet\-::client\-::frontend}}
+\paragraph[{comment\-Count}]{\setlength{\rightskip}{0pt plus 5cm}int ballmerpeak.\-turtlenet.\-client.\-frontend.\-comment\-Count\hspace{0.3cm}{\ttfamily [private]}}}\label{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_acabb927a2716d2523f33d8055a608a7c}
+
+
+Definition at line 1190 of file frontend.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_a98647f4c02d7c216346e1b4dd3ca499d}{\index{ballmerpeak\-::turtlenet\-::client\-::frontend@{ballmerpeak\-::turtlenet\-::client\-::frontend}!conversation\-Panel@{conversation\-Panel}}
+\index{conversation\-Panel@{conversation\-Panel}!ballmerpeak::turtlenet::client::frontend@{ballmerpeak\-::turtlenet\-::client\-::frontend}}
+\paragraph[{conversation\-Panel}]{\setlength{\rightskip}{0pt plus 5cm}Flow\-Panel ballmerpeak.\-turtlenet.\-client.\-frontend.\-conversation\-Panel\hspace{0.3cm}{\ttfamily [private]}}}\label{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_a98647f4c02d7c216346e1b4dd3ca499d}
+
+
+Definition at line 1468 of file frontend.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_a0fec8e94df0b2bcc31292da80030c92f}{\index{ballmerpeak\-::turtlenet\-::client\-::frontend@{ballmerpeak\-::turtlenet\-::client\-::frontend}!convo\-Panel\-Setup\-\_\-convosig@{convo\-Panel\-Setup\-\_\-convosig}}
+\index{convo\-Panel\-Setup\-\_\-convosig@{convo\-Panel\-Setup\-\_\-convosig}!ballmerpeak::turtlenet::client::frontend@{ballmerpeak\-::turtlenet\-::client\-::frontend}}
+\paragraph[{convo\-Panel\-Setup\-\_\-convosig}]{\setlength{\rightskip}{0pt plus 5cm}String ballmerpeak.\-turtlenet.\-client.\-frontend.\-convo\-Panel\-Setup\-\_\-convosig\hspace{0.3cm}{\ttfamily [private]}}}\label{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_a0fec8e94df0b2bcc31292da80030c92f}
+
+
+Definition at line 1466 of file frontend.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_a5f2d5e5cab0462b9bd2b2c05d412606d}{\index{ballmerpeak\-::turtlenet\-::client\-::frontend@{ballmerpeak\-::turtlenet\-::client\-::frontend}!convo\-Panel\-Setup\-\_\-input@{convo\-Panel\-Setup\-\_\-input}}
+\index{convo\-Panel\-Setup\-\_\-input@{convo\-Panel\-Setup\-\_\-input}!ballmerpeak::turtlenet::client::frontend@{ballmerpeak\-::turtlenet\-::client\-::frontend}}
+\paragraph[{convo\-Panel\-Setup\-\_\-input}]{\setlength{\rightskip}{0pt plus 5cm}Text\-Area ballmerpeak.\-turtlenet.\-client.\-frontend.\-convo\-Panel\-Setup\-\_\-input = new Text\-Area()\hspace{0.3cm}{\ttfamily [private]}}}\label{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_a5f2d5e5cab0462b9bd2b2c05d412606d}
+
+
+Definition at line 1467 of file frontend.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_a342dab1f72f4cf1660ec756f4180b331}{\index{ballmerpeak\-::turtlenet\-::client\-::frontend@{ballmerpeak\-::turtlenet\-::client\-::frontend}!friends\-List\-Panel\-\_\-my\-Key\-Text\-Box@{friends\-List\-Panel\-\_\-my\-Key\-Text\-Box}}
+\index{friends\-List\-Panel\-\_\-my\-Key\-Text\-Box@{friends\-List\-Panel\-\_\-my\-Key\-Text\-Box}!ballmerpeak::turtlenet::client::frontend@{ballmerpeak\-::turtlenet\-::client\-::frontend}}
+\paragraph[{friends\-List\-Panel\-\_\-my\-Key\-Text\-Box}]{\setlength{\rightskip}{0pt plus 5cm}Text\-Box ballmerpeak.\-turtlenet.\-client.\-frontend.\-friends\-List\-Panel\-\_\-my\-Key\-Text\-Box\hspace{0.3cm}{\ttfamily [private]}}}\label{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_a342dab1f72f4cf1660ec756f4180b331}
+
+
+Definition at line 308 of file frontend.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_a617fe60a3b99c4f624cbc16a359d5726}{\index{ballmerpeak\-::turtlenet\-::client\-::frontend@{ballmerpeak\-::turtlenet\-::client\-::frontend}!key\-Of\-Wall\-Comments\-Are\-On@{key\-Of\-Wall\-Comments\-Are\-On}}
+\index{key\-Of\-Wall\-Comments\-Are\-On@{key\-Of\-Wall\-Comments\-Are\-On}!ballmerpeak::turtlenet::client::frontend@{ballmerpeak\-::turtlenet\-::client\-::frontend}}
+\paragraph[{key\-Of\-Wall\-Comments\-Are\-On}]{\setlength{\rightskip}{0pt plus 5cm}String ballmerpeak.\-turtlenet.\-client.\-frontend.\-key\-Of\-Wall\-Comments\-Are\-On = new String(\char`\"{}\char`\"{})\hspace{0.3cm}{\ttfamily [private]}}}\label{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_a617fe60a3b99c4f624cbc16a359d5726}
+
+
+Definition at line 1192 of file frontend.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_a1dc4e0c879ec185e39c9df33f96b99d6}{\index{ballmerpeak\-::turtlenet\-::client\-::frontend@{ballmerpeak\-::turtlenet\-::client\-::frontend}!link\-To\-Comments@{link\-To\-Comments}}
+\index{link\-To\-Comments@{link\-To\-Comments}!ballmerpeak::turtlenet::client::frontend@{ballmerpeak\-::turtlenet\-::client\-::frontend}}
+\paragraph[{link\-To\-Comments}]{\setlength{\rightskip}{0pt plus 5cm}Anchor ballmerpeak.\-turtlenet.\-client.\-frontend.\-link\-To\-Comments\hspace{0.3cm}{\ttfamily [private]}}}\label{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_a1dc4e0c879ec185e39c9df33f96b99d6}
+
+
+Definition at line 929 of file frontend.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_a7d6f7af35b97248a4c87681b56b247b6}{\index{ballmerpeak\-::turtlenet\-::client\-::frontend@{ballmerpeak\-::turtlenet\-::client\-::frontend}!location@{location}}
+\index{location@{location}!ballmerpeak::turtlenet::client::frontend@{ballmerpeak\-::turtlenet\-::client\-::frontend}}
+\paragraph[{location}]{\setlength{\rightskip}{0pt plus 5cm}String ballmerpeak.\-turtlenet.\-client.\-frontend.\-location = new String(\char`\"{}\char`\"{})\hspace{0.3cm}{\ttfamily [private]}}}\label{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_a7d6f7af35b97248a4c87681b56b247b6}
+
+
+Definition at line 49 of file frontend.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_a8991d2d9a0c72e08986aa710d0e02278}{\index{ballmerpeak\-::turtlenet\-::client\-::frontend@{ballmerpeak\-::turtlenet\-::client\-::frontend}!login\-Panel@{login\-Panel}}
+\index{login\-Panel@{login\-Panel}!ballmerpeak::turtlenet::client::frontend@{ballmerpeak\-::turtlenet\-::client\-::frontend}}
+\paragraph[{login\-Panel}]{\setlength{\rightskip}{0pt plus 5cm}Flex\-Table ballmerpeak.\-turtlenet.\-client.\-frontend.\-login\-Panel = new Flex\-Table()\hspace{0.3cm}{\ttfamily [private]}}}\label{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_a8991d2d9a0c72e08986aa710d0e02278}
+
+
+Definition at line 53 of file frontend.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_a3a97955a4caeb2d7eec937a55e0f1505}{\index{ballmerpeak\-::turtlenet\-::client\-::frontend@{ballmerpeak\-::turtlenet\-::client\-::frontend}!new\-Convo\-Input@{new\-Convo\-Input}}
+\index{new\-Convo\-Input@{new\-Convo\-Input}!ballmerpeak::turtlenet::client::frontend@{ballmerpeak\-::turtlenet\-::client\-::frontend}}
+\paragraph[{new\-Convo\-Input}]{\setlength{\rightskip}{0pt plus 5cm}Text\-Area ballmerpeak.\-turtlenet.\-client.\-frontend.\-new\-Convo\-Input = new Text\-Area()\hspace{0.3cm}{\ttfamily [private]}}}\label{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_a3a97955a4caeb2d7eec937a55e0f1505}
+
+
+Definition at line 1353 of file frontend.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_af105d0e6450c2caedeaee033e8f5d444}{\index{ballmerpeak\-::turtlenet\-::client\-::frontend@{ballmerpeak\-::turtlenet\-::client\-::frontend}!post\-Text@{post\-Text}}
+\index{post\-Text@{post\-Text}!ballmerpeak::turtlenet::client::frontend@{ballmerpeak\-::turtlenet\-::client\-::frontend}}
+\paragraph[{post\-Text}]{\setlength{\rightskip}{0pt plus 5cm}Text\-Area ballmerpeak.\-turtlenet.\-client.\-frontend.\-post\-Text\hspace{0.3cm}{\ttfamily [private]}}}\label{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_af105d0e6450c2caedeaee033e8f5d444}
+
+
+Definition at line 924 of file frontend.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_a280a54ef9864d0adbd9a44e32b7a4775}{\index{ballmerpeak\-::turtlenet\-::client\-::frontend@{ballmerpeak\-::turtlenet\-::client\-::frontend}!refresh\-I\-D@{refresh\-I\-D}}
+\index{refresh\-I\-D@{refresh\-I\-D}!ballmerpeak::turtlenet::client::frontend@{ballmerpeak\-::turtlenet\-::client\-::frontend}}
+\paragraph[{refresh\-I\-D}]{\setlength{\rightskip}{0pt plus 5cm}String ballmerpeak.\-turtlenet.\-client.\-frontend.\-refresh\-I\-D = new String(\char`\"{}\char`\"{})\hspace{0.3cm}{\ttfamily [private]}}}\label{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_a280a54ef9864d0adbd9a44e32b7a4775}
+
+
+Definition at line 50 of file frontend.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_a0135fa512db0b8a94e65353bad182e11}{\index{ballmerpeak\-::turtlenet\-::client\-::frontend@{ballmerpeak\-::turtlenet\-::client\-::frontend}!thread\-Reply\-Contents@{thread\-Reply\-Contents}}
+\index{thread\-Reply\-Contents@{thread\-Reply\-Contents}!ballmerpeak::turtlenet::client::frontend@{ballmerpeak\-::turtlenet\-::client\-::frontend}}
+\paragraph[{thread\-Reply\-Contents}]{\setlength{\rightskip}{0pt plus 5cm}Text\-Area ballmerpeak.\-turtlenet.\-client.\-frontend.\-thread\-Reply\-Contents\hspace{0.3cm}{\ttfamily [private]}}}\label{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_a0135fa512db0b8a94e65353bad182e11}
+
+
+Definition at line 1191 of file frontend.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_aef6ce8b50c96dc1af6177f057c4b717f}{\index{ballmerpeak\-::turtlenet\-::client\-::frontend@{ballmerpeak\-::turtlenet\-::client\-::frontend}!turtlenet@{turtlenet}}
+\index{turtlenet@{turtlenet}!ballmerpeak::turtlenet::client::frontend@{ballmerpeak\-::turtlenet\-::client\-::frontend}}
+\paragraph[{turtlenet}]{\setlength{\rightskip}{0pt plus 5cm}final {\bf Turtlenet\-Async} ballmerpeak.\-turtlenet.\-client.\-frontend.\-turtlenet = G\-W\-T.\-create(Turtlenet.\-class)\hspace{0.3cm}{\ttfamily [private]}}}\label{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_aef6ce8b50c96dc1af6177f057c4b717f}
+
+
+Definition at line 24 of file frontend.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_a7ec1c30337c5278194425a4fa458996b}{\index{ballmerpeak\-::turtlenet\-::client\-::frontend@{ballmerpeak\-::turtlenet\-::client\-::frontend}!wall\-Control\-Panel@{wall\-Control\-Panel}}
+\index{wall\-Control\-Panel@{wall\-Control\-Panel}!ballmerpeak::turtlenet::client::frontend@{ballmerpeak\-::turtlenet\-::client\-::frontend}}
+\paragraph[{wall\-Control\-Panel}]{\setlength{\rightskip}{0pt plus 5cm}Horizontal\-Panel ballmerpeak.\-turtlenet.\-client.\-frontend.\-wall\-Control\-Panel = new Horizontal\-Panel()\hspace{0.3cm}{\ttfamily [private]}}}\label{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_a7ec1c30337c5278194425a4fa458996b}
+
+
+Definition at line 923 of file frontend.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_ae8e9ee35fb5626cbcdffeb1217d9b71e}{\index{ballmerpeak\-::turtlenet\-::client\-::frontend@{ballmerpeak\-::turtlenet\-::client\-::frontend}!wall\-Control\-Panel\-User\-Details\-Button@{wall\-Control\-Panel\-User\-Details\-Button}}
+\index{wall\-Control\-Panel\-User\-Details\-Button@{wall\-Control\-Panel\-User\-Details\-Button}!ballmerpeak::turtlenet::client::frontend@{ballmerpeak\-::turtlenet\-::client\-::frontend}}
+\paragraph[{wall\-Control\-Panel\-User\-Details\-Button}]{\setlength{\rightskip}{0pt plus 5cm}Button ballmerpeak.\-turtlenet.\-client.\-frontend.\-wall\-Control\-Panel\-User\-Details\-Button\hspace{0.3cm}{\ttfamily [private]}}}\label{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_ae8e9ee35fb5626cbcdffeb1217d9b71e}
+
+
+Definition at line 928 of file frontend.\-java.
+
+\hypertarget{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_aabfe3b109c5a81d51ede885f008d7530}{\index{ballmerpeak\-::turtlenet\-::client\-::frontend@{ballmerpeak\-::turtlenet\-::client\-::frontend}!wall\-Panel@{wall\-Panel}}
+\index{wall\-Panel@{wall\-Panel}!ballmerpeak::turtlenet::client::frontend@{ballmerpeak\-::turtlenet\-::client\-::frontend}}
+\paragraph[{wall\-Panel}]{\setlength{\rightskip}{0pt plus 5cm}Flow\-Panel ballmerpeak.\-turtlenet.\-client.\-frontend.\-wall\-Panel = new Flow\-Panel()\hspace{0.3cm}{\ttfamily [private]}}}\label{classballmerpeak_1_1turtlenet_1_1client_1_1frontend_aabfe3b109c5a81d51ede885f008d7530}
+
+
+Definition at line 927 of file frontend.\-java.
 
 
 

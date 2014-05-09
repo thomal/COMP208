@@ -6,5 +6,9 @@ var searchData=
   ['message_2ejava',['Message.java',['../Message_8java.html',1,'']]],
   ['messagefactory',['MessageFactory',['../classballmerpeak_1_1turtlenet_1_1server_1_1MessageFactory.html',1,'ballmerpeak::turtlenet::server']]],
   ['messagefactory',['MessageFactory',['../classballmerpeak_1_1turtlenet_1_1server_1_1MessageFactory.html#af1d89c1c60b23a27b395ced57813edf1',1,'ballmerpeak::turtlenet::server::MessageFactory']]],
-  ['messagefactory_2ejava',['MessageFactory.java',['../MessageFactory_8java.html',1,'']]]
+  ['messagefactory_2ejava',['MessageFactory.java',['../MessageFactory_8java.html',1,'']]],
+  ['messagelock',['messageLock',['../classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection.html#af9588f9c66266d7aacadce9b0351a177',1,'ballmerpeak::turtlenet::server::NetworkConnection']]],
+  ['messages',['messages',['../classballmerpeak_1_1turtlenet_1_1server_1_1NetworkConnection.html#a477f742ecdd3902fb26a4292f760b163',1,'ballmerpeak::turtlenet::server::NetworkConnection']]],
+  ['mydetails',['myDetails',['../classballmerpeak_1_1turtlenet_1_1client_1_1frontend.html#aa0f7dea95f68603b6c8e17c8b97733c7',1,'ballmerpeak::turtlenet::client::frontend']]],
+  ['mydetailspermissions',['myDetailsPermissions',['../classballmerpeak_1_1turtlenet_1_1client_1_1frontend.html#ace0e354862cbae6e9f10d1c4be6db11d',1,'ballmerpeak::turtlenet::client::frontend']]]
 ];

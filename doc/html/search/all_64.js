@@ -5,6 +5,7 @@ var searchData=
   ['database_2ejava',['Database.java',['../Database_8java.html',1,'']]],
   ['db',['db',['../classballmerpeak_1_1turtlenet_1_1server_1_1TNClient.html#a71515570b30a73fbd91017c811dad2ba',1,'ballmerpeak::turtlenet::server::TNClient']]],
   ['dbconnect',['dbConnect',['../classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#a80e93295b9fd81f2a3c73bcaa2df39ee',1,'ballmerpeak::turtlenet::server::Database']]],
+  ['dbconnection',['dbConnection',['../classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#afc619b6caae48aed2aef929243b00410',1,'ballmerpeak::turtlenet::server::Database']]],
   ['dbcreate',['dbCreate',['../classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#af796c23330bbae7271011b0e81901643',1,'ballmerpeak::turtlenet::server::Database']]],
   ['dbdirexists',['DBDirExists',['../classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#a89fecb924cc735abbc16d58405945fb2',1,'ballmerpeak::turtlenet::server::Database']]],
   ['dbdisconnect',['dbDisconnect',['../classballmerpeak_1_1turtlenet_1_1server_1_1Database.html#a1900530bc7bf5c275a275b788086f6ec',1,'ballmerpeak::turtlenet::server::Database']]],

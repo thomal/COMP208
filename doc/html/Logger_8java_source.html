@@ -132,12 +132,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    </div>
 <div class="line"><a name="l00045"></a><span class="lineno"><a class="code" href="classballmerpeak_1_1turtlenet_1_1server_1_1Logger.html#aa3ebd83be6d967692fae7980eb7b146f">   45</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="classballmerpeak_1_1turtlenet_1_1server_1_1Logger.html#aa3ebd83be6d967692fae7980eb7b146f">write</a> (String level, String place, String s) {</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="keywordflow">if</span> (started) {</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            log.println((System.currentTimeMillis()/1000L) + <span class="stringliteral">&quot; &quot;</span> + level + getTabs(level) + place + <span class="stringliteral">&quot;\t&quot;</span> + s);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            log.println((System.currentTimeMillis()/1000L) + <span class="stringliteral">&quot; &quot;</span> + level + <a class="code" href="classballmerpeak_1_1turtlenet_1_1server_1_1Logger.html#ab10e5c8454d7cdf047b2c53bf040afc0">getTabs</a>(level) + place + <span class="stringliteral">&quot;\t&quot;</span> + s);</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            log.flush(); <span class="comment">//In case of a crash we don&#39;t want to be digging up the wrong code</span></div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        }</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    }</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    </div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keyword">private</span> <span class="keyword">static</span> String getTabs (String s) {</div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="code" href="classballmerpeak_1_1turtlenet_1_1server_1_1Logger.html#ab10e5c8454d7cdf047b2c53bf040afc0">   52</a></span>&#160;    <span class="keyword">private</span> <span class="keyword">static</span> String <a class="code" href="classballmerpeak_1_1turtlenet_1_1server_1_1Logger.html#ab10e5c8454d7cdf047b2c53bf040afc0">getTabs</a> (String s) {</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        s = (System.currentTimeMillis()/1000L) + <span class="stringliteral">&quot; &quot;</span> + s;</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <span class="keywordflow">if</span> (s.length() &lt; 16)  <span class="keywordflow">return</span> <span class="stringliteral">&quot;\t\t&quot;</span>; <span class="keywordflow">else</span> <span class="keywordflow">return</span> <span class="stringliteral">&quot;\t&quot;</span>;</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    }</div>
@@ -145,7 +145,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri May 9 2014 03:30:36 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri May 9 2014 04:27:53 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>

@@ -384,7 +384,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;    </div>
 <div class="line"><a name="l00297"></a><span class="lineno"><a class="code" href="classballmerpeak_1_1turtlenet_1_1server_1_1Crypto.html#abfc04f2d0f6f92bcca41c53b6cdc667d">  297</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">static</span> byte[] <a class="code" href="classballmerpeak_1_1turtlenet_1_1server_1_1Crypto.html#abfc04f2d0f6f92bcca41c53b6cdc667d">encryptBytes</a> (byte[] data, String key) {</div>
 <div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;        <span class="keywordflow">try</span> {</div>
-<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;            SecretKeySpec spec = <span class="keyword">new</span> SecretKeySpec(getAESKey(key), <span class="stringliteral">&quot;AES&quot;</span>);</div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;            SecretKeySpec spec = <span class="keyword">new</span> SecretKeySpec(<a class="code" href="classballmerpeak_1_1turtlenet_1_1server_1_1Crypto.html#ae27396e1a327d1fc2eba6f7ccd53defc">getAESKey</a>(key), <span class="stringliteral">&quot;AES&quot;</span>);</div>
 <div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;            Cipher cipher = Cipher.getInstance(<span class="stringliteral">&quot;AES&quot;</span>);</div>
 <div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;            cipher.init(Cipher.ENCRYPT_MODE, spec);</div>
 <div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;            <span class="keywordflow">return</span> cipher.doFinal(data);</div>
@@ -396,7 +396,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;    </div>
 <div class="line"><a name="l00309"></a><span class="lineno"><a class="code" href="classballmerpeak_1_1turtlenet_1_1server_1_1Crypto.html#aea88564254a1c6c217042419f304c1ef">  309</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">static</span> byte[] <a class="code" href="classballmerpeak_1_1turtlenet_1_1server_1_1Crypto.html#aea88564254a1c6c217042419f304c1ef">decryptBytes</a> (byte[] data, String key) {</div>
 <div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;        <span class="keywordflow">try</span> {</div>
-<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;            SecretKeySpec spec = <span class="keyword">new</span> SecretKeySpec(getAESKey(key), <span class="stringliteral">&quot;AES&quot;</span>);</div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;            SecretKeySpec spec = <span class="keyword">new</span> SecretKeySpec(<a class="code" href="classballmerpeak_1_1turtlenet_1_1server_1_1Crypto.html#ae27396e1a327d1fc2eba6f7ccd53defc">getAESKey</a>(key), <span class="stringliteral">&quot;AES&quot;</span>);</div>
 <div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;            Cipher cipher = Cipher.getInstance(<span class="stringliteral">&quot;AES&quot;</span>);</div>
 <div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;            cipher.init(Cipher.DECRYPT_MODE, spec);</div>
 <div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;            <span class="keywordflow">return</span> cipher.doFinal(data);</div>
@@ -406,7 +406,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;        }</div>
 <div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;    }</div>
 <div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;    </div>
-<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;    <span class="keyword">private</span> <span class="keyword">static</span> byte[] getAESKey(String password) {</div>
+<div class="line"><a name="l00321"></a><span class="lineno"><a class="code" href="classballmerpeak_1_1turtlenet_1_1server_1_1Crypto.html#ae27396e1a327d1fc2eba6f7ccd53defc">  321</a></span>&#160;    <span class="keyword">private</span> <span class="keyword">static</span> byte[] <a class="code" href="classballmerpeak_1_1turtlenet_1_1server_1_1Crypto.html#ae27396e1a327d1fc2eba6f7ccd53defc">getAESKey</a>(String password) {</div>
 <div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;        <span class="keywordflow">try</span> {</div>
 <div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;            byte[] pwBytes = password.getBytes(<span class="stringliteral">&quot;UTF-8&quot;</span>);</div>
 <div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;            KeyGenerator gen = KeyGenerator.getInstance(<span class="stringliteral">&quot;AES&quot;</span>);</div>
@@ -416,7 +416,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;            SecretKey key = gen.generateKey();</div>
 <div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;            <span class="keywordflow">return</span> key.getEncoded();</div>
 <div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;        } <span class="keywordflow">catch</span> (Exception e) {</div>
-<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;            Logger.write(<span class="stringliteral">&quot;FATAL&quot;</span>, <span class="stringliteral">&quot;Crypto&quot;</span>, <span class="stringliteral">&quot;Could not get AES key: &quot;</span> + e);</div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;            <a class="code" href="classballmerpeak_1_1turtlenet_1_1server_1_1Logger.html">Logger</a>.<a class="code" href="classballmerpeak_1_1turtlenet_1_1server_1_1Logger.html#aa3ebd83be6d967692fae7980eb7b146f">write</a>(<span class="stringliteral">&quot;FATAL&quot;</span>, <span class="stringliteral">&quot;Crypto&quot;</span>, <span class="stringliteral">&quot;Could not get AES key: &quot;</span> + e);</div>
 <div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;            <span class="keywordflow">return</span> null;</div>
 <div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;        }</div>
 <div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;    }</div>
@@ -424,7 +424,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri May 9 2014 03:30:36 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri May 9 2014 04:27:53 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>
