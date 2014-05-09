@@ -21,12 +21,19 @@ public class Crypto {
                                                    System.currentTimeMillis())
                                                .getBytes());
 
+    /** Check whether the user has a keypair.
+     * \return true is the user has a keypair, false otherwise.
+     */
     public static Boolean keysExist() {
         File publicKey  = new File(Database.path + "/public.key");
         File privateKey = new File(Database.path + "/private.key");
         return publicKey.exists() && privateKey.exists();
     }
     
+    /** Generate an RSA keypair.
+     * Stores the keys in Database.path + public/private .key
+     * They are automatically encrypted by TNClient.
+     */
     public static void keyGen() {
         try {
             Logger.write("INFO", "Crypto","Generating keys");
@@ -57,7 +64,11 @@ public class Crypto {
         }
     }
     
-    //encrypt all files in db folder, rename to <filename>.aes
+    /** Encrypt local data store.
+     * encrypts all files in the db folder with AES-128. Renames files to <filename>.aes
+     * \param password The password used to derive the AES key.
+     * \return true of success, false otherwise.
+     */
     public static boolean encryptDB(String password) {
         Logger.write("VERBOSE", "Crypto", "encryptDB(" + password + ")");
         try {
@@ -79,7 +90,11 @@ public class Crypto {
         return true;
     }
     
-    //decrypt all files <filename>.aes in db folder, rename to <filename>
+    /** Decrypt local data store.
+     * Decrypts all files in the db folder with AES-128. Removes the trailing .aes from the filename
+     * \param password The password used to derive the AES key.
+     * \return true of success, false otherwise.
+     */
     public static boolean decryptDB(String password) {
         Logger.write("VERBOSE", "Crypto", "decryptDB(" + password + ")");
         try {
@@ -100,6 +115,10 @@ public class Crypto {
         return false;
     }
     
+    /** Get a keypair for testing purposes.
+     * \param bar baz.
+     * \return An RSA KeyPair
+     */
     public static KeyPair getTestKey() {
         Logger.write("INFO", "Crypto","Generating test keypair");
         try {
@@ -112,6 +131,9 @@ public class Crypto {
         }
     }
     
+    /** Get the current users public key.
+     * \return The current users PublicKey.
+     */
     public static PublicKey getPublicKey() {
         try {
             ObjectInputStream file = new ObjectInputStream(
@@ -124,6 +146,9 @@ public class Crypto {
         return null;
     }
     
+    /** Get the current users private key.
+     * \return The current users PrivateKey
+     */
     public static PrivateKey getPrivateKey() {
         try {
             ObjectInputStream file = new ObjectInputStream(
@@ -136,11 +161,24 @@ public class Crypto {
         return null;
     }
     
+    /** Generate the appropriate signature for a message.
+     * Returns the appropriate signature for the given message as a string.
+     * Signature is created using the current users private key.
+     * \param msg The message to sign.
+     * \return A signature of msg by the current users private key.
+     */
     public static String sign (Message msg) {
         Logger.write("INFO", "Crypto","sign()");
         return sign(msg, Crypto.getPrivateKey());
     }
     
+    /** Generate the appropriate signature for a message.
+     * Returns the appropriate signature for the given message as a string.
+     * Signature is created using the given key.
+     * \param msg The message to sign.
+     * \param k The key to sign with.
+     * \return A signature of msg by k.
+     */
     public static String sign (Message msg, PrivateKey k) {
         Logger.write("INFO", "Crypto","sign()");
         try {
@@ -155,6 +193,11 @@ public class Crypto {
         return "";
     }
     
+    /** Hash a string.
+     * Uses SHA-256.
+     * \param data The text to hash.
+     * \return The SHA-256 hash of the data.
+     */
     public static String hash (String data) {
         try {
             MessageDigest hasher = MessageDigest.getInstance("SHA-256");        
@@ -165,6 +208,11 @@ public class Crypto {
         return "not_a_hash";
     }
     
+    /** Verify a signature.
+     * \param msg The message that's been signed.
+     * \param author The key suspected to be the author of the signature.
+     * \return true is author signed msg, false otherwise.
+     */
     public static boolean verifySig (Message msg, PublicKey author) {
         Logger.write("INFO", "Crypto","verifySig()");
         try {
@@ -184,11 +232,25 @@ public class Crypto {
         return false;
     }
     
-    //Time differentials can, and have, been used to corrolate otherwise
-    //  anonymous messages; therefore server time is used. This is not to
-    //  protect against malicious server operators, but operators ordered after
-    //  the fact to provide the data they've collected.
-    //The NetworkConnection is used to get the servers time.
+    /** Encrypt a message.
+     * Uses an RSA header with the main ciphertext being AES encrypted. There
+     * are significant speed advantages to this given most modern CPUs have
+     * AES as part of the instruction set.
+     *
+     * Message is encrypted using the current users private key.
+     *
+     * Time differentials can, and have, been used to corrolate otherwise
+     *  anonymous messages; therefore server time is used. This is not to
+     *  protect against malicious server operators, but operators ordered after
+     *  the fact to provide the data they've collected.
+     *
+     * The NetworkConnection is used to get the servers time.
+     * \param msg The message to encrypt.
+     * \param recipient The public key that should be used to encrypt the message.
+     * \param connection A network connection to the server you intend to send
+     *    this message to. Used to get a timestamp.
+     * \return The encrypted message as a string.
+     */
     public static String encrypt(Message msg, PublicKey recipient, NetworkConnection connection) {
         try {
             Logger.write("INFO", "Crypto","encrypt()");
@@ -219,6 +281,16 @@ public class Crypto {
         return "";
     }
     
+    /** Decrypt a message.
+     * Uses an RSA header with the main ciphertext being AES encrypted. There
+     * are significant speed advantages to this given most modern CPUs have
+     * AES as part of the instruction set.
+     *
+     * Message is decrypted using the current users private key.
+     *
+     * \param msg The message to decryot.
+     * \return The decrypted message.
+     */
     public static Message decrypt(String msg) {
         Logger.write("INFO", "Crypto","decrypt()");
         try {
@@ -258,6 +330,10 @@ public class Crypto {
         return new Message("NULL", "", 0, "");
     }
     
+    /** Encode a PublicKey as a String.
+     * \param key The PublicKey to encode.
+     * \return A string representation of key.
+     */
     public static String encodeKey (PublicKey key) {
         if (key != null) {
             return Base64Encode(key.getEncoded());
@@ -267,6 +343,10 @@ public class Crypto {
         }
     }
     
+    /** Decode a string representation of a PublicKey.
+     * \param codedKey The encoded public key to decode.
+     * \return The PublicKey encoded in codedKey.
+     */
     public static PublicKey decodeKey (String codedKey) {
         if (codedKey != null) {
             try {
@@ -281,19 +361,40 @@ public class Crypto {
         return null;
     }
     
+    /** Encode a byte[] as a string.
+     * Uses base64 encoding.
+     * \param data The byte array to encode.
+     * \return A string representation of data.
+     */
     public static String Base64Encode (byte[] data) {
         return DatatypeConverter.printBase64Binary(data);
     }
     
+    /** Decode a string representation of a byte[]
+     * Uses base64 encoding.
+     * \param data The string to decode.
+     * \return The byte[] data represents.
+     */
     public static byte[] Base64Decode (String data) {
         return DatatypeConverter.parseBase64Binary(data);
     }
     
+    /** Get a random number.
+     * \param min The minimum value to return, inclusive.
+     * \param max The maximum value to return, exclusive.
+     * \return a random integer between min and max (inclusive.)
+     */
     public static int rand (int min, int max) {
         int range = max - min;
         return (int)(Math.random() * (range + 1)) + min;
     }
     
+    /** AES Encrypt data.
+     * AES encrypts a byte[] using AES and a key derived from key.
+     * \param data The data to encrypt.
+     * \param key The string from which the key is derived.
+     * \return data encrypted using AES.
+     */
     public static byte[] encryptBytes (byte[] data, String key) {
         try {
             SecretKeySpec spec = new SecretKeySpec(getAESKey(key), "AES");
@@ -306,6 +407,12 @@ public class Crypto {
         }
     }
     
+    /** Decrypt AES data.
+     * Decrypts AES encrypted byte[]s using a key derived from key.
+     * \param data The data to decrypt.
+     * \param key The string from which the key is derived.
+     * \return decrypted data.
+     */
     public static byte[] decryptBytes (byte[] data, String key) {
         try {
             SecretKeySpec spec = new SecretKeySpec(getAESKey(key), "AES");
@@ -318,6 +425,10 @@ public class Crypto {
         }
     }
     
+    /** Derives a byte[] suitable for constructing an AES key from a string.
+     * \param password The string from which to derive a byte[].
+     * \return A byte[] suitable for constructing an AES key.
+     */
     private static byte[] getAESKey(String password) {
         try {
             byte[] pwBytes = password.getBytes("UTF-8");
