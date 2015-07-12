@@ -15,15 +15,12 @@ KAWAII TURTLE~
                 / o  o   \    /___/____|_____\
                 \  w     /   /___ /_____|_____\ >
                    -----     u              u
---------------------------------------------
-Notices
---------------------------------------------
+# Notices
 The user manual given during the demo contains a lot of incorrect information.
 A new version will be submitted in the portfolio with errors corrected.
-(passwords have nothing to do with authentication at all, among other errors)
---------------------------------------------
-Running TN
---------------------------------------------
+(passwords have nothing to do with authentication at all, among other errors.)
+
+# Running TN
 Download turtlenet.jar, launch it with `java -jar turtlenet.jar' and connect to
 localhost:3141 in a webbrowser.
 
@@ -32,14 +29,12 @@ If using the tor version ensure that tor has started a SOCKS proxy on 9050.
 IMPORTANT: The servers DNS records changed on may 4th at 1425 and the old
 servers data was not preserved. If you had an account on the older server please
 erase your db folder and reregister on the new server.
---------------------------------------------
-TODO
---------------------------------------------
+
+# TODO
 Autorefresh pages on new content
 Currently the users DB is erased if they enter the wrong PW
---------------------------------------------
-HOW-TO
---------------------------------------------
+
+# HOW-TO
 Compile:
     - in COMP208 folder type `make'
 
@@ -75,9 +70,8 @@ Create windows build environment:
 
         Your JDK path should look something like:
             C:\Program Files\Java\jdk1.7.0_51\bin
---------------------------------------------
-Meeting #13 Minutes (Friday 02/04/2014)
---------------------------------------------
+
+# Meeting #13 Minutes (Friday 02/04/2014)
 (Peter, Luke, Aishah, Leon, Mike, Louis)
 - Assigned final weeks tasks and roles for submitting the portfolio
 - Updates Requirements (Aishah)
@@ -94,16 +88,14 @@ Meeting #13 Minutes (Friday 02/04/2014)
 - Testing Automated/Blackbox (Louis)
 
 Submission for all this is WEDNESDAY 7th May.
---------------------------------------------
-Meeting #12 Minutes (Saturday, 19/04/2014)
---------------------------------------------
+
+# Meeting #12 Minutes (Saturday, 19/04/2014)
 (Peter, Luke, Aishah, Leon, Mike, Louis)
 - Website finally unveiled
 - Reassignment of some tasks (prioritization)
 - Mostly a formality to remind people of deadlines
---------------------------------------------
-Meeting #11 Minutes (Sunday, 13/04/2014)
---------------------------------------------
+
+# Meeting #11 Minutes (Sunday, 13/04/2014)
 Present: Peter, Luke, Aishah, Louis
 - Progress Recap:
   - Luke:
@@ -134,9 +126,8 @@ Louis:
 - Call appropriate Database.getX methods
 
 Leon, Mike not present.
---------------------------------------------
-Meeting #10 Minutes (Friday, 28/03/2014)
---------------------------------------------
+
+# Meeting #10 Minutes (Friday, 28/03/2014)
 Present: Peter, Luke, Aishah, Leon, Mike, Louis
 By next meeting:
 - Fix manual stuff, add makefile, finish initial test setup (luke)
@@ -145,9 +136,8 @@ By next meeting:
 - Start/Stop server via gui (leon)
 - Webstie Prototype (peter)
 - Document regarding hashing for various classes (luke)
---------------------------------------------
-Meeting #9 Minutes (Friday, 21/03/2014)
---------------------------------------------
+
+# Meeting #9 Minutes (Friday, 21/03/2014)
 Present: Peter, Luke, Aishah, Mike, Louis
 By next meeting:
 - Everyone can build project
@@ -160,9 +150,8 @@ By next meeting:
 - Server GUI, start up and shut down
 
 Leon absent.
---------------------------------------------
-Meeting #8 Minutes (Wednesday, 19/03/2014)
---------------------------------------------
+
+# Meeting #8 Minutes (Wednesday, 19/03/2014)
 Present: Peter, Luke, Aishah, Leon, Louis
 
 | Task                           | Assigned To  |
@@ -202,18 +191,15 @@ Present: Peter, Luke, Aishah, Leon, Louis
 |  Comment posts and comments    |              |
 |  Like posts and comments       |              |
 
-------------------------------------------
-Meeting #7 Minutes (Friday, 07/03/2014)
-------------------------------------------
+# Meeting #7 Minutes (Friday, 07/03/2014)
 Present: Peter, Luke, Aishah, Leon, Mike, Louis
 - Business Rules (Peter)
 - Gantt Chart (Mike)
 - Various DB tweaks (Aishah)
 - Merge work into PDF (Luke)
 - Rename GUI design as storyboard
-------------------------------------------
-Meeting #6 Minutes (Wednesday, 19/02/2014)
-------------------------------------------
+
+# Meeting #6 Minutes (Wednesday, 19/02/2014)
 Present: Peter, Luke, Aishah, Leon, Mike, Louis
 - Discussed design phase, outlined what needs to be done
 - Also outlined who needs to do it, tasklist:
@@ -224,25 +210,21 @@ Present: Peter, Luke, Aishah, Leon, Mike, Louis
 - Peter - Swing/AWT GUI Design, Server GUI Design
 - Luke - Class Interfaces, Protocol, Architecture, Data Flow Diagrams, More
          Protocol, Psuedocode
-------------------------------------------
-Meeting #5 Minutes (Wednesday, 12/02/2014)
-------------------------------------------
+# Meeting #5 Minutes (Wednesday, 12/02/2014)
 Present: Peter, Luke, Aishah, Leon, Mike
 - Allocated left over parts
 - Feedback on project and requirements so far
 - Project name: Turtlenet
 - Louis Prince absent from scheduled meeting.
------------------------------------------
-Meeting #4 Minutes (Friday, 07/02/2014)
------------------------------------------
+
+# Meeting #4 Minutes (Friday, 07/02/2014)
 Present: Peter, Luke, Aishah, Leon, Louis
 - Introduced Louis Prince to members/project
 - Assigned Roles to requirement sections
 - Team Review date proposed (Wed 19th, Afternoon)
 - Team name: Ballmer Peak
-----------------------------------------
-Meeting #3 Minutes (Tuesday, 04/02/2014)
-----------------------------------------
+
+# Meeting #3 Minutes (Tuesday, 04/02/2014)
 Present: Peter, Luke, Aishah, Leon, Mike
 - State out the problems, criticisms on Facebook regarding user privacy issues
     (Leon to do this)
@@ -254,15 +236,13 @@ Present: Peter, Luke, Aishah, Leon, Mike
 - GANTT chart and risk assessment (after user requirements has been drafted out)
 - Data dictionary (Aishah)
 - Read about how to implement SQLite (Aishah)
----------------------------------------
-Meeting #2 Minutes (Friday, 31/01/2014)
----------------------------------------
+
+# Meeting #2 Minutes (Friday, 31/01/2014)
 Present: Peter, Luke, Aishah, Leon, Mike
 - We ate nice chinese in celebration of the new year
 - If I'm honest this wasnt really a team meeting, more a hunger thing
------------------------------------------
-Meeting #1 Minutes (Thursday, 30/01/2014)
------------------------------------------
+
+# Meeting #1 Minutes (Thursday, 30/01/2014)
 Present: Peter, Luke, Aishah, Leon, Mike
 - Introductions
 - Overview of the project
